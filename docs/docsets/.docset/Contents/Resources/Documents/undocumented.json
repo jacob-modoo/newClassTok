@@ -1,0 +1,2259 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Color+Extension.swift",
+      "line": 14,
+      "symbol": "UIColor.init(hexString:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 13,
+      "symbol": "Date.cmpString()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 20,
+      "symbol": "Date.string()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 28,
+      "symbol": "Date.stringAll()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 36,
+      "symbol": "Date.startOfMonth()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 39,
+      "symbol": "Date.startOfMonth(date:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 44,
+      "symbol": "Date.endOfMonth()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 47,
+      "symbol": "Date.endOfMonth(date:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 54,
+      "symbol": "Date.startOfWeek()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 61,
+      "symbol": "Date.endOfWeek()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 68,
+      "symbol": "Date.startOfYear()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 73,
+      "symbol": "Date.endOfYear()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 78,
+      "symbol": "Date.compare(month:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 94,
+      "symbol": "Date.dayOfMonths(year:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 117,
+      "symbol": "Date.Get(year:month:day:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 128,
+      "symbol": "Date.GetId(year:month:day:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 133,
+      "symbol": "Date.GetId()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 146,
+      "symbol": "Date.getYear()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 155,
+      "symbol": "Date.getMonth()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 164,
+      "symbol": "Date.getDay()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 172,
+      "symbol": "Date.dateToString()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 179,
+      "symbol": "Date.dateToStringSlash()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Date+Extension.swift",
+      "line": 187,
+      "symbol": "Date.changeDateFormat()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/HtmlToSwift+Extension.swift",
+      "line": 17,
+      "symbol": "Data.html2AttributedString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/HtmlToSwift+Extension.swift",
+      "line": 25,
+      "symbol": "Data.html2String",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/HtmlToSwift+Extension.swift",
+      "line": 31,
+      "symbol": "String.html2AttributedString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/HtmlToSwift+Extension.swift",
+      "line": 34,
+      "symbol": "String.html2String",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Int+Extension.swift",
+      "line": 13,
+      "symbol": "Int.numberFormatterModooClass(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Navigation+Extension.swift",
+      "line": 15,
+      "symbol": "UINavigationController.popToViewController(ofClass:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Navigation+Extension.swift",
+      "line": 21,
+      "symbol": "UINavigationController.popViewControllers(viewsToPop:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/Notification+Extension.swift",
+      "line": 13,
+      "symbol": "UIViewController.localNotification()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/RootView+Extension.swift",
+      "line": 12,
+      "symbol": "UIViewController.topMostViewController()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 16,
+      "symbol": "String.between(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 27,
+      "symbol": "String.length",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 33,
+      "symbol": "String.substring(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 38,
+      "symbol": "String.substring(from:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 43,
+      "symbol": "String.substring(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 50,
+      "symbol": "String.character(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 54,
+      "symbol": "String.lastIndexOfCharacter(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 60,
+      "symbol": "String.replace(target:withString:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 80,
+      "symbol": "String.isBlank",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 89,
+      "symbol": "String.isEmail",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 98,
+      "symbol": "String.isAlphanumeric",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 103,
+      "symbol": "String.isValidPassword",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/String+Extension.swift",
+      "line": 121,
+      "symbol": "String.isPhoneNumber",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/TabBarItem+Extension.swift",
+      "line": 12,
+      "symbol": "UITabBarItem.tabBarItemShowingOnlyImage()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/TableView+Extension.swift",
+      "line": 13,
+      "symbol": "UITableView.reloadDataWithoutScroll()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/TextView+Extension.swift",
+      "line": 14,
+      "symbol": "NSAttributedString.trimmedAttributedString()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/UIView+Extension.swift",
+      "line": 14,
+      "symbol": "UIView.fadeIn(_:delay:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Extension/UIView+Extension.swift",
+      "line": 21,
+      "symbol": "UIView.fadeOut(_:delay:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/AlamofireNetworkCancel.swift",
+      "line": 12,
+      "symbol": "alamofireNetCheck()",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Alert/AlertManager.swift",
+      "line": 10,
+      "symbol": "Alert",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Alert/AlertViewController.swift",
+      "line": 11,
+      "symbol": "AlertType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Alert/AlertViewController.swift",
+      "line": 28,
+      "symbol": "AlertViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Alert/AlertViewController.swift",
+      "line": 261,
+      "symbol": "AlertViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Alert/AlertViewTint.swift",
+      "line": 11,
+      "symbol": "UIAlertController.viewDidLayoutSubviews()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/ButtonDesign.swift",
+      "line": 12,
+      "symbol": "UIButton.borderWidth",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/ButtonDesign.swift",
+      "line": 21,
+      "symbol": "UIButton.cornerRadius",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/ButtonDesign.swift",
+      "line": 30,
+      "symbol": "UIButton.borderColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/ConvertToData.swift",
+      "line": 11,
+      "symbol": "DictionaryToString(dic:strName:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/ConvertToData.swift",
+      "line": 20,
+      "symbol": "DictionaryToInt(dic:intName:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 13,
+      "symbol": "bool_isFirstAppRun",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 16,
+      "symbol": "sessionToken",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 19,
+      "symbol": "apnsToken",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 21,
+      "symbol": "userId",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 22,
+      "symbol": "userPw",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 23,
+      "symbol": "userName",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 24,
+      "symbol": "userProvider",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 26,
+      "symbol": "imgUrl",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 29,
+      "symbol": "apiUrl",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 30,
+      "symbol": "mission_doneApi",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 31,
+      "symbol": "deviceOrient",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 36,
+      "symbol": "chattingBadgeValue",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 37,
+      "symbol": "alarmBadgeValue",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 39,
+      "symbol": "videoPlayTime",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 40,
+      "symbol": "videoPlayUrl",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 42,
+      "symbol": "APPDELEGATE",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 44,
+      "symbol": "DEVICE_IPHONE5",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 45,
+      "symbol": "DEVICE_IPHONE6",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 46,
+      "symbol": "DEVICE_IPHONE6PLUS",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 47,
+      "symbol": "DEVICE_IPHONEX",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 48,
+      "symbol": "DEVICE_IPHONEXR",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 49,
+      "symbol": "DEVICE_IPHONEXSMAX",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 50,
+      "symbol": "DEVICE_ETC",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 53,
+      "symbol": "DEF_SCREEN_WIDTH",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 54,
+      "symbol": "DEF_SCREEN_HEIGHT",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 57,
+      "symbol": "DEF_SCREEN_375_WIDTH",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 58,
+      "symbol": "DEF_SCREEN_375_HEIGHT",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Define.swift",
+      "line": 61,
+      "symbol": "DEF_WIDTH_375_SCALE",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Emoticon/Emoticon.swift",
+      "line": 11,
+      "symbol": "EmoticonView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Emoticon/EmoticonCollectionViewCell.swift",
+      "line": 11,
+      "symbol": "EmoticonCollectionViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Facebook.swift",
+      "line": 15,
+      "symbol": "FaceBook",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/GradientView.swift",
+      "line": 11,
+      "symbol": "GradientView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Image.swift",
+      "line": 12,
+      "symbol": "UIImageView.borderWidth",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Image.swift",
+      "line": 21,
+      "symbol": "UIImageView.cornerRadius",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Image.swift",
+      "line": 30,
+      "symbol": "UIImageView.borderColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Image.swift",
+      "line": 44,
+      "symbol": "ImageScale",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/ImagePicker.swift",
+      "line": 12,
+      "symbol": "ImagePickerDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/ImagePicker.swift",
+      "line": 16,
+      "symbol": "ImagePicker",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/ImagePicker.swift",
+      "line": 80,
+      "symbol": "ImagePicker",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Indicator.swift",
+      "line": 12,
+      "symbol": "Indicator",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/JsonToDictionary.swift",
+      "line": 12,
+      "symbol": "convertToDictionary(data:apiURL:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/JsonToDictionary.swift",
+      "line": 28,
+      "symbol": "convertToArray(data:apiURL:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Kakao.swift",
+      "line": 11,
+      "symbol": "Kakao",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/LabelColor.swift",
+      "line": 11,
+      "symbol": "LabelColor",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringDefaultColor.swift",
+      "line": 11,
+      "symbol": "mainColor",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringDefaultColor.swift",
+      "line": 13,
+      "symbol": "strColor",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringDefaultColor.swift",
+      "line": 14,
+      "symbol": "str1Color",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringDefaultColor.swift",
+      "line": 16,
+      "symbol": "badgeColor",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringDefaultColor.swift",
+      "line": 17,
+      "symbol": "badge1Color",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringDefaultColor.swift",
+      "line": 18,
+      "symbol": "badge2Color",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 11,
+      "symbol": "networkErrorString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 13,
+      "symbol": "isNoMemberString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 14,
+      "symbol": "isYesMemberString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 15,
+      "symbol": "isNoLoginString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 16,
+      "symbol": "isNoLoginPasswordString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 18,
+      "symbol": "isNoIdString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 19,
+      "symbol": "isNoPasswordString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 20,
+      "symbol": "isNoAuthString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 21,
+      "symbol": "isNoNameString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 22,
+      "symbol": "isNoAuthCheckString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 24,
+      "symbol": "isPwResetFailString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 26,
+      "symbol": "isAuthTimeOutString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 27,
+      "symbol": "isAuthReSendString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Localization/StringMessage.swift",
+      "line": 28,
+      "symbol": "isAuthMinuteString",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Naver.swift",
+      "line": 14,
+      "symbol": "Naver",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Naver.swift",
+      "line": 50,
+      "symbol": "LoginViewController.oauth20ConnectionDidOpenInAppBrowser(forOAuth:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Naver.swift",
+      "line": 56,
+      "symbol": "LoginViewController.oauth20ConnectionDidFinishRequestACTokenWithAuthCode()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Naver.swift",
+      "line": 62,
+      "symbol": "LoginViewController.oauth20ConnectionDidFinishRequestACTokenWithRefreshToken()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Naver.swift",
+      "line": 67,
+      "symbol": "LoginViewController.oauth20ConnectionDidFinishDeleteToken()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Naver.swift",
+      "line": 71,
+      "symbol": "LoginViewController.oauth20Connection(_:didFailWithError:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Naver.swift",
+      "line": 75,
+      "symbol": "LoginViewController.getNaverEmailFromURL()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Network/NetworkCheck.swift",
+      "line": 12,
+      "symbol": "Reachability",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Network/NetworkOut.swift",
+      "line": 11,
+      "symbol": "NetworkOutView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/PushDownloadImage.swift",
+      "line": 11,
+      "symbol": "PushDownloadImage",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/ReadMoreTextView.swift",
+      "line": 12,
+      "symbol": "ReadMoreTextView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Shimmer/FAShimmerView.swift",
+      "line": 11,
+      "symbol": "FAShimmerView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Shimmer/FAShimmerView.swift",
+      "line": 25,
+      "symbol": "FAShimmerImageView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Shimmer/FAShimmerView.swift",
+      "line": 43,
+      "symbol": "FAShimmerButtonView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Shimmer/FAShimmerView.swift",
+      "line": 61,
+      "symbol": "FAShimmerLabelView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Shimmer/FAShimmerView.swift",
+      "line": 94,
+      "symbol": "UIView.startShimmering()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Shimmer/FAShimmerView.swift",
+      "line": 122,
+      "symbol": "UIView.stopShimmering()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Shimmer/FAView.swift",
+      "line": 12,
+      "symbol": "FAView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Shimmer/Shimmer.swift",
+      "line": 11,
+      "symbol": "associateObjectValue",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Table_Collection_Animations.swift",
+      "line": 11,
+      "symbol": "Animation",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Table_Collection_Animations.swift",
+      "line": 12,
+      "symbol": "CollectionAnimation",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Table_Collection_Animations.swift",
+      "line": 14,
+      "symbol": "Animator",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Table_Collection_Animations.swift",
+      "line": 33,
+      "symbol": "AnimatorCollection",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Table_Collection_Animations.swift",
+      "line": 54,
+      "symbol": "UITableView.isLastVisibleCell(at:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Table_Collection_Animations.swift",
+      "line": 65,
+      "symbol": "UICollectionView.isLastVisibleCell(at:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Table_Collection_Animations.swift",
+      "line": 75,
+      "symbol": "AnimationFactory",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/Toast.swift",
+      "line": 11,
+      "symbol": "Toast",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/UIWebView/UIWebViewController.swift",
+      "line": 14,
+      "symbol": "UIWebViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/UserDefaultSetting.swift",
+      "line": 11,
+      "symbol": "UserDefaultSetting",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/WKWebView/WebViewViewController.swift",
+      "line": 15,
+      "symbol": "WebViewViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Include/Util/WKWebView/WebViewViewController.swift",
+      "line": 266,
+      "symbol": "WebViewViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Manager/FeedDetail/FeedDetailManager.swift",
+      "line": 11,
+      "symbol": "FeedDetailManager",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/Manager/User/UserManager.swift",
+      "line": 11,
+      "symbol": "UserManager",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Login/DataModel/JoinModel.swift",
+      "line": 10,
+      "symbol": "JoinModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Login/DataModel/JoinModel.swift",
+      "line": 29,
+      "symbol": "Message",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Login/DataModel/LoginModel.swift",
+      "line": 11,
+      "symbol": "LoginModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Login/DataModel/LoginModel.swift",
+      "line": 31,
+      "symbol": "LoginResults",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Login/DataModel/LoginModel.swift",
+      "line": 47,
+      "symbol": "User",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Login/DataModel/LoginModel.swift",
+      "line": 150,
+      "symbol": "Permission",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Login/LoginApi.swift",
+      "line": 12,
+      "symbol": "LoginApi",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Alarm/AlarmApi.swift",
+      "line": 12,
+      "symbol": "AlarmApi",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Alarm/DataModel/AlarmModel.swift",
+      "line": 11,
+      "symbol": "AlarmModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Alarm/DataModel/AlarmModel.swift",
+      "line": 30,
+      "symbol": "AlarmResults",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Alarm/DataModel/AlarmModel.swift",
+      "line": 57,
+      "symbol": "AlarmList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/BannerModel.swift",
+      "line": 11,
+      "symbol": "BannerModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/BannerModel.swift",
+      "line": 32,
+      "symbol": "BannerResults",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/BannerModel.swift",
+      "line": 99,
+      "symbol": "Banner1",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/BannerModel.swift",
+      "line": 113,
+      "symbol": "Banner2",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCheerModel.swift",
+      "line": 11,
+      "symbol": "FeedAppCheerModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCheerModel.swift",
+      "line": 30,
+      "symbol": "FeedAppCheerResult",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCheerModel.swift",
+      "line": 55,
+      "symbol": "CheerList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCheeringModel.swift",
+      "line": 11,
+      "symbol": "FeedAppCheeringModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCheeringModel.swift",
+      "line": 30,
+      "symbol": "FeedAppCheeringResult",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassCommentDetailReplyModel.swift",
+      "line": 11,
+      "symbol": "FeedAppClassCommentDetailReplyModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassCommentDetailReplyModel.swift",
+      "line": 30,
+      "symbol": "AppClassCommentDetailReply",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassCommunityReplyModel.swift",
+      "line": 11,
+      "symbol": "FeedAppClassCommunityReplyModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassCommunityReplyModel.swift",
+      "line": 31,
+      "symbol": "FeedAppClassCommunityReplyResult",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassDefaultModel.swift",
+      "line": 11,
+      "symbol": "FeedAppClassDefaultModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassDetailReplyLikeModel.swift",
+      "line": 11,
+      "symbol": "FeedAppClassDetailReplyLikeModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassDetailReplyLikeModel.swift",
+      "line": 30,
+      "symbol": "AppClassLikeSave",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassDetailReplyModel.swift",
+      "line": 11,
+      "symbol": "FeedAppClassDetailReplyModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassDetailReplyModel.swift",
+      "line": 31,
+      "symbol": "FeedAppClassDetailReplySendModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassDetailReplyModel.swift",
+      "line": 50,
+      "symbol": "AppClassReply",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassMissionCompleteModel.swift",
+      "line": 11,
+      "symbol": "FeedAppClassMissionCompleteModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassMissionCompleteModel.swift",
+      "line": 30,
+      "symbol": "FeedAppClassMissionCompleteResult",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 11,
+      "symbol": "FeedAppClassModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 30,
+      "symbol": "AppClassCurriculumResult",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 68,
+      "symbol": "Curriculum",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 123,
+      "symbol": "AppClassMission",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 162,
+      "symbol": "AppClassMissionPageList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 181,
+      "symbol": "AppClassMissionPage",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 209,
+      "symbol": "AppClassMissionList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 240,
+      "symbol": "AppClassStudy",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 264,
+      "symbol": "AppClassCoach",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 298,
+      "symbol": "AppClassCurriculumNotice",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 356,
+      "symbol": "AppClassCoachList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 376,
+      "symbol": "AppClassComment",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 401,
+      "symbol": "AppClassCommentList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppClassModel.swift",
+      "line": 445,
+      "symbol": "ReplyInReply",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCurriculumModel.swift",
+      "line": 11,
+      "symbol": "FeedAppCurriculumModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCurriculumModel.swift",
+      "line": 30,
+      "symbol": "FeedAppCurriculumResult",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCurriculumModel.swift",
+      "line": 60,
+      "symbol": "CurriculumList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCurriculumModel.swift",
+      "line": 83,
+      "symbol": "CurriculumDetail",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCurriculumNextModel.swift",
+      "line": 11,
+      "symbol": "FeedAppCurriculumNextModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedAppCurriculumNextModel.swift",
+      "line": 30,
+      "symbol": "FeedAppCurriculumNextResult",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedModel.swift",
+      "line": 11,
+      "symbol": "FeedModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedModel.swift",
+      "line": 30,
+      "symbol": "FeedResults",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedModel.swift",
+      "line": 116,
+      "symbol": "My_mission",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/FeedModel.swift",
+      "line": 134,
+      "symbol": "Class_list",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/HaveNAlarmSaveModel.swift",
+      "line": 11,
+      "symbol": "HaveNAlarmSaveModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/HaveNAlarmSaveModel.swift",
+      "line": 30,
+      "symbol": "AlarmSaveResults",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/SearchModel.swift",
+      "line": 11,
+      "symbol": "SearchModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/SearchModel.swift",
+      "line": 30,
+      "symbol": "SearchResults",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/SearchModel.swift",
+      "line": 58,
+      "symbol": "SearchResultList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/SearchRankModel.swift",
+      "line": 11,
+      "symbol": "SearchRankModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/SearchRankModel.swift",
+      "line": 29,
+      "symbol": "RankResults",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/SearchRankModel.swift",
+      "line": 52,
+      "symbol": "SearchRank",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/SearchRankModel.swift",
+      "line": 68,
+      "symbol": "SearchBanner",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/SearchRankModel.swift",
+      "line": 111,
+      "symbol": "Payment",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/SearchRankModel.swift",
+      "line": 138,
+      "symbol": "Best",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/DataModel/SearchRankModel.swift",
+      "line": 174,
+      "symbol": "BestReview",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Feed/FeedApi.swift",
+      "line": 12,
+      "symbol": "FeedApi",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileFriendModel.swift",
+      "line": 11,
+      "symbol": "ProfileFriendModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileFriendModel.swift",
+      "line": 30,
+      "symbol": "ProfileFriendResults",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileFriendModel.swift",
+      "line": 86,
+      "symbol": "Friend_Class",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileFriendModel.swift",
+      "line": 108,
+      "symbol": "Friend_Class_List",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileModel.swift",
+      "line": 11,
+      "symbol": "ProfileModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileModel.swift",
+      "line": 30,
+      "symbol": "ProfileResults",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileModel.swift",
+      "line": 91,
+      "symbol": "Manager_Class",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileModel.swift",
+      "line": 120,
+      "symbol": "Manager_Class_List",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileModel.swift",
+      "line": 148,
+      "symbol": "Attend_class",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileModel.swift",
+      "line": 171,
+      "symbol": "Attend_Class_List",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileModel.swift",
+      "line": 199,
+      "symbol": "Notify_class",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileModel.swift",
+      "line": 221,
+      "symbol": "Notify_Class_List",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileModel.swift",
+      "line": 275,
+      "symbol": "Prehave_class",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileModel.swift",
+      "line": 296,
+      "symbol": "Prehave_Class_List",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileSettingModel.swift",
+      "line": 11,
+      "symbol": "ProfileSettingModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileSettingModel.swift",
+      "line": 30,
+      "symbol": "ProfileSettingResults",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/DataModel/ProfileSettingModel.swift",
+      "line": 101,
+      "symbol": "SettingClassList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/Profile/ProfileApi.swift",
+      "line": 12,
+      "symbol": "ProfileApi",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/RestApi/Main/PushNotification/PushNotificationModel.swift",
+      "line": 11,
+      "symbol": "PushNotificationModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/SurpportingFile/AppDelegate.swift",
+      "line": 20,
+      "symbol": "AppDelegate",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Alarm/AlarmViewController.swift",
+      "line": 11,
+      "symbol": "AlarmViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Alarm/AlarmViewController.swift",
+      "line": 144,
+      "symbol": "AlarmViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Alarm/AlarmViewController.swift",
+      "line": 230,
+      "symbol": "AlarmViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Alarm/TableViewCell/AlarmTableViewCell.swift",
+      "line": 11,
+      "symbol": "AlarmTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Chatting/ChattingViewController.swift",
+      "line": 11,
+      "symbol": "ChattingViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Chatting/ChattingWebView/ChattingFriendWebViewViewController.swift",
+      "line": 15,
+      "symbol": "ChattingFriendWebViewViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Chatting/ChattingWebView/ChattingFriendWebViewViewController.swift",
+      "line": 305,
+      "symbol": "ChattingFriendWebViewViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Chatting/ChattingWebView/ChattingWebViewController.swift",
+      "line": 15,
+      "symbol": "ChattingWebViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Chatting/ChattingWebView/ChattingWebViewController.swift",
+      "line": 269,
+      "symbol": "ChattingWebViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailCheerViewController.swift",
+      "line": 11,
+      "symbol": "ChildDetailCheerViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailCheerViewController.swift",
+      "line": 101,
+      "symbol": "ChildDetailCheerViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailCheerViewController.swift",
+      "line": 291,
+      "symbol": "ChildDetailCheerViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailCheerViewController.swift",
+      "line": 411,
+      "symbol": "ChildDetailCheerViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailClassViewController.swift",
+      "line": 11,
+      "symbol": "ChildDetailClassViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailClassViewController.swift",
+      "line": 620,
+      "symbol": "ChildDetailClassViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailClassViewController.swift",
+      "line": 651,
+      "symbol": "ChildDetailClassViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailClassViewController.swift",
+      "line": 1074,
+      "symbol": "ChildDetailClassViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailCurriculumViewController.swift",
+      "line": 11,
+      "symbol": "ChildDetailCurriculumViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailCurriculumViewController.swift",
+      "line": 102,
+      "symbol": "ChildDetailCurriculumViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailCurriculumViewController.swift",
+      "line": 196,
+      "symbol": "ChildDetailCurriculumViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/ChildDetailCurriculumViewController.swift",
+      "line": 247,
+      "symbol": "ChildDetailCurriculumViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/CollectionViewCell/ChildDetailClassCollectionViewCell.swift",
+      "line": 11,
+      "symbol": "ChildDetailClassCollectionViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/CollectionViewCell/FeedClassCollectionViewCell.swift",
+      "line": 11,
+      "symbol": "FeedClassCollectionViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/CollectionViewCell/FeedCollectionViewCell.swift",
+      "line": 11,
+      "symbol": "FeedCollectionViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/CollectionViewCell/FeedbackSearchCollectionViewCell.swift",
+      "line": 11,
+      "symbol": "FeedbackSearchCollectionViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailCommunityViewController.swift",
+      "line": 11,
+      "symbol": "DetailCommunityViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailCommunityViewController.swift",
+      "line": 140,
+      "symbol": "DetailCommunityViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailCommunityViewController.swift",
+      "line": 312,
+      "symbol": "DetailCommunityViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailCommunityViewController.swift",
+      "line": 333,
+      "symbol": "DetailCommunityViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailCommunityViewController.swift",
+      "line": 410,
+      "symbol": "DetailCommunityViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailMissionCompleteViewController.swift",
+      "line": 14,
+      "symbol": "DetailMissionCompleteViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailMissionCompleteViewController.swift",
+      "line": 159,
+      "symbol": "DetailMissionCompleteViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailMissionCompleteViewController.swift",
+      "line": 190,
+      "symbol": "DetailMissionCompleteViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailMissionCompleteViewController.swift",
+      "line": 254,
+      "symbol": "DetailMissionCompleteViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailMissionCompleteViewController.swift",
+      "line": 301,
+      "symbol": "DetailMissionCompleteViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailReplyViewController.swift",
+      "line": 11,
+      "symbol": "DetailReplyViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailReplyViewController.swift",
+      "line": 301,
+      "symbol": "DetailReplyViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailReplyViewController.swift",
+      "line": 505,
+      "symbol": "DetailReplyViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailReplyViewController.swift",
+      "line": 678,
+      "symbol": "DetailReplyViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/DetailReplyViewController.swift",
+      "line": 711,
+      "symbol": "UITapGestureRecognizer.didTapAttributedTextInLabel(label:inRange:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/ChildDetailCheerTableViewCell.swift",
+      "line": 11,
+      "symbol": "ChildDetailCheerTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/ChildDetailClassTableViewCell.swift",
+      "line": 11,
+      "symbol": "ChildDetailClassTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/ChildDetailClassTableViewCell.swift",
+      "line": 24,
+      "symbol": "ChildDetailClassTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/ChildDetailClassTableViewCell.swift",
+      "line": 79,
+      "symbol": "ChildDetailClassTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/ChildDetailClassTableViewCell.swift",
+      "line": 113,
+      "symbol": "ChildDetailClassTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/ChildDetailCurriculumTableViewCell.swift",
+      "line": 11,
+      "symbol": "ChildDetailCurriculumTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/DetailCommunityTableViewCell.swift",
+      "line": 11,
+      "symbol": "DetailCommunityTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/DetailMissionCompleteTableViewCell.swift",
+      "line": 11,
+      "symbol": "DetailMissionCompleteTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/DetailReplyTableViewCell.swift",
+      "line": 11,
+      "symbol": "DetailReplyTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/FeedClassTableViewCell.swift",
+      "line": 11,
+      "symbol": "FeedClassTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/FeedClassTableViewCell.swift",
+      "line": 72,
+      "symbol": "FeedClassTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/FeedClassTableViewCell.swift",
+      "line": 297,
+      "symbol": "FeedClassTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/FeedTableViewCell.swift",
+      "line": 11,
+      "symbol": "FeedTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/FeedTableViewCell.swift",
+      "line": 166,
+      "symbol": "FeedTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/FeedTableViewCell.swift",
+      "line": 678,
+      "symbol": "FeedTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/FeedbackSearchTableViewCell.swift",
+      "line": 11,
+      "symbol": "FeedbackSearchTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/FeedbackSearchTableViewCell.swift",
+      "line": 125,
+      "symbol": "FeedbackSearchTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Feed/TableViewCell/FeedbackSearchTableViewCell.swift",
+      "line": 350,
+      "symbol": "FeedbackSearchTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/CollectionViewCell/ProfileCollectionViewCell.swift",
+      "line": 11,
+      "symbol": "ProfileCollectionViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/CollectionViewCell/ProfileFriendCollectionViewCell.swift",
+      "line": 11,
+      "symbol": "ProfileFriendCollectionViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/ProfileFriendViewController.swift",
+      "line": 11,
+      "symbol": "ProfileFriendViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/ProfileFriendViewController.swift",
+      "line": 96,
+      "symbol": "ProfileFriendViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/ProfileFriendViewController.swift",
+      "line": 395,
+      "symbol": "ProfileFriendViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/ProfileViewController.swift",
+      "line": 13,
+      "symbol": "ProfileViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/ProfileViewController.swift",
+      "line": 307,
+      "symbol": "ProfileViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/ProfileViewController.swift",
+      "line": 551,
+      "symbol": "ProfileViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/SettingViewController.swift",
+      "line": 11,
+      "symbol": "SettingViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/SettingViewController.swift",
+      "line": 143,
+      "symbol": "SettingViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/SettingViewController.swift",
+      "line": 456,
+      "symbol": "SettingViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/TableViewCell/ProfileFriendTableViewCell.swift",
+      "line": 11,
+      "symbol": "ProfileFriendTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/TableViewCell/ProfileFriendTableViewCell.swift",
+      "line": 102,
+      "symbol": "ProfileFriendTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/TableViewCell/ProfileFriendTableViewCell.swift",
+      "line": 554,
+      "symbol": "ProfileFriendTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/TableViewCell/ProfileTableViewCell.swift",
+      "line": 11,
+      "symbol": "ProfileTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/TableViewCell/ProfileTableViewCell.swift",
+      "line": 339,
+      "symbol": "ProfileTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass/modooClass/View/Home/Profile/TableViewCell/SettingTableViewCell.swift",
+      "line": 11,
+      "symbol": "SettingTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/johyeonmin/Desktop/modooClassVersion/modooclass"
+}

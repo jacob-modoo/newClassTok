@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="hwb-dD-mh7">
+            <objects>
+                <navigationController storyboardIdentifier="ChattingNavViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eYy-Lm-abm" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jDf-JX-MMp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ltx-b9-eKk" kind="relationship" relationship="rootViewController" id="AIZ-Be-irB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xUb-gE-MjN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="512" y="-26"/>
+        </scene>
+        <!--Chatting View Controller-->
+        <scene sceneID="oN9-Cd-gow">
+            <objects>
+                <viewController storyboardIdentifier="ChattingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ltx-b9-eKk" customClass="ChattingViewController" customModule="modooClass" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I4V-du-un6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rcx-Rm-n1D">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mre-zw-oon">
+                                        <rect key="frame" x="111" y="251.5" width="192" height="222"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messageReady" translatesAutoresizingMaskIntoConstraints="NO" id="Oxe-Cq-uRq">
+                                                <rect key="frame" x="23.5" y="0.0" width="145" height="110"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="110" id="Bh8-Cu-E1o"/>
+                                                    <constraint firstAttribute="width" constant="145" id="pU5-iU-gl1"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="채팅 기능을 준비하고 있습니다. 8월중에 찾아 뵙겠습니다. :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoJ-vh-LgS">
+                                                <rect key="frame" x="0.0" y="188" width="192" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="192" id="VYW-Fy-RDv"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                                                <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Oxe-Cq-uRq" firstAttribute="centerX" secondItem="Mre-zw-oon" secondAttribute="centerX" id="0cx-ty-hBG"/>
+                                            <constraint firstAttribute="trailing" secondItem="KoJ-vh-LgS" secondAttribute="trailing" id="IKQ-gd-66P"/>
+                                            <constraint firstItem="Oxe-Cq-uRq" firstAttribute="top" secondItem="Mre-zw-oon" secondAttribute="top" id="M3z-Uq-p2e"/>
+                                            <constraint firstItem="KoJ-vh-LgS" firstAttribute="leading" secondItem="Mre-zw-oon" secondAttribute="leading" id="dfr-Vs-PmV"/>
+                                            <constraint firstItem="KoJ-vh-LgS" firstAttribute="top" secondItem="Oxe-Cq-uRq" secondAttribute="bottom" constant="78" id="p8C-SH-2dz"/>
+                                            <constraint firstAttribute="bottom" secondItem="KoJ-vh-LgS" secondAttribute="bottom" id="ySG-Jn-qWE"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Mre-zw-oon" firstAttribute="centerX" secondItem="Rcx-Rm-n1D" secondAttribute="centerX" id="TMz-dw-GoZ"/>
+                                    <constraint firstItem="Mre-zw-oon" firstAttribute="centerY" secondItem="Rcx-Rm-n1D" secondAttribute="centerY" id="zj8-7H-cIP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dEj-pb-SP3" firstAttribute="bottom" secondItem="Rcx-Rm-n1D" secondAttribute="bottom" id="4DM-a1-W8Y"/>
+                            <constraint firstItem="Rcx-Rm-n1D" firstAttribute="trailing" secondItem="dEj-pb-SP3" secondAttribute="trailing" id="Fep-Fz-d1t"/>
+                            <constraint firstItem="Rcx-Rm-n1D" firstAttribute="top" secondItem="dEj-pb-SP3" secondAttribute="top" id="WBL-N8-dlL"/>
+                            <constraint firstItem="Rcx-Rm-n1D" firstAttribute="leading" secondItem="dEj-pb-SP3" secondAttribute="leading" id="m5W-5g-UdZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dEj-pb-SP3"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" image="message_disable" selectedImage="message" id="SxK-Bv-2SS">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                        <color key="badgeColor" red="1" green="0.0" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="cIm-xl-38A"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="chattingView" destination="Rcx-Rm-n1D" id="2Ge-FD-Ook"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="efF-aH-YLD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1205.7971014492755" y="-26.116071428571427"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="message" width="24" height="24"/>
+        <image name="messageReady" width="145" height="110.5"/>
+        <image name="message_disable" width="24" height="24"/>
+    </resources>
+</document>

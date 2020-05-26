@@ -1,0 +1,225 @@
+PODS:
+  - Alamofire (4.9.1)
+  - AMShimmer (1.0.6)
+  - AppsFlyerFramework (5.0.0)
+  - BMPlayer/CacheSupport (1.3.0):
+    - BMPlayer/Core
+    - NVActivityIndicatorView (~> 4.7.0)
+    - SnapKit (~> 5.0.0)
+    - VIMediaCache
+  - BMPlayer/Core (1.3.0)
+  - Crashlytics (3.13.4):
+    - Fabric (~> 1.10.2)
+  - CropViewController (2.5.2)
+  - Fabric (1.10.2)
+  - FBSDKCoreKit (5.11.1):
+    - FBSDKCoreKit/Basics (= 5.11.1)
+    - FBSDKCoreKit/Core (= 5.11.1)
+  - FBSDKCoreKit/Basics (5.11.1)
+  - FBSDKCoreKit/Core (5.11.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKCoreKit/Swift (5.11.1):
+    - FBSDKCoreKit/Core
+  - FBSDKLoginKit/Login (5.11.1):
+    - FBSDKCoreKit (~> 5.0)
+  - FBSDKLoginKit/Swift (5.11.1):
+    - FBSDKCoreKit/Swift (~> 5.11.1)
+    - FBSDKLoginKit/Login
+  - FBSDKShareKit/Share (5.11.1):
+    - FBSDKCoreKit (~> 5.0)
+  - FBSDKShareKit/Swift (5.11.1):
+    - FBSDKCoreKit/Swift (~> 5.11.1)
+    - FBSDKShareKit/Share
+  - Firebase/Analytics (6.13.0):
+    - Firebase/Core
+  - Firebase/Core (6.13.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.1.6)
+  - Firebase/CoreOnly (6.13.0):
+    - FirebaseCore (= 6.4.0)
+  - Firebase/RemoteConfig (6.13.0):
+    - Firebase/CoreOnly
+    - FirebaseRemoteConfig (~> 4.4.5)
+  - FirebaseABTesting (3.1.2):
+    - FirebaseAnalyticsInterop (~> 1.3)
+    - FirebaseCore (~> 6.1)
+    - Protobuf (>= 3.9.2, ~> 3.9)
+  - FirebaseAnalytics (6.1.6):
+    - FirebaseCore (~> 6.4)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.1.6)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - FirebaseAnalyticsInterop (1.4.0)
+  - FirebaseCore (6.4.0):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnostics (1.1.2):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+    - nanopb (~> 0.3.901)
+  - FirebaseCoreDiagnosticsInterop (1.1.0)
+  - FirebaseInstanceID (4.2.7):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - FirebaseRemoteConfig (4.4.5):
+    - FirebaseABTesting (~> 3.1)
+    - FirebaseAnalyticsInterop (~> 1.4)
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleUtilities/Environment (~> 6.2)
+    - "GoogleUtilities/NSData+zlib (~> 6.2)"
+    - Protobuf (>= 3.9.2, ~> 3.9)
+  - FTPopOverMenu_Swift (0.2.1)
+  - GoogleAppMeasurement (6.1.6):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - GoogleDataTransport (3.2.0)
+  - GoogleDataTransportCCTSupport (1.2.2):
+    - GoogleDataTransport (~> 3.2)
+    - nanopb (~> 0.3.901)
+  - GoogleUtilities/AppDelegateSwizzler (6.3.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.3.2)
+  - GoogleUtilities/Logger (6.3.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.3.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.3.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.3.2)"
+  - GoogleUtilities/Reachability (6.3.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.3.2):
+    - GoogleUtilities/Logger
+  - lottie-ios (3.1.5)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
+  - naveridlogin-sdk-ios (4.1.0)
+  - NVActivityIndicatorView (4.7.0):
+    - NVActivityIndicatorView/Presenter (= 4.7.0)
+  - NVActivityIndicatorView/Presenter (4.7.0)
+  - Protobuf (3.11.1)
+  - ReverseExtension (0.5.0)
+  - SDWebImage (5.4.0):
+    - SDWebImage/Core (= 5.4.0)
+  - SDWebImage/Core (5.4.0)
+  - SnapKit (5.0.1)
+  - VIMediaCache (0.4)
+  - youtube-ios-player-helper (0.1.6)
+
+DEPENDENCIES:
+  - Alamofire
+  - AMShimmer
+  - AppsFlyerFramework
+  - BMPlayer/CacheSupport
+  - Crashlytics (~> 3.13.4)
+  - CropViewController
+  - Fabric (~> 1.10.2)
+  - FBSDKCoreKit/Swift
+  - FBSDKLoginKit/Swift
+  - FBSDKShareKit/Swift
+  - Firebase/Analytics
+  - Firebase/Core
+  - Firebase/RemoteConfig
+  - FTPopOverMenu_Swift (~> 0.2.0)
+  - lottie-ios
+  - naveridlogin-sdk-ios
+  - ReverseExtension
+  - SDWebImage
+  - youtube-ios-player-helper (~> 0.1.4)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AMShimmer
+    - AppsFlyerFramework
+    - BMPlayer
+    - Crashlytics
+    - CropViewController
+    - Fabric
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
+    - FirebaseInstanceID
+    - FirebaseRemoteConfig
+    - FTPopOverMenu_Swift
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleUtilities
+    - lottie-ios
+    - nanopb
+    - naveridlogin-sdk-ios
+    - NVActivityIndicatorView
+    - Protobuf
+    - ReverseExtension
+    - SDWebImage
+    - SnapKit
+    - VIMediaCache
+    - youtube-ios-player-helper
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AMShimmer: 681eeaaedf9fc4e390e95e9dd6fe59df947cfee0
+  AppsFlyerFramework: 06f3c13fea4068757004065db8ac75672f69520e
+  BMPlayer: 92a1c2a721694ba6ab107661e7aff670909671c6
+  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
+  CropViewController: 1aac40093c5739e60d992b04724a55d12a689a4c
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  FBSDKCoreKit: 5aada61a229054694810f3cee231f986004b3c49
+  FBSDKLoginKit: 0e4572e0279e477103b57978e3ea05fac1dd673d
+  FBSDKShareKit: 2b4435ecb134e2af8a636524e43b7813e3d60a0b
+  Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
+  FirebaseABTesting: 0d10f3cdc3fa00f3f175b5b56c1003c8e888299f
+  FirebaseAnalytics: 45f36d9c429fc91d206283900ab75390cd05ee8a
+  FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
+  FirebaseCore: 307ea2508df730c5865334e41965bd9ea344b0e5
+  FirebaseCoreDiagnostics: 511f4f3ed7d440bb69127e8b97c2bc8befae639e
+  FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
+  FirebaseInstanceID: ebd2ea79ee38db0cb5f5167b17a0d387e1cc7b6e
+  FirebaseRemoteConfig: 6ad68503c04701b8d9d709240711bc0bf6edaf94
+  FTPopOverMenu_Swift: c91ce7301c358264743de028bc28177ee9d8e1a4
+  GoogleAppMeasurement: dfe55efa543e899d906309eaaac6ca26d249862f
+  GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
+  GoogleDataTransportCCTSupport: ef79a4728b864946a8aafdbab770d5294faf3b5f
+  GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
+  lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  naveridlogin-sdk-ios: eaef9c106bd04f1ec592a9f8418ccb03275ddb02
+  NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
+  Protobuf: 20d79da7f20b5928b80043b05080b816e802659e
+  ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
+  SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  VIMediaCache: aa650f82cb114c68a343beb4e67416cf5eb2f3a2
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
+
+PODFILE CHECKSUM: c6d5218f6fd974637c6d8b21c9888c2d4bffdf92
+
+COCOAPODS: 1.8.4

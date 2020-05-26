@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--First Start View Controller-->
+        <scene sceneID="WfU-Ts-aOD">
+            <objects>
+                <viewController storyboardIdentifier="FirstStartViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ddd-VN-MgH" customClass="FirstStartViewController" customModule="modooClass" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bue-b5-ZL5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPf-CD-5y4" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
+                                <rect key="frame" x="24" y="776" width="366" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9je-fT-g4t"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="14"/>
+                                <state key="normal" title="시작하기"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="typeAdapter">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontAdapter">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="colorAdapter">
+                                        <integer key="value" value="21"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="backColorAdapter">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backgroundStartBtnClicked:" destination="Ddd-VN-MgH" eventType="touchUpInside" id="rzZ-VU-L9j"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지금 클래스를 시작하세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DT-mI-WuB" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                <rect key="frame" x="24" y="122" width="366" height="97.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="typeAdapter">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontAdapter">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="colorAdapter">
+                                        <integer key="value" value="11"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서로를 돕고 응원하는 클래스 멤버들이 함께합니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSS-g0-C0c" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                <rect key="frame" x="24" y="227.5" width="366" height="43.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="typeAdapter">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontAdapter">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="colorAdapter">
+                                        <integer key="value" value="11"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iPf-CD-5y4" firstAttribute="leading" secondItem="rW8-97-f8S" secondAttribute="leading" constant="24" id="6rq-jn-XoU"/>
+                            <constraint firstItem="rW8-97-f8S" firstAttribute="trailing" secondItem="gSS-g0-C0c" secondAttribute="trailing" constant="24" id="7Ci-XR-2Kl"/>
+                            <constraint firstItem="rW8-97-f8S" firstAttribute="trailing" secondItem="iPf-CD-5y4" secondAttribute="trailing" constant="24" id="Kki-7D-wSW"/>
+                            <constraint firstItem="rW8-97-f8S" firstAttribute="trailing" secondItem="5DT-mI-WuB" secondAttribute="trailing" constant="24" id="f0q-ku-cEg"/>
+                            <constraint firstItem="rW8-97-f8S" firstAttribute="bottom" secondItem="iPf-CD-5y4" secondAttribute="bottom" constant="36" id="mGq-Fm-Rj8"/>
+                            <constraint firstItem="5DT-mI-WuB" firstAttribute="top" secondItem="rW8-97-f8S" secondAttribute="top" constant="78" id="mLc-gL-s0k"/>
+                            <constraint firstItem="gSS-g0-C0c" firstAttribute="leading" secondItem="rW8-97-f8S" secondAttribute="leading" constant="24" id="nZO-hY-xUH"/>
+                            <constraint firstItem="gSS-g0-C0c" firstAttribute="top" secondItem="5DT-mI-WuB" secondAttribute="bottom" constant="8" id="pVb-g9-rtW"/>
+                            <constraint firstItem="5DT-mI-WuB" firstAttribute="leading" secondItem="rW8-97-f8S" secondAttribute="leading" constant="24" id="yHD-HD-fBE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rW8-97-f8S"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lqd-vN-M2a"/>
+                    <connections>
+                        <outlet property="backgroundStartBtn" destination="iPf-CD-5y4" id="wwi-os-VkH"/>
+                        <outlet property="titleLbl" destination="5DT-mI-WuB" id="qeE-r5-qTk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W0o-Dr-TSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="40.579710144927539" y="154.6875"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OjN-NQ-JO1">
+            <objects>
+                <navigationController storyboardIdentifier="LaunchNavViewController" navigationBarHidden="YES" id="OcP-ip-Pee" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TfL-jW-P8i">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ddd-VN-MgH" kind="relationship" relationship="rootViewController" id="0O8-G8-zEl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Enk-St-7rD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-828" y="155"/>
+        </scene>
+    </scenes>
+</document>

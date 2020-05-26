@@ -1,0 +1,40 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '11.0'
+
+target 'modooClass' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+  inhibit_all_warnings!
+  # Pods for modooClass
+  pod 'Firebase/Core'
+  pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Analytics'
+  pod 'Alamofire'
+  pod 'FBSDKCoreKit/Swift'
+  pod 'FBSDKLoginKit/Swift'
+  pod 'FBSDKShareKit/Swift'
+  pod 'SDWebImage'
+  pod 'AMShimmer'
+  pod 'Fabric', '~> 1.10.2'
+  pod 'Crashlytics', '~>  3.13.4'
+  pod 'CropViewController'
+  pod 'lottie-ios'
+  pod "youtube-ios-player-helper", "~> 0.1.4"
+  pod 'FTPopOverMenu_Swift', '~> 0.2.0'
+  pod 'AppsFlyerFramework'
+  pod 'ReverseExtension'
+  
+  pod 'naveridlogin-sdk-ios'
+  pod 'BMPlayer/CacheSupport'
+
+  target 'modooClassTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'modooClassUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
