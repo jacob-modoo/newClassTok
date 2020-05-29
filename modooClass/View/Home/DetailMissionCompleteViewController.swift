@@ -155,7 +155,6 @@ class DetailMissionCompleteViewController: UIViewController {
     /** **will hide keyboard when view is tapped*/
     @objc func hideKeyboard() {
         view.endEditing(true)
-        print("the view is tapped!")
     }
     
     /**
@@ -370,6 +369,7 @@ extension DetailMissionCompleteViewController{
                         DispatchQueue.main.async {
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumUpdatePost"), object: "")
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "flashNextClassBtn"), object: nil)
                         }
                         
                     }

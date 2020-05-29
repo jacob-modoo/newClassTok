@@ -113,6 +113,8 @@ class ChildDetailClassViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.noticeReplyDelete), name: NSNotification.Name(rawValue: "noticeReplyDelete"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.noticeParamChange), name: NSNotification.Name(rawValue: "noticeParamChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.chattingCheck), name: NSNotification.Name(rawValue: "classDetailchattingValueSend"), object: nil )
+        NotificationCenter.default.addObserver(self, selector: #selector(self.flashNextClassBtn), name: NSNotification.Name(rawValue: "flashNextClassBtn"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCount), name: NSNotification.Name(rawValue: "updateLikeCount"), object: nil)
 
         replyBorderView.layer.borderWidth = 1
         replyBorderView.layer.borderColor = UIColor(hexString: "#eeeeee").cgColor
@@ -160,18 +162,14 @@ class ChildDetailClassViewController: UIViewController {
         if self.feedDetailList?.results?.user_status ?? "" != "spectator" {
             let checkGuide = UserDefaultSetting.getUserDefaultsInteger(forKey: "checkGuide")
             if checkGuide == 1{
-                //테스트 체크
-                //let done: Int = 0
-                //UserDefaultSetting.setUserDefaultsInteger(done, forKey: "checkGuide")
-                // 끝 테스트 체크
-                print("saw")
+                print("the guide is already has been shown!")
             } else {
                 let done = 1
                 UserDefaultSetting.setUserDefaultsInteger(done, forKey: "checkGuide")
                 self.moveGuide()
             }
         }else {
-            print("spectator")
+            print("user status is 'spectator'")
         }
     }
     
@@ -204,8 +202,7 @@ class ChildDetailClassViewController: UIViewController {
     
     func moveGuide() {
         videoStop()
-        
-        let url = "https://www.modooclass.net/class/activityguidance"
+        let url = HomeMain2Manager.shared.pilotAppMain.results?.app_guidance_link ?? "https://www.modooclass.net/class/activityguidance"
         let newViewController = UIStoryboard(name: "ChildWebView", bundle: nil).instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
         newViewController.url = url
         
@@ -349,6 +346,7 @@ class ChildDetailClassViewController: UIViewController {
         } else {
             let nextView = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
             nextView.modalPresentationStyle = .overFullScreen
+            nextView.replyArray = replyArray
             nextView.comment_id = comment_id
             nextView.viewCheck = "childDetail"
             self.present(nextView, animated:true,completion: nil)
@@ -409,7 +407,7 @@ class ChildDetailClassViewController: UIViewController {
                     }
                 }
             } else {
-                if self.feedDetailList?.results?.curriculum?.button_before_id ?? 0 == 0 {
+                if self.feedDetailList?.results?.curriculum_before_id ?? 0 == 0 {
                     self.showToast(message: "        🔊 첫번째 강의 입니다.>.<더이상 이동할수 없습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
                 } else {
                     FeedApi.shared.curriculum_next(class_id: feedDetailList?.results?.mcClass_id ?? 0, curriculum_id: feedDetailList?.results?.curriculum?.button_before_id ?? 0 ,success: { [unowned self] result in
@@ -462,13 +460,13 @@ class ChildDetailClassViewController: UIViewController {
                     }
                 }
             } else {
-                if self.feedDetailList?.results?.curriculum?.button_next_curriculum_id ?? 0 == 0{
+                if self.feedDetailList?.results?.curriculum_after_id ?? 0 == 0{
                     self.view.endEditing(true)
                     let newViewController = UIStoryboard(name: "ChildWebView", bundle: nil).instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
                     newViewController.url = self.feedDetailList?.results?.curriculum?.button_review ?? ""
                     self.navigationController?.pushViewController(newViewController, animated: true)
                 }else{
-                    FeedApi.shared.curriculum_next(class_id: self.feedDetailList?.results?.mcClass_id ?? 0, curriculum_id: self.feedDetailList?.results?.curriculum?.button_next_curriculum_id ?? 0 ,success: { [unowned self] result in
+                    FeedApi.shared.curriculum_next(class_id: self.feedDetailList?.results?.mcClass_id ?? 0, curriculum_id: self.feedDetailList?.results?.curriculum_after_id ?? 0 ,success: { [unowned self] result in
                         if result.code == "200"{
                             self.navigationController?.popToViewBottomController(ofClass: FeedDetailViewController.self)
                             DispatchQueue.main.async {
@@ -502,25 +500,28 @@ class ChildDetailClassViewController: UIViewController {
             let cell = self.tableView.cellForRow(at: indexPath) as! ChildDetailClassTableViewCell
             let newViewController = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "DetailMissionCompleteViewController") as! DetailMissionCompleteViewController
             
-            if feedDetailList?.results?.curriculum?.button_api ?? "" == "curriculum_next" || feedDetailList?.results?.curriculum?.button_api ?? "" == "review" {
-                if feedDetailList?.results?.mission_count == 0 {
+            //if feedDetailList?.results?.curriculum?.button_api ?? "" == "curriculum_next" || feedDetailList?.results?.curriculum?.button_api ?? "" == "review" {
+                if feedDetailList?.results?.mission_yn ?? "Y" == "N" {
                     //self.classMoveBtn.setImage(UIImage(named: "mission_done"), for: .normal)
                     //self.classMoveBtn.isUserInteractionEnabled = false
-                    newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
-                    self.navigationController?.pushToViewBottomController(vc: newViewController)
+                    self.showToast2(message: "🔊 미션이 완료 했습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
                 } else {
-                    //self.classMoveBtn.setImage(UIImage(named: "mission_do-again"), for: .normal)
-                    self.view.endEditing(true)
-                    newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
-                    self.navigationController?.pushToViewBottomController(vc: newViewController)
-                    cell.classLikeView.isHidden = false
-                    //cell.nextClassBtn.flash()
+                    if feedDetailList?.results?.mission_count ?? 0 > 0 {
+                        //self.classMoveBtn.setImage(UIImage(named: "mission_do-again"), for: .normal)
+                        self.view.endEditing(true)
+                        newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
+                        self.navigationController?.pushToViewBottomController(vc: newViewController)
+                        cell.classLikeView.isHidden = false
+                    } else {
+                        //self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
+                        newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
+                        self.navigationController?.pushToViewBottomController(vc: newViewController)
+                    }
+                    
                 }
-            }else{
-                //self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
-                newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
-                self.navigationController?.pushToViewBottomController(vc: newViewController)
-            }
+//            }else{
+//
+//            }
         }
     }
     
@@ -636,57 +637,12 @@ class ChildDetailClassViewController: UIViewController {
         imagePicked()
     }
     
-    //MARK: - Image Picked Method (from Photos or Camera)
-    /**
-    **파라미터가 없고 반환값이 없는 메소드 > 이미지 선택을 위한 알림창 띄움 앨범 or 카메라
-     
-     - Throws: `Error` 오브젝트 값이 제대로 안넘어 오는경우 `Error`
-     */
-    
-    func imagePicked(){
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let defaultAction = UIAlertAction(title: "사진첩", style: .default) { (action) in
-            self.croppingStyle = .default
-            
-            let imagePicker = UIImagePickerController()
-            imagePicker.sourceType = .photoLibrary
-            imagePicker.modalPresentationStyle = .overFullScreen
-            imagePicker.allowsEditing = false
-            imagePicker.delegate = self
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        
-        let profileAction = UIAlertAction(title: "카메라", style: .default) { (action) in
-            self.croppingStyle = .default
-            
-            let imagePicker = UIImagePickerController()
-            imagePicker.modalPresentationStyle = .overFullScreen
-            //            imagePicker.popoverPresentationController?.barButtonItem = (sender as! UIBarButtonItem)
-            imagePicker.preferredContentSize = CGSize(width: 320, height: 568)
-            imagePicker.sourceType = .camera
-            imagePicker.allowsEditing = false
-            imagePicker.delegate = self
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        
-        alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-        
-        alertController.addAction(profileAction)
-        alertController.addAction(defaultAction)
-        alertController.modalPresentationStyle = .overFullScreen
-        
-        //        let presentationController = alertController.popoverPresentationController
-        //        presentationController?.barButtonItem = (sender as! UIBarButtonItem)
-        present(alertController, animated: true, completion: nil)
-    }
-    
     @IBAction func reviewMoveBtn(_ sender: UIButton) {
         if let parentVC = self.parent as? FeedDetailViewController {
             parentVC.tableViewCheck = 3
             parentVC.detailClassData()
         }else{}
     }
-    
     
     
     @IBAction func coachFriendBtnClicked(_ sender: UIButton) {
@@ -744,6 +700,50 @@ class ChildDetailClassViewController: UIViewController {
         }
     }
     
+    //MARK: - Image Picked Method (from Photos or Camera)
+    /**
+    **파라미터가 없고 반환값이 없는 메소드 > 이미지 선택을 위한 알림창 띄움 앨범 or 카메라
+     
+     - Throws: `Error` 오브젝트 값이 제대로 안넘어 오는경우 `Error`
+     */
+    
+    func imagePicked(){
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let defaultAction = UIAlertAction(title: "사진첩", style: .default) { (action) in
+            self.croppingStyle = .default
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.modalPresentationStyle = .overFullScreen
+            imagePicker.allowsEditing = false
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        
+        let profileAction = UIAlertAction(title: "카메라", style: .default) { (action) in
+            self.croppingStyle = .default
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.modalPresentationStyle = .overFullScreen
+            //            imagePicker.popoverPresentationController?.barButtonItem = (sender as! UIBarButtonItem)
+            imagePicker.preferredContentSize = CGSize(width: 320, height: 568)
+            imagePicker.sourceType = .camera
+            imagePicker.allowsEditing = false
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        
+        alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        
+        alertController.addAction(profileAction)
+        alertController.addAction(defaultAction)
+        alertController.modalPresentationStyle = .overFullScreen
+        
+        //        let presentationController = alertController.popoverPresentationController
+        //        presentationController?.barButtonItem = (sender as! UIBarButtonItem)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     /**
     **파라미터가 있고 반환값이 없는 메소드 >친구 추가 or 삭제 함수
      
@@ -766,7 +766,33 @@ class ChildDetailClassViewController: UIViewController {
         }
     }
     
-   
+    /**
+     - will update the count of likes in comment section [8] in tableView
+     */
+//    @objc func updateLikeCount(notification: Notification) {
+//        guard let preHave = notification.userInfo?["preHave"] as? String else { return }
+////        guard let commentLikeCount = notification.userInfo?["commentLikeCount"] as? Int else { return }
+//
+//        for i in 0..<replyArray!.count {
+//            if replyArray?[i].like_me != preHave { //|| replyArray?[i].like != commentLikeCount{
+//                replyArray?[i].like_me = preHave
+////                replyArray?[i].like = commentLikeCount
+//                let indexPath = IndexPath(row: i, section: 8)
+//                if let visibleIndexPaths = self.tableView.indexPathsForVisibleRows?.firstIndex(of: indexPath as IndexPath) {
+//                    if visibleIndexPaths != NSNotFound {
+//                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//                    }
+//                }
+//            } else {
+//                replyArray?[i].like_me = preHave
+////                replyArray?[i].like = commentLikeCount
+//            }
+//        }
+//        print("post recieved!\n\(replyArray?.count ?? 999)\nlikeIsEqual: \(String(describing: replyArray?[0].like))\nlikeMeIsEqual: \(String(describing: replyArray?[0].like_me))")
+////        let indexSet: IndexSet = [8]
+////        self.tableView.reloadSections(indexSet, with: .automatic)
+//    }
+//
     @objc func chattingCheck(notification:Notification){
         guard let chattingUrl = notification.userInfo?["chattingUrl"] as? String else { return }
         videoStop()
@@ -903,7 +929,6 @@ class ChildDetailClassViewController: UIViewController {
                             if self.curriculumLikeViewHidden == false{
                                 cell.classLikeView.isHidden = false
                                 DispatchQueue.main.async {
-                                    cell.nextClassBtn.flash()
                                     cell.classLikeView.fadeIn(completion: {
                                         (finished: Bool) -> Void in
                                     })
@@ -918,7 +943,15 @@ class ChildDetailClassViewController: UIViewController {
         }
     }
     
-    
+    /**
+     ** this is to flash next class btn
+     */
+    @objc func flashNextClassBtn(notification: Notification){
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = self.tableView.cellForRow(at: indexPath) as! ChildDetailClassTableViewCell
+        cell.nextClassBtn.flash()
+        print("message received!")
+    }
     
     /**
     **파라미터가 없고 반환값이 없는 메소드 > 공지사항 댓글을 삭제 하는 함수
@@ -1595,7 +1628,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.classGroupChatLbl.text = "커뮤니티"
                         cell.sharePointImg.isHidden = true
                         
-                        if feedDetailList?.results?.curriculum?.button_next_curriculum_id ?? 0 == 0 {
+                        if feedDetailList?.results?.curriculum_after_id ?? 0 == 0 {
                             cell.nextClassBtn.setTitle("리뷰쓰기 ", for: .normal)
                             cell.nextClassBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
                             cell.nextClassBtn.setImage(UIImage(named: "last_class"), for: .normal)
@@ -1611,7 +1644,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.classGroupChatLbl.text = "공유하기"
                         cell.classGroupImg.image = UIImage(named: "class_share")
                         
-                        if feedDetailList?.results?.curriculum?.button_next_curriculum_id ?? 0 == 0 {
+                        if feedDetailList?.results?.curriculum_after_id ?? 0 == 0 {
                             cell.nextClassBtn.setTitle("리뷰쓰기 ", for: .normal)
                             cell.nextClassBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
                             cell.nextClassBtn.setImage(UIImage(named: "last_class"), for: .normal)
@@ -1966,16 +1999,27 @@ extension ChildDetailClassViewController{
     func appClassDetail(){
         self.feedDetailList = FeedDetailManager.shared.feedDetailList
         
-        if feedDetailList?.results?.curriculum?.button_api ?? "" == "curriculum_next" || feedDetailList?.results?.curriculum?.button_api ?? "" == "review" {
-            if feedDetailList?.results?.mission_count == 0{
-               //self.classMoveBtn.setImage(UIImage(named: "mission_done"), for: .normal)
-                self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
+        if feedDetailList?.results?.mission_yn ?? "Y" == "N" {
+            self.classMoveBtn.setImage(UIImage(named: "mission_done"), for: .normal)
+        } else {
+            if feedDetailList?.results?.mission_count ?? 0 > 0 {
+                self.classMoveBtn.setImage(UIImage(named: "mission_do_again"), for: .normal)
             } else {
-               self.classMoveBtn.setImage(UIImage(named: "mission_do_again"), for: .normal)
+                self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
             }
-        }else{
-            self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
         }
+        
+        
+//        if feedDetailList?.results?.curriculum?.button_api ?? "" == "curriculum_next" || feedDetailList?.results?.curriculum?.button_api ?? "" == "review" {
+//            if feedDetailList?.results?.mission_count == 0{
+//               //self.classMoveBtn.setImage(UIImage(named: "mission_done"), for: .normal)
+//                self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
+//            } else {
+//               self.classMoveBtn.setImage(UIImage(named: "mission_do_again"), for: .normal)
+//            }
+//        }else{
+//            self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
+//        }
         
         if let parentVC = self.parent as? FeedDetailViewController {
             parentVC.videoLoadCheck(button_api: self.feedDetailList?.results?.curriculum?.button_api ?? "", curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, loadUrl: FeedDetailManager.shared.feedDetailList.results?.curriculum?.study?.video ?? "")
@@ -2531,7 +2575,7 @@ extension UIViewController {
     
     func showToast2(message : String, font: UIFont) {
         let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height - 120, width: 150, height: 35))
-        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.backgroundColor = UIColor(hexString: "#1A1A1A")
         toastLabel.textColor = UIColor.white
         toastLabel.font = font
         toastLabel.textAlignment = .left
@@ -2541,7 +2585,7 @@ extension UIViewController {
         toastLabel.layer.cornerRadius = 17;
         toastLabel.clipsToBounds  =  true
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 4.0, delay: 0.1, animations: {
+        UIView.animate(withDuration: 3.0, delay: 3.0, animations: {
          toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()

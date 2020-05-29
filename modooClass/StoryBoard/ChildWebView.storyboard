@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsm-s7-Z4B">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-bI-bil">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U74-Dk-59K">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -48,8 +48,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rsm-s7-Z4B" firstAttribute="top" secondItem="EY3-iE-jva" secondAttribute="top" id="EJm-dc-sqU"/>
-                            <constraint firstItem="EY3-iE-jva" firstAttribute="bottom" secondItem="rsm-s7-Z4B" secondAttribute="bottom" id="Nuq-AE-QNu"/>
                             <constraint firstItem="rsm-s7-Z4B" firstAttribute="leading" secondItem="rmN-YY-qkf" secondAttribute="leading" id="Pw8-lT-vOB"/>
+                            <constraint firstAttribute="bottom" secondItem="rsm-s7-Z4B" secondAttribute="bottom" id="d9V-l0-hvu"/>
                             <constraint firstAttribute="trailing" secondItem="rsm-s7-Z4B" secondAttribute="trailing" id="pPD-Ml-wM4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EY3-iE-jva"/>

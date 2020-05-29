@@ -133,6 +133,22 @@ class ProfileApi: NSObject {
         }
     }
     
+    //    MARK: - 프로필 리스트
+       func profileV2AllList(success: @escaping(_ data: ProfileV2Model)-> Void, fail: @escaping (_ error: Error?)-> Void){
+           
+           let request = Alamofire.request("\(apiUrl)/profileInfo", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+           
+           request.response { response in
+               let statusCode = response.response?.statusCode
+               if statusCode == 200 {
+                   let dic = ProfileV2Model.init(dic: convertToDictionary(data: response.data!,apiURL: "get : \(apiUrl)/profileInfo"))
+                   success(dic)
+               }else {
+                   fail(response.error)
+               }
+           }
+       }
+    
     //    MARK: - 프로필 리스트 V2
     func profileV2List(user_id:Int,success: @escaping(_ data: ProfileV2Model)-> Void, fail: @escaping (_ error: Error?)-> Void){
         

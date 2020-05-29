@@ -84,6 +84,9 @@ class StoryDetailViewController: UIViewController {
     var firstExec:Bool = true
     var photoSize:CGFloat = 100
     var photoSizeImage:UIImageView = UIImageView.init(frame: .zero)
+    var page = 1
+    var user_id = UserManager.shared.userInfo.results?.user?.id ?? 0
+    var active_comment_list:Array = Array<Active_comment>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +105,18 @@ class StoryDetailViewController: UIViewController {
             if result.code == "200" {
                 HomeMain2Manager.shared.pilotAppMain = result
             } else {
+            }
+        }) { error in
+            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+            })
+        }
+        
+        ProfileApi.shared.profileV2ActiveList(user_id: self.user_id,page:self.page, success: { [unowned self] result in
+            if result.code == "200"{
+//                self.profileModel = result
+                for addArray in 0 ..< (result.results?.active_comment_list.count)! {
+                    self.active_comment_list.append((result.results?.active_comment_list[addArray])!)
+                }
             }
         }) { error in
             Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
@@ -238,13 +253,24 @@ class StoryDetailViewController: UIViewController {
     @IBAction func moreBtnClicked(_ sender: UIButton) {
         Alert.With(self, title: "알림", content: "게시물을 삭제하시겠어요?", btn1Title: "취소", btn1Handler: {
         }, btn2Title: "확인", btn2Handler: {
-            
-            
-            DispatchQueue.main.async {
-                let profileVC = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
-                profileVC.activeListDelete(feedIntId: self.list?.results?.content_id ?? 0)
-                self.navigationController?.popViewController(animated: true)
+            FeedApi.shared.feed_delete(id: self.list?.results?.content_id ?? 0, success: { [unowned self] result in
+                if result.code == "200"{
+                    if self.active_comment_list.count != 0 {
+                        for i in 0..<self.active_comment_list.count {
+                            if self.list?.results?.content_id ?? 0 == self.active_comment_list[i].id ?? 0 {
+                                self.active_comment_list.remove(at: i)
+                                break
+                            }
+                        }
+                    }
+                }
+            }) { (error) in
+                Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+                self.endOfWork()
+                })
             }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateProfileActiveList"), object: nil)
+            self.navigationController?.popViewController(animated: true)
         })
     }
     
@@ -749,15 +775,7 @@ class StoryDetailViewController: UIViewController {
                             break
                         }
                     }
-                    
-                    if FeedDetailManager.shared.feedDetailList.results?.user_status ?? "" != "spectator" && FeedDetailManager.shared.feedDetailList.results?.user_status ?? "" != "coach" {
-                        if self.list?.results?.delete_availability ?? "" == "Y" {
-                            self.moreBtn.isHidden = false
-                        } else {
-                            self.moreBtn.isHidden = true
-                        }
-                    }
-                    
+                
                     self.user_photo.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                     let message = "\(self.list?.results?.user_info?.user_name ?? "")의 \(self.list?.results?.type ?? "")"
                     let attributedString = NSMutableAttributedString(string: message)
@@ -1113,6 +1131,12 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                     }else{
                         cell.missionCompleteImg.isHidden = true
                     }
+                    if self.list?.results?.mcClass_id ?? 0 == 0 {
+                        cell.classLinkView.isHidden = true
+                    }else{
+                        cell.classLinkView.isHidden = false
+                    }
+                    
                     cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                     cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
                     if self.list?.results?.class_signup_data ?? 0 > 20{

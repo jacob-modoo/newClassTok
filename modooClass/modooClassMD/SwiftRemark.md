@@ -1,3 +1,44 @@
+# pod migration 
+
+### 2020.05.26
+
+### Downloaded dependencies
+Installing AMShimmer (1.0.6)
+Installing Alamofire (4.9.1)
+Installing AppsFlyerFramework (5.0.0)
+Installing BMPlayer (1.3.0)
+Installing Crashlytics (3.13.4)
+Installing CropViewController (2.5.2)
+Installing FBSDKCoreKit (5.11.1)
+Installing FBSDKLoginKit (5.11.1)
+Installing FBSDKShareKit (5.11.1)
+Installing FTPopOverMenu_Swift (0.2.1)
+Installing Fabric (1.10.2)
+Installing Firebase (6.13.0)
+Installing FirebaseABTesting (3.1.2)
+Installing FirebaseAnalytics (6.1.6)
+Installing FirebaseAnalyticsInterop (1.4.0)
+Installing FirebaseCore (6.4.0)
+Installing FirebaseCoreDiagnostics (1.1.2)
+Installing FirebaseCoreDiagnosticsInterop (1.1.0)
+Installing FirebaseInstanceID (4.2.7)
+Installing FirebaseRemoteConfig (4.4.5)
+Installing GoogleAppMeasurement (6.1.6)
+Installing GoogleDataTransport (3.2.0)
+Installing GoogleDataTransportCCTSupport (1.2.2)
+Installing GoogleUtilities (6.3.2)
+Installing NVActivityIndicatorView (4.7.0)
+Installing Protobuf (3.11.1)
+Installing ReverseExtension (0.5.0)
+Installing SDWebImage (5.4.0)
+Installing SnapKit (5.0.1)
+Installing VIMediaCache (0.4)
+Installing lottie-ios (3.1.5)
+Installing nanopb (0.3.9011)
+Installing naveridlogin-sdk-ios (4.1.0)
+Installing youtube-ios-player-helper (0.1.6)
+
+###
 jazzy --author 조현민 --skip-undocumented --hide-documentation-coverage --min-acl internal
 /**
 이제부터 주석을 한번 해보도록 합니다.

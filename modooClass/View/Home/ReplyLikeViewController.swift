@@ -87,24 +87,27 @@ class ReplyLikeViewController: UIViewController {
             let cell = self.tableView.cellForRow(at: selectedIndexPath) as! ReplyLikeTableViewCell
             
             if self.viewCheck == "childDetail" || self.viewCheck == "replyDetail" {
-                FeedApi.shared.replyCommentLike(comment_id: self.comment_id, method_type: type,success: { [unowned self] result in
+                FeedApi.shared.replyCommentLike(comment_id: self.replyArray?[row].id ?? 0, method_type: type,success: { [unowned self] result in
                       
-                   if tag == 1{
-                        cell.moveBtn.layer.borderWidth = 1
-                        cell.moveBtn.layer.borderColor = UIColor(hexString: "#EFEFEF").cgColor
-                        cell.moveBtn.setImage(UIImage(named: "likeComment"), for: .normal)
-                        cell.moveBtn.backgroundColor = .white
-                        cell.moveBtn.tag = row*10000 + 2
-                        self.friendArr[row].like_yn = "N"
-                   }else{
-                        cell.moveBtn.tag = row*10000 + 1
-                        self.friendArr[row].like_yn = "Y"
-                        cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
-                        cell.moveBtn.setImage(UIImage(named: "likeText"), for: .normal)
-                   }
-                
-                  }) { error in
-                  }
+                if tag == 1{
+                    cell.moveBtn.layer.borderWidth = 1
+                    cell.moveBtn.layer.borderColor = UIColor(hexString: "#EFEFEF").cgColor
+                    cell.moveBtn.setImage(UIImage(named: "likeComment"), for: .normal)
+                    cell.moveBtn.backgroundColor = .white
+                    //cell.moveBtn.tag = row*10000 + 2
+                    self.replyArray?[row].like_me = "N"
+                    self.replyArray?[row].like = self.replyArray?[row].like ?? 0 - 1
+                }else{
+                    //cell.moveBtn.tag = row*10000 + 1
+                    self.replyArray?[row].like_me = "Y"
+                    cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
+                    cell.moveBtn.setImage(UIImage(named: "likeCancelText"), for: .normal)
+                    self.replyArray?[row].like = self.replyArray?[row].like ?? 0 + 1
+                }
+//                    let userInfo = ["preHave":self.replyArray?[sender.tag].like_me ?? ""] as [String : Any]
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLikeCount"), object: nil, userInfo: userInfo)
+                }) { error in
+                }
                 
             } else {
                 ProfileApi.shared.profileV2CommentLike(comment_id: comment_str_id, type: type, success: { [unowned self] result in
@@ -120,7 +123,7 @@ class ReplyLikeViewController: UIViewController {
                         cell.moveBtn.tag = row*10000 + 1
                         self.friendArr[row].like_yn = "Y"
                         cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
-                        cell.moveBtn.setImage(UIImage(named: "likeText"), for: .normal)
+                        cell.moveBtn.setImage(UIImage(named: "likeCancelText"), for: .normal)
                    }
                 
                   }) { error in
@@ -296,7 +299,7 @@ extension ReplyLikeViewController:UITableViewDataSource,UITableViewDelegate{
             friendArr[row].like_yn = "N"
             cell.moveBtn.layer.cornerRadius = 2
             cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
-            cell.moveBtn.setImage(UIImage(named: "likeText"), for: .normal)
+            cell.moveBtn.setImage(UIImage(named: "likeCancelText"), for: .normal)
             cell.friendImg.isHidden = true
         }
         cell.friendProfileBtn.tag = row//friendArr[row].user_id ?? 0

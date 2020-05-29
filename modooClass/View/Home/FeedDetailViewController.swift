@@ -368,8 +368,6 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
         self.player?.pause()
     }
     
-    
-    
     /**
     **파라미터가 있고 반환값이 없는 메소드 > 커리큘럼 데이터를 바꿔주도록 유도하는 함수
      

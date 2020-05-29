@@ -144,6 +144,7 @@ class HomeClassViewController: UIViewController {
     
     @IBAction func classManagerBtnClicked(_ sender: UIButton) {
         let tag = sender.tag
+        print(tag)
         if HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].manager_link ?? "" != ""{
             let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
             newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].manager_link ?? ""
@@ -621,7 +622,12 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 cell.classImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].class_photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
                 cell.className.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].class_short_name ?? "")"
-                cell.classMember.text = "수강인원 \(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].class_signup_data ?? 0)명"
+                if HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].class_signup_data ?? 0 > 0 {
+                    cell.classMember.text = "수강인원 \(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].class_signup_data ?? 0)명"
+                } else {
+                    cell.classMember.isHidden = true
+                }
+                
                 if HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].coach_wait_cnt ?? 0 > 0{
                     cell.managerReplyView.isHidden = false
                 }else{

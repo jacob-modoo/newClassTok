@@ -37,6 +37,7 @@ class StoryDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var genderBadge: UIImageView!
     
 //    StoryDetailClassInfoTableViewCell
+    @IBOutlet weak var classLinkView: GradientView!
     @IBOutlet weak var classPriceImg: UIImageView!
     @IBOutlet weak var classPriceName: UIFixedLabel!
     @IBOutlet weak var classSalePrice: UIFixedLabel!

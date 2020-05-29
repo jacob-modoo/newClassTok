@@ -12,6 +12,6 @@ class HomeMain2Manager: NSObject {
     static let shared = HomeMain2Manager()
     var pilotAppMain = PilotModel()
     var pilotRecommendMain = PilotRecommendModel()
-    
     var profileModel = ProfileModel()
+    var profileV2Model = ProfileV2Model()
 }

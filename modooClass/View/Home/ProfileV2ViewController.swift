@@ -40,6 +40,7 @@ class ProfileV2ViewController: BaseViewController {
         super.viewDidLoad()
         self.ProfileList()
         tableView.addSubview(refreshControl)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadActiveList), name: NSNotification.Name(rawValue: "updateProfileActiveList"), object: nil)
     }
     /** **뷰가 나타나기 시작 할 때 타는 메소드 */
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +72,13 @@ class ProfileV2ViewController: BaseViewController {
         active_comment_list.removeAll()
     }
     
+    @objc func reloadActiveList() {
+        active_comment_list.removeAll()
+        self.page = 1
+        self.ProfileList()
+        print("post received!!!")
+    }
+    
     /**
     **파라미터가 있고 반환값이 없는 메소드 > 스크롤이 멈췄을시 타는 함수
      
@@ -81,15 +89,10 @@ class ProfileV2ViewController: BaseViewController {
      */
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if refreshControl.isRefreshing {
-            refreshVC()
+            reloadActiveList()
         }
     }
     
-    func refreshVC() {
-        active_comment_list.removeAll()
-        self.page = 1
-         self.ProfileList()
-    }
     /**
     **파라미터가 없고 반환값이 없는 메소드 > 새로고침 컨트롤이 끝났을때 타는 함수
      
@@ -272,39 +275,6 @@ class ProfileV2ViewController: BaseViewController {
             
             self.navigationController?.storyPopOrPushController(feedId: "\(self.active_comment_list[tag].comment_id ?? "")")
         }
-    }
-    
-    func activeListDelete(feedIntId: Int) {
-        FeedApi.shared.feed_delete(id: feedIntId, success: { [weak self] result in
-                if result.code == "200"{
-                    
-                    
-                    print("1111111")
-                    guard let self = self else {return} //will safely prevent 'self' from getting nil
-                    
-                    print("ddddddddd")
-                    self.refreshControl.beginRefreshing()
-                    self.tableView.setContentOffset(CGPoint(x: 0, y: 0 - self.refreshControl.frame.size.height), animated: true)
-                    if self.self.refreshControl.isRefreshing {
-                        self.active_comment_list.removeAll()
-                       self.page = 1
-                       self.ProfileList()
-                    }
-                    //if self.active_comment_list.count != 0 {
-//                        for i in 0..<self.active_comment_list.count {
-//                            if  feedIntId == self.active_comment_list[i].id ?? 0 {
-//                                self.active_comment_list.remove(at: i)
-//                                DispatchQueue.main.async {
-//                                    self.endOfWork()
-//                                    self.tableView.reloadData()
-//                                }
-//                            }
-//                        }
-//                    }
-                }
-            }) { (error) in
-
-            }
     }
     
     @IBAction func profileLikeBtnClicked(_ sender: UIButton) {

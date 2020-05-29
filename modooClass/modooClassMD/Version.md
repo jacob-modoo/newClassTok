@@ -1,10 +1,38 @@
 #  버전 이슈
+# version 2.0.2
+
+### 2020.05.25 
+
+- [v2.0.2] 2020.05.25 - I1 - UI improvements and event popup added
+
+******
+
+# version 2.0.1
+
+******
+
+# version 2.0.0
+
+### 2020.05.11
+
+- [v2.0.0] 2020.05.11 - I1 - added sharing function (ShareAppVC)
+
+******
+
+# version 1.9.11
+
+### 2020.04.27
+
+- [v1.9.11] 2020.04.27 - I1 - added like function in 참여, 내프로필
+
+******
+
 # version 1.9.10
 
 ### 2020.03.20
 
-[v1.9.10] 2020.03.20 - |1 - 내강좌, 참여 bug is fixed
-[v1.9.10] 2020.03.20 - |2 - param: device_model is added to get user's device model info
+[v1.9.10] 2020.03.20 - I1 - 내강좌, 참여 bug is fixed
+[v1.9.10] 2020.03.20 - I2 - param: device_model is added to get user's device model info
 
 # version 1.9.9
 
