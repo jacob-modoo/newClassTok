@@ -94,14 +94,14 @@ class ReplyLikeViewController: UIViewController {
                     cell.moveBtn.layer.borderColor = UIColor(hexString: "#EFEFEF").cgColor
                     cell.moveBtn.setImage(UIImage(named: "likeComment"), for: .normal)
                     cell.moveBtn.backgroundColor = .white
-                    //cell.moveBtn.tag = row*10000 + 2
+                    cell.moveBtn.tag = row*10000 + 2
                     self.replyArray?[row].like_me = "N"
                     self.replyArray?[row].like = self.replyArray?[row].like ?? 0 - 1
                 }else{
-                    //cell.moveBtn.tag = row*10000 + 1
+                    cell.moveBtn.tag = row*10000 + 1
                     self.replyArray?[row].like_me = "Y"
                     cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
-                    cell.moveBtn.setImage(UIImage(named: "likeCancelText"), for: .normal)
+                    cell.moveBtn.setImage(UIImage(named: "likeCancellText"), for: .normal)
                     self.replyArray?[row].like = self.replyArray?[row].like ?? 0 + 1
                 }
 //                    let userInfo = ["preHave":self.replyArray?[sender.tag].like_me ?? ""] as [String : Any]
@@ -123,7 +123,7 @@ class ReplyLikeViewController: UIViewController {
                         cell.moveBtn.tag = row*10000 + 1
                         self.friendArr[row].like_yn = "Y"
                         cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
-                        cell.moveBtn.setImage(UIImage(named: "likeCancelText"), for: .normal)
+                        cell.moveBtn.setImage(UIImage(named: "likeCancellText"), for: .normal)
                    }
                 
                   }) { error in
@@ -299,7 +299,7 @@ extension ReplyLikeViewController:UITableViewDataSource,UITableViewDelegate{
             friendArr[row].like_yn = "N"
             cell.moveBtn.layer.cornerRadius = 2
             cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
-            cell.moveBtn.setImage(UIImage(named: "likeCancelText"), for: .normal)
+            cell.moveBtn.setImage(UIImage(named: "likeCancellText"), for: .normal)
             cell.friendImg.isHidden = true
         }
         cell.friendProfileBtn.tag = row//friendArr[row].user_id ?? 0

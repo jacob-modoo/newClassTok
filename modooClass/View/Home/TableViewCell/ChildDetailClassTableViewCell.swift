@@ -77,6 +77,19 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var youtubePlayImg: UIImageView!
     @IBOutlet weak var likeCountView: UIView!
     
+//    DetailClassCurriculumCell
+    @IBOutlet var curriculumClassTitleLbl: UILabel!
+    @IBOutlet var curriculumTitleTime: UILabel!
+    @IBOutlet var curriculumFirstClass: UILabel!
+    @IBOutlet var curriculumFirstClassTime: UILabel!
+    @IBOutlet var curriculumSecondClass: UILabel!
+    @IBOutlet var curriculumSecondClassTime: UILabel!
+    @IBOutlet var curriculumThirdClass: UILabel!
+    @IBOutlet var curriculumThirdClassTime: UILabel!
+    @IBOutlet weak var curriculumFirstClassImg: UIImageView!
+    @IBOutlet weak var curriculumSecondClassImg: UIImageView!
+    @IBOutlet weak var curriculumThirdClassImg: UIImageView!
+    
 //    DetailClassPriceCell
     @IBOutlet weak var classPriceImg: UIImageView!
     @IBOutlet weak var classPriceName: UIFixedLabel!

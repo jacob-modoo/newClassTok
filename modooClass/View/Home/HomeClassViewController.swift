@@ -233,7 +233,8 @@ class HomeClassViewController: UIViewController {
     @IBAction func classInBtnClicked(_ sender: UIButton) {
         let tag = sender.tag
         print(tag)
-        print(HomeMain2Manager.shared.pilotAppMain.results?.management_class?.status ?? 0)
+        print(HomeMain2Manager.shared.pilotAppMain.results?.management_class?.status
+            ?? 999)
 //        if HomeMain2Manager.shared.pilotAppMain.results?.management_class?.status ?? 0 != 6 || HomeMain2Manager.shared.pilotAppMain.results?.management_class?.status ?? 0 != 9 {
 //            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
 //            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].manager_link ?? ""

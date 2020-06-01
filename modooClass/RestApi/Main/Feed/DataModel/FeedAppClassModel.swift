@@ -69,9 +69,11 @@ class AppClassCurriculumResult:NSObject{
     var classScrap_cnt:Int?
     var mission_yn:String?
     var mission_count:Int?
+    var curriculum_head:CurriculumHead?
     var curriculum_before_id:Int?
     var curriculum_after_id:Int?
     var curriculum_list:CurriculumDetail_list?
+    var curriculum_list_array:Array = Array<CurriculumDetail_list>()
     var share_address:String?
     var share_content:String?
     var share_point:Int?
@@ -125,8 +127,15 @@ class AppClassCurriculumResult:NSObject{
         if let curriculum = dic["curriculum"] as? Dictionary<String, Any> {
             self.curriculum = Curriculum.init(dic: curriculum)
         }
-        if let curriculum_list = dic["curriculum_list"] as? Dictionary<String, Any> {
-            self.curriculum_list = CurriculumDetail_list.init(dic: curriculum_list)
+        if let curriculum_head = dic["curriculum_head"] as? Dictionary<String, Any> {
+            self.curriculum_head = CurriculumHead.init(dic: curriculum_head)
+        }
+        if let list = dic["curriculum_list"] as? Array<Dictionary<String, Any>> {
+            let array:Array = list
+            for listTemp in array {
+                let temp = CurriculumDetail_list.init(dic: listTemp)
+                curriculum_list_array.append(temp)
+            }
         }
         if let list = dic["member_list"] as? Array<Dictionary<String, Any>>{
             let array:Array = list
@@ -156,6 +165,21 @@ class AppClassCurriculumResult:NSObject{
                 review_list_arr.append(temp)
             }
         }
+    }
+}
+
+class CurriculumHead: NSObject {
+    var title: String?
+    var duration: String?
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic:Dictionary<String,Any>){
+        self.init()
+        title = DictionaryToString(dic: dic, strName: "title")
+        duration = DictionaryToString(dic: dic, strName: "duration")
     }
 }
 

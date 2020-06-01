@@ -32,11 +32,8 @@ class ChildDetailCurriculumTableViewCell: UITableViewCell {
     @IBOutlet weak var curriculumPlayImg: UIImageView!
     @IBOutlet weak var FreeBadge: UIImageView!
     
-//    AppSharingTableViewCell
-    @IBOutlet weak var shareContentLbl: UILabel!
-    @IBOutlet weak var copyLinkBtn: UIButton!
-    @IBOutlet weak var fbShareBtn: UIButton!
-    @IBOutlet weak var kakaoShareBtn: UIButton!
+    @IBOutlet weak var backgroundColorView: UIView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

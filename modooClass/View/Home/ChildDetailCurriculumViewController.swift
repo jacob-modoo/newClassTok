@@ -240,20 +240,36 @@ extension ChildDetailCurriculumViewController:UITableViewDelegate,UITableViewDat
                     if feedAppCurriculumModel?.results?.manageList[row].mcMission_stamp_id ?? 0 > 0{
                         cell.curriculumMissionCheckLbl.isHidden = false
                         cell.curriculumMissionCheckImg.isHidden = false
+                        cell.backgroundColorView.backgroundColor = UIColor(hexString: "#EFEFEF")
+                        cell.curriculumContentView.backgroundColor = UIColor(hexString: "#EFEFEF")
                     }else{
                         cell.curriculumMissionCheckLbl.isHidden = true
                         cell.curriculumMissionCheckImg.isHidden = true
+                        cell.backgroundColorView.backgroundColor = UIColor.white
+                        cell.curriculumContentView.backgroundColor = UIColor.white
                     }
+                    
+                    //self.tableView.scrollToNearestSelectedRow(at: .bottom, animated: true)
+//                    if FeedDetailManager.shared.feedDetailList.results?.curriculum?.id == feedAppCurriculumModel?.results?.manageList[row].id{
+//                        let indexPath2 = IndexPath(row: row, section: 2)
+//                        self.tableView.scrollToRow(at: indexPath2, at: .middle, animated: true)
+//                        print("should scroll!")
+//                    }
+                    
                     cell.curriculumChangeBtn.tag = feedAppCurriculumModel?.results?.manageList[row].id ?? 0
                     if FeedDetailManager.shared.feedDetailList.results?.curriculum?.id == feedAppCurriculumModel?.results?.manageList[row].id{
                         if feedAppCurriculumModel?.results?.manageList[row].mcMission_stamp_id ?? 0 > 0{
                             cell.curriculumMissionCompletePlayLbl.isHidden = false
                             cell.curriculumPlayLbl.isHidden = true
                             cell.curriculumPlayImg.isHidden = true
+                            cell.backgroundColorView.backgroundColor = UIColor(hexString: "#FFF7F7")
+                            cell.curriculumContentView.backgroundColor = UIColor(hexString: "#FFF7F7")
                         }else{
                             cell.curriculumMissionCompletePlayLbl.isHidden = true
                             cell.curriculumPlayLbl.isHidden = false
                             cell.curriculumPlayImg.isHidden = false
+                            cell.backgroundColorView.backgroundColor = UIColor(hexString: "#FFF7F7")
+                            cell.curriculumContentView.backgroundColor = UIColor(hexString: "#FFF7F7")
                         }
                     }else{
                         cell.curriculumMissionCompletePlayLbl.isHidden = true

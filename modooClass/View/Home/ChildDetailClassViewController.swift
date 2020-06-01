@@ -427,8 +427,6 @@ class ChildDetailClassViewController: UIViewController {
                 }
             }
         } else if tag == 2 {
-            print(FeedDetailManager.shared.eventModel.results?.event_list?.image ?? "no data")
-            print(FeedDetailManager.shared.eventModel.results?.event_list_arr[0].image ?? "no data")
             self.view.endEditing(true)
             self.emoticonSelectView.isHidden = true
             if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
@@ -522,6 +520,21 @@ class ChildDetailClassViewController: UIViewController {
 //            }else{
 //
 //            }
+        }
+    }
+    
+    
+    @IBAction func curriculumMoreBtnClicked(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.emoticonSelectView.isHidden = true
+        if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
+            replyWriteCheck()
+        }else{
+            self.view.endEditing(true)
+            if let parentVC = self.parent as? FeedDetailViewController {
+                parentVC.tableViewCheck = 2
+                parentVC.detailClassData()
+            }else{}
         }
     }
     
@@ -1262,7 +1275,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         return 0
                     }
 //                case 1,3,7,10:
-                case 1,5,7,10:
+                case 1,5,6,8,11:
                     return 1
                 case 3:
                     return 0
@@ -1284,7 +1297,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
 //                    }else{
 //                        return 1
 //                    }
-                case 6:
+                case 7:
                     if (feedDetailList?.results?.conditionList.count ?? 0)! > 0{
                         if cheerViewExitCheck == false{
                             return 1
@@ -1295,7 +1308,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     }else{
                         return 0
                     }
-                case 8:
+                case 9:
                     if replyArray != nil{
                         if replyArray!.count > 0{
                             return 1
@@ -1305,7 +1318,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     }else{
                         return 0
                     }
-                case 9:
+                case 10:
                     if replyArray != nil{
                         if replyArray!.count > 0{
                             return replyArray!.count
@@ -1542,6 +1555,38 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 cell.selectionStyle = .none
                 return cell
             }else if section == 5{
+                let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCurriculumCell", for: indexPath) as! ChildDetailClassTableViewCell
+                if self.feedDetailList != nil {
+                    cell.curriculumClassTitleLbl.text = feedDetailList?.results?.curriculum_head?.title ?? ""
+                    cell.curriculumTitleTime.text = feedDetailList?.results?.curriculum_head?.duration ?? ""
+//                    for i in 0..<(self.feedDetailList?.results?.curriculum_list_array.count)! {
+//                        cell.curriculumFirstClass.text = feedDetailList?.results?.curriculum_list_array[i].title ?? ""
+//                        cell.curriculumFirstClassTime.text = feedDetailList?.results?.curriculum_list_array[i].video_duration ?? ""
+//                        if feedDetailList?.results?.curriculum_list_array[i].freeview ?? "N" == "N" {
+//                            cell.curriculumFirstClassImg.isHidden = true
+//                        }
+//                    }
+                    cell.curriculumFirstClass.text = feedDetailList?.results?.curriculum_list_array[0].title ?? ""
+                    cell.curriculumFirstClassTime.text = feedDetailList?.results?.curriculum_list_array[0].video_duration ?? ""
+                    if feedDetailList?.results?.curriculum_list_array[0].freeview ?? "N" == "N" {
+                        cell.curriculumFirstClassImg.isHidden = true
+                    }
+                    
+                    cell.curriculumSecondClass.text = feedDetailList?.results?.curriculum_list_array[1].title ?? ""
+                    cell.curriculumSecondClassTime.text = feedDetailList?.results?.curriculum_list_array[1].video_duration ?? ""
+                    if feedDetailList?.results?.curriculum_list_array[1].freeview ?? "N" == "N" {
+                        cell.curriculumSecondClassImg.isHidden = true
+                    }
+                    
+                    cell.curriculumThirdClass.text = feedDetailList?.results?.curriculum_list_array[2].title ?? ""
+                    cell.curriculumThirdClassTime.text = feedDetailList?.results?.curriculum_list_array[2].video_duration ?? ""
+                    if feedDetailList?.results?.curriculum_list_array[2].freeview ?? "N" == "N" {
+                        cell.curriculumThirdClassImg.isHidden = true
+                    }
+                }
+                cell.selectionStyle = .none
+                return cell
+            }else if section == 6{
                 var cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCoachCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if self.feedDetailList != nil{
                     
@@ -1570,15 +1615,15 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 
                 cell.selectionStyle = .none
                 return cell
-            }else if section == 6{
+            }else if section == 7{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "height1cell", for: indexPath)
                 cell.backgroundView?.backgroundColor = UIColor.white
                 return cell
-            }else if section == 7{
+            }else if section == 8{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "height1ReduceCell", for: indexPath)
                 cell.selectionStyle = .none
                 return cell
-            }else if section == 8{
+            }else if section == 9{
                 let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassTotalReplyTitleTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if replyArray != nil{
                     if replyArray!.count > 0 {
@@ -1587,7 +1632,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 }
                 cell.selectionStyle = .none
                 return cell
-            }else if section == 9{
+            }else if section == 10{
                 var cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply1TableViewCell") as! ChildDetailClassTableViewCell
                 if replyArray != nil{
                     if replyArray!.count > 0{
@@ -1742,13 +1787,13 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
         let section = indexPath.section
         if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
             switch section {
-            case 7:
+            case 8:
                 return 0.5
-            case 0,1,2,3,4,5,6,8:
-                return UITableView.automaticDimension
-            case 9:
+            case 0,1,2,3,4,5,6,7,9:
                 return UITableView.automaticDimension
             case 10:
+                return UITableView.automaticDimension
+            case 11:
                 return 25
             default:
                 return 1
@@ -1778,7 +1823,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
         
         DispatchQueue.main.async {
             if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                if section == 9{
+                if section == 10{
                     if self.replyArray != nil{
                         if row == (self.replyArray!.count)-2{
                             if self.replyArray!.count < self.feedReplyList?.results!.total ?? 0 {
@@ -2184,7 +2229,7 @@ extension ChildDetailClassViewController{
                 DispatchQueue.main.async {
                     var selectedIndexPath = IndexPath(item:row , section: 8)
                     if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                        selectedIndexPath = IndexPath(item: row , section: 9)
+                        selectedIndexPath = IndexPath(item: row , section: 10)
                     }
                     let cell = self.tableView.cellForRow(at: selectedIndexPath) as! ChildDetailClassTableViewCell
                     if likeGubun == 1{
