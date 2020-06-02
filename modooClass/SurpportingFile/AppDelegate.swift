@@ -107,17 +107,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
         
         rootViewCheck(StoryBoard:"Launch",StoryBoardName:"LaunchNavViewController")
         
-        
-        
-        
-//        let storyboard = UIStoryboard(name: "Home2WebView", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "PopupShowViewController") as! PopupShowViewController
-//        let navController = UINavigationController(rootViewController: vc)
-//        self.window?.makeKeyAndVisible()
-//        self.window?.rootViewController?.present(navController, animated: false, completion: {
-            
- //       })
-        
         //apns
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)

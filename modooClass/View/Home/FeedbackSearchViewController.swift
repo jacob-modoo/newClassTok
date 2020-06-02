@@ -712,7 +712,7 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
 
 extension FeedbackSearchViewController{
     
-    func rankCategoryCheckCell(cell:FeedbackSearchTableViewCell,row:Int,cellCheck1:Bool,cellCheck2:Bool,cellCheck3:Bool,cellCheck4:Bool,checkAllRow:Int,checkLastRow:Bool){
+    func rankCategoryCheckCell(cell: FeedbackSearchTableViewCell, row:Int, cellCheck1:Bool, cellCheck2: Bool, cellCheck3: Bool, cellCheck4: Bool, checkAllRow: Int, checkLastRow: Bool) {
         
         if cellCheck1 == true{
             if checkLastRow == true{
@@ -812,7 +812,7 @@ extension FeedbackSearchViewController{
         }
     }
     
-    func categoryCheckCell(cell:FeedbackSearchTableViewCell,row:Int,cellCheck1:Bool,cellCheck2:Bool,cellCheck3:Bool,cellCheck4:Bool,checkAllRow:Int,checkLastRow:Bool){
+    func categoryCheckCell(cell: FeedbackSearchTableViewCell, row: Int, cellCheck1: Bool, cellCheck2: Bool, cellCheck3: Bool, cellCheck4: Bool, checkAllRow: Int, checkLastRow: Bool){
         if cellCheck1 == true{
             if checkLastRow == true{
                 if checkAllRow == 1{
@@ -948,7 +948,7 @@ extension FeedbackSearchViewController{
      
      - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
      */
-    func app_search(query:String,order:String){
+    func app_search(query: String, order: String) {
         Indicator.showActivityIndicator(uiView: self.view)
         FeedApi.shared.searchApp(search: query, order: order,page: self.page,success: { [unowned self] result in
             
@@ -1012,7 +1012,7 @@ extension FeedbackSearchViewController{
 }
 
 
-extension FeedbackSearchViewController:UITextViewDelegate,UITextFieldDelegate{
+extension FeedbackSearchViewController: UITextViewDelegate, UITextFieldDelegate {
     
     /**
     **파라미터가 있고 반환값이 없는 메소드 > 텍스트 필드 작성 완료 함수

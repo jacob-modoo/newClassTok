@@ -209,6 +209,8 @@
 		0EDE67CA22A7946500C2B3C1 /* ChildDetailClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE67C922A7946500C2B3C1 /* ChildDetailClassViewController.swift */; };
 		0EDE67CC22A79AA800C2B3C1 /* ChildDetailCurriculumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE67CB22A79AA800C2B3C1 /* ChildDetailCurriculumViewController.swift */; };
 		0EDE67D522A9E26D00C2B3C1 /* FeedAppClassDetailReplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE67D422A9E26D00C2B3C1 /* FeedAppClassDetailReplyModel.swift */; };
+		0EDEA8062486493100ED837A /* SwiftSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EDEA7F72486453E00ED837A /* SwiftSearch.framework */; };
+		0EDEA8072486493100ED837A /* SwiftSearch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0EDEA7F72486453E00ED837A /* SwiftSearch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0EE94C4723EA4C980059E43F /* HomeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94C4623EA4C980059E43F /* HomeMainViewController.swift */; };
 		0EE94C4923EA4D2A0059E43F /* HMPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94C4823EA4D2A0059E43F /* HMPageViewController.swift */; };
 		0EEC5C742462855700C0C047 /* ShareAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC5C732462855700C0C047 /* ShareAppViewController.swift */; };
@@ -242,19 +244,37 @@
 			remoteGlobalIDString = 0EAE2D84227A65DF00E91161;
 			remoteInfo = modooClass;
 		};
+		0EDEA7F62486453E00ED837A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0EDEA7EE2486453D00ED837A /* SwiftSearch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D982D5B52207819100F772F3;
+			remoteInfo = "SwiftSearch iOS";
+		};
+		0EDEA7F82486453E00ED837A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0EDEA7EE2486453D00ED837A /* SwiftSearch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D982D5C3220781A800F772F3;
+			remoteInfo = "SwiftSearch macOS";
+		};
+		0EDEA7FA2486453E00ED837A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0EDEA7EE2486453D00ED837A /* SwiftSearch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D982D5D5220784FF00F772F3;
+			remoteInfo = "SwiftSearch iOSTests";
+		};
+		0EDEA7FC2486453E00ED837A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0EDEA7EE2486453D00ED837A /* SwiftSearch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D982D5E42207851600F772F3;
+			remoteInfo = "SwiftSearch macOSTests";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0E29F85224650668002B7C55 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0EA55CAC22CAE0F800FD7D15 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,6 +284,17 @@
 				0EA55CA822CAE0F800FD7D15 /* NotificationServiceExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EDEA8082486493200ED837A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0EDEA8072486493100ED837A /* SwiftSearch.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -491,6 +522,7 @@
 		0EDE67C922A7946500C2B3C1 /* ChildDetailClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailClassViewController.swift; sourceTree = "<group>"; };
 		0EDE67CB22A79AA800C2B3C1 /* ChildDetailCurriculumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailCurriculumViewController.swift; sourceTree = "<group>"; };
 		0EDE67D422A9E26D00C2B3C1 /* FeedAppClassDetailReplyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAppClassDetailReplyModel.swift; sourceTree = "<group>"; };
+		0EDEA7EE2486453D00ED837A /* SwiftSearch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftSearch.xcodeproj; path = "../../Downloads/SwiftSearch-0.1.0/SwiftSearch.xcodeproj"; sourceTree = "<group>"; };
 		0EE94C4623EA4C980059E43F /* HomeMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainViewController.swift; sourceTree = "<group>"; };
 		0EE94C4823EA4D2A0059E43F /* HMPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMPageViewController.swift; sourceTree = "<group>"; };
 		0EEC5C732462855700C0C047 /* ShareAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAppViewController.swift; sourceTree = "<group>"; };
@@ -520,6 +552,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EDEA8062486493100ED837A /* SwiftSearch.framework in Frameworks */,
 				0E37A8E723569A6500283F9A /* StoreKit.framework in Frameworks */,
 				0E1A8D6822929BE800D581F5 /* SafariServices.framework in Frameworks */,
 				0E1A8D6622929BE000D581F5 /* UserNotifications.framework in Frameworks */,
@@ -1155,6 +1188,17 @@
 			path = Emoticon;
 			sourceTree = "<group>";
 		};
+		0EDEA7EF2486453D00ED837A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0EDEA7F72486453E00ED837A /* SwiftSearch.framework */,
+				0EDEA7F92486453E00ED837A /* SwiftSearch.framework */,
+				0EDEA7FB2486453E00ED837A /* SwiftSearch iOSTests.xctest */,
+				0EDEA7FD2486453E00ED837A /* SwiftSearch macOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0EF70BB4236AB64C00E1D224 /* InAppPurchase */ = {
 			isa = PBXGroup;
 			children = (
@@ -1169,6 +1213,7 @@
 		D94A6561069FBF3B4C206238 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0EDEA7EE2486453D00ED837A /* SwiftSearch.xcodeproj */,
 				0E29F85D2465187B002B7C55 /* FBSDKShareKit.framework */,
 				0E29F85B2465186D002B7C55 /* FBSDKCoreKit.framework */,
 				0E29F859246517E9002B7C55 /* FBSDKShareKit */,
@@ -1234,7 +1279,7 @@
 				3734046CC25555E62DEFC0CA /* [CP] Embed Pods Frameworks */,
 				0E7F848822B879EE0031764C /* Run Script */,
 				0EA55CAC22CAE0F800FD7D15 /* Embed App Extensions */,
-				0E29F85224650668002B7C55 /* Embed Frameworks */,
+				0EDEA8082486493200ED837A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1333,6 +1378,12 @@
 			);
 			productRefGroup = 0EAE2D86227A65DF00E91161 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0EDEA7EF2486453D00ED837A /* Products */;
+					ProjectRef = 0EDEA7EE2486453D00ED837A /* SwiftSearch.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0EAE2D84227A65DF00E91161 /* modooClass */,
@@ -1342,6 +1393,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0EDEA7F72486453E00ED837A /* SwiftSearch.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftSearch.framework;
+			remoteRef = 0EDEA7F62486453E00ED837A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0EDEA7F92486453E00ED837A /* SwiftSearch.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftSearch.framework;
+			remoteRef = 0EDEA7F82486453E00ED837A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0EDEA7FB2486453E00ED837A /* SwiftSearch iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SwiftSearch iOSTests.xctest";
+			remoteRef = 0EDEA7FA2486453E00ED837A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0EDEA7FD2486453E00ED837A /* SwiftSearch macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SwiftSearch macOSTests.xctest";
+			remoteRef = 0EDEA7FC2486453E00ED837A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0EA55C9F22CAE0F800FD7D15 /* Resources */ = {

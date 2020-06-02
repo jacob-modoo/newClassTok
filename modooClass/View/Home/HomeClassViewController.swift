@@ -603,7 +603,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
         switch section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeMainClassTitleCell", for: indexPath) as! HomeClassTableViewCell
-            cell.selectionStyle = .none
+            
             cell.classTitle.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.user_name ?? "")님\n반갑습니다."
             cell.notificationBtn.setTitle("  "+"\(HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "공지사항 클래스톡 정식 오픈 안내")"+"  ", for: .normal)
             cell.userImage.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
@@ -615,7 +615,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             }else{
                 cell.classTitleBtn.isHidden = true
             }
-            
+            cell.selectionStyle = .none
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeClassManagerCell", for: indexPath) as! HomeClassTableViewCell
