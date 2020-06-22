@@ -38,6 +38,8 @@ class LoginResults: NSObject {
     var event_close_date:String?
     var event_image:String?
     var event_link:String?
+    var event_text:String?
+    var event_yn:String?
     
     override init() {
         super.init()
@@ -55,6 +57,8 @@ class LoginResults: NSObject {
         event_close_date = DictionaryToString(dic: dic, strName: "event_close_date")
         event_image = DictionaryToString(dic: dic, strName: "event_image")
         event_link = DictionaryToString(dic: dic, strName: "event_link")
+        event_text = DictionaryToString(dic: dic, strName: "event_text")
+        event_yn = DictionaryToString(dic: dic, strName: "event_yn")
     }
 }
 

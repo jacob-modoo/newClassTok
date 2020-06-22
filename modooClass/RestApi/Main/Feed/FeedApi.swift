@@ -634,7 +634,24 @@ class FeedApi: NSObject {
             }
         }
     }
-    
+
+//    MARK: - auto-completing search function
+    func autoCompleteSearch(keyword:String, success: @escaping(_ data: AutoSearchModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+        let url = URL.init(string: "https://search.enfit.net/api/v1/class/search_suggest")!
+        let param = ["keyword": keyword] as [String : Any]
+
+        Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+             switch response.result
+            {
+            case .success:
+                let dic = AutoSearchModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post : \(url)"))
+                success(dic)
+            case .failure:
+                fail(response.error)
+            }
+        }
+    }
+
 //    MARK: - 운영중인 클래스 삭제하기
     func class_delete(class_id:Int ,success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         

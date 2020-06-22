@@ -22,4 +22,28 @@ extension UITableView {
         }
         return false
     }
+    
+    func reloadDataWithoutScroll() {
+        let offset = contentOffset
+        beginUpdates()
+        reloadData()
+        endUpdates()
+        layoutIfNeeded()
+        layer.removeAllAnimations()
+        setContentOffset(offset, animated: false)
+        
+    }
+    
+    /**the extension for  UIView to make corners rounded*/
+    func roundedTableView(usingCorners corners: UIRectCorner, cornerRadii: CGSize)
+    {
+        let path = UIBezierPath(roundedRect: self.bounds,
+                                byRoundingCorners: corners,
+                                cornerRadii: cornerRadii)
+
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+
+        self.layer.mask = maskLayer
+    }
 }

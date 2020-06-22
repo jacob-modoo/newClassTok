@@ -605,11 +605,15 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeMainClassTitleCell", for: indexPath) as! HomeClassTableViewCell
             
             cell.classTitle.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.user_name ?? "")님\n반갑습니다."
-            cell.notificationBtn.setTitle("  "+"\(HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "공지사항 클래스톡 정식 오픈 안내")"+"  ", for: .normal)
             cell.userImage.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
             cell.iconLevelImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.profileModel.results?.level_info?.level_icon ?? "")"))
             cell.userBackgroundImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.profileModel.results?.level_info?.level_icon ?? "")"))
             cell.classTitle.font = cell.classTitle.font.withSize(20)
+            if HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "" != ""{
+                cell.notificationBtn.setTitle("  "+"\(HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "")"+"  ", for: .normal)
+            } else {
+                cell.notificationBtn.isHidden = true
+            }
             if HomeMain2Manager.shared.pilotAppMain.results?.guide_address ?? "" != ""{
                 cell.classTitleBtn.isHidden = false
             }else{

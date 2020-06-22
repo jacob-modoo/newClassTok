@@ -25,7 +25,11 @@ class PopupShowViewController: UIViewController {
         super.viewDidLoad()
         
         self.popupImg.sd_setImage(with: URL(string: "\(UserManager.shared.userInfo.results?.event_image ?? "")"))
-        
+        if UserManager.shared.userInfo.results?.event_text ?? "" != "" {
+            self.linkBtn.setTitle("\(UserManager.shared.userInfo.results?.event_text ?? "얼리버드 클래스 보기")", for: .normal)
+        } else {
+            self.linkBtn.setTitle("얼리버드 클래스 보기", for: .normal)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

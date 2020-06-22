@@ -465,7 +465,12 @@ extension HomeProfileViewController : UITableViewDataSource,UITableViewDelegate{
             cell.levelMainLbl.text = HomeMain2Manager.shared.profileModel.results?.level_info?.level_name ?? ""
             let numberFormat = NumberFormatter()
             numberFormat.numberStyle = .decimal
-            cell.levelPointLbl.text = "\(numberFormat.string(from: NSNumber(value: currentPoint)) ?? "")점"
+            if currentPoint != 0 {
+                cell.levelPointLbl.text = "\(numberFormat.string(from: NSNumber(value: currentPoint)) ?? "")점"
+            } else {
+                cell.levelPointLbl.isHidden = true
+            }
+            
             cell.levelProgressInfoLeftLbl.text = HomeMain2Manager.shared.profileModel.results?.level_info?.level_name ?? ""
             cell.levelPointInfoLbl.text = HomeMain2Manager.shared.profileModel.results?.level_info?.level_benefits ?? ""
             cell.levelProgressInfoRightLbl.text = HomeMain2Manager.shared.profileModel.results?.level_info?.next_level_name ?? ""
@@ -640,20 +645,5 @@ extension HomeProfileViewController : UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-    }
-}
-
-extension UIView
-{
-    func roundedView(usingCorners corners: UIRectCorner, cornerRadii: CGSize)
-    {
-        let path = UIBezierPath(roundedRect: self.bounds,
-                                byRoundingCorners: corners,
-                                cornerRadii: cornerRadii)
-
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = path.cgPath
-
-        self.layer.mask = maskLayer
     }
 }

@@ -73,6 +73,8 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var timer:Timer?
     /** **비디오 URL */
     var loadUrl:String?
+    /** **클래스 커리큘럼 소개 리스트 */
+    var feedDetailList:FeedAppClassModel?
     var isSwipePop:Bool = false
     var share_address:String?
     var share_content:String?
@@ -717,17 +719,17 @@ extension FeedDetailViewController:BMPlayerDelegate{
     func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
         if trakingTime > 9{
             let user_id = UserManager.shared.userInfo.results?.user?.id ?? 0
-            print("뭐야 여기 안타?")
+            print("뭐야 여기 안타?\nUser status is : \(self.feedDetailList?.results?.user_status ?? "call feed API for this controller!")")
             if user_status == "spectator" {
                 FeedApi.shared.playTrackingTimeSpectator(class_id: self.class_id, user_id: user_id, success: { result in
                     }) { error in
                         print("Error in api POST for tracking 'spectator': \(String(describing: error))")
                 }
-            }// else {
+            } else {
                 FeedApi.shared.playTrackingTime(user_id: user_id , duration : Int(currentTime),curriculum_id: self.curriculum_id ,success: { result in
                 }) { error in
                 }
-           // }
+            }
             trakingTime = 0
         }
     }

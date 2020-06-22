@@ -1133,8 +1133,11 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                     }
                     if self.list?.results?.mcClass_id ?? 0 == 0 {
                         cell.classLinkView.isHidden = true
+                        cell.contentIfNeeded.isHidden = false
+                        cell.contentIfNeeded.text = "\(self.list?.results?.content ?? "")"
                     }else{
                         cell.classLinkView.isHidden = false
+                        cell.contentIfNeeded.isHidden = true
                     }
                     
                     cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
@@ -1204,7 +1207,31 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.userReviewStar1.image = UIImage(named: "profile_star_active")
                 }
             }
-            cell.userReviewContent.text = "\(self.list?.results?.content ?? "")"
+            /** this statement will correct the written tag in 스토리 작성 page*/
+            if self.list?.results?.mcClass_id ?? 0 == 0 {
+                if self.list?.results?.tag_data ?? "" != "" {
+                    if self.list?.results?.tag_data?.first != "#" {
+                        self.list?.results?.tag_data = "#\(self.list?.results?.tag_data ?? "")"
+                    }
+//                    cell.userReviewContent.text = "\(self.list?.results?.tag_data?.replace(target: "#", withString: " #") ?? "")"
+                    cell.userReviewContent.text = "\(self.list?.results?.tag_data ?? "")"
+                    cell.userReviewContent.textColor = UIColor(hexString: "#FF5A5F")
+                    if self.list?.results?.tag_data?.first == " " {
+                        cell.userReviewContent.text.removeFirst()
+                    }
+                    
+                }
+            }else{
+                cell.userReviewContent.text = "\(self.list?.results?.content ?? "")"
+                cell.userReviewContent.textColor = UIColor(hexString: "#484848")
+            }
+            /** hiding deleting btn (moreBtn) for other users*/
+            if self.user_id == self.list?.results?.user_info?.user_id ?? 0 {
+                self.moreBtn.isHidden = false
+            }else{
+                self.moreBtn.isHidden = true
+            }
+            
             cell.selectionStyle = .none
             return cell
         case 2:
@@ -1250,6 +1277,7 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                         }
                         let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
                         cell.replyPhoto.addGestureRecognizer(pictureTap)
+                        
                     }
                     
                     cell.userName.text = self.list?.results?.comment_reply?.list_arr[row].user_name

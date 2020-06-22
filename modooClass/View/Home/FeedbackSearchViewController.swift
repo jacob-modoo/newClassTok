@@ -41,8 +41,13 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     var refreshControl = UIRefreshControl()
     var order = "signup" // (signup / star / price / laster) - 참여인기순, 별점순, 가격순, 최신순)
     
+    var autoSearchList:AutoSearchModel?
+    var autoSearchList_arr:Array = Array<DataList>()
+    var suggestedSource : [String] = [String]()
+    let dropDown = VPAutoComplete()
     var page = 1
     
+    let sameView = UIView()
     let feedStoryboard: UIStoryboard = UIStoryboard(name: "Feed", bundle: nil)
     let webViewStoryboard: UIStoryboard = UIStoryboard(name: "WebView", bundle: nil)
     
@@ -71,6 +76,8 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.textFieldFocusOut), name: NSNotification.Name(rawValue: "SearchKeyBoardHide"), object: nil )
+        self.textField.addTarget(self, action: #selector(self.textFieldDidChangeSelection(_:)), for: .editingChanged)
+        
     }
     
     /** **뷰가 나타나기 시작 할 때 타는 메소드 */
@@ -99,42 +106,6 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
         print("FeedbackSearchViewController deinit")
     }
     
-    /**
-    **파라미터가 있고 반환값이 없는 메소드 > 스크롤이 멈췄을시 타는 함수
-     
-     - Parameters:
-        - scrollView: 스크롤뷰 관련 된 처리 가능하도록 스크롤뷰 넘어옴
-     
-     - Throws: `Error` 스크롤이 이상한 값으로 넘어올 경우 `Error`
-     */
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if refreshControl.isRefreshing {
-            if searchCheck == false{
-                DispatchQueue.main.async {
-//                    self.searchList = nil
-                    self.app_search_before()
-                }
-            }else{
-                DispatchQueue.main.async {
-//                    self.searchList = nil
-                    self.searchListArr.removeAll()
-                    self.page = 1
-                    let searchParam = self.textField.text!
-                    self.app_search(query: searchParam,order : self.order)
-                }
-            }
-        }
-    }
-    
-    /**
-    **파라미터가 없고 반환값이 없는 메소드 > 새로고침 컨트롤이 끝났을때 타는 함수
-     
-     - Throws: `Error` 새로고침이 끝나지 않는 경우 `Error`
-     */
-    func endOfWork() {
-        refreshControl.endRefreshing()
-    }
-    
     /** **검색 버튼 클릭 > 검색 후 리스트를 가져옴 */
     @IBAction func searchBtnClicked(_ sender: UIButton) {
         self.view.endEditing(true)
@@ -149,7 +120,11 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     
     /** **이전 버튼 클릭 > 앞단계 뷰로 이동 */
     @IBAction func returnBtnClicked(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        if self.sameView.superview?.subviews.last == self.sameView {
+            self.sameView.removeFromSuperview()
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func categoryBtnClicked(_ sender: UIButton) {
@@ -197,6 +172,42 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     @IBAction func classDetailMoveBtnClicked(_ sender: UIButton) {
         let tag = sender.tag
         self.navigationController?.popOrPushController(class_id: searchListArr[tag].class_id ?? 0)
+    }
+    
+    /**
+    **파라미터가 없고 반환값이 없는 메소드 > 새로고침 컨트롤이 끝났을때 타는 함수
+     
+     - Throws: `Error` 새로고침이 끝나지 않는 경우 `Error`
+     */
+    func endOfWork() {
+        refreshControl.endRefreshing()
+    }
+    
+  /**
+    **파라미터가 있고 반환값이 없는 메소드 > 스크롤이 멈췄을시 타는 함수
+     
+     - Parameters:
+        - scrollView: 스크롤뷰 관련 된 처리 가능하도록 스크롤뷰 넘어옴
+     
+     - Throws: `Error` 스크롤이 이상한 값으로 넘어올 경우 `Error`
+     */
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshControl.isRefreshing {
+            if searchCheck == false{
+                DispatchQueue.main.async {
+//                    self.searchList = nil
+                    self.app_search_before()
+                }
+            }else{
+                DispatchQueue.main.async {
+//                    self.searchList = nil
+                    self.searchListArr.removeAll()
+                    self.page = 1
+                    let searchParam = self.textField.text!
+                    self.app_search(query: searchParam,order : self.order)
+                }
+            }
+        }
     }
     
     func moreTableViewCellDidTappedButton(sender: UIButton) {
@@ -1014,6 +1025,68 @@ extension FeedbackSearchViewController{
 
 extension FeedbackSearchViewController: UITextViewDelegate, UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("typing started...")
+    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("End editing..")
+        self.sameView.removeFromSuperview()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        print("shouldChangeCharacters")
+        sameView.frame = self.tableView.frame
+        dropDown.onView = sameView
+        self.view.addSubview(sameView)
+        return true
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        print("textField did Change")
+        getSuggestion(key: self.textField.text ?? "")
+    }
+
+    func autoSearch() {
+        self.suggestedSource.removeAll()
+
+        for i in 0..<(self.autoSearchList?.results?.data_list_arr.count ?? 0)! {
+            self.suggestedSource.append((self.autoSearchList?.results?.data_list_arr[i].key)!)
+        }
+        print("this is final result of SG: \(suggestedSource)")
+        dropDown.dataSource = suggestedSource
+        dropDown.onTextField = self.textField
+        dropDown.show { (str, index) in
+            print("string: \(str) and index: \(index)")
+            self.searchClose = true
+            self.textField.text = str
+            self.app_search(query: str, order: self.order)
+            self.sameView.removeFromSuperview()
+        }
+    }
+    
+    func getSuggestion(key: String){
+            FeedApi.shared.autoCompleteSearch(keyword: key, success: { [unowned self] result in
+                if result.code! == "200"{
+                    self.autoSearchList = result
+                    DispatchQueue.main.async {
+                        for addArray in 0..<(self.autoSearchList?.results?.data_list_arr.count ?? 0)! {
+                            self.autoSearchList_arr.append((self.autoSearchList?.results?.data_list_arr[addArray])!)
+                            print("-----\(self.autoSearchList_arr[addArray].key ?? "no data")-----")
+                        }
+                        self.autoSearch()
+                    }
+                }else{
+                    print("Error in catching data from API!!!")
+                }
+            }) { error in
+                print(error ?? "Error occured in calling AutoSearch API")
+            }
+        
+        }
+    
+    
     /**
     **파라미터가 있고 반환값이 없는 메소드 > 텍스트 필드 작성 완료 함수
      
@@ -1093,5 +1166,9 @@ extension FeedbackSearchViewController: UITextViewDelegate, UITextFieldDelegate 
                 }
             }
         }
+    }
+    
+    @objc func hideSearchView(notification: UIGestureRecognizer) {
+        self.sameView.removeFromSuperview()
     }
 }

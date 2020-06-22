@@ -210,7 +210,7 @@ extension ProfileV2TableViewCell: UICollectionViewDelegate,UICollectionViewDataS
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if collectionTag == 0{
-            if (user_info?.photo_list.count)! > 0{
+            if (user_info?.photo_list.count ?? 0) > 0{
                 pagecontroller.numberOfPages = user_info?.photo_list.count ?? 0
                 return user_info?.photo_list.count ?? 0
             }else{

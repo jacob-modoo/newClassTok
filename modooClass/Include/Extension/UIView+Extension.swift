@@ -175,4 +175,17 @@ extension UIView {
         }
         return hitView
     }
+    
+    /**the extension for  UIView to make corners rounded*/
+    func roundedView(usingCorners corners: UIRectCorner, cornerRadii: CGSize)
+    {
+        let path = UIBezierPath(roundedRect: self.bounds,
+                                byRoundingCorners: corners,
+                                cornerRadii: cornerRadii)
+
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+
+        self.layer.mask = maskLayer
+    }
 }

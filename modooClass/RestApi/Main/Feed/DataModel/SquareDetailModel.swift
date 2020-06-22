@@ -49,6 +49,7 @@ class SquareDetailResult:NSObject{
     var coach_name:String?
     var coach_photo:String?
     var emoticon:Int?
+    var tag_data:String?
     var play_file:String?
     var play_file_image:String?
     var youtube_file:String?
@@ -92,6 +93,7 @@ class SquareDetailResult:NSObject{
         coach_name = DictionaryToString(dic: dic, strName: "coach_name")
         coach_photo = DictionaryToString(dic: dic, strName: "coach_photo")
         emoticon = DictionaryToInt(dic: dic, intName: "emoticon")
+        tag_data = DictionaryToString(dic: dic, strName: "tag_data")
         play_file = DictionaryToString(dic: dic, strName: "play_file")
         play_file_image = DictionaryToString(dic: dic, strName: "play_file_image")
         youtube_file = DictionaryToString(dic: dic, strName: "youtube_file")

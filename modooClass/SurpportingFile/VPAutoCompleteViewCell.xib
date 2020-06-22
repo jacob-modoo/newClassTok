@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VPAutoCompleteViewCell" id="KGk-i7-Jjw" customClass="VPAutoCompleteViewCell" customModule="modooClass" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycJ-qM-611">
+                        <rect key="frame" x="45" y="14" width="265" height="17"/>
+                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                        <color key="textColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_main_searchV2" translatesAutoresizingMaskIntoConstraints="NO" id="wQx-qM-vvo">
+                        <rect key="frame" x="15" y="12" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Xru-qb-w2h"/>
+                            <constraint firstAttribute="width" constant="20" id="zG5-l8-opw"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ycJ-qM-611" firstAttribute="leading" secondItem="wQx-qM-vvo" secondAttribute="trailing" constant="10" id="8vx-Ur-1eW"/>
+                    <constraint firstItem="wQx-qM-vvo" firstAttribute="leading" secondItem="x6e-Hh-Ooo" secondAttribute="leading" constant="15" id="REp-OQ-yFD"/>
+                    <constraint firstAttribute="trailing" secondItem="ycJ-qM-611" secondAttribute="trailing" constant="10" id="XK3-Vu-Vmg"/>
+                    <constraint firstItem="ycJ-qM-611" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="msR-sF-53B"/>
+                    <constraint firstItem="wQx-qM-vvo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zKM-tp-dXD"/>
+                </constraints>
+                <viewLayoutGuide key="safeArea" id="x6e-Hh-Ooo"/>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblTitle" destination="ycJ-qM-611" id="i0S-mB-tEK"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="155"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="app_main_searchV2" width="22" height="22"/>
+    </resources>
+</document>

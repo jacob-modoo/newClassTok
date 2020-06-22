@@ -41,6 +41,7 @@ class StoryDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var classPriceImg: UIImageView!
     @IBOutlet weak var classPriceName: UIFixedLabel!
     @IBOutlet weak var classSalePrice: UIFixedLabel!
+    @IBOutlet weak var contentIfNeeded: UITextView!
     
 //    StoryDetailClassInfoTableViewCell
     @IBOutlet weak var replyUserPhoto: UIImageView!
