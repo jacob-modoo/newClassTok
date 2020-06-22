@@ -1059,7 +1059,6 @@ extension FeedbackSearchViewController: UITextViewDelegate, UITextFieldDelegate 
         dropDown.onTextField = self.textField
         dropDown.show { (str, index) in
             print("string: \(str) and index: \(index)")
-            self.searchClose = true
             self.textField.text = str
             self.app_search(query: str, order: self.order)
             self.sameView.removeFromSuperview()
@@ -1166,9 +1165,5 @@ extension FeedbackSearchViewController: UITextViewDelegate, UITextFieldDelegate 
                 }
             }
         }
-    }
-    
-    @objc func hideSearchView(notification: UIGestureRecognizer) {
-        self.sameView.removeFromSuperview()
     }
 }
