@@ -44,7 +44,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     var autoSearchList:AutoSearchModel?
     var autoSearchList_arr:Array = Array<DataList>()
     var suggestedSource : [String] = [String]()
-    let dropDown = VPAutoComplete()
+    let dropDown = AutoSearchEngine()
     var page = 1
     
     let sameView = UIView()

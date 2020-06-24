@@ -1,14 +1,14 @@
 //
-//  VPAutoCompleteViewCell.swift
-//  VPAutoComplete
+//  AutoSearchEngineCell.swift
+//  AutoSearchEngine
 //
-//  Created by Vivek on 25/01/18.
-//  Copyright © 2018 Vivek. All rights reserved.
+//  Created by John on 22/06/20.
+//  Copyright © 2020 iOS|Dev. All rights reserved.
 //
 
 import UIKit
 
-class VPAutoCompleteViewCell: UITableViewCell {
+class AutoSearchEngineCell: UITableViewCell {
 
     @IBOutlet var lblTitle: UILabel!
     override func awakeFromNib() {

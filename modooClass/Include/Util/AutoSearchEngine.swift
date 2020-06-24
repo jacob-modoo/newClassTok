@@ -1,6 +1,6 @@
 //
-//  VPAutoComplete.swift
-//  VPAutoComplete
+//  AutoSearchEngine.swift
+//  AutoSearchEngine
 //
 //  Created by John on 22/06/20.
 //  Copyright © 2020 iOS|Dev. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VPAutoComplete: UIView {
+class AutoSearchEngine: UIView {
 
     // Data source for show DropDown.
     public var dataSource : [String] = [String]()
@@ -86,7 +86,7 @@ class VPAutoComplete: UIView {
     
     private func setUp(){
         self.tableView = UITableView()
-        self.tableView?.register(UINib(nibName: "VPAutoCompleteViewCell", bundle: nil), forCellReuseIdentifier: "VPAutoCompleteViewCell")
+        self.tableView?.register(UINib(nibName: "AutoSearchEngineCell", bundle: nil), forCellReuseIdentifier: "AutoSearchEngineCell")
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
         self.tableView?.tableFooterView = UIView()
@@ -175,7 +175,7 @@ class VPAutoComplete: UIView {
 
 // MARK: - TableView Delegate.
 
-extension VPAutoComplete : UITableViewDelegate{
+extension AutoSearchEngine : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -197,14 +197,14 @@ extension VPAutoComplete : UITableViewDelegate{
 
 // MARK: - TableView DataSource.
 
-extension VPAutoComplete : UITableViewDataSource{
+extension AutoSearchEngine : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.changeHeightForCount(count:self.dataSource.count)
         return self.dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "VPAutoCompleteViewCell") as! VPAutoCompleteViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AutoSearchEngineCell") as! AutoSearchEngineCell
         cell.selectionStyle = .none
         cell.lblTitle.text = dataSource[indexPath.row]
         
@@ -216,7 +216,7 @@ extension VPAutoComplete : UITableViewDataSource{
     }
 }
 
-extension VPAutoComplete {
+extension AutoSearchEngine {
     
     func heightForLabel(text:String) -> CGFloat{
         let label:UILabel = UILabel(frame: CGRect(x:0, y: 0, width: self.onTextField.frame.width, height: CGFloat.greatestFiniteMagnitude))
