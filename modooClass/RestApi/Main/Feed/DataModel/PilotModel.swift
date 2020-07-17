@@ -153,6 +153,7 @@ class User_info_pilot:NSObject{
     var user_name:String?
     var user_photo:String?
     var gender:String?
+    var level_info:Level_info_pilot?
     var interest_list:Pilot_Interest_list?
     var interest_list_arr:Array = Array<Pilot_Interest_list>()
     
@@ -167,6 +168,9 @@ class User_info_pilot:NSObject{
         user_photo = DictionaryToString(dic: dic, strName: "user_photo")
         gender = DictionaryToString(dic: dic, strName: "gender")
         
+        if let level_info = dic["level_info"] as? Dictionary<String, Any> {
+            self.level_info = Level_info_pilot.init(dic: level_info)
+        }
         if let interest_list = dic["interest"] as? Array<Any>{
             let array:Array = interest_list
             for interest_list in array {
@@ -194,6 +198,37 @@ class Pilot_Interest_list:NSObject{
         name = DictionaryToString(dic: dic, strName: "name")
         mcCategory_id = DictionaryToInt(dic: dic, intName: "mcCategory_id")
         use_yn = DictionaryToString(dic: dic, strName: "use_yn")
+    }
+}
+
+class Level_info_pilot:NSObject{
+    var total_point:Int?
+    var level_name:String?
+    var level_code:String?
+    var level_score:Int?
+    var level_benefits:String?
+    var next_level_name:String?
+    var next_level_score:Int?
+    var level_per:Int?
+    var level_icon:String?
+    var level_information_page:String?
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        total_point = DictionaryToInt(dic: dic, intName: "total_point")
+        level_name = DictionaryToString(dic: dic, strName: "level_name")
+        level_code = DictionaryToString(dic: dic, strName: "level_code")
+        level_score = DictionaryToInt(dic: dic, intName: "level_score")
+        level_benefits = DictionaryToString(dic: dic, strName: "level_benefits")
+        next_level_name = DictionaryToString(dic: dic, strName: "next_level_name")
+        next_level_score = DictionaryToInt(dic: dic, intName: "next_level_score")
+        level_per = DictionaryToInt(dic: dic, intName: "level_per")
+        level_icon = DictionaryToString(dic: dic, strName: "level_icon")
+        level_information_page = DictionaryToString(dic: dic, strName: "level_information_page")
     }
 }
 

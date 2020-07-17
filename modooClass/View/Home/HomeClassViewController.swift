@@ -166,10 +166,11 @@ class HomeClassViewController: UIViewController {
         tableView.beginUpdates()
         HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].button_point1 = ""
         tableView.endUpdates()
-        if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].class_id ?? 0 != 0{
-//            if HomeMain2Manager.shared.pilotAppMain.results?.class_list?.openDday ?? 0 > 0 {
-//                // open chunbi page
-//            }
+        if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? "" != "" {
+            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? ""
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        } else {
             let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
             newViewController.class_id = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].class_id ?? 0
             newViewController.pushGubun = 1
@@ -204,7 +205,6 @@ class HomeClassViewController: UIViewController {
     
     
     @IBAction func myProfileBtnClicked(_ sender: UIButton) {
-        print(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.user_id ?? 9999)
         let newViewController = UIStoryboard(name: "Home2WebView", bundle: nil).instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
         newViewController.user_id = HomeMain2Manager.shared.pilotAppMain.results?.user_info?.user_id ?? sender.tag
         self.navigationController?.pushViewController(newViewController, animated: true)
@@ -232,21 +232,32 @@ class HomeClassViewController: UIViewController {
     
     @IBAction func classInBtnClicked(_ sender: UIButton) {
         let tag = sender.tag
-        print(tag)
-        print(HomeMain2Manager.shared.pilotAppMain.results?.management_class?.status
-            ?? 999)
-//        if HomeMain2Manager.shared.pilotAppMain.results?.management_class?.status ?? 0 != 6 || HomeMain2Manager.shared.pilotAppMain.results?.management_class?.status ?? 0 != 9 {
+        if HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].status ?? 0 != 6 || HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].status ?? 0 != 9 {
+            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].manager_link ?? ""
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        } else {
+            let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
+            newViewController.class_id = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].id ?? 0
+            newViewController.pushGubun = 1
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
+    }
+    
+    @IBAction func favouriteClassInBtnClicked(_ sender: UIButton) {
+        let tag = sender.tag
+//        if HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[tag].curriculum_cnt ?? 0 == 0 {
 //            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
 //            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].manager_link ?? ""
 //            self.navigationController?.pushViewController(newViewController, animated: true)
 //        } else {
-            if tag != 0{
+            if tag != 0 {
                 let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
                 newViewController.class_id = tag
                 newViewController.pushGubun = 1
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }
-        //}
+//        }
     }
     
     @IBAction func classFavoriteRecommendBtnClicked(_ sender: UIButton) {
@@ -606,8 +617,8 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             
             cell.classTitle.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.user_name ?? "")님\n반갑습니다."
             cell.userImage.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-            cell.iconLevelImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.profileModel.results?.level_info?.level_icon ?? "")"))
-            cell.userBackgroundImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.profileModel.results?.level_info?.level_icon ?? "")"))
+            cell.iconLevelImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.level_info?.level_icon ?? "")"))
+            cell.userBackgroundImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.level_info?.level_icon ?? "")"))
             cell.classTitle.font = cell.classTitle.font.withSize(20)
             if HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "" != ""{
                 cell.notificationBtn.setTitle("  "+"\(HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "")"+"  ", for: .normal)
@@ -641,7 +652,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                 cell.replyCount.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].coach_wait_cnt ?? 0)"
                 cell.classManagerBtn.tag = row
                 cell.classManagerQuestionBtn.tag = row
-                cell.classInBtn.tag = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].id ?? 0
+                cell.classInBtn.tag = row
             }
             return cell
        case 2:

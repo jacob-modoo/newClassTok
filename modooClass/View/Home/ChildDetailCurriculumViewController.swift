@@ -45,6 +45,9 @@ class ChildDetailCurriculumViewController: UIViewController{
     /** **뷰가 나타나기 시작 할 때 타는 메소드 */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        should make auto scroll to the playing class
+        
+        
     }
     
     /** **뷰가 사라지기 시작 할 때 타는 메소드 */
