@@ -1158,6 +1158,16 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.replyUserName.text = self.list?.results?.user_info?.user_name ?? ""
                     cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                     cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
+                    
+                    if self.list?.results?.mcClass_id ?? 0 == 0 {
+                        cell.classLinkView.isHidden = true
+                        cell.contentIfNeeded.isHidden = false
+                        cell.contentIfNeeded.text = "\(self.list?.results?.content ?? "")"
+                    }else{
+                        cell.classLinkView.isHidden = false
+                        cell.contentIfNeeded.isHidden = true
+                    }
+                    
                     if self.list?.results?.class_signup_data ?? 0 > 20{
                         cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로윙."
                     }else{

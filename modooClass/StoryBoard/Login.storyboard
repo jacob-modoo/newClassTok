@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -257,7 +257,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="휴대폰번호 입력" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGf-z4-SlD" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="100" width="139" height="26.5"/>
+                                <rect key="frame" x="20" y="100" width="164.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -282,7 +282,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가입했던 번호는 로그인으로 새로운 번호는 회원가입으로 진행됩니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFe-oM-ien" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="134.5" width="220.5" height="34"/>
+                                <rect key="frame" x="20" y="139.5" width="204.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -299,7 +299,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9NZ-Dp-N2T" customClass="UIFixedTextField" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="198.5" width="374" height="24"/>
+                                <rect key="frame" x="20" y="201" width="374" height="24"/>
                                 <color key="tintColor" name="MainPoint_mainColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="CWh-ac-Iny"/>
@@ -323,14 +323,14 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6il-c1-t5j">
-                                <rect key="frame" x="20" y="227.5" width="374" height="1"/>
+                                <rect key="frame" x="20" y="230" width="374" height="1"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="gJy-AV-ewK"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBF-X2-FxD" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="282.5" width="374" height="50"/>
+                                <rect key="frame" x="20" y="285" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="T3D-BB-D2V"/>
                                 </constraints>
@@ -365,7 +365,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6X-vu-ZaB" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="118.5" y="365.5" width="177" height="27"/>
+                                <rect key="frame" x="118.5" y="368" width="177" height="27"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
                                 <inset key="contentEdgeInsets" minX="50" minY="0.0" maxX="50" maxY="10"/>
                                 <state key="normal" title="비밀번호 찾기">
@@ -390,7 +390,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EoQ-xD-2Lz">
-                                <rect key="frame" x="365" y="193.5" width="29" height="29"/>
+                                <rect key="frame" x="365" y="196" width="29" height="29"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="on_eye"/>
                                 <connections>
@@ -398,7 +398,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIZ-46-2cp" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="235.5" width="374" height="15"/>
+                                <rect key="frame" x="20" y="238" width="374" height="15"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                 <color key="textColor" red="0.8862745098" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -469,7 +469,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호 재설정 시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqi-yJ-e92" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="100" width="183" height="26.5"/>
+                                <rect key="frame" x="20" y="100" width="216.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -494,7 +494,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="휴대폰번호(아이디)를 입력하세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDN-4W-MLO" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="134.5" width="182.5" height="17"/>
+                                <rect key="frame" x="20" y="139.5" width="169.5" height="16"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -511,7 +511,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OXm-Jv-4TX" customClass="UIFixedTextField" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="181.5" width="374" height="24"/>
+                                <rect key="frame" x="20" y="185.5" width="374" height="24"/>
                                 <color key="tintColor" name="MainPoint_mainColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="18f-h6-KGs"/>
@@ -535,14 +535,14 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mlm-jC-XE4">
-                                <rect key="frame" x="20" y="210.5" width="374" height="1"/>
+                                <rect key="frame" x="20" y="214.5" width="374" height="1"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="ay0-nY-prr"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zY-ji-lLW" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="265.5" width="374" height="50"/>
+                                <rect key="frame" x="20" y="269.5" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="eXs-pN-Xvg"/>
                                 </constraints>
@@ -577,7 +577,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7z9-v2-jjL" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="92.5" y="348.5" width="229" height="27"/>
+                                <rect key="frame" x="92.5" y="352.5" width="229" height="27"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
                                 <inset key="contentEdgeInsets" minX="50" minY="0.0" maxX="50" maxY="10"/>
                                 <state key="normal" title="인증번호 다시 요청하기">
@@ -611,7 +611,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gsz-rT-9QN">
-                                <rect key="frame" x="360" y="171.5" width="34" height="34"/>
+                                <rect key="frame" x="360" y="175.5" width="34" height="34"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="on_eye"/>
                                 <connections>
@@ -619,7 +619,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7c-Fn-KSZ" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="218.5" width="374" height="15"/>
+                                <rect key="frame" x="20" y="222.5" width="374" height="15"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                 <color key="textColor" red="0.8862745098" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -636,7 +636,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4D-fi-NEl">
-                                <rect key="frame" x="314" y="188" width="80" height="14.5"/>
+                                <rect key="frame" x="314" y="192" width="80" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="m2H-lI-W3A"/>
                                 </constraints>
@@ -705,7 +705,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4자리 인증번호 입력" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Mn-M2-jeA" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="100" width="177" height="26.5"/>
+                                <rect key="frame" x="20" y="100" width="208.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -730,7 +730,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="문자로 받은 인증번호를 입력해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0u-cq-ohM" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="134.5" width="205" height="17"/>
+                                <rect key="frame" x="20" y="139.5" width="190.5" height="16"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -747,7 +747,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnZ-JM-rZ4" customClass="UIFixedTextField" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="181.5" width="374" height="24"/>
+                                <rect key="frame" x="20" y="185.5" width="374" height="24"/>
                                 <color key="tintColor" name="MainPoint_mainColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="ai2-vN-PCF"/>
@@ -771,7 +771,7 @@
                                 </connections>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9t-qn-gha">
-                                <rect key="frame" x="365" y="176.5" width="29" height="29"/>
+                                <rect key="frame" x="365" y="180.5" width="29" height="29"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="on_eye"/>
                                 <connections>
@@ -779,14 +779,14 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82a-jo-P2C">
-                                <rect key="frame" x="20" y="210.5" width="374" height="1"/>
+                                <rect key="frame" x="20" y="214.5" width="374" height="1"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="oea-lw-NEa"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqT-PJ-5fO" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="265.5" width="374" height="50"/>
+                                <rect key="frame" x="20" y="269.5" width="374" height="50"/>
                                 <color key="backgroundColor" name="BackColor_subColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Lkn-Xe-Mui"/>
@@ -820,7 +820,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYA-tT-Rtc" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="92.5" y="348.5" width="229" height="27"/>
+                                <rect key="frame" x="92.5" y="352.5" width="229" height="27"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
                                 <inset key="contentEdgeInsets" minX="50" minY="0.0" maxX="50" maxY="10"/>
                                 <state key="normal" title="인증번호 다시 요청하기">
@@ -845,7 +845,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGD-dt-jek" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="218.5" width="374" height="15"/>
+                                <rect key="frame" x="20" y="222.5" width="374" height="15"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                 <color key="textColor" red="0.88627450980392153" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -862,7 +862,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me4-fz-HYT">
-                                <rect key="frame" x="314" y="188" width="80" height="14.5"/>
+                                <rect key="frame" x="314" y="192" width="80" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="5Q6-vx-QiA"/>
                                 </constraints>
@@ -936,7 +936,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="클래스톡에서 활동할 재미있는 닉네임을 적어주세요 :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Enj-jV-cZV" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="150.5" width="293.5" height="17"/>
+                                <rect key="frame" x="20" y="155.5" width="272.5" height="16"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -953,7 +953,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzc-pf-mU3" customClass="UIFixedTextField" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="207.5" width="374" height="24"/>
+                                <rect key="frame" x="20" y="211.5" width="374" height="24"/>
                                 <color key="tintColor" name="MainPoint_mainColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="lXR-75-KOz"/>
@@ -977,14 +977,14 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UjZ-R9-Cuj">
-                                <rect key="frame" x="20" y="236.5" width="374" height="1"/>
+                                <rect key="frame" x="20" y="240.5" width="374" height="1"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="gKu-Q3-4jj"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awP-JI-2Qh" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="339.5" width="374" height="50"/>
+                                <rect key="frame" x="20" y="343.5" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Z29-gH-9G0"/>
                                 </constraints>
@@ -1017,7 +1017,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exL-Ma-LEY" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="244.5" width="374" height="15"/>
+                                <rect key="frame" x="20" y="248.5" width="374" height="15"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                 <color key="textColor" red="0.8862745098" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1039,7 +1039,7 @@
                                 <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6L-me-vLD" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="116" width="57.5" height="26.5"/>
+                                <rect key="frame" x="20" y="116" width="67.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1116,7 +1116,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가장 알맞는 클래스를 찾는데 도움이 됩니다.  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMM-iW-gUt" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="150.5" width="240" height="34"/>
+                                <rect key="frame" x="20" y="155.5" width="222.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1133,7 +1133,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZH2-NW-3Kj" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="304.5" width="374" height="50"/>
+                                <rect key="frame" x="20" y="307" width="374" height="50"/>
                                 <color key="backgroundColor" name="BackColor_subColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="nCd-EP-zRF"/>
@@ -1167,7 +1167,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUs-zN-HQu" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="365.5" width="374" height="50"/>
+                                <rect key="frame" x="20" y="368" width="374" height="50"/>
                                 <color key="backgroundColor" name="BackColor_subColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="80H-KB-bp7"/>
@@ -1206,7 +1206,7 @@
                                 <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="성별" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJl-zt-j7g" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="116" width="38.5" height="26.5"/>
+                                <rect key="frame" x="20" y="116" width="45" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1267,7 +1267,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출생년도" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2x-Y6-BVI" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="116" width="76.5" height="26.5"/>
+                                <rect key="frame" x="20" y="116" width="90" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1292,7 +1292,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가장 알맞는 클래스를 찾는데 도움이 됩니다.  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RdZ-6e-9Rz" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="150.5" width="240" height="34"/>
+                                <rect key="frame" x="20" y="155.5" width="222.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1309,14 +1309,14 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdC-Ul-Ugv">
-                                <rect key="frame" x="20" y="214.5" width="374" height="1"/>
+                                <rect key="frame" x="20" y="217" width="374" height="1"/>
                                 <color key="backgroundColor" name="FontColor_subColor3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="z8Q-4T-sHW"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="출생년도를 선택해주세요." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UmA-Ca-HKV" customClass="UIFixedTextField" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="245.5" width="374" height="30"/>
+                                <rect key="frame" x="20" y="248" width="374" height="30"/>
                                 <color key="tintColor" name="MainPoint_mainColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Chx-AE-cNc"/>
@@ -1340,14 +1340,14 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKb-lc-yUY">
-                                <rect key="frame" x="20" y="305.5" width="374" height="1"/>
+                                <rect key="frame" x="20" y="308" width="374" height="1"/>
                                 <color key="backgroundColor" name="FontColor_subColor3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="HAK-66-UYU"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPZ-0Y-fcf" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="341.5" width="374" height="50"/>
+                                <rect key="frame" x="20" y="344" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ogN-A7-Cg9"/>
                                 </constraints>
@@ -1447,7 +1447,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="관심사" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nW5-WW-NOv" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="116" width="57.5" height="26.5"/>
+                                <rect key="frame" x="20" y="116" width="67.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1472,7 +1472,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="관심있는 것을 클릭해주세요 :) 가장 알맞는 클래스를 찾도록 도와드릴게요(최대 택3)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUp-OI-95Y" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="150.5" width="289.5" height="34"/>
+                                <rect key="frame" x="20" y="155.5" width="268.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1522,18 +1522,18 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UfW-jL-tHz">
-                                <rect key="frame" x="20" y="208.5" width="374" height="563.5"/>
+                                <rect key="frame" x="20" y="211" width="374" height="561"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddInfoTagInterestTitleTableViewCell" id="x5h-wr-0DX" customClass="AddInfoTagInterestTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="28" width="374" height="40.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x5h-wr-0DX" id="CHw-y1-EzX">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="37"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="40.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="운동 건강" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBO-Xb-EAB" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="10" width="374" height="17"/>
+                                                    <rect key="frame" x="0.0" y="10" width="374" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1562,7 +1562,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddInfoTagInterestListTableViewCell" id="3yC-of-piW" customClass="AddInfoTagInterestTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="68.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3yC-of-piW" id="r05-L1-KZz">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -1579,14 +1579,14 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddInfoTagInterestCollectionViewCell" id="RbW-fj-wep" customClass="AddInfoTagInterestCollectionViewCell" customModule="modooClass" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="55" height="40"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="66" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qbU-kj-6TX">
-                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="40"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="66" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdr-gG-lTn" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="56" height="30"/>
                                                                         <color key="backgroundColor" name="BackColor_mainColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="30" id="75m-wy-Vcd"/>
@@ -1610,7 +1610,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4O-dK-Wtn" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="56" height="30"/>
                                                                         <state key="normal" title="  # 태그  "/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1723,7 +1723,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서약서" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiI-as-e2G" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="116" width="57.5" height="26.5"/>
+                                <rect key="frame" x="20" y="116" width="67.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1748,7 +1748,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b41-rn-sEM" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="150.5" width="275.5" height="34"/>
+                                <rect key="frame" x="20" y="155.5" width="256" height="31.5"/>
                                 <string key="text">드디어 마지막 단계입니다!
 클래스톡 멤버가 되기 위한 4가지 서약을 해주세요.</string>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
@@ -1767,7 +1767,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azh-cD-fpW" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="234.5" width="374" height="17"/>
+                                <rect key="frame" x="20" y="237" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1784,18 +1784,18 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cgZ-tW-Vrq">
-                                <rect key="frame" x="16" y="267.5" width="382" height="594.5"/>
+                                <rect key="frame" x="16" y="273.5" width="382" height="588.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddInfoAgreeTableViewCell" id="tja-pE-kOc" customClass="AddInfoAgreeTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="382" height="156"/>
+                                        <rect key="frame" x="0.0" y="28" width="382" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tja-pE-kOc" id="8Rt-Fx-73L">
-                                            <rect key="frame" x="0.0" y="0.0" width="382" height="156"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="132"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3b6-wM-llG">
-                                                    <rect key="frame" x="0.0" y="8" width="382" height="140"/>
+                                                    <rect key="frame" x="0.0" y="8" width="382" height="116"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZw-Lb-uZO">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="57"/>
@@ -1845,10 +1845,10 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQp-ah-Cbm">
-                                                            <rect key="frame" x="0.0" y="57.5" width="382" height="82.5"/>
+                                                            <rect key="frame" x="0.0" y="57.5" width="382" height="58.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="클래스 활동은 단순히 습득하고 익히는 자기계발 과정을 넘어 삶의 성장에 있습니다. 혼자라서 지치고 약해질때 우리는 서로를 응원하고 격려합니다. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zI-oS-SEN" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="16" y="16" width="350" height="50.5"/>
+                                                                    <rect key="frame" x="16" y="16" width="350" height="26.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -1998,7 +1998,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나를 표현하는 사진" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCG-1R-CPj" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="116" width="164" height="26.5"/>
+                                <rect key="frame" x="20" y="116" width="194" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2023,7 +2023,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="함께하는 수강생들과 더 친밀해질 수 있어요 어떠한 사진이어도 무관해요 :)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gt-tX-nju" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="150.5" width="236.5" height="34"/>
+                                <rect key="frame" x="20" y="155.5" width="220" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2040,7 +2040,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haf-TE-lDo">
-                                <rect key="frame" x="20" y="240.5" width="374" height="111.5"/>
+                                <rect key="frame" x="20" y="243" width="374" height="111.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hj2-ry-ew4">
                                         <rect key="frame" x="0.0" y="0.0" width="111.5" height="111.5"/>
@@ -2049,7 +2049,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="111.5" height="111.5"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="직접 업로드 (프로필)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwF-wz-WLD" userLabel="직접 업로드 (대표 사진)" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="66.5" width="111.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="67.5" width="111.5" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2105,7 +2105,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="111" height="111.5"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="직접 업로드 (커버)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZ8-dl-IN4" userLabel="직접 업로드 (대표 사진)" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="66.5" width="111" height="30"/>
+                                                <rect key="frame" x="0.0" y="67.5" width="111" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2161,7 +2161,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="111.5" height="111.5"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="직접 업로드 (커버)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fq-LK-oFg" userLabel="직접 업로드 (대표 사진)" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="66.5" width="111.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="67.5" width="111.5" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2258,7 +2258,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정말 정말 올릴 사진이 없으시면.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYd-dv-s6k" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="392" width="374" height="17"/>
+                                <rect key="frame" x="20" y="394.5" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2275,7 +2275,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BHO-5o-NCs">
-                                <rect key="frame" x="0.0" y="425" width="414" height="180"/>
+                                <rect key="frame" x="0.0" y="431" width="414" height="180"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="8ri-l3-XZ8"/>
@@ -2449,7 +2449,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하시는 일, 직업" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwJ-So-5gB" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="116" width="131.5" height="26.5"/>
+                                <rect key="frame" x="20" y="116" width="155.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2474,7 +2474,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 하시는 일에 클릭해주세요 :) 가장 알맞는 클래스를 찾도록 도와드릴게요(택1)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qe5-pm-YUz" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="150.5" width="259" height="34"/>
+                                <rect key="frame" x="20" y="155.5" width="240.5" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2491,7 +2491,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UEu-EQ-YUL">
-                                <rect key="frame" x="20" y="240.5" width="374" height="531.5"/>
+                                <rect key="frame" x="20" y="243" width="374" height="529"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="CTI-tF-mlO" customClass="UICollectionViewCenterLayout" customModule="modooClass" customModuleProvider="target"/>
                                 <cells>
@@ -2633,7 +2633,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나를 표현하는 한 마디" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW8-KO-52A" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="116" width="189" height="26.5"/>
+                                <rect key="frame" x="20" y="116" width="223" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2658,7 +2658,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="함께하는 수강생들과 더 친밀해질 수 있어요 어떠한 글이어도 무관해요 :)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjZ-wz-dJy" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="150.5" width="236.5" height="34"/>
+                                <rect key="frame" x="20" y="155.5" width="220" height="31.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2675,7 +2675,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gSv-mW-kaS" customClass="UIFixedTextField" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="214.5" width="329" height="24"/>
+                                <rect key="frame" x="20" y="217" width="329" height="24"/>
                                 <color key="tintColor" name="MainPoint_mainColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="Rsz-ab-D8G"/>
@@ -2700,14 +2700,14 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BiX-Mh-d8r">
-                                <rect key="frame" x="20" y="243.5" width="374" height="1"/>
+                                <rect key="frame" x="20" y="246" width="374" height="1"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="dAz-RB-8Vh"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfO-bl-SL4" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="251.5" width="374" height="15"/>
+                                <rect key="frame" x="20" y="254" width="374" height="15"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                 <color key="textColor" red="0.8862745098" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2729,7 +2729,7 @@
                                 <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25글자" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmG-v8-8yg" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="354" y="223.5" width="40" height="15"/>
+                                <rect key="frame" x="354" y="226" width="40" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="gOE-sa-qdU"/>
                                 </constraints>
@@ -2749,7 +2749,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예) - 먹는걸 좋아하는 사람이예요 ㅋㅋㅋ - 살 빼고 싶어요 - 함께 화이팅해요!!!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0U-fG-OFi" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="266.5" width="374" height="60"/>
+                                <rect key="frame" x="20" y="269" width="374" height="81.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2766,7 +2766,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQ1-Bd-cej" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="346.5" width="374" height="50"/>
+                                <rect key="frame" x="20" y="370.5" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="M4F-x7-jcz"/>
                                 </constraints>
