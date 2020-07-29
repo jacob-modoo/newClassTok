@@ -273,7 +273,7 @@
 		0E0B84F9228EA5A70055F044 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		0E0B84FB228EA5CF0055F044 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		0E0B8501228EA6320055F044 /* AlertViewTint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewTint.swift; sourceTree = "<group>"; };
-		0E179203245FCB2A001D4F59 /* FirstLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirstLoginViewController.swift; path = ../../../../../Desktop/newClassTok/modooClass/View/Login/FirstLoginViewController.swift; sourceTree = "<group>"; };
+		0E179203245FCB2A001D4F59 /* FirstLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLoginViewController.swift; sourceTree = "<group>"; };
 		0E1A8D552292728900D581F5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		0E1A8D582292795800D581F5 /* AlamofireNetworkCancel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkCancel.swift; sourceTree = "<group>"; };
 		0E1A8D5B2292812200D581F5 /* StringMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringMessage.swift; sourceTree = "<group>"; };

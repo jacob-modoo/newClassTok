@@ -635,6 +635,23 @@ class FeedApi: NSObject {
         }
     }
 
+//    MARK: - inform everytime ehen PopupSHowVC is shown
+    func popupTracking(hash_id: String, success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+        
+        let param = ["hash" : hash_id]
+        let url = URL.init(string: "https://api2.enfit.net/api/v3/tracking")
+        let request = Alamofire.request("\(url!)/event_popup", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        request.response { response in
+            let statusCode = response.response?.statusCode
+            if statusCode == 200 {
+                let dic = FeedAppClassDefaultModel.init(dic: convertToDictionary(data: response.data!, apiURL: "post : \(url!)"))
+                success(dic)
+            } else {
+                print(response.error ?? "Failed to POST request event_popup API")
+            }
+        }
+    }
+    
 //    MARK: - auto-completing search function
     func autoCompleteSearch(keyword:String, success: @escaping(_ data: AutoSearchModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         let url = URL.init(string: "https://search.enfit.net/api/v1/class/search_suggest")!
