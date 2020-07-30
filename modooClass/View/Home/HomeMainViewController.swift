@@ -168,7 +168,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         let lastEventSeen = UserDefaults.standard.object(forKey: "lastDate") as? Date ?? Date.distantPast
         let currentTime = Date() //newRootVC.popUpOpenDate
     
-         if Calendar.current.compare(currentTime, to: lastEventSeen, toGranularity: .minute) == .orderedDescending {
+         if Calendar.current.compare(currentTime, to: lastEventSeen, toGranularity: .day) == .orderedDescending {
             UserDefaultSetting.setUserDefaultsObject(currentTime, forKey: "lastDate")
         
              let nc = UINavigationController(rootViewController: newRootVC)

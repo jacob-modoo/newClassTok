@@ -81,9 +81,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var share_img:String?
     var share_point:Int?
     var class_name:String?
-    //var class_info:String?
     var class_photo:String?
-    var user_status:String?
     
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
 //    let webViewStoryboard: UIStoryboard = UIStoryboard(name: "WebView", bundle: nil)
@@ -719,11 +717,10 @@ extension FeedDetailViewController:BMPlayerDelegate{
     func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
         if trakingTime > 9{
             let user_id = UserManager.shared.userInfo.results?.user?.id ?? 0
-            print("뭐야 여기 안타?\nUser status is : \(self.feedDetailList?.results?.user_status ?? "call feed API for this controller!")")
-            if user_status == "spectator" {
+            if FeedDetailManager.shared.feedDetailList.results?.user_status ?? "" == "spectator" {
                 FeedApi.shared.playTrackingTimeSpectator(class_id: self.class_id, user_id: user_id, success: { result in
                     }) { error in
-                        print("Error in api POST for tracking 'spectator': \(String(describing: error))")
+                        print("Error in POST for playTrackingTimeSpectator API: \(String(describing: error))")
                 }
             } else {
                 FeedApi.shared.playTrackingTime(user_id: user_id , duration : Int(currentTime),curriculum_id: self.curriculum_id ,success: { result in
