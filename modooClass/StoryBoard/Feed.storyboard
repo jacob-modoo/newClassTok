@@ -3999,7 +3999,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEy-OF-o5L">
                                                                     <rect key="frame" x="0.0" y="-7" width="92.666666666666671" height="45.666666666666664"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18Y-bG-m2i" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18Y-bG-m2i" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="20.333333333333332"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -4016,7 +4016,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynk-Cn-HQm" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynk-Cn-HQm" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="25.333333333333343" width="92.666666666666671" height="20.333333333333329"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -7932,10 +7932,6 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dS7-XX-hPc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3g4-8F-jjc">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fw-Nc-l4I" userLabel="Content View" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="-44" width="375" height="44"/>
                                         <subviews>
@@ -8113,7 +8109,6 @@
                                 <constraints>
                                     <constraint firstItem="T3C-yO-Nw9" firstAttribute="leading" secondItem="Q3E-Qi-IST" secondAttribute="leading" id="2LL-si-F3p"/>
                                     <constraint firstItem="T3C-yO-Nw9" firstAttribute="top" secondItem="OlK-WA-M0a" secondAttribute="bottom" id="4wQ-Ik-RRq"/>
-                                    <constraint firstItem="3g4-8F-jjc" firstAttribute="leading" secondItem="Q3E-Qi-IST" secondAttribute="leading" id="7hP-II-b6Q"/>
                                     <constraint firstAttribute="trailing" secondItem="OlK-WA-M0a" secondAttribute="trailing" id="CnV-1R-bi5"/>
                                     <constraint firstItem="AQu-Vi-UUX" firstAttribute="trailing" secondItem="Q3E-Qi-IST" secondAttribute="trailing" id="D2c-PE-Ark"/>
                                     <constraint firstItem="6Fw-Nc-l4I" firstAttribute="leading" secondItem="Q3E-Qi-IST" secondAttribute="leading" id="FCd-7L-Ruh"/>
@@ -8121,13 +8116,11 @@
                                     <constraint firstItem="T3C-yO-Nw9" firstAttribute="leading" secondItem="dS7-XX-hPc" secondAttribute="leading" id="OJk-Rq-QmY"/>
                                     <constraint firstAttribute="trailing" secondItem="T3C-yO-Nw9" secondAttribute="trailing" id="RNt-Lx-Qhp"/>
                                     <constraint firstItem="OlK-WA-M0a" firstAttribute="leading" secondItem="dS7-XX-hPc" secondAttribute="leading" id="RYg-CO-LWM"/>
-                                    <constraint firstItem="Q3E-Qi-IST" firstAttribute="trailing" secondItem="3g4-8F-jjc" secondAttribute="trailing" id="cdb-Ux-ndb"/>
                                     <constraint firstItem="OlK-WA-M0a" firstAttribute="top" secondItem="6Fw-Nc-l4I" secondAttribute="bottom" id="iD9-oC-AnZ"/>
                                     <constraint firstItem="AQu-Vi-UUX" firstAttribute="top" secondItem="T3C-yO-Nw9" secondAttribute="bottom" id="lNK-vJ-1Aa"/>
                                     <constraint firstItem="Q3E-Qi-IST" firstAttribute="trailing" secondItem="T3C-yO-Nw9" secondAttribute="trailing" id="nmf-Ye-DSb"/>
                                     <constraint firstItem="Q3E-Qi-IST" firstAttribute="trailing" secondItem="6Fw-Nc-l4I" secondAttribute="trailing" id="qz5-MO-bBK"/>
                                     <constraint firstItem="AQu-Vi-UUX" firstAttribute="leading" secondItem="Q3E-Qi-IST" secondAttribute="leading" id="vLo-CE-1aa"/>
-                                    <constraint firstItem="3g4-8F-jjc" firstAttribute="top" secondItem="Q3E-Qi-IST" secondAttribute="top" id="y02-La-gl4"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="aSA-Ze-j3p"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Q3E-Qi-IST"/>
@@ -8747,14 +8740,6 @@
                                             <outlet property="curriculumPlayTimeLbl" destination="beD-vJ-cCO" id="upU-x8-3Ox"/>
                                             <outlet property="curriculumTitle" destination="1MV-IA-Dcp" id="2dD-1j-9Mh"/>
                                         </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AppSharingTableViewCell" rowHeight="350" id="EeV-ee-6Ko" customClass="ChildDetailCurriculumTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="432" width="375" height="350"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EeV-ee-6Ko" id="SpV-HR-hiD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -9853,7 +9838,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fu9-Vh-gDL">
                                                                     <rect key="frame" x="0.0" y="-6.6666666666666679" width="92.666666666666671" height="45.666666666666671"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AM0-J7-yRf" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AM0-J7-yRf" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="20.333333333333332"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -9870,7 +9855,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xee-uL-rBg" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xee-uL-rBg" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="25.333333333333336" width="92.666666666666671" height="20.333333333333336"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -10755,7 +10740,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXv-Ay-IdL">
                                                                     <rect key="frame" x="0.0" y="-6.6666666666666679" width="92.666666666666671" height="45.666666666666671"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pna-dC-su5" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pna-dC-su5" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="20.333333333333332"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -10772,7 +10757,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PS5-t7-lad" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PS5-t7-lad" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="25.333333333333336" width="92.666666666666671" height="20.333333333333336"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>

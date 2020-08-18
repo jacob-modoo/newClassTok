@@ -46,9 +46,18 @@ class ChildDetailCurriculumViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        should make auto scroll to the playing class
-        
-        
     }
+    
+    /** **the view did appear*/
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        let numberOfSections = self.tableView.numberOfSections
+//        let numberOfRows = self.tableView.numberOfRows(inSection: numberOfSections - 1)
+//
+//        let indexPath = IndexPath(row: numberOfRows - 1, section: numberOfSections - 1)
+//        self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+//        print("should scroll now!")
+//    }
     
     /** **뷰가 사라지기 시작 할 때 타는 메소드 */
     override func viewWillDisappear(_ animated: Bool) {
@@ -253,11 +262,11 @@ extension ChildDetailCurriculumViewController:UITableViewDelegate,UITableViewDat
                     }
                     
                     //self.tableView.scrollToNearestSelectedRow(at: .bottom, animated: true)
-//                    if FeedDetailManager.shared.feedDetailList.results?.curriculum?.id == feedAppCurriculumModel?.results?.manageList[row].id{
+                    if FeedDetailManager.shared.feedDetailList.results?.curriculum?.id == feedAppCurriculumModel?.results?.manageList[row].id{
 //                        let indexPath2 = IndexPath(row: row, section: 2)
 //                        self.tableView.scrollToRow(at: indexPath2, at: .middle, animated: true)
 //                        print("should scroll!")
-//                    }
+                    }
                     
                     cell.curriculumChangeBtn.tag = feedAppCurriculumModel?.results?.manageList[row].id ?? 0
                     if FeedDetailManager.shared.feedDetailList.results?.curriculum?.id == feedAppCurriculumModel?.results?.manageList[row].id{

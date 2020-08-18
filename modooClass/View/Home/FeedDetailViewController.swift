@@ -677,6 +677,7 @@ extension FeedDetailViewController:BMPlayerDelegate{
             if let duration = self.player?.avPlayer?.currentItem?.asset.duration {
                 let seconds = CMTimeGetSeconds(duration)
                 self.duration = Int(seconds)
+                print("----------this is duration : ", Float((self.player?.playerLayer?.player?.currentItem!.currentTime().seconds)!))
                 FeedApi.shared.playTracking(duration : self.duration,curriculum_id: self.curriculum_id ,success: { result in
                     if result.code == "200"{
                         

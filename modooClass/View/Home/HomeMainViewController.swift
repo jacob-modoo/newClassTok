@@ -171,15 +171,16 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
          if Calendar.current.compare(currentTime, to: lastEventSeen, toGranularity: .day) == .orderedDescending {
             UserDefaultSetting.setUserDefaultsObject(currentTime, forKey: "lastDate")
         
-             let nc = UINavigationController(rootViewController: newRootVC)
-             nc.navigationBar.isHidden = true
-             navigationController?.present(nc, animated: true)
-             print("current time: \(currentTime)\nLast event seen: \(lastEventSeen)")
+            let nc = UINavigationController(rootViewController: newRootVC)
+            nc.navigationBar.isHidden = true
+            navigationController?.present(nc, animated: true)
             
-            FeedApi.shared.popupTracking(hash_id: "\(String(describing: UserManager.shared.userInfo.results?.user?.id))".md5(), success: { result in
-                print("event_popup API POST request successed!")
-            }) { error in
-                print(error ?? "Error occured while POST request to event_popup API")
+            if UserManager.shared.userInfo.results?.event_yn ?? "" == "Y" {
+                FeedApi.shared.popupTracking(hash_id: "\(String(describing: UserManager.shared.userInfo.results?.user?.id))".md5(), success: { result in
+                    print("event_popup API POST request successed!")
+                }) { error in
+                    print(error ?? "Error occured while POST request to event_popup API")
+                }
             }
         }
     }
