@@ -35,10 +35,11 @@ class LoginViewController: BaseViewController ,SFSafariViewControllerDelegate{
     @IBOutlet weak var naverLoginBtn: UIButton!
     /** **핸드폰로그인 버튼 */
     @IBOutlet weak var phoneLoginBtn: UIButton!
-    /** **애플로그인 버튼 뷰 */
-    @IBOutlet var loginProviderView: UIView!
+    /** **애플로그인 버튼 */
+    @IBOutlet weak var appleLoginBtn: UIFixedButton!
+//    @IBOutlet weak var loginProviderView: UIView!
     /** **제목 라벨 */
-    @IBOutlet var titleLbl: UIFixedLabel!
+//    @IBOutlet var titleLbl: UIFixedLabel!
     
     /** **뷰 로드 완료시 타는 메소드 */
     override func viewDidLoad() {
@@ -52,12 +53,12 @@ class LoginViewController: BaseViewController ,SFSafariViewControllerDelegate{
         view.transform = view.transform.scaledBy(x: scale, y: scale)
         versionCheck()
 //        setupProviderLoginView()
-        //let text = titleLbl.text ?? ""
-        //let attributedString = NSMutableAttributedString(string: text)
-        //attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(named: "MainPoint_mainColor") ?? UIColor(hexString: "#FF5A5F"), range: (text as NSString).range(of:"."))
-        //titleLbl.attributedText = attributedString
+//        let text = titleLbl.text ?? ""
+//        let attributedString = NSMutableAttributedString(string: text)
+//        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(named: "MainPoint_mainColor") ?? UIColor(hexString: "#FF5A5F"), range: (text as NSString).range(of:"."))
+//        titleLbl.attributedText = attributedString
         
-//        loginProviderView.layer.cornerRadius = 5
+//        loginProviderView.layer.cornerRadius = 22
 //        loginProviderView.layer.borderColor = UIColor(hexString: "#484848").cgColor
 //        loginProviderView.layer.borderWidth = 1
 //        loginProviderView.layer.masksToBounds = true
@@ -75,27 +76,30 @@ class LoginViewController: BaseViewController ,SFSafariViewControllerDelegate{
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         alamofireNetCheck()
-//        performExistingAccountSetupFlows()
+        performExistingAccountSetupFlows()
     }
     
-    func setupProviderLoginView() {
-        if #available(iOS 13.0, *) {
-            let authorizationButton = ASAuthorizationAppleIDButton(authorizationButtonType: ASAuthorizationAppleIDButton.ButtonType.signIn, authorizationButtonStyle: ASAuthorizationAppleIDButton.Style.whiteOutline )
-            authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
-            self.loginProviderView.addSubview(authorizationButton)
-            authorizationButton.snp.makeConstraints{ (make) in
+    @IBAction func appleLoginBtnClicked(_ sender: UIButton) {
+        handleAuthorizationAppleIDButtonPress()
+    }
+//    func setupProviderLoginView() {
+//        if #available(iOS 13.0, *) {
+//            let authorizationButton = ASAuthorizationAppleIDButton(authorizationButtonType: ASAuthorizationAppleIDButton.ButtonType.signIn, authorizationButtonStyle: ASAuthorizationAppleIDButton.Style.whiteOutline )
+//            authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+//            self.loginProviderView.addSubview(authorizationButton)
+//            authorizationButton.snp.makeConstraints{ (make) in
 //                make.top.right.equalTo(self.loginProviderView).offset(-3)
 //                make.bottom.left.equalTo(self.loginProviderView).offset(3)
-                make.top.equalTo(self.loginProviderView).offset(5)
-                make.bottom.equalTo(self.loginProviderView).offset(-5)
-                make.left.equalTo(self.loginProviderView).offset(5)
-                make.right.equalTo(self.loginProviderView).offset(-5)
-            }
-            authorizationButton.cornerRadius = 5
-        } else {
-            // Fallback on earlier versions
-        }
-    }
+//                make.top.equalTo(self.loginProviderView).offset(5)
+//                make.bottom.equalTo(self.loginProviderView).offset(-5)
+//                make.left.equalTo(self.loginProviderView).offset(5)
+//                make.right.equalTo(self.loginProviderView).offset(-5)
+//            }
+//            authorizationButton.cornerRadius = 5
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//    }
     
     /// 기존 iCloud Keychain 자격 증명 또는 Apple ID 자격 증명이 있는지 묻는 메시지를 표시합니다.
     func performExistingAccountSetupFlows() {
@@ -122,6 +126,9 @@ class LoginViewController: BaseViewController ,SFSafariViewControllerDelegate{
             authorizationController.delegate = self
             authorizationController.presentationContextProvider = self
             authorizationController.performRequests()
+        } else {
+            Alert.With(self, title: "Apple 로그인은 iOS 13.0 이상 버전에서만 사용할 수 있습니다.\n다른 옵션을 선택하십시오.", btn1Title: "확인", btn1Handler: {
+            })
         }
     }
 }

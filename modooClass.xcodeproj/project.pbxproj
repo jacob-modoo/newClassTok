@@ -1090,9 +1090,9 @@
 			isa = PBXGroup;
 			children = (
 				0E2EA74D22C2134F0065D12A /* FirstStart.storyboard */,
-				0E1A8D8E229506C900D581F5 /* Launch.storyboard */,
 				0E2C2F1C2281603E006653C8 /* Login.storyboard */,
 				0EAE2DDE227AC72400E91161 /* Feed.storyboard */,
+				0E1A8D8E229506C900D581F5 /* Launch.storyboard */,
 				0EAE2DE0227AC73B00E91161 /* Chatting.storyboard */,
 				0EAE2DE4227AC75000E91161 /* Alarm.storyboard */,
 				0E93EBB62386672B00DC3A5B /* Home2WebView.storyboard */,
