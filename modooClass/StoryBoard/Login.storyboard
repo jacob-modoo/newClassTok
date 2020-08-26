@@ -2859,21 +2859,21 @@
     </scenes>
     <resources>
         <image name="agreeCheckDefault" width="25" height="25"/>
-        <image name="apple_login" width="158" height="32"/>
+        <image name="apple_login" width="160" height="30"/>
         <image name="exit" width="24" height="24"/>
         <image name="facebook_bg" width="284" height="44"/>
-        <image name="fb_login" width="164.5" height="24"/>
+        <image name="fb_login" width="165" height="24"/>
         <image name="imageDelete" width="20" height="20"/>
         <image name="kakao_bg" width="284" height="44"/>
-        <image name="kakao_login2" width="144.5" height="24"/>
+        <image name="kakao_login2" width="148.5" height="24"/>
         <image name="login_text2" width="180.5" height="23.5"/>
         <image name="mainStartImg" width="414" height="599"/>
         <image name="naver_bg" width="284" height="44"/>
-        <image name="naver_login" width="148.5" height="24"/>
+        <image name="naver_login" width="150" height="24"/>
         <image name="on_eye" width="24" height="24"/>
         <image name="other_logins" width="132" height="13"/>
         <image name="phone_bg" width="284" height="44"/>
-        <image name="phone_login" width="167" height="24"/>
+        <image name="phone_login" width="169" height="24"/>
         <image name="profileDefaultImg" width="104" height="104"/>
         <image name="thin_back_gray" width="24" height="24"/>
         <image name="welcome2_V2" width="56" height="56"/>
