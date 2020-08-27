@@ -76,7 +76,7 @@ class LoginViewController: BaseViewController ,SFSafariViewControllerDelegate{
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         alamofireNetCheck()
-        performExistingAccountSetupFlows()
+//        performExistingAccountSetupFlows()
     }
     
     @IBAction func appleLoginBtnClicked(_ sender: UIButton) {
