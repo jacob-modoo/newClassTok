@@ -93,8 +93,6 @@
 		0E2EA74B22C213380065D12A /* FirstStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EA74A22C213380065D12A /* FirstStartViewController.swift */; };
 		0E2EA74E22C2134F0065D12A /* FirstStart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E2EA74D22C2134F0065D12A /* FirstStart.storyboard */; };
 		0E2EA75122C215D20065D12A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EA75022C215D20065D12A /* UIView+Extension.swift */; };
-		0E2EA75922C376B90065D12A /* UIWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EA75822C376B90065D12A /* UIWebViewController.swift */; };
-		0E2EA75C22C376D70065D12A /* UIWebView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E2EA75B22C376D70065D12A /* UIWebView.storyboard */; };
 		0E2EA75E22C5E14F0065D12A /* NetworkOut.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E2EA75D22C5E14F0065D12A /* NetworkOut.xib */; };
 		0E2EA76022C991580065D12A /* NetworkOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EA75F22C991580065D12A /* NetworkOut.swift */; };
 		0E33C34E22F121F1000AECC2 /* ChattingFriendWebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E33C34D22F121F1000AECC2 /* ChattingFriendWebViewViewController.swift */; };
@@ -354,8 +352,6 @@
 		0E2EA74A22C213380065D12A /* FirstStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStartViewController.swift; sourceTree = "<group>"; };
 		0E2EA74D22C2134F0065D12A /* FirstStart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstStart.storyboard; sourceTree = "<group>"; };
 		0E2EA75022C215D20065D12A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		0E2EA75822C376B90065D12A /* UIWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWebViewController.swift; sourceTree = "<group>"; };
-		0E2EA75B22C376D70065D12A /* UIWebView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UIWebView.storyboard; sourceTree = "<group>"; };
 		0E2EA75D22C5E14F0065D12A /* NetworkOut.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetworkOut.xib; sourceTree = "<group>"; };
 		0E2EA75F22C991580065D12A /* NetworkOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOut.swift; sourceTree = "<group>"; };
 		0E33C34D22F121F1000AECC2 /* ChattingFriendWebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingFriendWebViewViewController.swift; sourceTree = "<group>"; };
@@ -705,7 +701,6 @@
 				0E2090FC235E8B0D000A6C6F /* KakaoBankViewAnimation */,
 				0E3D60FA23542CAB0082752D /* UIFixed */,
 				0E7F84C822BB1B190031764C /* WKWebView */,
-				0E2EA75A22C376BE0065D12A /* UIWebView */,
 				0EB5EC1E231643F0005555FE /* Emoticon */,
 				0E1A8D5A2292810900D581F5 /* Localization */,
 				0E1A8D6C2294D62A00D581F5 /* Shimmer */,
@@ -844,15 +839,6 @@
 				0E2C2F3522826C4E006653C8 /* BaseViewController.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		0E2EA75A22C376BE0065D12A /* UIWebView */ = {
-			isa = PBXGroup;
-			children = (
-				0E2EA75822C376B90065D12A /* UIWebViewController.swift */,
-				0E2EA75B22C376D70065D12A /* UIWebView.storyboard */,
-			);
-			path = UIWebView;
 			sourceTree = "<group>";
 		};
 		0E3D60FA23542CAB0082752D /* UIFixed */ = {
@@ -1360,7 +1346,6 @@
 				0E2EA75E22C5E14F0065D12A /* NetworkOut.xib in Resources */,
 				0EAE2D90227A65E200E91161 /* Assets.xcassets in Resources */,
 				0E93EBB72386672B00DC3A5B /* Home2WebView.storyboard in Resources */,
-				0E2EA75C22C376D70065D12A /* UIWebView.storyboard in Resources */,
 				0E97C19223A22B5A0013D489 /* Assets.xcassets in Resources */,
 				0E1A8D8F229506C900D581F5 /* Launch.storyboard in Resources */,
 				0E7F84CC22BB1C090031764C /* WebView.storyboard in Resources */,
@@ -1664,7 +1649,6 @@
 				0E37A8E12355455800283F9A /* Label+Extension.swift in Sources */,
 				0E8F852F237011310015DB8E /* AddInfoPhotoCollectionViewCell.swift in Sources */,
 				0E1D3F7A22961972003629FB /* FAShimmerView.swift in Sources */,
-				0E2EA75922C376B90065D12A /* UIWebViewController.swift in Sources */,
 				0E70966A23FE0D1A00DE5798 /* SquareReplySaveModel.swift in Sources */,
 				0E6A0F0C229D26CA00497733 /* FeedbackSearchViewController.swift in Sources */,
 				0E97C19523A22BDC0013D489 /* SnowScene.swift in Sources */,
@@ -1738,7 +1722,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.9;
+				CURRENT_PROJECT_VERSION = 2.0.4;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -1747,7 +1731,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1760,7 +1744,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.9;
+				CURRENT_PROJECT_VERSION = 2.0.4;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -1769,7 +1753,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1902,7 +1886,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/surpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.9;
+				CURRENT_PROJECT_VERSION = 2.0.4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1915,7 +1899,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2008,7 +1992,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/surpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.9;
+				CURRENT_PROJECT_VERSION = 2.0.4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2021,7 +2005,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

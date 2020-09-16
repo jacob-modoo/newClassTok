@@ -116,9 +116,17 @@ class ShareAppViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func copyLinkBtnClicked(_ sender: UIButton) {
-        UIPasteboard.general.string = self.share_address ?? ""
-        showToast2(message: "링크 복사되었습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 14)!)
-        
+        let request = Alamofire.request("\(apiUrl)/tracking/share/\(self.class_id ?? 0)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+
+        request.response { response in
+            let statusCode = response.response?.statusCode
+            if statusCode == 200 {
+                UIPasteboard.general.string = self.share_address ?? ""
+                self.showToast2(message: "링크 복사되었습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 14)!)
+            } else {
+                print("Error while posting API: \(response.error ?? "Error:" as! Error)")
+            }
+        }
     }
     
     @IBAction func fbShareBtnClicked(_ sender: UIButton) {
@@ -128,16 +136,12 @@ class ShareAppViewController: UIViewController, UIGestureRecognizerDelegate {
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
-                let dic = FeedModel.init(dic: convertToDictionary(data: response.data!, apiURL: "post : \(apiUrl)/tracking/share/\(self.class_id ?? 0)"))
-                
                 let content = ShareLinkContent()
                 content.contentURL = URL(string: self.share_address ?? "https://www.modooclass.net/class/interest")!
-                
                 let dialog = ShareDialog()
                 dialog.shareContent = content
                 dialog.fromViewController = self
                 dialog.show()
-                print("This is class_id dictionary: \(dic)")
             } else {
                 print("Error while posting API: \(response.error ?? "Error:" as! Error)")
             }
@@ -154,7 +158,6 @@ class ShareAppViewController: UIViewController, UIGestureRecognizerDelegate {
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
-                let dic = FeedModel.init(dic: convertToDictionary(data: response.data!, apiURL: "post : \(apiUrl)/tracking/share/\(self.class_id ?? 0)"))
                 let template = KMTFeedTemplate.init { (feedTemplateBuilder) in
                     feedTemplateBuilder.content = KMTContentObject(builderBlock: { (contentBuilder) in
                         contentBuilder.title = title
@@ -186,7 +189,6 @@ class ShareAppViewController: UIViewController, UIGestureRecognizerDelegate {
                         print(error.localizedDescription)
                         print("error \(error)")
                     })
-                print("This is class_id dictionary: \(dic)")
             } else {
                 print("Error while posting API: \(response.error ?? "Error:" as! Error)")
             }
