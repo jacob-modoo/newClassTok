@@ -32,7 +32,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classDescriptionImg: UIImageView!
     @IBOutlet weak var classDescriptionLbl: UIFixedLabel!
     @IBOutlet weak var classDescriptionBtn: UIButton!
-    @IBOutlet weak var sharePointImg: UIImageView!
+    @IBOutlet weak var sharePointBtnView: UIButton!
     
 //    DetailClassContentTitleTableViewCell
     @IBOutlet weak var contentTitleLbl: UILabel!
@@ -52,6 +52,14 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     
 //    DetailClassTotalReplyTitleTableViewCell
     @IBOutlet var totalReplyCount: UILabel!
+    
+//    DetailClassCommentFilteringTableViewCell
+    @IBOutlet weak var totalComment: UIButton!
+    @IBOutlet weak var questionComment: UIButton!
+    @IBOutlet weak var coachComment: UIButton!
+    
+//    DetailClassNoCommentTableViewCell
+    @IBOutlet weak var noCommentLbl: UILabel!
     
 //  DetailClassReply1TableViewCell , DetailClassReply2TableViewCell , DetailClassReply3TableViewCell , DetailClassReply4TableViewCell
     @IBOutlet weak var reply_userPhoto: UIImageView!

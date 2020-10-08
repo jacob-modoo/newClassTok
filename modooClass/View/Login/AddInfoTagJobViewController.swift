@@ -21,6 +21,7 @@ class AddInfoTagJobViewController: UIViewController {
     @IBOutlet var titleDescLabel: UILabel!
     /** **다음 버튼 */
     @IBOutlet var nextBtn: UIButton!
+    @IBOutlet weak var skipBtn: UIButton!
     @IBOutlet var progressBar: UIProgressView!
     
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
@@ -104,6 +105,22 @@ class AddInfoTagJobViewController: UIViewController {
         }else{
             Alert.With(self, title: "알림", content: "직업을 선택하지 않으셨습니다.", btn1Title: "확인", btn1Handler: {})
         }
+    }
+    
+    @IBAction func skipBtnClicked(_ sender: UIButton) {
+        let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoPhotoViewController") as! AddInfoPhotoViewController
+        newViewController.nick = self.nick
+        newViewController.gender = self.gender
+        newViewController.birthYear = self.birthYear
+        newViewController.interestArr = self.interestArr
+        var jobArr:Array<Int> = []
+        for i in 0..<checkSelect.count {
+            if checkSelect[i] == true{
+                jobArr.append(self.jobList?.results?.job_list_arr[i].id ?? 0)
+            }
+        }
+        newViewController.jobArr = jobArr
+        self.navigationController?.pushViewController(newViewController, animated: false)
     }
     
     @IBAction func tagClicked(_ sender: UIButton) {

@@ -65,6 +65,8 @@ class ChildDetailClassViewController: UIViewController {
     var class_id = 0
     /** **댓글 페이징 */
     var page = 1
+    /** *filtering variable*/
+    var type = "all"
     /** **키보드 숨김 유무 */
     var keyboardShow = false
     /** **커리큘럼 소개 표시 유무 */
@@ -273,7 +275,7 @@ class ChildDetailClassViewController: UIViewController {
                     parentVC?.share_content = self.feedDetailList?.results?.share_content ?? ""
                     parentVC?.share_img = self.feedDetailList?.results?.share_image ?? ""
                     parentVC?.share_address = self.feedDetailList?.results?.share_address ?? ""
-                    parentVC?.share_point = self.feedDetailList?.results?.share_point ?? 0
+                    parentVC?.share_point = self.feedDetailList?.results?.share_point ?? ""
                     parentVC?.class_photo = self.feedDetailList?.results?.class_photo ?? ""
                     //parentVC?.class_info = self.feedDetailList?.results?.class_info ?? ""
                     parentVC?.class_name = self.feedDetailList?.results?.class_name ?? ""
@@ -407,6 +409,9 @@ class ChildDetailClassViewController: UIViewController {
                     }
                 }
             } else {
+                if self.feedDetailList?.results?.curriculum?.id ?? 0 != self.feedDetailList?.results?.curriculum_before_id ?? 0 {
+                    self.type = "all"
+                }
                 if self.feedDetailList?.results?.curriculum_before_id ?? 0 == 0 {
                     self.showToast(message: "        🔊 첫번째 강의 입니다.>.<더이상 이동할수 없습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
                 } else {
@@ -458,6 +463,9 @@ class ChildDetailClassViewController: UIViewController {
                     }
                 }
             } else {
+                if self.feedDetailList?.results?.curriculum?.id ?? 0 != self.feedDetailList?.results?.curriculum_after_id ?? 0 {
+                    self.type = "all"
+                }
                 if self.feedDetailList?.results?.curriculum_after_id ?? 0 == 0{
                     self.view.endEditing(true)
                     let newViewController = UIStoryboard(name: "ChildWebView", bundle: nil).instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
@@ -710,6 +718,30 @@ class ChildDetailClassViewController: UIViewController {
             }
         }) { error in
             
+        }
+    }
+    
+    /** *This button is used to filter comments*/
+    @IBAction func filteringBtnClicked(_ sender: UIButton) {
+        if sender.tag == 0 {
+            self.type = "all"
+            filteredComment(type: self.type)
+        } else if sender.tag == 1 {
+            self.type = "questions"
+            filteredComment(type: self.type)
+        } else {
+            self.type = "coach"
+            filteredComment(type: self.type)
+        }
+    }
+    
+    /** *The function which filters the comments */
+    func filteredComment(type:String) {
+        self.replyArray?.removeAll()
+        DispatchQueue.main.async {
+            if self.feedDetailList?.results?.user_status ?? "" != "spectator" {
+                self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: type)
+            }
         }
     }
     
@@ -1277,14 +1309,14 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
 //                case 1,3,7,10:
                 case 1,5,6,8,11:
                     return 1
-                case 3:
-                    return 0
                 case 2:
                     if feedDetailList?.results?.class_recommend_arr.count ?? 0 > 0{
                         return 1
                     }else{
                         return 0
                     }
+                case 3:
+                    return 0
                 case 4:
                     if self.feedDetailList?.results?.review_list_arr.count ?? 0 > 0{
                         return 1
@@ -1366,19 +1398,15 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     }else{
                         return 0
                     }
-                case 6,9:
+                case 6,7,8,11:
                     return 1
-                case 7:
-                    if replyArray != nil{
-                        if replyArray!.count > 0{
-                            return 1
-                        }else{
-                            return 0
-                        }
-                    }else{
+                case 9:
+                    if replyArray!.count == 0 {
+                        return 1
+                    } else {
                         return 0
                     }
-                case 8:
+                case 10:
                     if replyArray != nil{
                         if replyArray!.count > 0{
                             return replyArray!.count
@@ -1429,7 +1457,8 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.classSatisFiedImg.image = UIImage(named: "class_satisfied_default2")
                     }
                     
-                    feedDetailList?.results?.curriculum_before_id == 0 ? (cell.sharePointImg.isHidden = false) : (cell.sharePointImg.isHidden = true)
+                    cell.sharePointBtnView.setTitle("₩\(self.feedDetailList?.results?.share_point ?? "1000")", for: .normal)
+                    feedDetailList?.results?.curriculum_before_id == 0 ? (cell.sharePointBtnView.isHidden = false) : (cell.sharePointBtnView.isHidden = true)
                     
                     cell.classHashTagLbl.text = self.feedDetailList?.results?.head_comment ?? ""
                     cell.classCheerLbl.text = "\(self.feedDetailList?.results?.star_avg ?? 0)(\(self.feedDetailList?.results?.star_cnt ?? 0))"
@@ -1448,11 +1477,12 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 if self.feedDetailList != nil{
                     cell.classPriceImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                     cell.classPriceName.text = "\(feedDetailList?.results?.class_name ?? "")"
-//                    cell.classSalePrice.text = "[\(feedDetailList?.results?.sale_per ?? "")%] 월 \(feedDetailList?.results?.price ?? "")원"
+                    cell.classSalePrice.text = "[\(feedDetailList?.results?.sale_per ?? "")%] 월 \(feedDetailList?.results?.price ?? "")원"
+                    print("+++++++++++\(feedDetailList?.results?.price ?? "")+++++++++")
 //                    cell.classSalePrice.text = "[\(feedDetailList?.results?.sale_per ?? "")%] 월 49,000원"
-                    cell.classSalePrice.text = "월 49,000원"
-//                    cell.classOriginalPrice.attributedText = strikeline(str: "\(feedDetailList?.results?.origin_price ?? "")원")
-//                    cell.classOriginalPrice.text = "\(feedDetailList?.results?.origin_price ?? "")원"
+//                    cell.classSalePrice.text = "월 49,000원"
+                    cell.classOriginalPrice.attributedText = strikeline(str: "\(feedDetailList?.results?.origin_price ?? "")원")
+                    cell.classOriginalPrice.text = "\(feedDetailList?.results?.origin_price ?? "")원"
                 }
                 cell.selectionStyle = .none
                 return cell
@@ -1626,9 +1656,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
             }else if section == 9{
                 let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassTotalReplyTitleTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if replyArray != nil{
-                    if replyArray!.count > 0 {
-                        cell.totalReplyCount.text = "이 강의 댓글 \(feedReplyList?.results?.total ?? 0)개"
-                    }
+                    replyArray!.count > 0 ? (cell.totalReplyCount.text = "이 강의 댓글 \(feedReplyList?.results?.total ?? 0)개") : (cell.totalReplyCount.text = "이 강의 댓글이 아직 없습니다") /*turnary operator*/
                 }
                 cell.selectionStyle = .none
                 return cell
@@ -1664,14 +1692,14 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.classSatisFiedImg.image = UIImage(named: "class_satisfied_default2")
                     }
                     cell.classHashTagLbl.text = self.feedDetailList?.results?.head_comment ?? ""
-                    
-                    feedDetailList?.results?.curriculum_before_id == 0 ? (cell.sharePointImg.isHidden = false) : (cell.sharePointImg.isHidden = true)
+                    cell.sharePointBtnView.setTitle("₩\(self.feedDetailList?.results?.share_point ?? "1000")", for: .normal)
+                    feedDetailList?.results?.curriculum_before_id == 0 ? (cell.sharePointBtnView.isHidden = false) : (cell.sharePointBtnView.isHidden = true)
 
                     if UserManager.shared.userInfo.results?.user?.id == self.feedDetailList?.results?.curriculum?.coach_class?.coach_id {
                         cell.classCheerLbl.text = "수강생"
                         cell.classGroupImg.image = UIImage(named: "class_cheer2")
                         cell.classGroupChatLbl.text = "커뮤니티"
-                        cell.sharePointImg.isHidden = true
+                        cell.sharePointBtnView.isHidden = true
                         
                         if feedDetailList?.results?.curriculum_after_id ?? 0 == 0 {
                             cell.nextClassBtn.setTitle("리뷰쓰기 ", for: .normal)
@@ -1752,11 +1780,72 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 if replyArray != nil{
                     if replyArray!.count > 0 {
                         cell.totalReplyCount.text = "이 강의 댓글 \(feedReplyList?.results?.total ?? 0)개"
+                    } else {
+//                        if self.type == "all" {
+//                            cell.totalReplyCount.text = "이 강의 댓글이 아직 없습니다"
+//                        } else if self.type == "questions" {
+//                            cell.totalReplyCount.text = "이 강의 질문 댓글이 아직 없습니다"
+//                        } else {
+//                            cell.totalReplyCount.text = "이 강의 코치 댓글이 아직 없습니다"
+//                        }
+                        switch self.type {
+                        case "all":
+                            cell.totalReplyCount.text = "이 강의 댓글이 아직 없습니다"
+                        case "questions":
+                            cell.totalReplyCount.text = "이 강의 질문 댓글이 아직 없습니다"
+                        case "coach":
+                            cell.totalReplyCount.text = "이 강의 코치 댓글이 아직 없습니다"
+                        default:
+                            cell.totalReplyCount.text = "이 강의 댓글이 아직 없습니다"
+                        }
                     }
                 }
                 cell.selectionStyle = .none
                 return cell
             }else if section == 8{
+                let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCommentFilteringTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+                if self.type == "all"{
+                    cell.totalComment.borderWidth = 1
+                    cell.totalComment.borderColor = UIColor(hexString: "#FF5A5F")
+                    cell.totalComment.backgroundColor = .white
+                    cell.totalComment.setTitleColor(UIColor(hexString: "FF5A5F"), for: .normal)
+                    cell.questionComment.borderWidth = 0
+                    cell.questionComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+                    cell.questionComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+                    cell.coachComment.borderWidth = 0
+                    cell.coachComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+                    cell.coachComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+                } else if self.type == "questions"{
+                    cell.questionComment.borderWidth = 1
+                    cell.questionComment.borderColor = UIColor(hexString: "#FF5A5F")
+                    cell.questionComment.backgroundColor = .white
+                    cell.questionComment.setTitleColor(UIColor(hexString: "FF5A5F"), for: .normal)
+                    cell.totalComment.borderWidth = 0
+                    cell.totalComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+                    cell.totalComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+                    cell.coachComment.borderWidth = 0
+                    cell.coachComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+                    cell.coachComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+                } else {
+                    cell.coachComment.borderWidth = 1
+                    cell.coachComment.borderColor = UIColor(hexString: "#FF5A5F")
+                    cell.coachComment.backgroundColor = .white
+                    cell.coachComment.setTitleColor(UIColor(hexString: "FF5A5F"), for: .normal)
+                    cell.questionComment.borderWidth = 0
+                    cell.questionComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+                    cell.questionComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+                    cell.totalComment.borderWidth = 0
+                    cell.totalComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+                    cell.totalComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+                }
+                cell.selectionStyle = .none
+                return cell
+            }else if section == 9{
+                let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassNoCommentTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+                cell.noCommentLbl.text = "댓글이 존재하지 않습니다."
+                cell.selectionStyle = .none
+                return cell
+            }else if section == 10{
                 var cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply1TableViewCell") as! ChildDetailClassTableViewCell
                 if replyArray != nil{
                     if replyArray!.count > 0{
@@ -1778,7 +1867,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
         if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
             return 11
         }else{
-            return 10
+            return 12
         }
     }
     
@@ -1804,11 +1893,9 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 return 60
             case 3,6:
                 return 0.5
-            case 0,2,4,5,7:
+            case 0,2,4,5,7,8,9,10:
                 return UITableView.automaticDimension
-            case 8:
-                return UITableView.automaticDimension
-            case 9:
+            case 11:
                 return 25
             default:
                 return 1
@@ -1829,19 +1916,19 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                             if self.replyArray!.count < self.feedReplyList?.results!.total ?? 0 {
                                 Indicator.showActivityIndicator(uiView: self.view)
                                 self.page = self.page + 1
-                                self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page)
+                                self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: self.type)
                             }
                         }
                     }
                 }
             }else{
-                if section == 8{
+                if section == 10{
                     if self.replyArray != nil{
                         if row == (self.replyArray!.count)-2{
                             if self.replyArray!.count < self.feedReplyList?.results!.total ?? 0 {
                                 Indicator.showActivityIndicator(uiView: self.view)
                                 self.page = self.page + 1
-                                self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page)
+                                self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: self.type)
                             }
                         }
                     }
@@ -2130,7 +2217,7 @@ extension ChildDetailClassViewController{
         self.view.layoutIfNeeded()
         
         DispatchQueue.main.async {
-            self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page)
+            self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: self.type)
         }
     }
     
@@ -2143,8 +2230,8 @@ extension ChildDetailClassViewController{
      
      - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
      */
-    func appDetailComment(curriculum_id:Int,page:Int){
-        FeedApi.shared.appClassDataComment(curriculum_id: curriculum_id, page: page, success: { [unowned self] result in
+    func appDetailComment(curriculum_id:Int, page:Int, type:String){
+        FeedApi.shared.appClassDataComment(curriculum_id: curriculum_id, page: page, type: type, success: { [unowned self] result in
             if result.code == "200"{
                 self.feedReplyList = result
                 for addArray in 0 ..< (self.feedReplyList?.results?.appClassCommentList.count ?? 0)! {

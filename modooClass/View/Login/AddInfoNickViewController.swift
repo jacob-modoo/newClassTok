@@ -25,13 +25,15 @@ class AddInfoNickViewController: UIViewController ,UITextFieldDelegate{
     /** **다음 버튼 */
     @IBOutlet var nextBtn: UIButton!
     
+    @IBOutlet weak var skipBtn: UIButton!
+    
     @IBOutlet var progressBar: UIProgressView!
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scale: CGFloat = DEF_WIDTH_375_SCALE
-        view.transform = view.transform.scaledBy(x: scale, y: scale)
+//        let scale: CGFloat = DEF_WIDTH_375_SCALE
+//        view.transform = view.transform.scaledBy(x: scale, y: scale)
         nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
         nextBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
         nextBtn.isUserInteractionEnabled = false
@@ -79,6 +81,13 @@ class AddInfoNickViewController: UIViewController ,UITextFieldDelegate{
             Alert.With(self, title: "이모지가 포함되어있습니다.", btn1Title: "확인", btn1Handler: {})
         }
     }
+    
+    @IBAction func skipBtnClicked(_ sender: UIButton) {
+        let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoGenderViewController") as! AddInfoGenderViewController
+        newViewController.nick = textField.text ?? ""
+        self.navigationController?.pushViewController(newViewController, animated: false)
+    }
+    
     
     /** **텍스트필드 변경 > 텍스트 필드에 변경이 일어남 처리 */
     @IBAction func textFieldChange(_ sender: UITextField) {

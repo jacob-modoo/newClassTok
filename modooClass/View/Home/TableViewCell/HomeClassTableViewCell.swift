@@ -59,7 +59,6 @@ class HomeClassTableViewCell: UITableViewCell {
     @IBOutlet var class_progress_inView: UIView!
     @IBOutlet var class_new_count: UILabel!
     @IBOutlet var class_new_count_badge: UIImageView!
-    @IBOutlet weak var class_chapter_title: UIFixedLabel!
     @IBOutlet weak var class_my_progress: UIProgressView!
     
     @IBOutlet var class_participation_btn1: UIButton!

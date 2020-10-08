@@ -211,15 +211,10 @@ class HomeClassViewController: UIViewController {
     }
     
     @IBAction func notificationBtnClicked(_ sender: UIButton) {
-
-        if let url = URL(string: HomeMain2Manager.shared.pilotAppMain.results?.app_notice_link ?? "") {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-        
-        //        let url = HomeMain2Manager.shared.pilotAppMain.results?.app_notice_link ?? ""
-//        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-//        newViewController.url = url
-//        self.navigationController?.pushViewController(newViewController, animated: true)
+        let url = HomeMain2Manager.shared.pilotAppMain.results?.app_notice_link ?? ""
+        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+        newViewController.url = url
+        self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
     @IBAction func classGuideBtnClicked(_ sender: UIButton) {
@@ -621,7 +616,8 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             cell.userBackgroundImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.level_info?.level_icon ?? "")"))
             cell.classTitle.font = cell.classTitle.font.withSize(20)
             if HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "" != ""{
-                cell.notificationBtn.setTitle("  "+"\(HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "")"+"  ", for: .normal)
+                cell.notificationBtn.isHidden = false
+                cell.notificationBtn.setTitle(" 📢  "+"\(HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "")"+"  ", for: .normal)
             } else {
                 cell.notificationBtn.isHidden = true
             }
@@ -720,8 +716,6 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                         cell.class_new_count_badge.isHidden = true
                         cell.class_new_count.isHidden = true
                     }
-                    
-                    cell.class_chapter_title.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].class_group_no ?? 0)기"
                     
                     let days = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].openDday ?? -1
                     if days <= 0{

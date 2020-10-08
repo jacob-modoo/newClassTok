@@ -175,6 +175,7 @@ extension JoinViewController {
                                 multipartHeader = ["Content-Type":"multipart/form-data","Authorization": "bearer \((result.results?.token)!)"]
                                 if UserManager.shared.userInfo.results?.user_info_yn == "N"{
                                     let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
+//                                    newViewController.textField.text = "Sherzodbek"
                                     UserDefaultSetting.setUserDefaultsString("P", forKey: loginGubun)
                                     UserDefaultSetting.setUserDefaultsString(self.id, forKey: tempUserId)
                                     UserDefaultSetting.setUserDefaultsString(self.password, forKey: tempUserPw)

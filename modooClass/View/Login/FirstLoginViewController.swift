@@ -100,6 +100,7 @@ class FirstLoginViewController: BaseViewController {
               UserDefaultSetting.setUserDefaultsString(socialProvider, forKey: tempUserProvider)
               let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
               UserDefaultSetting.setUserDefaultsString("S", forKey: loginGubun)
+//            newViewController.textField.text?.append("\(socialName)")
               self.navigationController?.pushViewController(newViewController, animated: false)
           }else{
               UserDefaultSetting.setUserDefaultsString(socialId, forKey: userId)

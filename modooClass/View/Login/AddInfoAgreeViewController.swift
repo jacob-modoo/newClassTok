@@ -75,7 +75,7 @@ class AddInfoAgreeViewController: UIViewController {
         let indexPath = IndexPath(row: 0, section: tag)
         let cell = tableView.cellForRow(at: indexPath) as! AddInfoAgreeTableViewCell
         
-        if sender.tag == 0{
+        if tag == 0{
             progressBar.progress = 1
             cell.agreeCheckImg.image = UIImage(named: "agreeCheckActive")
             mainViewMove()
@@ -92,20 +92,20 @@ class AddInfoAgreeViewController: UIViewController {
     
     func mainViewMove(){
         var url_1 = ""
-        var url_2 = ""
-        var url_3 = ""
+//        var url_2 = ""
+//        var url_3 = ""
         if sampleNumbering[0] != 0{
             url_1 = "\(sampleNumbering[0])"
         }
-        if sampleNumbering[1] != 0{
-            url_2 = "\(sampleNumbering[1])"
-        }
-        if sampleNumbering[2] != 0{
-            url_3 = "\(sampleNumbering[2])"
-        }
+//        if sampleNumbering[1] != 0{
+//            url_2 = "\(sampleNumbering[1])"
+//        }
+//        if sampleNumbering[2] != 0{
+//            url_3 = "\(sampleNumbering[2])"
+//        }
         self.completeView.isHidden = true
         Indicator.showActivityIndicator(uiView: self.view)
-        LoginApi.shared.profileAddSave(nickname: self.nick, gender: self.gender, birthday_year: self.birthYear, mcInterest_id: self.interestArr, mcJob_id: self.jobArr, url_1: url_1, url_2: url_2, url_3: url_3, file_1: self.photo1, file_2: self.photo2, file_3: self.photo3,profile_comment: introWord, success: { result in
+        LoginApi.shared.profileAddSave(nickname: self.nick, gender: self.gender, url_1: url_1, file_1: self.photo1, profile_comment: introWord, success: { result in
             if result.code! == "200"{
                 self.loginCheck()
             }else{

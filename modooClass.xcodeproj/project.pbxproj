@@ -108,6 +108,7 @@
 		0E3E76F922D5E106009524EC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E76F822D5E106009524EC /* Date+Extension.swift */; };
 		0E4C1C28231CFC37008C6733 /* DetailReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C1C27231CFC37008C6733 /* DetailReplyTableViewCell.swift */; };
 		0E4C1C2C231DF1F8008C6733 /* TabBarItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C1C2B231DF1F8008C6733 /* TabBarItem+Extension.swift */; };
+		0E515C9F252EA2C400F8C5AA /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E515C9E252EA2C400F8C5AA /* UIDevice+Extension.swift */; };
 		0E6990352477B6300076EE89 /* PopupShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6990342477B6300076EE89 /* PopupShowViewController.swift */; };
 		0E6A0F0C229D26CA00497733 /* FeedbackSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6A0F0B229D26CA00497733 /* FeedbackSearchViewController.swift */; };
 		0E6A0F0F229E022E00497733 /* SearchRankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6A0F0E229E022E00497733 /* SearchRankModel.swift */; };
@@ -127,6 +128,7 @@
 		0E7F84ED22BB8F350031764C /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F84EC22BB8F350031764C /* Notification+Extension.swift */; };
 		0E7F84EF22BC61F00031764C /* ProfileSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F84EE22BC61F00031764C /* ProfileSettingModel.swift */; };
 		0E8065F323A8711500170344 /* WkWebViewMemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8065F223A8711500170344 /* WkWebViewMemoryLeak.swift */; };
+		0E8389AE251C5F19000E9200 /* modooClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE2D9D227A65E200E91161 /* modooClassTests.swift */; };
 		0E8CA28223E120A900615F0D /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8CA28123E120A900615F0D /* CALayer+Extension.swift */; };
 		0E8DDA5923B455530050ECB5 /* HomeClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8DDA5823B455530050ECB5 /* HomeClassViewController.swift */; };
 		0E8DDA5B23B455660050ECB5 /* HomeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8DDA5A23B455660050ECB5 /* HomeProfileViewController.swift */; };
@@ -169,7 +171,6 @@
 		0EA55CB122CCB4B100FD7D15 /* RootView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA55CB022CCB4B100FD7D15 /* RootView+Extension.swift */; };
 		0EAE2D89227A65DF00E91161 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE2D88227A65DF00E91161 /* AppDelegate.swift */; };
 		0EAE2D90227A65E200E91161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EAE2D8F227A65E200E91161 /* Assets.xcassets */; };
-		0EAE2D9E227A65E200E91161 /* modooClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE2D9D227A65E200E91161 /* modooClassTests.swift */; };
 		0EAE2DA9227A65E200E91161 /* modooClassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE2DA8227A65E200E91161 /* modooClassUITests.swift */; };
 		0EAE2DDF227AC72400E91161 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EAE2DDE227AC72400E91161 /* Feed.storyboard */; };
 		0EAE2DE1227AC73B00E91161 /* Chatting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EAE2DE0227AC73B00E91161 /* Chatting.storyboard */; };
@@ -369,6 +370,7 @@
 		0E4798FA22F7AF620097EF8E /* Version.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Version.md; sourceTree = "<group>"; };
 		0E4C1C27231CFC37008C6733 /* DetailReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReplyTableViewCell.swift; sourceTree = "<group>"; };
 		0E4C1C2B231DF1F8008C6733 /* TabBarItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarItem+Extension.swift"; sourceTree = "<group>"; };
+		0E515C9E252EA2C400F8C5AA /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		0E6990342477B6300076EE89 /* PopupShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupShowViewController.swift; sourceTree = "<group>"; };
 		0E6A0F0B229D26CA00497733 /* FeedbackSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSearchViewController.swift; sourceTree = "<group>"; };
 		0E6A0F0E229E022E00497733 /* SearchRankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRankModel.swift; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 				0E20909A23584ED3000A6C6F /* UIImageView+Extension.swift */,
 				0ED265AB2379006100D88502 /* UITableview+Extension.swift */,
 				0E8CA28123E120A900615F0D /* CALayer+Extension.swift */,
+				0E515C9E252EA2C400F8C5AA /* UIDevice+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1571,6 +1574,7 @@
 				0E1A968F22AF3747001261B2 /* FeedAppClassDefaultModel.swift in Sources */,
 				0E4C1C2C231DF1F8008C6733 /* TabBarItem+Extension.swift in Sources */,
 				0E3D60FC23542CDD0082752D /* UIFixedClass.swift in Sources */,
+				0E515C9F252EA2C400F8C5AA /* UIDevice+Extension.swift in Sources */,
 				0E29F86A2473AF6E002B7C55 /* CustomTableViewCell.swift in Sources */,
 				0E1F5A0122E82F6700B3977A /* TextView+Extension.swift in Sources */,
 				0E8EB57523B59EA50065D226 /* PilotModel.swift in Sources */,
@@ -1670,7 +1674,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EAE2D9E227A65E200E91161 /* modooClassTests.swift in Sources */,
+				0E8389AE251C5F19000E9200 /* modooClassTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1722,7 +1726,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.4;
+				CURRENT_PROJECT_VERSION = 2.0.5;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -1731,7 +1735,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.4;
+				MARKETING_VERSION = 2.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1744,7 +1748,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.4;
+				CURRENT_PROJECT_VERSION = 2.0.5;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -1753,7 +1757,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.4;
+				MARKETING_VERSION = 2.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1797,6 +1801,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1858,6 +1863,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1886,7 +1892,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/surpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.4;
+				CURRENT_PROJECT_VERSION = 2.0.5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1899,7 +1905,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.4;
+				MARKETING_VERSION = 2.0.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1992,7 +1998,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/surpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.4;
+				CURRENT_PROJECT_VERSION = 2.0.5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2005,7 +2011,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.4;
+				MARKETING_VERSION = 2.0.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

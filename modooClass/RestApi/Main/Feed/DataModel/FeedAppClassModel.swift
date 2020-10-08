@@ -76,7 +76,7 @@ class AppClassCurriculumResult:NSObject{
     var curriculum_list_array:Array = Array<CurriculumDetail_list>()
     var share_address:String?
     var share_content:String?
-    var share_point:Int?
+    var share_point:String?
     var share_image:String?
     
     override init() {
@@ -121,7 +121,7 @@ class AppClassCurriculumResult:NSObject{
         curriculum_after_id = DictionaryToInt(dic: dic, intName: "curriculum_after_id")
         share_address = DictionaryToString(dic: dic, strName: "share_address")
         share_content = DictionaryToString(dic: dic, strName: "share_content")
-        share_point = DictionaryToInt(dic: dic, intName: "share_point")
+        share_point = DictionaryToString(dic: dic, strName: "share_point")
         share_image = DictionaryToString(dic: dic, strName: "share_image")
         
         if let curriculum = dic["curriculum"] as? Dictionary<String, Any> {

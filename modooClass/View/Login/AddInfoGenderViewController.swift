@@ -20,14 +20,15 @@ class AddInfoGenderViewController: UIViewController {
     @IBOutlet var genderWomenBtn: UIButton!
     @IBOutlet var genderManBtn: UIButton!
     @IBOutlet var progressBar: UIProgressView!
+    @IBOutlet weak var skipBtn: UIButton!
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
     
     var nick = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scale: CGFloat = DEF_WIDTH_375_SCALE
-        view.transform = view.transform.scaledBy(x: scale, y: scale)
+//        let scale: CGFloat = DEF_WIDTH_375_SCALE
+//        view.transform = view.transform.scaledBy(x: scale, y: scale)
         progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 3)
         // Do any additional setup after loading the view.
     }
@@ -77,11 +78,18 @@ class AddInfoGenderViewController: UIViewController {
             genderWomenBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
         }
         
-        let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoBirthViewController") as! AddInfoBirthViewController
+        let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoPhotoViewController") as! AddInfoPhotoViewController
         newViewController.nick = self.nick
         newViewController.gender = gender
         self.navigationController?.pushViewController(newViewController, animated: false)
         
     }
-
+    
+    @IBAction func skipBtnClicked(_ sender: UIButton) {
+        let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoPhotoViewController") as! AddInfoPhotoViewController
+        newViewController.nick = self.nick
+        newViewController.gender = ""
+        self.navigationController?.pushViewController(newViewController, animated: false)
+    }
+    
 }

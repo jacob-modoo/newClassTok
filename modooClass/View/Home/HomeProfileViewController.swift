@@ -186,7 +186,6 @@ class HomeProfileViewController: UIViewController {
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }else{
                 if tag <= (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0) + 5{
-                print(tag - 6)
                 newViewController.url = HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr[tag-6].link ?? ""
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }else{
@@ -199,8 +198,9 @@ class HomeProfileViewController: UIViewController {
                 }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 8{
                     
                 }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 10{
-                    let url = URL(string: "https://www.notion.so/classtok/694726d6e932480e98ab21961ebda1bc" )
-                    UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                    let url = HomeMain2Manager.shared.pilotAppMain.results?.app_notice_link ?? ""
+                    newViewController.url = url
+                    self.navigationController?.pushViewController(newViewController, animated: true)
                 }
             }
         }

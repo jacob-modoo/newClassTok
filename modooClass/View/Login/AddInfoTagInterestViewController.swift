@@ -22,6 +22,7 @@ class AddInfoTagInterestViewController: UIViewController {
     @IBOutlet var titleDescLabel: UILabel!
     /** **다음 버튼 */
     @IBOutlet var nextBtn: UIButton!
+    @IBOutlet weak var skipBtn: UIButton!
     @IBOutlet var progressBar: UIProgressView!
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
     
@@ -132,6 +133,15 @@ class AddInfoTagInterestViewController: UIViewController {
         }
     }
     
+    @IBAction func skipBtnClicked(_ sender: UIButton) {
+        let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoTagJobViewController") as! AddInfoTagJobViewController
+        newViewController.nick = self.nick
+        newViewController.gender = self.gender
+        newViewController.birthYear = self.birthYear
+        let interestArr:Array<Int> = []
+        newViewController.interestArr = interestArr
+        self.navigationController?.pushViewController(newViewController, animated: false)
+    }
     func checkCount(sender:UIButton){
         let tag = sender.tag
         let collectionTagCheck = tag/1000000

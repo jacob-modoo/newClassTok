@@ -28,7 +28,7 @@ class ShareAppViewController: UIViewController, UIGestureRecognizerDelegate {
     var share_address:String?
     var share_content:String?
     var share_img:String?
-    var share_point:Int?
+    var share_point:String?
     var class_name:String?
     //var class_info:String?
     var class_photo:String?

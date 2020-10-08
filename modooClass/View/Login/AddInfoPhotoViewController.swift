@@ -23,6 +23,7 @@ class AddInfoPhotoViewController: UIViewController {
     @IBOutlet var titleDescLabel: UILabel!
     /** **다음 버튼 */
     @IBOutlet var nextBtn: UIButton!
+    @IBOutlet weak var skipBtn: UIButton!
     
     @IBOutlet var image1: UIImageView!
     @IBOutlet var image2: UIImageView!
@@ -57,18 +58,18 @@ class AddInfoPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scale: CGFloat = DEF_WIDTH_375_SCALE
-        view.transform = view.transform.scaledBy(x: scale, y: scale)
+//        let scale: CGFloat = DEF_WIDTH_375_SCALE
+//        view.transform = view.transform.scaledBy(x: scale, y: scale)
 //        self.view.layoutIfNeeded()
         image1.layer.cornerRadius = image1.frame.width/2
         imageSelectBtn1.layer.cornerRadius = imageSelectBtn1.frame.width/2
         image1.clipsToBounds = true
-        image2.layer.cornerRadius = image2.frame.width/2
-        imageSelectBtn2.layer.cornerRadius = imageSelectBtn2.frame.width/2
-        image2.clipsToBounds = true
-        image3.layer.cornerRadius = image3.frame.width/2
-        imageSelectBtn3.layer.cornerRadius = imageSelectBtn3.frame.width/2
-        image3.clipsToBounds = true
+//        image2.layer.cornerRadius = image2.frame.width/2
+//        imageSelectBtn2.layer.cornerRadius = imageSelectBtn2.frame.width/2
+//        image2.clipsToBounds = true
+//        image3.layer.cornerRadius = image3.frame.width/2
+//        imageSelectBtn3.layer.cornerRadius = imageSelectBtn3.frame.width/2
+//        image3.clipsToBounds = true
         progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 3)
         // Do any additional setup after loading the view.
         nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
@@ -107,30 +108,49 @@ class AddInfoPhotoViewController: UIViewController {
         let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoIntroWordViewController") as! AddInfoIntroWordViewController
         newViewController.nick = self.nick
         newViewController.gender = self.gender
-        newViewController.birthYear = self.birthYear
-        newViewController.interestArr = self.interestArr
-        newViewController.jobArr = self.jobArr
+//        newViewController.birthYear = self.birthYear
+//        newViewController.interestArr = self.interestArr
+//        newViewController.jobArr = self.jobArr
         newViewController.photo1 = self.image1.image!
-        newViewController.photo2 = self.image2.image!
-        newViewController.photo3 = self.image3.image!
+//        newViewController.photo2 = self.image2.image!
+//        newViewController.photo3 = self.image3.image!
+        newViewController.sampleNumbering = self.sampleNumbering
+        self.navigationController?.pushViewController(newViewController, animated: false)
+    }
+    
+    @IBAction func skipBtnClicked(_ sender: UIButton) {
+        let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoIntroWordViewController") as! AddInfoIntroWordViewController
+        newViewController.nick = self.nick
+        newViewController.gender = self.gender
+//        newViewController.birthYear = self.birthYear
+//        newViewController.interestArr = self.interestArr
+//        newViewController.jobArr = self.jobArr
+        newViewController.photo1 = self.image1.image ?? UIImage(named: "reply_user_default")!
+//        newViewController.photo2 = self.image2.image ?? UIImage(named: "reply_user_default")!
+//        newViewController.photo3 = self.image3.image ?? UIImage(named: "reply_user_default")!
         newViewController.sampleNumbering = self.sampleNumbering
         self.navigationController?.pushViewController(newViewController, animated: false)
     }
     
     @IBAction func sampleImgClicked(_ sender: UIButton) {
         let tag = sender.tag
-        if image2.image == nil{
-            image2.image = UIImage(named: "sampleImg\(tag)")
-            imageRemoveBtn2.isHidden = false
-            sampleNumbering[1] = tag
-        }else if image3.image == nil{
-            image3.image = UIImage(named: "sampleImg\(tag)")
-            imageRemoveBtn3.isHidden = false
-            sampleNumbering[2] = tag
+        if image1.image == nil {
+            image1.image = UIImage(named: "sampleImg\(tag)")
+            imageRemoveBtn1.isHidden = false
+            sampleNumbering[0] = tag
+//        }
+//        if image2.image == nil{
+//            image2.image = UIImage(named: "sampleImg\(tag)")
+//            imageRemoveBtn2.isHidden = false
+//            sampleNumbering[1] = tag
+//        }else if image3.image == nil{
+//            image3.image = UIImage(named: "sampleImg\(tag)")
+//            imageRemoveBtn3.isHidden = false
+//            sampleNumbering[2] = tag
         }else{
             
         }
-        if image1.image != nil && image2.image != nil && image3.image != nil{
+        if image1.image != nil {    //&& image2.image != nil && image3.image != nil{
             
             nextBtn.layer.borderColor = UIColor(hexString: "#ff5a5f").cgColor
             nextBtn.setTitleColor(UIColor(named:"MainPoint_mainColor"), for: .normal)
@@ -148,22 +168,22 @@ class AddInfoPhotoViewController: UIViewController {
             nextBtn.layer.borderWidth = 1
             nextBtn.isUserInteractionEnabled = false
             sampleNumbering[0] = 0
-        }else if tag == 2{
-            image2.image = nil
-            imageRemoveBtn2.isHidden = true
-            nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
-            nextBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
-            nextBtn.layer.borderWidth = 1
-            nextBtn.isUserInteractionEnabled = false
-            sampleNumbering[1] = 0
-        }else if tag == 3{
-            image3.image = nil
-            imageRemoveBtn3.isHidden = true
-            nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
-            nextBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
-            nextBtn.layer.borderWidth = 1
-            nextBtn.isUserInteractionEnabled = false
-            sampleNumbering[2] = 0
+//        }else if tag == 2{
+//            image2.image = nil
+//            imageRemoveBtn2.isHidden = true
+//            nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
+//            nextBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
+//            nextBtn.layer.borderWidth = 1
+//            nextBtn.isUserInteractionEnabled = false
+//            sampleNumbering[1] = 0
+//        }else if tag == 3{
+//            image3.image = nil
+//            imageRemoveBtn3.isHidden = true
+//            nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
+//            nextBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
+//            nextBtn.layer.borderWidth = 1
+//            nextBtn.isUserInteractionEnabled = false
+//            sampleNumbering[2] = 0
         }
     }
     
@@ -372,17 +392,17 @@ extension AddInfoPhotoViewController:CropViewControllerDelegate, UIImagePickerCo
             self.image1.image = ImageScale().scaleImage(image: image)
             imageRemoveBtn1.isHidden = false
             self.imageTag = 0
-        }else if imageTag == 2{
-            self.image2.image = ImageScale().scaleImage(image: image)
-            imageRemoveBtn2.isHidden = false
-            self.imageTag = 0
-        }else if imageTag == 3{
-            self.image3.image = ImageScale().scaleImage(image: image)
-            imageRemoveBtn3.isHidden = false
-            self.imageTag = 0
+//        }else if imageTag == 2{
+//            self.image2.image = ImageScale().scaleImage(image: image)
+//            imageRemoveBtn2.isHidden = false
+//            self.imageTag = 0
+//        }else if imageTag == 3{
+//            self.image3.image = ImageScale().scaleImage(image: image)
+//            imageRemoveBtn3.isHidden = false
+//            self.imageTag = 0
         }
         
-        if image1.image != nil && image2.image != nil && image3.image != nil{
+        if image1.image != nil {    // && image2.image != nil && image3.image != nil{
             nextBtn.layer.borderColor = UIColor(hexString: "#ff5a5f").cgColor
             nextBtn.setTitleColor(UIColor(named:"MainPoint_mainColor"), for: .normal)
             nextBtn.layer.borderWidth = 1

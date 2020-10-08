@@ -221,13 +221,13 @@ class FeedApi: NSObject {
     }
     
 //    MARK: - 클래스 디테일 댓글
-    func appClassDataComment(curriculum_id:Int,page:Int,success: @escaping(_ data: FeedAppClassDetailReplyModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+    func appClassDataComment(curriculum_id:Int, page:Int, type:String, success: @escaping(_ data: FeedAppClassDetailReplyModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/app_comment/curriculum/\(curriculum_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = Alamofire.request("\(apiUrl)/app_comment/curriculum/\(curriculum_id)/\(page)/\(type)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
-                let dic = FeedAppClassDetailReplyModel.init(dic: convertToDictionary(data: response.data!,apiURL: "get : \(apiUrl)/app_comment/curriculum/\(curriculum_id)/\(page)"))
+                let dic = FeedAppClassDetailReplyModel.init(dic: convertToDictionary(data: response.data!,apiURL: "get : \(apiUrl)/app_comment/curriculum/\(curriculum_id)/\(page)/\(type)"))
                 success(dic)
             }else {
                 fail(response.error)

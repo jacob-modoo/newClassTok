@@ -94,7 +94,6 @@ extension PhoneLoginViewController{
             self.textField.isSecureTextEntry = false
             self.textField.text = id
             self.textField.reloadInputViews()
-            self.nextBtn.setTitle("다음", for: .normal)
             self.textInputChangeView.backgroundColor = UIColor(hexString: "#e0e0e0")
             nextBtn.tag = 0
         }
@@ -166,10 +165,11 @@ extension PhoneLoginViewController{
                             multipartHeader = ["Content-Type":"multipart/form-data","Authorization": "bearer \((result.results?.token)!)"]
                             UserDefaultSetting.setUserDefaultsString((result.results?.token)!, forKey: sessionToken)
                             UserManager.shared.userInfo = result
-                            if UserManager.shared.userInfo.results?.user_info_yn == "N"{
+                            if UserManager.shared.userInfo.results?.user_info_yn == "Y"{
                                 UserDefaultSetting.setUserDefaultsString(self.id, forKey: tempUserId)
                                 UserDefaultSetting.setUserDefaultsString(self.password, forKey: tempUserPw)
                                 let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
+//                                newViewController.textField.text = "Sherzodbek"
                                 UserDefaultSetting.setUserDefaultsString("P", forKey: loginGubun)
                                 self.navigationController?.pushViewController(newViewController, animated: false)
                             }else{

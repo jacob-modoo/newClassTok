@@ -79,7 +79,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var share_address:String?
     var share_content:String?
     var share_img:String?
-    var share_point:Int?
+    var share_point:String?
     var class_name:String?
     var class_photo:String?
     
@@ -445,7 +445,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                         })
                     }else if result.code == "106"{
                         if self.viewCheck == 1{
-                            
+                            print("++++++++url: \(result.results?.url! ?? "")++++++++++++++")
                             let newViewController = UIStoryboard(name: "ChildWebView", bundle: nil).instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
                             newViewController.url = result.results!.url!
                             newViewController.tokenCheck = false

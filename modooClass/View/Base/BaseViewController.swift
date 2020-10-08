@@ -226,7 +226,7 @@ class BaseViewController: UIViewController{
      
     - Throws: `Error` 제스처가 아닌 경우 `Error`
     */
-    func showAlert(title:String, cancelTitle:String, cancelHandler: ((UIAlertAction) -> Void)? = nil!) {
+    func showAlert(title:String, cancelTitle:String, cancelHandler: ((UIAlertAction) -> Void)? = nil) {
         self.showAlert(title: title, message: nil, submitTitle: nil, submitHandler: nil, cancelTitle: cancelTitle, cancelHandler: cancelHandler)
     }
     
@@ -258,7 +258,7 @@ class BaseViewController: UIViewController{
      
     - Throws: `Error` 제스처가 아닌 경우 `Error`
     */
-    func showAlert(title:String, message:String!, submitTitle:String!, submitHandler: ((UIAlertAction) -> Void)? = nil!, cancelTitle:String!, cancelHandler: ((UIAlertAction) -> Void)? = nil!) {
+    func showAlert(title:String, message:String!, submitTitle:String!, submitHandler: ((UIAlertAction) -> Void)? = nil, cancelTitle:String!, cancelHandler: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         if let submitText = submitTitle {
             if let submitHandle = submitHandler {

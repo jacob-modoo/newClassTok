@@ -15,7 +15,7 @@ class LoginApi: NSObject {
     
     let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
     let systemVersion = UIDevice.current.systemVersion
-    let deviceModel = UIDevice.current.identifierForVendor?.uuidString
+    let deviceModel = UIDevice.modelName
     let loginHeader = ["Content-Type": "application/x-www-form-urlencoded"]
     
 //    MARK: - 일반 로그인
@@ -31,7 +31,7 @@ class LoginApi: NSObject {
             "push_token":"\(UserDefaultSetting.getUserDefaultsString(forKey:apnsToken) ?? "")",
             "device_type":"I",
             "device_info":"\(systemVersion)",
-            "device_model":"\(String(describing: deviceModel))",
+            "device_model":"\(deviceModel)",
             "app_info":"\(appVersion ?? "")"
         ] as [String : Any]
         
@@ -166,22 +166,22 @@ class LoginApi: NSObject {
     }
     
 //    MARK: - 프로필 추가정보 저장
-    func profileAddSave(nickname:String,gender:String,birthday_year:String,mcInterest_id:Array<Int>,mcJob_id:Array<Int>,url_1:String,url_2:String,url_3:String,file_1:UIImage,file_2:UIImage,file_3:UIImage,profile_comment:String,success: @escaping(_ data: LoginModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+    func profileAddSave(nickname:String,gender:String,url_1:String,file_1:UIImage,profile_comment:String,success: @escaping(_ data: LoginModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         let parameter:[String : Any] = [
             "nickname":nickname,
             "gender":gender,
-            "birthday_year":birthday_year,
-            "mcInterest_id":mcInterest_id,
-            "mcJob_id":mcJob_id,
+//            "birthday_year":birthday_year,
+//            "mcInterest_id":mcInterest_id,
+//            "mcJob_id":mcJob_id,
             "url_1":url_1,
-            "url_2":url_2,
-            "url_3":url_3,
+//            "url_2":url_2,
+//            "url_3":url_3,
             "profile_comment":profile_comment
         ]
         print("url_1 : \(url_1)")
-        print("url_2 : \(url_2)")
-        print("url_3 : \(url_3)")
+//        print("url_2 : \(url_2)")
+//        print("url_3 : \(url_3)")
         print("parameter : ",parameter)
         
         Alamofire.upload(multipartFormData: { (multipartFormData) in
@@ -189,14 +189,14 @@ class LoginApi: NSObject {
                 let imageData1 = file_1.jpegData(compressionQuality: 1)
                 multipartFormData.append(imageData1!, withName: "file_1", fileName: "file_1.jpeg", mimeType: "image/jpeg")
             }
-            if url_2 == ""{
-                let imageData2 = file_2.jpegData(compressionQuality: 1)
-                multipartFormData.append(imageData2!, withName: "file_2", fileName: "file_2.jpeg", mimeType: "image/jpeg")
-            }
-            if url_3 == ""{
-                let imageData3 = file_3.jpegData(compressionQuality: 1)
-                multipartFormData.append(imageData3!, withName: "file_3", fileName: "file_3.jpeg", mimeType: "image/jpeg")
-            }
+//            if url_2 == ""{
+//                let imageData2 = file_2.jpegData(compressionQuality: 1)
+//                multipartFormData.append(imageData2!, withName: "file_2", fileName: "file_2.jpeg", mimeType: "image/jpeg")
+//            }
+//            if url_3 == ""{
+//                let imageData3 = file_3.jpegData(compressionQuality: 1)
+//                multipartFormData.append(imageData3!, withName: "file_3", fileName: "file_3.jpeg", mimeType: "image/jpeg")
+//            }
             for (key, value) in parameter {
                 multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
             }

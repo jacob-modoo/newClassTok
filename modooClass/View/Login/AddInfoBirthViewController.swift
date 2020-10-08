@@ -18,6 +18,7 @@ class AddInfoBirthViewController: UIViewController {
     @IBOutlet var titleDescLabel: UILabel!
     /** **다음 버튼 */
     @IBOutlet var nextBtn: UIButton!
+    @IBOutlet weak var skipBtn: UIButton!
     /** **텍스트필드 */
     @IBOutlet var textField: UITextField!
     @IBOutlet var progressBar: UIProgressView!
@@ -89,6 +90,14 @@ class AddInfoBirthViewController: UIViewController {
     
     /** **다음 버튼 클릭 > 로그인 절차 다음단계 가기 */
     @IBAction func nextBtnClicked(_ sender: UIButton) {
+        let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoTagInterestViewController") as! AddInfoTagInterestViewController
+        newViewController.nick = self.nick
+        newViewController.gender = self.gender
+        newViewController.birthYear = self.textField.text?.replace(target: "년", withString: "") ?? ""
+        self.navigationController?.pushViewController(newViewController, animated: false)
+    }
+    
+    @IBAction func skipBtnClicked(_ sender: UIButton) {
         let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoTagInterestViewController") as! AddInfoTagInterestViewController
         newViewController.nick = self.nick
         newViewController.gender = self.gender
