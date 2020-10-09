@@ -165,11 +165,14 @@ extension PhoneLoginViewController{
                             multipartHeader = ["Content-Type":"multipart/form-data","Authorization": "bearer \((result.results?.token)!)"]
                             UserDefaultSetting.setUserDefaultsString((result.results?.token)!, forKey: sessionToken)
                             UserManager.shared.userInfo = result
-                            if UserManager.shared.userInfo.results?.user_info_yn == "Y"{
+                            if UserManager.shared.userInfo.results?.user_info_yn == "N"{
                                 UserDefaultSetting.setUserDefaultsString(self.id, forKey: tempUserId)
                                 UserDefaultSetting.setUserDefaultsString(self.password, forKey: tempUserPw)
                                 let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
-//                                newViewController.textField.text = "Sherzodbek"
+                                newViewController.nickname = result.results?.user?.nickname ?? ""
+                                if result.results?.user?.photo ?? "" != "" {
+                                    newViewController.profile_photo = result.results?.user?.photo ?? ""
+                                }
                                 UserDefaultSetting.setUserDefaultsString("P", forKey: loginGubun)
                                 self.navigationController?.pushViewController(newViewController, animated: false)
                             }else{

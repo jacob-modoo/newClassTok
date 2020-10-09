@@ -649,6 +649,7 @@ class AppClassCommentList:NSObject{
     var youtu_address:String?
     var coach_yn:String?
     var profile_url:String?
+    var mcCurriculum_id:Int?
 
     var replyInReply:ReplyInReply?
 
@@ -680,6 +681,7 @@ class AppClassCommentList:NSObject{
         youtu_address = DictionaryToString(dic: dic, strName: "youtu_address")
         coach_yn = DictionaryToString(dic: dic, strName: "coach_yn")
         profile_url = DictionaryToString(dic: dic, strName: "profile_url")
+        mcCurriculum_id = DictionaryToInt(dic: dic, intName: "mcCurriculum_id")
         if let replyInReply = dic["reply"] as? Dictionary<String, Any> {
             self.replyInReply = ReplyInReply.init(dic: replyInReply)
         }

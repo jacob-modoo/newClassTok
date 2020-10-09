@@ -126,7 +126,9 @@ class AddInfoIntroWordViewController: UIViewController ,UITextFieldDelegate{
         LoginApi.shared.profileAddSave(nickname: self.nick, gender: self.gender, url_1: url_1, file_1: self.photo1, profile_comment: self.textField.text ?? "", success: { result in
             if result.code! == "200"{
                 self.loginCheck()
+                self.view.endEditing(true)
                 self.completeView.isHidden = false
+                self.view.addSubview(self.completeView)
             }else{
                 Alert.With(self, title: "네트워크 오류가 발생하였습니다.", btn1Title: "확인", btn1Handler: {
                     self.completeView.isHidden = true
@@ -160,7 +162,7 @@ class AddInfoIntroWordViewController: UIViewController ,UITextFieldDelegate{
         UserManager.shared.userInfo.results?.user?.nickname = self.nick
 //        UserManager.shared.userInfo.results?.user?.birthday_year = self.birthYear
         
-        let time = DispatchTime.now() + .seconds(2)
+        let time = DispatchTime.now() + .seconds(3)
         DispatchQueue.main.asyncAfter(deadline: time) {
             UserDefaultSetting.setUserDefaultsBool(true, forKey: lodingViewCheck)
             Indicator.hideActivityIndicator(uiView: self.view)

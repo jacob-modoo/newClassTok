@@ -77,6 +77,8 @@ class ChildDetailClassViewController: UIViewController {
     var customView: UIView?
     /** **키보드 사이즈 */
     var keyBoardSize:CGRect?
+    
+    var curriculum_id:Int?
     /** **Html 렌더링을 위한 뷰 */
     var classTextView:UITextView?
     private let imageView = UIImageView()
@@ -411,6 +413,7 @@ class ChildDetailClassViewController: UIViewController {
             } else {
                 if self.feedDetailList?.results?.curriculum?.id ?? 0 != self.feedDetailList?.results?.curriculum_before_id ?? 0 {
                     self.type = "all"
+                    self.curriculum_id = feedDetailList?.results?.curriculum?.id ?? 0
                 }
                 if self.feedDetailList?.results?.curriculum_before_id ?? 0 == 0 {
                     self.showToast(message: "        🔊 첫번째 강의 입니다.>.<더이상 이동할수 없습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
@@ -726,12 +729,15 @@ class ChildDetailClassViewController: UIViewController {
         if sender.tag == 0 {
             self.type = "all"
             filteredComment(type: self.type)
+            print(self.type)
         } else if sender.tag == 1 {
             self.type = "questions"
             filteredComment(type: self.type)
+            print(self.type)
         } else {
             self.type = "coach"
             filteredComment(type: self.type)
+            print(self.type)
         }
     }
     
@@ -1477,7 +1483,9 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 if self.feedDetailList != nil{
                     cell.classPriceImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                     cell.classPriceName.text = "\(feedDetailList?.results?.class_name ?? "")"
-                    cell.classSalePrice.text = "[\(feedDetailList?.results?.sale_per ?? "")%] 월 \(feedDetailList?.results?.price ?? "")원"
+                    print("class_name:   \(feedDetailList?.results?.class_name ?? "")")
+                    print("saleeeee:  [\(feedDetailList?.results?.sale_per ?? "")%] \(feedDetailList?.results?.price ?? "")원")
+                    cell.classSalePrice.text = "[\(feedDetailList?.results?.sale_per ?? "")%] \(feedDetailList?.results?.price ?? "")원"
                     print("+++++++++++\(feedDetailList?.results?.price ?? "")+++++++++")
 //                    cell.classSalePrice.text = "[\(feedDetailList?.results?.sale_per ?? "")%] 월 49,000원"
 //                    cell.classSalePrice.text = "월 49,000원"
@@ -1846,7 +1854,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 cell.selectionStyle = .none
                 return cell
             }else if section == 10{
-                var cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply1TableViewCell") as! ChildDetailClassTableViewCell
+                var cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply1TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if replyArray != nil{
                     if replyArray!.count > 0{
                         cell = replyCell(cell: cell, indexPath: indexPath , rowCheck:false)
@@ -1912,7 +1920,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
             if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
                 if section == 10{
                     if self.replyArray != nil{
-                        if row == (self.replyArray!.count)-2{
+                        if row == (self.replyArray!.count){
                             if self.replyArray!.count < self.feedReplyList?.results!.total ?? 0 {
                                 Indicator.showActivityIndicator(uiView: self.view)
                                 self.page = self.page + 1
@@ -1924,7 +1932,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
             }else{
                 if section == 10{
                     if self.replyArray != nil{
-                        if row == (self.replyArray!.count)-2{
+                        if row == (self.replyArray!.count){
                             if self.replyArray!.count < self.feedReplyList?.results!.total ?? 0 {
                                 Indicator.showActivityIndicator(uiView: self.view)
                                 self.page = self.page + 1
@@ -2314,7 +2322,7 @@ extension ChildDetailClassViewController{
         FeedApi.shared.replyCommentLike(comment_id: comment_id, method_type: type,success: { [unowned self] result in
             if result.code == "200" {
                 DispatchQueue.main.async {
-                    var selectedIndexPath = IndexPath(item:row , section: 8)
+                    var selectedIndexPath = IndexPath(item:row , section: 10)
                     if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
                         selectedIndexPath = IndexPath(item: row , section: 10)
                     }
@@ -2379,7 +2387,8 @@ extension ChildDetailClassViewController{
                 temp.roll = result.results?.roll
                 temp.like_user = result.results?.like_user
                 temp.emoticon = result.results?.emoticon
-                
+                temp.mcCurriculum_id = result.results?.mcCurriculum_id
+
                 self.emoticonSelectView.isHidden = true
                 self.emoticonImg.image = nil
                 self.replyTextViewLbl.isHidden = false
@@ -2399,7 +2408,7 @@ extension ChildDetailClassViewController{
                 self.emoticonNumber = 0
                 sender.isUserInteractionEnabled = true
                 DispatchQueue.main.async {
-                    self.tableView.reloadSections([7,8], with: .automatic)
+                    self.tableView.reloadSections([7,10], with: .automatic)
                     Indicator.hideActivityIndicator(uiView: self.view)
                 }
             }else{
@@ -2432,7 +2441,7 @@ extension ChildDetailClassViewController{
                     self.replyArray?.remove(at: row)
                     self.feedDetailList?.results?.curriculum?.comment?.total = self.replyArray!.count
                     DispatchQueue.main.async {
-                        self.tableView.reloadSections([7,8], with: .automatic)
+                        self.tableView.reloadData()
                     }
                 }
             }

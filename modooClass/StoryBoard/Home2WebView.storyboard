@@ -103,7 +103,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IKC-sJ-s5f" customClass="YTPlayerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IKC-sJ-s5f" customClass="WKYTPlayerView">
                                 <rect key="frame" x="0.0" y="98" width="414" height="233"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -7641,7 +7641,6 @@
             <objects>
                 <navigationController storyboardIdentifier="HomeMainViewNavController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VzK-c3-oOF" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="z4L-1k-hpJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -7972,6 +7971,7 @@
                                                                             <rect key="frame" x="4" y="10" width="14" height="0.0"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh1-6U-DqM" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -11605,7 +11605,6 @@
         <designable name="ARk-Xa-zl7">
             <size key="intrinsicContentSize" width="33" height="27"/>
         </designable>
-        <designable name="Akt-AO-QxI"/>
         <designable name="Ask-IT-FKj">
             <size key="intrinsicContentSize" width="24.5" height="17"/>
         </designable>
@@ -11615,7 +11614,6 @@
         <designable name="Bba-7T-dad">
             <size key="intrinsicContentSize" width="33" height="27"/>
         </designable>
-        <designable name="Bjg-3M-ij5"/>
         <designable name="CpC-Cd-i5E">
             <size key="intrinsicContentSize" width="77.5" height="15"/>
         </designable>
@@ -11766,7 +11764,6 @@
         <designable name="Vhn-6e-xfu">
             <size key="intrinsicContentSize" width="82.5" height="15"/>
         </designable>
-        <designable name="X4l-ch-gSK"/>
         <designable name="XCG-vD-u4z">
             <size key="intrinsicContentSize" width="43.5" height="15"/>
         </designable>
@@ -11806,7 +11803,6 @@
         <designable name="bMy-oI-jHh">
             <size key="intrinsicContentSize" width="139.5" height="15"/>
         </designable>
-        <designable name="bh1-6U-DqM"/>
         <designable name="cIu-Ig-w2z">
             <size key="intrinsicContentSize" width="50.5" height="32.5"/>
         </designable>

@@ -35,6 +35,8 @@ class AddInfoPhotoViewController: UIViewController {
     @IBOutlet var imageRemoveBtn2: UIButton!
     @IBOutlet var imageRemoveBtn3: UIButton!
     
+    var profile_photo:String = ""
+    
     var nick = ""
     var gender = ""
     var birthYear = ""
@@ -61,6 +63,13 @@ class AddInfoPhotoViewController: UIViewController {
 //        let scale: CGFloat = DEF_WIDTH_375_SCALE
 //        view.transform = view.transform.scaledBy(x: scale, y: scale)
 //        self.view.layoutIfNeeded()
+        let url = URL(string: self.profile_photo)
+        if let data = try? Data(contentsOf: url!) {
+            let image: UIImage = UIImage(data: data)!
+            image1.image = image
+            imageRemoveBtn1.isHidden = false
+        }
+        checkImgField()
         image1.layer.cornerRadius = image1.frame.width/2
         imageSelectBtn1.layer.cornerRadius = imageSelectBtn1.frame.width/2
         image1.clipsToBounds = true
@@ -72,10 +81,6 @@ class AddInfoPhotoViewController: UIViewController {
 //        image3.clipsToBounds = true
         progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 3)
         // Do any additional setup after loading the view.
-        nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
-        nextBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
-        nextBtn.layer.borderWidth = 1
-        nextBtn.isUserInteractionEnabled = false
     }
     
     /** **뷰가 나타나기 시작 할 때 타는 메소드 */
@@ -402,12 +407,7 @@ extension AddInfoPhotoViewController:CropViewControllerDelegate, UIImagePickerCo
 //            self.imageTag = 0
         }
         
-        if image1.image != nil {    // && image2.image != nil && image3.image != nil{
-            nextBtn.layer.borderColor = UIColor(hexString: "#ff5a5f").cgColor
-            nextBtn.setTitleColor(UIColor(named:"MainPoint_mainColor"), for: .normal)
-            nextBtn.layer.borderWidth = 1
-            nextBtn.isUserInteractionEnabled = true
-        }
+        checkImgField()
         
         if cropViewController.croppingStyle != .circular {
             imageView.isHidden = true
@@ -421,6 +421,20 @@ extension AddInfoPhotoViewController:CropViewControllerDelegate, UIImagePickerCo
         else {
             self.imageView.isHidden = false
             cropViewController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func checkImgField() {
+        if image1.image != nil {    // && image2.image != nil && image3.image != nil{
+            nextBtn.layer.borderColor = UIColor(hexString: "#ff5a5f").cgColor
+            nextBtn.setTitleColor(UIColor(named:"MainPoint_mainColor"), for: .normal)
+            nextBtn.layer.borderWidth = 1
+            nextBtn.isUserInteractionEnabled = true
+        } else {
+            nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
+            nextBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
+            nextBtn.layer.borderWidth = 1
+            nextBtn.isUserInteractionEnabled = false
         }
     }
     

@@ -309,7 +309,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
         let body_comment = alertNotificationDict?["body"] as? String
         let pushType = userInfo["push_type"] as? Int
         let mcClassid = userInfo["mcClass_id"] as? Int
-        let mcCurriculumid = userInfo["mcCurriculum_id"] as? Int
+//        let mcCurriculumid = userInfo["mcCurriculum_id"] as? Int
         let mcCommentid = userInfo["mcComment_id"] as? Int
         let friendId = userInfo["friend_id"] as? Int
         let appnotifyId = userInfo["appnotify_id"] as? Int
@@ -348,7 +348,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
         self.push_type = pushType ?? 99
         self.push_url = pushUrl ?? ""
         self.mcClass_id = mcClassid ?? 0
-        self.mcCurriculum_id = mcCurriculumid ?? 0
+//        self.mcCurriculum_id = mcCurriculumid ?? 0
         self.mcComment_id = mcCommentid ?? 0
         self.friend_id = friendId ?? 0
         self.appnotify_id = appnotifyId ?? 0

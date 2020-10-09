@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import youtube_ios_player_helper
+import YoutubePlayer_in_WKWebView
 //import BMPlayer
 import AVFoundation
 import Photos
@@ -24,7 +24,7 @@ class StoryDetailViewController: UIViewController {
     @IBOutlet weak var ytHeightConst: NSLayoutConstraint!
     @IBOutlet weak var ytAspectConst: NSLayoutConstraint!
     @IBOutlet weak var replyTextViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var ytView: YTPlayerView!
+    @IBOutlet weak var ytView: WKYTPlayerView!
     @IBOutlet weak var vmView: UIView!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var user_photo: UIImageView!
@@ -1708,12 +1708,12 @@ extension StoryDetailViewController:CropViewControllerDelegate, UIImagePickerCon
     
 }
 
-extension StoryDetailViewController:YTPlayerViewDelegate {
-    func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
+extension StoryDetailViewController:WKYTPlayerViewDelegate {
+    func playerView(_ playerView: WKYTPlayerView, didPlayTime playTime: Float) {
     }
     
     
-    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
+    func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
         //        0 - 재생 안됨   1 - 재생 종료   2 - 재생 시작     3 - 일시중지    4 - 버퍼링
 //        var play_state = ""
 //        var play_time = 0
@@ -1736,14 +1736,14 @@ extension StoryDetailViewController:YTPlayerViewDelegate {
         
     }
     
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+    func playerViewDidBecomeReady(_ playerView: WKYTPlayerView) {
 //        playerView.playVideo()
     }
     
-    func playerView(_ playerView: YTPlayerView, didChangeTo quality: YTPlaybackQuality) {
+    func playerView(_ playerView: WKYTPlayerView, didChangeTo quality: WKYTPlaybackQuality) {
     }
     
-    func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
+    func playerView(_ playerView: WKYTPlayerView, receivedError error: WKYTPlayerError) {
     }
     
     func videoLoad(){

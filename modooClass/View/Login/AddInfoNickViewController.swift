@@ -28,6 +28,11 @@ class AddInfoNickViewController: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var skipBtn: UIButton!
     
     @IBOutlet var progressBar: UIProgressView!
+    
+    var nickname:String = ""
+    
+    var profile_photo:String = ""
+    
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
     
     override func viewDidLoad() {
@@ -40,6 +45,8 @@ class AddInfoNickViewController: UIViewController ,UITextFieldDelegate{
         progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 3)
         retrunBackBtn.isHidden = true
         nextBtn.layer.borderWidth = 1
+        textField.text = self.nickname
+        checkTextField()
         Alert.WithInfoWriteStart(self, btn1Title: "", btn1Handler: {
             self.textField.becomeFirstResponder()
         })
@@ -76,6 +83,7 @@ class AddInfoNickViewController: UIViewController ,UITextFieldDelegate{
         if textField.isValid(name: textField.text!){
             let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoGenderViewController") as! AddInfoGenderViewController
             newViewController.nick = textField.text ?? ""
+            newViewController.profile_photo = self.profile_photo
             self.navigationController?.pushViewController(newViewController, animated: false)
         }else{
             Alert.With(self, title: "이모지가 포함되어있습니다.", btn1Title: "확인", btn1Handler: {})
@@ -91,6 +99,10 @@ class AddInfoNickViewController: UIViewController ,UITextFieldDelegate{
     
     /** **텍스트필드 변경 > 텍스트 필드에 변경이 일어남 처리 */
     @IBAction func textFieldChange(_ sender: UITextField) {
+        checkTextField()
+    }
+    
+    func checkTextField() {
         if textField.text?.isEmpty == true{
             textInputChangeView.backgroundColor = UIColor(hexString: "#e0e0e0")
             errorLabel.text = " "

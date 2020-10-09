@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
- platform :ios, '11.0'
+ platform :ios, '12.0'
 
 target 'modooClass' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -20,7 +20,8 @@ target 'modooClass' do
   # pod 'Crashlytics', '~>  3.13.4'
   pod 'CropViewController'
   pod 'lottie-ios'
-  pod "youtube-ios-player-helper", "~> 0.1.4"
+  pod "YoutubePlayer-in-WKWebView", "~> 0.3.0"
+#  pod "youtube-ios-player-helper", "~> 0.1.4"
   pod 'FTPopOverMenu_Swift', '~> 0.2.0'
   pod 'AppsFlyerFramework'
   pod 'ReverseExtension'

@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Photos
 import CropViewController
-import youtube_ios_player_helper
+import YoutubePlayer_in_WKWebView
 import AVKit
 import MediaPlayer
 
@@ -93,7 +93,7 @@ class DetailReplyViewController: UIViewController {
     let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     
-    @IBOutlet weak var youtubeView: YTPlayerView!
+    @IBOutlet weak var youtubeView: WKYTPlayerView!
     var youtube_url = ""
     var youtube_load = false
     
@@ -1337,12 +1337,12 @@ extension DetailReplyViewController:CropViewControllerDelegate, UIImagePickerCon
     
 }
 
-extension DetailReplyViewController:YTPlayerViewDelegate {
-    func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
+extension DetailReplyViewController:WKYTPlayerViewDelegate {
+    func playerView(_ playerView: WKYTPlayerView, didPlayTime playTime: Float) {
     }
     
     
-    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
+    func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
         //        0 - 재생 안됨   1 - 재생 종료   2 - 재생 시작     3 - 일시중지    4 - 버퍼링
 //        var play_state = ""
 //        var play_time = 0
@@ -1364,14 +1364,14 @@ extension DetailReplyViewController:YTPlayerViewDelegate {
         
     }
     
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+    func playerViewDidBecomeReady(_ playerView: WKYTPlayerView) {
         playerView.playVideo()
     }
     
-    func playerView(_ playerView: YTPlayerView, didChangeTo quality: YTPlaybackQuality) {
+    func playerView(_ playerView: WKYTPlayerView, didChangeTo quality: WKYTPlaybackQuality) {
     }
     
-    func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
+    func playerView(_ playerView: WKYTPlayerView, receivedError error: WKYTPlayerError) {
     }
     
     func videoLoad(){

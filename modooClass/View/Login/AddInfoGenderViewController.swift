@@ -24,6 +24,7 @@ class AddInfoGenderViewController: UIViewController {
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
     
     var nick = ""
+    var profile_photo = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +82,7 @@ class AddInfoGenderViewController: UIViewController {
         let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoPhotoViewController") as! AddInfoPhotoViewController
         newViewController.nick = self.nick
         newViewController.gender = gender
+        newViewController.profile_photo = self.profile_photo
         self.navigationController?.pushViewController(newViewController, animated: false)
         
     }

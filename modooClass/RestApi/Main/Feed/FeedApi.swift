@@ -318,7 +318,7 @@ class FeedApi: NSObject {
             for (key, value) in param {
                 multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
             }
-        }, to: "\(apiUrl)/app_comment/\(class_id)" , method: .post, headers: multipartHeader){ (result) in
+        }, to: "\(apiUrl)/app_comment/\(class_id)/\(curriculum)" , method: .post, headers: multipartHeader){ (result) in
             switch result {
             case .success(let upload, _, _):
                 upload.uploadProgress(closure: { (progress) in
@@ -327,7 +327,7 @@ class FeedApi: NSObject {
                 upload.response { response in
                     let statusCode = response.response?.statusCode
                     if statusCode == 200 {
-                        let dic = FeedAppClassDetailReplySendModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post : \(apiUrl)/app_comment/\(class_id)"))
+                        let dic = FeedAppClassDetailReplySendModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post : \(apiUrl)/app_comment/\(class_id)/\(curriculum)"))
                         success(dic)
                     }else {
                         fail(response.error)
