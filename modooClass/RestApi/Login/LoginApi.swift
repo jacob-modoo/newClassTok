@@ -48,7 +48,7 @@ class LoginApi: NSObject {
     }
     
 //    MARK: - 소셜로그인
-    func socialAuth(provider:String,social_id:String,name:String,success: @escaping(_ data: LoginModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+    func socialAuth(provider:String,social_id:String,name:String,payload:Any, success: @escaping(_ data: LoginModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         #if targetEnvironment(simulator)
         UserDefaultSetting.setUserDefaultsString("VirtualDevice Login", forKey: apnsToken)
@@ -61,9 +61,10 @@ class LoginApi: NSObject {
             "social_id":social_id,
             "name":name,
             "push_token":"\(UserDefaultSetting.getUserDefaultsString(forKey:apnsToken) ?? "")",
+            "payload":payload,
             "device_type":"I",
             "device_info":"\(systemVersion)",
-            "device_model":"\(String(describing: deviceModel))",
+            "device_model":"\(deviceModel)",
             "app_info":"\(appVersion ?? "")"
         ] as [String : Any]
         

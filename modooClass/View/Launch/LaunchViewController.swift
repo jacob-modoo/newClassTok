@@ -29,6 +29,8 @@ class LaunchViewController: UIViewController {
     /** **이름 체크  */
     var nameCheck:String = ""
     
+    var payload = ["payload":""]
+    
     let home2Storyboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
 //    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
@@ -71,7 +73,7 @@ class LaunchViewController: UIViewController {
                         appleAuthorization()
                     }else{
                         DispatchQueue.main.async {
-                            LoginApi.shared.socialAuth(provider: self.providerCheck, social_id: self.idCheck, name: self.nameCheck, success: { result in
+                            LoginApi.shared.socialAuth(provider: self.providerCheck, social_id: self.idCheck, name: self.nameCheck, payload: self.payload, success: { result in
                                 if result.code! == "200"{
                                     header = ["Content-Type":"application/x-www-form-urlencoded","Authorization": "bearer \((result.results?.token)!)"]
                                     multipartHeader = ["Content-Type":"multipart/form-data","Authorization": "bearer \((result.results?.token)!)"]
@@ -81,6 +83,10 @@ class LaunchViewController: UIViewController {
                                         UserDefaultSetting.setUserDefaultsString(self.idCheck, forKey: tempUserId)
                                         UserDefaultSetting.setUserDefaultsString(self.pwCheck, forKey: tempUserPw)
                                         let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
+                                        newViewController.nickname = UserManager.shared.userInfo.results?.user?.nickname ?? ""
+                                        if UserManager.shared.userInfo.results?.user?.photo ?? "" != "" {
+                                            newViewController.profile_photo = UserManager.shared.userInfo.results?.user?.photo ?? ""
+                                        }
                                         UserDefaultSetting.setUserDefaultsString("P", forKey: loginGubun)
                                         self.navigationController?.pushViewController(newViewController, animated: false)
                                     }else{
@@ -118,6 +124,10 @@ class LaunchViewController: UIViewController {
                                     UserDefaultSetting.setUserDefaultsString(self.idCheck, forKey: tempUserId)
                                     UserDefaultSetting.setUserDefaultsString(self.pwCheck, forKey: tempUserPw)
                                     let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
+                                    newViewController.nickname = UserManager.shared.userInfo.results?.user?.nickname ?? ""
+                                    if UserManager.shared.userInfo.results?.user?.photo ?? "" != "" {
+                                        newViewController.profile_photo = UserManager.shared.userInfo.results?.user?.photo ?? ""
+                                    }
                                     UserDefaultSetting.setUserDefaultsString("P", forKey: loginGubun)
                                     self.navigationController?.pushViewController(newViewController, animated: false)
                                 }else{
@@ -173,7 +183,7 @@ class LaunchViewController: UIViewController {
                         case .authorized:
                             // Apple ID 자격 증명이 유효합니다.
                             DispatchQueue.main.async {
-                                LoginApi.shared.socialAuth(provider: self.providerCheck, social_id: self.idCheck, name: self.nameCheck, success: { result in
+                                LoginApi.shared.socialAuth(provider: self.providerCheck, social_id: self.idCheck, name: self.nameCheck, payload: credentialState, success: { result in
                                     if result.code! == "200"{
                                         UserManager.shared.userInfo = result
                                         UserDefaultSetting.setUserDefaultsString((result.results?.token)!, forKey: sessionToken)

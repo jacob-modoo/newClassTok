@@ -54,7 +54,7 @@ class FirstLoginViewController: BaseViewController {
                             } else {
                                 // success
                                 Indicator.showActivityIndicator(uiView: self.view)
-                                LoginApi.shared.socialAuth(provider: "kakao", social_id: (me?.id)!, name: (me?.nickname)!, success: { result in
+                                LoginApi.shared.socialAuth(provider: "kakao", social_id: (me?.id)!, name: (me?.nickname)!, payload: me!, success: { result in
                                     if result.code! == "200"{
                                         UserManager.shared.userInfo = result
                                         self.loginMove(socialId: (me?.id)!, socialName: (me?.nickname)!, socialProvider: "kakao", token: result.results!.token!)
@@ -99,6 +99,10 @@ class FirstLoginViewController: BaseViewController {
               UserDefaultSetting.setUserDefaultsString(socialName, forKey: tempUserName)
               UserDefaultSetting.setUserDefaultsString(socialProvider, forKey: tempUserProvider)
               let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
+            newViewController.nickname = UserManager.shared.userInfo.results?.user?.nickname ?? ""
+            if UserManager.shared.userInfo.results?.user?.photo ?? "" != "" {
+                newViewController.profile_photo = UserManager.shared.userInfo.results?.user?.photo ?? ""
+            }
               UserDefaultSetting.setUserDefaultsString("S", forKey: loginGubun)
 //            newViewController.textField.text?.append("\(socialName)")
               self.navigationController?.pushViewController(newViewController, animated: false)

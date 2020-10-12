@@ -153,7 +153,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             
             print("userIdentifier : \(userIdentifier) , fullName?.givenName : \(fullName?.familyName ?? "") , fullName?.familyName : \(fullName?.givenName ?? "") , email : \(email ?? "")")
             
-            LoginApi.shared.socialAuth(provider: "apple", social_id: userIdentifier, name: "\(fullName?.familyName ?? "")\(fullName?.givenName ?? "")", success: { result in
+            LoginApi.shared.socialAuth(provider: "apple", social_id: userIdentifier, name: "\(fullName?.familyName ?? "")\(fullName?.givenName ?? "")", payload: appleIDCredential, success: { result in
                 if result.code! == "200"{
                     UserManager.shared.userInfo = result
                     self.loginMove(socialId: userIdentifier, socialName: "\(fullName?.givenName ?? "")\(fullName?.familyName ?? "")", socialProvider: "apple", token: result.results!.token!)
@@ -219,7 +219,7 @@ extension LoginViewController{
                             } else {
                                 // success
                                 Indicator.showActivityIndicator(uiView: self.view)
-                                LoginApi.shared.socialAuth(provider: "kakao", social_id: (me?.id)!, name: (me?.nickname)!, success: { result in
+                                LoginApi.shared.socialAuth(provider: "kakao", social_id: (me?.id)!, name: (me?.nickname)!, payload: me!, success: { result in
                                     if result.code! == "200"{
                                         UserManager.shared.userInfo = result
                                         self.loginMove(socialId: (me?.id)!, socialName: (me?.nickname)!, socialProvider: "kakao", token: result.results!.token!)
@@ -267,7 +267,7 @@ extension LoginViewController{
                             let facebookId = dict["id"] as! String
                             let facebookName = dict["name"] as! String
                             
-                            LoginApi.shared.socialAuth(provider: "facebook", social_id: facebookId, name: facebookName, success: { result in
+                            LoginApi.shared.socialAuth(provider: "facebook", social_id: facebookId, name: facebookName, payload: dict, success: { result in
                                 if result.code! == "200"{
                                     UserManager.shared.userInfo = result
                                     self.loginMove(socialId: facebookId, socialName: facebookName, socialProvider: "facebook", token: result.results!.token!)
@@ -325,6 +325,10 @@ extension LoginViewController{
             UserDefaultSetting.setUserDefaultsString(socialName, forKey: tempUserName)
             UserDefaultSetting.setUserDefaultsString(socialProvider, forKey: tempUserProvider)
             let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
+            newViewController.nickname = UserManager.shared.userInfo.results?.user?.nickname ?? ""
+            if UserManager.shared.userInfo.results?.user?.photo ?? "" != "" {
+                newViewController.profile_photo = UserManager.shared.userInfo.results?.user?.photo ?? ""
+            }
             UserDefaultSetting.setUserDefaultsString("S", forKey: loginGubun)
             self.navigationController?.pushViewController(newViewController, animated: false)
         }else{

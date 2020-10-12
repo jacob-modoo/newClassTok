@@ -635,7 +635,7 @@ class FeedApi: NSObject {
         }
     }
 
-//    MARK: - inform everytime ehen PopupSHowVC is shown
+//    MARK: - inform everytime when PopupSHowVC is shown
     func popupTracking(hash_id: String, success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         let param = ["hash" : hash_id]

@@ -91,7 +91,7 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate{
                 //            guard let email = object["email"] as? String else {return}
                 guard let naverId = object["id"] as? String else {return}
                 guard let naverName = object["name"] as? String else {return}
-                LoginApi.shared.socialAuth(provider: "naver", social_id: naverId, name: naverName, success: { result in
+                LoginApi.shared.socialAuth(provider: "naver", social_id: naverId, name: naverName, payload: result, success: { result in
                     if result.code! == "200"{
                         Indicator.hideActivityIndicator(uiView: self.view)
                         UserManager.shared.userInfo = result
