@@ -113,6 +113,10 @@ class HomeProfileViewController: UIViewController {
         }
     }
     
+    @IBAction func returnBackBtnClicked(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     @IBAction func serviceNprivacyBtnClicked(_ sender: UIButton) {
         var url = ""
         if HomeMain2Manager.shared.profileModel.results != nil{
@@ -198,7 +202,7 @@ class HomeProfileViewController: UIViewController {
                 }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 8{
                     
                 }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 10{
-                    let url = HomeMain2Manager.shared.pilotAppMain.results?.app_notice_link ?? ""
+                    let url = HomeMain2Manager.shared.profileModel.results?.notice_address ?? ""
                     newViewController.url = url
                     self.navigationController?.pushViewController(newViewController, animated: true)
                 }
@@ -452,6 +456,9 @@ extension HomeProfileViewController : UITableViewDataSource,UITableViewDelegate{
             cell.levelProgressView.subviews[1].clipsToBounds = true
             cell.levelBackground.layer.cornerRadius = 10
             cell.levelBodyView.layer.cornerRadius = 10
+            
+            cell.userPhoto.sd_setImage(with: URL(string: HomeMain2Manager.shared.profileModel.results?.user_photo ?? ""), placeholderImage: UIImage(named: "reply_user_default"))
+            cell.profileTitle.text = ("\(HomeMain2Manager.shared.profileModel.results?.user_name ?? "")의 프로필")
             
             let maxPoint = HomeMain2Manager.shared.profileModel.results?.level_info?.next_level_score ?? 0
             let currentPoint = HomeMain2Manager.shared.profileModel.results?.level_info?.level_score ?? 0

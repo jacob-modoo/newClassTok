@@ -14,6 +14,7 @@ class HomeClassViewController: UIViewController {
     var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
     let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
+    let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     let feedStoryboard: UIStoryboard = UIStoryboard(name: "Feed", bundle: nil)
     @IBOutlet weak var checkingView: UIView!
     
@@ -205,9 +206,14 @@ class HomeClassViewController: UIViewController {
     
     
     @IBAction func myProfileBtnClicked(_ sender: UIButton) {
-        let newViewController = UIStoryboard(name: "Home2WebView", bundle: nil).instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
-        newViewController.user_id = HomeMain2Manager.shared.pilotAppMain.results?.user_info?.user_id ?? sender.tag
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        if sender.tag == 1 {
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveToProfilePage"), object: nil)
+            }
+        } else {
+            let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "HomeProfileViewController") as! HomeProfileViewController
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
     }
     
     @IBAction func notificationBtnClicked(_ sender: UIButton) {
@@ -615,7 +621,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             cell.iconLevelImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.level_info?.level_icon ?? "")"))
             cell.userBackgroundImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.user_info?.level_info?.level_icon ?? "")"))
             cell.classTitle.font = cell.classTitle.font.withSize(20)
-            if HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "" != ""{
+            if HomeMain2Manager.shared.pilotAppMain.results?.app_notice_link ?? "" != ""{
                 cell.notificationBtn.isHidden = false
                 cell.notificationBtn.setTitle(" 📢  "+"\(HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "")"+"  ", for: .normal)
             } else {

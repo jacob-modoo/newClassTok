@@ -325,8 +325,8 @@ class ProfileV2ViewController: BaseViewController {
     @IBAction func informationUpdateBtnClicked(_ sender: UIButton) {
         if self.profileModel?.results?.user_info?.user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0{
             if self.profileModel?.results?.profile_edit_address ?? "" != ""{
-                let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-                newViewController.url = self.profileModel?.results?.profile_edit_address ?? ""
+                let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "HomeProfileViewController") as! HomeProfileViewController
+//                newViewController.url = self.profileModel?.results?.profile_edit_address ?? ""
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }
         }
@@ -395,7 +395,7 @@ class ProfileV2ViewController: BaseViewController {
 extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
     
     func underline() -> NSAttributedString{
-        let str = "프로필 수정"
+        let str = "내 정보"
         let attributedString = NSMutableAttributedString(string: str)
         attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 12.5)!, range: (str as NSString).range(of:str))
 //        attributedString.addAttribute(NSAttributedString.Key.underlineStyle , value: NSUnderlineStyle.single.rawValue, range: (str as NSString).range(of:str))

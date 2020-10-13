@@ -24,6 +24,8 @@ class HomeProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var levelMainLbl: UILabel!
     @IBOutlet weak var levelBodyView: GradientView!
     @IBOutlet weak var levelBackground: GradientView!
+    @IBOutlet weak var userPhoto: UIImageView!
+    @IBOutlet weak var profileTitle: UIFixedLabel!
     
 //    HomeProfileTabCell
     @IBOutlet weak var pointText: UIFixedLabel!

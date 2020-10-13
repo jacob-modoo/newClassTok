@@ -46,6 +46,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     var tableView = UITableView()
     var inFirstResponder:Bool = false
     var isShown:Bool = false
+    var isProfilePage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,9 +86,11 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         vc.didMove(toParent: self)
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.homeTitleChange), name: NSNotification.Name(rawValue: "homeTitleChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.home2MainChatBadgeChange), name: NSNotification.Name(rawValue: "home2MainChatBadgeChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.home2MainAlarmBadgeChange), name: NSNotification.Name(rawValue: "home2MainAlarmBadgeChange"), object: nil )
+        NotificationCenter.default.addObserver(self, selector: #selector(self.moveToProfilePage), name: NSNotification.Name(rawValue: "moveToProfilePage"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -154,7 +157,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             self.tabLbl3.textColor = UIColor(hexString:"#1a1a1a")
             self.searchBtn.isHidden = false
         }else if index == 3{
-            self.pageTitle.text = "내정보"
+            self.pageTitle.text = "내프로필"
             self.tabImg4.image = UIImage(named: "profile_iconV2_active")
             self.tabLbl4.textColor = UIColor(hexString:"#1a1a1a")
             self.searchBtn.isHidden = false
@@ -263,6 +266,14 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     @objc func homeTitleChange(notification:Notification){
         if let temp = notification.object {
             tabCheck(index: temp as? Int ?? 1)
+        }
+    }
+    
+    /** *this moves to Profile page*/
+    @objc func moveToProfilePage(notification: Notification) {
+        tabCheck(index: 3)
+        if let childVC = self.children.first as? HMPageViewController {
+            childVC.scrollToViewController(index: 3)
         }
     }
     

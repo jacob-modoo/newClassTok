@@ -1483,10 +1483,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 if self.feedDetailList != nil{
                     cell.classPriceImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                     cell.classPriceName.text = "\(feedDetailList?.results?.class_name ?? "")"
-                    print("class_name:   \(feedDetailList?.results?.class_name ?? "")")
-                    print("saleeeee:  [\(feedDetailList?.results?.sale_per ?? "")%] \(feedDetailList?.results?.price ?? "")원")
                     cell.classSalePrice.text = "[\(feedDetailList?.results?.sale_per ?? "")%] \(feedDetailList?.results?.price ?? "")원"
-                    print("+++++++++++\(feedDetailList?.results?.price ?? "")+++++++++")
 //                    cell.classSalePrice.text = "[\(feedDetailList?.results?.sale_per ?? "")%] 월 49,000원"
 //                    cell.classSalePrice.text = "월 49,000원"
                     cell.classOriginalPrice.attributedText = strikeline(str: "\(feedDetailList?.results?.origin_price ?? "")원")

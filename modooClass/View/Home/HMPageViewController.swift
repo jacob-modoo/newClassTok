@@ -18,7 +18,7 @@ class HMPageViewController : UIPageViewController {
         return [self.newViewController("HomeIntroWebViewController"),
             self.newViewController("HomeClassViewController"),
             self.newViewController("HomeFeedWebViewController"),
-            self.newViewController("HomeProfileViewController")]
+            self.newViewController("ProfileV2ViewController")]
     }()
     
     override func viewDidLoad() {

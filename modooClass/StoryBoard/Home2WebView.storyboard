@@ -3736,7 +3736,7 @@
                                                                                                 </userDefinedRuntimeAttribute>
                                                                                             </userDefinedRuntimeAttributes>
                                                                                         </imageView>
-                                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nM4-MS-QzS">
+                                                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nM4-MS-QzS">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
                                                                                             <connections>
                                                                                                 <action selector="myProfileBtnClicked:" destination="Paf-XC-5zz" eventType="touchUpInside" id="EHh-II-kLo"/>
@@ -3816,7 +3816,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgc-g4-H1q">
+                                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgc-g4-H1q">
                                                                     <rect key="frame" x="307" y="21" width="75" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="5UR-Kc-NU7"/>
@@ -3824,7 +3824,7 @@
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                     <color key="tintColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <state key="normal" title="내 프로필"/>
+                                                                    <state key="normal" title="내 정보"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                             <real key="value" value="15"/>
@@ -6453,21 +6453,91 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeProfileInfoCell" id="ddM-VQ-aDg" customClass="HomeProfileTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="35" width="414" height="253"/>
+                                        <rect key="frame" x="0.0" y="35" width="414" height="293"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ddM-VQ-aDg" id="Tbe-It-DLm">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="253"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="293"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PmI-Om-EX1" userLabel="Most Top View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHW-RV-Efk">
+                                                            <rect key="frame" x="16" y="8" width="24" height="24"/>
+                                                            <state key="normal" image="thin_back_gray"/>
+                                                            <connections>
+                                                                <action selector="returnBackBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="Ucg-r5-o5e"/>
+                                                                <action selector="returnBackBtnClicked:" destination="Gqx-Gt-2XW" eventType="touchUpInside" id="z2g-XD-Qve"/>
+                                                            </connections>
+                                                        </button>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEp-Lv-LbJ" userLabel="User View">
+                                                            <rect key="frame" x="191" y="8" width="32" height="24"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply_user_default" translatesAutoresizingMaskIntoConstraints="NO" id="FCX-FA-eX7">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="24" id="K45-uE-4vC"/>
+                                                                        <constraint firstAttribute="height" constant="24" id="LXZ-hv-gUe"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="12"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                            <real key="value" value="0.5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                            <color key="value" name="BackColor_mainColor2"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2J-Fz-3J3" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                    <rect key="frame" x="32" y="12" width="0.0" height="0.0"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                                    <color key="textColor" red="0.28235294117647058" green="0.28235294117647058" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="typeAdapter">
+                                                                            <integer key="value" value="6"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontAdapter">
+                                                                            <integer key="value" value="2"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="colorAdapter">
+                                                                            <integer key="value" value="11"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="FCX-FA-eX7" firstAttribute="leading" secondItem="uEp-Lv-LbJ" secondAttribute="leading" id="4N1-a5-dhM"/>
+                                                                <constraint firstItem="Z2J-Fz-3J3" firstAttribute="leading" secondItem="FCX-FA-eX7" secondAttribute="trailing" constant="8" id="5VW-Nh-hUD"/>
+                                                                <constraint firstItem="FCX-FA-eX7" firstAttribute="top" secondItem="uEp-Lv-LbJ" secondAttribute="top" id="6YC-MK-19Q"/>
+                                                                <constraint firstItem="Z2J-Fz-3J3" firstAttribute="centerY" secondItem="uEp-Lv-LbJ" secondAttribute="centerY" id="T2u-TT-XvK"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Z2J-Fz-3J3" secondAttribute="trailing" id="cnD-JR-uUi"/>
+                                                                <constraint firstAttribute="bottom" secondItem="FCX-FA-eX7" secondAttribute="bottom" id="ouB-3k-d30"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="uEp-Lv-LbJ" firstAttribute="centerX" secondItem="PmI-Om-EX1" secondAttribute="centerX" id="2GR-kj-LXb"/>
+                                                        <constraint firstItem="uEp-Lv-LbJ" firstAttribute="centerY" secondItem="PmI-Om-EX1" secondAttribute="centerY" id="7W4-dy-HvL"/>
+                                                        <constraint firstItem="yHW-RV-Efk" firstAttribute="centerY" secondItem="PmI-Om-EX1" secondAttribute="centerY" id="A88-fO-kF5"/>
+                                                        <constraint firstItem="yHW-RV-Efk" firstAttribute="leading" secondItem="PmI-Om-EX1" secondAttribute="leading" constant="16" id="Ebs-e7-Kis"/>
+                                                        <constraint firstAttribute="height" constant="40" id="b1Y-gZ-y60"/>
+                                                    </constraints>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GAr-Od-lUC" userLabel="Bottom Line View">
-                                                    <rect key="frame" x="0.0" y="246" width="414" height="7"/>
+                                                    <rect key="frame" x="0.0" y="286" width="414" height="7"/>
                                                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="7" id="SNw-LK-Y4i"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FRG-GJ-WMh" userLabel="Level Background View" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="12" width="382" height="210"/>
+                                                    <rect key="frame" x="16" y="52" width="382" height="210"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMX-R3-Pbu" userLabel="Body View" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="210"/>
@@ -6687,16 +6757,16 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="Uex-44-dxQ" secondAttribute="trailing" id="1B0-ol-jaJ"/>
                                                                 <constraint firstItem="Uex-44-dxQ" firstAttribute="leading" secondItem="nMX-R3-Pbu" secondAttribute="leading" id="7le-fd-VOn"/>
-                                                                <constraint firstItem="dtM-md-ftx" firstAttribute="height" secondItem="Uex-44-dxQ" secondAttribute="height" id="Fs0-ZY-llJ"/>
+                                                                <constraint firstItem="Uex-44-dxQ" firstAttribute="top" secondItem="nMX-R3-Pbu" secondAttribute="top" id="D1T-9a-d64"/>
                                                                 <constraint firstItem="m4w-HD-hKb" firstAttribute="leading" secondItem="nMX-R3-Pbu" secondAttribute="leading" id="H9F-mu-KL9"/>
                                                                 <constraint firstAttribute="bottom" secondItem="m4w-HD-hKb" secondAttribute="bottom" id="KxS-Xz-dqh"/>
                                                                 <constraint firstItem="m4w-HD-hKb" firstAttribute="top" secondItem="dtM-md-ftx" secondAttribute="bottom" id="PsR-lN-Zt7"/>
                                                                 <constraint firstAttribute="trailing" secondItem="dtM-md-ftx" secondAttribute="trailing" id="Tc7-ct-xLM"/>
-                                                                <constraint firstItem="Uex-44-dxQ" firstAttribute="top" secondItem="nMX-R3-Pbu" secondAttribute="top" id="WFQ-Vm-gkf"/>
+                                                                <constraint firstItem="dtM-md-ftx" firstAttribute="height" secondItem="Uex-44-dxQ" secondAttribute="height" id="UzY-4D-ur2"/>
+                                                                <constraint firstItem="m4w-HD-hKb" firstAttribute="height" secondItem="Uex-44-dxQ" secondAttribute="height" id="eDV-2x-oCa"/>
                                                                 <constraint firstItem="dtM-md-ftx" firstAttribute="leading" secondItem="nMX-R3-Pbu" secondAttribute="leading" id="gQK-Jd-QAo"/>
                                                                 <constraint firstAttribute="trailing" secondItem="m4w-HD-hKb" secondAttribute="trailing" id="uku-S8-lLW"/>
                                                                 <constraint firstItem="dtM-md-ftx" firstAttribute="top" secondItem="Uex-44-dxQ" secondAttribute="bottom" id="yUk-Md-z8Q"/>
-                                                                <constraint firstItem="m4w-HD-hKb" firstAttribute="height" secondItem="Uex-44-dxQ" secondAttribute="height" id="zgK-0k-7Z4"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
@@ -6736,10 +6806,13 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="PmI-Om-EX1" firstAttribute="top" secondItem="Tbe-It-DLm" secondAttribute="top" id="0ln-nv-FfH"/>
+                                                <constraint firstItem="PmI-Om-EX1" firstAttribute="leading" secondItem="Tbe-It-DLm" secondAttribute="leading" id="8dp-Np-RTK"/>
                                                 <constraint firstItem="GAr-Od-lUC" firstAttribute="top" secondItem="FRG-GJ-WMh" secondAttribute="bottom" constant="24" id="BR6-ch-Doq"/>
                                                 <constraint firstAttribute="trailing" secondItem="FRG-GJ-WMh" secondAttribute="trailing" constant="16" id="F7k-6g-aZd"/>
+                                                <constraint firstItem="FRG-GJ-WMh" firstAttribute="top" secondItem="PmI-Om-EX1" secondAttribute="bottom" constant="12" id="Grh-Rl-bpP"/>
                                                 <constraint firstAttribute="bottom" secondItem="GAr-Od-lUC" secondAttribute="bottom" id="H5x-GR-zUJ"/>
-                                                <constraint firstItem="FRG-GJ-WMh" firstAttribute="top" secondItem="Tbe-It-DLm" secondAttribute="top" constant="12" id="Ofu-bj-FKy"/>
+                                                <constraint firstAttribute="trailing" secondItem="PmI-Om-EX1" secondAttribute="trailing" id="Kls-uh-hFK"/>
                                                 <constraint firstAttribute="trailing" secondItem="GAr-Od-lUC" secondAttribute="trailing" id="Qso-it-g0b"/>
                                                 <constraint firstItem="FRG-GJ-WMh" firstAttribute="leading" secondItem="Tbe-It-DLm" secondAttribute="leading" constant="16" id="bYB-yw-dLT"/>
                                                 <constraint firstItem="GAr-Od-lUC" firstAttribute="leading" secondItem="Tbe-It-DLm" secondAttribute="leading" id="rrX-Os-V4H"/>
@@ -6758,10 +6831,12 @@
                                             <outlet property="levelProgressLeftView" destination="1a8-pd-Y5v" id="01C-oZ-rxd"/>
                                             <outlet property="levelProgressRightView" destination="cfe-UV-gVW" id="4Xb-VL-l2E"/>
                                             <outlet property="levelProgressView" destination="1hA-RH-6LI" id="SR1-dI-6SB"/>
+                                            <outlet property="profileTitle" destination="Z2J-Fz-3J3" id="pnZ-Cc-aH5"/>
+                                            <outlet property="userPhoto" destination="FCX-FA-eX7" id="3d3-8F-qVb"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeProfileTabCell" id="q8K-vD-vas" customClass="HomeProfileTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="288" width="414" height="77"/>
+                                        <rect key="frame" x="0.0" y="328" width="414" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q8K-vD-vas" id="ArF-vn-UG0">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
@@ -7032,7 +7107,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeProfileMemberListCell" id="Cxi-J0-iCN" customClass="HomeProfileTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="365" width="414" height="194"/>
+                                        <rect key="frame" x="0.0" y="405" width="414" height="194"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cxi-J0-iCN" id="UOK-TV-Hbj">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="194"/>
@@ -7244,7 +7319,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeProfileTitleCell" id="XCa-aj-6yZ" customClass="HomeProfileTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="559" width="414" height="38"/>
+                                        <rect key="frame" x="0.0" y="599" width="414" height="38"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XCa-aj-6yZ" id="koK-yZ-rcc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="38"/>
@@ -7292,7 +7367,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeProfileContentCell" id="XLj-0k-neo" customClass="HomeProfileTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="597" width="414" height="57"/>
+                                        <rect key="frame" x="0.0" y="637" width="414" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XLj-0k-neo" id="vLI-un-46J">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
@@ -7389,7 +7464,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeProfileSwitchCell" id="itu-Kh-uFd" customClass="HomeProfileTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="654" width="414" height="56"/>
+                                        <rect key="frame" x="0.0" y="694" width="414" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="itu-Kh-uFd" id="jYh-EE-qkh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -7470,7 +7545,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeProfilePrivacyCell" rowHeight="150" id="ksi-nk-lKC" customClass="HomeProfileTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="710" width="414" height="150"/>
+                                        <rect key="frame" x="0.0" y="750" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ksi-nk-lKC" id="Efp-7Q-dmM">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
@@ -7579,7 +7654,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeProfileLogoutCell" id="VbX-9i-P5M" customClass="HomeProfileTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="860" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="900" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VbX-9i-P5M" id="eWl-Rh-chU">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -8068,11 +8143,11 @@
                                                             </constraints>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ija-5V-Vc7" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                                            <rect key="frame" x="329" y="18.5" width="69" height="15"/>
+                                                            <rect key="frame" x="355" y="18.5" width="43" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="xfu-X6-XQz"/>
                                                             </constraints>
-                                                            <state key="normal" title="프로필 수정"/>
+                                                            <state key="normal" title="내 정보"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="typeAdapter">
                                                                     <integer key="value" value="7"/>
@@ -9741,7 +9816,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kap-XH-8rg">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kap-XH-8rg">
                                 <rect key="frame" x="0.0" y="44" width="50" height="50"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="16" maxX="10" maxY="10"/>
                                 <state key="normal" image="back_left_white"/>
@@ -10149,17 +10224,17 @@
                                         <rect key="frame" x="248.5" y="0.0" width="82.5" height="49"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xqd-kI-oiH">
-                                                <rect key="frame" x="29.5" y="6.5" width="23.5" height="36"/>
+                                                <rect key="frame" x="25.5" y="6.5" width="31.5" height="36"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_iconV2" translatesAutoresizingMaskIntoConstraints="NO" id="kGI-Ra-35o">
-                                                        <rect key="frame" x="2" y="0.0" width="20" height="20"/>
+                                                        <rect key="frame" x="6" y="0.0" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="XgT-8R-eET"/>
                                                             <constraint firstAttribute="width" constant="20" id="g68-oG-A3S"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXe-j6-Ea3">
-                                                        <rect key="frame" x="0.0" y="25" width="23.5" height="11"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내프로필" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXe-j6-Ea3">
+                                                        <rect key="frame" x="0.0" y="25" width="31.5" height="11"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                                         <color key="textColor" name="FontColor_subColor2"/>
                                                         <nil key="highlightedColor"/>
@@ -11670,7 +11745,7 @@
             <size key="intrinsicContentSize" width="45" height="16"/>
         </designable>
         <designable name="Ija-5V-Vc7">
-            <size key="intrinsicContentSize" width="69" height="30"/>
+            <size key="intrinsicContentSize" width="43" height="30"/>
         </designable>
         <designable name="IkV-o4-a80">
             <size key="intrinsicContentSize" width="4" height="13.5"/>
@@ -11802,6 +11877,7 @@
         <designable name="Xzj-aT-beJ">
             <size key="intrinsicContentSize" width="14" height="13.5"/>
         </designable>
+        <designable name="Z2J-Fz-3J3"/>
         <designable name="ZKX-1I-XGG">
             <size key="intrinsicContentSize" width="29.5" height="20.5"/>
         </designable>
