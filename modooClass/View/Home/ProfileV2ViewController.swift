@@ -12,6 +12,7 @@ import Firebase
 class ProfileV2ViewController: BaseViewController {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var backBtn: UIButton!
     /** **친구 소개 숨김 유무 */
     var pageOpen:Bool = false
     /** **친구 소개 텍스트뷰 */
@@ -41,6 +42,11 @@ class ProfileV2ViewController: BaseViewController {
         self.ProfileList()
         tableView.addSubview(refreshControl)
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadActiveList), name: NSNotification.Name(rawValue: "updateProfileActiveList"), object: nil)
+        if HomeMain2Manager.shared.pilotAppMain.results?.user_id ?? 0 == self.user_id {
+            self.backBtn.isHidden = true
+        }else{
+            self.backBtn.isHidden = false
+        }
     }
     /** **뷰가 나타나기 시작 할 때 타는 메소드 */
     override func viewWillAppear(_ animated: Bool) {
@@ -768,14 +774,13 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
             let cell:ProfileV2TableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfilePhotoTableViewCell", for: indexPath) as! ProfileV2TableViewCell
             
             if self.profileModel != nil{
-            cell.collectionTag = 0
+                cell.collectionTag = 0
                 cell.userImg.sd_setImage(with: URL(string: "\(self.profileModel?.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 cell.iconImg.sd_setImage(with: URL(string: "\(self.profileModel?.results?.user_info?.level_info?.level_icon ?? "")"))
                 cell.userBackgroundImg.sd_setImage(with: URL(string: "\(self.profileModel?.results?.user_info?.level_info?.level_icon ?? "")"))
-            
-            let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-            cell.userImg.addGestureRecognizer(pictureTap)
-            cell.user_id = self.profileModel?.results?.user_info?.user_id ?? 0
+                let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+                cell.userImg.addGestureRecognizer(pictureTap)
+                cell.user_id = self.profileModel?.results?.user_info?.user_id ?? 0
                 cell.user_info = self.profileModel?.results?.user_info
 //                cell.imageCollectionView.reloadData()
             cell.callColection()

@@ -25,11 +25,6 @@ class PopupShowViewController: UIViewController {
         super.viewDidLoad()
         
         self.popupImg.sd_setImage(with: URL(string: "\(UserManager.shared.userInfo.results?.event_image ?? "")"))
-        if UserManager.shared.userInfo.results?.event_text ?? "" != "" {
-            self.linkBtn.setTitle("\(UserManager.shared.userInfo.results?.event_text ?? "얼리버드 클래스 보기")", for: .normal)
-        } else {
-            self.linkBtn.setTitle("얼리버드 클래스 보기", for: .normal)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,22 +42,17 @@ class PopupShowViewController: UIViewController {
     }
     
     @IBAction func linkBtnClicked(_ sender: UIButton) {
-        let url = UserManager.shared.userInfo.results?.event_link ?? ""
-        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-        newViewController.url = url
-        
-        self.navigationController?.pushViewController(newViewController, animated: true)
-    
+        NotificationCenter.default.post(name: NSNotification.Name("openEventPage"), object: nil)
+        self.dismiss(animated: false, completion: nil)
     }
    
     @IBAction func openLaterBtnClicked(_ sender: UIButton) {
-        
+        let currentTime = Date()
+        UserDefaultSetting.setUserDefaultsObject(currentTime, forKey: "lastDate")
         self.dismiss(animated: true, completion: nil)
-   
     }
   
     @IBAction func closeBtnClicked(_ sender: UIButton) {
-
         self.dismiss(animated: true, completion: nil)
     }
   

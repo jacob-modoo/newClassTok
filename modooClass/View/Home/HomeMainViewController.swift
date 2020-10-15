@@ -52,17 +52,13 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         
         FeedApi.shared.event_list(success: { result in
-            
             if result.code! == "200"{
                 FeedDetailManager.shared.eventModel = result
-                
             }else{
-                
             }
         }) { error in
-//            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
-//
-//            })
+            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+            })
         }
         
         tableView.delegate = self
@@ -131,60 +127,6 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         self.isShown = true
     }
     
-    func tabCheck(index:Int){
-        self.tabImg1.image = UIImage(named: "interest_iconV2")
-        self.tabImg2.image = UIImage(named: "class_iconV2")
-        self.tabImg3.image = UIImage(named: "tok_iconV2")
-        self.tabImg4.image = UIImage(named: "profile_iconV2")
-        self.tabImg5.image = UIImage(named: "add_btn")
-        self.tabLbl1.textColor = UIColor(hexString:"#767676")
-        self.tabLbl2.textColor = UIColor(hexString:"#767676")
-        self.tabLbl3.textColor = UIColor(hexString:"#767676")
-        self.tabLbl4.textColor = UIColor(hexString:"#767676")
-        if index == 0{
-            self.pageTitle.text = "클래스"
-            self.tabImg1.image = UIImage(named: "interest_iconV2_active")
-            self.tabLbl1.textColor = UIColor(hexString:"#1a1a1a")
-            self.searchBtn.isHidden = true
-        }else if index == 1{
-            self.pageTitle.text = "내강좌"
-            self.tabImg2.image = UIImage(named: "class_iconV2_Active")
-            self.tabLbl2.textColor = UIColor(hexString:"#1a1a1a")
-            self.searchBtn.isHidden = false
-        }else if index == 2{
-            self.pageTitle.text = "새소식"
-            self.tabImg3.image = UIImage(named: "tok_iconV2_active")
-            self.tabLbl3.textColor = UIColor(hexString:"#1a1a1a")
-            self.searchBtn.isHidden = false
-        }else if index == 3{
-            self.pageTitle.text = "내프로필"
-            self.tabImg4.image = UIImage(named: "profile_iconV2_active")
-            self.tabLbl4.textColor = UIColor(hexString:"#1a1a1a")
-            self.searchBtn.isHidden = false
-        }else{
-            
-        }
-    }
-    
-    func openPopupVC(){
-        let newRootVC = homeViewStoryboard.instantiateViewController(withIdentifier: "PopupShowViewController") as! PopupShowViewController
-
-        let lastEventSeen = UserDefaults.standard.object(forKey: "lastDate") as? Date ?? Date.distantPast
-        let currentTime = Date() //newRootVC.popUpOpenDate
-    
-        if Calendar.current.compare(currentTime, to: lastEventSeen, toGranularity: .day) == .orderedDescending {
-            UserDefaultSetting.setUserDefaultsObject(currentTime, forKey: "lastDate")
-            let nc = UINavigationController(rootViewController: newRootVC)
-            nc.navigationBar.isHidden = true
-            navigationController?.present(nc, animated: true)
-            FeedApi.shared.popupTracking(hash_id: "\(String(describing: UserManager.shared.userInfo.results?.user?.id))".md5(), success: { result in
-                print("event_popup API POST request successed!")
-            }) { error in
-                print(error ?? "Error occured while POST request to event_popup API")
-            }
-        }
-    }
-    
     
     @IBAction func tabBtnClicked(_ sender: UIButton) {
         if let childVC = self.children.first as? HMPageViewController {
@@ -228,20 +170,17 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             onClickView()
         } else {
             window?.bringSubviewToFront(storyView)
-            
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickView))
-            self.view.addGestureRecognizer(tapGesture)
+            self.transparentView.addGestureRecognizer(tapGesture)
             transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
             transparentView.frame = CGRect(x: 0, y: 0, width: self.storyView.frame.width, height: self.storyView.frame.height)
             window?.addSubview(transparentView)
             transparentView.snp.makeConstraints { (make) in
                 make.top.bottom.leading.trailing.equalTo(self.storyView)
             }
-            
             let screenSize = self.storyView.frame.size
             tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.height)
             window?.addSubview(tableView)
-            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseOut, animations: {
                 self.transparentView.alpha = 0.5
                 self.tabImg5.transform = CGAffineTransform(rotationAngle: .pi/4)
@@ -251,6 +190,25 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    @IBAction func messageBtnClicked(_ sender: UIButton) {
+        print("messageBtnClicked")
+        let newViewController = self.chattingStoryboard.instantiateViewController(withIdentifier: "ChattingWebViewController") as! ChattingWebViewController
+        UserDefaultSetting.setUserDefaultsInteger(0, forKey: chattingBadgeValue)
+        APPDELEGATE?.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    @IBAction func searchBtnClicked(_ sender: UIButton) {
+        print("searchBtnClicked")
+        let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedbackSearchViewController") as! FeedbackSearchViewController
+        APPDELEGATE?.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    @IBAction func alarmBtnClicked(_ sender: UIButton) {
+        print("alarmBtnClicked")
+        let newViewController = alarmStoryboard.instantiateViewController(withIdentifier: "AlarmViewController") as! AlarmViewController
+        UserDefaultSetting.setUserDefaultsInteger(0, forKey: alarmBadgeValue)
+        APPDELEGATE?.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
+    }
     
     @objc func onClickView() {
         let screenSize = view.bounds.size
@@ -294,24 +252,76 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    @IBAction func messageBtnClicked(_ sender: UIButton) {
-        print("messageBtnClicked")
-        let newViewController = self.chattingStoryboard.instantiateViewController(withIdentifier: "ChattingWebViewController") as! ChattingWebViewController
-        UserDefaultSetting.setUserDefaultsInteger(0, forKey: chattingBadgeValue)
-        APPDELEGATE?.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
+//    @objc func openEventPage(notification: Notification){
+//        let url = UserManager.shared.userInfo.results?.event_link ?? ""
+//        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+//        newViewController.url = url
+//        self.navigationController?.pushViewController(newViewController, animated: true)
+//    }
+    
+    func tabCheck(index:Int){
+        self.tabImg1.image = UIImage(named: "interest_iconV2")
+        self.tabImg2.image = UIImage(named: "class_iconV2")
+        self.tabImg3.image = UIImage(named: "tok_iconV2")
+        self.tabImg4.image = UIImage(named: "profile_iconV2")
+        self.tabImg5.image = UIImage(named: "add_btn")
+        self.tabLbl1.textColor = UIColor(hexString:"#767676")
+        self.tabLbl2.textColor = UIColor(hexString:"#767676")
+        self.tabLbl3.textColor = UIColor(hexString:"#767676")
+        self.tabLbl4.textColor = UIColor(hexString:"#767676")
+        if index == 0{
+            self.pageTitle.text = "클래스"
+            self.tabImg1.image = UIImage(named: "interest_iconV2_active")
+            self.tabLbl1.textColor = UIColor(hexString:"#1a1a1a")
+            self.searchBtn.isHidden = true
+        }else if index == 1{
+            self.pageTitle.text = "내강좌"
+            self.tabImg2.image = UIImage(named: "class_iconV2_Active")
+            self.tabLbl2.textColor = UIColor(hexString:"#1a1a1a")
+            self.searchBtn.isHidden = false
+        }else if index == 2{
+            self.pageTitle.text = "새소식"
+            self.tabImg3.image = UIImage(named: "tok_iconV2_active")
+            self.tabLbl3.textColor = UIColor(hexString:"#1a1a1a")
+            self.searchBtn.isHidden = false
+        }else if index == 3{
+            self.pageTitle.text = "내프로필"
+            self.tabImg4.image = UIImage(named: "profile_iconV2_active")
+            self.tabLbl4.textColor = UIColor(hexString:"#1a1a1a")
+            self.searchBtn.isHidden = false
+        }else{
+            
+        }
     }
     
-    @IBAction func searchBtnClicked(_ sender: UIButton) {
-        print("searchBtnClicked")
-        let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedbackSearchViewController") as! FeedbackSearchViewController
-        APPDELEGATE?.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
-    }
-    
-    @IBAction func alarmBtnClicked(_ sender: UIButton) {
-        print("alarmBtnClicked")
-        let newViewController = alarmStoryboard.instantiateViewController(withIdentifier: "AlarmViewController") as! AlarmViewController
-        UserDefaultSetting.setUserDefaultsInteger(0, forKey: alarmBadgeValue)
-        APPDELEGATE?.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
+    func openPopupVC(){
+        let newRootVC = homeViewStoryboard.instantiateViewController(withIdentifier: "PopupShowViewController") as! PopupShowViewController
+        var lastEventSeen = UserDefaults.standard.object(forKey: "lastDate") as? Date ?? Date.distantPast
+        let defaultTime = DateComponents(calendar: Calendar.current, year: 2000, month: 1, day: 1)
+        let later = Calendar.current.date(byAdding: .day, value: 7, to: lastEventSeen)
+        let currentTime = Date()
+        
+        if lastEventSeen == defaultTime.date {
+            let nc = UINavigationController(rootViewController: newRootVC)
+            nc.navigationBar.isHidden = true
+            navigationController?.present(nc, animated: true)
+            FeedApi.shared.popupTracking(hash_id: "\(String(describing: UserManager.shared.userInfo.results?.user?.id))".md5(), success: { result in
+            }) { error in
+            }
+        } else {
+            if currentTime >= later! {
+                let nc = UINavigationController(rootViewController: newRootVC)
+                nc.navigationBar.isHidden = true
+                navigationController?.present(nc, animated: true)
+                lastEventSeen = defaultTime.date! //lastEvenSeen time is changed to defaultTime
+                UserDefaultSetting.setUserDefaultsObject(lastEventSeen, forKey: "lastDate")
+                FeedApi.shared.popupTracking(hash_id: "\(String(describing: UserManager.shared.userInfo.results?.user?.id))".md5(), success: { result in
+                }) { error in
+                }
+            } else {
+                print("PopUp event will be shown after 7 days!!!")
+            }
+        }
     }
     
     func versionCheck(){

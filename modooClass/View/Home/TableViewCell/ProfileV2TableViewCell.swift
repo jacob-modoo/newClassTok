@@ -107,6 +107,7 @@ class ProfileV2TableViewCell: UITableViewCell {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var pagecontroller: UIPageControl!
     @IBOutlet weak var userPhotoImg: UIImageView!
+    @IBOutlet weak var backBtn: UIButton!
     
 //    ProfileV2ManagerTitleCell
     @IBOutlet weak var managerTitle: UIFixedLabel!

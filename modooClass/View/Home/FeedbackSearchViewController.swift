@@ -517,11 +517,11 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                         cell.reviewAvgCount.isHidden = true
                     }
                     cell.className.text = "\(searchListArr[row].class_name ?? "")"
-//                    cell.classSalePer.text = "[\(searchListArr[row].price_sale ?? "")%]"
-//                    cell.classSalePrice.text = "월 \(searchList?.results?.list_arr[row].payment_price ?? "")원"
-                    cell.classSalePrice.text = "월 49,000원"
-//                    cell.classOriginalPrice.attributedText = strikeline(str: "\(searchListArr[row].original_price ?? "")")
-//                    cell.classOriginalPrice.text = "\(searchList?.results?.list_arr[row].original_price ?? "")"
+                    cell.classSalePer.text = "[\(searchListArr[row].price_sale ?? "")%]"
+                    cell.classSalePrice.text = "월 \(searchList?.results?.list_arr[row].payment_price ?? "")원"
+//                    cell.classSalePrice.text = "월 49,000원"
+                    cell.classOriginalPrice.attributedText = strikeline(str: "\(searchListArr[row].original_price ?? "")")
+                    cell.classOriginalPrice.text = "\(searchList?.results?.list_arr[row].original_price ?? "")"
                     cell.coachPhoto.sd_setImage(with: URL(string: "\(searchListArr[row].coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                     if searchListArr[row].class_have_status ?? "N" == "N"{
                         cell.scrapBtn.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)

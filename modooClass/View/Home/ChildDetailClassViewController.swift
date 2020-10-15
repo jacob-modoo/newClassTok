@@ -818,32 +818,16 @@ class ChildDetailClassViewController: UIViewController {
     }
     
     /**
-     - will update the count of likes in comment section [8] in tableView
+     - will update the count of likes in comment section [10] in tableView
      */
 //    @objc func updateLikeCount(notification: Notification) {
-//        guard let preHave = notification.userInfo?["preHave"] as? String else { return }
-////        guard let commentLikeCount = notification.userInfo?["commentLikeCount"] as? Int else { return }
-//
-//        for i in 0..<replyArray!.count {
-//            if replyArray?[i].like_me != preHave { //|| replyArray?[i].like != commentLikeCount{
-//                replyArray?[i].like_me = preHave
-////                replyArray?[i].like = commentLikeCount
-//                let indexPath = IndexPath(row: i, section: 8)
-//                if let visibleIndexPaths = self.tableView.indexPathsForVisibleRows?.firstIndex(of: indexPath as IndexPath) {
-//                    if visibleIndexPaths != NSNotFound {
-//                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
-//                    }
-//                }
-//            } else {
-//                replyArray?[i].like_me = preHave
-////                replyArray?[i].like = commentLikeCount
-//            }
+//        if (notification.userInfo as NSDictionary?) != nil {
+//            let sender = notification.userInfo?["btnTag"] as! UIButton
+//            print("this is tag value: \(sender.tag)")
+//            haveSave(sender: sender)
 //        }
-//        print("post recieved!\n\(replyArray?.count ?? 999)\nlikeIsEqual: \(String(describing: replyArray?[0].like))\nlikeMeIsEqual: \(String(describing: replyArray?[0].like_me))")
-////        let indexSet: IndexSet = [8]
-////        self.tableView.reloadSections(indexSet, with: .automatic)
 //    }
-//
+
     @objc func chattingCheck(notification:Notification){
         guard let chattingUrl = notification.userInfo?["chattingUrl"] as? String else { return }
         videoStop()

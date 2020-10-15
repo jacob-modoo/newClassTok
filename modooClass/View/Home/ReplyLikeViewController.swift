@@ -75,6 +75,9 @@ class ReplyLikeViewController: UIViewController {
         let row = sender.tag/10000
         let tag = sender.tag%10000
         
+//        let btnTag:[String:UIButton] = ["btnTag":sender]
+        
+        
         var type = ""
         if tag == 1 {
             type = "delete"
@@ -89,23 +92,24 @@ class ReplyLikeViewController: UIViewController {
             if self.viewCheck == "childDetail" || self.viewCheck == "replyDetail" {
                 FeedApi.shared.replyCommentLike(comment_id: self.replyArray?[row].id ?? 0, method_type: type,success: { [unowned self] result in
                       
-                if tag == 1{
-                    cell.moveBtn.layer.borderWidth = 1
-                    cell.moveBtn.layer.borderColor = UIColor(hexString: "#EFEFEF").cgColor
-                    cell.moveBtn.setImage(UIImage(named: "likeComment"), for: .normal)
-                    cell.moveBtn.backgroundColor = .white
-                    cell.moveBtn.tag = row*10000 + 2
-                    self.replyArray?[row].like_me = "N"
-                    self.replyArray?[row].like = self.replyArray?[row].like ?? 0 - 1
-                }else{
-                    cell.moveBtn.tag = row*10000 + 1
-                    self.replyArray?[row].like_me = "Y"
-                    cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
-                    cell.moveBtn.setImage(UIImage(named: "likeCancellText"), for: .normal)
-                    self.replyArray?[row].like = self.replyArray?[row].like ?? 0 + 1
-                }
-//                    let userInfo = ["preHave":self.replyArray?[sender.tag].like_me ?? ""] as [String : Any]
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLikeCount"), object: nil, userInfo: userInfo)
+                    if tag == 1{
+//                        NotificationCenter.default.post(name: NSNotification.Name("updateLikeCount"), object: nil, userInfo: btnTag)
+                        cell.moveBtn.layer.borderWidth = 1
+                        cell.moveBtn.layer.borderColor = UIColor(hexString: "#EFEFEF").cgColor
+                        cell.moveBtn.setImage(UIImage(named: "likeComment"), for: .normal)
+                        cell.moveBtn.backgroundColor = .white
+                        cell.moveBtn.tag = row*10000 + 2
+                        self.replyArray?[row].like_me = "N"
+                        self.replyArray?[row].like = self.replyArray?[row].like ?? 0 - 1
+                    }else{
+//                        NotificationCenter.default.post(name: NSNotification.Name("updateLikeCount"), object: nil, userInfo: btnTag)
+                        cell.moveBtn.tag = row*10000 + 1
+                        self.replyArray?[row].like_me = "Y"
+                        cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
+                        cell.moveBtn.setImage(UIImage(named: "likeCancellText"), for: .normal)
+                        self.replyArray?[row].like = self.replyArray?[row].like ?? 0 + 1
+                    }
+
                 }) { error in
                 }
                 
