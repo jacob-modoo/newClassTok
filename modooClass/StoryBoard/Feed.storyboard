@@ -3,7 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -8526,7 +8526,7 @@
                                                             <rect key="frame" x="185" y="17" width="174" height="86"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQl-Lf-uZm" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="5" width="174" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="5.0000000000000009" width="174" height="13.333333333333336"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -8543,7 +8543,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4T-g2-b6V" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="24.999999999999996" width="174" height="33.666666666666657"/>
+                                                                    <rect key="frame" x="0.0" y="23.333333333333339" width="174" height="33.666666666666657"/>
                                                                     <string key="text">근육통을 이겨내자
 근육통을 이겨내자</string>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
@@ -8562,7 +8562,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미션완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbq-ZR-2OK" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="66" width="43.333333333333336" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="66" width="41.666666666666664" height="15"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                                     <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -8579,7 +8579,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재생 중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhk-g8-UfH" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="67.333333333333343" y="66" width="36" height="15"/>
+                                                                    <rect key="frame" x="65.666666666666657" y="66" width="34.333333333333343" height="15"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                                     <color key="textColor" red="0.078431372549019607" green="0.82352941176470584" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -8596,7 +8596,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재생 중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyN-Y4-cZ0" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="66" width="36" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="66" width="34.333333333333336" height="15"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                                     <color key="textColor" red="0.078431372549019607" green="0.82352941176470584" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -8613,7 +8613,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play_check" translatesAutoresizingMaskIntoConstraints="NO" id="RKW-aJ-0qA">
-                                                                    <rect key="frame" x="43.333333333333343" y="59.666666666666671" width="24" height="24"/>
+                                                                    <rect key="frame" x="41.666666666666657" y="59.666666666666671" width="24" height="24"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="24" id="gid-eZ-J8W"/>
                                                                         <constraint firstAttribute="height" constant="24" id="tQu-Y6-MX0"/>
@@ -8753,7 +8753,7 @@
                                                             <rect key="frame" x="185" y="17" width="174" height="86"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuL-Hw-8tm" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="5" width="15.666666666666666" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="5.0000000000000009" width="13.666666666666666" height="13.333333333333336"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -8770,14 +8770,14 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FreeBadge" translatesAutoresizingMaskIntoConstraints="NO" id="hYI-D2-2EV">
-                                                                    <rect key="frame" x="20.666666666666657" y="5" width="30" height="15"/>
+                                                                    <rect key="frame" x="18.666666666666657" y="4.3333333333333321" width="30" height="15"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="30" id="8Ke-mE-GQL"/>
                                                                         <constraint firstAttribute="height" constant="15" id="AmW-AD-ZzO"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1MV-IA-Dcp" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="24.999999999999996" width="174" height="33.666666666666657"/>
+                                                                    <rect key="frame" x="0.0" y="23.333333333333339" width="174" height="33.666666666666657"/>
                                                                     <string key="text">근육통을 이겨내자
 근육통을 이겨내자</string>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
@@ -8796,7 +8796,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재생 중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGz-xh-Cct" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="66" width="36" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="66" width="34.333333333333336" height="15"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                                     <color key="textColor" red="0.078431372550000003" green="0.82352941180000006" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -12792,6 +12792,7 @@
         <designable name="1pP-EX-LW4">
             <size key="intrinsicContentSize" width="100.66666666666667" height="17"/>
         </designable>
+        <designable name="1wf-5q-QQr"/>
         <designable name="1zI-IT-vXI">
             <size key="intrinsicContentSize" width="55.333333333333336" height="31"/>
         </designable>
@@ -13047,6 +13048,7 @@
         <designable name="Yrg-eR-5gf">
             <size key="intrinsicContentSize" width="35" height="15"/>
         </designable>
+        <designable name="Yyk-GK-AOT"/>
         <designable name="ZTr-oj-PKN">
             <size key="intrinsicContentSize" width="47" height="21.666666666666668"/>
         </designable>
@@ -13107,6 +13109,7 @@
         <designable name="hRu-7o-X3m">
             <size key="intrinsicContentSize" width="52.666666666666664" height="13.333333333333334"/>
         </designable>
+        <designable name="haW-W6-1ya"/>
         <designable name="hpo-Io-Eza">
             <size key="intrinsicContentSize" width="29" height="17"/>
         </designable>

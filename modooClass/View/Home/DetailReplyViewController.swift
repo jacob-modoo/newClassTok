@@ -67,6 +67,8 @@ class DetailReplyViewController: UIViewController {
     var keyBoardSize:CGRect?
     /** **키보드위에 올리는 뷰 */
     var customView: UIView!
+    /** *for sharing comment row*/
+    var tagForLikeBtn = 0
     private let imageView = UIImageView()
     /** **미션 이미지 */
     private var image: UIImage?
@@ -126,6 +128,8 @@ class DetailReplyViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.classDetailFriend), name: NSNotification.Name(rawValue: "replyDetailFriend"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCountMain), name: NSNotification.Name(rawValue: "updateLikeCountMain"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCountSub), name: NSNotification.Name(rawValue: "updateLikeCountSub"), object: nil)
         
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         
@@ -201,7 +205,6 @@ class DetailReplyViewController: UIViewController {
     /** **will hide the keyboard when view is tapped */
     @objc func hideKeyboard() {
         view.endEditing(true)
-        print("view is tapped!")
     }
     
     /**
@@ -381,15 +384,13 @@ class DetailReplyViewController: UIViewController {
     
     @IBAction func firstLikeCountBtnClicked(_ sender: UIButton) {
         let likeValue = list?.results?.like_me ?? ""
-        
         if likeValue == "N"  {
             self.haveFirstSave(sender: sender)
         } else {
-            
             let nextView = feedStoryboard.instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
             nextView.modalPresentationStyle = .overFullScreen
             nextView.comment_id = comment_id
-            nextView.viewCheck = "replyDetail"
+            nextView.viewCheck = "replyDetailMain"
             self.present(nextView, animated:true,completion: nil)
         }
     }
@@ -398,15 +399,15 @@ class DetailReplyViewController: UIViewController {
     @IBAction func secondLikeCountBtnClicked(_ sender: UIButton) {
         let row = sender.tag / 10000
         let likeValue = replyArray[row].like_me ?? ""
-        let comment_id = replyArray[row].id ?? 0
+        let subComment_id = replyArray[row].id ?? 0
         if likeValue == "N"  {
             self.haveSecondSave(sender: sender)
         } else {
-            
             let nextView = feedStoryboard.instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
             nextView.modalPresentationStyle = .overFullScreen
-            nextView.comment_id = comment_id
-            nextView.viewCheck = "replyDetail"
+            nextView.comment_id = subComment_id
+            nextView.viewCheck = "replyDetailSub"
+            self.tagForLikeBtn = sender.tag
             self.present(nextView, animated:true,completion: nil)
         }
     }
@@ -469,6 +470,32 @@ class DetailReplyViewController: UIViewController {
         if self.customView != nil {
             self.customView.removeFromSuperview()
             self.customView = nil
+        }
+    }
+    
+    /**
+     - will update the count of likes in comment section [0] in tableView
+     */
+    @objc func updateLikeCountMain(notification: Notification) {
+        if (notification.userInfo as NSDictionary?) != nil {
+            let sender = notification.userInfo?["btnTag"] as! UIButton
+            haveFirstSave(sender: sender)
+        }
+    }
+    
+    /**
+     - will update the count of likes in comment section [1] in tableView
+     */
+    @objc func updateLikeCountSub(notification: Notification) {
+        if (notification.userInfo as NSDictionary?) != nil {
+            let sender = notification.userInfo?["btnTag"] as! UIButton
+            let likeGubun = notification.userInfo?["likeGubun"] as! Int
+            sender.tag = self.tagForLikeBtn
+            if likeGubun != 1 {
+                sender.tag += 1
+            }
+            print("second haveSave tag : \(sender.tag)")
+            haveSecondSave(sender: sender)
         }
     }
     
@@ -626,15 +653,15 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                
                 if list?.results?.like_me ?? "" == "Y" {
                     cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
-                    cell.likeBtn.tag = (list?.results!.id)!*10000 + 1
-                    cell.likeCountBtn.tag = (list?.results!.id)!*10000 + 1
+                    cell.likeBtn.tag = self.tagForLikeBtn*10000 + 1
+                    cell.likeCountBtn.tag = self.tagForLikeBtn*10000 + 1
                     cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
                     cell.likeCountBtn.setImage(UIImage(named: "heart_red"), for: .normal)
                     cell.likeCountBtn.setTitle(" \(list?.results?.like ?? 0)", for: .normal)
                 }else{
                     cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
-                    cell.likeBtn.tag = (list?.results!.id)!*10000 + 2
-                    cell.likeCountBtn.tag = (list?.results!.id)!*10000 + 2
+                    cell.likeBtn.tag = self.tagForLikeBtn*10000 + 2
+                    cell.likeCountBtn.tag = self.tagForLikeBtn*10000 + 2
                     cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
                     cell.likeCountBtn.setImage(UIImage(named: "heart_grey"), for: .normal)
                     cell.likeCountBtn.setTitle(" \(list?.results?.like ?? 0)", for: .normal)
@@ -734,9 +761,6 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.moreBtn.isHidden = true
                 }
                 
-//                if replyArray[row].like ?? 0 > 0 {
-//                   cell.likeCountBtn.setTitle(" \(replyArray[row].like ?? 0)", for: .normal)
-//                }
                 if replyArray[row].content ?? "" != "" {
                     cell.replyContentTextView.text = replyArray[row].content ?? ""
                     cell.replyContentTextView.textContainer.lineBreakMode = .byTruncatingTail
@@ -766,7 +790,6 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                 
                 cell.friendProfileBtn.tag = row//replyArray[row].user_id ?? 0
                 cell.friendProfile2Btn.tag = row//replyArray[row].user_id ?? 0
-                //cell.likeCountBtn.tag = replyArray[row].id ?? 0
             }else{
                 cell = tableView.dequeueReusableCell(withIdentifier:  "DetailReplySecond1TableViewCell", for: indexPath) as! DetailReplyTableViewCell
             }
@@ -865,46 +888,35 @@ extension DetailReplyViewController {
     func haveFirstSave(sender:UIButton){
         let likeGubun = sender.tag % 10000 // 1 : Y delete  2 : N post
         let row = sender.tag / 10000
+        let btnTag:[String:Any] = ["btnTag":sender, "likeGubun":likeGubun]
+        NotificationCenter.default.post(name: NSNotification.Name("updateLikeCount"), object: nil, userInfo: btnTag)
         
-
-        var type = ""
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        let cell = self.tableView.cellForRow(at: selectedIndexPath) as! DetailReplyTableViewCell
         
         if likeGubun == 1{
-            type = "delete"
+            cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
+            cell.likeBtn.tag = row*10000 + 2
+            cell.likeCountBtn.tag = row*10000 + 2
+            self.list?.results?.like_me = "N"
+            self.list?.results?.like = (self.list?.results?.like ?? 0)-1
+            cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
+            cell.likeCountBtn.setImage(UIImage(named: "heart_grey"), for: .normal)
+            cell.likeCountBtn.setTitle(" \(self.list?.results?.like ?? 0)", for: .normal)
+            
         }else{
-            type = "post"
+            cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
+            cell.likeBtn.tag = row*10000 + 1
+            cell.likeCountBtn.tag = row*10000 + 1
+            self.list?.results?.like_me = "Y"
+            self.list?.results?.like = (self.list?.results?.like ?? 0)+1
+            cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
+            cell.likeCountBtn.setImage(UIImage(named: "heart_red"), for: .normal)
+            cell.likeCountBtn.setTitle(" \(self.list?.results?.like ?? 0)", for: .normal)
         }
-        FeedApi.shared.replyCommentLike(comment_id: comment_id, method_type: type,success: { result in
-            let selectedIndexPath = IndexPath(item: 0, section: 0)
-            let cell = self.tableView.cellForRow(at: selectedIndexPath) as! DetailReplyTableViewCell
-            if result.code == "200"{
-                if likeGubun == 1{
-                    cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
-                    cell.likeBtn.tag = row*10000 + 2
-                    cell.likeCountBtn.tag = row*10000 + 2
-                    self.list?.results?.like_me = "N"
-                    self.list?.results?.like = (self.list?.results?.like ?? 0)-1
-                    cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "heart_grey"), for: .normal)
-                    cell.likeCountBtn.setTitle(" \(self.list?.results?.like ?? 0)", for: .normal)
-                    
-                }else{
-                    cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
-                    cell.likeBtn.tag = row*10000 + 1
-                    cell.likeCountBtn.tag = row*10000 + 1
-                    self.list?.results?.like_me = "Y"
-                    self.list?.results?.like = (self.list?.results?.like ?? 0)+1
-                    cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "heart_red"), for: .normal)
-                    cell.likeCountBtn.setTitle(" \(self.list?.results?.like ?? 0)", for: .normal)
-                }
-                self.list?.results?.like = result.results?.like ?? 0
-  //              let selectedIndexPath = IndexPath(item:0 , section: 0)
-    //            self.tableView.reloadRows(at: [selectedIndexPath], with: .none)
-                //sender.isUserInteractionEnabled = true
-            }
-        }) { error in
-
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            sender.isUserInteractionEnabled = true
         }
     }
     
@@ -952,10 +964,8 @@ extension DetailReplyViewController {
                     cell.likeCountBtn.setImage(UIImage(named: "heart_red"), for: .normal)
                     cell.likeCountBtn.setTitle(" \(self.replyArray[row].like ?? 0)", for: .normal)
                 }
-
                 self.replyArray[row].like = result.results?.like ?? 0
                 DispatchQueue.main.async {
-                    
                     self.tableView.reloadRows(at: [selectedIndexPath], with: .none)
                     sender.isUserInteractionEnabled = true
                 }

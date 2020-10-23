@@ -36,6 +36,7 @@ class ReplyLikeViewController: UIViewController {
     var comment_str_id = ""
     var page = 1
     var friend_id_row = 0
+    var childPageRow = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,65 +75,37 @@ class ReplyLikeViewController: UIViewController {
     @IBAction func moveBtnClicked(_ sender: UIButton) {
         let row = sender.tag/10000
         let tag = sender.tag%10000
-        
-//        let btnTag:[String:UIButton] = ["btnTag":sender]
-        
-        
-        var type = ""
-        if tag == 1 {
-            type = "delete"
-        }else{
-            type = "post"
-        }
+        let btnTag:[String:Any] = ["btnTag":sender, "likeGubun":tag]
           
-           if UserManager.shared.userInfo.results?.user?.id == self.friendArr[row].user_id ?? 0 {
+        if UserManager.shared.userInfo.results?.user?.id == self.friendArr[row].user_id ?? 0 {
             let selectedIndexPath = IndexPath(item:row , section: 0)
             let cell = self.tableView.cellForRow(at: selectedIndexPath) as! ReplyLikeTableViewCell
             
-            if self.viewCheck == "childDetail" || self.viewCheck == "replyDetail" {
-                FeedApi.shared.replyCommentLike(comment_id: self.replyArray?[row].id ?? 0, method_type: type,success: { [unowned self] result in
-                      
-                    if tag == 1{
-//                        NotificationCenter.default.post(name: NSNotification.Name("updateLikeCount"), object: nil, userInfo: btnTag)
-                        cell.moveBtn.layer.borderWidth = 1
-                        cell.moveBtn.layer.borderColor = UIColor(hexString: "#EFEFEF").cgColor
-                        cell.moveBtn.setImage(UIImage(named: "likeComment"), for: .normal)
-                        cell.moveBtn.backgroundColor = .white
-                        cell.moveBtn.tag = row*10000 + 2
-                        self.replyArray?[row].like_me = "N"
-                        self.replyArray?[row].like = self.replyArray?[row].like ?? 0 - 1
-                    }else{
-//                        NotificationCenter.default.post(name: NSNotification.Name("updateLikeCount"), object: nil, userInfo: btnTag)
-                        cell.moveBtn.tag = row*10000 + 1
-                        self.replyArray?[row].like_me = "Y"
-                        cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
-                        cell.moveBtn.setImage(UIImage(named: "likeCancellText"), for: .normal)
-                        self.replyArray?[row].like = self.replyArray?[row].like ?? 0 + 1
-                    }
-
-                }) { error in
-                }
-                
+            if self.viewCheck == "childDetail" {
+                NotificationCenter.default.post(name: NSNotification.Name("updateLikeCount"), object: nil, userInfo: btnTag)
+            } else if self.viewCheck == "replyDetailMain" {
+                NotificationCenter.default.post(name: NSNotification.Name("updateLikeCountMain"), object: nil, userInfo: btnTag)
+            } else if self.viewCheck == "replyDetailSub" {
+                print("reply detail tag value : \(tag)")
+                NotificationCenter.default.post(name: NSNotification.Name("updateLikeCountSub"), object: nil, userInfo: btnTag)
+            } else if self.viewCheck == "feedDetailMain" {
+                NotificationCenter.default.post(name: NSNotification.Name("updateStoryDetailLikeCount"), object: nil, userInfo: btnTag)
             } else {
-                ProfileApi.shared.profileV2CommentLike(comment_id: comment_str_id, type: type, success: { [unowned self] result in
-                      
-                   if tag == 1{
-                        cell.moveBtn.layer.borderWidth = 1
-                        cell.moveBtn.layer.borderColor = UIColor(hexString: "#EFEFEF").cgColor
-                        cell.moveBtn.setImage(UIImage(named: "likeComment"), for: .normal)
-                        cell.moveBtn.backgroundColor = .white
-                        cell.moveBtn.tag = row*10000 + 2
-                        self.friendArr[row].like_yn = "N"
-                   }else{
-                        cell.moveBtn.tag = row*10000 + 1
-                        self.friendArr[row].like_yn = "Y"
-                        cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
-                        cell.moveBtn.setImage(UIImage(named: "likeCancellText"), for: .normal)
-                   }
-                
-                  }) { error in
-                }
+                NotificationCenter.default.post(name: NSNotification.Name("updateStoryReplyLikeCount"), object: nil, userInfo: btnTag)
             }
+            
+            if tag == 1{
+                cell.moveBtn.layer.borderWidth = 1
+                cell.moveBtn.layer.borderColor = UIColor(hexString: "#EFEFEF").cgColor
+                cell.moveBtn.setImage(UIImage(named: "likeComment"), for: .normal)
+                cell.moveBtn.backgroundColor = .white
+                cell.moveBtn.tag = row*10000 + 2
+            }else{
+                cell.moveBtn.tag = row*10000 + 1
+                cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
+                cell.moveBtn.setImage(UIImage(named: "likeCancellText"), for: .normal)
+            }
+            
        } else if tag == 1 && UserManager.shared.userInfo.results?.user?.id != self.friendArr[row].user_id ?? 0 {
             let userInfo = ["chattingUrl":self.friendArr[row].chat_address ?? ""] as [String : Any]
                 dismiss(animated: true, completion: {

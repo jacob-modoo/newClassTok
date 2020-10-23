@@ -77,7 +77,7 @@ class ChildDetailClassViewController: UIViewController {
     var customView: UIView?
     /** **키보드 사이즈 */
     var keyBoardSize:CGRect?
-    
+    var tagForLikeBtn = 0
     var curriculum_id:Int?
     /** **Html 렌더링을 위한 뷰 */
     var classTextView:UITextView?
@@ -118,7 +118,7 @@ class ChildDetailClassViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.noticeParamChange), name: NSNotification.Name(rawValue: "noticeParamChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.chattingCheck), name: NSNotification.Name(rawValue: "classDetailchattingValueSend"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.flashNextClassBtn), name: NSNotification.Name(rawValue: "flashNextClassBtn"), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCount), name: NSNotification.Name(rawValue: "updateLikeCount"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCount), name: NSNotification.Name(rawValue: "updateLikeCount"), object: nil)
 
         replyBorderView.layer.borderWidth = 1
         replyBorderView.layer.borderColor = UIColor(hexString: "#eeeeee").cgColor
@@ -353,6 +353,7 @@ class ChildDetailClassViewController: UIViewController {
             nextView.replyArray = replyArray
             nextView.comment_id = comment_id
             nextView.viewCheck = "childDetail"
+            self.tagForLikeBtn = sender.tag
             self.present(nextView, animated:true,completion: nil)
         }
         
@@ -569,6 +570,8 @@ class ChildDetailClassViewController: UIViewController {
                 newViewController.class_id = self.class_id
                 newViewController.commentType = "curriculum"
                 newViewController.missionCheck = false
+                newViewController.tagForLikeBtn = sender.tag
+                self.tagForLikeBtn = sender.tag*10000+1
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }
         }
@@ -820,13 +823,17 @@ class ChildDetailClassViewController: UIViewController {
     /**
      - will update the count of likes in comment section [10] in tableView
      */
-//    @objc func updateLikeCount(notification: Notification) {
-//        if (notification.userInfo as NSDictionary?) != nil {
-//            let sender = notification.userInfo?["btnTag"] as! UIButton
-//            print("this is tag value: \(sender.tag)")
-//            haveSave(sender: sender)
-//        }
-//    }
+    @objc func updateLikeCount(notification: Notification) {
+        if (notification.userInfo as NSDictionary?) != nil {
+            let sender = notification.userInfo?["btnTag"] as! UIButton
+            let likeGubun = notification.userInfo?["likeGubun"] as! Int
+            sender.tag = self.tagForLikeBtn
+            if likeGubun != 1 {               // if we don't use this we will call only API "delete" type not "post"
+                sender.tag += 1
+            }
+            haveSave(sender: sender)
+        }
+    }
 
     @objc func chattingCheck(notification:Notification){
         guard let chattingUrl = notification.userInfo?["chattingUrl"] as? String else { return }
@@ -841,7 +848,6 @@ class ChildDetailClassViewController: UIViewController {
     /** **will hide keyboard when view is tapped */
     @objc func hideKeyboard() {
         view.endEditing(true)
-        print("view is tapped!")
     }
     
     /**
@@ -1150,7 +1156,7 @@ class ChildDetailClassViewController: UIViewController {
         }
         self.replyArray?.remove(at: arrayNumber)
         DispatchQueue.main.async {
-            self.tableView.reloadSections([8], with: .automatic)
+            self.tableView.reloadSections([10], with: .automatic)
         }
     }
 }
@@ -2246,14 +2252,15 @@ extension ChildDetailClassViewController{
         sender.isUserInteractionEnabled = false
         let likeGubun = sender.tag // 1 : Y delete  2 : N post
         let comment_id = self.feedDetailList?.results?.curriculum?.coach_class?.notice?.id ?? 0
-        
+        var like_count = self.feedDetailList?.results?.curriculum?.coach_class?.notice!.like_cnt ?? 0
         var type = ""
+        
         if likeGubun == 1{
             type = "delete"
-            self.feedDetailList?.results?.curriculum?.coach_class?.notice!.like_cnt = (self.feedDetailList?.results?.curriculum?.coach_class?.notice!.like_cnt ?? 0)-1
+            like_count = like_count-1
         }else{
             type = "post"
-            self.feedDetailList?.results?.curriculum?.coach_class?.notice!.like_cnt = (self.feedDetailList?.results?.curriculum?.coach_class?.notice!.like_cnt ?? 0)+1
+            like_count = like_count+1
         }
         
         FeedApi.shared.replyCommentLike(comment_id: comment_id, method_type: type,success: { [unowned self] result in
@@ -2292,7 +2299,7 @@ extension ChildDetailClassViewController{
         let row = sender.tag / 10000
         let likeGubun = sender.tag % 10000 // 1 : Y delete  2 : N post
         let comment_id = replyArray?[row].id ?? 0
-        
+        print("haveSave row value : \(row)\ntag value : \(sender.tag)\ncomment_id : \(comment_id)\nlikeGubun value : \(likeGubun)")
         var type = ""
         if likeGubun == 1{
             type = "delete"
@@ -2422,12 +2429,13 @@ extension ChildDetailClassViewController{
                     self.replyArray?.remove(at: row)
                     self.feedDetailList?.results?.curriculum?.comment?.total = self.replyArray!.count
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        self.tableView.reloadSections([7,10], with: .automatic)
+                        Indicator.hideActivityIndicator(uiView: self.view)
                     }
                 }
             }
         }) { error in
-            
+            Indicator.hideActivityIndicator(uiView: self.view)
         }
     }
     

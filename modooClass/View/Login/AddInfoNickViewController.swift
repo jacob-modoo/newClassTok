@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddInfoNickViewController: UIViewController ,UITextFieldDelegate{
+class AddInfoNickViewController: UIViewController ,UITextFieldDelegate, UIGestureRecognizerDelegate{
 
     /** **돌아가기 버튼 */
     @IBOutlet var retrunBackBtn: UIButton!
@@ -29,23 +29,21 @@ class AddInfoNickViewController: UIViewController ,UITextFieldDelegate{
     
     @IBOutlet var progressBar: UIProgressView!
     
-    var nickname:String = ""
-    
-    var profile_photo:String = ""
+    var nickname = ""
     
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let scale: CGFloat = DEF_WIDTH_375_SCALE
-//        view.transform = view.transform.scaledBy(x: scale, y: scale)
-        nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
-        nextBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
-        nextBtn.isUserInteractionEnabled = false
+        let scale: CGFloat = DEF_WIDTH_375_SCALE
+        view.transform = view.transform.scaledBy(x: scale, y: scale)
+        
+        let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tapGesture)
         progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 3)
         retrunBackBtn.isHidden = true
-        nextBtn.layer.borderWidth = 1
-        textField.text = self.nickname
+
+        textField.text = UserManager.shared.userInfo.results?.user?.nickname ?? ""
         checkTextField()
         Alert.WithInfoWriteStart(self, btn1Title: "", btn1Handler: {
             self.textField.becomeFirstResponder()
@@ -83,7 +81,6 @@ class AddInfoNickViewController: UIViewController ,UITextFieldDelegate{
         if textField.isValid(name: textField.text!){
             let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoGenderViewController") as! AddInfoGenderViewController
             newViewController.nick = textField.text ?? ""
-            newViewController.profile_photo = self.profile_photo
             self.navigationController?.pushViewController(newViewController, animated: false)
         }else{
             Alert.With(self, title: "이모지가 포함되어있습니다.", btn1Title: "확인", btn1Handler: {})
@@ -92,7 +89,7 @@ class AddInfoNickViewController: UIViewController ,UITextFieldDelegate{
     
     @IBAction func skipBtnClicked(_ sender: UIButton) {
         let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoGenderViewController") as! AddInfoGenderViewController
-        newViewController.nick = textField.text ?? ""
+        newViewController.nick = self.nickname
         self.navigationController?.pushViewController(newViewController, animated: false)
     }
     

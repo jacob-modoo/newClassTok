@@ -85,6 +85,7 @@ class StoryDetailViewController: UIViewController {
     var photoSize:CGFloat = 100
     var photoSizeImage:UIImageView = UIImageView.init(frame: .zero)
     var page = 1
+    var tagForLikeBtn = 0
     var user_id = UserManager.shared.userInfo.results?.user?.id ?? 0
     var active_comment_list:Array = Array<Active_comment>()
     
@@ -97,7 +98,7 @@ class StoryDetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.storyDetailReplyUpdate), name: NSNotification.Name(rawValue: "storyDetailReplyUpdate"), object: nil )
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.feedDetailUpdatePost), name: NSNotification.Name(rawValue: "feedDetailUpdatePost"), object: nil )
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateStoryDetailLikeCount), name: NSNotification.Name(rawValue: "updateStoryDetailLikeCount"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.chattingCheck), name: NSNotification.Name(rawValue: "feedDetailValueSend"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.feedDetailFriend), name: NSNotification.Name(rawValue: "feedDetailFriend"), object: nil )
         
@@ -221,8 +222,19 @@ class StoryDetailViewController: UIViewController {
         }
     }
     
-    func feedDetailUpdatePost(){
-        self.squareDetail()
+    /**
+     - will update the count of likes in comment section in tableView
+     */
+    @objc func updateStoryDetailLikeCount(notification: Notification) {
+        if (notification.userInfo as NSDictionary?) != nil {
+            let sender = notification.userInfo?["btnTag"] as! UIButton
+            let likeGubun = notification.userInfo?["likeGubun"] as! Int
+            sender.tag = self.tagForLikeBtn
+            if likeGubun != 1 {               // if we don't use this we will call only API "delete" type not "post"
+                sender.tag += 1
+            }
+            replyLikeHave(sender: sender)
+        }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -421,7 +433,8 @@ class StoryDetailViewController: UIViewController {
             let nextView = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
             nextView.modalPresentationStyle = .overFullScreen
             nextView.comment_str_id = comment_id
-            nextView.viewCheck = "feedDetail"
+            self.tagForLikeBtn = sender.tag
+            nextView.viewCheck = "feedDetailMain"
             self.present(nextView, animated:true,completion: nil)
         }
     }
@@ -663,7 +676,6 @@ class StoryDetailViewController: UIViewController {
         let likeGubun = sender.tag % 10000
         //let likeGubun = self.list?.results?.comment_reply?.list_arr[row].like_me ?? ""
         let comment_id = self.list?.results?.comment_reply?.list_arr[row].comment_id ?? ""
-        
         var type = ""
         if likeGubun == 1{
             type = "delete"

@@ -32,25 +32,25 @@ class AddInfoIntroWordViewController: UIViewController ,UITextFieldDelegate{
     
     var nick = ""
     var gender = ""
-    var birthYear = ""
-    var interestArr:Array<Int> = []
-    var jobArr:Array<Int> = []
+//    var birthYear = ""
+//    var interestArr:Array<Int> = []
+//    var jobArr:Array<Int> = []
     var photo1:UIImage = UIImage()
-    var photo2:UIImage = UIImage()
-    var photo3:UIImage = UIImage()
+//    var photo2:UIImage = UIImage()
+//    var photo3:UIImage = UIImage()
     var sampleNumbering:Array<Int> = [0,0,0]
     
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
     let home2Storyboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     
     override func viewDidLoad() {
-//        let scale: CGFloat = DEF_WIDTH_375_SCALE
-//        view.transform = view.transform.scaledBy(x: scale, y: scale)
         super.viewDidLoad()
-        nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
-        nextBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
-        nextBtn.layer.borderWidth = 1
-        nextBtn.isUserInteractionEnabled = false
+        let scale: CGFloat = DEF_WIDTH_375_SCALE
+        view.transform = view.transform.scaledBy(x: scale, y: scale)
+        let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tapGesture)
+        checkTextField()
+//        textField.text = UserManager.shared.userInfo.results?.user?.profile_comment ?? "no data in textfield!"
         progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 3)
     }
     
@@ -95,7 +95,7 @@ class AddInfoIntroWordViewController: UIViewController ,UITextFieldDelegate{
 //            newViewController.sampleNumbering = self.sampleNumbering
 //            newViewController.introWord = self.textField.text ?? ""
 //            self.navigationController?.pushViewController(newViewController, animated: false)
-            mainViewMove()
+            mainViewMove(nickname: self.nick, gender: self.gender, photo: self.photo1, profile_comment: self.textField.text ?? "")
             
         }else{
             Alert.With(self, title: "이모지가 포함되어있습니다.", btn1Title: "확인", btn1Handler: {})
@@ -103,18 +103,20 @@ class AddInfoIntroWordViewController: UIViewController ,UITextFieldDelegate{
     }
     
     @IBAction func skipBtnClicked(_ sender: UIButton) {
-        mainViewMove()
+        mainViewMove(nickname: self.nick, gender: self.gender, photo: self.photo1, profile_comment: UserManager.shared.userInfo.results?.user?.profile_comment ?? "")
     }
     
     
-    func mainViewMove(){
+    func mainViewMove(nickname: String, gender: String, photo: UIImage, profile_comment: String){
         progressBar.progress = 1
         var url_1 = ""
 //        var url_2 = ""
 //        var url_3 = ""
         if sampleNumbering[0] != 0{
             url_1 = "\(sampleNumbering[0])"
-        }
+        } //else {
+          //  url_1 = UserManager.shared.userInfo.results?.user?.photo ?? ""
+       // }
 //        if sampleNumbering[1] != 0{
 //            url_2 = "\(sampleNumbering[1])"
 //        }
@@ -123,7 +125,7 @@ class AddInfoIntroWordViewController: UIViewController ,UITextFieldDelegate{
 //        }
         self.completeView.isHidden = true
         Indicator.showActivityIndicator(uiView: self.view)
-        LoginApi.shared.profileAddSave(nickname: self.nick, gender: self.gender, url_1: url_1, file_1: self.photo1, profile_comment: self.textField.text ?? "", success: { result in
+        LoginApi.shared.profileAddSave(nickname: nickname, gender: gender, url_1: url_1, file_1: photo, profile_comment: profile_comment, success: { result in
             if result.code! == "200"{
                 self.loginCheck()
                 self.view.endEditing(true)
@@ -179,17 +181,21 @@ class AddInfoIntroWordViewController: UIViewController ,UITextFieldDelegate{
     
     /** **텍스트필드 변경 > 텍스트 필드에 변경이 일어남 처리 */
     @IBAction func textFieldChange(_ sender: UITextField) {
+        checkTextField()
+    }
+    
+    func checkTextField() {
         if textField.text?.isEmpty == true{
             textInputChangeView.backgroundColor = UIColor(hexString: "#e0e0e0")
             errorLabel.text = " "
+            nextBtn.layer.borderWidth = 1
             nextBtn.layer.borderColor = UIColor(hexString: "#b4b4b4").cgColor
             nextBtn.setTitleColor(UIColor(named:"FontColor_subColor3"), for: .normal)
-            nextBtn.layer.borderWidth = 1
             nextBtn.isUserInteractionEnabled = false
         }else{
+            nextBtn.layer.borderWidth = 1
             nextBtn.layer.borderColor = UIColor(hexString: "#ff5a5f").cgColor
             nextBtn.setTitleColor(UIColor(named:"MainPoint_mainColor"), for: .normal)
-            nextBtn.layer.borderWidth = 1
             nextBtn.isUserInteractionEnabled = true
             textInputChangeView.backgroundColor = UIColor(hexString: "#212121")
             errorLabel.text = " "

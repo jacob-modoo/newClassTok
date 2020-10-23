@@ -24,13 +24,14 @@ class AddInfoGenderViewController: UIViewController {
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
     
     var nick = ""
-    var profile_photo = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let scale: CGFloat = DEF_WIDTH_375_SCALE
-//        view.transform = view.transform.scaledBy(x: scale, y: scale)
+        let scale: CGFloat = DEF_WIDTH_375_SCALE
+        view.transform = view.transform.scaledBy(x: scale, y: scale)
         progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 3)
+        let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tapGesture)
         // Do any additional setup after loading the view.
     }
     
@@ -82,7 +83,6 @@ class AddInfoGenderViewController: UIViewController {
         let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoPhotoViewController") as! AddInfoPhotoViewController
         newViewController.nick = self.nick
         newViewController.gender = gender
-        newViewController.profile_photo = self.profile_photo
         self.navigationController?.pushViewController(newViewController, animated: false)
         
     }

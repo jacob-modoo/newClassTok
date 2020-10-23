@@ -34,8 +34,8 @@ class AddInfoTagInterestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let scale: CGFloat = DEF_WIDTH_375_SCALE
-//        view.transform = view.transform.scaledBy(x: scale, y: scale)
+        let scale: CGFloat = DEF_WIDTH_375_SCALE
+        view.transform = view.transform.scaledBy(x: scale, y: scale)
         progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 3)
         nextBtn.layer.borderWidth = 1
         

@@ -169,10 +169,6 @@ extension PhoneLoginViewController{
                                 UserDefaultSetting.setUserDefaultsString(self.id, forKey: tempUserId)
                                 UserDefaultSetting.setUserDefaultsString(self.password, forKey: tempUserPw)
                                 let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
-                                newViewController.nickname = result.results?.user?.nickname ?? ""
-                                if result.results?.user?.photo ?? "" != "" {
-                                    newViewController.profile_photo = result.results?.user?.photo ?? ""
-                                }
                                 UserDefaultSetting.setUserDefaultsString("P", forKey: loginGubun)
                                 self.navigationController?.pushViewController(newViewController, animated: false)
                             }else{

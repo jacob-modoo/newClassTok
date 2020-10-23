@@ -175,10 +175,6 @@ extension JoinViewController {
                                 multipartHeader = ["Content-Type":"multipart/form-data","Authorization": "bearer \((result.results?.token)!)"]
                                 if UserManager.shared.userInfo.results?.user_info_yn == "N"{
                                     let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
-                                    newViewController.nickname = result.results?.user?.nickname ?? ""
-                                    if result.results?.user?.photo ?? "" != "" {
-                                        newViewController.profile_photo = result.results?.user?.photo ?? ""
-                                    }
                                     UserDefaultSetting.setUserDefaultsString("P", forKey: loginGubun)
                                     UserDefaultSetting.setUserDefaultsString(self.id, forKey: tempUserId)
                                     UserDefaultSetting.setUserDefaultsString(self.password, forKey: tempUserPw)

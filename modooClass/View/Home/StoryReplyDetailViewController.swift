@@ -39,6 +39,7 @@ class StoryReplyDetailViewController: UIViewController {
     var replyCount = 0
     var list:SquareReplyCommentListModel?
     var listArr:Array = Array<SquareReply_list>()
+    var tagForLikeBtn = 0
     lazy var emoticonView: EmoticonView = {
         let tv = EmoticonView()
         tv.translatesAutoresizingMaskIntoConstraints = false
@@ -60,6 +61,7 @@ class StoryReplyDetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateStoryReplyLikeCount), name: NSNotification.Name(rawValue: "updateStoryReplyLikeCount"), object: nil )
         replyBorderView.layer.borderWidth = 1
         replyBorderView.layer.borderColor = UIColor(hexString: "#eeeeee").cgColor
         replyBorderView.layer.cornerRadius = 15
@@ -382,7 +384,8 @@ class StoryReplyDetailViewController: UIViewController {
             let nextView = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
             nextView.modalPresentationStyle = .overFullScreen
             nextView.comment_str_id = comment_id
-            nextView.viewCheck = "feedDetail"
+            self.tagForLikeBtn = sender.tag
+            nextView.viewCheck = "feedDetailSub"
             self.present(nextView, animated:true,completion: nil)
         }
     }
@@ -432,6 +435,21 @@ class StoryReplyDetailViewController: UIViewController {
         emoticonSelectView.isHidden = true
         emoticonImg.image = nil
         self.image = nil
+    }
+    
+    /**
+     - will update the count of likes in comment section in tableView
+     */
+    @objc func updateStoryReplyLikeCount(notification: Notification) {
+        if (notification.userInfo as NSDictionary?) != nil {
+            let sender = notification.userInfo?["btnTag"] as! UIButton
+            let likeGubun = notification.userInfo?["likeGubun"] as! Int
+            sender.tag = self.tagForLikeBtn
+            if likeGubun != 1 {               // if we don't use this we will call only API "delete" type not "post"
+                sender.tag += 1
+            }
+            replyLikeHave(sender: sender)
+        }
     }
     
     /** **텍스트뷰 클릭 > 이모티콘뷰 숨기기 */

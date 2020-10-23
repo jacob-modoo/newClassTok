@@ -398,6 +398,29 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
             self.detailClassData()
         }
     }
+    
+    /**
+     This function is used to move to classRoom and back to classRoom
+     */
+    func moveToClass(){
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Feed", bundle: nil)
+            let controller: ChildDetailClassViewController = storyboard.instantiateViewController(withIdentifier: "ChildDetailClassViewController") as! ChildDetailClassViewController
+            controller.view.frame = CGRect(x: 0, y: 0, width: self.textView.frame.width, height: self.textView.frame.height)
+            if self.textViewAddCheck == false{
+                self.addChild(controller)
+                self.textView.addSubview(controller.view)
+                controller.view.snp.makeConstraints{ (make) in
+                    make.top.bottom.leading.trailing.equalTo(self.textView)
+                }
+                self.textViewAddCheck = true
+            }
+            controller.didMove(toParent: self)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DetailClassIdSend"), object: self.class_id)
+            self.tab1DataChange = false
+        }
+    }
+    
     /**
     **파라미터가 없고 반환값이 없는 메소드 > 커리큘럼 데이터를 바꿔주는 함수
      
@@ -416,23 +439,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                     Indicator.hideActivityIndicator(uiView: self.view)
                     if result.code == "200"{
                         FeedDetailManager.shared.feedDetailList = result
-                        
-                        DispatchQueue.main.async {
-                            let storyboard = UIStoryboard(name: "Feed", bundle: nil)
-                            let controller: ChildDetailClassViewController = storyboard.instantiateViewController(withIdentifier: "ChildDetailClassViewController") as! ChildDetailClassViewController
-                            controller.view.frame = CGRect(x: 0, y: 0, width: self.textView.frame.width, height: self.textView.frame.height)
-                            if self.textViewAddCheck == false{
-                                self.addChild(controller)
-                                self.textView.addSubview(controller.view)
-                                controller.view.snp.makeConstraints{ (make) in
-                                    make.top.bottom.leading.trailing.equalTo(self.textView)
-                                }
-                                self.textViewAddCheck = true
-                            }
-                            controller.didMove(toParent: self)
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DetailClassIdSend"), object: self.class_id)
-                            self.tab1DataChange = false
-                        }
+                        moveToClass()
                     }else if result.code == "102"{
                         Alert.With(self, title: "클래스 가입이 되지 않았습니다.", btn1Title: "확인", btn1Handler: {
                             self.deinitObserve()
@@ -443,9 +450,8 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                             self.deinitObserve()
                             self.navigationController?.popViewController(animated: true)
                         })
-                    }else if result.code == "106"{
+                    }else if result.code == "106"{ /**this response code will open 1:1 training info page*/
                         if self.viewCheck == 1{
-                            print("++++++++url: \(result.results?.url! ?? "")++++++++++++++")
                             let newViewController = UIStoryboard(name: "ChildWebView", bundle: nil).instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
                             newViewController.url = result.results!.url!
                             newViewController.tokenCheck = false
@@ -458,9 +464,10 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                             self.deinitObserve()
                             self.navigationController?.popViewController(animated: true)
                         }
-                    }else if result.code == "107"{
+                    }else if result.code == "107"{ /**this response code will open 첫인사 page*/
                         if self.viewCheck == 1{
-                            
+                            FeedDetailManager.shared.feedDetailList = result
+                            moveToClass()
                             let newViewController = UIStoryboard(name: "ChildWebView", bundle: nil).instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
                             newViewController.url = result.results!.url!
                             newViewController.tokenCheck = false
@@ -468,7 +475,6 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                             Indicator.hideActivityIndicator(uiView: self.view)
                             self.viewCheck = 2
                             self.navigationController?.pushViewController(newViewController, animated: true)
-                            
                         }else{
                             self.deinitObserve()
                             self.navigationController?.popViewController(animated: true)
@@ -477,7 +483,6 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                 }) { error in
                     Indicator.hideActivityIndicator(uiView: self.view)
                     Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
-                        
                     })
                 }
             }else{
@@ -677,10 +682,8 @@ extension FeedDetailViewController:BMPlayerDelegate{
             if let duration = self.player?.avPlayer?.currentItem?.asset.duration {
                 let seconds = CMTimeGetSeconds(duration)
                 self.duration = Int(seconds)
-                print("----------this is duration : ", Float((self.player?.playerLayer?.player?.currentItem!.currentTime().seconds)!))
                 FeedApi.shared.playTracking(duration : self.duration,curriculum_id: self.curriculum_id ,success: { result in
                     if result.code == "200"{
-                        
                     }
                 }) { error in
                 }

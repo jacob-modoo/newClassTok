@@ -537,7 +537,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                 return 0
             }else{
                 if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr.count ?? 0 > 0{
-                    return HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr.count ?? 0
+                    return 1
                 }else{
                     return 0
                 }
@@ -546,8 +546,8 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             if emptyCheck(){
                 return 0
             }else{
-                if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr.count ?? 0 > 0{
-                    return 1
+                if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr.count ?? 0 > 0{
+                    return HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr.count ?? 0
                 }else{
                     return 0
                 }
@@ -557,12 +557,22 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                 return 0
             }else{
                 if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr.count ?? 0 > 0{
-                    return HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr.count ?? 0
+                    return 1
                 }else{
                     return 0
                 }
             }
         case 5:
+            if emptyCheck(){
+                return 0
+            }else{
+                if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr.count ?? 0 > 0{
+                    return HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr.count ?? 0
+                }else{
+                    return 0
+                }
+            }
+        case 6:
             if emptyCheck(){
                 return 0
             }else{
@@ -572,7 +582,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                     return 0
                 }
             }
-        case 6:
+        case 7:
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 if emptyCheck(){
                     return 0
@@ -586,7 +596,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             }else{
                 return 0
             }
-        case 7:
+        case 8:
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 if emptyCheck(){
                     return 1
@@ -597,7 +607,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                 return 0
             }
             
-        case 8:
+        case 9:
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 return 1
             }else{
@@ -653,11 +663,22 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                 }
                 cell.replyCount.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].coach_wait_cnt ?? 0)"
                 cell.classManagerBtn.tag = row
+                cell.classManagerBtn.setTitle("\(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].button_text2 ?? "")", for: .normal)
                 cell.classManagerQuestionBtn.tag = row
+                cell.classManagerQuestionBtn.setTitle("\(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].button_text1 ?? "")", for: .normal)
                 cell.classInBtn.tag = row
             }
             return cell
        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HomeClassTitleCell", for: indexPath) as! HomeClassTableViewCell
+            if HomeMain2Manager.shared.pilotAppMain.results != nil{
+                cell.classTitle.text = "클래스 참여하기"
+                cell.classTitle.font = cell.classTitle.font.withSize(18)
+                cell.classTitleBtn.isHidden = true
+            }
+            cell.selectionStyle = .none
+            return cell
+        case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeFeedMyClassCell", for: indexPath) as! HomeClassTableViewCell
             
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
@@ -749,7 +770,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             
             cell.selectionStyle = .none
             return cell
-        case 3:
+        case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeClassTitleCell", for: indexPath) as! HomeClassTableViewCell
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 cell.classTitle.text = "클래스를 평가해주세요."
@@ -758,7 +779,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             }
             cell.selectionStyle = .none
             return cell
-        case 4:
+        case 5:
             var cell = tableView.dequeueReusableCell(withIdentifier: "HomeClassReview2Cell", for: indexPath) as! HomeClassTableViewCell
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].type ?? 0 == 2{
@@ -806,7 +827,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             
             cell.selectionStyle = .none
             return cell
-        case 5:
+        case 6:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeClassTitleCell", for: indexPath) as! HomeClassTableViewCell
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 cell.classTitle.text = "관심 클래스"
@@ -815,7 +836,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             }
             cell.selectionStyle = .none
             return cell
-        case 6:
+        case 7:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeClassInterestCell", for: indexPath) as! HomeClassTableViewCell
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 cell.classImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].class_photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
@@ -833,12 +854,12 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             }
             cell.selectionStyle = .none
             return cell
-        case 7:
+        case 8:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeClassEmptyCell", for: indexPath) as! HomeClassTableViewCell
             
             cell.selectionStyle = .none
             return cell
-        case 8:
+        case 9:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeClassInterestMoveCell", for: indexPath) as! HomeClassTableViewCell
             
             cell.selectionStyle = .none
@@ -852,7 +873,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 8
+        return 9
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

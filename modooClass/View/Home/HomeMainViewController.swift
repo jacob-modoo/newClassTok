@@ -82,7 +82,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         vc.didMove(toParent: self)
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.openEventPage), name: NSNotification.Name(rawValue: "openEventPage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.homeTitleChange), name: NSNotification.Name(rawValue: "homeTitleChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.home2MainChatBadgeChange), name: NSNotification.Name(rawValue: "home2MainChatBadgeChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.home2MainAlarmBadgeChange), name: NSNotification.Name(rawValue: "home2MainAlarmBadgeChange"), object: nil )
@@ -112,7 +112,6 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       
     }
     
     //이 뷰를 벗어나면 네비게이션 보이게 설정
@@ -252,12 +251,12 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-//    @objc func openEventPage(notification: Notification){
-//        let url = UserManager.shared.userInfo.results?.event_link ?? ""
-//        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-//        newViewController.url = url
-//        self.navigationController?.pushViewController(newViewController, animated: true)
-//    }
+    @objc func openEventPage(notification: Notification){
+        let url = UserManager.shared.userInfo.results?.event_link ?? ""
+        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+        newViewController.url = url
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
     
     func tabCheck(index:Int){
         self.tabImg1.image = UIImage(named: "interest_iconV2")

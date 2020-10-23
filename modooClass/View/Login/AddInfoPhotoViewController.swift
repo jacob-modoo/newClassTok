@@ -35,7 +35,7 @@ class AddInfoPhotoViewController: UIViewController {
     @IBOutlet var imageRemoveBtn2: UIButton!
     @IBOutlet var imageRemoveBtn3: UIButton!
     
-    var profile_photo:String = ""
+    var profile_image:UIImage!
     
     var nick = ""
     var gender = ""
@@ -60,15 +60,20 @@ class AddInfoPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let scale: CGFloat = DEF_WIDTH_375_SCALE
-//        view.transform = view.transform.scaledBy(x: scale, y: scale)
-//        self.view.layoutIfNeeded()
-        let url = URL(string: self.profile_photo)
-        if let data = try? Data(contentsOf: url!) {
+        let scale: CGFloat = DEF_WIDTH_375_SCALE
+        view.transform = view.transform.scaledBy(x: scale, y: scale)
+        
+        let url = URL(string: UserManager.shared.userInfo.results?.user?.photo ?? "")
+        if url != nil {
+            let data = (try? Data(contentsOf: url!))!
             let image: UIImage = UIImage(data: data)!
             image1.image = image
+            profile_image = image
             imageRemoveBtn1.isHidden = false
+        } else {
+            image1.image = nil //UIImage(named: "reply_user_default")
         }
+        
         checkImgField()
         image1.layer.cornerRadius = image1.frame.width/2
         imageSelectBtn1.layer.cornerRadius = imageSelectBtn1.frame.width/2
@@ -116,10 +121,19 @@ class AddInfoPhotoViewController: UIViewController {
 //        newViewController.birthYear = self.birthYear
 //        newViewController.interestArr = self.interestArr
 //        newViewController.jobArr = self.jobArr
-        newViewController.photo1 = self.image1.image!
+        
+        if image1.image != profile_image {
+            print("New image is picked...")
+            newViewController.photo1 = image1.image ?? UIImage(named: "reply_user_default")!
+        } else {
+            print("The old image is kept")
+            newViewController.photo1 = profile_image ?? UIImage(named: "reply_user_default")!
+        }
+        
 //        newViewController.photo2 = self.image2.image!
 //        newViewController.photo3 = self.image3.image!
         newViewController.sampleNumbering = self.sampleNumbering
+        print("sampleNumbering: \(sampleNumbering)")
         self.navigationController?.pushViewController(newViewController, animated: false)
     }
     
@@ -130,10 +144,11 @@ class AddInfoPhotoViewController: UIViewController {
 //        newViewController.birthYear = self.birthYear
 //        newViewController.interestArr = self.interestArr
 //        newViewController.jobArr = self.jobArr
-        newViewController.photo1 = self.image1.image ?? UIImage(named: "reply_user_default")!
-//        newViewController.photo2 = self.image2.image ?? UIImage(named: "reply_user_default")!
+//        newViewController.photo1 = self.image1.image ?? UIImage(named: "reply_user_default")!
+        newViewController.photo1 = self.profile_image ?? UIImage(named: "reply_user_default")!
 //        newViewController.photo3 = self.image3.image ?? UIImage(named: "reply_user_default")!
         newViewController.sampleNumbering = self.sampleNumbering
+        print("sampleNumbering: \(sampleNumbering)")
         self.navigationController?.pushViewController(newViewController, animated: false)
     }
     
@@ -152,11 +167,9 @@ class AddInfoPhotoViewController: UIViewController {
 //            image3.image = UIImage(named: "sampleImg\(tag)")
 //            imageRemoveBtn3.isHidden = false
 //            sampleNumbering[2] = tag
-        }else{
-            
         }
+        
         if image1.image != nil {    //&& image2.image != nil && image3.image != nil{
-            
             nextBtn.layer.borderColor = UIColor(hexString: "#ff5a5f").cgColor
             nextBtn.setTitleColor(UIColor(named:"MainPoint_mainColor"), for: .normal)
             nextBtn.isUserInteractionEnabled = true

@@ -246,6 +246,8 @@ class ChildHome2WebViewController: UIViewController ,WKNavigationDelegate,WKUIDe
             myURL = URL(string:"\(url)")
         }
 
+        /**test URL -> myURL = URL(string: "https://www.modooclass.net/class/orientation/821") */
+        
         var request = URLRequest(url: myURL!, cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy)
 
         let cookies = HTTPCookie.requestHeaderFields(with: HTTPCookieStorage.shared.cookies(for: request.url!)!)
@@ -455,7 +457,7 @@ extension ChildHome2WebViewController:WKScriptMessageHandler {
                     webView.goBack()
                 }else{
                     if classOpenCheck == true{
-                        self.navigationController?.popViewControllers(viewsToPop: 2)
+                        self.navigationController?.popViewControllers(viewsToPop: 1)
                     }else{
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -809,6 +811,7 @@ extension ChildHome2WebViewController:WKScriptMessageHandler {
                 
             }
         }else if message.name == "exit"{
+//            webkit.messageHandlers.exit.postMessage(‘close’);
             print("exit: alert \(message.body)")
             if message.body as? String == "close"{
                 if webView.canGoBack == true{

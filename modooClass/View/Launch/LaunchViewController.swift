@@ -83,10 +83,6 @@ class LaunchViewController: UIViewController {
                                         UserDefaultSetting.setUserDefaultsString(self.idCheck, forKey: tempUserId)
                                         UserDefaultSetting.setUserDefaultsString(self.pwCheck, forKey: tempUserPw)
                                         let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
-                                        newViewController.nickname = UserManager.shared.userInfo.results?.user?.nickname ?? ""
-                                        if UserManager.shared.userInfo.results?.user?.photo ?? "" != "" {
-                                            newViewController.profile_photo = UserManager.shared.userInfo.results?.user?.photo ?? ""
-                                        }
                                         UserDefaultSetting.setUserDefaultsString("P", forKey: loginGubun)
                                         self.navigationController?.pushViewController(newViewController, animated: false)
                                     }else{
@@ -124,10 +120,6 @@ class LaunchViewController: UIViewController {
                                     UserDefaultSetting.setUserDefaultsString(self.idCheck, forKey: tempUserId)
                                     UserDefaultSetting.setUserDefaultsString(self.pwCheck, forKey: tempUserPw)
                                     let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
-                                    newViewController.nickname = UserManager.shared.userInfo.results?.user?.nickname ?? ""
-                                    if UserManager.shared.userInfo.results?.user?.photo ?? "" != "" {
-                                        newViewController.profile_photo = UserManager.shared.userInfo.results?.user?.photo ?? ""
-                                    }
                                     UserDefaultSetting.setUserDefaultsString("P", forKey: loginGubun)
                                     self.navigationController?.pushViewController(newViewController, animated: false)
                                 }else{

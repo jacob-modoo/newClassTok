@@ -325,10 +325,6 @@ extension LoginViewController{
             UserDefaultSetting.setUserDefaultsString(socialName, forKey: tempUserName)
             UserDefaultSetting.setUserDefaultsString(socialProvider, forKey: tempUserProvider)
             let newViewController = self.loginStoryboard.instantiateViewController(withIdentifier: "AddInfoNickViewController") as! AddInfoNickViewController
-            newViewController.nickname = UserManager.shared.userInfo.results?.user?.nickname ?? ""
-            if UserManager.shared.userInfo.results?.user?.photo ?? "" != "" {
-                newViewController.profile_photo = UserManager.shared.userInfo.results?.user?.photo ?? ""
-            }
             UserDefaultSetting.setUserDefaultsString("S", forKey: loginGubun)
             self.navigationController?.pushViewController(newViewController, animated: false)
         }else{
