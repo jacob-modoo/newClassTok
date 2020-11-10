@@ -23,7 +23,6 @@ class ShareAppViewController: UIViewController, UIGestureRecognizerDelegate {
     var animationDuration = 0.2 as TimeInterval
     /** **클래스 커리큘럼 소개 리스트 */
     var feedDetailList:FeedAppClassModel?
-    var replyArray:Array? = Array<AppClassCommentList>()
     var feedModel: FeedModel?
     var share_address:String?
     var share_content:String?

@@ -19,7 +19,6 @@ class StoryDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var replyPhotoWidthConst: NSLayoutConstraint!
     @IBOutlet weak var replyContentTextView: UITextView!
     @IBOutlet weak var rollGubunImg: UIImageView!
-    @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var coachStar: UIImageView!
     @IBOutlet weak var friendProfileBtn: UIButton!
     @IBOutlet weak var friendProfile2Btn: UIButton!
@@ -89,10 +88,10 @@ class StoryDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewClassName: UIFixedLabel!
     @IBOutlet weak var reviewBackgroundView: GradientView!
     @IBOutlet weak var userReviewStar1: UIImageView!
-    @IBOutlet weak var userReviewStar2: UIImageView!
-    @IBOutlet weak var userReviewStar3: UIImageView!
-    @IBOutlet weak var userReviewStar4: UIImageView!
-    @IBOutlet weak var userReviewStar5: UIImageView!
+//    @IBOutlet weak var userReviewStar2: UIImageView!
+//    @IBOutlet weak var userReviewStar3: UIImageView!
+//    @IBOutlet weak var userReviewStar4: UIImageView!
+//    @IBOutlet weak var userReviewStar5: UIImageView!
     @IBOutlet weak var userReviewContent: UIFixedTextView!
     @IBOutlet weak var coachReviewContent: UIFixedTextView!
     @IBOutlet weak var coachNick: UIFixedLabel!

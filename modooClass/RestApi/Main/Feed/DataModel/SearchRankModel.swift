@@ -27,21 +27,28 @@ class SearchRankModel: NSObject {
 }
 
 class RankResults : NSObject{
-    var searchRank:SearchRank?
-    var searchBanner:SearchBanner?
-    var rankList:Array = Array<SearchRank>()
     var search_list:SearchWord?
     var search_list_arr:Array = Array<SearchWord>()
     var interest_list:SearchWord?
     var interest_list_arr:Array = Array<SearchWord>()
     var category:McCategory?
     var category_arr:Array = Array<McCategory>()
+    var searchRank:SearchRank?
+    var rankList:Array = Array<SearchRank>()
+    var searchBanner:SearchBanner?
+    var user_id:Int?
+    var event_icon_list:EventIconList?
+    var event_icon_list_arr:Array = Array<EventIconList>()
+    var event_list:EventList?
+    var event_list_arr:Array = Array<EventList>()
     
     override init() {
         super.init()
     }
     convenience init(dic:Dictionary<String, Any>) {
         self.init()
+        user_id = DictionaryToInt(dic: dic, intName: "user_id")
+        
         if let searchRank = dic["rank"] as? Array<Any>{
             let array:Array = searchRank
             for list in array {
@@ -71,6 +78,20 @@ class RankResults : NSObject{
             for list in array {
                 let temp = McCategory.init(dic: list as! Dictionary<String, Any>)
                 category_arr.append(temp)
+            }
+        }
+        if let event_icon_list = dic["event_icon_list"] as? Array<Any>{
+            let array:Array = event_icon_list
+            for list in array {
+                let temp = EventIconList.init(dic: list as! Dictionary<String, Any>)
+                event_icon_list_arr.append(temp)
+            }
+        }
+        if let event_list = dic["event_list"] as? Array<Any>{
+            let array:Array = event_list
+            for list in array {
+                let temp = EventList.init(dic: list as! Dictionary<String, Any>)
+                event_list_arr.append(temp)
             }
         }
     }
@@ -106,16 +127,14 @@ class SearchRank : NSObject{
 class SearchBanner : NSObject{
     var payment_title:String?
     var payment:Payment?
-    var best_title:String?
-    var best:Best?
-    
+    var paymentList:Array = Array<Payment>()
     var payment_api:String?
     var payment_button:String?
+    var best_title:String?
+    var best:Best?
+    var bestList:Array = Array<Best>()
     var best_api:String?
     var best_button:String?
-    
-    var paymentList:Array = Array<Payment>()
-    var bestList:Array = Array<Best>()
     
     override init() {
         super.init()
@@ -221,5 +240,33 @@ class BestReview:NSObject{
         name = DictionaryToString(dic: dic, strName: "name")
         review_avg = DictionaryToInt(dic: dic, intName: "review_avg")
         review_content = DictionaryToString(dic: dic, strName: "review_content")
+    }
+}
+
+class EventIconList : NSObject {
+    var image : String?
+    var txt : String?
+    var link : String?
+    override init() {
+        super.init()
+    }
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        image = DictionaryToString(dic: dic, strName: "image")
+        txt = DictionaryToString(dic: dic, strName: "txt")
+        link = DictionaryToString(dic: dic, strName: "link")
+    }
+}
+
+class EventList : NSObject {
+    var image : String?
+    var link : String?
+    override init() {
+        super.init()
+    }
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        image = DictionaryToString(dic: dic, strName: "image")
+        link = DictionaryToString(dic: dic, strName: "link")
     }
 }

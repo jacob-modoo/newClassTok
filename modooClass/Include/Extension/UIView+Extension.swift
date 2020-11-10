@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension UIView {
+@IBDesignable extension UIView {
     
     //UIView Fade In
     func fadeIn(_ duration: TimeInterval = 1.5, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
@@ -188,4 +188,48 @@ extension UIView {
 
         self.layer.mask = maskLayer
     }
+    
+    static var nib: UINib {
+        return UINib(nibName: String(describing: self), bundle: nil)
+    }
+    
+    static func instantiate(autolayout: Bool = true) -> Self {
+        func instantiateUsingNib<T: UIView>(autolayout: Bool) -> T {
+            let view = self.nib.instantiate() as! T
+            view.translatesAutoresizingMaskIntoConstraints = !autolayout
+            return view
+        }
+        return instantiateUsingNib(autolayout: autolayout)
+     }
 }
+
+extension UINib {
+    func instantiate() -> Any? {
+        return instantiate(withOwner: nil, options: nil).first
+    }
+}
+
+//class View: UIView {
+
+//    init() {
+//        super.init(frame: .zero)
+//
+//        self.initialize()
+//    }
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//
+//        self.initialize()
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//
+//        self.initialize()
+//    }
+//
+//    func initialize() {
+//        self.translatesAutoresizingMaskIntoConstraints = false
+//    }
+//}

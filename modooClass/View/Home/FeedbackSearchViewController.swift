@@ -39,7 +39,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     var searchWord = ""
     /** **새로고침 컨트롤 */
     var refreshControl = UIRefreshControl()
-    var order = "signup" // (signup / star / price / laster) - 참여인기순, 별점순, 가격순, 최신순)
+    var order = "match_score" // (match_score / signup / price / laster) - 정확도순, 참여인기순, 가격순, 최신순)
     
     var autoSearchList:AutoSearchModel?
     var autoSearchList_arr:Array = Array<DataList>()
@@ -50,6 +50,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     let sameView = UIView()
     let feedStoryboard: UIStoryboard = UIStoryboard(name: "Feed", bundle: nil)
     let webViewStoryboard: UIStoryboard = UIStoryboard(name: "WebView", bundle: nil)
+    let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
     
     /** **뷰 로드 완료시 타는 메소드 */
     override func viewDidLoad() {
@@ -174,6 +175,30 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
         self.navigationController?.popOrPushController(class_id: searchListArr[tag].class_id ?? 0)
     }
     
+    @IBAction func eventViewBtnClicked(_ sender: UIButton) {
+        let tag = sender.tag
+        let url = "\(self.rankList?.results?.event_icon_list_arr[tag].link ?? "")"
+        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+        
+        if tag == 0 {
+            newViewController.url = url
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        } else if tag == 1 {
+            newViewController.url = url
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        } else {
+            newViewController.url = url
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
+    }
+    
+    @IBAction func eventImgBtnClicked(_ sender: UIButton) {
+        let url = "\(self.rankList?.results?.event_list_arr[0].link ?? "")"
+        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+        newViewController.url = url
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
     /**
     **파라미터가 없고 반환값이 없는 메소드 > 새로고침 컨트롤이 끝났을때 타는 함수
      
@@ -221,18 +246,18 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
         let cellconfig = [cellConfiguration,cellConfiguration,cellConfiguration,cellConfiguration]
         
         var menuOptionNameArray : [String] {
-            return ["참여 인기순","리뷰 좋은순","가격 낮은순","최신 등록순"]
+            return ["정확도순","참여 인기순","가격 낮은순","최신 등록순"]
         }
         var menuImageNameArray : [String] {
             return ["","","",""]
         }
         
         FTPopOverMenu.showForSender(sender: sender, with: menuOptionNameArray, menuImageArray: nil, cellConfigurationArray: cellconfig, done: { [unowned self] (selectedIndex) -> () in
-//            (signup / star / price / laster)
+//            (match_score / signup / price / laster)
             if selectedIndex == 0{
-                self.order = "signup"
+                self.order = "match_score"
             }else if selectedIndex == 1{
-                self.order = "star"
+                self.order = "signup"
             }else if selectedIndex == 2{
                 self.order = "price"
             }else{
@@ -245,6 +270,25 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
             self.app_search(query: self.textField.text ?? "",order : self.order)
         })
     }
+    
+    func sizeOfImageAt(url: URL) -> CGSize? {
+            // with CGImageSource we avoid loading the whole image into memory
+            guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
+                return nil
+            }
+
+            let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+            guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
+                return nil
+            }
+
+            if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
+                let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
+                return CGSize(width: width, height: height)
+            } else {
+                return nil
+            }
+        }
     
     func underline(fullStr:String , str:String) -> NSAttributedString{
         let attributedString = NSMutableAttributedString(string: fullStr)
@@ -262,6 +306,102 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
             attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributedString.length))
             attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: "#b4b4b4") , range: (str as NSString).range(of:str))
             return attributedString
+    }
+    
+    func gradientView1(cell: FeedbackSearchTableViewCell, row: Int) {
+        let checkRow = (row*2)
+        cell.classPhoto.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
+        cell.coachName.text = "\(searchListArr[checkRow].coach_name ?? "")•총 \(searchListArr[checkRow].curriculum_cnt ?? 0)강"
+        cell.className.text = "\(searchListArr[checkRow].class_name ?? "")"
+        cell.classSalePer.text = "\(searchListArr[checkRow].price_sale ?? "")%"
+        cell.classSalePrice.text = "월 \(searchListArr[checkRow].payment_price ?? "")원"
+        cell.coachPhoto.sd_setImage(with: URL(string: "\(searchListArr[checkRow].coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+        if searchListArr[checkRow].class_have_status ?? "N" == "N"{
+            cell.scrapBtn.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
+            cell.scrapBtn.tag = checkRow
+        }else{
+            cell.scrapBtn.setImage(UIImage(named:"search_scrap_icon_activeV2"), for: .normal)
+            cell.scrapBtn.tag = checkRow
+        }
+        cell.classDetailMoveBtn.tag = checkRow
+        if searchListArr[checkRow].helpful_cnt ?? 0 > 3{
+            cell.memberView.isHidden = false
+            cell.classActiveCount.text = "👍 \(convertCurrency(money: (NSNumber(value: searchListArr[checkRow].helpful_cnt ?? 0)), style : NumberFormatter.Style.decimal))명 참여"
+            if searchListArr[checkRow].class_member_list_arr.count > 2{
+                cell.classMemberPhoto1.isHidden = false
+                cell.classMemberPhoto2.isHidden = false
+                cell.classMemberPhoto3.isHidden = false
+                cell.classMemberPhoto3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+                cell.classMemberPhoto2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+                cell.classMemberPhoto1.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[2].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+            }else if searchListArr[checkRow].class_member_list_arr.count > 1{
+                cell.classMemberPhoto1.isHidden = true
+                cell.classMemberPhoto2.isHidden = false
+                cell.classMemberPhoto3.isHidden = false
+                cell.classMemberPhoto3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+                cell.classMemberPhoto2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+            }else if searchListArr[checkRow].class_member_list_arr.count > 0{
+                cell.classMemberPhoto1.isHidden = true
+                cell.classMemberPhoto2.isHidden = true
+                cell.classMemberPhoto3.isHidden = false
+                cell.classMemberPhoto3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+            }else {
+                cell.classMemberPhoto1.isHidden = true
+                cell.classMemberPhoto2.isHidden = true
+                cell.classMemberPhoto3.isHidden = true
+            }
+        }else{
+            cell.memberView.isHidden = true
+        }
+    }
+    
+    func gradientView2(cell: FeedbackSearchTableViewCell, row: Int) {
+        let checkRow = (row*2)+1
+        cell.classPhoto2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
+        cell.coachName2.text = "\(searchListArr[checkRow].coach_name ?? "")•총 \(searchListArr[checkRow].curriculum_cnt ?? 0)강"
+        cell.className2.text = "\(searchListArr[checkRow].class_name ?? "")"
+        if searchListArr[checkRow].price_sale ?? "" != "0"{
+            cell.classSalePer2.text = "\(searchListArr[checkRow].price_sale ?? "")%"
+        }
+        cell.classSalePrice2.text = "월 \(searchListArr[checkRow].payment_price ?? "")원"
+        cell.coachPhoto2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+        if searchListArr[checkRow].class_have_status ?? "N" == "N"{
+            cell.scrapBtn2.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
+            cell.scrapBtn2.tag = checkRow
+        }else{
+            cell.scrapBtn2.setImage(UIImage(named:"search_scrap_icon_activeV2"), for: .normal)
+            cell.scrapBtn2.tag = checkRow
+        }
+        cell.classDetailMoveBtn2.tag = checkRow
+        if searchListArr[checkRow].helpful_cnt ?? 0 > 3{
+            cell.memberView2.isHidden = false
+            cell.classActiveCount2.text = "👍 \(convertCurrency(money: (NSNumber(value: searchListArr[checkRow].helpful_cnt ?? 0)), style : NumberFormatter.Style.decimal))명 참여"
+            if searchListArr[checkRow].class_member_list_arr.count > 2{
+                cell.classMemberImg1.isHidden = false
+                cell.classMemberImg2.isHidden = false
+                cell.classMemberImg3.isHidden = false
+                cell.classMemberImg3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+                cell.classMemberImg2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+                cell.classMemberImg1.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[2].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+            }else if searchListArr[checkRow].class_member_list_arr.count > 1{
+                cell.classMemberImg1.isHidden = true
+                cell.classMemberImg2.isHidden = false
+                cell.classMemberImg3.isHidden = false
+                cell.classMemberImg3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+                cell.classMemberImg2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+            }else if searchListArr[checkRow].class_member_list_arr.count > 0{
+                cell.classMemberImg1.isHidden = true
+                cell.classMemberImg2.isHidden = true
+                cell.classMemberImg3.isHidden = false
+                cell.classMemberImg3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+            }else {
+                cell.classMemberImg1.isHidden = true
+                cell.classMemberImg2.isHidden = true
+                cell.classMemberImg3.isHidden = true
+            }
+        }else{
+            cell.memberView2.isHidden = true
+        }
     }
 }
 
@@ -284,12 +424,18 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                     return 0
                 }
             case 4:
+                if self.rankList?.results?.event_list_arr.count ?? 0 > 0 {
+                    return 1
+                }  else {
+                    return 0
+                }
+            case 5:
                 if rankList?.results?.category_arr.count ?? 0 > 0{
                     return 1
                 }else{
                     return 0
                 }
-            case 5:
+            case 6:
                 if rankList?.results?.category_arr.count ?? 0 > 0{
                     if ((rankList?.results?.category_arr.count ?? 0 )+1) % 4 == 0{
                         return (((rankList?.results?.category_arr.count ?? 0)+1) / 4)
@@ -305,9 +451,12 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
         }else{
             if searchList != nil{
                 if searchListArr.count > 0{
-//                if searchListArr != nil{
                     if section == 2{
-                        return searchListArr.count
+                        if self.searchListArr.count % 2 == 0 {
+                            return self.searchListArr.count/2
+                        } else {
+                            return self.searchListArr.count/2 + 1
+                        }
                     }else if section == 4{
                         if searchList != nil{
                             if searchList?.results?.category_arr.count ?? 0 > 0{
@@ -354,7 +503,7 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
     /** **테이블 셀의 섹션 개수 함수 */
     func numberOfSections(in tableView: UITableView) -> Int {
         if searchCheck == false{
-            return 6
+            return 7
         }else{
             if searchListArr.count > 0{
                 return 5
@@ -426,13 +575,32 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                 cell.selectionStyle = .none
                 return cell
             case 4:
+                let cell:FeedbackSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SearchBeforeEventViewCell", for: indexPath) as! FeedbackSearchTableViewCell
+                
+                cell.newClassEventLbl.text = self.rankList?.results?.event_icon_list_arr[0].txt ?? "오픈알림"
+                cell.newClassEventImg.sd_setImage(with: URL(string: "\(self.rankList?.results?.event_icon_list_arr[0].image ?? "")"), completed: nil)
+                cell.diamondPlanLbl.text = self.rankList?.results?.event_icon_list_arr[1].txt ?? "기획전"
+                cell.diamondPlanImg.sd_setImage(with: URL(string: "\(self.rankList?.results?.event_icon_list_arr[1].image ?? "")"), completed: nil)
+                cell.specialRewardLbl.text = self.rankList?.results?.event_icon_list_arr[2].txt ?? "얼리버드 특가"
+                cell.specialRewardImg.sd_setImage(with: URL(string: "\(self.rankList?.results?.event_icon_list_arr[2].image ?? "")"), completed: nil)
+                
+                let url = URL(string: "\(self.rankList?.results?.event_list_arr[0].image ?? "")")!
+                let ratio = (sizeOfImageAt(url: url)?.width ?? 0)/(sizeOfImageAt(url: url)?.height ?? 0)
+                let newHeight = cell.eventImg.frame.width/ratio
+                cell.eventImgHeight.constant = newHeight
+                
+                cell.eventImg.sd_setImage(with: url, completed: nil)
+                
+                cell.selectionStyle = .none
+                return cell
+            case 5:
                 let cell:FeedbackSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SearchBeforeTitleCell", for: indexPath) as! FeedbackSearchTableViewCell
                 cell.beforeTitle.text = "다른 관심사에 도전해보세요."
                 cell.beforeTitle.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 18)!
                 cell.beforeTitle.textColor = UIColor(hexString: "#484848")
                 cell.selectionStyle = .none
                 return cell
-            case 5:
+            case 6:
                 let cell:FeedbackSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SearchAfterCategoryCell", for: indexPath) as! FeedbackSearchTableViewCell
                 
                 var rowCount = 0
@@ -506,77 +674,12 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                     return cell
                 case 2:
                     let cell:FeedbackSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SearchAfterListCell", for: indexPath) as! FeedbackSearchTableViewCell
-                    cell.classPhoto.sd_setImage(with: URL(string: "\(searchListArr[row].class_photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
-                    cell.coachName.text = "\(searchListArr[row].coach_name ?? "")"
-                    if searchListArr[row].class_star_cnt ?? 0 > 0{
-                        cell.reviewStar.isHidden = false
-                        cell.reviewAvgCount.isHidden = false
-                        cell.reviewAvgCount.text = "\(searchListArr[row].class_star_avg ?? 0)(\(searchListArr[row].class_star_cnt ?? 0))"
-                    }else{
-                        cell.reviewStar.isHidden = true
-                        cell.reviewAvgCount.isHidden = true
+                    if searchListArr.count > (row*2)+1 {
+                        self.gradientView1(cell: cell, row: row)
+                        self.gradientView2(cell: cell, row: row)
+                    } else {
+                        self.gradientView1(cell: cell, row: row)
                     }
-                    cell.className.text = "\(searchListArr[row].class_name ?? "")"
-                    cell.classSalePer.text = "[\(searchListArr[row].price_sale ?? "")%]"
-                    cell.classSalePrice.text = "월 \(searchList?.results?.list_arr[row].payment_price ?? "")원"
-//                    cell.classSalePrice.text = "월 49,000원"
-                    cell.classOriginalPrice.attributedText = strikeline(str: "\(searchListArr[row].original_price ?? "")")
-                    cell.classOriginalPrice.text = "\(searchList?.results?.list_arr[row].original_price ?? "")"
-                    cell.coachPhoto.sd_setImage(with: URL(string: "\(searchListArr[row].coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                    if searchListArr[row].class_have_status ?? "N" == "N"{
-                        cell.scrapBtn.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
-                        cell.scrapBtn.tag = row
-                    }else{
-                        cell.scrapBtn.setImage(UIImage(named:"search_scrap_icon_activeV2"), for: .normal)
-                        cell.scrapBtn.tag = row
-                    }
-                    cell.classDetailMoveBtn.tag = row
-                    if searchListArr[row].signup_cnt ?? 0 > 9{
-                        cell.memberView.isHidden = false
-                        cell.classFirstOpen.isHidden = true
-                        cell.classMemberCount.text = "\(convertCurrency(money: (NSNumber(value: searchListArr[row].signup_cnt ?? 0)), style : NumberFormatter.Style.decimal))"
-                        cell.classActiveCount.text = "\(convertCurrency(money: (NSNumber(value: searchListArr[row].mission_cnt ?? 0)), style : NumberFormatter.Style.decimal))"
-                        if searchListArr[row].class_member_list_arr.count > 3{
-                            cell.classMemberPhoto1.isHidden = false
-                            cell.classMemberPhoto2.isHidden = false
-                            cell.classMemberPhoto3.isHidden = false
-                            cell.classMemberPhoto4.isHidden = false
-                            cell.classMemberPhoto4.sd_setImage(with: URL(string: "\(searchListArr[row].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                            cell.classMemberPhoto3.sd_setImage(with: URL(string: "\(searchListArr[row].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                            cell.classMemberPhoto2.sd_setImage(with: URL(string: "\(searchListArr[row].class_member_list_arr[2].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                            cell.classMemberPhoto1.sd_setImage(with: URL(string: "\(searchListArr[row].class_member_list_arr[3].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                        }else if searchListArr[row].class_member_list_arr.count > 2{
-                            cell.classMemberPhoto1.isHidden = true
-                            cell.classMemberPhoto2.isHidden = false
-                            cell.classMemberPhoto3.isHidden = false
-                            cell.classMemberPhoto4.isHidden = false
-                            cell.classMemberPhoto4.sd_setImage(with: URL(string: "\(searchListArr[row].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                            cell.classMemberPhoto3.sd_setImage(with: URL(string: "\(searchListArr[row].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                            cell.classMemberPhoto2.sd_setImage(with: URL(string: "\(searchListArr[row].class_member_list_arr[2].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                        }else if searchListArr[row].class_member_list_arr.count > 1{
-                            cell.classMemberPhoto1.isHidden = true
-                            cell.classMemberPhoto2.isHidden = true
-                            cell.classMemberPhoto3.isHidden = false
-                            cell.classMemberPhoto4.isHidden = false
-                            cell.classMemberPhoto4.sd_setImage(with: URL(string: "\(searchListArr[row].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                            cell.classMemberPhoto3.sd_setImage(with: URL(string: "\(searchListArr[row].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                        }else if searchListArr[row].class_member_list_arr.count > 0{
-                            cell.classMemberPhoto1.isHidden = true
-                            cell.classMemberPhoto2.isHidden = true
-                            cell.classMemberPhoto3.isHidden = true
-                            cell.classMemberPhoto4.isHidden = false
-                            cell.classMemberPhoto4.sd_setImage(with: URL(string: "\(searchListArr[row].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                        }else{
-                            cell.classMemberPhoto1.isHidden = true
-                            cell.classMemberPhoto2.isHidden = true
-                            cell.classMemberPhoto3.isHidden = true
-                            cell.classMemberPhoto4.isHidden = true
-                        }
-                    }else{
-                        cell.memberView.isHidden = true
-                        cell.classFirstOpen.isHidden = false
-                    }
-                    
                     cell.selectionStyle = .none
                     return cell
                 case 3:
@@ -710,7 +813,7 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
         let row = indexPath.row
         if searchCheck == true{
             if section == 2{
-                if row == (searchListArr.count)-2{
+                if row == (searchListArr.count/2)-2{
                     if searchList?.results?.total_page ?? 0 > page {
                         self.page = self.page + 1
                         app_search(query: searchWord,order : self.order)
@@ -1054,11 +1157,9 @@ extension FeedbackSearchViewController: UITextViewDelegate, UITextFieldDelegate 
         for i in 0..<(self.autoSearchList?.results?.data_list_arr.count ?? 0)! {
             self.suggestedSource.append((self.autoSearchList?.results?.data_list_arr[i].key)!)
         }
-        print("this is final result of SG: \(suggestedSource)")
         dropDown.dataSource = suggestedSource
         dropDown.onTextField = self.textField
         dropDown.show { (str, index) in
-            print("string: \(str) and index: \(index)")
             self.textField.text = str
             self.app_search(query: str, order: self.order)
             self.sameView.removeFromSuperview()
@@ -1072,7 +1173,6 @@ extension FeedbackSearchViewController: UITextViewDelegate, UITextFieldDelegate 
                     DispatchQueue.main.async {
                         for addArray in 0..<(self.autoSearchList?.results?.data_list_arr.count ?? 0)! {
                             self.autoSearchList_arr.append((self.autoSearchList?.results?.data_list_arr[addArray])!)
-                            print("-----\(self.autoSearchList_arr[addArray].key ?? "no data")-----")
                         }
                         self.autoSearch()
                     }
@@ -1129,7 +1229,6 @@ extension FeedbackSearchViewController: UITextViewDelegate, UITextFieldDelegate 
         if keyboardShow == false {
 
             if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                print("kbSize : \(kbSize.height)")
                 UIView.animate(withDuration: 0.3, animations: {
                     let baseFrame = CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height-kbSize.height)
                     self.view.frame = baseFrame

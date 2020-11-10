@@ -24,7 +24,7 @@ class HomeClassTableViewCell: UITableViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userBackgroundImg: UIImageView!
     
-    //    HomeClassTimerCell
+//    HomeClassTimerCell
     @IBOutlet weak var timerText: UILabel!
     
 //    HomeClassManagerCell
@@ -78,10 +78,6 @@ class HomeClassTableViewCell: UITableViewCell {
     
 //    HomeClassReviewCell
     @IBOutlet weak var classReviewStar1: UIImageView!
-    @IBOutlet weak var classReviewStar2: UIImageView!
-    @IBOutlet weak var classReviewStar3: UIImageView!
-    @IBOutlet weak var classReviewStar4: UIImageView!
-    @IBOutlet weak var classReviewStar5: UIImageView!
     @IBOutlet weak var reviewWriteCompleteBtn: UIFixedButton!
     @IBOutlet weak var classRePurchaseBtn: UIFixedButton!
     @IBOutlet weak var classRecommendBtn: UIFixedButton!

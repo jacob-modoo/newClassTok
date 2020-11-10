@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StoryEventViewController: UIView{
+@IBDesignable class StoryEventViewController: UIView{
     
     @IBOutlet weak var classKesolLbl: UILabel!
     @IBOutlet weak var pointLbl: UIFixedLabel!

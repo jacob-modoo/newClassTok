@@ -30,7 +30,6 @@ class ReplyLikeViewController: UIViewController {
     var friendArr:Array = Array<LikeFriendList>()
     /** **댓글 리스트 */
     var appClass: FeedAppClassDetailReplyModel?
-    var replyArray:Array? = Array<AppClassCommentList>()
     var viewCheck = ""
     var comment_id = 0
     var comment_str_id = ""
@@ -58,8 +57,6 @@ class ReplyLikeViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray?.count ?? 0 , "commentLikeCount":appClass?.results?.list?.like ?? 0,"preHave":appClass?.results?.list?.like_me ?? "N"] as [String : Any]
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumParamChange"), object: nil,userInfo: userInfo)
         
     }
 

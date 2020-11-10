@@ -52,13 +52,22 @@ class ChildDetailClassViewController: UIViewController {
     @IBOutlet weak var emoticonSelectView: UIView!
     /** **이모티콘 이미지뷰 */
     @IBOutlet weak var emoticonImg: UIImageView!
+    /** *called when neither likeBtn nor dislikeBtn has value*/
+    @IBOutlet weak var likeBtnPopupView: ChildDetailClassPopupView!
+    @IBOutlet weak var popupLikeBtn: UIButton!
+    @IBOutlet weak var popupUnlikeBtn: UIButton!
+    
+    /** *used for popup custom view*/
+    weak var classPopupView: ChildDetailClassPopupView!
+    var refreshControl = UIRefreshControl()
     /** **클래스 커리큘럼 소개 리스트 */
     var feedDetailList:FeedAppClassModel?
     /** **클래스 커리큘럼 댓글 리스트 */
     var feedReplyList:FeedAppClassDetailReplyModel?
+    /** **for managing like and dislike btn*/
+    var likeManageModel:FeedAppClassDetailReplyLikeModel?
     /** **클래스 커리큘럼 댓글 배열 */
     var replyArray:Array? = Array<AppClassCommentList>()
-    var memberList:FeedAppClassConditionInfoModel?
     /** **이모티콘 구분 숫자 */
     var emoticonNumber:Int = 0
     /** **클래스 아이디 */
@@ -81,6 +90,9 @@ class ChildDetailClassViewController: UIViewController {
     var curriculum_id:Int?
     /** **Html 렌더링을 위한 뷰 */
     var classTextView:UITextView?
+    var sender:UIButton?
+    var isShowPopup:Bool?
+    let window = UIApplication.shared.keyWindow
     private let imageView = UIImageView()
     /** **미션 이미지 */
     private var image: UIImage?
@@ -119,7 +131,11 @@ class ChildDetailClassViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.chattingCheck), name: NSNotification.Name(rawValue: "classDetailchattingValueSend"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.flashNextClassBtn), name: NSNotification.Name(rawValue: "flashNextClassBtn"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCount), name: NSNotification.Name(rawValue: "updateLikeCount"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.closePopupView), name: NSNotification.Name(rawValue: "closePopupView"), object: nil)
 
+        tableView.addSubview(refreshControl)
+        isShowPopup = true
+        
         replyBorderView.layer.borderWidth = 1
         replyBorderView.layer.borderColor = UIColor(hexString: "#eeeeee").cgColor
         replyBorderView.layer.cornerRadius = 15
@@ -142,6 +158,9 @@ class ChildDetailClassViewController: UIViewController {
         let dismiss = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.view.addGestureRecognizer(dismiss)
         
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeGesture(sender:)))
+        swipeGesture.direction = .up
+        self.tableView.addGestureRecognizer(swipeGesture)
     }
     
     deinit {
@@ -177,10 +196,10 @@ class ChildDetailClassViewController: UIViewController {
         }
     }
     
+    
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        print("ChildDetailClassViewController viewDidDisappear")
-//        emoticonView = nil
     }
     
     /** **클래스 소개 보기 버튼 클릭 > 클래스 소개를 펼쳐줌 */
@@ -216,9 +235,10 @@ class ChildDetailClassViewController: UIViewController {
     /** **클래스 메뉴의 버튼 클릭 > 1-커리큘럼 만족 2-응원하기 3-커리큘럼보기 4-그룹채팅 or 채팅관리 */
     @IBAction func menuBtnClicked(_ sender: UIButton) {
         if sender.tag == 1 {
-            Indicator.showActivityIndicator(uiView: self.view)
             curriculumLike(sender: sender)
         }else if sender.tag == 2{
+            curriculumDislike(sender: sender)
+        }else if sender.tag == 3{
             if self.feedDetailList?.results?.user_status ?? "" == "spectator" {
                 if let parentVC = self.parent as? FeedDetailViewController {
                     self.view.endEditing(true)
@@ -235,7 +255,7 @@ class ChildDetailClassViewController: UIViewController {
                     }
                 }
             }
-        }else if sender.tag == 3{
+        }else if sender.tag == 4{
             self.view.endEditing(true)
             self.emoticonSelectView.isHidden = true
             if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
@@ -304,7 +324,7 @@ class ChildDetailClassViewController: UIViewController {
             }else{
                 self.view.endEditing(true)
                 let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
-                newViewController.user_id = self.feedDetailList?.results?.curriculum?.coach_class?.coach_id ?? 0//sender.tag
+                newViewController.user_id = self.feedDetailList?.results?.curriculum?.coach_class?.coach_id ?? 0    //sender.tag
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }
         }
@@ -318,16 +338,10 @@ class ChildDetailClassViewController: UIViewController {
             replyWriteCheck()
         }else{
             videoStop()
-            if UserManager.shared.userInfo.results?.user?.id == sender.tag{
-                let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
-                newViewController.user_id = self.replyArray?[sender.tag].user_id ?? 0
-                self.navigationController?.pushViewController(newViewController, animated: true)
-            }else{
-                self.view.endEditing(true)
-                let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
-                newViewController.user_id = self.replyArray?[sender.tag].user_id ?? 0
-                self.navigationController?.pushViewController(newViewController, animated: true)
-            }
+            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+            newViewController.user_id = self.replyArray?[sender.tag].user_id ?? 0
+            newViewController.isMyProfile = true
+            self.navigationController?.pushViewController(newViewController, animated: true)
         }
     }
     @IBAction func reviewUserProfileBtnClicked(_ sender: UIButton) {
@@ -337,25 +351,20 @@ class ChildDetailClassViewController: UIViewController {
     }
     
     /** **친구 사진 버튼 클릭 > 친구 프로필로 이동 ( ProfileFriendViewController ) */
-    @IBAction func likeBtnClicked(_ sender: UIButton) {
-        haveSave(sender: sender)
-    }
-    
     @IBAction func likeCountBtnClicked(_ sender: UIButton) {
-        let row = sender.tag / 10000
-        let likeValue = replyArray?[row].like_me ?? ""
-        let comment_id = replyArray?[row].id ?? 0
-        if likeValue == "N" {
+//        let row = sender.tag / 10000
+//        let likeValue = replyArray?[row].like_me ?? ""
+//        let comment_id = replyArray?[row].id ?? 0
+//        if likeValue == "N" {
              haveSave(sender: sender)
-        } else {
-            let nextView = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
-            nextView.modalPresentationStyle = .overFullScreen
-            nextView.replyArray = replyArray
-            nextView.comment_id = comment_id
-            nextView.viewCheck = "childDetail"
-            self.tagForLikeBtn = sender.tag
-            self.present(nextView, animated:true,completion: nil)
-        }
+//        } else {
+//            let nextView = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
+//            nextView.modalPresentationStyle = .overFullScreen
+//            nextView.comment_id = comment_id
+//            nextView.viewCheck = "childDetail"
+//            self.tagForLikeBtn = sender.tag
+//            self.present(nextView, animated:true,completion: nil)
+//        }
         
     }
     
@@ -390,6 +399,8 @@ class ChildDetailClassViewController: UIViewController {
             }
         }
     }
+              
+    /** *VideoPlayerManagingButton > 1 - play previous class, 2 - opens class curriculum, 3 - plays next class*/
     @IBAction func videoManaginBtnClicked(_ sender: UIButton) {
         
         let tag = sender.tag
@@ -412,6 +423,7 @@ class ChildDetailClassViewController: UIViewController {
                     }
                 }
             } else {
+                
                 if self.feedDetailList?.results?.curriculum?.id ?? 0 != self.feedDetailList?.results?.curriculum_before_id ?? 0 {
                     self.type = "all"
                     self.curriculum_id = feedDetailList?.results?.curriculum?.id ?? 0
@@ -434,6 +446,7 @@ class ChildDetailClassViewController: UIViewController {
                         })
                     }
                 }
+                self.isShowPopup = true
             }
         } else if tag == 2 {
             self.view.endEditing(true)
@@ -467,6 +480,7 @@ class ChildDetailClassViewController: UIViewController {
                     }
                 }
             } else {
+                
                 if self.feedDetailList?.results?.curriculum?.id ?? 0 != self.feedDetailList?.results?.curriculum_after_id ?? 0 {
                     self.type = "all"
                 }
@@ -489,6 +503,7 @@ class ChildDetailClassViewController: UIViewController {
                         })
                     }
                 }
+                self.isShowPopup = true
             }
         }
     }
@@ -510,28 +525,19 @@ class ChildDetailClassViewController: UIViewController {
             let cell = self.tableView.cellForRow(at: indexPath) as! ChildDetailClassTableViewCell
             let newViewController = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "DetailMissionCompleteViewController") as! DetailMissionCompleteViewController
             
-            //if feedDetailList?.results?.curriculum?.button_api ?? "" == "curriculum_next" || feedDetailList?.results?.curriculum?.button_api ?? "" == "review" {
-                if feedDetailList?.results?.mission_yn ?? "Y" == "N" {
-                    //self.classMoveBtn.setImage(UIImage(named: "mission_done"), for: .normal)
-                    //self.classMoveBtn.isUserInteractionEnabled = false
-                    self.showToast2(message: "🔊 미션이 완료 했습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
+            if feedDetailList?.results?.mission_yn ?? "Y" == "N" {
+                self.showToast2(message: "🔊 미션이 완료 했습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
+            } else {
+                if feedDetailList?.results?.mission_count ?? 0 > 0 {
+                    self.view.endEditing(true)
+                    newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
+                    self.navigationController?.pushToViewBottomController(vc: newViewController)
+                    cell.classLikeView.isHidden = false
                 } else {
-                    if feedDetailList?.results?.mission_count ?? 0 > 0 {
-                        //self.classMoveBtn.setImage(UIImage(named: "mission_do-again"), for: .normal)
-                        self.view.endEditing(true)
-                        newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
-                        self.navigationController?.pushToViewBottomController(vc: newViewController)
-                        cell.classLikeView.isHidden = false
-                    } else {
-                        //self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
-                        newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
-                        self.navigationController?.pushToViewBottomController(vc: newViewController)
-                    }
-                    
+                    newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
+                    self.navigationController?.pushToViewBottomController(vc: newViewController)
                 }
-//            }else{
-//
-//            }
+            }
         }
     }
     
@@ -732,23 +738,59 @@ class ChildDetailClassViewController: UIViewController {
         if sender.tag == 0 {
             self.type = "all"
             filteredComment(type: self.type)
-            print(self.type)
         } else if sender.tag == 1 {
             self.type = "questions"
             filteredComment(type: self.type)
-            print(self.type)
         } else {
             self.type = "coach"
             filteredComment(type: self.type)
-            print(self.type)
         }
+    }
+    
+    /** *This func opens popup view if  classLike_yn == "N"*/
+    func showPopupView(){
+    
+//        let screenSize = self.view.frame.size
+//        NSLayoutConstraint.activate([
+//            classPopupView.topAnchor.constraint(equalTo: self.popupView.topAnchor),
+//            classPopupView.bottomAnchor.constraint(equalTo: self.popupView.bottomAnchor),
+//            classPopupView.leadingAnchor.constraint(equalTo: self.popupView.leadingAnchor),
+//            classPopupView.trailingAnchor.constraint(equalTo: self.popupView.trailingAnchor)
+//        ])
+//
+//        self.classPopupView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 190)
+//        UIView.animate(withDuration: 0.5, delay: 1, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn) {
+//            self.classPopupView.frame = CGRect(x: 0, y: screenSize.height - 190, width: screenSize.width, height: 190)
+//        } completion: { isShown in
+//            print("show custom view value : \(isShown)")
+//        }
+
+    }
+    
+    @objc func swipeGesture(sender: UISwipeGestureRecognizer) {
+        print("swiped up")
+        if sender.state == .ended {
+            print("swiped up")
+            closingPopupView()
+        }
+    }
+    
+    func closingPopupView() {
+//        let screenSize = view.bounds.size
+//        let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassMenuTableViewCell") as! ChildDetailClassTableViewCell
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseOut, animations: {
+            print("closing the popup view!")
+//            self.classPopupView.frame = CGRect(x: 0, y: 1, width: screenSize.width, height: 190)
+//            self.likeBtnPopupView.isHidden = true
+        }, completion: nil)
     }
     
     /** *The function which filters the comments */
     func filteredComment(type:String) {
-        self.replyArray?.removeAll()
-        DispatchQueue.main.async {
-            if self.feedDetailList?.results?.user_status ?? "" != "spectator" {
+        if self.feedDetailList?.results?.user_status ?? "" != "spectator" {
+            self.replyArray?.removeAll()
+            DispatchQueue.main.async {
                 self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: type)
             }
         }
@@ -1001,8 +1043,10 @@ class ChildDetailClassViewController: UIViewController {
      */
     @objc func noticeReplyDelete(notification:Notification){
         self.feedDetailList?.results?.curriculum?.coach_class?.notice = nil
-        DispatchQueue.main.async {
-            self.tableView.reloadSections([4], with: .automatic)
+        if self.feedDetailList?.results?.user_status ?? "" != "spectator" {
+            DispatchQueue.main.async {
+                self.tableView.reloadSections([4], with: .automatic)
+            }
         }
     }
     
@@ -1291,6 +1335,23 @@ extension ChildDetailClassViewController:UITextViewDelegate{
 
 extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSource{
     
+    /**
+     - Parameters:
+        - scrollView: this function is called when scrolling is stopped
+     */
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshControl.isRefreshing {
+            self.tableView.isUserInteractionEnabled = false
+            self.isShowPopup = true
+            DispatchQueue.main.async {
+                self.appClassDetail()
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+            }
+            self.tableView.isUserInteractionEnabled = true
+        }
+    }
+    
     /** **테이블 셀의 섹션당 로우 개수 함수 */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.feedDetailList != nil{
@@ -1302,7 +1363,6 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     }else{
                         return 0
                     }
-//                case 1,3,7,10:
                 case 1,5,6,8,11:
                     return 1
                 case 2:
@@ -1445,22 +1505,35 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     }else{
                         cell.classContentBtn.isHidden = false
                     }
-                    let numberCheck:Int = self.feedDetailList?.results?.curriculum?.like_count ?? 0
-                    cell.classSatisFiedLbl.text = "\(numberCheck.numberFormatterModooClass(to: numberCheck)) 명"
-                    if self.feedDetailList?.results?.curriculum?.like_me ?? "N" == "Y"{
-                        cell.classSatisFiedImg.image = UIImage(named: "class_satisfied_active2")
+                    
+                    if self.feedDetailList?.results?.curriculum?.helpful_flag ?? "" == "Y"{
+                        cell.classSatisFiedImg.image = UIImage(named: "class_main_like_active")
+                        cell.classSatisFiedLbl.textColor = UIColor(hexString: "#FF5A5F")
+                        cell.classNotSatisImg.image = UIImage(named: "class_main_dislike")
+                        cell.classNotSatisFixedLbl.textColor = UIColor(hexString: "#484848")
                     }else{
-                        cell.classSatisFiedImg.image = UIImage(named: "class_satisfied_default2")
+                        cell.classSatisFiedImg.image = UIImage(named: "class_main_like")
+                        cell.classSatisFiedLbl.textColor = UIColor(hexString: "#484848")
+                    }
+                    
+                    if self.feedDetailList?.results?.curriculum?.nohelpful_flag ?? "" == "Y"{
+                        cell.classSatisFiedImg.image = UIImage(named: "class_main_like")
+                        cell.classSatisFiedLbl.textColor = UIColor(hexString: "#484848")
+                        cell.classNotSatisFixedLbl.textColor = UIColor(hexString: "#FF5A5F")
+                        cell.classNotSatisImg.image = UIImage(named: "class_main_dislike_active")
+                    } else {
+                        cell.classNotSatisImg.image = UIImage(named: "class_main_dislike")
+                        cell.classNotSatisFixedLbl.textColor = UIColor(hexString: "#484848")
                     }
                     
                     cell.sharePointBtnView.setTitle("₩\(self.feedDetailList?.results?.share_point ?? "1000")", for: .normal)
                     feedDetailList?.results?.curriculum_before_id == 0 ? (cell.sharePointBtnView.isHidden = false) : (cell.sharePointBtnView.isHidden = true)
-                    
+                    print("hash lbl value : \(self.feedDetailList?.results?.head_comment ?? "no data")")
                     cell.classHashTagLbl.text = self.feedDetailList?.results?.head_comment ?? ""
-                    cell.classCheerLbl.text = "\(self.feedDetailList?.results?.star_avg ?? 0)(\(self.feedDetailList?.results?.star_cnt ?? 0))"
+                    cell.classCheerLbl.text = "리뷰(\(self.feedDetailList?.results?.star_cnt ?? 0))"
                     cell.classGroupChatLbl.text = "공유하기"
                     cell.classContentBtn.isHidden = true
-                    cell.classCheerImg.image = UIImage(named:"class_review2")
+                    cell.classCheerImg.image = UIImage(named:"my_class_review")
                     cell.classGroupImg.image = UIImage(named:"class_share")
                     cell.classDescriptionImg.image = UIImage(named: "class_detail2")
                     cell.classDescriptionLbl.text = "상세"
@@ -1515,28 +1588,13 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.review2UserName.text = "\(feedDetailList?.results?.review_list_arr[1].user_name ?? "")"
                         cell.review2UserDate.text = "\(feedDetailList?.results?.review_list_arr[1].created_at ?? "")"
                         cell.review2UserContent.text = "\(feedDetailList?.results?.review_list_arr[1].content ?? "")"
-                        cell.review2UserStar1.isHidden = false
-                        cell.review2UserStar2.isHidden = false
-                        cell.review2UserStar3.isHidden = false
-                        cell.review2UserStar4.isHidden = false
-                        cell.review2UserStar5.isHidden = false
-                        if feedDetailList?.results?.review_list_arr[1].star ?? 0 == 4{
-                            cell.review2UserStar5.isHidden = true
-                        }else if feedDetailList?.results?.review_list_arr[1].star ?? 0 == 3{
-                            cell.review2UserStar4.isHidden = true
-                            cell.review2UserStar5.isHidden = true
-                        }else if feedDetailList?.results?.review_list_arr[1].star ?? 0 == 2{
-                            cell.review2UserStar3.isHidden = true
-                            cell.review2UserStar4.isHidden = true
-                            cell.review2UserStar5.isHidden = true
-                        }else if feedDetailList?.results?.review_list_arr[1].star ?? 0 == 1{
-                            cell.review2UserStar2.isHidden = true
-                            cell.review2UserStar3.isHidden = true
-                            cell.review2UserStar4.isHidden = true
-                            cell.review2UserStar5.isHidden = true
+                        if feedDetailList?.results?.review_list_arr[1].star ?? 0 == 4 || feedDetailList?.results?.review_list_arr[1].star ?? 0 == 5 {
+                            cell.review2FeedbackImg.image = UIImage(named: "like_btn_with_title")
+                        } else {
+                            cell.review2FeedbackImg.image = UIImage(named: "dislike_btn_with_title")
                         }
+
                         cell.review2UserProfileBtn.tag = feedDetailList?.results?.review_list_arr[1].user_id ?? 0
-                        
                         cell.review2UserBackView.layer.cornerRadius = 10
                         cell.review2UserBackView.layer.borderColor = UIColor(hexString: "#efefef").cgColor
                         cell.review2UserBackView.layer.borderWidth = 1
@@ -1547,26 +1605,12 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.reviewUserName.text = "\(feedDetailList?.results?.review_list_arr[0].user_name ?? "")"
                         cell.reviewUserDate.text = "\(feedDetailList?.results?.review_list_arr[0].created_at ?? "")"
                         cell.reviewUserContent.text = "\(feedDetailList?.results?.review_list_arr[0].content ?? "")"
-                        cell.reviewUserStar1.isHidden = false
-                        cell.reviewUserStar2.isHidden = false
-                        cell.reviewUserStar3.isHidden = false
-                        cell.reviewUserStar4.isHidden = false
-                        cell.reviewUserStar5.isHidden = false
-                        if feedDetailList?.results?.review_list_arr[0].star ?? 0 == 4{
-                            cell.reviewUserStar5.isHidden = true
-                        }else if feedDetailList?.results?.review_list_arr[0].star ?? 0 == 3{
-                            cell.reviewUserStar4.isHidden = true
-                            cell.reviewUserStar5.isHidden = true
-                        }else if feedDetailList?.results?.review_list_arr[0].star ?? 0 == 2{
-                            cell.reviewUserStar3.isHidden = true
-                            cell.reviewUserStar4.isHidden = true
-                            cell.reviewUserStar5.isHidden = true
-                        }else if feedDetailList?.results?.review_list_arr[0].star ?? 0 == 1{
-                            cell.reviewUserStar2.isHidden = true
-                            cell.reviewUserStar3.isHidden = true
-                            cell.reviewUserStar4.isHidden = true
-                            cell.reviewUserStar5.isHidden = true
+                        if feedDetailList?.results?.review_list_arr[0].star ?? 0 == 4 || feedDetailList?.results?.review_list_arr[0].star ?? 0 == 5 {
+                            cell.review2FeedbackImg.image = UIImage(named: "like_btn_with_title")
+                        } else {
+                            cell.review2FeedbackImg.image = UIImage(named: "dislike_btn_with_title")
                         }
+
                         cell.reviewUserProfileBtn.tag = feedDetailList?.results?.review_list_arr[0].user_id ?? 0
                         cell.reviewScore.text = "리뷰 \(self.feedDetailList?.results?.star_avg ?? 0)"
                         cell.reviewCount.text = "(\(self.feedDetailList?.results?.star_cnt ?? 0)명 평가)"
@@ -1651,7 +1695,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
             }else if section == 9{
                 let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassTotalReplyTitleTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if replyArray != nil{
-                    replyArray!.count > 0 ? (cell.totalReplyCount.text = "이 강의 댓글 \(feedReplyList?.results?.total ?? 0)개") : (cell.totalReplyCount.text = "이 강의 댓글이 아직 없습니다") /*turnary operator*/
+                    replyArray!.count > 0 ? (cell.totalReplyCount.text = "댓글 \(feedReplyList?.results?.total ?? 0)개") : (cell.totalReplyCount.text = "댓글이 아직 없습니다") /*turnary operator*/
                 }
                 cell.selectionStyle = .none
                 return cell
@@ -1679,17 +1723,41 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     }else{
                         cell.classContentBtn.isHidden = false
                     }
-                    let numberCheck:Int = self.feedDetailList?.results?.curriculum?.like_count ?? 0
-                    cell.classSatisFiedLbl.text = "\(numberCheck.numberFormatterModooClass(to: numberCheck)) 명"
-                    if self.feedDetailList?.results?.curriculum?.like_me ?? "N" == "Y"{
-                        cell.classSatisFiedImg.image = UIImage(named: "class_satisfied_active2")
+                    
+                    if self.feedDetailList?.results?.curriculum?.helpful_flag ?? "" == "Y"{
+                        cell.classSatisFiedImg.image = UIImage(named: "class_main_like_active")
+                        cell.classSatisFiedLbl.textColor = UIColor(hexString: "#FF5A5F")
+                        cell.classNotSatisImg.image = UIImage(named: "class_main_dislike")
+                        cell.classNotSatisFixedLbl.textColor = UIColor(hexString: "#484848")
                     }else{
-                        cell.classSatisFiedImg.image = UIImage(named: "class_satisfied_default2")
+                        cell.classSatisFiedImg.image = UIImage(named: "class_main_like")
+                        cell.classSatisFiedLbl.textColor = UIColor(hexString: "#484848")
                     }
+                    
+                    if self.feedDetailList?.results?.curriculum?.nohelpful_flag ?? "" == "Y"{
+                        cell.classSatisFiedImg.image = UIImage(named: "class_main_like")
+                        cell.classSatisFiedLbl.textColor = UIColor(hexString: "#484848")
+                        cell.classNotSatisFixedLbl.textColor = UIColor(hexString: "#FF5A5F")
+                        cell.classNotSatisImg.image = UIImage(named: "class_main_dislike_active")
+                    } else {
+                        cell.classNotSatisImg.image = UIImage(named: "class_main_dislike")
+                        cell.classNotSatisFixedLbl.textColor = UIColor(hexString: "#484848")
+                    }
+                    print("hash lbl value : \(self.feedDetailList?.results?.head_comment ?? "no value")")
                     cell.classHashTagLbl.text = self.feedDetailList?.results?.head_comment ?? ""
                     cell.sharePointBtnView.setTitle("₩\(self.feedDetailList?.results?.share_point ?? "1000")", for: .normal)
                     feedDetailList?.results?.curriculum_before_id == 0 ? (cell.sharePointBtnView.isHidden = false) : (cell.sharePointBtnView.isHidden = true)
 
+                    if feedDetailList?.results?.curriculum_after_id ?? 0 == 0 {
+                        cell.nextClassBtn.setTitle("리뷰쓰기 ", for: .normal)
+                        cell.nextClassBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
+                        cell.nextClassBtn.setImage(UIImage(named: "last_class"), for: .normal)
+                    } else {
+                        cell.nextClassBtn.setImage(UIImage(named: "next_btn"), for: .normal)
+                        cell.nextClassBtn.setTitleColor(UIColor(hexString: "#FFFFFF"), for: .normal)
+                        cell.nextClassBtn.setTitle("다음강의 ", for: .normal)
+                    }
+                    
                     if UserManager.shared.userInfo.results?.user?.id == self.feedDetailList?.results?.curriculum?.coach_class?.coach_id {
                         cell.classCheerLbl.text = "수강생"
                         cell.classGroupImg.image = UIImage(named: "class_cheer2")
@@ -1697,31 +1765,85 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.sharePointBtnView.isHidden = true
                         
                         if feedDetailList?.results?.curriculum_after_id ?? 0 == 0 {
-                            cell.nextClassBtn.setTitle("리뷰쓰기 ", for: .normal)
-                            cell.nextClassBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                            cell.nextClassBtn.setImage(UIImage(named: "last_class"), for: .normal)
                             cell.nextClassBtn.isUserInteractionEnabled = false
                         } else {
-                            cell.nextClassBtn.setImage(UIImage(named: "next_btn"), for: .normal)
-                            cell.nextClassBtn.setTitleColor(UIColor(hexString: "#FFFFFF"), for: .normal)
-                            cell.nextClassBtn.setTitle("다음강의 ", for: .normal)
                             cell.nextClassBtn.isUserInteractionEnabled = true
                         }
                     }else{
                         cell.classCheerLbl.text = "보고서"
                         cell.classGroupChatLbl.text = "공유하기"
                         cell.classGroupImg.image = UIImage(named: "class_share")
-                        
-                        if feedDetailList?.results?.curriculum_after_id ?? 0 == 0 {
-                            cell.nextClassBtn.setTitle("리뷰쓰기 ", for: .normal)
-                            cell.nextClassBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                            cell.nextClassBtn.setImage(UIImage(named: "last_class"), for: .normal)
-                        } else {
-                            cell.nextClassBtn.setImage(UIImage(named: "next_btn"), for: .normal)
-                            cell.nextClassBtn.setTitleColor(UIColor(hexString: "#FFFFFF"), for: .normal)
-                            cell.nextClassBtn.setTitle("다음강의 ", for: .normal)
-                        }
                     }
+                    
+//                    if self.feedDetailList?.results?.curriculum?.helpful_flag ?? "" == "N" && self.feedDetailList?.results?.curriculum?.nohelpful_flag ?? "" == "N" {
+//                        if self.isShowPopup == true {
+//                            self.likeBtnPopupView.isHidden = false
+//                            self.likeBtnPopupView.likeBtn.setImage(UIImage(named: "class_like_btn_default"), for: .normal)
+//                            self.likeBtnPopupView.dislikeBtn.setImage(UIImage(named: "class_unlike_btn_default"), for: .normal)
+//    //                        window?.bringSubviewToFront(self.likeBtnPopupView)
+//                            let screenSize = self.view.frame.size
+//                            self.likeBtnPopupView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: 175)
+//                            UIView.animate(withDuration: 0.5, delay: 1, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn) {
+//                                self.likeBtnPopupView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 175)
+//                            } completion: { isShown in
+//                                print("show custom view value : \(isShown)")
+//                            }
+//
+//                            self.isShowPopup = false
+//
+//                            print("show the popup")
+//                        } else {
+//                            print("like btn has value")
+//                            self.likeBtnPopupView.isHidden = true
+////
+//                        }
+//
+//                    } else {
+//                        self.likeBtnPopupView.isHidden = true
+////                        self.isShowPopup = false
+//                    }
+//
+//                    self.likeBtnPopupView.popupLikeBtnClick = {
+//                        self.sender = self.likeBtnPopupView.likeBtn
+//                        self.curriculumLike(sender: self.sender!)
+////                        self.feedDetailList?.results?.curriculum?.helpful_flag = "Y"
+//                        self.likeBtnPopupView.likeBtn.setImage(UIImage(named: "class_like_btn_active"), for: .normal)
+//
+//                        let screenSize = self.view.frame.size
+//                        UIView.animate(withDuration: 1, delay: 2, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn) {
+//                            self.likeBtnPopupView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 175)
+//                        } completion: { isShown in
+//                            print("show custom view value : \(isShown)")
+//                        }
+//
+//                    }
+//
+//                    self.likeBtnPopupView.popupDislikeBtnClick = {
+//                        self.sender = self.likeBtnPopupView.dislikeBtn
+//                        self.curriculumDislike(sender: self.sender!)
+//                        self.likeBtnPopupView.dislikeBtn.setImage(UIImage(named: "class_unlike_btn_active"), for: .normal)
+//
+//                        let screenSize = self.view.frame.size
+//                        UIView.animate(withDuration: 1, delay: 2, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn) {
+//                            self.likeBtnPopupView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 175)
+//                        } completion: { isShown in
+//                            print("show custom view value : \(isShown)")
+//                        }
+//
+//
+//                    }
+//
+//                    self.likeBtnPopupView.popupExitBtnClick = {
+//                        let screenSize = self.view.frame.size
+//                        UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn) {
+//                            self.likeBtnPopupView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 175)
+//                        } completion: { isShown in
+//                            print("show custom view value : \(isShown)")
+//                        }
+//                        self.isShowPopup = false
+//                        self.likeBtnPopupView.isHidden = true
+//                    }
+                    
                 }
                 cell.selectionStyle = .none
                 return cell
@@ -1772,26 +1894,20 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 return cell
             }else if section == 7{
                 let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassTotalReplyTitleTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+                cell.communityLbl.text = ""
                 if replyArray != nil{
                     if replyArray!.count > 0 {
-                        cell.totalReplyCount.text = "이 강의 댓글 \(feedReplyList?.results?.total ?? 0)개"
+                        cell.totalReplyCount.text = "댓글 \(feedReplyList?.results?.total ?? 0)개"
                     } else {
-//                        if self.type == "all" {
-//                            cell.totalReplyCount.text = "이 강의 댓글이 아직 없습니다"
-//                        } else if self.type == "questions" {
-//                            cell.totalReplyCount.text = "이 강의 질문 댓글이 아직 없습니다"
-//                        } else {
-//                            cell.totalReplyCount.text = "이 강의 코치 댓글이 아직 없습니다"
-//                        }
                         switch self.type {
                         case "all":
-                            cell.totalReplyCount.text = "이 강의 댓글이 아직 없습니다"
+                            cell.totalReplyCount.text = "댓글이 아직 없습니다"
                         case "questions":
-                            cell.totalReplyCount.text = "이 강의 질문 댓글이 아직 없습니다"
+                            cell.totalReplyCount.text = "질문 댓글이 아직 없습니다"
                         case "coach":
-                            cell.totalReplyCount.text = "이 강의 코치 댓글이 아직 없습니다"
+                            cell.totalReplyCount.text = "코치 댓글이 아직 없습니다"
                         default:
-                            cell.totalReplyCount.text = "이 강의 댓글이 아직 없습니다"
+                            cell.totalReplyCount.text = "댓글이 아직 없습니다"
                         }
                     }
                 }
@@ -2026,18 +2142,14 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 cell.replyReadBtn.tag = row
                 
                 if replyArray?[row].like_me == "Y" {
-                    cell.likeBtn.tag = row*10000 + 1
-                    cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
                     cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
                     cell.likeCountBtn.tag = row*10000 + 1
-                    cell.likeCountBtn.setImage(UIImage(named: "heart_red"), for: .normal)
+                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
                     cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
                 }else{
-                    cell.likeBtn.tag = row*10000 + 2
-                    cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
                     cell.likeCountBtn.tag = row*10000 + 2
                     cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "heart_grey"), for: .normal)
+                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
                     cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
                 }
                 if replyArray?[row].user_id == UserManager.shared.userInfo.results?.user?.id {
@@ -2092,6 +2204,43 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
 
 extension ChildDetailClassViewController{
     
+//    func openLikeBtnPopup() {
+//        print("will be showing..")
+//        print("started showing.. \nThe value of helpful flag : \(self.feedDetailList?.results?.curriculum?.helpful_flag ?? "no value")")
+////        if self.feedDetailList?.results?.curriculum?.helpful_flag ?? "" == "N" && self.feedDetailList?.results?.curriculum?.nohelpful_flag ?? "" == "N" {
+////            if self.isShowPopup == true {
+//                self.likeBtnPopupView.isHidden = false
+//
+//                self.likeBtnPopupView.roundedView(usingCorners: [.bottomLeft
+//                                                                 , .bottomRight], cornerRadii: CGSize(width: 12, height: 12))
+//
+////                self.popupLikeBtn.setImage(UIImage(named: "class_like_btn_default"), for: .normal)
+////                self.popupUnlikeBtn.setImage(UIImage(named: "class_unlike_btn_default"), for: .normal)
+////                        window?.bringSubviewToFront(self.likeBtnPopupView)
+//                let screenSize = self.view.frame.size
+//                self.likeBtnPopupView.frame = CGRect(x: 0, y: -125, width: screenSize.width, height: 175)
+//                UIView.animate(withDuration: 0.5, delay: 1, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn) {
+//                    self.likeBtnPopupView.frame = CGRect(x: 0, y: 50, width: screenSize.width, height: 175)
+//                } completion: { isShown in
+//                    print("show custom view value : \(isShown)")
+//                }
+//
+//                self.isShowPopup = false
+//
+//                print("show the popup")
+////            } else {
+////                print("like btn has value")
+////                self.likeBtnPopupView.isHidden = true
+//////
+////            }
+////        } else {
+////            self.likeBtnPopupView.isHidden = true
+//////                        self.isShowPopup = false
+////        }
+//
+//
+//    }
+    
     func replyWriteCheck(){
         Alert.WithReply(self, btn1Title: "삭제", btn1Handler: {
             self.emoticonImg.image = nil
@@ -2136,18 +2285,6 @@ extension ChildDetailClassViewController{
             }
         }
         
-        
-//        if feedDetailList?.results?.curriculum?.button_api ?? "" == "curriculum_next" || feedDetailList?.results?.curriculum?.button_api ?? "" == "review" {
-//            if feedDetailList?.results?.mission_count == 0{
-//               //self.classMoveBtn.setImage(UIImage(named: "mission_done"), for: .normal)
-//                self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
-//            } else {
-//               self.classMoveBtn.setImage(UIImage(named: "mission_do_again"), for: .normal)
-//            }
-//        }else{
-//            self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
-//        }
-        
         if let parentVC = self.parent as? FeedDetailViewController {
             parentVC.videoLoadCheck(button_api: self.feedDetailList?.results?.curriculum?.button_api ?? "", curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, loadUrl: FeedDetailManager.shared.feedDetailList.results?.curriculum?.study?.video ?? "")
         }else{}
@@ -2183,12 +2320,12 @@ extension ChildDetailClassViewController{
                     self.scrapImg.image = UIImage(named:"participation_scrap_default")
                     self.scrapCount.textColor = UIColor(hexString: "#1A1A1A")
                     self.scrapCount.fontWeight = .Regular
-                    self.scrapCount.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12.5)!
+                    self.scrapCount.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 10.5)!
                     self.scrapBtn.tag = 1
                 }else{
                     self.scrapImg.image = UIImage(named:"participation_scrap_active")
                     self.scrapCount.textColor = UIColor(hexString: "#FF0F16")
-                    self.scrapCount.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12.5)!
+                    self.scrapCount.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 10.5)!
                     self.scrapBtn.tag = 2
                 }
                 self.scrapCount.text = "\(self.feedDetailList?.results?.classScrap_cnt ?? 0)"
@@ -2299,7 +2436,7 @@ extension ChildDetailClassViewController{
         let row = sender.tag / 10000
         let likeGubun = sender.tag % 10000 // 1 : Y delete  2 : N post
         let comment_id = replyArray?[row].id ?? 0
-        print("haveSave row value : \(row)\ntag value : \(sender.tag)\ncomment_id : \(comment_id)\nlikeGubun value : \(likeGubun)")
+
         var type = ""
         if likeGubun == 1{
             type = "delete"
@@ -2310,28 +2447,21 @@ extension ChildDetailClassViewController{
         FeedApi.shared.replyCommentLike(comment_id: comment_id, method_type: type,success: { [unowned self] result in
             if result.code == "200" {
                 DispatchQueue.main.async {
-                    var selectedIndexPath = IndexPath(item:row , section: 10)
-                    if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                        selectedIndexPath = IndexPath(item: row , section: 10)
-                    }
+                    let selectedIndexPath = IndexPath(item:row , section: 10) // you can change section for "spectator"
                     let cell = self.tableView.cellForRow(at: selectedIndexPath) as! ChildDetailClassTableViewCell
                     if likeGubun == 1{
                         self.replyArray?[row].like = (self.replyArray?[row].like ?? 0)-1
-                        cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
-                        cell.likeBtn.tag = row*10000 + 2
                         cell.likeCountBtn.tag = row*10000 + 2
                         self.replyArray?[row].like_me = "N"
                         cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                        cell.likeCountBtn.setImage(UIImage(named: "heart_grey"), for: .normal)
+                        cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
                         cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
                     }else{
                         self.replyArray?[row].like = (self.replyArray?[row].like ?? 0)+1
-                        cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
-                        cell.likeBtn.tag = row*10000 + 1
                         cell.likeCountBtn.tag = row*10000 + 1
                         self.replyArray?[row].like_me = "Y"
                         cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                        cell.likeCountBtn.setImage(UIImage(named: "heart_red"), for: .normal)
+                        cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
                         cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
                     }
                     
@@ -2468,32 +2598,54 @@ extension ChildDetailClassViewController{
      */
     func curriculumLike(sender:UIButton){
         var methodType = ""
-        if self.feedDetailList?.results?.curriculum?.like_me ?? "N" == "Y"{
+        if self.feedDetailList?.results?.curriculum?.helpful_flag ?? "N" == "Y"{
             methodType = "delete"
         }else{
             methodType = "post"
         }
-        FeedApi.shared.curriculumLike(curriculum_id:feedDetailList?.results?.curriculum?.id ?? 0 , method_type:methodType,success: { [unowned self] result in
+        FeedApi.shared.curriculumLike(curriculum_id:feedDetailList?.results?.curriculum?.id ?? 0 , method_type:methodType,help_type: "helpful", success: { [unowned self] result in
             Indicator.hideActivityIndicator(uiView: self.view)
+            self.likeManageModel = result
             if result.code == "200"{
                 DispatchQueue.main.async {
                     if methodType == "delete"{
-//                        sender.setImage(UIImage(named: "class_satisfied_default2"), for: .normal)
-                        self.feedDetailList?.results?.curriculum?.like_me = "N"
-                        self.feedDetailList?.results?.curriculum?.like_count = (self.feedDetailList?.results?.curriculum!.like_count)!-1
+                        self.feedDetailList?.results?.curriculum?.helpful_flag = "N"
+                        self.feedDetailList?.results?.curriculum?.helpful_count = (self.feedDetailList?.results?.curriculum!.helpful_count)!-1
                     }else{
-//                        sender.setImage(UIImage(named: "class_satisfied_active2"), for: .normal)
-                        self.feedDetailList?.results?.curriculum?.like_me = "Y"
-                        self.feedDetailList?.results?.curriculum?.like_count = (self.feedDetailList?.results?.curriculum!.like_count)!+1
+                        self.feedDetailList?.results?.curriculum?.helpful_flag = "Y"
+                        self.feedDetailList?.results?.curriculum?.nohelpful_flag = "N"
+                        self.feedDetailList?.results?.curriculum?.helpful_count = (self.feedDetailList?.results?.curriculum?.helpful_count)!+1
                     }
-                    
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    
-                    if self.tableView.dataHasChanged {
-                        self.tableView.reloadData()
-                    } else {
-                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                                                              self.tableView.reloadData()
+                }
+            }
+        }) { error in
+            Indicator.hideActivityIndicator(uiView: self.view)
+        }
+    }
+    
+    func curriculumDislike(sender:UIButton){
+        var methodType = ""
+        if self.feedDetailList?.results?.curriculum?.nohelpful_flag ?? "N" == "Y"{
+            methodType = "delete"
+        }else{
+            methodType = "post"
+        }
+        FeedApi.shared.curriculumLike(curriculum_id:self.feedDetailList?.results?.curriculum?.id ?? 0 , method_type:methodType, help_type:"nohelpful", success: { [unowned self] result in
+            Indicator.hideActivityIndicator(uiView: self.view)
+            self.likeManageModel = result
+            if result.code == "200"{
+                DispatchQueue.main.async {
+                    if methodType == "delete"{
+                        self.feedDetailList?.results?.curriculum?.nohelpful_flag = "N"
+                        
+                        self.feedDetailList?.results?.curriculum?.nohelpful_count = (self.feedDetailList?.results?.curriculum!.nohelpful_count)!-1
+                    }else{
+                        self.feedDetailList?.results?.curriculum?.nohelpful_flag = "Y"
+                        self.feedDetailList?.results?.curriculum?.helpful_flag = "N"
+                        self.feedDetailList?.results?.curriculum?.nohelpful_count = (self.feedDetailList?.results?.curriculum?.nohelpful_count)!+1
                     }
+                    self.tableView.reloadData()
                 }
             }
         }) { error in

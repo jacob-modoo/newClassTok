@@ -233,32 +233,26 @@ class HomeClassViewController: UIViewController {
     
     @IBAction func classInBtnClicked(_ sender: UIButton) {
         let tag = sender.tag
-        if HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].status ?? 0 != 6 || HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].status ?? 0 != 9 {
-            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].manager_link ?? ""
-            self.navigationController?.pushViewController(newViewController, animated: true)
-        } else {
+        if HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].status ?? 0 == 6 || HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].status ?? 0 == 9 {
             let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
             newViewController.class_id = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].id ?? 0
             newViewController.pushGubun = 1
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        } else {
+            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].manager_link ?? ""
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
     }
     
     @IBAction func favouriteClassInBtnClicked(_ sender: UIButton) {
         let tag = sender.tag
-//        if HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[tag].curriculum_cnt ?? 0 == 0 {
-//            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-//            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].manager_link ?? ""
-//            self.navigationController?.pushViewController(newViewController, animated: true)
-//        } else {
-            if tag != 0 {
-                let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
-                newViewController.class_id = tag
-                newViewController.pushGubun = 1
-                self.navigationController?.pushViewController(newViewController, animated: true)
-            }
-//        }
+        if tag != 0 {
+            let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
+            newViewController.class_id = tag
+            newViewController.pushGubun = 1
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
     }
     
     @IBAction func classFavoriteRecommendBtnClicked(_ sender: UIButton) {
@@ -307,7 +301,6 @@ extension HomeClassViewController{
         }else{
             type = "post"
         }
-        
         
         FeedApi.shared.class_have(class_id:class_id,type:type,success: { [unowned self] result in
             if result.code == "200"{
@@ -468,10 +461,8 @@ extension HomeClassViewController{
                     }
                 }
             }
-            
         }
     }
-    
 }
 
 extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
@@ -792,33 +783,11 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                 cell.className.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].class_name ?? "")"
 //                review_wait : 작성하기 , coach_wait : 작성완료 , coach_send : 답변도착
                 cell.reviewWriteCompleteBtn.setTitle("리뷰쓰기", for: .normal)
-                if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].review_star ?? 0 == 5{
-                    cell.classReviewStar1.image = UIImage(named: "star_active")
-                    cell.classReviewStar2.image = UIImage(named: "star_active")
-                    cell.classReviewStar3.image = UIImage(named: "star_active")
-                    cell.classReviewStar4.image = UIImage(named: "star_active")
-                    cell.classReviewStar5.image = UIImage(named: "star_active")
-                }else if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].review_star ?? 0 == 4{
-                    cell.classReviewStar5.image = UIImage(named: "star_default")
-                }else if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].review_star ?? 0 == 3{
-                    cell.classReviewStar4.image = UIImage(named: "star_default")
-                    cell.classReviewStar5.image = UIImage(named: "star_default")
-                }else if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].review_star ?? 0 == 2{
-                    cell.classReviewStar3.image = UIImage(named: "star_default")
-                    cell.classReviewStar4.image = UIImage(named: "star_default")
-                    cell.classReviewStar5.image = UIImage(named: "star_default")
-                }else if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].review_star ?? 0 == 1{
-                    cell.classReviewStar2.image = UIImage(named: "star_default")
-                    cell.classReviewStar3.image = UIImage(named: "star_default")
-                    cell.classReviewStar4.image = UIImage(named: "star_default")
-                    cell.classReviewStar5.image = UIImage(named: "star_default")
-                }else if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].review_star ?? 0 == 0{
-                    cell.classReviewStar1.image = UIImage(named: "star_default")
-                    cell.classReviewStar2.image = UIImage(named: "star_default")
-                    cell.classReviewStar3.image = UIImage(named: "star_default")
-                    cell.classReviewStar4.image = UIImage(named: "star_default")
-                    cell.classReviewStar5.image = UIImage(named: "star_default")
-                }else{}
+                if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].review_star_status ?? "" == "helpful"{
+                    cell.classReviewStar1.image = UIImage(named: "like_btn_with_title")
+                }else{
+                    cell.classReviewStar1.image = UIImage(named: "dislike_btn_with_title")
+                }
                 
                 cell.reviewWriteBtn.tag = row
                 cell.classRePurchaseBtn.tag = row

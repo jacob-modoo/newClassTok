@@ -185,8 +185,10 @@ class CurriculumHead: NSObject {
 
 class ClassDetailReview_list:NSObject{
     var id:Int?
+    var best_flag:String?
     var created_at:String?
     var star:Int?
+    var review_star_status:String?
     var content:String?
     var user_id:Int?
     var coach_content:String?
@@ -203,8 +205,10 @@ class ClassDetailReview_list:NSObject{
     convenience init(dic:Dictionary<String, Any>) {
         self.init()
         id = DictionaryToInt(dic: dic, intName: "id")
+        best_flag = DictionaryToString(dic: dic, strName: "best_flag")
         created_at = DictionaryToString(dic: dic, strName: "created_at")
         star = DictionaryToInt(dic: dic, intName: "star")
+        review_star_status = DictionaryToString(dic: dic, strName: "review_star_status")
         content = DictionaryToString(dic: dic, strName: "content")
         user_id = DictionaryToInt(dic: dic, intName: "user_id")
         coach_content = DictionaryToString(dic: dic, strName: "coach_content")
@@ -307,6 +311,10 @@ class Curriculum:NSObject{
     var button_review:String?
     var like_count:Int?
     var like_me:String?
+    var helpful_flag:String?
+    var nohelpful_flag:String?
+    var helpful_count:Int?
+    var nohelpful_count:Int?
 
     override init() {
         super.init()
@@ -328,6 +336,11 @@ class Curriculum:NSObject{
         button_review = DictionaryToString(dic: dic, strName: "button_review")
         like_count = DictionaryToInt(dic: dic, intName: "like_count")
         like_me = DictionaryToString(dic: dic, strName: "like_me")
+        helpful_flag = DictionaryToString(dic: dic, strName: "helpful_flag")
+        nohelpful_flag = DictionaryToString(dic: dic, strName: "nohelpful_flag")
+        helpful_count = DictionaryToInt(dic: dic, intName: "heplful_count")
+        nohelpful_count = DictionaryToInt(dic: dic, intName: "nohelpful_count")
+        
         if let mission = dic["mission"] as? Dictionary<String, Any> {
             self.mission = AppClassMission.init(dic: mission)
         }

@@ -19,7 +19,7 @@ class ProfileV2ViewController: BaseViewController {
     var missionTextView:UITextView?
     /** **프로필 리스트 */
     var profileModel:ProfileV2Model?
-    
+    var isMyProfile:Bool = false
     /** **새로고침 컨트롤 */
     var refreshControl = UIRefreshControl()
     var user_id = UserManager.shared.userInfo.results?.user?.id ?? 0 //44120
@@ -42,7 +42,8 @@ class ProfileV2ViewController: BaseViewController {
         self.ProfileList()
         tableView.addSubview(refreshControl)
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadActiveList), name: NSNotification.Name(rawValue: "updateProfileActiveList"), object: nil)
-        if HomeMain2Manager.shared.pilotAppMain.results?.user_id ?? 0 == self.user_id {
+        print("isMyProfile value : \(self.isMyProfile)")
+        if HomeMain2Manager.shared.pilotAppMain.results?.user_id ?? 0 == self.user_id && self.isMyProfile == false {
             self.backBtn.isHidden = true
         }else{
             self.backBtn.isHidden = false
@@ -313,11 +314,11 @@ class ProfileV2ViewController: BaseViewController {
                             let cell = self.tableView.cellForRow(at: indexPath) as! ProfileV2TableViewCell
                             
                             if row%3 == 0{
-                                cell.photoLikeCount1.text = "좋아요 \(self.active_comment_list[row].like_cnt ?? 0)"
+                                cell.photoLikeCount1.text = "도움돼요 \(self.active_comment_list[row].like_cnt ?? 0)"
                             }else if row%3 == 1{
-                                cell.photoLikeCount2.text = "좋아요 \(self.active_comment_list[row].like_cnt ?? 0)"
+                                cell.photoLikeCount2.text = "도움돼요 \(self.active_comment_list[row].like_cnt ?? 0)"
                             }else{
-                                cell.photoLikeCount3.text = "좋아요 \(self.active_comment_list[row].like_cnt ?? 0)"
+                                cell.photoLikeCount3.text = "도움돼요 \(self.active_comment_list[row].like_cnt ?? 0)"
                             }
                         }
                     }
@@ -454,7 +455,7 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
             cell.photoView1.isHidden = false
             cell.noPhotoView1.isHidden = true
             cell.photoBackImage1.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].youtu_image_address ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
-            cell.photoLikeCount1.text = "좋아요 \(active_comment_list[checkRow].like_cnt ?? 0)"
+            cell.photoLikeCount1.text = "도움돼요 \(active_comment_list[checkRow].like_cnt ?? 0)"
             cell.photoPlayImg1.isHidden = false
 
             cell.photoBtn1.tag = checkRow
@@ -477,7 +478,7 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.noPhotoView1.isHidden = true
                 cell.photoBackImage1.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].photo_url ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
 
-                cell.photoLikeCount1.text = "좋아요 \(active_comment_list[checkRow].like_cnt ?? 0)"
+                cell.photoLikeCount1.text = "도움돼요 \(active_comment_list[checkRow].like_cnt ?? 0)"
 
                 cell.photoBtn1.tag = checkRow
                 if active_comment_list[checkRow].like_status ?? "N" == "N"{
@@ -496,7 +497,7 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.photoView1.isHidden = true
                 cell.noPhotoView1.isHidden = false
                 cell.noPhotoProfileText1.text = "\(active_comment_list[checkRow].class_name ?? "")"
-                cell.noPhotoLikeCount1.text = "좋아요 \(active_comment_list[checkRow].like_cnt ?? 0)"
+                cell.noPhotoLikeCount1.text = "도움돼요 \(active_comment_list[checkRow].like_cnt ?? 0)"
                 cell.noPhotoUserImg1.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 if active_comment_list[checkRow].type ?? "" == "story"{
                     let randomIndex = Int(arc4random_uniform(UInt32(storyColor.count)))
@@ -536,7 +537,7 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
             cell.photoView2.isHidden = false
             cell.noPhotoView2.isHidden = true
             cell.photoBackImage2.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].youtu_image_address ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
-            cell.photoLikeCount2.text = "좋아요 \(active_comment_list[checkRow].like_cnt ?? 0)"
+            cell.photoLikeCount2.text = "도움돼요 \(active_comment_list[checkRow].like_cnt ?? 0)"
             cell.photoPlayImg2.isHidden = false
             cell.photoBtn2.tag = checkRow
             if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.user_id{
@@ -558,7 +559,7 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.noPhotoView2.isHidden = true
                 cell.photoBackImage2.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].photo_url ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
 
-                cell.photoLikeCount2.text = "좋아요 \(active_comment_list[checkRow].like_cnt ?? 0)"
+                cell.photoLikeCount2.text = "도움돼요 \(active_comment_list[checkRow].like_cnt ?? 0)"
                 cell.photoBtn2.tag = checkRow
                 if active_comment_list[checkRow].like_status ?? "N" == "N"{
                     cell.photoLikeBtn2.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
@@ -577,7 +578,7 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.photoView2.isHidden = true
                 cell.noPhotoView2.isHidden = false
                 cell.noPhotoProfileText2.text = "\(active_comment_list[checkRow].class_name ?? "")"
-                cell.noPhotoLikeCount2.text = "좋아요 \(active_comment_list[checkRow].like_cnt ?? 0)"
+                cell.noPhotoLikeCount2.text = "도움돼요 \(active_comment_list[checkRow].like_cnt ?? 0)"
                 cell.noPhotoUserImg2.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 if active_comment_list[checkRow].type ?? "" == "story"{
                     let randomIndex = Int(arc4random_uniform(UInt32(storyColor.count)))
@@ -614,7 +615,7 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
             cell.photoView3.isHidden = false
             cell.noPhotoView3.isHidden = true
             cell.photoBackImage3.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].youtu_image_address ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
-            cell.photoLikeCount3.text = "좋아요 \(active_comment_list[checkRow].like_cnt ?? 0)"
+            cell.photoLikeCount3.text = "도움돼요 \(active_comment_list[checkRow].like_cnt ?? 0)"
             cell.photoPlayImg3.isHidden = false
             cell.photoBtn3.tag = checkRow
             if active_comment_list[checkRow].like_status ?? "N" == "N"{
@@ -636,7 +637,7 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.noPhotoView3.isHidden = true
                 cell.photoBackImage3.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].photo_url ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
 
-                cell.photoLikeCount3.text = "좋아요 \(active_comment_list[checkRow].like_cnt ?? 0)"
+                cell.photoLikeCount3.text = "도움돼요 \(active_comment_list[checkRow].like_cnt ?? 0)"
                 cell.photoBtn3.tag = checkRow
                 if active_comment_list[checkRow].like_status ?? "N" == "N"{
                     cell.photoLikeBtn3.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
@@ -654,7 +655,7 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.photoView3.isHidden = true
                 cell.noPhotoView3.isHidden = false
                 cell.noPhotoProfileText3.text = "\(active_comment_list[checkRow].class_name ?? "")"
-                cell.noPhotoLikeCount3.text = "좋아요 \(active_comment_list[checkRow].like_cnt ?? 0)"
+                cell.noPhotoLikeCount3.text = "도움돼요 \(active_comment_list[checkRow].like_cnt ?? 0)"
                 cell.noPhotoUserImg3.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 if active_comment_list[checkRow].type ?? "" == "story"{
                     let randomIndex = Int(arc4random_uniform(UInt32(storyColor.count)))

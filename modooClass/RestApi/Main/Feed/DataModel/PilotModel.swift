@@ -270,6 +270,7 @@ class Class_review_pilot:NSObject {
     var review_address:String?
     var search_link:String?
     var category:String?
+    var review_star_status:String?
     var type:Int?
     
     override init() {
@@ -289,6 +290,7 @@ class Class_review_pilot:NSObject {
         review_address = DictionaryToString(dic: dic, strName: "review_address")
         search_link = DictionaryToString(dic: dic, strName: "search_link")
         category = DictionaryToString(dic: dic, strName: "category")
+        review_star_status = DictionaryToString(dic: dic, strName: "review_star_status")
         type = DictionaryToInt(dic: dic, intName: "type")
     }
 }

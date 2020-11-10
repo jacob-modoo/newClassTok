@@ -24,7 +24,6 @@ class DetailReplyTableViewCell: UITableViewCell {
     @IBOutlet weak var rollGubunImg: UIImageView!
     @IBOutlet weak var replyReadBtn: UIButton!
     
-    @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var noticeLbl: UILabel!
     
     @IBOutlet weak var coachStar: UIImageView!

@@ -15,6 +15,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classContentBtn: UIButton!
     @IBOutlet weak var classSatisFiedBtn: UIButton!
     @IBOutlet weak var classSatisFiedLbl: UILabel!
+    @IBOutlet weak var classNotSatisFixedLbl: UIFixedLabel!
     @IBOutlet weak var classCheerBtn: UIButton!
     @IBOutlet weak var classCurriculumBtn: UIButton!
     @IBOutlet weak var classGroupChatBtn: UIButton!
@@ -23,6 +24,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classLikeViewExitBtn: UIButton!
     @IBOutlet weak var classHashTagLbl: UILabel!
     @IBOutlet weak var classSatisFiedImg: UIImageView!
+    @IBOutlet weak var classNotSatisImg: UIImageView!
     @IBOutlet weak var classGroupChatNew: UIImageView!
     @IBOutlet weak var classCheerLbl: UIFixedLabel!
     @IBOutlet weak var classCheerImg: UIImageView!
@@ -33,6 +35,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classDescriptionLbl: UIFixedLabel!
     @IBOutlet weak var classDescriptionBtn: UIButton!
     @IBOutlet weak var sharePointBtnView: UIButton!
+    @IBOutlet weak var likeBtnPopupView: ChildDetailClassPopupView!
     
 //    DetailClassContentTitleTableViewCell
     @IBOutlet weak var contentTitleLbl: UILabel!
@@ -52,6 +55,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     
 //    DetailClassTotalReplyTitleTableViewCell
     @IBOutlet var totalReplyCount: UILabel!
+    @IBOutlet weak var communityLbl: UILabel!
     
 //    DetailClassCommentFilteringTableViewCell
     @IBOutlet weak var totalComment: UIButton!
@@ -72,7 +76,6 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var replyCount: UILabel!
     @IBOutlet weak var readMoreBtn: UIButton!
     @IBOutlet weak var replyTime: UILabel!
-    @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var likeCountBtn: UIButton!
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var replyReadBtn: UIButton!
@@ -117,27 +120,22 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewUserImg: UIImageView!
     @IBOutlet weak var reviewUserName: UIFixedLabel!
     @IBOutlet weak var reviewUserDate: UIFixedLabel!
-    @IBOutlet weak var reviewUserStar1: UIImageView!
-    @IBOutlet weak var reviewUserStar2: UIImageView!
-    @IBOutlet weak var reviewUserStar3: UIImageView!
-    @IBOutlet weak var reviewUserStar4: UIImageView!
-    @IBOutlet weak var reviewUserStar5: UIImageView!
     @IBOutlet weak var reviewUserContent: UIFixedLabel!
     @IBOutlet weak var reviewMoveBtn: UIFixedButton!
     @IBOutlet weak var reviewUserProfileBtn: UIButton!
     @IBOutlet weak var reviewUserBackView: GradientView!
+    @IBOutlet weak var review1FeedbackImg: UIImageView!
+    @IBOutlet weak var review1LikeCountBtn: UIButton!
     
+//    DetailClassReview2Cell
     @IBOutlet weak var review2UserImg: UIImageView!
     @IBOutlet weak var review2UserName: UIFixedLabel!
     @IBOutlet weak var review2UserDate: UIFixedLabel!
-    @IBOutlet weak var review2UserStar1: UIImageView!
-    @IBOutlet weak var review2UserStar2: UIImageView!
-    @IBOutlet weak var review2UserStar3: UIImageView!
-    @IBOutlet weak var review2UserStar4: UIImageView!
-    @IBOutlet weak var review2UserStar5: UIImageView!
     @IBOutlet weak var review2UserContent: UIFixedLabel!
     @IBOutlet weak var review2UserProfileBtn: UIButton!
     @IBOutlet weak var review2UserBackView: UIView!
+    @IBOutlet weak var review2FeedbackImg: UIImageView!
+    @IBOutlet weak var review2LikeCountBtn: UIButton!
     
 //    DetailClassChangeBodyCell
     @IBOutlet weak var classChangeBodyTitle: UIFixedLabel!

@@ -156,7 +156,6 @@ class FeedApi: NSObject {
                 }
             }
         }
-        
     }
     
 //    MARK: - 클래스 디테일 데이터
@@ -172,7 +171,6 @@ class FeedApi: NSObject {
                 fail(response.error)
             }
         }
-        
     }
     
 //    MARK: - 미션페이징
@@ -188,14 +186,15 @@ class FeedApi: NSObject {
                 fail(response.error)
             }
         }
-        
     }
     
 //    MARK: - 커리큘럼 좋아요 혹은 취소
-    func curriculumLike(curriculum_id:Int,method_type:String,success: @escaping(_ data: FeedAppClassDetailReplyLikeModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+    func curriculumLike(curriculum_id:Int, method_type:String, help_type:String, success: @escaping(_ data: FeedAppClassDetailReplyLikeModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+        
+        let param = ["type":help_type]
         
         if method_type == "post"{
-            let request = Alamofire.request("\(apiUrl)/curriculumLike/\(curriculum_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = Alamofire.request("\(apiUrl)/curriculumLike/\(curriculum_id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -206,7 +205,7 @@ class FeedApi: NSObject {
                 }
             }
         }else{
-            let request = Alamofire.request("\(apiUrl)/curriculumLike/\(curriculum_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = Alamofire.request("\(apiUrl)/curriculumLike/\(curriculum_id)", method: .delete, parameters: param, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -217,7 +216,6 @@ class FeedApi: NSObject {
                 }
             }
         }
-        
     }
     
 //    MARK: - 클래스 디테일 댓글
@@ -848,20 +846,39 @@ class FeedApi: NSObject {
     }
     
 //    MARK: - 앱 메인 버전 2 리뷰 리스트
-    func appMainPilotReviewListV2(class_id:Int,page:Int,success: @escaping(_ data: ReviewModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+    func appMainPilotReviewListV2(user_id:Int, class_id:Int,score:String,page:Int,success: @escaping(_ data: ReviewModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("https://api6.enfit.net/api/class/\(class_id)/review/*/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let param = ["user_id":user_id]
+        
+        let request = Alamofire.request("https://api6.enfit.net/api/class/\(class_id)/review/\(score)/\(page)", method: .get, parameters: param, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
-                let dic = ReviewModel.init(dic: convertToDictionary(data: response.data!,apiURL: "get : https://api6.enfit.net/api/class/\(class_id)/review/*/\(page)"))
+                let dic = ReviewModel.init(dic: convertToDictionary(data: response.data!,apiURL: "get : https://api6.enfit.net/api/class/\(class_id)/review/\(score)/\(page)"))
                 success(dic)
             }else {
                 fail(response.error)
             }
         }
         
+    }
+    
+//    MARK: -  feedback like & dislike
+    func appSquareLike(comment_id:String, type:String, success: @escaping(_ data: SquareLikeModel)-> Void, fail: @escaping(_ error: Error?)->Void){
+        
+        let param = ["type":type]
+        
+        let request = Alamofire.request("\(apiUrl)/squareLike/\(comment_id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        request.response { response in
+            let status = response.response?.statusCode
+            if status == 200 {
+                let dic = SquareLikeModel.init(dic: convertToDictionary(data: response.data!, apiURL: "post : \(apiUrl)/squareLike/\(comment_id)"))
+                success(dic)
+            } else {
+                fail(response.error)
+            }
+        }
     }
     
 //    MARK: - 피드 디테일 리스트
@@ -878,7 +895,6 @@ class FeedApi: NSObject {
                 fail(response.error)
             }
         }
-        
     }
     
     func squareReplySave(articleId:String,content:String,emoticon:Int,photo:UIImage?,success: @escaping(_ data: SquareReplySaveModel)-> Void, fail: @escaping (_ error: Error?)-> Void){

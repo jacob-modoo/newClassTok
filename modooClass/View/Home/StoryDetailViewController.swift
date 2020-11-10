@@ -418,25 +418,21 @@ class StoryDetailViewController: UIViewController {
         squareDetail()
     }
     
-    @IBAction func likeBtnClicked(_ sender: UIButton) {
-        replyLikeHave(sender: sender)
-    }
-    
     @IBAction func likeCountBtnClicked(_ sender: UIButton) {
-        let row = sender.tag / 10000
-        let likeValue = list?.results?.comment_reply?.list_arr[row].like_me ?? ""
-        let comment_id = list?.results?.comment_reply?.list_arr[row].comment_id ?? ""
-        
-        if likeValue == "N" {
+//        let row = sender.tag / 10000
+//        let likeValue = list?.results?.comment_reply?.list_arr[row].like_me ?? ""
+//        let comment_id = list?.results?.comment_reply?.list_arr[row].comment_id ?? ""
+//
+//        if likeValue == "N" {
              replyLikeHave(sender: sender)
-        } else {
-            let nextView = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
-            nextView.modalPresentationStyle = .overFullScreen
-            nextView.comment_str_id = comment_id
-            self.tagForLikeBtn = sender.tag
-            nextView.viewCheck = "feedDetailMain"
-            self.present(nextView, animated:true,completion: nil)
-        }
+//        } else {
+//            let nextView = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
+//            nextView.modalPresentationStyle = .overFullScreen
+//            nextView.comment_str_id = comment_id
+//            self.tagForLikeBtn = sender.tag
+//            nextView.viewCheck = "feedDetailMain"
+//            self.present(nextView, animated:true,completion: nil)
+//        }
     }
     
     @IBAction func friendProfileBtnClicked(_ sender: UIButton) {
@@ -507,33 +503,33 @@ class StoryDetailViewController: UIViewController {
         
         if self.list?.results?.like_yn ?? "" == "N"{
             type = "post"
-            sender.setImage(UIImage(named: "feedHeartActive"), for: .normal)
-            sender.setTitle("  좋아요 \((self.list?.results?.like_cnt ?? 0) + 1)  ", for: .normal)
+            sender.setImage(UIImage(named: "class_main_like_active"), for: .normal)
+            sender.setTitle("  도움돼요 \((self.list?.results?.like_cnt ?? 0) + 1)  ", for: .normal)
         }else{
             type = "delete"
-            sender.setImage(UIImage(named: "feedHeartDefault"), for: .normal)
-            sender.setTitle("  좋아요 \((self.list?.results?.like_cnt ?? 0) - 1)  ", for: .normal)
+            sender.setImage(UIImage(named: "class_main_like"), for: .normal)
+            sender.setTitle("  도움돼요 \((self.list?.results?.like_cnt ?? 0) - 1)  ", for: .normal)
         }
         
         ProfileApi.shared.profileV2CommentLike(comment_id: self.feedId, type: type, success: { [unowned self] result in
             if result.code == "200"{
                 if self.list?.results?.like_yn ?? "" == "N"{
-                    sender.setImage(UIImage(named: "feedHeartActive"), for: .normal)
+                    sender.setImage(UIImage(named: "class_main_like_active"), for: .normal)
                     self.list?.results?.like_yn = "Y"
                     self.list?.results?.like_cnt = (self.list?.results?.like_cnt ?? 0) + 1
                 }else{
-                    sender.setImage(UIImage(named: "feedHeartDefault"), for: .normal)
+                    sender.setImage(UIImage(named: "class_main_like"), for: .normal)
                     self.list?.results?.like_yn = "N"
                     self.list?.results?.like_cnt = (self.list?.results?.like_cnt ?? 0) - 1
                 }
             }
         }) { error in
             if self.list?.results?.like_yn ?? "" == "N"{
-                sender.setImage(UIImage(named: "feedHeartDefault"), for: .normal)
-                sender.setTitle("  좋아요 \((self.list?.results?.like_cnt ?? 0) - 1)  ", for: .normal)
+                sender.setImage(UIImage(named: "class_main_like"), for: .normal)
+                sender.setTitle("  도움돼요 \((self.list?.results?.like_cnt ?? 0) - 1)  ", for: .normal)
             }else{
-                sender.setImage(UIImage(named: "feedHeartActive"), for: .normal)
-                sender.setTitle("  좋아요 \((self.list?.results?.like_cnt ?? 0) + 1)  ", for: .normal)
+                sender.setImage(UIImage(named: "class_main_like_active"), for: .normal)
+                sender.setTitle("  도움돼요 \((self.list?.results?.like_cnt ?? 0) + 1)  ", for: .normal)
             }
         }
     }
@@ -545,11 +541,9 @@ class StoryDetailViewController: UIViewController {
         if self.list?.results?.user_info?.active_list_arr[tag].mcLike_status ?? "" == "N"{
             type = "post"
             sender.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
-//            sender.setTitle("좋아요 \((self.list?.results?.like_cnt ?? 0) + 1)", for: .normal)
         }else{
             type = "delete"
             sender.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
-//            sender.setTitle("좋아요 \((self.list?.results?.like_cnt ?? 0) - 1)", for: .normal)
         }
         
         ProfileApi.shared.profileV2CommentLike(comment_id: self.list?.results?.user_info?.active_list_arr[tag].click_event ?? "", type: type, success: { [unowned self] result in
@@ -571,11 +565,11 @@ class StoryDetailViewController: UIViewController {
                         let cell = self.tableView.cellForRow(at: indexPath) as! StoryDetailTableViewCell
                         
                         if tag%3 == 0{
-                            cell.photoLikeCount1.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[tag].like_cnt ?? 0)"
+                            cell.photoLikeCount1.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[tag].like_cnt ?? 0)"
                         }else if tag%3 == 1{
-                            cell.photoLikeCount2.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[tag].like_cnt ?? 0)"
+                            cell.photoLikeCount2.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[tag].like_cnt ?? 0)"
                         }else{
-                            cell.photoLikeCount3.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[tag].like_cnt ?? 0)"
+                            cell.photoLikeCount3.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[tag].like_cnt ?? 0)"
                         }
                     }
                 }
@@ -696,22 +690,18 @@ class StoryDetailViewController: UIViewController {
                 }
                 
                 if likeGubun == 1{
-                    cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
-                    cell.likeBtn.tag = row*10000 + 2
                     cell.likeCountBtn.tag = row*10000 + 2
                     self.list?.results?.comment_reply?.list_arr[row].like_cnt = (self.list?.results?.comment_reply?.list_arr[row].like_cnt ?? 0)-1
                     self.list?.results?.comment_reply?.list_arr[row].like_me = "N"
                     cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "heart_grey"), for: .normal)
+                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
                     cell.likeCountBtn.setTitle(" \(self.list?.results?.comment_reply?.list_arr[row].like_cnt ?? 0)", for: .normal)
                 }else{
-                    cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
-                    cell.likeBtn.tag = row*10000 + 1
                     cell.likeCountBtn.tag = row*10000 + 1
                     self.list?.results?.comment_reply?.list_arr[row].like_me = "Y"
                     self.list?.results?.comment_reply?.list_arr[row].like_cnt = (self.list?.results?.comment_reply?.list_arr[row].like_cnt ?? 0)+1
                     cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "heart_red"), for: .normal)
+                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
                     cell.likeCountBtn.setTitle(" \(self.list?.results?.comment_reply?.list_arr[row].like_cnt ?? 0)", for: .normal)
                 }
                 
@@ -851,7 +841,7 @@ class StoryDetailViewController: UIViewController {
             cell.photoView1.isHidden = false
             cell.noPhotoView1.isHidden = true
             cell.photoBackImage1.sd_setImage(with: URL(string: "http://img.youtube.com/vi/\((self.list?.results?.user_info?.active_list_arr[checkRow].youtu_address ?? "").replace(target: "https://youtu.be/", withString: "").replace(target: "https://www.youtube.com/watch?v=", withString: ""))/0.jpg"), placeholderImage: UIImage(named: "home_default_photo"))
-            cell.photoLikeCount1.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+            cell.photoLikeCount1.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
             cell.photoPlayImg1.isHidden = false
 
             cell.photoBtn1.tag = checkRow
@@ -874,7 +864,7 @@ class StoryDetailViewController: UIViewController {
                 cell.noPhotoView1.isHidden = true
                 cell.photoBackImage1.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].photo_url ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
 
-                cell.photoLikeCount1.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.photoLikeCount1.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
 
                 cell.photoBtn1.tag = checkRow
                 if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
@@ -893,7 +883,7 @@ class StoryDetailViewController: UIViewController {
                 cell.photoView1.isHidden = true
                 cell.noPhotoView1.isHidden = false
                 cell.noPhotoProfileText1.text = "\(self.list?.results?.user_info?.active_list_arr[checkRow].content ?? "")"
-                cell.noPhotoLikeCount1.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.noPhotoLikeCount1.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
                 cell.noPhotoUserImg1.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 
                 let randomIndex = Int(arc4random_uniform(UInt32(randomColor.count)))
@@ -924,7 +914,7 @@ class StoryDetailViewController: UIViewController {
             cell.photoView2.isHidden = false
             cell.noPhotoView2.isHidden = true
             cell.photoBackImage2.sd_setImage(with: URL(string: "http://img.youtube.com/vi/\((self.list?.results?.user_info?.active_list_arr[checkRow].youtu_address ?? "").replace(target: "https://youtu.be/", withString: "").replace(target: "https://www.youtube.com/watch?v=", withString: ""))/0.jpg"), placeholderImage: UIImage(named: "home_default_photo"))
-            cell.photoLikeCount2.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+            cell.photoLikeCount2.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
             cell.photoPlayImg2.isHidden = false
             cell.photoBtn2.tag = checkRow
             if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
@@ -946,7 +936,7 @@ class StoryDetailViewController: UIViewController {
                 cell.noPhotoView2.isHidden = true
                 cell.photoBackImage2.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].photo_url ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
 
-                cell.photoLikeCount2.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.photoLikeCount2.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
                 cell.photoBtn2.tag = checkRow
                 if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
                     cell.photoLikeBtn2.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
@@ -965,7 +955,7 @@ class StoryDetailViewController: UIViewController {
                 cell.photoView2.isHidden = true
                 cell.noPhotoView2.isHidden = false
                 cell.noPhotoProfileText2.text = "\(self.list?.results?.user_info?.active_list_arr[checkRow].content ?? "")"
-                cell.noPhotoLikeCount2.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.noPhotoLikeCount2.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
                 cell.noPhotoUserImg2.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 let randomIndex = Int(arc4random_uniform(UInt32(randomColor.count)))
                 cell.noPhotoView1.backgroundColor = UIColor(hexString: randomColor[randomIndex])
@@ -993,7 +983,7 @@ class StoryDetailViewController: UIViewController {
             cell.noPhotoView3.isHidden = true
             
             cell.photoBackImage3.sd_setImage(with: URL(string: "http://img.youtube.com/vi/\((self.list?.results?.user_info?.active_list_arr[checkRow].youtu_address ?? "").replace(target: "https://youtu.be/", withString: "").replace(target: "https://www.youtube.com/watch?v=", withString: ""))/0.jpg"), placeholderImage: UIImage(named: "home_default_photo"))
-            cell.photoLikeCount3.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+            cell.photoLikeCount3.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
             cell.photoPlayImg3.isHidden = false
             cell.photoBtn3.tag = checkRow
             if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
@@ -1015,7 +1005,7 @@ class StoryDetailViewController: UIViewController {
                 cell.noPhotoView3.isHidden = true
                 cell.photoBackImage3.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].photo_url ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
 
-                cell.photoLikeCount3.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.photoLikeCount3.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
                 cell.photoBtn3.tag = checkRow
                 if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
                     cell.photoLikeBtn3.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
@@ -1033,7 +1023,7 @@ class StoryDetailViewController: UIViewController {
                 cell.photoView3.isHidden = true
                 cell.noPhotoView3.isHidden = false
                 cell.noPhotoProfileText3.text = "\(self.list?.results?.user_info?.active_list_arr[checkRow].content ?? "")"
-                cell.noPhotoLikeCount3.text = "좋아요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.noPhotoLikeCount3.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
                 cell.noPhotoUserImg3.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 let randomIndex = Int(arc4random_uniform(UInt32(randomColor.count)))
                 cell.noPhotoView1.backgroundColor = UIColor(hexString: randomColor[randomIndex])
@@ -1212,31 +1202,10 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.coachReviewContent.text = "\(self.list?.results?.content_reply ?? "")"
                 }
                 cell.reviewClassName.text = "\(self.list?.results?.class_name ?? "")"
-                cell.userReviewStar1.image = UIImage(named: "profile_star_default")
-                cell.userReviewStar2.image = UIImage(named: "profile_star_default")
-                cell.userReviewStar3.image = UIImage(named: "profile_star_default")
-                cell.userReviewStar4.image = UIImage(named: "profile_star_default")
-                cell.userReviewStar5.image = UIImage(named: "profile_star_default")
-                if self.list?.results?.star == 5{
-                    cell.userReviewStar1.image = UIImage(named: "profile_star_active")
-                    cell.userReviewStar2.image = UIImage(named: "profile_star_active")
-                    cell.userReviewStar3.image = UIImage(named: "profile_star_active")
-                    cell.userReviewStar4.image = UIImage(named: "profile_star_active")
-                    cell.userReviewStar5.image = UIImage(named: "profile_star_active")
-                }else if self.list?.results?.star == 4{
-                    cell.userReviewStar1.image = UIImage(named: "profile_star_active")
-                    cell.userReviewStar2.image = UIImage(named: "profile_star_active")
-                    cell.userReviewStar3.image = UIImage(named: "profile_star_active")
-                    cell.userReviewStar4.image = UIImage(named: "profile_star_active")
-                }else if self.list?.results?.star == 3{
-                    cell.userReviewStar1.image = UIImage(named: "profile_star_active")
-                    cell.userReviewStar2.image = UIImage(named: "profile_star_active")
-                    cell.userReviewStar3.image = UIImage(named: "profile_star_active")
-                }else if self.list?.results?.star == 2{
-                    cell.userReviewStar1.image = UIImage(named: "profile_star_active")
-                    cell.userReviewStar2.image = UIImage(named: "profile_star_active")
-                }else{
-                    cell.userReviewStar1.image = UIImage(named: "profile_star_active")
+                if self.list?.results?.star == 1 || self.list?.results?.star == 2 {
+                    cell.userReviewStar1.image = UIImage(named: "dislike_btn_with_title")
+                }else {
+                    cell.userReviewStar1.image = UIImage(named: "like_btn_with_title")
                 }
             }
             /** this statement will correct the written tag in 스토리 작성 page*/
@@ -1278,11 +1247,11 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
         case 3:
             let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailLikeInfoTableViewCell", for: indexPath) as! StoryDetailTableViewCell
             if self.list?.results?.like_yn ?? "N" == "N"{
-                cell.replyLikeCountBtn.setImage(UIImage(named: "feedHeartDefault"), for: .normal)
+                cell.replyLikeCountBtn.setImage(UIImage(named: "class_main_like"), for: .normal)
             }else{
-                cell.replyLikeCountBtn.setImage(UIImage(named: "feedHeartActive"), for: .normal)
+                cell.replyLikeCountBtn.setImage(UIImage(named: "class_main_like_active"), for: .normal)
             }
-            cell.replyLikeCountBtn.setTitle("  좋아요 \(self.list?.results?.like_cnt ?? 0)  ", for: .normal)
+            cell.replyLikeCountBtn.setTitle("  도움돼요 \(self.list?.results?.like_cnt ?? 0)  ", for: .normal)
             cell.replyCountBtn.setTitle("  댓글 \(self.list?.results?.reply_cnt ?? 0)  ", for: .normal)
             cell.selectionStyle = .none
             return cell
@@ -1317,18 +1286,18 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.replyTime.text = self.list?.results?.comment_reply?.list_arr[row].time_spilled ?? "0분전"
                     
                     if self.list?.results?.comment_reply?.list_arr[row].like_me ?? "" == "Y" {
-                        cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
-                        cell.likeBtn.tag = row*10000 + 1
+//                        cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
+//                        cell.likeBtn.tag = row*10000 + 1
                         cell.likeCountBtn.tag = row*10000 + 1
                         cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                        cell.likeCountBtn.setImage(UIImage(named: "heart_red"), for: .normal)
+                        cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
                         cell.likeCountBtn.setTitle(" \(self.list?.results?.comment_reply?.list_arr[row].like_cnt ?? 0)", for: .normal)
                     }else{
-                        cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
-                        cell.likeBtn.tag = row*10000 + 2
+//                        cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
+//                        cell.likeBtn.tag = row*10000 + 2
                         cell.likeCountBtn.tag = row*10000 + 2
                         cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                        cell.likeCountBtn.setImage(UIImage(named: "heart_grey"), for: .normal)
+                        cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
                         cell.likeCountBtn.setTitle(" \(self.list?.results?.comment_reply?.list_arr[row].like_cnt ?? 0)", for: .normal)
                     }
                     

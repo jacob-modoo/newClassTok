@@ -287,28 +287,24 @@ class StoryReplyDetailViewController: UIViewController {
                         let cell = self.tableView.cellForRow(at: indexPath) as! StoryDetailTableViewCell
                         
                         if likeGubun == "Y"{
-                            cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
-                            cell.likeBtn.tag = row*10000 + 2
                             cell.likeCountBtn.tag = row*10000 + 2
                             self.listArr[row].like_me = "N"
                             self.listArr[row].like_cnt = (self.listArr[row].like_cnt ?? 0)-1
                             cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                            cell.likeCountBtn.setImage(UIImage(named: "heart_grey"), for: .normal)
+                            cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
                             cell.likeCountBtn.setTitle(" \(self.listArr[row].like_cnt ?? 0)", for: .normal)
                         }else{
-                            cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
-                            cell.likeBtn.tag = row*10000 + 1
                             cell.likeCountBtn.tag = row*10000 + 1
                             self.listArr[row].like_me = "Y"
                             self.listArr[row].like_cnt = (self.listArr[row].like_cnt ?? 0)+1
                             cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                            cell.likeCountBtn.setImage(UIImage(named: "heart_red"), for: .normal)
+                            cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
                             cell.likeCountBtn.setTitle(" \(self.listArr[row].like_cnt ?? 0)", for: .normal)
                         }
                      
-                        if self.listArr[row].like_cnt ?? 0 > 0 {
-                            cell.likeCountBtn.setTitle(" \(self.listArr[row].like_cnt ?? 0)", for: .normal)
-                        }
+//                        if self.listArr[row].like_cnt ?? 0 > 0 {
+//                            cell.likeCountBtn.setTitle(" \(self.listArr[row].like_cnt ?? 0)", for: .normal)
+//                        }
                     }
                     sender.isUserInteractionEnabled = true
                 }
@@ -370,24 +366,20 @@ class StoryReplyDetailViewController: UIViewController {
         })
     }
     
-    @IBAction func likeBtnClicked(_ sender: UIButton) {
-        replyLikeHave(sender: sender)
-    }
-    
     @IBAction func likeCountBtnClicked(_ sender: UIButton) {
-        let row = sender.tag / 10000
-        let likeValue = self.listArr[row].like_me ?? ""
-        let comment_id = self.listArr[row].comment_id ?? ""
-        if likeValue == "N" {
+//        let row = sender.tag / 10000
+//        let likeValue = self.listArr[row].like_me ?? ""
+//        let comment_id = self.listArr[row].comment_id ?? ""
+//        if likeValue == "N" {
              replyLikeHave(sender: sender)
-        } else {
-            let nextView = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
-            nextView.modalPresentationStyle = .overFullScreen
-            nextView.comment_str_id = comment_id
-            self.tagForLikeBtn = sender.tag
-            nextView.viewCheck = "feedDetailSub"
-            self.present(nextView, animated:true,completion: nil)
-        }
+//        } else {
+//            let nextView = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "ReplyLikeViewController") as! ReplyLikeViewController
+//            nextView.modalPresentationStyle = .overFullScreen
+//            nextView.comment_str_id = comment_id
+//            self.tagForLikeBtn = sender.tag
+//            nextView.viewCheck = "feedDetailSub"
+//            self.present(nextView, animated:true,completion: nil)
+//        }
     }
     
     @IBAction func returnBackBtnClicked(_ sender: UIButton) {
@@ -572,18 +564,18 @@ extension StoryReplyDetailViewController: UITableViewDataSource ,UITableViewDele
         cell.replyTime.text = self.listArr[row].time_spilled ?? "0분전"
 
         if self.listArr[row].like_me ?? "" == "Y" {
-            cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
-            cell.likeBtn.tag = row*10000 + 1
+//            cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
+//            cell.likeBtn.tag = row*10000 + 1
             cell.likeCountBtn.tag = row*10000 + 1
-            cell.likeCountBtn.setImage(UIImage(named: "heart_red"), for: .normal)
+            cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
             cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
             cell.likeCountBtn.setTitle(" \(self.listArr[row].like_cnt ?? 0)", for: .normal)
         }else{
-            cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
-            cell.likeBtn.tag = row*10000 + 2
+//            cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
+//            cell.likeBtn.tag = row*10000 + 2
             cell.likeCountBtn.tag = row*10000 + 2
             cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-            cell.likeCountBtn.setImage(UIImage(named: "heart_grey"), for: .normal)
+            cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
             cell.likeCountBtn.setTitle(" \(self.listArr[row].like_cnt ?? 0)", for: .normal)
         }
 

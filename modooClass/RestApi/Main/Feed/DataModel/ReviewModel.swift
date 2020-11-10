@@ -58,19 +58,23 @@ class ReviewList:NSObject{
     var id:Int?
     var created_at:String?
     var star:Int?
+    var like_cnt:Int?
+    var like_yn:String?
     var content:String?
     var user_id:Int?
     var coach_content:String?
     var class_group_no:Int?
+    var coach_id:Int?
     var coach_name:String?
     var coach_photo:String?
     var review_photo:String?
     var photo:String?
     var friend_state:Int?
     var user_name:String?
+    var best_flag:String?
     var gap:Int?
     var gap_text:String?
-    var coach_id:Int?
+    var review_star_status:String?
     override init() {
         super.init()
     }
@@ -80,19 +84,23 @@ class ReviewList:NSObject{
         id = DictionaryToInt(dic: dic, intName: "id")
         created_at = DictionaryToString(dic: dic, strName: "created_at")
         star = DictionaryToInt(dic: dic, intName: "star")
+        like_cnt = DictionaryToInt(dic: dic, intName: "like_cnt")
+        like_yn = DictionaryToString(dic: dic, strName: "like_yn")
         content = DictionaryToString(dic: dic, strName: "content")
         user_id = DictionaryToInt(dic: dic, intName: "user_id")
         coach_content = DictionaryToString(dic: dic, strName: "coach_content")
         class_group_no = DictionaryToInt(dic: dic, intName: "class_group_no")
+        coach_id = DictionaryToInt(dic: dic, intName: "coach_id")
         coach_name = DictionaryToString(dic: dic, strName: "coach_name")
         coach_photo = DictionaryToString(dic: dic, strName: "coach_photo")
         review_photo = DictionaryToString(dic: dic, strName: "review_photo")
         photo = DictionaryToString(dic: dic, strName: "photo")
         friend_state = DictionaryToInt(dic: dic, intName: "friend_state")
         user_name = DictionaryToString(dic: dic, strName: "user_name")
+        best_flag = DictionaryToString(dic: dic, strName: "best_flag")
         gap = DictionaryToInt(dic: dic, intName: "gap")
         gap_text = DictionaryToString(dic: dic, strName: "gap_text")
-        coach_id = DictionaryToInt(dic: dic, intName: "coach_id")
+        review_star_status = DictionaryToString(dic: dic, strName: "review_star_status")
     }
 }
 
@@ -122,6 +130,11 @@ class DashboardResult:NSObject{
     var data_arr:Array = Array<ReviewDashboardData>()
     var data_per:ReviewDashboardDataPer?
     var data_per_arr:Array = Array<ReviewDashboardDataPer>()
+    var new_data:ReviewDashboardNewData?
+    var new_data_arr:Array = Array<ReviewDashboardNewData>()
+    var new_data_per:ReviewDashboardNewDataPer?
+    var new_data_per_arr:Array = Array<ReviewDashboardNewDataPer>()
+    
     override init() {
         super.init()
     }
@@ -142,6 +155,20 @@ class DashboardResult:NSObject{
             for list in array {
                 let temp = ReviewDashboardDataPer.init(dic: list as! Dictionary<String, Any>)
                 data_per_arr.append(temp)
+            }
+        }
+        if let list = dic["new_data"] as? Array<Any>{
+            let array:Array = list
+            for list in array {
+                let temp = ReviewDashboardNewData.init(dic: list as! Dictionary<String, Any>)
+                new_data_arr.append(temp)
+            }
+        }
+        if let list = dic["new_data_per"] as? Array<Any>{
+            let array:Array = list
+            for list in array {
+                let temp = ReviewDashboardNewDataPer.init(dic: list as! Dictionary<String, Any>)
+                new_data_per_arr.append(temp)
             }
         }
     }
@@ -175,3 +202,30 @@ class ReviewDashboardDataPer:NSObject{
     }
 }
 
+class ReviewDashboardNewData:NSObject{
+    var score:Int?
+    var value:Int?
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        score = DictionaryToInt(dic: dic, intName: "score")
+        value = DictionaryToInt(dic: dic, intName: "value")
+    }
+}
+
+class ReviewDashboardNewDataPer:NSObject{
+    var score:Int?
+    var value:String?
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        score = DictionaryToInt(dic: dic, intName: "score")
+        value = DictionaryToString(dic: dic, strName: "value")
+    }
+}

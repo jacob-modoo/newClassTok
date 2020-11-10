@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AutoSearchEngineCell: UITableViewCell {
+@IBDesignable class AutoSearchEngineCell: UITableViewCell {
 
     @IBOutlet var lblTitle: UILabel!
     override func awakeFromNib() {
