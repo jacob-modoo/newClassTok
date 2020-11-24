@@ -233,7 +233,12 @@ class HomeProfileViewController: UIViewController {
     }
     
     @IBAction func profileBtnClicked(_ sender: UIButton) {
-        let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+        let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+        if UserManager.shared.userInfo.results?.user?.id == sender.tag {
+            newViewController.isMyProfile = true
+        }else{
+            newViewController.isMyProfile = false
+        }
         newViewController.user_id = sender.tag
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
@@ -307,7 +312,12 @@ class HomeProfileViewController: UIViewController {
     }
     
     @IBAction func friendProfileBtnClicked(_ sender: UIButton) {
-        let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+        let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+        if UserManager.shared.userInfo.results?.user?.id == sender.tag {
+            newViewController.isMyProfile = true
+        }else{
+            newViewController.isMyProfile = false
+        }
         newViewController.user_id = sender.tag
         self.navigationController?.pushViewController(newViewController, animated: true)
     }

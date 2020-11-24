@@ -260,7 +260,12 @@ class DetailReplyViewController: UIViewController {
         if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
             replyWriteCheck()
         }else{
-            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+            if UserManager.shared.userInfo.results?.user?.id == self.list?.results?.user_id ?? 0 {
+                newViewController.isMyProfile = true
+            }else{
+                newViewController.isMyProfile = false
+            }
             newViewController.user_id = self.list?.results?.user_id ?? 0
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
@@ -273,7 +278,12 @@ class DetailReplyViewController: UIViewController {
         if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
             replyWriteCheck()
         }else{
-            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+            if UserManager.shared.userInfo.results?.user?.id == self.replyArray[sender.tag].user_id ?? 0 {
+                newViewController.isMyProfile = true
+            }else{
+                newViewController.isMyProfile = false
+            }
             newViewController.user_id = self.replyArray[sender.tag].user_id ?? 0
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
@@ -441,7 +451,12 @@ class DetailReplyViewController: UIViewController {
 //            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
 //            newViewController.url = temp as! String
 //            self.navigationController?.pushViewController(newViewController, animated: true)
-            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+            if UserManager.shared.userInfo.results?.user?.id == temp as? Int {
+                newViewController.isMyProfile = true
+            }else{
+                newViewController.isMyProfile = false
+            }
             newViewController.user_id = temp as! Int
             self.navigationController?.pushViewController(newViewController, animated: true)
         }

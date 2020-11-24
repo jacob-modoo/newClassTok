@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChildDetailClassPopupView" customModule="modooClass" customModuleProvider="target">
             <connections>
-                <outlet property="containerView" destination="iN0-l3-epB" id="Xgm-Sw-Wnl"/>
                 <outlet property="dislikeBtn" destination="YXp-XR-1gf" id="HTD-6H-dQC"/>
                 <outlet property="likeBtn" destination="SCU-uB-HHA" id="cjb-bI-gDD"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" interfaceStyle="dark" id="iN0-l3-epB" userLabel="Container View" customClass="ChildDetailClassPopupView" customModule="modooClass" customModuleProvider="target">
+        <view contentMode="scaleToFill" interfaceStyle="dark" id="iN0-l3-epB" userLabel="Container View">
             <rect key="frame" x="0.0" y="0.0" width="392" height="180"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uP-1A-YG0" userLabel="Bottom View" customClass="ChildDetailClassPopupView" customModule="modooClass" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uP-1A-YG0" userLabel="Bottom View">
                     <rect key="frame" x="0.0" y="50" width="392" height="130"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXp-XR-1gf" userLabel="Dislike Button">
@@ -29,9 +28,8 @@
                                 <constraint firstAttribute="height" constant="84" id="Dew-yE-OkE"/>
                                 <constraint firstAttribute="width" constant="84" id="n4H-xU-qfC"/>
                             </constraints>
-                            <state key="normal" image="class_unlike_btn_default"/>
+                            <state key="normal" image="class_new_dislikeBtn"/>
                             <connections>
-                                <action selector="popupDislikeBtnClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="NB3-5g-pHJ"/>
                                 <action selector="popupDislikeBtnClicked:" destination="-1" eventType="touchUpInside" id="bOp-6S-vZa"/>
                             </connections>
                         </button>
@@ -41,9 +39,8 @@
                                 <constraint firstAttribute="height" constant="84" id="Ajs-Rb-Wt6"/>
                                 <constraint firstAttribute="width" constant="84" id="M8E-Tn-ThP"/>
                             </constraints>
-                            <state key="normal" image="class_like_btn_default"/>
+                            <state key="normal" image="class_new_likeBtn"/>
                             <connections>
-                                <action selector="popupLikeBtnClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="9NO-JH-AFh"/>
                                 <action selector="popupLikeBtnClicked:" destination="-1" eventType="touchUpInside" id="AWb-GZ-Q18"/>
                             </connections>
                         </button>
@@ -56,6 +53,18 @@
                         <constraint firstItem="SCU-uB-HHA" firstAttribute="leading" secondItem="2uP-1A-YG0" secondAttribute="leading" constant="70" id="fAp-bc-3NC"/>
                         <constraint firstAttribute="trailing" secondItem="YXp-XR-1gf" secondAttribute="trailing" constant="70" id="ph2-Xq-3Vs"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="cornerRadiusBottom" value="YES"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVg-SU-Z1j" userLabel="Top View">
                     <rect key="frame" x="0.0" y="0.0" width="392" height="50"/>
@@ -75,7 +84,6 @@
                             <state key="normal" image="exit_boldgray"/>
                             <connections>
                                 <action selector="popupExitBtnClicked:" destination="-1" eventType="touchUpInside" id="3Qu-NC-oAg"/>
-                                <action selector="popupExitBtnClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="kDd-pg-Heo"/>
                             </connections>
                         </button>
                     </subviews>
@@ -102,16 +110,12 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kVg-SU-Z1j" secondAttribute="trailing" id="nko-EJ-l3d"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="dislikeBtn" destination="YXp-XR-1gf" id="PL9-xB-bL2"/>
-                <outlet property="likeBtn" destination="SCU-uB-HHA" id="qD7-Xj-mUn"/>
-            </connections>
-            <point key="canvasLocation" x="73.913043478260875" y="226.33928571428569"/>
+            <point key="canvasLocation" x="94" y="164"/>
         </view>
     </objects>
     <resources>
-        <image name="class_like_btn_default" width="84" height="84"/>
-        <image name="class_unlike_btn_default" width="84" height="84"/>
+        <image name="class_new_dislikeBtn" width="126" height="126"/>
+        <image name="class_new_likeBtn" width="126" height="126"/>
         <image name="exit_boldgray" width="24" height="24"/>
     </resources>
 </document>

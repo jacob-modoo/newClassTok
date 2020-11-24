@@ -68,7 +68,7 @@ class BaseViewController: UIViewController{
         transition.subtype = CATransitionSubtype.fromTop
         transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
         view.window!.layer.add(transition, forKey: kCATransition)
-        present(viewControllerToPresent, animated: false, completion: nil)
+        present(viewControllerToPresent, animated: true, completion: nil)
     }
     
     /**

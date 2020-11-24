@@ -25,12 +25,9 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classHashTagLbl: UILabel!
     @IBOutlet weak var classSatisFiedImg: UIImageView!
     @IBOutlet weak var classNotSatisImg: UIImageView!
-    @IBOutlet weak var classGroupChatNew: UIImageView!
     @IBOutlet weak var classCheerLbl: UIFixedLabel!
     @IBOutlet weak var classCheerImg: UIImageView!
     @IBOutlet weak var classGroupImg: UIImageView!
-    @IBOutlet weak var nextClassBtn: UIButton!
-    @IBOutlet weak var previousClassBtn: UIButton!
     @IBOutlet weak var classDescriptionImg: UIImageView!
     @IBOutlet weak var classDescriptionLbl: UIFixedLabel!
     @IBOutlet weak var classDescriptionBtn: UIButton!
@@ -52,6 +49,10 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var noticeView: UIView!
     @IBOutlet weak var noticeTextView: UITextView!
     @IBOutlet weak var noticeDetailBtn: UIButton!
+    
+//    DetailClassRecomCollectionViewCell
+    @IBOutlet weak var recomUserName: UIFixedLabel!
+    @IBOutlet weak var classRecomCollectionView: UICollectionView!
     
 //    DetailClassTotalReplyTitleTableViewCell
     @IBOutlet var totalReplyCount: UILabel!
@@ -141,7 +142,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classChangeBodyTitle: UIFixedLabel!
     @IBOutlet weak var changeBodyCollectionView: UICollectionView!
     var class_recommend_arr:Array = Array<Class_recommend>()
-    
+    var recommendationList_arr:Array = Array<RecommendationList>()
     var spectorCheck = false
     
     override func awakeFromNib() {
@@ -161,19 +162,46 @@ class ChildDetailClassTableViewCell: UITableViewCell {
 
 extension ChildDetailClassTableViewCell:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if class_recommend_arr.count > 0{
-            return class_recommend_arr.count
-        }else{
+        switch collectionView {
+        case changeBodyCollectionView:
+            if class_recommend_arr.count > 0{
+                return class_recommend_arr.count
+            }else{
+                return 0
+            }
+        case classRecomCollectionView:
+            if recommendationList_arr.count > 0{
+                return recommendationList_arr.count
+            }else{
+                return 0
+            }
+        default:
             return 0
         }
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let row = indexPath.row
+        switch collectionView {
+        case changeBodyCollectionView:
+            let cell:ChildDetailClassCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassCollectionViewCell", for: indexPath) as! ChildDetailClassCollectionViewCell
+            cell.classInfoImg.sd_setImage(with: URL(string: "\(class_recommend_arr[row].photo ?? "")"), placeholderImage: UIImage(named: "home_default"))
+            cell.classInfoTitle.text = "\(class_recommend_arr[row].recommend ?? "")"
+            return cell
+        case classRecomCollectionView:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassRecomCollectionViewCell", for: indexPath) as! ChildDetailClassRecomCollectionViewCell
+            cell.collectionViewClassName.text = recommendationList_arr[row].name ?? ""
+            cell.collectionViewHelpCnt.text = "👍 \(convertCurrency(money: NSNumber(value: recommendationList_arr[row].helpful_cnt ?? 0), style: .decimal))"
+            cell.collectionViewImg.sd_setImage(with: URL(string: "\(recommendationList_arr[row].photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo2"))
+            cell.collectionViewPriceLbl.text = "월 \(recommendationList_arr[row].package_payment ?? "")원"
+            cell.price_per_lbl.text = "\(recommendationList_arr[row].package_sale_per ?? "")%"
+        default:
+            let cell:ChildDetailClassCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassCollectionViewCell", for: indexPath) as! ChildDetailClassCollectionViewCell
+            return cell
+        }
         let cell:ChildDetailClassCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassCollectionViewCell", for: indexPath) as! ChildDetailClassCollectionViewCell
-        cell.classInfoImg.sd_setImage(with: URL(string: "\(class_recommend_arr[row].photo ?? "")"), placeholderImage: UIImage(named: "home_default"))
-        cell.classInfoTitle.text = "\(class_recommend_arr[row].recommend ?? "")"
         return cell
     }
 
@@ -190,8 +218,15 @@ extension ChildDetailClassTableViewCell:UICollectionViewDelegate,UICollectionVie
 extension ChildDetailClassTableViewCell :UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width :self.changeBodyCollectionView.frame.height,height: self.changeBodyCollectionView.frame.height)
-        return size
+        if collectionView == changeBodyCollectionView {
+            let size = CGSize(width :self.changeBodyCollectionView.frame.height,height: self.changeBodyCollectionView.frame.height)
+            return size
+        } else if collectionView == classRecomCollectionView {
+            let size = CGSize(width: self.classRecomCollectionView.frame.width, height: self.classRecomCollectionView.frame.height)
+            return size
+        } else {
+            return CGSize(width: 0, height: 0)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

@@ -14,4 +14,5 @@ class HomeMain2Manager: NSObject {
     var pilotRecommendMain = PilotRecommendModel()
     var profileModel = ProfileModel()
     var profileV2Model = ProfileV2Model()
+    var profileNewModel = ProfileNewModel()
 }

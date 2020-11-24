@@ -42,7 +42,6 @@ class ProfileV2ViewController: BaseViewController {
         self.ProfileList()
         tableView.addSubview(refreshControl)
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadActiveList), name: NSNotification.Name(rawValue: "updateProfileActiveList"), object: nil)
-        print("isMyProfile value : \(self.isMyProfile)")
         if HomeMain2Manager.shared.pilotAppMain.results?.user_id ?? 0 == self.user_id && self.isMyProfile == false {
             self.backBtn.isHidden = true
         }else{
@@ -83,7 +82,6 @@ class ProfileV2ViewController: BaseViewController {
         active_comment_list.removeAll()
         self.page = 1
         self.ProfileList()
-        print("post received!!!")
     }
     
     /**
@@ -1004,13 +1002,11 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
                     gridView3(cell: cell, row: row)
                 }else{
                     if active_comment_list.count % 3 == 2{
-                        print("\(active_comment_list.count % 3)")
                         cell.photoView3.isHidden = true
                         cell.noPhotoView3.isHidden = true
                         gridView1(cell: cell, row: row)
                         gridView2(cell: cell, row: row)
                     }else if active_comment_list.count % 3 == 1{
-                        print("\(active_comment_list.count % 3)")
                         gridView1(cell: cell, row: row)
                         cell.photoView2.isHidden = true
                         cell.noPhotoView2.isHidden = true

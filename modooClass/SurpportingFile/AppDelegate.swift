@@ -496,7 +496,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
             self.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: false)
         }else if push_type == 4{//친구 프로필 이동
             let storyboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
-            let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+            let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+            if UserManager.shared.userInfo.results?.user?.id == self.friend_id {
+                newViewController.isMyProfile = true
+            }else{
+                newViewController.isMyProfile = false
+            }
             newViewController.user_id = self.friend_id
             self.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
         }else if push_type == 5{ //알림으로 이동
@@ -506,7 +511,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
             topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
         }else if push_type == 6{//내 프로필
             let storyboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
-            let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+            let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+            if UserManager.shared.userInfo.results?.user?.id == self.friend_id {
+                newViewController.isMyProfile = true
+            }else{
+                newViewController.isMyProfile = false
+            }
             newViewController.user_id = self.friend_id
             self.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
         }else if push_type == 7{//알림

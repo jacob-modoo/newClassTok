@@ -313,7 +313,9 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
         cell.classPhoto.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
         cell.coachName.text = "\(searchListArr[checkRow].coach_name ?? "")•총 \(searchListArr[checkRow].curriculum_cnt ?? 0)강"
         cell.className.text = "\(searchListArr[checkRow].class_name ?? "")"
-        cell.classSalePer.text = "\(searchListArr[checkRow].price_sale ?? "")%"
+        if searchListArr[checkRow].price_sale ?? "" != "0"{
+            cell.classSalePer.text = "\(searchListArr[checkRow].price_sale ?? "")%"
+        }
         cell.classSalePrice.text = "월 \(searchListArr[checkRow].payment_price ?? "")원"
         cell.coachPhoto.sd_setImage(with: URL(string: "\(searchListArr[checkRow].coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
         if searchListArr[checkRow].class_have_status ?? "N" == "N"{

@@ -129,6 +129,7 @@ PODS:
   - NVActivityIndicatorView/Presenter (4.7.0)
   - PromisesObjC (1.2.9)
   - Protobuf (3.11.3)
+  - ReadMoreTextView (3.0.1)
   - ReverseExtension (0.5.0)
   - SDWebImage (5.4.0):
     - SDWebImage/Core (= 5.4.0)
@@ -153,6 +154,7 @@ DEPENDENCIES:
   - FTPopOverMenu_Swift (~> 0.2.0)
   - lottie-ios
   - naveridlogin-sdk-ios
+  - ReadMoreTextView
   - ReverseExtension
   - SDWebImage
   - YoutubePlayer-in-WKWebView (~> 0.3.0)
@@ -189,6 +191,7 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - PromisesObjC
     - Protobuf
+    - ReadMoreTextView
     - ReverseExtension
     - SDWebImage
     - SnapKit
@@ -226,12 +229,13 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
+  ReadMoreTextView: 19147adf93abce6d7271e14031a00303fe28720d
   ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
   SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   VIMediaCache: aa650f82cb114c68a343beb4e67416cf5eb2f3a2
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 653920291c91d63d033a0451038efdc0430af07a
+PODFILE CHECKSUM: 3ada8ffe83f779db2c7d03706a0e4dac8b973667
 
 COCOAPODS: 1.8.4

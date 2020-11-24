@@ -44,7 +44,7 @@ import UIKit
 //        nib.instantiate(withOwner: self, options: nil)
 
         self.roundedView(usingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 12, height: 12))
-        self.addSubview(view)
+        addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: self.topAnchor),

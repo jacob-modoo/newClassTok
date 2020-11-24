@@ -155,7 +155,12 @@ class AlarmViewController: BaseViewController {
     
     @IBAction func userBtnClicked(_ sender: UIButton) {
         let tag = sender.tag
-        let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+        let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+        if UserManager.shared.userInfo.results?.user?.id == self.alarmArray[tag].friend_id ?? 0 {
+            newViewController.isMyProfile = true
+        }else{
+            newViewController.isMyProfile = false
+        }
         newViewController.user_id = self.alarmArray[tag].friend_id ?? 0
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
@@ -353,8 +358,13 @@ extension AlarmViewController{
                         }else if type == 4 || type == 6{
                             print("Home2Webview")
                             let storyboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
-                            let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+                            let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
                             if self.alarmArray[row].friend_id ?? 0 > 0 {
+                                if UserManager.shared.userInfo.results?.user?.id == self.alarmArray[row].friend_id ?? 0 {
+                                    newViewController.isMyProfile = true
+                                }else{
+                                    newViewController.isMyProfile = false
+                                }
                                 newViewController.user_id = self.alarmArray[row].friend_id ?? 0
                                 self.navigationController?.pushViewController(newViewController, animated: true)
                             }

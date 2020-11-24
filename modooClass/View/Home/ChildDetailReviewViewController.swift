@@ -79,8 +79,13 @@ class ChildDetailReviewViewController: UIViewController {
     }
     
     @IBAction func profileBtnClicked(_ sender: UIButton) {
-        let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+        let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
         newViewController.user_id = sender.tag
+        if UserManager.shared.userInfo.results?.user?.id == sender.tag{
+            newViewController.isMyProfile = true
+        }else{
+            newViewController.isMyProfile = false
+        }
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     

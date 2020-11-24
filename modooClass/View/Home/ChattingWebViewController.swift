@@ -754,7 +754,12 @@ extension ChattingWebViewController:WKScriptMessageHandler {
             if message.body as! Int != 0{
                 //message.body = room_id
 //                let newViewController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileFriendViewController") as! ProfileFriendViewController
-                let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+                let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+                if UserManager.shared.userInfo.results?.user?.id == message.body as? Int {
+                    newViewController.isMyProfile = true
+                }else{
+                    newViewController.isMyProfile = false
+                }
                 newViewController.user_id = (message.body as? Int)!
                 self.navigationController?.pushViewController(newViewController, animated: true)
                 

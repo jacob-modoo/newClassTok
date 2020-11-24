@@ -273,4 +273,18 @@ class Alert: NSObject {
         
         viewController.present(alert, animated: false, completion: nil)
     }
+    
+    static func WithUnfriend(_ viewController:UIViewController, btn1Title:String, btn1Handler: @escaping () -> Void, btn2Title:String, btn2Handler: @escaping () -> Void) {
+        let alert:AlertViewController = storyboard.instantiateViewController(withIdentifier: AlertType.WithUnfriend.rawValue) as! AlertViewController
+        
+        alert.alertType = .WithUnfriend
+        alert.btn1Title = btn1Title
+        alert.btn2Title = btn2Title
+        alert.btn1Click = btn1Handler
+        alert.btn2Click = btn2Handler
+        
+        alert.modalPresentationStyle = .overFullScreen
+        
+        viewController.present(alert, animated: false, completion: nil)
+    }
 }

@@ -30,6 +30,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var storyView: UIView!
     @IBOutlet weak var tabImg5: UIImageView!
     @IBOutlet weak var tabView: UIView!
+    @IBOutlet weak var tabBottomView: UIView!
     
     let homeViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
@@ -42,7 +43,6 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var pageControl: UIPageControl?
     var pendingPage: Int?
-    var transparentView = UIView()
     var tableView = UITableView()
     var inFirstResponder:Bool = false
     var isShown:Bool = false
@@ -87,6 +87,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.home2MainChatBadgeChange), name: NSNotification.Name(rawValue: "home2MainChatBadgeChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.home2MainAlarmBadgeChange), name: NSNotification.Name(rawValue: "home2MainAlarmBadgeChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.moveToProfilePage), name: NSNotification.Name(rawValue: "moveToProfilePage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.moveToClassPage), name: NSNotification.Name(rawValue: "moveToClassPage"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,7 +143,6 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
                 } else {
                     childVC.scrollToViewController(index: 0)
                 }
-                
             } else if tag == 1 {
                 onClickView()
                 childVC.scrollToViewController(index: 1)
@@ -168,20 +168,18 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         if inFirstResponder == true {
             onClickView()
         } else {
-            window?.bringSubviewToFront(storyView)
+            self.view.bringSubviewToFront(storyView)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickView))
-            self.transparentView.addGestureRecognizer(tapGesture)
-            transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
-            transparentView.frame = CGRect(x: 0, y: 0, width: self.storyView.frame.width, height: self.storyView.frame.height)
-            window?.addSubview(transparentView)
-            transparentView.snp.makeConstraints { (make) in
-                make.top.bottom.leading.trailing.equalTo(self.storyView)
-            }
+            storyView.addGestureRecognizer(tapGesture)
+            storyView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+            
             let screenSize = self.storyView.frame.size
             tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.height)
-            window?.addSubview(tableView)
+            self.view.addSubview(tableView)
+            self.view.insertSubview(tabView, aboveSubview: tableView)
+            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseOut, animations: {
-                self.transparentView.alpha = 0.5
+                self.storyView.alpha = 0.5
                 self.tabImg5.transform = CGAffineTransform(rotationAngle: .pi/4)
                 self.tableView.frame = CGRect(x: 0, y: screenSize.height - self.height, width: screenSize.width, height: self.height)
             }, completion: nil)
@@ -212,12 +210,14 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     @objc func onClickView() {
         let screenSize = view.bounds.size
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseOut, animations: {
-            self.transparentView.alpha = 0
+            self.storyView.alpha = 0
             self.tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.height)
             self.tabImg5.transform = CGAffineTransform(rotationAngle: 0)
-        }, completion: nil)
-        window?.sendSubviewToBack(storyView)
-        inFirstResponder = false
+        }) { _ in
+            self.view.sendSubviewToBack(self.storyView)
+            self.inFirstResponder = false
+        }
+        
     }
     
     @objc func homeTitleChange(notification:Notification){
@@ -231,6 +231,13 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         tabCheck(index: 3)
         if let childVC = self.children.first as? HMPageViewController {
             childVC.scrollToViewController(index: 3)
+        }
+    }
+    
+    @objc func moveToClassPage(notification: Notification){
+        tabCheck(index: 1)
+        if let childVC = self.children.first as? HMPageViewController {
+            childVC.scrollToViewController(index: 1)
         }
     }
     
@@ -284,7 +291,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             self.tabLbl3.textColor = UIColor(hexString:"#1a1a1a")
             self.searchBtn.isHidden = false
         }else if index == 3{
-            self.pageTitle.text = "내프로필"
+            self.pageTitle.text = "마이프로필"
             self.tabImg4.image = UIImage(named: "profile_iconV2_active")
             self.tabLbl4.textColor = UIColor(hexString:"#1a1a1a")
             self.searchBtn.isHidden = false
@@ -295,13 +302,13 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func openPopupVC(){
         let newRootVC = homeViewStoryboard.instantiateViewController(withIdentifier: "PopupShowViewController") as! PopupShowViewController
+        let nc = UINavigationController(rootViewController: newRootVC)
         var lastEventSeen = UserDefaults.standard.object(forKey: "lastDate") as? Date ?? Date.distantPast
         let defaultTime = DateComponents(calendar: Calendar.current, year: 2000, month: 1, day: 1)
         let later = Calendar.current.date(byAdding: .day, value: 7, to: lastEventSeen)
         let currentTime = Date()
         
         if lastEventSeen == defaultTime.date {
-            let nc = UINavigationController(rootViewController: newRootVC)
             nc.navigationBar.isHidden = true
             navigationController?.present(nc, animated: true)
             FeedApi.shared.popupTracking(hash_id: "\(String(describing: UserManager.shared.userInfo.results?.user?.id))".md5(), success: { result in
@@ -309,7 +316,6 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         } else {
             if currentTime >= later! {
-                let nc = UINavigationController(rootViewController: newRootVC)
                 nc.navigationBar.isHidden = true
                 navigationController?.present(nc, animated: true)
                 lastEventSeen = defaultTime.date! //lastEvenSeen time is changed to defaultTime
@@ -320,6 +326,28 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             } else {
                 print("PopUp event will be shown after 7 days!!!")
             }
+        }
+    }
+    
+    /**
+     the func below is used for getting the size of url image
+     */
+    func sizeOfImageAt(url: URL) -> CGSize? {
+            // with CGImageSource we avoid loading the whole image into memory
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
+            return nil
+        }
+
+        let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+        guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
+            return nil
+        }
+
+        if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
+            let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
+            return CGSize(width: width, height: height)
+        } else {
+            return nil
         }
     }
     
@@ -382,7 +410,12 @@ extension HomeMainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell:CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
         let row = indexPath.row
      
-        cell.settingImage.sd_setImage(with: URL(string: "\(FeedDetailManager.shared.eventModel.results?.event_list_arr[row].image ?? "no data")"))
+        let url = URL(string: "\(FeedDetailManager.shared.eventModel.results?.event_list_arr[row].image ?? "")")
+//        let ratio = (sizeOfImageAt(url: url!)?.width ?? 0)/(sizeOfImageAt(url: url!)?.height ?? 0)
+//        let newHeight = (cell.settingImage.frame.width)/ratio
+//        cell.settingImage.frame.height =  newHeight
+        
+        cell.settingImage.sd_setImage(with: url)
             
         cell.eventLbl.text = "\(FeedDetailManager.shared.eventModel.results?.event_list_arr[row].title ?? "")"
         cell.pointLbl.text = "\(FeedDetailManager.shared.eventModel.results?.event_list_arr[row].event_text ?? "")"

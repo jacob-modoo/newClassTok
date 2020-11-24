@@ -93,8 +93,13 @@ class HomeClassViewController: UIViewController {
                 APPDELEGATE?.firstExecPushType = 100
             }else if APPDELEGATE?.push_type == 4{ // 친구
                 let storyboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
-                let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+                let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
                 if APPDELEGATE?.friend_id ?? 0 > 0 {
+                    if UserManager.shared.userInfo.results?.user?.id == APPDELEGATE?.friend_id ?? 0 {
+                        newViewController.isMyProfile = true
+                    }else{
+                        newViewController.isMyProfile = false
+                    }
                     newViewController.user_id = APPDELEGATE?.friend_id ?? 0
                     self.navigationController?.pushViewController(newViewController, animated: true)
                 }
@@ -103,8 +108,13 @@ class HomeClassViewController: UIViewController {
                 APPDELEGATE?.firstExecPushType = 100
             }else if APPDELEGATE?.push_type == 6{
                 let storyboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
-                let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+                let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
                 if APPDELEGATE?.friend_id ?? 0 > 0 {
+                    if UserManager.shared.userInfo.results?.user?.id == APPDELEGATE?.friend_id ?? 0 {
+                        newViewController.isMyProfile = true
+                    }else{
+                        newViewController.isMyProfile = false
+                    }
                     newViewController.user_id = APPDELEGATE?.friend_id ?? 0
                     self.navigationController?.pushViewController(newViewController, animated: true)
                 }
@@ -624,7 +634,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             cell.classTitle.font = cell.classTitle.font.withSize(20)
             if HomeMain2Manager.shared.pilotAppMain.results?.app_notice_link ?? "" != ""{
                 cell.notificationBtn.isHidden = false
-                cell.notificationBtn.setTitle(" 📢  "+"\(HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "")"+"  ", for: .normal)
+                cell.notificationBtn.setTitle("  "+"\(HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "")"+"  ", for: .normal)
             } else {
                 cell.notificationBtn.isHidden = true
             }

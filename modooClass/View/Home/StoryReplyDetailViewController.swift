@@ -334,7 +334,7 @@ class StoryReplyDetailViewController: UIViewController {
         if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
             replyWriteCheck()
         }else{
-            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
             newViewController.user_id = self.listArr[sender.tag].user_id ?? 0 //[sender.tag].user_id ?? 0
             self.navigationController?.pushViewController(newViewController, animated: true)
         }

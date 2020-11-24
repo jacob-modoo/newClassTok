@@ -538,7 +538,12 @@ extension HomeFeedWebViewController:WKScriptMessageHandler {
 //            webkit.messageHandlers.profileHandler.postMessage("profile")
             if message.body as! Int > 0{
                 let storyboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
-                let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+                let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+                if UserManager.shared.userInfo.results?.user?.id == message.body as? Int {
+                    newViewController.isMyProfile = true
+                }else{
+                    newViewController.isMyProfile = false
+                }
                 newViewController.user_id = (message.body as? Int)!
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }else{
@@ -775,7 +780,12 @@ extension HomeFeedWebViewController:WKScriptMessageHandler {
             if message.body as! Int != 0{
                 //message.body = room_id
                 let storyboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
-                let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+                let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+                if UserManager.shared.userInfo.results?.user?.id == message.body as? Int {
+                    newViewController.isMyProfile = true
+                }else{
+                    newViewController.isMyProfile = false
+                }
                 newViewController.user_id = (message.body as? Int)!
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }else{
@@ -930,7 +940,12 @@ extension HomeFeedWebViewController:WKScriptMessageHandler {
             if message.body as! Int > 0{
                 
                 let storyboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
-                let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+                let newViewController = storyboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+                if UserManager.shared.userInfo.results?.user?.id == message.body as? Int {
+                    newViewController.isMyProfile = true
+                }else{
+                    newViewController.isMyProfile = false
+                }
                 newViewController.user_id = (message.body as? Int)!
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }

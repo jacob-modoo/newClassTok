@@ -162,7 +162,12 @@ class StoryDetailViewController: UIViewController {
     
      @objc func feedDetailFriend(notification:Notification){
         if let temp = notification.object {
-            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+            if UserManager.shared.userInfo.results?.user?.id == temp as? Int {
+                newViewController.isMyProfile = true
+            }else{
+                newViewController.isMyProfile = false
+            }
             newViewController.user_id = temp as! Int
             self.ytView.pauseVideo()
             self.playerController.player?.pause()
@@ -352,7 +357,12 @@ class StoryDetailViewController: UIViewController {
         if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
             replyWriteCheck()
         }else{
-            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+            if UserManager.shared.userInfo.results?.user?.id == self.list?.results?.user_info?.user_id ?? 0 {
+                newViewController.isMyProfile = true
+            }else{
+                newViewController.isMyProfile = false
+            }
             newViewController.user_id = self.list?.results?.user_info?.user_id ?? 0
             self.ytView.pauseVideo()
             self.playerController.player?.pause()
@@ -441,8 +451,8 @@ class StoryDetailViewController: UIViewController {
         if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
             replyWriteCheck()
         }else{
-            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
-            newViewController.user_id = self.list?.results?.comment_reply?.list_arr[sender.tag].user_id ?? 0 //[sender.tag].user_id ?? 0
+            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+            newViewController.user_id = self.list?.results?.comment_reply?.list_arr[sender.tag].user_id ?? 0
             self.ytView.pauseVideo()
             self.playerController.player?.pause()
             self.navigationController?.pushViewController(newViewController, animated: true)
@@ -841,15 +851,15 @@ class StoryDetailViewController: UIViewController {
             cell.photoView1.isHidden = false
             cell.noPhotoView1.isHidden = true
             cell.photoBackImage1.sd_setImage(with: URL(string: "http://img.youtube.com/vi/\((self.list?.results?.user_info?.active_list_arr[checkRow].youtu_address ?? "").replace(target: "https://youtu.be/", withString: "").replace(target: "https://www.youtube.com/watch?v=", withString: ""))/0.jpg"), placeholderImage: UIImage(named: "home_default_photo"))
-            cell.photoLikeCount1.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+            cell.photoLikeCount1.text = "👍 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
             cell.photoPlayImg1.isHidden = false
 
             cell.photoBtn1.tag = checkRow
-            if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
+//            if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
                 cell.photoLikeBtn1.isHidden = true
-            }else{
-                cell.photoLikeBtn1.isHidden = false
-            }
+//            }else{
+//                cell.photoLikeBtn1.isHidden = false
+//            }
             if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
                 cell.photoLikeBtn1.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
                 cell.photoLikeBtn1.tag = checkRow
@@ -864,7 +874,7 @@ class StoryDetailViewController: UIViewController {
                 cell.noPhotoView1.isHidden = true
                 cell.photoBackImage1.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].photo_url ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
 
-                cell.photoLikeCount1.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.photoLikeCount1.text = "👍 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
 
                 cell.photoBtn1.tag = checkRow
                 if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
@@ -874,16 +884,16 @@ class StoryDetailViewController: UIViewController {
                     cell.photoLikeBtn1.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
                     cell.photoLikeBtn1.tag = checkRow
                 }
-                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
+//                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
                     cell.photoLikeBtn1.isHidden = true
-                }else{
-                    cell.photoLikeBtn1.isHidden = false
-                }
+//                }else{
+//                    cell.photoLikeBtn1.isHidden = false
+//                }
             }else{
                 cell.photoView1.isHidden = true
                 cell.noPhotoView1.isHidden = false
                 cell.noPhotoProfileText1.text = "\(self.list?.results?.user_info?.active_list_arr[checkRow].content ?? "")"
-                cell.noPhotoLikeCount1.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.noPhotoLikeCount1.text = "👍 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
                 cell.noPhotoUserImg1.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 
                 let randomIndex = Int(arc4random_uniform(UInt32(randomColor.count)))
@@ -891,11 +901,11 @@ class StoryDetailViewController: UIViewController {
 
                 cell.noPhotoBtn1.tag = checkRow
                 
-                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
+//                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
                     cell.noPhotoLikeBtn1.isHidden = true
-                }else{
-                    cell.noPhotoLikeBtn1.isHidden = false
-                }
+//                }else{
+//                    cell.noPhotoLikeBtn1.isHidden = false
+//                }
                 if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
                     cell.noPhotoLikeBtn1.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
                     cell.noPhotoLikeBtn1.tag = checkRow
@@ -914,14 +924,14 @@ class StoryDetailViewController: UIViewController {
             cell.photoView2.isHidden = false
             cell.noPhotoView2.isHidden = true
             cell.photoBackImage2.sd_setImage(with: URL(string: "http://img.youtube.com/vi/\((self.list?.results?.user_info?.active_list_arr[checkRow].youtu_address ?? "").replace(target: "https://youtu.be/", withString: "").replace(target: "https://www.youtube.com/watch?v=", withString: ""))/0.jpg"), placeholderImage: UIImage(named: "home_default_photo"))
-            cell.photoLikeCount2.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+            cell.photoLikeCount2.text = "👍 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
             cell.photoPlayImg2.isHidden = false
             cell.photoBtn2.tag = checkRow
-            if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
+//            if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
                 cell.photoLikeBtn2.isHidden = true
-            }else{
-                cell.photoLikeBtn2.isHidden = false
-            }
+//            }else{
+//                cell.photoLikeBtn2.isHidden = false
+//            }
             if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
                 cell.photoLikeBtn2.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
                 cell.photoLikeBtn2.tag = checkRow
@@ -936,7 +946,7 @@ class StoryDetailViewController: UIViewController {
                 cell.noPhotoView2.isHidden = true
                 cell.photoBackImage2.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].photo_url ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
 
-                cell.photoLikeCount2.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.photoLikeCount2.text = "👍 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
                 cell.photoBtn2.tag = checkRow
                 if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
                     cell.photoLikeBtn2.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
@@ -946,16 +956,16 @@ class StoryDetailViewController: UIViewController {
                     cell.photoLikeBtn2.tag = checkRow
                 }
                 
-                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
+//                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
                     cell.photoLikeBtn2.isHidden = true
-                }else{
-                    cell.photoLikeBtn2.isHidden = false
-                }
+//                }else{
+//                    cell.photoLikeBtn2.isHidden = false
+//                }
             }else{
                 cell.photoView2.isHidden = true
                 cell.noPhotoView2.isHidden = false
                 cell.noPhotoProfileText2.text = "\(self.list?.results?.user_info?.active_list_arr[checkRow].content ?? "")"
-                cell.noPhotoLikeCount2.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.noPhotoLikeCount2.text = "👍 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
                 cell.noPhotoUserImg2.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 let randomIndex = Int(arc4random_uniform(UInt32(randomColor.count)))
                 cell.noPhotoView1.backgroundColor = UIColor(hexString: randomColor[randomIndex])
@@ -967,11 +977,11 @@ class StoryDetailViewController: UIViewController {
                     cell.noPhotoLikeBtn2.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
                     cell.noPhotoLikeBtn2.tag = checkRow
                 }
-                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
+//                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
                     cell.noPhotoLikeBtn2.isHidden = true
-                }else{
-                    cell.noPhotoLikeBtn2.isHidden = false
-                }
+//                }else{
+//                    cell.noPhotoLikeBtn2.isHidden = false
+//                }
             }
         }
     }
@@ -983,7 +993,7 @@ class StoryDetailViewController: UIViewController {
             cell.noPhotoView3.isHidden = true
             
             cell.photoBackImage3.sd_setImage(with: URL(string: "http://img.youtube.com/vi/\((self.list?.results?.user_info?.active_list_arr[checkRow].youtu_address ?? "").replace(target: "https://youtu.be/", withString: "").replace(target: "https://www.youtube.com/watch?v=", withString: ""))/0.jpg"), placeholderImage: UIImage(named: "home_default_photo"))
-            cell.photoLikeCount3.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+            cell.photoLikeCount3.text = "👍 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
             cell.photoPlayImg3.isHidden = false
             cell.photoBtn3.tag = checkRow
             if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
@@ -993,11 +1003,11 @@ class StoryDetailViewController: UIViewController {
                 cell.photoLikeBtn3.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
                 cell.photoLikeBtn3.tag = checkRow
             }
-            if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
+//            if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
                 cell.photoLikeBtn3.isHidden = true
-            }else{
-                cell.photoLikeBtn3.isHidden = false
-            }
+//            }else{
+//                cell.photoLikeBtn3.isHidden = false
+//            }
         }else{
             cell.photoPlayImg3.isHidden = true
             if self.list?.results?.user_info?.active_list_arr[checkRow].photo_url ?? "" != "" {
@@ -1005,7 +1015,7 @@ class StoryDetailViewController: UIViewController {
                 cell.noPhotoView3.isHidden = true
                 cell.photoBackImage3.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].photo_url ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
 
-                cell.photoLikeCount3.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.photoLikeCount3.text = "👍 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
                 cell.photoBtn3.tag = checkRow
                 if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
                     cell.photoLikeBtn3.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
@@ -1014,24 +1024,24 @@ class StoryDetailViewController: UIViewController {
                     cell.photoLikeBtn3.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
                     cell.photoLikeBtn3.tag = checkRow
                 }
-                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
+//                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
                     cell.photoLikeBtn3.isHidden = true
-                }else{
-                    cell.photoLikeBtn3.isHidden = false
-                }
+//                }else{
+//                    cell.photoLikeBtn3.isHidden = false
+//                }
             }else{
                 cell.photoView3.isHidden = true
                 cell.noPhotoView3.isHidden = false
                 cell.noPhotoProfileText3.text = "\(self.list?.results?.user_info?.active_list_arr[checkRow].content ?? "")"
-                cell.noPhotoLikeCount3.text = "도움돼요 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+                cell.noPhotoLikeCount3.text = "👍 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
                 cell.noPhotoUserImg3.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 let randomIndex = Int(arc4random_uniform(UInt32(randomColor.count)))
                 cell.noPhotoView1.backgroundColor = UIColor(hexString: randomColor[randomIndex])
-                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
+//                if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.list?.results?.user_info?.active_list_arr[checkRow].user_id ?? 0{
                     cell.noPhotoLikeBtn3.isHidden = true
-                }else{
-                    cell.noPhotoLikeBtn3.isHidden = false
-                }
+//                }else{
+//                    cell.noPhotoLikeBtn3.isHidden = false
+//                }
                 cell.noPhotoBtn3.tag = checkRow
                 if self.list?.results?.user_info?.active_list_arr[checkRow].mcLike_status ?? "N" == "N"{
                     cell.noPhotoLikeBtn3.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)

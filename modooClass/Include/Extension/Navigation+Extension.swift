@@ -47,6 +47,32 @@ extension UINavigationController {
         pushViewController(vc, animated: animated)
     }
     
+    func pushViewControllerFromTop(viewController vc: UIViewController) {
+        vc.view.alpha = 0
+//        vc.isModalInPresentation = true
+        self.present(vc, animated: false) { () -> Void in
+            vc.view.frame = CGRect(x: 0, y: -vc.view.frame.height, width: vc.view.frame.width, height: vc.view.frame.height)
+            vc.view.alpha = 1
+            UIView.animate(withDuration: 1, animations: { () -> Void in
+                vc.view.frame = CGRect(x: 0, y: 0, width: vc.view.frame.width, height: vc.view.frame.height)
+            }, completion: nil)
+        }
+    }
+
+    func dismissViewControllerToTop(viewController: UIViewController) {
+        print("navigation function")
+        let vc = viewController
+        UIView.animate(withDuration: 1, animations: { () -> Void in
+            vc.view.frame = CGRect(x: 0, y: -vc.view.frame.height, width: vc.view.frame.width, height: vc.view.frame.height)
+            print("animation")
+        }, completion: { complete -> Void in
+            if complete {
+                print("completion")
+                viewController.dismiss(animated: false, completion: nil)
+            }
+        })
+    }
+    
     func popOrPushController(class_id:Int){
         var popVC:FeedDetailViewController!
         for vc in self.viewControllers {

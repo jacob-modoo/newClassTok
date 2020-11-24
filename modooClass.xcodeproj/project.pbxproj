@@ -110,6 +110,7 @@
 		0E4C1C2C231DF1F8008C6733 /* TabBarItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C1C2B231DF1F8008C6733 /* TabBarItem+Extension.swift */; };
 		0E515C9F252EA2C400F8C5AA /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E515C9E252EA2C400F8C5AA /* UIDevice+Extension.swift */; };
 		0E5585C6254A9D06001DC7AA /* SquareLikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5585C5254A9D06001DC7AA /* SquareLikeModel.swift */; };
+		0E5E93492569636A00BB079F /* CustomPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5E93482569636A00BB079F /* CustomPresentationViewController.swift */; };
 		0E6990352477B6300076EE89 /* PopupShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6990342477B6300076EE89 /* PopupShowViewController.swift */; };
 		0E6A0F0C229D26CA00497733 /* FeedbackSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6A0F0B229D26CA00497733 /* FeedbackSearchViewController.swift */; };
 		0E6A0F0F229E022E00497733 /* SearchRankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6A0F0E229E022E00497733 /* SearchRankModel.swift */; };
@@ -117,6 +118,9 @@
 		0E70966A23FE0D1A00DE5798 /* SquareReplySaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E70966923FE0D1A00DE5798 /* SquareReplySaveModel.swift */; };
 		0E70966C23FE635200DE5798 /* StoryReplyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E70966B23FE635200DE5798 /* StoryReplyDetailViewController.swift */; };
 		0E70966E23FF3EF100DE5798 /* SquareReplyCommentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E70966D23FF3EF100DE5798 /* SquareReplyCommentListModel.swift */; };
+		0E788A97256CD5220051F7FE /* ChildDetailClassRecomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E788A96256CD5220051F7FE /* ChildDetailClassRecomCollectionViewCell.swift */; };
+		0E788A9D256CE4110051F7FE /* SpectatorClassRecommendationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E788A9C256CE4110051F7FE /* SpectatorClassRecommendationModel.swift */; };
+		0E7991EF2564BE420056773F /* Toast+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7991EE2564BE420056773F /* Toast+Extension.swift */; };
 		0E7B1B2623D699EA002050C1 /* HomeProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B1B2523D699E9002050C1 /* HomeProfileCollectionViewCell.swift */; };
 		0E7F848522B788E60031764C /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F848422B788E60031764C /* AlarmTableViewCell.swift */; };
 		0E7F848722B874B00031764C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E7F848622B874AF0031764C /* GoogleService-Info.plist */; };
@@ -129,6 +133,8 @@
 		0E7F84ED22BB8F350031764C /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F84EC22BB8F350031764C /* Notification+Extension.swift */; };
 		0E7F84EF22BC61F00031764C /* ProfileSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F84EE22BC61F00031764C /* ProfileSettingModel.swift */; };
 		0E8065F323A8711500170344 /* WkWebViewMemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8065F223A8711500170344 /* WkWebViewMemoryLeak.swift */; };
+		0E809C792565575C00A3FFD9 /* ChildDetailClassVCPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E909D38255237760034B558 /* ChildDetailClassVCPopup.xib */; };
+		0E809C7F2565704B00A3FFD9 /* ChildDetailClassPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E809C7E2565704B00A3FFD9 /* ChildDetailClassPopupVC.swift */; };
 		0E8389AE251C5F19000E9200 /* modooClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE2D9D227A65E200E91161 /* modooClassTests.swift */; };
 		0E8CA28223E120A900615F0D /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8CA28123E120A900615F0D /* CALayer+Extension.swift */; };
 		0E8DDA5923B455530050ECB5 /* HomeClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8DDA5823B455530050ECB5 /* HomeClassViewController.swift */; };
@@ -160,7 +166,6 @@
 		0E8F852D23700BE30015DB8E /* JobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F852C23700BE30015DB8E /* JobModel.swift */; };
 		0E8F852F237011310015DB8E /* AddInfoPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F852E237011310015DB8E /* AddInfoPhotoCollectionViewCell.swift */; };
 		0E8F853123710C640015DB8E /* AddInfoIntroWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F853023710C640015DB8E /* AddInfoIntroWordViewController.swift */; };
-		0E909D39255237760034B558 /* ChildDetailClassVCPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E909D38255237760034B558 /* ChildDetailClassVCPopup.xib */; };
 		0E909D3F25523F000034B558 /* ChildDetailClassPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E909D3E25523F000034B558 /* ChildDetailClassPopupView.swift */; };
 		0E93EBB52386666A00DC3A5B /* HomeFeedWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E93EBB42386666A00DC3A5B /* HomeFeedWebViewController.swift */; };
 		0E93EBB72386672B00DC3A5B /* Home2WebView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E93EBB62386672B00DC3A5B /* Home2WebView.storyboard */; };
@@ -190,6 +195,10 @@
 		0ED03D4122A4EFA800AD48A3 /* ReadMoreTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED03D4022A4EFA800AD48A3 /* ReadMoreTextView.swift */; };
 		0ED03D4C22A4FF3100AD48A3 /* FeedAppClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED03D4B22A4FF3100AD48A3 /* FeedAppClassModel.swift */; };
 		0ED03D4E22A5194800AD48A3 /* HtmlToSwift+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED03D4D22A5194700AD48A3 /* HtmlToSwift+Extension.swift */; };
+		0ED04097255BB5DD00F0F852 /* ProfileV2NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED04096255BB5DD00F0F852 /* ProfileV2NewViewController.swift */; };
+		0ED0409D255BB8C100F0F852 /* ProfileV2NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED0409C255BB8C100F0F852 /* ProfileV2NewTableViewCell.swift */; };
+		0ED040A3255CC50B00F0F852 /* ProfileV2NewCollectionVIewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED040A2255CC50B00F0F852 /* ProfileV2NewCollectionVIewCell.swift */; };
+		0ED040A9255D234100F0F852 /* ProfileNewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED040A8255D234100F0F852 /* ProfileNewModel.swift */; };
 		0ED265AC2379006100D88502 /* UITableview+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED265AB2379006100D88502 /* UITableview+Extension.swift */; };
 		0ED7F51E22B0C22E00CF2F92 /* FeedAppCheerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED7F51D22B0C22E00CF2F92 /* FeedAppCheerModel.swift */; };
 		0ED7F52022B0D9E300CF2F92 /* FeedAppCheeringModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED7F51F22B0D9E300CF2F92 /* FeedAppCheeringModel.swift */; };
@@ -375,6 +384,7 @@
 		0E4C1C2B231DF1F8008C6733 /* TabBarItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarItem+Extension.swift"; sourceTree = "<group>"; };
 		0E515C9E252EA2C400F8C5AA /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		0E5585C5254A9D06001DC7AA /* SquareLikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareLikeModel.swift; sourceTree = "<group>"; };
+		0E5E93482569636A00BB079F /* CustomPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationViewController.swift; sourceTree = "<group>"; };
 		0E6990342477B6300076EE89 /* PopupShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupShowViewController.swift; sourceTree = "<group>"; };
 		0E6A0F0B229D26CA00497733 /* FeedbackSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSearchViewController.swift; sourceTree = "<group>"; };
 		0E6A0F0E229E022E00497733 /* SearchRankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRankModel.swift; sourceTree = "<group>"; };
@@ -382,6 +392,9 @@
 		0E70966923FE0D1A00DE5798 /* SquareReplySaveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareReplySaveModel.swift; sourceTree = "<group>"; };
 		0E70966B23FE635200DE5798 /* StoryReplyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReplyDetailViewController.swift; sourceTree = "<group>"; };
 		0E70966D23FF3EF100DE5798 /* SquareReplyCommentListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareReplyCommentListModel.swift; sourceTree = "<group>"; };
+		0E788A96256CD5220051F7FE /* ChildDetailClassRecomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailClassRecomCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E788A9C256CE4110051F7FE /* SpectatorClassRecommendationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectatorClassRecommendationModel.swift; sourceTree = "<group>"; };
+		0E7991EE2564BE420056773F /* Toast+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+Extension.swift"; sourceTree = "<group>"; };
 		0E7B1B2523D699E9002050C1 /* HomeProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E7F848422B788E60031764C /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		0E7F848622B874AF0031764C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -394,6 +407,7 @@
 		0E7F84EC22BB8F350031764C /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		0E7F84EE22BC61F00031764C /* ProfileSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingModel.swift; sourceTree = "<group>"; };
 		0E8065F223A8711500170344 /* WkWebViewMemoryLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WkWebViewMemoryLeak.swift; sourceTree = "<group>"; };
+		0E809C7E2565704B00A3FFD9 /* ChildDetailClassPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailClassPopupVC.swift; sourceTree = "<group>"; };
 		0E8CA28123E120A900615F0D /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 		0E8DDA5823B455530050ECB5 /* HomeClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClassViewController.swift; sourceTree = "<group>"; };
 		0E8DDA5A23B455660050ECB5 /* HomeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProfileViewController.swift; sourceTree = "<group>"; };
@@ -465,6 +479,10 @@
 		0ED03D4022A4EFA800AD48A3 /* ReadMoreTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMoreTextView.swift; sourceTree = "<group>"; };
 		0ED03D4B22A4FF3100AD48A3 /* FeedAppClassModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAppClassModel.swift; sourceTree = "<group>"; };
 		0ED03D4D22A5194700AD48A3 /* HtmlToSwift+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HtmlToSwift+Extension.swift"; sourceTree = "<group>"; };
+		0ED04096255BB5DD00F0F852 /* ProfileV2NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileV2NewViewController.swift; sourceTree = "<group>"; };
+		0ED0409C255BB8C100F0F852 /* ProfileV2NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileV2NewTableViewCell.swift; sourceTree = "<group>"; };
+		0ED040A2255CC50B00F0F852 /* ProfileV2NewCollectionVIewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileV2NewCollectionVIewCell.swift; sourceTree = "<group>"; };
+		0ED040A8255D234100F0F852 /* ProfileNewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNewModel.swift; sourceTree = "<group>"; };
 		0ED265AB2379006100D88502 /* UITableview+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableview+Extension.swift"; sourceTree = "<group>"; };
 		0ED7F51D22B0C22E00CF2F92 /* FeedAppCheerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAppCheerModel.swift; sourceTree = "<group>"; };
 		0ED7F51F22B0D9E300CF2F92 /* FeedAppCheeringModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAppCheeringModel.swift; sourceTree = "<group>"; };
@@ -696,6 +714,7 @@
 				0E70966923FE0D1A00DE5798 /* SquareReplySaveModel.swift */,
 				0E70966D23FF3EF100DE5798 /* SquareReplyCommentListModel.swift */,
 				0E5585C5254A9D06001DC7AA /* SquareLikeModel.swift */,
+				0E788A9C256CE4110051F7FE /* SpectatorClassRecommendationModel.swift */,
 				0E29F86B24741255002B7C55 /* EventModel.swift */,
 			);
 			path = DataModel;
@@ -739,6 +758,7 @@
 				0E8F8528237008580015DB8E /* CollectionViewCenterLayout.swift */,
 				0EB48586234737160012BA2F /* PresentViewTransition.swift */,
 				0E8065F223A8711500170344 /* WkWebViewMemoryLeak.swift */,
+				0E5E93482569636A00BB079F /* CustomPresentationViewController.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -747,6 +767,7 @@
 			isa = PBXGroup;
 			children = (
 				0E1F5A0022E82F6700B3977A /* TextView+Extension.swift */,
+				0E7991EE2564BE420056773F /* Toast+Extension.swift */,
 				0E2EA75022C215D20065D12A /* UIView+Extension.swift */,
 				0E3E76F822D5E106009524EC /* Date+Extension.swift */,
 				0EA55CB022CCB4B100FD7D15 /* RootView+Extension.swift */,
@@ -791,6 +812,7 @@
 				0E70966B23FE635200DE5798 /* StoryReplyDetailViewController.swift */,
 				0ED8CF2B2397A1D8007760BA /* ChildHome2WebViewController.swift */,
 				0E8E1F0C23C2FC1C0086C0AF /* ProfileV2ViewController.swift */,
+				0ED04096255BB5DD00F0F852 /* ProfileV2NewViewController.swift */,
 				0E6A0F0B229D26CA00497733 /* FeedbackSearchViewController.swift */,
 				0E2017AB230D03EE005581E4 /* FeedDetailViewController.swift */,
 				0EDE67C922A7946500C2B3C1 /* ChildDetailClassViewController.swift */,
@@ -805,6 +827,7 @@
 				0EAE2DF3227ACB3A00E91161 /* AlarmViewController.swift */,
 				0EEC5C732462855700C0C047 /* ShareAppViewController.swift */,
 				0E6990342477B6300076EE89 /* PopupShowViewController.swift */,
+				0E809C7E2565704B00A3FFD9 /* ChildDetailClassPopupVC.swift */,
 				0E8DDA5C23B458D40050ECB5 /* TableViewCell */,
 				0E8E1F1023C2FCBC0086C0AF /* CollectionViewCell */,
 			);
@@ -908,6 +931,7 @@
 			isa = PBXGroup;
 			children = (
 				0E7F84B322BA1F030031764C /* ProfileModel.swift */,
+				0ED040A8255D234100F0F852 /* ProfileNewModel.swift */,
 				0E1C599D22C083CC008083DC /* ProfileFriendModel.swift */,
 				0E7F84EE22BC61F00031764C /* ProfileSettingModel.swift */,
 			);
@@ -930,6 +954,7 @@
 				0E8EB56B23B4A5B20065D226 /* HomeProfileTableViewCell.swift */,
 				0E01408323FA6C8B00DAB35F /* StoryDetailTableViewCell.swift */,
 				0E8E1F0E23C2FC860086C0AF /* ProfileV2TableViewCell.swift */,
+				0ED0409C255BB8C100F0F852 /* ProfileV2NewTableViewCell.swift */,
 				0E0B2698232F56F7006C8649 /* FeedbackSearchTableViewCell.swift */,
 				0E2017B1230D06C1005581E4 /* ChildDetailClassTableViewCell.swift */,
 				0E2017BA230E8940005581E4 /* ChildDetailCurriculumTableViewCell.swift */,
@@ -949,8 +974,10 @@
 			isa = PBXGroup;
 			children = (
 				0E7B1B2523D699E9002050C1 /* HomeProfileCollectionViewCell.swift */,
+				0E788A96256CD5220051F7FE /* ChildDetailClassRecomCollectionViewCell.swift */,
 				0E01408723FB848B00DAB35F /* StoryDetailCollectionViewCell.swift */,
 				0E8E1F1123C2FCD60086C0AF /* ProfileV2CollectionViewCell.swift */,
+				0ED040A2255CC50B00F0F852 /* ProfileV2NewCollectionVIewCell.swift */,
 				0E0B269A232F57E7006C8649 /* FeedbackSearchCollectionViewCell.swift */,
 				0E2017B4230D16E6005581E4 /* ChildDetailClassCollectionViewCell.swift */,
 			);
@@ -1344,6 +1371,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E809C792565575C00A3FFD9 /* ChildDetailClassVCPopup.xib in Resources */,
 				0E7F848722B874B00031764C /* GoogleService-Info.plist in Resources */,
 				0E2EA74E22C2134F0065D12A /* FirstStart.storyboard in Resources */,
 				0E209100235E8B54000A6C6F /* KakaoBankTopViewAnimation.storyboard in Resources */,
@@ -1366,7 +1394,6 @@
 				0EF70BB3236A591500E1D224 /* InAppPurchase.storyboard in Resources */,
 				0EB5EC2023164414005555FE /* EmoticonCollectionViewCell.xib in Resources */,
 				0E34066422B0AD1900A38885 /* Alert.storyboard in Resources */,
-				0E909D39255237760034B558 /* ChildDetailClassVCPopup.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1523,6 +1550,7 @@
 				0E8F852D23700BE30015DB8E /* JobModel.swift in Sources */,
 				0E0B8502228EA6320055F044 /* AlertViewTint.swift in Sources */,
 				0E2C2F3122825929006653C8 /* JoinViewController.swift in Sources */,
+				0E5E93492569636A00BB079F /* CustomPresentationViewController.swift in Sources */,
 				0E0B84EC228E30FD0055F044 /* LoginApi.swift in Sources */,
 				0ED7F53022B1D36800CF2F92 /* Table_Collection_Animations.swift in Sources */,
 				0E8EB57723B9826F0065D226 /* PilotRecommendModel.swift in Sources */,
@@ -1541,6 +1569,7 @@
 				0E70966E23FF3EF100DE5798 /* SquareReplyCommentListModel.swift in Sources */,
 				0E7F84B422BA1F030031764C /* ProfileModel.swift in Sources */,
 				0E1A8D5E2292873600D581F5 /* StringDefaultColor.swift in Sources */,
+				0ED040A9255D234100F0F852 /* ProfileNewModel.swift in Sources */,
 				0EB5EC222316448E005555FE /* EmoticonCollectionViewCell.swift in Sources */,
 				0E8E9758238E073500842694 /* ReplyLikeViewController.swift in Sources */,
 				0E8F8513236C19790015DB8E /* AddInfoNickViewController.swift in Sources */,
@@ -1550,6 +1579,8 @@
 				0E1A968222ADD5AA001261B2 /* FeedAppClassCommentDetailReplyModel.swift in Sources */,
 				0E8F8529237008580015DB8E /* CollectionViewCenterLayout.swift in Sources */,
 				0E0B84F0228E8D710055F044 /* JsonToDictionary.swift in Sources */,
+				0E809C7F2565704B00A3FFD9 /* ChildDetailClassPopupVC.swift in Sources */,
+				0E7991EF2564BE420056773F /* Toast+Extension.swift in Sources */,
 				0E1DB959233A07660055EFF1 /* KeychainItem.swift in Sources */,
 				0E2C2F3622826C4E006653C8 /* BaseViewController.swift in Sources */,
 				0E1A8D5C2292812200D581F5 /* StringMessage.swift in Sources */,
@@ -1562,6 +1593,7 @@
 				0E2B9E9923C818420012EF3B /* ChildDetailIntroViewController.swift in Sources */,
 				0E8DDA5E23B458F00050ECB5 /* HomeClassTableViewCell.swift in Sources */,
 				0EB4853F23433CF70012BA2F /* MarkerAnimation.swift in Sources */,
+				0ED04097255BB5DD00F0F852 /* ProfileV2NewViewController.swift in Sources */,
 				0E2C2F1222815C06006653C8 /* NetworkCheck.swift in Sources */,
 				0E2017AC230D03EE005581E4 /* FeedDetailViewController.swift in Sources */,
 				0E1A96A322AFB21C001261B2 /* FeedDetailManager.swift in Sources */,
@@ -1594,6 +1626,7 @@
 				0EDEA81B248E204600ED837A /* AutoSearchEngine.swift in Sources */,
 				0E01408423FA6C8B00DAB35F /* StoryDetailTableViewCell.swift in Sources */,
 				0E8F8523236FCD7A0015DB8E /* AddInfoTagJobViewController.swift in Sources */,
+				0E788A97256CD5220051F7FE /* ChildDetailClassRecomCollectionViewCell.swift in Sources */,
 				0E2C2F2E22825169006653C8 /* Indicator.swift in Sources */,
 				0ED7F52022B0D9E300CF2F92 /* FeedAppCheeringModel.swift in Sources */,
 				0E2B9E9F23CC4E4C0012EF3B /* ReviewModel.swift in Sources */,
@@ -1607,6 +1640,7 @@
 				0E2B9E9723C818060012EF3B /* ChildDetailReviewViewController.swift in Sources */,
 				0E2C2F2722816A96006653C8 /* Naver.swift in Sources */,
 				0E8F8525236FDC670015DB8E /* InterestModel.swift in Sources */,
+				0ED0409D255BB8C100F0F852 /* ProfileV2NewTableViewCell.swift in Sources */,
 				0E6990352477B6300076EE89 /* PopupShowViewController.swift in Sources */,
 				0E1A967722AA2D30001261B2 /* FeedAppClassDetailReplyLikeModel.swift in Sources */,
 				0E2EA75122C215D20065D12A /* UIView+Extension.swift in Sources */,
@@ -1620,6 +1654,7 @@
 				0E2C2F2922816A9F006653C8 /* Facebook.swift in Sources */,
 				0E20909B23584ED3000A6C6F /* UIImageView+Extension.swift in Sources */,
 				0E70966C23FE635200DE5798 /* StoryReplyDetailViewController.swift in Sources */,
+				0E788A9D256CE4110051F7FE /* SpectatorClassRecommendationModel.swift in Sources */,
 				0E8F853123710C640015DB8E /* AddInfoIntroWordViewController.swift in Sources */,
 				0E29F86C24741255002B7C55 /* EventModel.swift in Sources */,
 				0E7F84B122BA1EE20031764C /* ProfileApi.swift in Sources */,
@@ -1643,6 +1678,7 @@
 				0E6A0F0F229E022E00497733 /* SearchRankModel.swift in Sources */,
 				0E8F851B236C19DC0015DB8E /* AddInfoTagInterestViewController.swift in Sources */,
 				0E2C2F3C2282998A006653C8 /* Color+Extension.swift in Sources */,
+				0ED040A3255CC50B00F0F852 /* ProfileV2NewCollectionVIewCell.swift in Sources */,
 				0E37A8E92356A66D00283F9A /* INAppPurchase.swift in Sources */,
 				0E29F86724739CF4002B7C55 /* StoryEventViewController.swift in Sources */,
 				0E1A8D592292795800D581F5 /* AlamofireNetworkCancel.swift in Sources */,
@@ -1738,16 +1774,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.6;
+				CURRENT_PROJECT_VERSION = 2.0.7;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.6;
+				MARKETING_VERSION = 2.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1760,16 +1796,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.6;
+				CURRENT_PROJECT_VERSION = 2.0.7;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.6;
+				MARKETING_VERSION = 2.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1906,7 +1942,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/surpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.6;
+				CURRENT_PROJECT_VERSION = 2.0.7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1919,7 +1955,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.6;
+				MARKETING_VERSION = 2.0.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2012,7 +2048,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/surpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.6;
+				CURRENT_PROJECT_VERSION = 2.0.7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2025,7 +2061,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.6;
+				MARKETING_VERSION = 2.0.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

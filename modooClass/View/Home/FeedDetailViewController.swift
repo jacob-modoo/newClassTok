@@ -35,6 +35,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var textView3: UIView!
     /** **a view for sharing view controller*/
     @IBOutlet weak var textView4: UIView!
+    @IBOutlet weak var childView: UIView!
     /** **자식 컨트롤러 디테일클래스 뷰 추가 여부 */
      var textViewAddCheck = false
     /** **자식 컨트롤러 디테일커리큘럼 뷰 추가 여부 */
@@ -97,7 +98,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
         NotificationCenter.default.addObserver(self, selector: #selector(self.reviewWebView), name: NSNotification.Name(rawValue: "reviewWebViewCheck"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.likeBtnPopup), name: NSNotification.Name(rawValue: "likeBtnPopup"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.classDetailFriend), name: NSNotification.Name(rawValue: "classDetailFriend"), object: nil )
 //        Indicator.showActivityIndicator(uiView: self.view)
         
@@ -286,6 +287,10 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func manageVideoPlayerBtnClicked(_ sender: UIButton) {
+        
+        NotificationCenter.default.post(name: NSNotification.Name("videoManagerBtnClicked"), object: sender.tag)
+    }
     /**
     **파라미터가 있고 반환값이 없는 메소드 > 리뷰를 남기는 웹뷰로 이동하는 함수 ( WebViewViewController )
      
@@ -307,10 +312,46 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     @objc func classDetailFriend(notification:Notification){
         if let temp = notification.object {
             self.videoStop()
-            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2ViewController") as! ProfileV2ViewController
+            let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+            if UserManager.shared.userInfo.results?.user?.id == temp as? Int {
+                newViewController.isMyProfile = true
+            }else{
+                newViewController.isMyProfile = false
+            }
             newViewController.user_id = temp as! Int
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
+    }
+    
+    @objc func likeBtnPopup(notification: Notification) {
+        let popupViewController = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "ChildDetailClassPopupVC") as! ChildDetailClassPopupVC
+//        popupViewController.view.frame = CGRect(x: 0, y: 0, width: self.childView.frame.width, height: self.childView.frame.height)
+//        self.addChild(popupViewController)
+//        self.childView.addSubview(popupViewController.view)
+//        popupViewController.view.snp.makeConstraints { (make) in
+//            make.top.bottom.leading.trailing.equalTo(self.childView)
+//        }
+//        UIApplication.shared.keyWindow?.bringSubviewToFront(self.childView)
+//        if #available(iOS 13.0, *) {
+//            popupViewController.isModalInPresentation = true
+//        } else {
+//        popupViewController.modalPresentationStyle = .overFullScreen
+////        }
+        
+        popupViewController.modalPresentationStyle = .custom
+        popupViewController.transitioningDelegate = self
+        
+        
+//        popupViewController.didMove(toParent: self)
+        self.navigationController?.pushViewControllerFromTop(viewController: popupViewController)
+//        let transition = CATransition()
+//        transition.duration = 0.5
+//        transition.type = CATransitionType.push
+//        transition.subtype = CATransitionSubtype.fromBottom
+//        self.view.window?.layer.add(transition, forKey: "likeBtnPopup")
+//        self.present(popupViewController, animated: true, completion: nil)
+//        self.navigationController?.present(popupViewController, animated: true, completion: nil)
+        print("the function is being called!")
     }
     
     /**
@@ -1028,12 +1069,8 @@ extension FeedDetailViewController:BMPlayerDelegate{
     
 }
 
-//extension UINavigationController {
-//    override open var childForStatusBarStyle: UIViewController? {
-//        if topViewController is FeedDetailViewController {
-//            return topViewController
-//        } else {
-//            return nil
-//        }
-//    }
-//}
+extension FeedDetailViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        CustomPresentationViewController(presentedViewController: presented, presenting: presenting)
+    }
+}
