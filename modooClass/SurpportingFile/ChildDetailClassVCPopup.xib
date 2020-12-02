@@ -22,19 +22,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uP-1A-YG0" userLabel="Bottom View">
                     <rect key="frame" x="0.0" y="50" width="392" height="130"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXp-XR-1gf" userLabel="Dislike Button">
-                            <rect key="frame" x="238" y="5" width="84" height="84"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="84" id="Dew-yE-OkE"/>
-                                <constraint firstAttribute="width" constant="84" id="n4H-xU-qfC"/>
-                            </constraints>
-                            <state key="normal" image="class_new_dislikeBtn"/>
-                            <connections>
-                                <action selector="popupDislikeBtnClicked:" destination="-1" eventType="touchUpInside" id="bOp-6S-vZa"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCU-uB-HHA" userLabel="Like Button">
-                            <rect key="frame" x="70" y="5" width="84" height="84"/>
+                            <rect key="frame" x="233" y="10" width="84" height="84"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="84" id="Ajs-Rb-Wt6"/>
                                 <constraint firstAttribute="width" constant="84" id="M8E-Tn-ThP"/>
@@ -44,14 +33,25 @@
                                 <action selector="popupLikeBtnClicked:" destination="-1" eventType="touchUpInside" id="AWb-GZ-Q18"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXp-XR-1gf" userLabel="Dislike Button">
+                            <rect key="frame" x="70" y="10" width="84" height="84"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="84" id="Dew-yE-OkE"/>
+                                <constraint firstAttribute="width" constant="84" id="n4H-xU-qfC"/>
+                            </constraints>
+                            <state key="normal" image="class_new_dislikeBtn"/>
+                            <connections>
+                                <action selector="popupDislikeBtnClicked:" destination="-1" eventType="touchUpInside" id="bOp-6S-vZa"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="YXp-XR-1gf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SCU-uB-HHA" secondAttribute="trailing" constant="15" id="EKm-6L-iaG"/>
-                        <constraint firstItem="YXp-XR-1gf" firstAttribute="top" secondItem="2uP-1A-YG0" secondAttribute="top" constant="5" id="QXs-dD-YZh"/>
-                        <constraint firstItem="SCU-uB-HHA" firstAttribute="top" secondItem="2uP-1A-YG0" secondAttribute="top" constant="5" id="TD4-n3-uDT"/>
-                        <constraint firstItem="SCU-uB-HHA" firstAttribute="leading" secondItem="2uP-1A-YG0" secondAttribute="leading" constant="70" id="fAp-bc-3NC"/>
-                        <constraint firstAttribute="trailing" secondItem="YXp-XR-1gf" secondAttribute="trailing" constant="70" id="ph2-Xq-3Vs"/>
+                        <constraint firstAttribute="trailing" secondItem="SCU-uB-HHA" secondAttribute="trailing" constant="70" id="0Az-Kd-lAn"/>
+                        <constraint firstItem="SCU-uB-HHA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YXp-XR-1gf" secondAttribute="trailing" constant="15" id="ETR-A2-2RJ"/>
+                        <constraint firstItem="YXp-XR-1gf" firstAttribute="top" secondItem="2uP-1A-YG0" secondAttribute="top" constant="10" id="QXs-dD-YZh"/>
+                        <constraint firstItem="SCU-uB-HHA" firstAttribute="top" secondItem="2uP-1A-YG0" secondAttribute="top" constant="10" id="TD4-n3-uDT"/>
+                        <constraint firstItem="YXp-XR-1gf" firstAttribute="leading" secondItem="2uP-1A-YG0" secondAttribute="leading" constant="70" id="Zvb-eR-8F1"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="cornerRadiusBottom" value="YES"/>

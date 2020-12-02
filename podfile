@@ -20,7 +20,7 @@ target 'modooClass' do
   # pod 'Crashlytics', '~>  3.13.4'
   pod 'CropViewController'
   pod 'lottie-ios'
-  pod "YoutubePlayer-in-WKWebView", "~> 0.3.0"
+  pod 'YoutubePlayer-in-WKWebView', '~> 0.3.0'
 #  pod "youtube-ios-player-helper", "~> 0.1.4"
   pod 'FTPopOverMenu_Swift', '~> 0.2.0'
   pod 'AppsFlyerFramework'
@@ -38,5 +38,19 @@ target 'modooClass' do
     inherit! :search_paths
     # Pods for testing
   end
-
+  
+  post_install do |installer|
+      installer.pods_project.build_configurations.each do |config|
+          config.build_settings.delete('CODE_SIGNING_ALLOWED')
+          config.build_settings.delete('CODE_SIGNING_REQUIRED')
+      end
+  end
+  
+  post_install do |pi|
+      pi.pods_project.targets.each do |t|
+        t.build_configurations.each do |config|
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
+        end
+      end
+  end
 end

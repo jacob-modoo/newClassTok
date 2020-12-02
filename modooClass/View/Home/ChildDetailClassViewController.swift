@@ -70,8 +70,6 @@ class ChildDetailClassViewController: UIViewController {
     var likeManageModel:FeedAppClassDetailReplyLikeModel?
     /** **클래스 커리큘럼 댓글 배열 */
     var replyArray:Array? = Array<AppClassCommentList>()
-    /** *recommendated class*/
-    var recommendedClass:SpectatorClassRecomModel?
     /** *recommendation class list for spectator*/
     var recommendationList:Array? = Array<RecommendationList>()
     /** **이모티콘 구분 숫자 */
@@ -138,10 +136,8 @@ class ChildDetailClassViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.chattingCheck), name: NSNotification.Name(rawValue: "classDetailchattingValueSend"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.flashNextClassBtn), name: NSNotification.Name(rawValue: "flashNextClassBtn"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCount), name: NSNotification.Name(rawValue: "updateLikeCount"), object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(self.goToClassDetail), name: NSNotification.Name("goToClassDetail"), object: nil)
         tableView.addSubview(refreshControl)
-//        isShowPopup = true
-//        addRecomList()
         
         replyBorderView.layer.borderWidth = 1
         replyBorderView.layer.borderColor = UIColor(hexString: "#eeeeee").cgColor
@@ -161,10 +157,7 @@ class ChildDetailClassViewController: UIViewController {
             self.emoticonNumber = eNumber+1
             self.image = nil
         }
-        
-        let dismiss = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        self.view.addGestureRecognizer(dismiss)
-        
+      
     }
     
     deinit {
@@ -187,6 +180,9 @@ class ChildDetailClassViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if self.feedDetailList?.results?.user_status ?? "" != "spectator" {
+            let dismiss = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+            self.view.addGestureRecognizer(dismiss)
+            
             let checkGuide = UserDefaultSetting.getUserDefaultsInteger(forKey: "checkGuide")
             if checkGuide == 1{
                 print("the guide is already has been shown!")
@@ -1070,6 +1066,28 @@ class ChildDetailClassViewController: UIViewController {
         }
     }
     
+    @objc func goToClassDetail(_ notification:Notification){
+        if notification.object as? Int != nil {
+            let class_id = notification.object as! Int
+            self.navigationController?.popOrPushController(class_id: class_id)
+//
+            if self.feedDetailList?.results?.user_status ?? "" == "spectator" {
+                self.tableView.beginUpdates()
+                self.recommendationList?.removeAll()
+                for addArray in 0..<(self.feedDetailList?.results?.class_recom_list?.list_arr.count ?? 0) {
+                    self.recommendationList?.append((self.feedDetailList?.results?.class_recom_list?.list_arr[addArray])!)
+                }
+                self.tableView.reloadSections(NSIndexSet(index: 7) as IndexSet, with: .fade)
+                self.tableView.endUpdates()
+                print("updated section 7")
+            }
+            for addArray in 0..<(self.feedDetailList?.results?.class_recom_list?.list_arr.count ?? 0) {
+                self.recommendationList?.append((self.feedDetailList?.results?.class_recom_list?.list_arr[addArray])!)
+            }
+            self.tableView.reloadData()
+        }
+    }
+    
     /**
     **파라미터가 있고 반환값이 없는 메소드 > 키보드가 보일때 함수
      
@@ -1226,22 +1244,6 @@ class ChildDetailClassViewController: UIViewController {
 }
 
 extension ChildDetailClassViewController:UITextViewDelegate{
-    
-    func addRecomList() {
-        FeedApi.shared.recommendedClassList(class_id: self.class_id) { [unowned self] result in
-            self.recommendedClass = result
-            if result.code == "200" {
-                print("recommendation api is called")
-                for addArray in 0..<(self.recommendedClass?.results?.list_arr.count ?? 0) {
-                    self.recommendationList?.append((self.recommendedClass?.results?.list_arr[addArray])!)
-                }
-                self.tableView.reloadData()
-            }
-        } fail: { error in
-
-        }
-
-    }
     
     func textViewDidChangeSelection(_ textView: UITextView) {
         if let selectedRange = textView.selectedTextRange {
@@ -1421,13 +1423,8 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
 //                        return 1
 //                    }
                 case 7:
-                    print("recommendation name : \(recommendedClass?.results?.user_name ?? "sherzod")")
-                    if recommendationList != nil {
-                        if recommendationList!.count > 0 {
-                            return recommendationList!.count
-                        } else {
-                            return 0
-                        }
+                    if recommendationList!.count > 0 {
+                        return 1
                     } else {
                         return 0
                     }
@@ -1473,7 +1470,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     }else{
                         return 0
                     }
-                case 1,2,3:
+                case 1,2:
                     if feedDetailList?.results?.curriculum?.study != nil {
                         if showContent == true{
                             return 1
@@ -1483,6 +1480,8 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     }else{
                         return 0
                     }
+                case 3:
+                    return 0
                 case 4:
                     if self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "" == ""{
                         return 0
@@ -1576,10 +1575,10 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     feedDetailList?.results?.curriculum_before_id == 0 ? (cell.sharePointBtnView.isHidden = false) : (cell.sharePointBtnView.isHidden = true)
                     cell.classHashTagLbl.text = self.feedDetailList?.results?.head_comment ?? ""
                     cell.classCheerLbl.text = "리뷰(\(self.feedDetailList?.results?.star_cnt ?? 0))"
-                    cell.classGroupChatLbl.text = "공유하기"
+                    cell.classGroupChatLbl.text = "친구초대"
                     cell.classContentBtn.isHidden = true
                     cell.classCheerImg.image = UIImage(named:"my_class_review")
-                    cell.classGroupImg.image = UIImage(named:"class_share")
+                    cell.classGroupImg.image = UIImage(named:"share_icon_new")
                     cell.classDescriptionImg.image = UIImage(named: "class_detail2")
                     cell.classDescriptionLbl.text = "상세"
                 
@@ -1633,6 +1632,11 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.review2UserName.text = "\(feedDetailList?.results?.review_list_arr[1].user_name ?? "")"
                         cell.review2UserDate.text = "\(feedDetailList?.results?.review_list_arr[1].created_at ?? "")"
                         cell.review2UserContent.text = "\(feedDetailList?.results?.review_list_arr[1].content ?? "")"
+                        if feedDetailList?.results?.review_list_arr[1].review_photo ?? "" != "" {
+                            cell.review2FeedWithImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.review_list_arr[1].review_photo ?? "")"))
+                        } else {
+                            cell.review2UserContentConstraint.priority = UILayoutPriority(rawValue: 500)
+                        }
                         if feedDetailList?.results?.review_list_arr[1].star ?? 0 == 4 || feedDetailList?.results?.review_list_arr[1].star ?? 0 == 5 {
                             cell.review2FeedbackImg.image = UIImage(named: "like_btn_with_title")
                         } else {
@@ -1650,15 +1654,20 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.reviewUserName.text = "\(feedDetailList?.results?.review_list_arr[0].user_name ?? "")"
                         cell.reviewUserDate.text = "\(feedDetailList?.results?.review_list_arr[0].created_at ?? "")"
                         cell.reviewUserContent.text = "\(feedDetailList?.results?.review_list_arr[0].content ?? "")"
-                        if feedDetailList?.results?.review_list_arr[0].star ?? 0 == 4 || feedDetailList?.results?.review_list_arr[0].star ?? 0 == 5 {
-                            cell.review2FeedbackImg.image = UIImage(named: "like_btn_with_title")
+                        if feedDetailList?.results?.review_list_arr[0].review_photo ?? "" != "" {
+                            cell.reviewFeedWithImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.review_list_arr[0].review_photo ?? "")"))
                         } else {
-                            cell.review2FeedbackImg.image = UIImage(named: "dislike_btn_with_title")
+                            cell.reviewUserContentConstraint.priority = UILayoutPriority(rawValue: 500)
+                        }
+                        if feedDetailList?.results?.review_list_arr[0].star ?? 0 == 4 || feedDetailList?.results?.review_list_arr[0].star ?? 0 == 5 {
+                            cell.review1FeedbackImg.image = UIImage(named: "like_btn_with_title")
+                        } else {
+                            cell.review1FeedbackImg.image = UIImage(named: "dislike_btn_with_title")
                         }
 
                         cell.reviewUserProfileBtn.tag = feedDetailList?.results?.review_list_arr[0].user_id ?? 0
                         cell.reviewScore.text = "리뷰"
-                        cell.reviewCount.text = "\(self.feedDetailList?.results?.star_cnt ?? 0)게"
+                        cell.reviewCount.text = "\(self.feedDetailList?.results?.star_cnt ?? 0)개"
                         cell.reviewUserBackView.layer.cornerRadius = 10
                         cell.reviewUserBackView.layer.borderColor = UIColor(hexString: "#efefef").cgColor
                         cell.reviewUserBackView.layer.borderWidth = 1
@@ -1697,20 +1706,32 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     if feedDetailList?.results?.curriculum_list_array[2].freeview ?? "N" == "N" {
                         cell.curriculumThirdClassImg.isHidden = true
                     }
+                    
+                    cell.curriculumFourthClass.text = feedDetailList?.results?.curriculum_list_array[3].title ?? ""
+                    cell.curriculumFourthClassTime.text = feedDetailList?.results?.curriculum_list_array[3].video_duration ?? ""
+                    if feedDetailList?.results?.curriculum_list_array[3].freeview ?? "N" == "N" {
+                        cell.curriculumFourthClassImg.isHidden = true
+                    }
+                    
+                    cell.curriculumFifthClass.text = feedDetailList?.results?.curriculum_list_array[4].title ?? ""
+                    cell.curriculumFifthClassTime.text = feedDetailList?.results?.curriculum_list_array[4].video_duration ?? ""
+                    if feedDetailList?.results?.curriculum_list_array[4].freeview ?? "N" == "N" {
+                        cell.curriculumFifthClassImg.isHidden = true
+                    }
                 }
                 cell.selectionStyle = .none
                 return cell
             }else if section == 6{
-                var cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCoachCell", for: indexPath) as! ChildDetailClassTableViewCell
+                let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCoachCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if self.feedDetailList != nil{
                     
-                    if self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "" != ""{
-                        cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCoach2Cell", for: indexPath) as! ChildDetailClassTableViewCell
-                        cell.noticeTextView.textContainer.maximumNumberOfLines = 3
-                        cell.noticeTextView.textContainer.lineBreakMode = .byTruncatingTail
-                        cell.noticeTextView.attributedText = (self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "").html2AttributedString
-                        cell.noticeTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
-                    }
+//                    if self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "" != ""{
+//                        cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCoach2Cell", for: indexPath) as! ChildDetailClassTableViewCell
+//                        cell.noticeTextView.textContainer.maximumNumberOfLines = 3
+//                        cell.noticeTextView.textContainer.lineBreakMode = .byTruncatingTail
+//                        cell.noticeTextView.attributedText = (self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "").html2AttributedString
+//                        cell.noticeTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+//                    }
                     
                     cell.classCoachImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                     cell.classCoachName.text = "\(feedDetailList?.results?.coach_name ?? "")"
@@ -1730,11 +1751,12 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 cell.selectionStyle = .none
                 return cell
             } else if section == 7 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ChildDetailClassRecomCollectionViewCell") as! ChildDetailClassTableViewCell
-                print("recommendation user name : \(recommendedClass?.results?.user_name ?? "nobody!")")
-                cell.recomUserName.text = "\(recommendedClass?.results?.user_name ?? "")님 이건 어때요?"
-                cell.recommendationList_arr = (recommendedClass?.results!.list_arr)!
-                cell.classRecomCollectionView.reloadData()
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassRecomCollectionViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+                if self.feedDetailList != nil{
+                    cell.recomUserName.text = "\(self.feedDetailList?.results?.class_recom_list?.user_name ?? "")님 이건 어때요?"
+                    cell.recommendationList_arr = self.recommendationList!
+                    cell.classRecomCollectionView.reloadData()
+                }
                 cell.selectionStyle = .none
                 return cell
             }else if section == 8{
@@ -1823,14 +1845,12 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         }
                     }else{
                         cell.classCheerLbl.text = "보고서"
-                        cell.classGroupChatLbl.text = "공유하기"
-                        cell.classGroupImg.image = UIImage(named: "class_share")
+                        cell.classGroupChatLbl.text = "친구초대"
+                        cell.classGroupImg.image = UIImage(named: "share_icon_new")
                     }
                     
                     if self.isShowPopup == true {
-                        
                         if self.feedDetailList?.results?.curriculum?.helpful_flag ?? "" == "N" && self.feedDetailList?.results?.curriculum?.nohelpful_flag ?? "" == "N" {
-                                print("section 0 is showing!")
                                 self.animatePopup()
                             self.isShowPopup = false
                         }
@@ -1839,31 +1859,17 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     self.childView.popupLikeBtnClick = {
                         self.sender = self.childView.likeBtn
                         self.curriculumLike(sender: self.sender!)
-//                        self.feedDetailList?.results?.curriculum?.helpful_flag = "Y"
-//                        self.childView.likeBtn.setImage(UIImage(named: "class_like_btn_active"), for: .normal)
-
-//                        let screenSize = self.view.frame.size
                         UIView.animate(withDuration: 0.5, delay: 1) {
                             self.hidePopupView()
-                        } completion: { isShown in
-                            print("show custom view value : \(isShown)")
                         }
-
                     }
 
                     self.childView.popupDislikeBtnClick = {
                         self.sender = self.childView.dislikeBtn
                         self.curriculumDislike(sender: self.sender!)
-//                        self.childView.dislikeBtn.setImage(UIImage(named: "class_unlike_btn_active"), for: .normal)
-
-//                        let screenSize = self.view.frame.size
                         UIView.animate(withDuration: 0.5, delay: 1) {
                             self.hidePopupView()
-                        } completion: { isShown in
-                            print("show custom view value : \(isShown)")
                         }
-
-
                     }
 
                     self.childView.popupExitBtnClick = {
@@ -2268,6 +2274,10 @@ extension ChildDetailClassViewController{
             } else {
                 self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
             }
+        }
+        
+        for addArray in 0..<(self.feedDetailList?.results?.class_recom_list?.list_arr.count ?? 0) {
+            self.recommendationList?.append((self.feedDetailList?.results?.class_recom_list?.list_arr[addArray])!)
         }
         
         if let parentVC = self.parent as? FeedDetailViewController {
@@ -2823,3 +2833,66 @@ extension ChildDetailClassViewController: CropViewControllerDelegate, UIImagePic
         }
     }
 }
+
+
+//extension ChildDetailClassViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        if collectionView.tag == 1 {
+//            if feedDetailList?.results?.class_recommend_arr.count ?? 0 > 0{
+//                return feedDetailList?.results?.class_recommend_arr.count ?? 0
+//            }else{
+//                return 0
+//            }
+//        } else {
+//            if self.recommendationList?.count ?? 0 > 0{
+//                return self.recommendationList?.count ?? 0
+//            }else{
+//                return 0
+//            }
+//        }
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//        let row = indexPath.row
+//        if collectionView.tag == 1 {
+//            let cell:ChildDetailClassCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassCollectionViewCell", for: indexPath) as! ChildDetailClassCollectionViewCell
+//            cell.classInfoImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.class_recommend_arr[row].photo ?? "")"), placeholderImage: UIImage(named: "home_default"))
+//            cell.classInfoTitle.text = "\(feedDetailList?.results?.class_recommend_arr[row].recommend ?? "")"
+//            return cell
+//        } else {
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassRecomCollectionViewCell", for: indexPath) as! ChildDetailClassRecomCollectionViewCell
+//            cell.collectionViewClassName.text = recommendationList?[row].name ?? ""
+//            cell.collectionViewHelpCnt.text = "👍 \(convertCurrency(money: NSNumber(value: recommendationList?[row].helpful_cnt ?? 0), style: .decimal))"
+//            cell.collectionViewImg.sd_setImage(with: URL(string: "\(recommendationList?[row].photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo2"))
+//            cell.collectionViewPriceLbl.text = "월 \(recommendationList?[row].package_payment ?? "")원"
+//            cell.price_per_lbl.text = "\(recommendationList?[row].package_sale_per ?? "")%"
+//            return cell
+//        }
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print("fgcghjcvghvghhgvhvgvhgvhg")
+//        if collectionView.tag == 2 {
+//            print("row \(indexPath.row) is clicked..")
+//            if recommendationList?.count ?? 0 > 0{
+//                let class_id = ["class_id":recommendationList?[indexPath.row].class_id ?? 0]
+//                NotificationCenter.default.post(name: NSNotification.Name("goToClassDetail"), object: nil, userInfo: class_id)
+//            }
+//        } else {
+//            print("fgcghjcvghvghhgvhvgvhgvhg")
+//        }
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        if collectionView.tag == 1 {
+//            let size = CGSize(width: 150, height: 150)
+//            return size
+//        } else {
+//            let size = CGSize(width: collectionView.frame.height, height: collectionView.frame.height)
+//            return size
+//        }
+//    }
+//}

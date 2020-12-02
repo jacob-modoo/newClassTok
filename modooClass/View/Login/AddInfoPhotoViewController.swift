@@ -74,9 +74,31 @@ class AddInfoPhotoViewController: UIViewController {
             image1.image = nil //UIImage(named: "reply_user_default")
         }
         
+        
+        let audioPlayer = try! AVAudioPlayer(contentsOf: url!)
+                    
+        audioPlayer.play()
+        
+        enum BankAccount: Error {
+            case insufficientFunds
+            case invalidTransaction
+            case duplicateTransaction
+            case unknown
+        }
+        var funds = 200000
+        
+        func withdrawCash (amount: Int) throws {
+            if funds - amount < 0 {
+                throw BankAccount.insufficientFunds
+            }
+            else {
+                funds -= amount
+            }
+        }
+        
         checkImgField()
         image1.layer.cornerRadius = image1.frame.width/2
-        imageSelectBtn1.layer.cornerRadius = imageSelectBtn1.frame.width/2
+        imageSelectBtn1.layer.cornerRadius = imageSelectBtn1.bounds.width/2
         image1.clipsToBounds = true
 //        image2.layer.cornerRadius = image2.frame.width/2
 //        imageSelectBtn2.layer.cornerRadius = imageSelectBtn2.frame.width/2

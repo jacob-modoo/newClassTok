@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPf-CD-5y4" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPf-CD-5y4" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
                                 <rect key="frame" x="24" y="776" width="366" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9je-fT-g4t"/>
@@ -79,6 +79,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="rW8-97-f8S"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iPf-CD-5y4" firstAttribute="leading" secondItem="rW8-97-f8S" secondAttribute="leading" constant="24" id="6rq-jn-XoU"/>
@@ -91,7 +92,6 @@
                             <constraint firstItem="gSS-g0-C0c" firstAttribute="top" secondItem="5DT-mI-WuB" secondAttribute="bottom" constant="8" id="pVb-g9-rtW"/>
                             <constraint firstItem="5DT-mI-WuB" firstAttribute="leading" secondItem="rW8-97-f8S" secondAttribute="leading" constant="24" id="yHD-HD-fBE"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="rW8-97-f8S"/>
                     </view>
                     <navigationItem key="navigationItem" id="lqd-vN-M2a"/>
                     <connections>
@@ -120,4 +120,15 @@
             <point key="canvasLocation" x="-828" y="155"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="5DT-mI-WuB">
+            <size key="intrinsicContentSize" width="124" height="97.5"/>
+        </designable>
+        <designable name="gSS-g0-C0c">
+            <size key="intrinsicContentSize" width="200.5" height="43.5"/>
+        </designable>
+        <designable name="iPf-CD-5y4">
+            <size key="intrinsicContentSize" width="56" height="32"/>
+        </designable>
+    </designables>
 </document>

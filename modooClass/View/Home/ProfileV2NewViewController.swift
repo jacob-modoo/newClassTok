@@ -162,9 +162,26 @@ class ProfileV2NewViewController: BaseViewController {
     }
     
     @IBAction func classEnterBtnClicked(_ sender: UIButton) {
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveToClassPage"), object: nil)
+        let pageArr = ["HomeIntroWebViewController":0,
+                       "HomeClassViewController":1,
+                       "HomeFeedWebViewController":2,
+                       "ProfileV2NewViewController":3]
+        var pageNumber = pageArr["HomeClassViewController"]
+        if UserManager.shared.userInfo.results?.class_yn ?? "N" == "N" {
+            pageNumber = pageArr["HomeIntroWebViewController"]
         }
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveToPage"), object: pageNumber)
+        }
+    }
+    
+    @IBAction func readMoreBtnClicked(_ sender: UIButton) {
+        if sender.tag == 0 {
+            sender.tag = 1
+        } else {
+            sender.tag = 0
+        }
+        self.tableView.reloadData()
     }
     
     @IBAction func activeMoveBtnClicked(_ sender: UIButton) {
@@ -232,8 +249,8 @@ class ProfileV2NewViewController: BaseViewController {
     }
     
     @objc func goToClassDetail(_ notification:Notification){
-        if notification.userInfo as NSDictionary? != nil {
-            let class_id = notification.userInfo?["class_id"] as! Int
+        if notification.object as? Int != nil {
+            let class_id = notification.object as! Int
             self.navigationController?.popOrPushController(class_id: class_id)
         }
     }
@@ -359,6 +376,24 @@ class ProfileV2NewViewController: BaseViewController {
         }
     }
     
+    func getHeightFromText(txtLbl: UILabel, strText : String!) -> CGFloat {
+        let textLbl : UILabel! = UILabel(frame: CGRect(x: txtLbl.frame.origin.x, y: txtLbl.frame.origin.y, width: txtLbl.frame.size.width, height: 0)) //UITextView(frame: CGRect(x: txtView.frame.origin.x, y: 0,
+//        width: txtView.frame.size.width,
+//        height: 0))
+        textLbl.text = strText
+//        textLbl.font = UIFont(name: "Fira Sans", size:  16.0)
+        textLbl.sizeToFit()
+
+        var txt_frame : CGRect! = CGRect()
+        txt_frame = textLbl.frame
+
+        var size : CGSize! = CGSize()
+        size = txt_frame.size
+
+        size.height = txt_frame.size.height
+
+        return size.height
+    }
     
     
     func activeList(){
@@ -746,7 +781,7 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.profileNewModel != nil {
             switch section {
-            case 0,2,3,8,9:
+            case 0,3,8,9:
                 return 1
             case 1:
                 if self.profileNewModel?.results?.user_comment ?? "" != "" {
@@ -754,9 +789,22 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
                 } else {
                     return 0
                 }
+            case 2:
+                if (self.profileNewModel?.results?.sns_youtube ?? "") == "" &&
+                    (self.profileNewModel?.results?.sns_facebook ?? "") == "" &&
+                    (self.profileNewModel?.results?.sns_instagram ?? "") == "" &&
+                    (self.profileNewModel?.results?.sns_homepage ?? "") == "" {
+                    return 0
+                } else {
+                    return 1
+                }
             case 4,5:
                 if self.profileNewModel?.results?.mode ?? "" != "myprofile" {
-                    return 0
+                    if self.profileNewModel?.results?.class_list_arr.count ?? 0 > 0 {
+                        return 1
+                    } else {
+                        return 0
+                    }
                 } else {
                     return 1
                 }
@@ -832,36 +880,42 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
         case 1:
             let cell:ProfileV2NewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileV2IntroCell", for: indexPath) as! ProfileV2NewTableViewCell
             if self.profileNewModel != nil {
-                cell.myIntroTextView.text = self.profileNewModel?.results?.user_comment ?? ""
-                cell.myIntroTextView.shouldTrim = true
-                cell.myIntroTextView.maximumNumberOfLines = 1
-                cell.myIntroTextView.attributedReadMoreText = NSAttributedString(string: "... 더보기")
-                cell.myIntroTextView.attributedReadLessText = NSAttributedString(string: "닫기")
-//                cell.introTextLbl.text = self.profileNewModel?.results?.user_comment ?? ""
-//                if cell.introTextLbl.isTruncatedText {
-//                    self.expandableText = cell.introTextLbl.setExpandActionIfPossible("... 더보기", textColor: UIColor(hexString: "#B4B4B4"))
-//                }
-//                @IBAction func didTapLabel(_ sender: UITapGestureRecognizer) {
-//                        guard let expandRange = expandableText else {
-//                            return
-//                        }
-//                        let tapLocation = sender.location(in: label)
-//                        if label.didTapInRange(tapLocation, targetRange: expandRange) {
-//                            label.numberOfLines = 0
-//                            label.text = loremIpsumString
-//                        }
-//                        else {
-//                            resultLabel.text = "You tapped the area outside More."
-//                        }
-//                    }
                 
-                self.tableView.layoutIfNeeded()
+//                let mutableString:String = self.profileNewModel?.results?.user_comment ?? ""
+//                let trimmedString = (mutableString as NSString).replacingCharacters(in: NSRange(location: cell.introTextLbl.visibleTextLength, length: 3), with: "..." )
+//                cell.introTextLbl.text = trimmedString.html2String
+                let user_comment = self.profileNewModel?.results?.user_comment ?? ""
+                print("visible text length \(user_comment.count)")
+                if (self.profileNewModel?.results?.user_comment ?? "").count < 100 {
+                    cell.readMoreBtnHeight.constant = 0
+                    cell.readMoreBtn.isHidden = true
+                    cell.introTextLbl.text = user_comment.html2String
+                } else {
+                    cell.readMoreBtn.isHidden = false
+                    if cell.readMoreBtn.tag == 0 {
+                        cell.introTextLbl.numberOfLines = 2
+//                        cell.introTextLbl.sizeToFit()
+                        cell.introTextLbl.text = user_comment.html2String
+                        cell.introTextLbl.addTrailing(with: "...")
+                        cell.readMoreBtn.setTitle("더보기", for: .normal)
+                        cell.readMoreBtn.underlineText()
+                    } else {
+                        cell.introTextLbl.text = user_comment.html2String
+                        cell.introTextLbl.numberOfLines = 0
+                        cell.introTextLbl.sizeToFit()
+                        cell.readMoreBtn.setTitle("닫기", for: .normal)
+                        cell.readMoreBtn.underlineText()
+                    }
+                }
+                
             }
             cell.selectionStyle = .none
             return cell
         case 2:
             let cell:ProfileV2NewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileV2SocialNetworkCell", for: indexPath) as! ProfileV2NewTableViewCell
-
+            if profileNewModel?.results?.sns_instagram ?? "" != "" {
+                print("instagram link has some property")
+            }
             cell.selectionStyle = .none
             return cell
         case 3:

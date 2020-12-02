@@ -21,8 +21,9 @@ class ProfileV2NewTableViewCell: UITableViewCell {
     @IBOutlet weak var helpfulCountLbl: UIFixedLabel!
     
 //    ProfileV2IntroCell
-    @IBOutlet weak var introTextLbl: UILabel!
-    @IBOutlet weak var myIntroTextView: ReadMoreTextView!
+    @IBOutlet weak var introTextLbl: UIFixedLabel!
+    @IBOutlet weak var readMoreBtn: UIButton!
+    @IBOutlet weak var readMoreBtnHeight: NSLayoutConstraint!
     
 //    ProfileV2SocialNetworkCell
     @IBOutlet weak var instagramView: UIView!
@@ -113,11 +114,6 @@ class ProfileV2NewTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
     
     /** the hitTest method is used to make likeCountBtn to be visible even out of bounds of its parent view***/
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -150,8 +146,8 @@ extension ProfileV2NewTableViewCell: UICollectionViewDelegate, UICollectionViewD
 //        add action when the cell is clicked
         print("the cell is tapped")
         if class_list_arr.count > 0{
-            let class_id = ["class_id":class_list_arr[indexPath.row].class_id ?? 0]
-            NotificationCenter.default.post(name: NSNotification.Name("goToClassDetail"), object: nil, userInfo: class_id)
+            let class_id = class_list_arr[indexPath.row].class_id ?? 0
+            NotificationCenter.default.post(name: NSNotification.Name("goToClassDetail"), object: class_id)
         }
     }
     

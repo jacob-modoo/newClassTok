@@ -50,10 +50,6 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var noticeTextView: UITextView!
     @IBOutlet weak var noticeDetailBtn: UIButton!
     
-//    DetailClassRecomCollectionViewCell
-    @IBOutlet weak var recomUserName: UIFixedLabel!
-    @IBOutlet weak var classRecomCollectionView: UICollectionView!
-    
 //    DetailClassTotalReplyTitleTableViewCell
     @IBOutlet var totalReplyCount: UILabel!
     @IBOutlet weak var communityLbl: UILabel!
@@ -91,16 +87,28 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     
 //    DetailClassCurriculumCell
     @IBOutlet var curriculumClassTitleLbl: UILabel!
-    @IBOutlet var curriculumTitleTime: UILabel!
+    @IBOutlet weak var curriculumTitleTime: UILabel!
+    
     @IBOutlet var curriculumFirstClass: UILabel!
-    @IBOutlet var curriculumFirstClassTime: UILabel!
-    @IBOutlet var curriculumSecondClass: UILabel!
-    @IBOutlet var curriculumSecondClassTime: UILabel!
-    @IBOutlet var curriculumThirdClass: UILabel!
-    @IBOutlet var curriculumThirdClassTime: UILabel!
     @IBOutlet weak var curriculumFirstClassImg: UIImageView!
+    @IBOutlet var curriculumFirstClassTime: UILabel!
+    
+    @IBOutlet var curriculumSecondClass: UILabel!
     @IBOutlet weak var curriculumSecondClassImg: UIImageView!
+    @IBOutlet var curriculumSecondClassTime: UILabel!
+    
+    @IBOutlet var curriculumThirdClass: UILabel!
     @IBOutlet weak var curriculumThirdClassImg: UIImageView!
+    @IBOutlet var curriculumThirdClassTime: UILabel!
+    
+    @IBOutlet weak var curriculumFourthClass: UILabel!
+    @IBOutlet weak var curriculumFourthClassImg: UIImageView!
+    @IBOutlet weak var curriculumFourthClassTime: UILabel!
+    
+    @IBOutlet weak var curriculumFifthClass: UILabel!
+    @IBOutlet weak var curriculumFifthClassImg: UIImageView!
+    @IBOutlet weak var curriculumFifthClassTime: UILabel!
+    
     
 //    DetailClassPriceCell
     @IBOutlet weak var classPriceImg: UIImageView!
@@ -126,7 +134,8 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewUserProfileBtn: UIButton!
     @IBOutlet weak var reviewUserBackView: GradientView!
     @IBOutlet weak var review1FeedbackImg: UIImageView!
-    @IBOutlet weak var review1LikeCountBtn: UIButton!
+    @IBOutlet weak var reviewFeedWithImg: UIImageView!
+    @IBOutlet weak var reviewUserContentConstraint: NSLayoutConstraint!
     
 //    DetailClassReview2Cell
     @IBOutlet weak var review2UserImg: UIImageView!
@@ -136,7 +145,12 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var review2UserProfileBtn: UIButton!
     @IBOutlet weak var review2UserBackView: UIView!
     @IBOutlet weak var review2FeedbackImg: UIImageView!
-    @IBOutlet weak var review2LikeCountBtn: UIButton!
+    @IBOutlet weak var review2FeedWithImg: UIImageView!
+    @IBOutlet weak var review2UserContentConstraint: NSLayoutConstraint!
+    
+//    DetailClassRecomCollectionViewCell
+    @IBOutlet weak var recomUserName: UIFixedLabel!
+    @IBOutlet weak var classRecomCollectionView: UICollectionView!
     
 //    DetailClassChangeBodyCell
     @IBOutlet weak var classChangeBodyTitle: UIFixedLabel!
@@ -147,11 +161,9 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 /** the hitTest method is used to make likeCountBtn to be visible even out of bounds of its parent view***/
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         super.hitTest(point, with: event)
@@ -160,84 +172,81 @@ class ChildDetailClassTableViewCell: UITableViewCell {
 
 }
 
-extension ChildDetailClassTableViewCell:UICollectionViewDelegate,UICollectionViewDataSource{
+extension ChildDetailClassTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView {
-        case changeBodyCollectionView:
+        if collectionView.tag == 1 {
             if class_recommend_arr.count > 0{
                 return class_recommend_arr.count
             }else{
                 return 0
             }
-        case classRecomCollectionView:
+        } else {
             if recommendationList_arr.count > 0{
                 return recommendationList_arr.count
             }else{
                 return 0
             }
-        default:
-            return 0
         }
-        
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let row = indexPath.row
-        switch collectionView {
-        case changeBodyCollectionView:
-            let cell:ChildDetailClassCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassCollectionViewCell", for: indexPath) as! ChildDetailClassCollectionViewCell
+        if collectionView.tag == 1 {
+            let cell:ChildDetailClassCollectionViewCell = changeBodyCollectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassCollectionViewCell", for: indexPath) as! ChildDetailClassCollectionViewCell
             cell.classInfoImg.sd_setImage(with: URL(string: "\(class_recommend_arr[row].photo ?? "")"), placeholderImage: UIImage(named: "home_default"))
             cell.classInfoTitle.text = "\(class_recommend_arr[row].recommend ?? "")"
             return cell
-        case classRecomCollectionView:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassRecomCollectionViewCell", for: indexPath) as! ChildDetailClassRecomCollectionViewCell
+        } else {
+            let cell = classRecomCollectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassRecomCollectionViewCell", for: indexPath) as! ChildDetailClassRecomCollectionViewCell
+            self.bringSubviewToFront(self.classRecomCollectionView)
             cell.collectionViewClassName.text = recommendationList_arr[row].name ?? ""
             cell.collectionViewHelpCnt.text = "👍 \(convertCurrency(money: NSNumber(value: recommendationList_arr[row].helpful_cnt ?? 0), style: .decimal))"
             cell.collectionViewImg.sd_setImage(with: URL(string: "\(recommendationList_arr[row].photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo2"))
             cell.collectionViewPriceLbl.text = "월 \(recommendationList_arr[row].package_payment ?? "")원"
             cell.price_per_lbl.text = "\(recommendationList_arr[row].package_sale_per ?? "")%"
-        default:
-            let cell:ChildDetailClassCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassCollectionViewCell", for: indexPath) as! ChildDetailClassCollectionViewCell
             return cell
         }
-        let cell:ChildDetailClassCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassCollectionViewCell", for: indexPath) as! ChildDetailClassCollectionViewCell
-        return cell
-    }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print("collection view general")
+        if collectionView.tag == 2 {
+            print("collection view recom count : \(recommendationList_arr.count)")
+            if recommendationList_arr.count > 0{
+                let class_id = recommendationList_arr[indexPath.row].class_id ?? 0
+                NotificationCenter.default.post(name: NSNotification.Name("goToClassDetail"), object: class_id)
+                print("class id : \(class_id)")
+                recommendationList_arr.removeAll()
+                classRecomCollectionView.performBatchUpdates {
+                    let indexSet = IndexSet(integersIn: 0...0)
+                    self.classRecomCollectionView.reloadSections(indexSet)
+                } completion: { _ in
+                    print("updated collection view")
+                }
+
+            }
+        } else {
+//            add selectItem action for collectionView.tag = 1
+            print("collection view body")
+        }
+
     }
-
-}
-
-extension ChildDetailClassTableViewCell :UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == changeBodyCollectionView {
+        if collectionView.tag == 1 {
             let size = CGSize(width :self.changeBodyCollectionView.frame.height,height: self.changeBodyCollectionView.frame.height)
             return size
-        } else if collectionView == classRecomCollectionView {
+        } else {
             let size = CGSize(width: self.classRecomCollectionView.frame.width, height: self.classRecomCollectionView.frame.height)
             return size
-        } else {
-            return CGSize(width: 0, height: 0)
         }
     }
+    
+    
+    
+    
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-
-    }
 }
+
+

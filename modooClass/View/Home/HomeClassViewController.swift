@@ -217,8 +217,12 @@ class HomeClassViewController: UIViewController {
     
     @IBAction func myProfileBtnClicked(_ sender: UIButton) {
         if sender.tag == 1 {
+            let pageArr = ["HomeIntroWebViewController":0,
+                           "HomeClassViewController":1,
+                           "HomeFeedWebViewController":2,
+                           "ProfileV2NewViewController":3]
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveToProfilePage"), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveToPage"), object: pageArr["ProfileV2NewViewController"])
             }
         } else {
             let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "HomeProfileViewController") as! HomeProfileViewController

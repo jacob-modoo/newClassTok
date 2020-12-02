@@ -1,4 +1,10 @@
 # 앱 리젝 사유 및 대처 방안
+## version 2.0.7
+Naver Login Error:
+Here I have found out that after updating pod file I had to manually change consumerKey, urlScheme, appName.. in "NaverThirdPartyConstantsForApp.h" (-> location: ProjectFile/Pods/naverlogin-sdk-ios/NaverThirdPartyLogin/Headers/NaverThirdPartyConstantsForApp.h)
+
+Video Player Layer Disappearing Issue:
+
 
 ## version 1.4.3
 

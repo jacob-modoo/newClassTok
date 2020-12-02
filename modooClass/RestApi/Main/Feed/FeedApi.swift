@@ -979,20 +979,4 @@ class FeedApi: NSObject {
             }
         }
     }
-    
-//    Class recommendation list for not registered users (spectator)
-    func recommendedClassList(class_id:Int, success: @escaping(_ data: SpectatorClassRecomModel) -> Void, fail: @escaping(_ error: Error?) -> Void) {
-        
-        let request = Alamofire.request("\(apiUrl)/class_recom/\(class_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
-        
-        request.response { response in
-            let statusCode = response.response?.statusCode
-            if statusCode == 200 {
-                let dic = SpectatorClassRecomModel.init(dic: convertToDictionary(data: response.data!, apiURL: "get : \(apiUrl)/class_recom/\(class_id)"))
-                success(dic)
-            } else {
-                fail(response.error)
-            }
-        }
-    }
 }

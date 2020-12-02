@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -73,7 +74,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wC4-TR-BMS">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wC4-TR-BMS">
                                                             <rect key="frame" x="16" y="16" width="50" height="50"/>
                                                             <connections>
                                                                 <action selector="userBtnClicked:" destination="NMF-JD-gc6" eventType="touchUpInside" id="XdB-GA-vzK"/>
@@ -120,7 +121,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="rbI-1P-oJp" secondAttribute="trailing" id="qAK-Pi-eb7"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vn-KF-Fbj">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vn-KF-Fbj">
                                                             <rect key="frame" x="82" y="0.0" width="332" height="82"/>
                                                             <connections>
                                                                 <action selector="alarmBtnClicked:" destination="NMF-JD-gc6" eventType="touchUpInside" id="x0Y-RN-vIH"/>
@@ -179,7 +180,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림이 없어요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Uu-e4-6Ll" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="163.5" y="329" width="87.5" height="19.5"/>
+                                                    <rect key="frame" x="158" y="329" width="98.5" height="22"/>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="16"/>
                                                     <color key="textColor" red="0.078431372549019607" green="0.090196078431372548" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -196,7 +197,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도움될만한 새로운 소식이 들어오면 여기서 알려드릴게요 :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovP-6n-mHc" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="58" y="357.5" width="298.5" height="16"/>
+                                                    <rect key="frame" x="46.5" y="360" width="321.5" height="17"/>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                                     <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -243,7 +244,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTE-tM-N1G" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                <rect key="frame" x="89" y="12" width="29.5" height="20.5"/>
+                                                <rect key="frame" x="91.5" y="13.5" width="24.5" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -259,14 +260,14 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5Y-5b-e4w">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5Y-5b-e4w">
                                                 <rect key="frame" x="0.0" y="0.0" width="207" height="43"/>
                                                 <connections>
                                                     <action selector="menuBtnClicked:" destination="NMF-JD-gc6" eventType="touchUpInside" id="Aw6-VZ-zti"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="e5Y-5b-e4w" secondAttribute="trailing" id="02E-70-RXG"/>
                                             <constraint firstItem="PKu-vB-jvQ" firstAttribute="leading" secondItem="pFQ-gr-02x" secondAttribute="leading" id="6kO-se-LLS"/>
@@ -290,7 +291,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="채팅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjP-FR-SrC" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                <rect key="frame" x="89" y="12" width="29.5" height="20.5"/>
+                                                <rect key="frame" x="91.5" y="13.5" width="24.5" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -307,10 +308,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtE-Qf-rXV" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                <rect key="frame" x="118.5" y="3" width="18" height="18"/>
+                                                <rect key="frame" x="116" y="4.5" width="18" height="18"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neU-yJ-Kqm" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="3" width="18" height="12"/>
+                                                        <rect key="frame" x="0.0" y="2.5" width="18" height="13.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -345,14 +346,14 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwN-4b-Mxm">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwN-4b-Mxm">
                                                 <rect key="frame" x="0.0" y="0.0" width="207" height="43"/>
                                                 <connections>
                                                     <action selector="menuBtnClicked:" destination="NMF-JD-gc6" eventType="touchUpInside" id="iYW-ti-rrq"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="JwN-4b-Mxm" secondAttribute="trailing" id="3fi-Ot-WVc"/>
                                             <constraint firstItem="hjP-FR-SrC" firstAttribute="centerX" secondItem="b7p-N7-ZYo" secondAttribute="centerX" id="5Hd-Xf-5ZW"/>
@@ -368,7 +369,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="b7p-N7-ZYo" secondAttribute="trailing" id="BSv-Xg-gQv"/>
                                     <constraint firstItem="b7p-N7-ZYo" firstAttribute="width" secondItem="pFQ-gr-02x" secondAttribute="width" id="K0c-Zh-min"/>
@@ -386,6 +387,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="0pP-Pk-T1Z"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="PUE-yu-4uX" firstAttribute="trailing" secondItem="0pP-Pk-T1Z" secondAttribute="trailing" id="0s6-Rg-ZNY"/>
@@ -400,7 +402,6 @@
                             <constraint firstAttribute="bottom" secondItem="PUE-yu-4uX" secondAttribute="bottom" id="pwE-rN-Lrs"/>
                             <constraint firstItem="UsI-ew-tfF" firstAttribute="top" secondItem="0Ge-oG-O2T" secondAttribute="bottom" id="zr8-Lj-XhE"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="0pP-Pk-T1Z"/>
                     </view>
                     <navigationItem key="navigationItem" title="알림" id="uI5-r8-Ij4">
                         <barButtonItem key="leftBarButtonItem" image="thin_back_gray" id="HoO-2Z-TiT">
@@ -487,7 +488,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uef-Xz-RoH">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uef-Xz-RoH">
                                                             <rect key="frame" x="16" y="16" width="50" height="50"/>
                                                             <connections>
                                                                 <action selector="userBtnClicked:" destination="43c-Yc-hAC" eventType="touchUpInside" id="4RH-oG-1gC"/>
@@ -534,7 +535,7 @@
                                                                 <constraint firstAttribute="height" constant="50" id="vpc-dl-AhV"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTr-gs-427">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTr-gs-427">
                                                             <rect key="frame" x="82" y="0.0" width="332" height="82"/>
                                                             <connections>
                                                                 <action selector="alarmBtnClicked:" destination="43c-Yc-hAC" eventType="touchUpInside" id="7lz-SI-bOc"/>
@@ -622,6 +623,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="eag-rY-BiC"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Pc1-zQ-xVH" secondAttribute="bottom" id="LRe-42-e93"/>
@@ -629,7 +631,6 @@
                             <constraint firstItem="Pc1-zQ-xVH" firstAttribute="top" secondItem="eag-rY-BiC" secondAttribute="top" id="epa-vg-YbG"/>
                             <constraint firstItem="eag-rY-BiC" firstAttribute="trailing" secondItem="Pc1-zQ-xVH" secondAttribute="trailing" id="wEa-VP-fp2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="eag-rY-BiC"/>
                     </view>
                     <tabBarItem key="tabBarItem" image="alarm_disable" selectedImage="alarm" id="3Pl-8c-7T1">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
@@ -660,6 +661,41 @@
             <point key="canvasLocation" x="2228" y="-26"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="3Fv-EW-htq">
+            <size key="intrinsicContentSize" width="3" height="12"/>
+        </designable>
+        <designable name="5lp-cA-yVD">
+            <size key="intrinsicContentSize" width="4" height="34"/>
+        </designable>
+        <designable name="9Uu-e4-6Ll">
+            <size key="intrinsicContentSize" width="98.5" height="22"/>
+        </designable>
+        <designable name="HoQ-GE-sX6">
+            <size key="intrinsicContentSize" width="40" height="40"/>
+        </designable>
+        <designable name="KTE-tM-N1G">
+            <size key="intrinsicContentSize" width="24.5" height="17"/>
+        </designable>
+        <designable name="UdI-ka-OKz">
+            <size key="intrinsicContentSize" width="3" height="12"/>
+        </designable>
+        <designable name="cyh-4u-yuo">
+            <size key="intrinsicContentSize" width="4" height="34"/>
+        </designable>
+        <designable name="hjP-FR-SrC">
+            <size key="intrinsicContentSize" width="24.5" height="17"/>
+        </designable>
+        <designable name="neU-yJ-Kqm">
+            <size key="intrinsicContentSize" width="4" height="13.5"/>
+        </designable>
+        <designable name="ovP-6n-mHc">
+            <size key="intrinsicContentSize" width="321.5" height="17"/>
+        </designable>
+        <designable name="sGf-Q8-QnA">
+            <size key="intrinsicContentSize" width="40" height="40"/>
+        </designable>
+    </designables>
     <resources>
         <image name="alarm" width="24" height="24"/>
         <image name="alarmEmptyV2" width="300" height="300"/>
@@ -676,5 +712,8 @@
         <namedColor name="MainPoint_mainColor">
             <color red="1" green="0.3529999852180481" blue="0.37299999594688416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

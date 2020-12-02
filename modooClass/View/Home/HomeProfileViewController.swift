@@ -190,22 +190,22 @@ class HomeProfileViewController: UIViewController {
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }else{
                 if tag <= (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0) + 5{
-                newViewController.url = HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr[tag-6].link ?? ""
-                self.navigationController?.pushViewController(newViewController, animated: true)
-            }else{
-                if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 6{
-                    newViewController.url = HomeMain2Manager.shared.profileModel.results?.chat_link ?? ""
+                    newViewController.url = HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr[tag-6].link ?? ""
                     self.navigationController?.pushViewController(newViewController, animated: true)
-                }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 7{
-                    newViewController.url = HomeMain2Manager.shared.profileModel.results?.support_address ?? ""
-                    self.navigationController?.pushViewController(newViewController, animated: true)
-                }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 8{
-                    
-                }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 10{
-                    let url = HomeMain2Manager.shared.profileModel.results?.notice_address ?? ""
-                    newViewController.url = url
-                    self.navigationController?.pushViewController(newViewController, animated: true)
-                }
+                }else{
+                    if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 6{
+                        newViewController.url = HomeMain2Manager.shared.profileModel.results?.chat_link ?? ""
+                        self.navigationController?.pushViewController(newViewController, animated: true)
+                    }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 7{
+                        newViewController.url = HomeMain2Manager.shared.profileModel.results?.support_address ?? ""
+                        self.navigationController?.pushViewController(newViewController, animated: true)
+                    }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 8{
+                        
+                    }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 10{
+                        let url = HomeMain2Manager.shared.profileModel.results?.notice_address ?? ""
+                        newViewController.url = url
+                        self.navigationController?.pushViewController(newViewController, animated: true)
+                    }
             }
         }
     }

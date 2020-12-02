@@ -228,8 +228,7 @@ class HomeIntroWebViewController : UIViewController ,WKNavigationDelegate,WKUIDe
         
         var myURL:URL?
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-//        url = url.replace(target: "https://www.modooclass.net", withString: "http://drugsism.modooclass.net")
-//        url = url.replace(target: "https://www.modooclass.net", withString: "https://hyejin.modooclass.net")
+        
 //        url = url.replace(target: "https://www.modooclass.net", withString: "https://junghee.modooclass.net")
         if tokenCheck == true {
             print("url: \(url)")

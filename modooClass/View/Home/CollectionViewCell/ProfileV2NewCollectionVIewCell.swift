@@ -15,5 +15,4 @@ class ProfileV2NewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var collectionViewClassNameLbl: UIFixedLabel!
     @IBOutlet weak var collectionViewHelpCountLbl: UIFixedLabel!
     
-    
 }

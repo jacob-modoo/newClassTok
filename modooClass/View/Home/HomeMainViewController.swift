@@ -30,7 +30,6 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var storyView: UIView!
     @IBOutlet weak var tabImg5: UIImageView!
     @IBOutlet weak var tabView: UIView!
-    @IBOutlet weak var tabBottomView: UIView!
     
     let homeViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
@@ -86,8 +85,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.homeTitleChange), name: NSNotification.Name(rawValue: "homeTitleChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.home2MainChatBadgeChange), name: NSNotification.Name(rawValue: "home2MainChatBadgeChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.home2MainAlarmBadgeChange), name: NSNotification.Name(rawValue: "home2MainAlarmBadgeChange"), object: nil )
-        NotificationCenter.default.addObserver(self, selector: #selector(self.moveToProfilePage), name: NSNotification.Name(rawValue: "moveToProfilePage"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.moveToClassPage), name: NSNotification.Name(rawValue: "moveToClassPage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.moveToPage), name: NSNotification.Name(rawValue: "moveToPage"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,7 +135,6 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             if tag == 0{
                 onClickView()
                 if (childVC.viewControllers?.firstIndex(of: childVC.orderedViewControllers[tag])) == 0 {
-                    print("Scroll to top function called")
                     let webVC = childVC.children.first as? HomeIntroWebViewController
                     webVC?.webView.scrollView.setContentOffset(.zero, animated: true)
                 } else {
@@ -149,7 +146,6 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             } else if tag == 2 {
                 onClickView()
                   if (childVC.viewControllers?.firstIndex(of: childVC.orderedViewControllers[tag])) == 0 {
-                    print("Scroll to top function called")
                     let webVC = childVC.children.first as? HomeFeedWebViewController
                     webVC?.webView.scrollView.setContentOffset(.zero, animated: true)
                 } else {
@@ -226,18 +222,12 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    /** *this moves to Profile page*/
-    @objc func moveToProfilePage(notification: Notification) {
-        tabCheck(index: 3)
+    /** *this moves to required page*/
+    @objc func moveToPage(notification: Notification) {
+        let index = notification.object as! Int
+        tabCheck(index: index)
         if let childVC = self.children.first as? HMPageViewController {
-            childVC.scrollToViewController(index: 3)
-        }
-    }
-    
-    @objc func moveToClassPage(notification: Notification){
-        tabCheck(index: 1)
-        if let childVC = self.children.first as? HMPageViewController {
-            childVC.scrollToViewController(index: 1)
+            childVC.scrollToViewController(index: index)
         }
     }
     
@@ -279,21 +269,25 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             self.pageTitle.text = "클래스"
             self.tabImg1.image = UIImage(named: "interest_iconV2_active")
             self.tabLbl1.textColor = UIColor(hexString:"#1a1a1a")
+            self.tabLbl1.font = UIFont.boldSystemFont(ofSize: 10)
             self.searchBtn.isHidden = true
         }else if index == 1{
             self.pageTitle.text = "내강좌"
             self.tabImg2.image = UIImage(named: "class_iconV2_Active")
             self.tabLbl2.textColor = UIColor(hexString:"#1a1a1a")
+            self.tabLbl2.font = UIFont.boldSystemFont(ofSize: 10)
             self.searchBtn.isHidden = false
         }else if index == 2{
             self.pageTitle.text = "새소식"
             self.tabImg3.image = UIImage(named: "tok_iconV2_active")
             self.tabLbl3.textColor = UIColor(hexString:"#1a1a1a")
+            self.tabLbl3.font = UIFont.boldSystemFont(ofSize: 10)
             self.searchBtn.isHidden = false
         }else if index == 3{
             self.pageTitle.text = "마이프로필"
             self.tabImg4.image = UIImage(named: "profile_iconV2_active")
             self.tabLbl4.textColor = UIColor(hexString:"#1a1a1a")
+            self.tabLbl4.font = UIFont.boldSystemFont(ofSize: 10)
             self.searchBtn.isHidden = false
         }else{
             

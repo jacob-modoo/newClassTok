@@ -227,9 +227,7 @@ class ChildHome2WebViewController: UIViewController ,WKNavigationDelegate,WKUIDe
         webView.scrollView.addSubview(refreshControl)
 
         var myURL:URL?
-
-//        url = url.replace(target: "https://www.modooclass.net", withString: "http://drugsism.modooclass.net")
-//        url = url.replace(target: "https://www.modooclass.net", withString: "https://hyejin.modooclass.net")
+        
 //        url = url.replace(target: "https://www.modooclass.net", withString: "https://junghee.modooclass.net")
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
 

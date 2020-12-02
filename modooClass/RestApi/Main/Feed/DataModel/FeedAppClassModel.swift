@@ -65,6 +65,7 @@ class AppClassCurriculumResult:NSObject{
     var origin_price:String?
     var review_list:ClassDetailReview_list?
     var review_list_arr:Array = Array<ClassDetailReview_list>()
+    var class_recom_list:Class_recom_list?
     var classScrap_status:String?
     var classScrap_cnt:Int?
     var mission_yn:String?
@@ -130,6 +131,9 @@ class AppClassCurriculumResult:NSObject{
         if let curriculum_head = dic["curriculum_head"] as? Dictionary<String, Any> {
             self.curriculum_head = CurriculumHead.init(dic: curriculum_head)
         }
+        if let class_recom_list = dic["class_recom_list"] as? Dictionary<String, Any> {
+            self.class_recom_list = Class_recom_list.init(dic: class_recom_list)
+        }
         if let list = dic["curriculum_list"] as? Array<Dictionary<String, Any>> {
             let array:Array = list
             for listTemp in array {
@@ -165,6 +169,60 @@ class AppClassCurriculumResult:NSObject{
                 review_list_arr.append(temp)
             }
         }
+    }
+}
+
+class Class_recom_list: NSObject {
+    
+    var user_id:Int?
+    var user_name:String?
+    var curr_count:Int?
+    var list: RecommendationList?
+    var list_arr:Array = Array<RecommendationList>()
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        
+        user_id = DictionaryToInt(dic: dic, intName: "user_id")
+        user_name = DictionaryToString(dic: dic, strName: "user_name")
+        curr_count = DictionaryToInt(dic: dic, intName: "curr_count")
+        
+        if let list = dic["list"] as? Array<Any>{
+            let array:Array = list
+            for list in array {
+                let temp = RecommendationList.init(dic: list as! Dictionary<String, Any>)
+                list_arr.append(temp)
+            }
+        }
+    }
+}
+
+class RecommendationList: NSObject {
+    var name:String?
+    var package_payment:String?
+    var package_sale_per:String?
+    var photo:String?
+    var user_name:String?
+    var helpful_cnt:Int?
+    var class_id:Int?
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        name = DictionaryToString(dic: dic, strName: "name")
+        package_payment = DictionaryToString(dic: dic, strName: "package_payment")
+        package_sale_per = DictionaryToString(dic: dic, strName: "package_sale_per")
+        photo = DictionaryToString(dic: dic, strName: "photo")
+        user_name = DictionaryToString(dic: dic, strName: "user_name")
+        helpful_cnt = DictionaryToInt(dic: dic, intName: "helpful_cnt")
+        class_id = DictionaryToInt(dic: dic, intName: "class_id")
     }
 }
 

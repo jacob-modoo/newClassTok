@@ -314,10 +314,11 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
         cell.coachName.text = "\(searchListArr[checkRow].coach_name ?? "")•총 \(searchListArr[checkRow].curriculum_cnt ?? 0)강"
         cell.className.text = "\(searchListArr[checkRow].class_name ?? "")"
         if searchListArr[checkRow].price_sale ?? "" != "0"{
+            print("price sale : \(searchListArr[checkRow].price_sale ?? "")")
             cell.classSalePer.text = "\(searchListArr[checkRow].price_sale ?? "")%"
         }
         cell.classSalePrice.text = "월 \(searchListArr[checkRow].payment_price ?? "")원"
-        cell.coachPhoto.sd_setImage(with: URL(string: "\(searchListArr[checkRow].coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+        print("payment info : \(searchListArr[checkRow].payment_price ?? "")")
         if searchListArr[checkRow].class_have_status ?? "N" == "N"{
             cell.scrapBtn.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
             cell.scrapBtn.tag = checkRow
@@ -326,35 +327,8 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
             cell.scrapBtn.tag = checkRow
         }
         cell.classDetailMoveBtn.tag = checkRow
-        if searchListArr[checkRow].helpful_cnt ?? 0 > 3{
-            cell.memberView.isHidden = false
-            cell.classActiveCount.text = "👍 \(convertCurrency(money: (NSNumber(value: searchListArr[checkRow].helpful_cnt ?? 0)), style : NumberFormatter.Style.decimal))명 참여"
-            if searchListArr[checkRow].class_member_list_arr.count > 2{
-                cell.classMemberPhoto1.isHidden = false
-                cell.classMemberPhoto2.isHidden = false
-                cell.classMemberPhoto3.isHidden = false
-                cell.classMemberPhoto3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                cell.classMemberPhoto2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                cell.classMemberPhoto1.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[2].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-            }else if searchListArr[checkRow].class_member_list_arr.count > 1{
-                cell.classMemberPhoto1.isHidden = true
-                cell.classMemberPhoto2.isHidden = false
-                cell.classMemberPhoto3.isHidden = false
-                cell.classMemberPhoto3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                cell.classMemberPhoto2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-            }else if searchListArr[checkRow].class_member_list_arr.count > 0{
-                cell.classMemberPhoto1.isHidden = true
-                cell.classMemberPhoto2.isHidden = true
-                cell.classMemberPhoto3.isHidden = false
-                cell.classMemberPhoto3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-            }else {
-                cell.classMemberPhoto1.isHidden = true
-                cell.classMemberPhoto2.isHidden = true
-                cell.classMemberPhoto3.isHidden = true
-            }
-        }else{
-            cell.memberView.isHidden = true
-        }
+        cell.classActiveCount.text = "\(convertCurrency(money: (NSNumber(value: searchListArr[checkRow].helpful_cnt ?? 0)), style : NumberFormatter.Style.decimal))명 참여"
+        
     }
     
     func gradientView2(cell: FeedbackSearchTableViewCell, row: Int) {
@@ -366,7 +340,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
             cell.classSalePer2.text = "\(searchListArr[checkRow].price_sale ?? "")%"
         }
         cell.classSalePrice2.text = "월 \(searchListArr[checkRow].payment_price ?? "")원"
-        cell.coachPhoto2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+
         if searchListArr[checkRow].class_have_status ?? "N" == "N"{
             cell.scrapBtn2.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
             cell.scrapBtn2.tag = checkRow
@@ -375,35 +349,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
             cell.scrapBtn2.tag = checkRow
         }
         cell.classDetailMoveBtn2.tag = checkRow
-        if searchListArr[checkRow].helpful_cnt ?? 0 > 3{
-            cell.memberView2.isHidden = false
-            cell.classActiveCount2.text = "👍 \(convertCurrency(money: (NSNumber(value: searchListArr[checkRow].helpful_cnt ?? 0)), style : NumberFormatter.Style.decimal))명 참여"
-            if searchListArr[checkRow].class_member_list_arr.count > 2{
-                cell.classMemberImg1.isHidden = false
-                cell.classMemberImg2.isHidden = false
-                cell.classMemberImg3.isHidden = false
-                cell.classMemberImg3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                cell.classMemberImg2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                cell.classMemberImg1.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[2].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-            }else if searchListArr[checkRow].class_member_list_arr.count > 1{
-                cell.classMemberImg1.isHidden = true
-                cell.classMemberImg2.isHidden = false
-                cell.classMemberImg3.isHidden = false
-                cell.classMemberImg3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                cell.classMemberImg2.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[1].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-            }else if searchListArr[checkRow].class_member_list_arr.count > 0{
-                cell.classMemberImg1.isHidden = true
-                cell.classMemberImg2.isHidden = true
-                cell.classMemberImg3.isHidden = false
-                cell.classMemberImg3.sd_setImage(with: URL(string: "\(searchListArr[checkRow].class_member_list_arr[0].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-            }else {
-                cell.classMemberImg1.isHidden = true
-                cell.classMemberImg2.isHidden = true
-                cell.classMemberImg3.isHidden = true
-            }
-        }else{
-            cell.memberView2.isHidden = true
-        }
+        cell.classActiveCount2.text = "\(convertCurrency(money: (NSNumber(value: searchListArr[checkRow].helpful_cnt ?? 0)), style : NumberFormatter.Style.decimal))명 참여"
     }
 }
 
@@ -453,7 +399,9 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
         }else{
             if searchList != nil{
                 if searchListArr.count > 0{
-                    if section == 2{
+                    if section == 0 {
+                        return 0
+                    } else if section == 2{
                         if self.searchListArr.count % 2 == 0 {
                             return self.searchListArr.count/2
                         } else {

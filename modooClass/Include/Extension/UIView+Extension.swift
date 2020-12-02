@@ -208,28 +208,3 @@ extension UINib {
         return instantiate(withOwner: nil, options: nil).first
     }
 }
-
-//class View: UIView {
-
-//    init() {
-//        super.init(frame: .zero)
-//
-//        self.initialize()
-//    }
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        self.initialize()
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//
-//        self.initialize()
-//    }
-//
-//    func initialize() {
-//        self.translatesAutoresizingMaskIntoConstraints = false
-//    }
-//}

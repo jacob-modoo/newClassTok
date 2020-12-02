@@ -155,9 +155,6 @@ class StoryDetailViewController: UIViewController {
         tableView.estimatedRowHeight = 44
         squareDetail()
         
-        let dismiss = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        self.tableView.addGestureRecognizer(dismiss)
-        
     }
     
      @objc func feedDetailFriend(notification:Notification){
@@ -173,11 +170,6 @@ class StoryDetailViewController: UIViewController {
             self.playerController.player?.pause()
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
-    }
-    
-    @objc func hideKeyboard() {
-        view.endEditing(true)
-        print("tableView is tapped!")
     }
     
     @objc func chattingCheck(notification:Notification){
@@ -266,6 +258,21 @@ class StoryDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func emptyViewBtnClicked(_ sender: UIButton) {
+        let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "StoryReplyDetailViewController") as! StoryReplyDetailViewController
+        newViewController.feedId = self.feedId
+        newViewController.replyCount = self.list?.results?.comment_reply?.reply_total ?? 0
+        newViewController.keyboardShow = false
+        self.navigationController?.pushViewController(newViewController, animated: true)
+        
+        DispatchQueue.main.async {
+            if self.keyboardShow == true {
+                self.view.endEditing(true)
+                self.textViewTab()
+            }
+        }
+    }
+    
     /** **this button will delete the feed*/
     @IBAction func moreBtnClicked(_ sender: UIButton) {
         Alert.With(self, title: "알림", content: "게시물을 삭제하시겠어요?", btn1Title: "취소", btn1Handler: {
@@ -335,6 +342,13 @@ class StoryDetailViewController: UIViewController {
         newViewController.feedId = self.feedId
         newViewController.replyCount = self.list?.results?.comment_reply?.reply_total ?? 0
         self.navigationController?.pushViewController(newViewController, animated: true)
+        
+        DispatchQueue.main.async {
+            if self.keyboardShow == true {
+                self.view.endEditing(true)
+                self.textViewTab()
+            }
+        }
     }
     
     @IBAction func activeLikeBtnClicked(_ sender: UIButton) {
@@ -491,10 +505,7 @@ class StoryDetailViewController: UIViewController {
                 self.emoticonImg.image = nil
                 self.replyTextViewLbl.isHidden = false
                 self.replyTextView.text = ""
-                if self.customView != nil{
-                    self.customView?.removeFromSuperview()
-                    self.customView = nil
-                }
+                self.textViewTab()
                 self.emoticonNumber = 0
                 self.tableView.reloadData()
             }
@@ -513,32 +524,32 @@ class StoryDetailViewController: UIViewController {
         
         if self.list?.results?.like_yn ?? "" == "N"{
             type = "post"
-            sender.setImage(UIImage(named: "class_main_like_active"), for: .normal)
+            sender.setImage(UIImage(named: "profile_likeBtn_active"), for: .normal)
             sender.setTitle("  도움돼요 \((self.list?.results?.like_cnt ?? 0) + 1)  ", for: .normal)
         }else{
             type = "delete"
-            sender.setImage(UIImage(named: "class_main_like"), for: .normal)
+            sender.setImage(UIImage(named: "profile_main_likeBtn"), for: .normal)
             sender.setTitle("  도움돼요 \((self.list?.results?.like_cnt ?? 0) - 1)  ", for: .normal)
         }
         
         ProfileApi.shared.profileV2CommentLike(comment_id: self.feedId, type: type, success: { [unowned self] result in
             if result.code == "200"{
                 if self.list?.results?.like_yn ?? "" == "N"{
-                    sender.setImage(UIImage(named: "class_main_like_active"), for: .normal)
+                    sender.setImage(UIImage(named: "profile_likeBtn_active"), for: .normal)
                     self.list?.results?.like_yn = "Y"
                     self.list?.results?.like_cnt = (self.list?.results?.like_cnt ?? 0) + 1
                 }else{
-                    sender.setImage(UIImage(named: "class_main_like"), for: .normal)
+                    sender.setImage(UIImage(named: "profile_main_likeBtn"), for: .normal)
                     self.list?.results?.like_yn = "N"
                     self.list?.results?.like_cnt = (self.list?.results?.like_cnt ?? 0) - 1
                 }
             }
         }) { error in
             if self.list?.results?.like_yn ?? "" == "N"{
-                sender.setImage(UIImage(named: "class_main_like"), for: .normal)
+                sender.setImage(UIImage(named: "profile_main_likeBtn"), for: .normal)
                 sender.setTitle("  도움돼요 \((self.list?.results?.like_cnt ?? 0) - 1)  ", for: .normal)
             }else{
-                sender.setImage(UIImage(named: "class_main_like_active"), for: .normal)
+                sender.setImage(UIImage(named: "profile_likeBtn_active"), for: .normal)
                 sender.setTitle("  도움돼요 \((self.list?.results?.like_cnt ?? 0) + 1)  ", for: .normal)
             }
         }
@@ -1136,7 +1147,7 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 }
                 
                 if self.list?.results?.class_signup_data ?? 0 > 20{
-                    cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로윙."
+                    cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로잉."
                 }else{
                     cell.classSalePrice.text = "\(self.list?.results?.coach_name ?? "")님의 클래스 오픈을 축하해주세요 ✨"
                 }
@@ -1165,7 +1176,7 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                     cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
                     if self.list?.results?.class_signup_data ?? 0 > 20{
-                        cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로윙."
+                        cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로잉."
                     }else{
                         cell.classSalePrice.text = "\(self.list?.results?.coach_name ?? "")님의 클래스 오픈을 축하해주세요 ✨"
                     }
@@ -1191,7 +1202,7 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                     }
                     
                     if self.list?.results?.class_signup_data ?? 0 > 20{
-                        cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로윙."
+                        cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로잉."
                     }else{
                         cell.classSalePrice.text = "\(self.list?.results?.coach_name ?? "")님의 클래스 오픈을 축하해주세요 ✨"
                     }
@@ -1257,9 +1268,9 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
         case 3:
             let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailLikeInfoTableViewCell", for: indexPath) as! StoryDetailTableViewCell
             if self.list?.results?.like_yn ?? "N" == "N"{
-                cell.replyLikeCountBtn.setImage(UIImage(named: "class_main_like"), for: .normal)
+                cell.replyLikeCountBtn.setImage(UIImage(named: "profile_main_likeBtn"), for: .normal)
             }else{
-                cell.replyLikeCountBtn.setImage(UIImage(named: "class_main_like_active"), for: .normal)
+                cell.replyLikeCountBtn.setImage(UIImage(named: "profile_likeBtn_active"), for: .normal)
             }
             cell.replyLikeCountBtn.setTitle("  도움돼요 \(self.list?.results?.like_cnt ?? 0)  ", for: .normal)
             cell.replyCountBtn.setTitle("  댓글 \(self.list?.results?.reply_cnt ?? 0)  ", for: .normal)

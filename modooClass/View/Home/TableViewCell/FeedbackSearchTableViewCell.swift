@@ -44,36 +44,22 @@ class FeedbackSearchTableViewCell: UITableViewCell {
     
 //    SearchAfterListCell (view 1)
     @IBOutlet weak var classPhoto: UIImageView!
-    @IBOutlet weak var coachPhoto: UIImageView!
     @IBOutlet weak var coachName: UIFixedLabel!
-//    @IBOutlet weak var reviewStar: UIImageView!
-//    @IBOutlet weak var reviewAvgCount: UIFixedLabel!
     @IBOutlet weak var className: UIFixedLabel!
     @IBOutlet weak var classSalePer: UIFixedLabel!
     @IBOutlet weak var classSalePrice: UIFixedLabel!
-//    @IBOutlet weak var classOriginalPrice: UIFixedLabel!
-//    @IBOutlet weak var classFirstOpen: UIImageView!
-//    @IBOutlet weak var classMemberCount: UIFixedLabel!
     @IBOutlet weak var classActiveCount: UIFixedLabel!
-    @IBOutlet weak var classMemberPhoto1: UIImageView!
-    @IBOutlet weak var classMemberPhoto2: UIImageView!
-    @IBOutlet weak var classMemberPhoto3: UIImageView!
-//    @IBOutlet weak var classMemberPhoto4: UIImageView!
     @IBOutlet weak var scrapBtn: UIButton!
     @IBOutlet weak var classDetailMoveBtn: UIButton!
     @IBOutlet weak var memberView: UIView!
     
 //    SearchAfterListCell (view 2)
     @IBOutlet weak var classPhoto2: UIImageView!
-    @IBOutlet weak var coachPhoto2: UIImageView!
     @IBOutlet weak var coachName2: UIFixedLabel!
     @IBOutlet weak var className2: UIFixedLabel!
     @IBOutlet weak var classSalePer2: UIFixedLabel!
     @IBOutlet weak var classSalePrice2: UIFixedLabel!
     @IBOutlet weak var classActiveCount2: UIFixedLabel!
-    @IBOutlet weak var classMemberImg1: UIImageView!
-    @IBOutlet weak var classMemberImg2: UIImageView!
-    @IBOutlet weak var classMemberImg3: UIImageView!
     @IBOutlet weak var classDetailMoveBtn2: UIButton!
     @IBOutlet weak var scrapBtn2: UIButton!
     @IBOutlet weak var memberView2: UIView!
@@ -81,7 +67,6 @@ class FeedbackSearchTableViewCell: UITableViewCell {
     
     
     //    HomeClassCategoryCell
-    @IBOutlet weak var topLineView: UIView!
     @IBOutlet weak var categoryImg1: UIImageView!
     @IBOutlet weak var categorySubject1: UIFixedLabel!
     @IBOutlet weak var categoryImg2: UIImageView!
