@@ -270,7 +270,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             self.tabImg1.image = UIImage(named: "interest_iconV2_active")
             self.tabLbl1.textColor = UIColor(hexString:"#1a1a1a")
             self.tabLbl1.font = UIFont.boldSystemFont(ofSize: 10)
-            self.searchBtn.isHidden = true
+            self.searchBtn.isHidden = false
         }else if index == 1{
             self.pageTitle.text = "내강좌"
             self.tabImg2.image = UIImage(named: "class_iconV2_Active")

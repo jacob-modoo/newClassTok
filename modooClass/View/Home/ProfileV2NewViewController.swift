@@ -167,7 +167,7 @@ class ProfileV2NewViewController: BaseViewController {
                        "HomeFeedWebViewController":2,
                        "ProfileV2NewViewController":3]
         var pageNumber = pageArr["HomeClassViewController"]
-        if UserManager.shared.userInfo.results?.class_yn ?? "N" == "N" {
+        if self.profileNewModel?.results?.class_yn ?? "N" == "N" {
             pageNumber = pageArr["HomeIntroWebViewController"]
         }
         DispatchQueue.main.async {
@@ -914,8 +914,131 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
         case 2:
             let cell:ProfileV2NewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileV2SocialNetworkCell", for: indexPath) as! ProfileV2NewTableViewCell
             if profileNewModel?.results?.sns_instagram ?? "" != "" {
-                print("instagram link has some property")
+                cell.instagramView.isHidden = false
+            } else {
+                cell.instagramView.isHidden = true
+                if profileNewModel?.results?.sns_facebook ?? "" != "" {
+//                    fb constraint priority to superview
+                    cell.fbToSuperviewContraint.priority = UILayoutPriority(999)
+                } else {
+                    cell.facebookView.isHidden = true
+                    if profileNewModel?.results?.sns_youtube ?? "" != "" {
+                        cell.ytToSuperviewContraint.priority = UILayoutPriority(999)
+                    } else {
+                        cell.youtubeView.isHidden = true
+                        if profileNewModel?.results?.sns_homepage ?? "" != "" {
+                            cell.otherToSuperviewContrint.priority = UILayoutPriority(999)
+                        } else {
+                            cell.otherView.isHidden = true
+                        }
+                    }
+                }
             }
+            
+            if profileNewModel?.results?.sns_facebook ?? "" != "" {
+                cell.facebookView.isHidden = false
+                if profileNewModel?.results?.sns_instagram ?? "" != "" {
+                    cell.fbToInstaConstraint.priority = UILayoutPriority(999)
+//                    if profileNewModel?.results?.sns_instagram ?? "" != "" {
+//                        cell.ytToInstaContraint.priority = UILayoutPriority(222)
+//                    } else {
+//                        cell.ytToSuperviewContraint.priority = UILayoutPriority(222)
+//                    }
+                } else {
+                    cell.fbToSuperviewContraint.priority = UILayoutPriority(999)
+                }
+                
+            } else {
+                cell.facebookView.isHidden = true
+                if profileNewModel?.results?.sns_youtube ?? "" != "" {
+//                    YT constraint priority to superview
+                    if profileNewModel?.results?.sns_instagram ?? "" != "" {
+                        cell.ytToInstaContraint.priority = UILayoutPriority(999)
+                    } else {
+                        cell.ytToSuperviewContraint.priority = UILayoutPriority(999)
+                    }
+                } else {
+                    if profileNewModel?.results?.sns_homepage ?? "" != "" {
+                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
+                            cell.otherToInstaContraint.priority = UILayoutPriority(999)
+                        } else {
+                            cell.otherToSuperviewContrint.priority = UILayoutPriority(999)
+                        }
+                    }
+                }
+            }
+            
+            if profileNewModel?.results?.sns_youtube ?? "" != "" {
+                cell.youtubeView.isHidden = false
+//                if profileNewModel?.results?.sns_homepage ?? "" != "" {
+////                    HM constraint priority to superview
+                    if profileNewModel?.results?.sns_facebook ?? "" != "" {
+                        cell.ytToFbConstraint.priority = UILayoutPriority(999)
+//                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
+//                            cell.otherToInstaContraint.priority = UILayoutPriority(333)
+//                        } else {
+//                            cell.otherToSuperviewContrint.priority = UILayoutPriority(333)
+//                        }
+                    } else {
+                        cell.ytToFbConstraint.priority = UILayoutPriority(111)
+                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
+                            cell.ytToInstaContraint.priority = UILayoutPriority(999)
+                        } else {
+                            cell.ytToSuperviewContraint.priority = UILayoutPriority(999)
+                        }
+                    }
+//                }
+            } else {
+                cell.youtubeView.isHidden = true
+                if profileNewModel?.results?.sns_homepage ?? "" != "" {
+//                    HM constraint priority to superview
+                    if profileNewModel?.results?.sns_facebook ?? "" != "" {
+                        cell.otherToFbContraint.priority = UILayoutPriority(999)
+                        cell.otherToInstaContraint.priority = UILayoutPriority(111)
+                        cell.otherToSuperviewContrint.priority = UILayoutPriority(111)
+                    } else {
+                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
+                            cell.otherToInstaContraint.priority = UILayoutPriority(999)
+                            cell.otherToSuperviewContrint.priority = UILayoutPriority(111)
+                        } else {
+                            cell.otherToInstaContraint.priority = UILayoutPriority(111)
+                            cell.otherToSuperviewContrint.priority = UILayoutPriority(999)
+                        }
+                    }
+                }
+            }
+            if profileNewModel?.results?.sns_homepage ?? "" != "" {
+                cell.otherView.isHidden = false
+                if profileNewModel?.results?.sns_youtube ?? "" != "" {
+                    cell.otherToYtConstraint.priority = UILayoutPriority(999)
+//                    if profileNewModel?.results?.sns_facebook ?? "" != "" {
+//                        cell.otherToFbContraint.priority = UILayoutPriority(999)
+//                        cell.otherToInstaContraint.priority = UILayoutPriority(111)
+//                        cell.otherToSuperviewContrint.priority = UILayoutPriority(111)
+//                    } else {
+//                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
+//                            cell.otherToInstaContraint.priority = UILayoutPriority(999)
+//                            cell.otherToSuperviewContrint.priority = UILayoutPriority(111)
+//                        } else {
+//                            cell.otherToInstaContraint.priority = UILayoutPriority(111)
+//                            cell.otherToSuperviewContrint.priority = UILayoutPriority(999)
+//                        }
+//                    }
+                } else {
+                    if profileNewModel?.results?.sns_facebook ?? "" != "" {
+                        cell.otherToFbContraint.priority = UILayoutPriority(999)
+                    } else {
+                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
+                            cell.otherToInstaContraint.priority = UILayoutPriority(999)
+                        } else {
+                            cell.otherToSuperviewContrint.priority = UILayoutPriority(999)
+                        }
+                    }
+                }
+            } else {
+                cell.otherView.isHidden = true
+            }
+            
             cell.selectionStyle = .none
             return cell
         case 3:
@@ -961,7 +1084,9 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
             let cell:ProfileV2NewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileV2TableTitleCell", for: indexPath) as! ProfileV2NewTableViewCell
             if self.profileNewModel != nil {
                 cell.profileTableViewTitleLbl.text = "지식공유"
-                if self.profileNewModel?.results?.class_list_arr.count ?? 0 > 0 {
+                cell.commenCountLbl.isHidden = true
+                if self.profileNewModel?.results?.class_list_arr.count ?? 0 > 0 &&
+                    self.profileNewModel?.results?.mode ?? "" == "myprofile" {
                     cell.coachStudioBtn.isHidden = false
                 } else {
                     cell.coachStudioBtn.isHidden = true
@@ -994,8 +1119,13 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
         case 9:
             let cell:ProfileV2NewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileV2TableTitleCell", for: indexPath) as! ProfileV2NewTableViewCell
             if self.profileNewModel != nil {
-                cell.profileTableViewTitleLbl.text = "일상공유"
+                cell.profileTableViewTitleLbl.text = "스토리"
                 cell.coachStudioBtn.isHidden = true
+                if self.profileNewModel?.results?.total ?? 0 > 0 {
+                    cell.commenCountLbl.text = "\(self.profileNewModel?.results?.total ?? 0)개"
+                } else {
+                    cell.commenCountLbl.isHidden = true
+                }
             }
             cell.selectionStyle = .none
             return cell

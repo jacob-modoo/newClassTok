@@ -317,8 +317,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
             print("price sale : \(searchListArr[checkRow].price_sale ?? "")")
             cell.classSalePer.text = "\(searchListArr[checkRow].price_sale ?? "")%"
         }
-        cell.classSalePrice.text = "월 \(searchListArr[checkRow].payment_price ?? "")원"
-        print("payment info : \(searchListArr[checkRow].payment_price ?? "")")
+        cell.classSalePrice.text = "월 \(convertCurrency(money: NSNumber(value: Int(searchListArr[checkRow].payment_price ?? "")!), style: .decimal))원"
         if searchListArr[checkRow].class_have_status ?? "N" == "N"{
             cell.scrapBtn.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
             cell.scrapBtn.tag = checkRow
@@ -339,7 +338,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
         if searchListArr[checkRow].price_sale ?? "" != "0"{
             cell.classSalePer2.text = "\(searchListArr[checkRow].price_sale ?? "")%"
         }
-        cell.classSalePrice2.text = "월 \(searchListArr[checkRow].payment_price ?? "")원"
+        cell.classSalePrice2.text = "월 \(convertCurrency(money: NSNumber(value: Int(searchListArr[checkRow].payment_price ?? "")!), style: .decimal))원"
 
         if searchListArr[checkRow].class_have_status ?? "N" == "N"{
             cell.scrapBtn2.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
@@ -533,7 +532,7 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                 cell.diamondPlanImg.sd_setImage(with: URL(string: "\(self.rankList?.results?.event_icon_list_arr[1].image ?? "")"), completed: nil)
                 cell.specialRewardLbl.text = self.rankList?.results?.event_icon_list_arr[2].txt ?? "얼리버드 특가"
                 cell.specialRewardImg.sd_setImage(with: URL(string: "\(self.rankList?.results?.event_icon_list_arr[2].image ?? "")"), completed: nil)
-                
+                /** *this piece of code sets image height according to its size */
                 let url = URL(string: "\(self.rankList?.results?.event_list_arr[0].image ?? "")")!
                 let ratio = (sizeOfImageAt(url: url)?.width ?? 0)/(sizeOfImageAt(url: url)?.height ?? 0)
                 let newHeight = cell.eventImg.frame.width/ratio

@@ -31,6 +31,17 @@ class ProfileV2NewTableViewCell: UITableViewCell {
     @IBOutlet weak var youtubeView: UIView!
     @IBOutlet weak var otherView: UIView!
     
+    @IBOutlet weak var fbToInstaConstraint: NSLayoutConstraint!
+    @IBOutlet weak var fbToSuperviewContraint: NSLayoutConstraint!
+    @IBOutlet weak var ytToFbConstraint: NSLayoutConstraint!
+    @IBOutlet weak var ytToInstaContraint: NSLayoutConstraint!
+    @IBOutlet weak var ytToSuperviewContraint: NSLayoutConstraint!
+    @IBOutlet weak var otherToYtConstraint: NSLayoutConstraint!
+    @IBOutlet weak var otherToFbContraint: NSLayoutConstraint!
+    @IBOutlet weak var otherToInstaContraint: NSLayoutConstraint!
+    @IBOutlet weak var otherToSuperviewContrint: NSLayoutConstraint!
+    
+    
 //    ProfileV2FriendOfferCell
     @IBOutlet weak var profileMainBtn: UIFixedButton!
     @IBOutlet weak var profileFollowingBtn: UIFixedButton!
@@ -41,6 +52,7 @@ class ProfileV2NewTableViewCell: UITableViewCell {
 //    ProfileV2TableTitleCell
     @IBOutlet weak var profileTableViewTitleLbl: UIFixedLabel!
     @IBOutlet weak var coachStudioBtn: UIButton!
+    @IBOutlet weak var commenCountLbl: UIFixedLabel!
     
 //    ProfileV2ShareContentCell
     

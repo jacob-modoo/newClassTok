@@ -362,6 +362,7 @@ class Curriculum:NSObject{
     var button_id:Int?
     var button_text:String?
     var button_text2:String?
+    var materials_file:String?
     var head:String?
     var button_before_id:Int?
     var button_next_curriculum_id:Int?
@@ -387,6 +388,7 @@ class Curriculum:NSObject{
         button_id = DictionaryToInt(dic: dic, intName: "button_id")
         button_text = DictionaryToString(dic: dic, strName: "button_text")
         button_text2 = DictionaryToString(dic: dic, strName: "button_text2")
+        materials_file = DictionaryToString(dic: dic, strName: "materials_file")
         head = DictionaryToString(dic: dic, strName: "head")
         button_before_id = DictionaryToInt(dic: dic, intName: "button_before_id")
         button_next_curriculum_id = DictionaryToInt(dic: dic, intName: "button_next_curriculum_id")

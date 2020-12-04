@@ -388,7 +388,7 @@ extension HomeClassViewController{
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.handleScroll()
+//        self.handleScroll()
     }
         
     func handleScroll() {
@@ -413,10 +413,10 @@ extension HomeClassViewController{
                                                     cell.class_best_scrollview.contentOffset.y = cell.class_best_scrollview.frame.height
                                                 }
                                             }, completion: nil)
-                                        }else if (HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[indexPath.row].week_best_list.count)! == 3{
+                                        }else if (HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[indexPath.row].week_best_list.count) == 3{
                                             UIView.animateKeyframes(withDuration: seconds, delay: 0, options: [.repeat], animations: {
                                                 UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0) {
-                                                    cell.class_best_scrollview.contentOffset.y = 0
+                                                    cell.class_best_scrollview.contentOffset.y = 0 // shuyerda hato chiqyaptida
                                                 }
                                                 UIView.addKeyframe(withRelativeStartTime: 0.33, relativeDuration: 0.05) {
                                                     cell.class_best_scrollview.contentOffset.y = cell.class_best_scrollview.frame.height
@@ -490,7 +490,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
      - Throws: `Error` 스크롤이 이상한 값으로 넘어올 경우 `Error`
      */
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.handleScroll()
+//        self.handleScroll()
         if refreshControl.isRefreshing {
             DispatchQueue.main.async {
                 

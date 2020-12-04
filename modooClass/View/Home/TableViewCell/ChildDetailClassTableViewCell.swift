@@ -92,22 +92,27 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet var curriculumFirstClass: UILabel!
     @IBOutlet weak var curriculumFirstClassImg: UIImageView!
     @IBOutlet var curriculumFirstClassTime: UILabel!
+    @IBOutlet weak var classLblToTimeLblConstraint: NSLayoutConstraint!
     
     @IBOutlet var curriculumSecondClass: UILabel!
     @IBOutlet weak var curriculumSecondClassImg: UIImageView!
     @IBOutlet var curriculumSecondClassTime: UILabel!
+    @IBOutlet weak var classLbl2TimeLblConstraint: NSLayoutConstraint!
     
     @IBOutlet var curriculumThirdClass: UILabel!
     @IBOutlet weak var curriculumThirdClassImg: UIImageView!
     @IBOutlet var curriculumThirdClassTime: UILabel!
+    @IBOutlet weak var classLbl3TimeLblConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var curriculumFourthClass: UILabel!
     @IBOutlet weak var curriculumFourthClassImg: UIImageView!
     @IBOutlet weak var curriculumFourthClassTime: UILabel!
+    @IBOutlet weak var classLbl4TimeLblConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var curriculumFifthClass: UILabel!
     @IBOutlet weak var curriculumFifthClassImg: UIImageView!
     @IBOutlet weak var curriculumFifthClassTime: UILabel!
+    @IBOutlet weak var classLbl5TimeLblConstraint: NSLayoutConstraint!
     
     
 //    DetailClassPriceCell

@@ -14,11 +14,6 @@ import UIKit
     @IBOutlet weak var pointLbl: UIFixedLabel!
     @IBOutlet weak var storyWriteLbl: UILabel!
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        // Do any additional setup after loading the view.
-//    }
 
     @IBAction func icon1BtnClicked(_ sender: UIButton) {
         print("btn 1 is clicked")

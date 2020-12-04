@@ -52,6 +52,7 @@ class ProfileNewResults: NSObject {
     var class_studio_link:String?
     var profile_link:String?
     var chat_link:String?
+    var class_yn:String?
     
     var class_list:Class_New_List?
     var class_list_arr:Array = Array<Class_New_List>()
@@ -87,6 +88,8 @@ class ProfileNewResults: NSObject {
         class_studio_link = DictionaryToString(dic: dic, strName: "class_studio_link")
         profile_link = DictionaryToString(dic: dic, strName: "profile_link")
         chat_link = DictionaryToString(dic: dic, strName: "chat_link")
+        class_yn = DictionaryToString(dic: dic, strName: "class_yn")
+        
         if let list = dic["class_list"] as? Array<Any> {
             let array:Array = list
             for listTemp in array {

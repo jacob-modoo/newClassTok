@@ -1693,30 +1693,53 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     cell.curriculumFirstClassTime.text = feedDetailList?.results?.curriculum_list_array[0].video_duration ?? ""
                     if feedDetailList?.results?.curriculum_list_array[0].freeview ?? "N" == "N" {
                         cell.curriculumFirstClassImg.isHidden = true
+                        cell.classLblToTimeLblConstraint.priority = UILayoutPriority(rawValue: 999)
+                        print("is is is is is true")
+                    } else {
+                        cell.curriculumFirstClassImg.isHidden = false
+                        cell.classLblToTimeLblConstraint.priority = UILayoutPriority(rawValue: 111)
+                        print("is is is is is false")
                     }
                     
                     cell.curriculumSecondClass.text = feedDetailList?.results?.curriculum_list_array[1].title ?? ""
                     cell.curriculumSecondClassTime.text = feedDetailList?.results?.curriculum_list_array[1].video_duration ?? ""
                     if feedDetailList?.results?.curriculum_list_array[1].freeview ?? "N" == "N" {
                         cell.curriculumSecondClassImg.isHidden = true
+                        cell.classLbl2TimeLblConstraint.priority = UILayoutPriority(999)
+                    } else {
+                        cell.curriculumSecondClassImg.isHidden = false
+                        cell.classLbl2TimeLblConstraint.priority = UILayoutPriority(111)
                     }
                     
                     cell.curriculumThirdClass.text = feedDetailList?.results?.curriculum_list_array[2].title ?? ""
                     cell.curriculumThirdClassTime.text = feedDetailList?.results?.curriculum_list_array[2].video_duration ?? ""
                     if feedDetailList?.results?.curriculum_list_array[2].freeview ?? "N" == "N" {
                         cell.curriculumThirdClassImg.isHidden = true
+                        cell.classLbl3TimeLblConstraint.priority = UILayoutPriority(999)
+                    } else {
+                        cell.curriculumThirdClassImg.isHidden = false
+                        cell.classLbl3TimeLblConstraint.priority = UILayoutPriority(111)
                     }
+                    
                     
                     cell.curriculumFourthClass.text = feedDetailList?.results?.curriculum_list_array[3].title ?? ""
                     cell.curriculumFourthClassTime.text = feedDetailList?.results?.curriculum_list_array[3].video_duration ?? ""
                     if feedDetailList?.results?.curriculum_list_array[3].freeview ?? "N" == "N" {
                         cell.curriculumFourthClassImg.isHidden = true
+                        cell.classLbl4TimeLblConstraint.priority = UILayoutPriority(999)
+                    } else {
+                        cell.curriculumFourthClassImg.isHidden = false
+                        cell.classLbl4TimeLblConstraint.priority = UILayoutPriority(111)
                     }
                     
                     cell.curriculumFifthClass.text = feedDetailList?.results?.curriculum_list_array[4].title ?? ""
                     cell.curriculumFifthClassTime.text = feedDetailList?.results?.curriculum_list_array[4].video_duration ?? ""
                     if feedDetailList?.results?.curriculum_list_array[4].freeview ?? "N" == "N" {
                         cell.curriculumFifthClassImg.isHidden = true
+                        cell.classLbl5TimeLblConstraint.priority = UILayoutPriority(999)
+                    } else {
+                        cell.curriculumFifthClass.isHidden = false
+                        cell.classLbl5TimeLblConstraint.priority = UILayoutPriority(111)
                     }
                 }
                 cell.selectionStyle = .none

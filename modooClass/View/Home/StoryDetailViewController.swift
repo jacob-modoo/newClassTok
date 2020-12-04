@@ -438,8 +438,11 @@ class StoryDetailViewController: UIViewController {
     @IBAction func activeMoveBtnClicked(_ sender: UIButton) {
         let tag = sender.tag
         self.feedId = self.list?.results?.user_info?.active_list_arr[tag].click_event ?? ""
-        print("this is feed ID: \(feedId)\nstatus: \(FeedDetailManager.shared.feedDetailList.results?.user_status ?? "NO STATUS")")
-        squareDetail()
+        let sameVC = home2WebViewStoryboard.instantiateViewController(withIdentifier: "StoryDetailViewController") as! StoryDetailViewController
+        sameVC.feedId = self.feedId
+        self.navigationController?.pushViewController(sameVC, animated: true)
+//        self.navigationController?.storyPopOrPushController(feedId: self.feedId)
+//        squareDetail()
     }
     
     @IBAction func likeCountBtnClicked(_ sender: UIButton) {

@@ -25,7 +25,6 @@ target 'modooClass' do
   pod 'FTPopOverMenu_Swift', '~> 0.2.0'
   pod 'AppsFlyerFramework'
   pod 'ReverseExtension'
-  pod 'ReadMoreTextView'
   pod 'naveridlogin-sdk-ios'
   pod 'BMPlayer/CacheSupport'
 

@@ -1,5 +1,39 @@
 # pod migration 
 
+### 2020.12.05
+
+Downloading dependencies
+Installing Alamofire 5.4.0 (was 4.9.1 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing AppsFlyerFramework 6.1.1 (was 5.0.0 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing BMPlayer 1.3.2 (was 1.3.0)
+Installing CropViewController 2.5.5 (was 2.5.2 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing FBSDKCoreKit 6.5.2 (was 5.11.1 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing FBSDKLoginKit 6.5.2 (was 5.11.1)
+Installing FBSDKShareKit 6.5.2 (was 5.11.1)
+Installing Firebase 7.1.0 (was 6.17.0)
+Installing FirebaseABTesting 7.1.0 (was 3.1.2 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing FirebaseAnalytics 7.1.0 (was 6.2.2 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing FirebaseCore 7.1.0 (was 6.6.2 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing FirebaseCoreDiagnostics 7.1.0 (was 1.2.0 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing FirebaseCrashlytics 7.1.0 (was 4.0.0-beta.5 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing FirebaseInstallations 7.1.0 (was 1.1.1 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing FirebaseRemoteConfig 7.1.0 (was 4.4.7 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing GoogleAppMeasurement 7.1.0 (was 6.2.2 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing GoogleDataTransport 8.0.1 (was 4.0.0 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing GoogleUtilities 7.1.1 (was 6.5.1)
+Installing PromisesObjC 1.2.11 (was 1.2.9 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing SDWebImage 5.10.0 (was 5.4.0 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing lottie-ios 3.1.9 (was 3.1.5 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing nanopb 2.30906.0 (was 0.3.9011 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Installing naveridlogin-sdk-ios 4.1.3 (was 4.1.0 and source changed to `https://cdn.cocoapods.org/` from `trunk`)
+Removing FirebaseAnalyticsInterop
+Removing FirebaseCoreDiagnosticsInterop
+Removing FirebaseInstanceID
+Removing GoogleDataTransportCCTSupport
+Removing Protobuf
+Generating Pods project
+Integrating client project
+
 ### 2020.05.26
 
 ### Downloaded dependencies
