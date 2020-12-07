@@ -15,4 +15,16 @@ class ProfileV2NewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var collectionViewClassNameLbl: UIFixedLabel!
     @IBOutlet weak var collectionViewHelpCountLbl: UIFixedLabel!
     
+//    CollectionViewInstagramCell
+    @IBOutlet weak var snsInstaImg: UIImageView!
+    
+//    CollectionViewFacebookCell
+    @IBOutlet weak var snsFbImg: UIImageView!
+    
+//    CollectionViewYoutubeCell
+    @IBOutlet weak var snsYtImg: UIImageView!
+    
+//    CollectionViewHomepageCell
+    @IBOutlet weak var snsHomapageImg: UIImageView!
+    
 }

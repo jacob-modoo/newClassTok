@@ -136,12 +136,13 @@ class Class_New_List: NSObject {
 
 class Comment_List: NSObject {
     var id:String?
-    var reply_cnt:Int?
-    var like_cnt:Int?
+    var class_id:Int?
     var content:String?
     var emoticon:Int?
     var photo_data:String?
-    var class_id:Int?
+    var reply_cnt:Int?
+    var like_cnt:Int?
+    var play_status:String?
     var class_photo:String?
     var new_flag:String?
     
@@ -152,12 +153,13 @@ class Comment_List: NSObject {
     convenience init(dic:Dictionary<String,Any>) {
         self.init()
         id = DictionaryToString(dic: dic, strName: "id")
-        reply_cnt = DictionaryToInt(dic: dic, intName: "reply_cnt")
-        like_cnt = DictionaryToInt(dic: dic, intName: "like_cnt")
+        class_id = DictionaryToInt(dic: dic, intName: "class_id")
         content = DictionaryToString(dic: dic, strName: "content")
         emoticon = DictionaryToInt(dic: dic, intName: "emoticon")
         photo_data = DictionaryToString(dic: dic, strName: "photo_data")
-        class_id = DictionaryToInt(dic: dic, intName: "class_id")
+        reply_cnt = DictionaryToInt(dic: dic, intName: "reply_cnt")
+        like_cnt = DictionaryToInt(dic: dic, intName: "like_cnt")
+        play_status = DictionaryToString(dic: dic, strName: "play_status")
         class_photo = DictionaryToString(dic: dic, strName: "class_photo")
         new_flag = DictionaryToString(dic: dic, strName: "new_flag")
     }

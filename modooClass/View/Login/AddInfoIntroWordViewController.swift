@@ -134,6 +134,7 @@ class AddInfoIntroWordViewController: UIViewController ,UITextFieldDelegate{
             }else{
                 Alert.With(self, title: "네트워크 오류가 발생하였습니다.", btn1Title: "확인", btn1Handler: {
                     self.completeView.isHidden = true
+                    print("Add info tag word VC line 137")
                     Indicator.hideActivityIndicator(uiView: self.view)
                 })
             }
@@ -141,7 +142,7 @@ class AddInfoIntroWordViewController: UIViewController ,UITextFieldDelegate{
             Indicator.hideActivityIndicator(uiView: self.view)
             Alert.With(self, title: "네트워크 오류가 발생하였습니다.", btn1Title: "확인", btn1Handler: {
                 self.completeView.isHidden = true
-
+                print("Add info tag word VC line 145")
             })
             print("error : \(String(describing: error?.localizedDescription))")
         }

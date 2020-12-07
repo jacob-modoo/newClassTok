@@ -93,7 +93,7 @@ class StoryDetailViewController: UIViewController {
         super.viewDidLoad()
         tableView.addSubview(refreshControl)
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("피드", screenClass: "StoryDetailViewController")
+        Analytics.logEvent("피드", parameters: [AnalyticsParameterScreenName : "StoryDetailViewController"])
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)

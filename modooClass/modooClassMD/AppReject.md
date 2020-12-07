@@ -4,7 +4,7 @@ Naver Login Error:
 Here I have found out that after updating pod file I had to manually change consumerKey, urlScheme, appName.. in "NaverThirdPartyConstantsForApp.h" (-> location: ProjectFile/Pods/naverlogin-sdk-ios/NaverThirdPartyLogin/Headers/NaverThirdPartyConstantsForApp.h)
 
 Video Player Layer Disappearing Issue:
-
+In every Pod update or install process the BMPlayer overrides its initial files that were designed for ClassTok.. so the solution is to replace those BMPlayerControlView and Pod_Asset files after updating pods. 
 
 ## version 1.4.3
 

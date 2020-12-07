@@ -111,6 +111,7 @@ class AddInfoAgreeViewController: UIViewController {
             }else{
                 Alert.With(self, title: "네트워크 오류가 발생하였습니다.", btn1Title: "확인", btn1Handler: {
                     self.completeView.isHidden = true
+                    print("Add info tag agree VC line 114")
                     Indicator.hideActivityIndicator(uiView: self.view)
                 })
             }
@@ -118,7 +119,7 @@ class AddInfoAgreeViewController: UIViewController {
             Indicator.hideActivityIndicator(uiView: self.view)
             Alert.With(self, title: "네트워크 오류가 발생하였습니다.", btn1Title: "확인", btn1Handler: {
                 self.completeView.isHidden = true
-
+                print("Add info tag agree VC line 122")
             })
             print("error : \(String(describing: error?.localizedDescription))")
         }

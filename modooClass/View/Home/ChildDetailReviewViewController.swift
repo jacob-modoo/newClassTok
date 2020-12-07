@@ -282,11 +282,11 @@ extension ChildDetailReviewViewController:UITableViewDelegate,UITableViewDataSou
                 }
                 
                 if self.reviewList_arr[row].star ?? 0 == 4 || self.reviewList_arr[row].star ?? 0 == 5 {
-                    cell.feedbackImg.image = UIImage(named: "like_btn_with_title")
+                    cell.feedbackImg.image = UIImage(named: "review_recom_short")
                 } else {
-                    cell.feedbackImg.image = UIImage(named: "dislike_btn_with_title")
+                    cell.feedbackImg.image = UIImage(named: "review_not_recommended")
                 }
-                print("best flag value : \(reviewList_arr[row].best_flag ?? "")")
+                
                 if self.reviewList_arr[row].best_flag ?? "N" == "N" {
                     cell.bestFeedbackMark.isHidden = true
                 }

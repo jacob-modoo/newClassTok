@@ -566,7 +566,6 @@ class ChildDetailClassViewController: UIViewController {
     
     /** **댓글 더 읽기 버튼 클릭 > 댓글 상세 뷰로 이동 ( DetailReplyViewController ) */
     @IBAction func readMoreBtnClicked(_ sender: UIButton) {
-        print(feedDetailList?.results?.user_status ?? "")
         if feedDetailList?.results?.user_status == "spectator" {
             self.showToast(message: "        🔊 체험판은 강의 이동이 불가합니다.>.<수강신청 하기.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
         } else {
@@ -762,7 +761,7 @@ class ChildDetailClassViewController: UIViewController {
             self.hideKeyboard()
         }
         self.childView.roundedView(usingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 12, height: 12))
-        self.childView.likeBtn.setImage(UIImage(named: "class_new_likeBtn"), for: .normal)
+        self.childView.likeBtn.setImage(UIImage(named: "class_new_likeDefault"), for: .normal)
         self.childView.dislikeBtn.setImage(UIImage(named: "class_new_dislikeBtn"), for: .normal)
         
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture(_ :)))
@@ -1638,9 +1637,9 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                             cell.review2UserContentConstraint.priority = UILayoutPriority(rawValue: 500)
                         }
                         if feedDetailList?.results?.review_list_arr[1].star ?? 0 == 4 || feedDetailList?.results?.review_list_arr[1].star ?? 0 == 5 {
-                            cell.review2FeedbackImg.image = UIImage(named: "like_btn_with_title")
+                            cell.review2FeedbackImg.image = UIImage(named: "review_recom_short")
                         } else {
-                            cell.review2FeedbackImg.image = UIImage(named: "dislike_btn_with_title")
+                            cell.review2FeedbackImg.image = UIImage(named: "review_not_recommended")
                         }
 
                         cell.review2UserProfileBtn.tag = feedDetailList?.results?.review_list_arr[1].user_id ?? 0
@@ -1648,7 +1647,15 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.review2UserBackView.layer.borderColor = UIColor(hexString: "#efefef").cgColor
                         cell.review2UserBackView.layer.borderWidth = 1
                         cell.review2UserBackView.clipsToBounds = true
+                        
+                        if feedDetailList?.results?.review_list_arr[1].best_flag ?? "N" == "N" {
+                            cell.bestFeedbackMark2.isHidden = true
+                        }
+                        if feedDetailList?.results?.review_list_arr[1].best_flag ?? "N" == "Y" {
+                            cell.bestFeedbackMark2.isHidden = false
+                        }
                     }
+                    
                     if self.feedDetailList?.results?.review_list_arr.count ?? 0 > 0{
                         cell.reviewUserImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.review_list_arr[0].photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                         cell.reviewUserName.text = "\(feedDetailList?.results?.review_list_arr[0].user_name ?? "")"
@@ -1660,9 +1667,9 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                             cell.reviewUserContentConstraint.priority = UILayoutPriority(rawValue: 500)
                         }
                         if feedDetailList?.results?.review_list_arr[0].star ?? 0 == 4 || feedDetailList?.results?.review_list_arr[0].star ?? 0 == 5 {
-                            cell.review1FeedbackImg.image = UIImage(named: "like_btn_with_title")
+                            cell.review1FeedbackImg.image = UIImage(named: "review_recom_short")
                         } else {
-                            cell.review1FeedbackImg.image = UIImage(named: "dislike_btn_with_title")
+                            cell.review1FeedbackImg.image = UIImage(named: "review_not_recommended")
                         }
 
                         cell.reviewUserProfileBtn.tag = feedDetailList?.results?.review_list_arr[0].user_id ?? 0
@@ -1672,6 +1679,13 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                         cell.reviewUserBackView.layer.borderColor = UIColor(hexString: "#efefef").cgColor
                         cell.reviewUserBackView.layer.borderWidth = 1
                         cell.reviewUserBackView.clipsToBounds = true
+                        
+                        if feedDetailList?.results?.review_list_arr[0].best_flag ?? "N" == "N" {
+                            cell.bestFeedbackMark.isHidden = true
+                        }
+                        if feedDetailList?.results?.review_list_arr[0].best_flag ?? "N" == "Y" {
+                            cell.bestFeedbackMark.isHidden = false
+                        }
                     }
                 }
                 
@@ -1692,33 +1706,37 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     cell.curriculumFirstClass.text = feedDetailList?.results?.curriculum_list_array[0].title ?? ""
                     cell.curriculumFirstClassTime.text = feedDetailList?.results?.curriculum_list_array[0].video_duration ?? ""
                     if feedDetailList?.results?.curriculum_list_array[0].freeview ?? "N" == "N" {
-                        cell.curriculumFirstClassImg.isHidden = true
-                        cell.classLblToTimeLblConstraint.priority = UILayoutPriority(rawValue: 999)
-                        print("is is is is is true")
+//                        cell.curriculumFirstClassImg.isHidden = true
+                        cell.freeBadgeImg1Width.constant = 0
+                        cell.classLblToTimeLblConstraint.constant = 0
                     } else {
-                        cell.curriculumFirstClassImg.isHidden = false
-                        cell.classLblToTimeLblConstraint.priority = UILayoutPriority(rawValue: 111)
-                        print("is is is is is false")
+//                        cell.curriculumFirstClassImg.isHidden = false
+                        cell.freeBadgeImg1Width.constant = 30
+                        cell.classLblToTimeLblConstraint.constant = 15
                     }
                     
                     cell.curriculumSecondClass.text = feedDetailList?.results?.curriculum_list_array[1].title ?? ""
                     cell.curriculumSecondClassTime.text = feedDetailList?.results?.curriculum_list_array[1].video_duration ?? ""
                     if feedDetailList?.results?.curriculum_list_array[1].freeview ?? "N" == "N" {
                         cell.curriculumSecondClassImg.isHidden = true
-                        cell.classLbl2TimeLblConstraint.priority = UILayoutPriority(999)
+                        cell.freeBadgeImg2Width.constant = 0
+                        cell.classLbl2TimeLblConstraint.constant = 0
                     } else {
                         cell.curriculumSecondClassImg.isHidden = false
-                        cell.classLbl2TimeLblConstraint.priority = UILayoutPriority(111)
+                        cell.freeBadgeImg2Width.constant = 30
+                        cell.classLbl2TimeLblConstraint.constant = 15
                     }
                     
                     cell.curriculumThirdClass.text = feedDetailList?.results?.curriculum_list_array[2].title ?? ""
                     cell.curriculumThirdClassTime.text = feedDetailList?.results?.curriculum_list_array[2].video_duration ?? ""
                     if feedDetailList?.results?.curriculum_list_array[2].freeview ?? "N" == "N" {
                         cell.curriculumThirdClassImg.isHidden = true
-                        cell.classLbl3TimeLblConstraint.priority = UILayoutPriority(999)
+                        cell.freeBadgeImg3Width.constant = 0
+                        cell.classLbl3TimeLblConstraint.constant = 0
                     } else {
                         cell.curriculumThirdClassImg.isHidden = false
-                        cell.classLbl3TimeLblConstraint.priority = UILayoutPriority(111)
+                        cell.freeBadgeImg3Width.constant = 30
+                        cell.classLbl3TimeLblConstraint.constant = 15
                     }
                     
                     
@@ -1726,20 +1744,24 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     cell.curriculumFourthClassTime.text = feedDetailList?.results?.curriculum_list_array[3].video_duration ?? ""
                     if feedDetailList?.results?.curriculum_list_array[3].freeview ?? "N" == "N" {
                         cell.curriculumFourthClassImg.isHidden = true
-                        cell.classLbl4TimeLblConstraint.priority = UILayoutPriority(999)
+                        cell.freeBadgeImg4Width.constant = 0
+                        cell.classLbl4TimeLblConstraint.constant = 0
                     } else {
                         cell.curriculumFourthClassImg.isHidden = false
-                        cell.classLbl4TimeLblConstraint.priority = UILayoutPriority(111)
+                        cell.freeBadgeImg4Width.constant = 30
+                        cell.classLbl4TimeLblConstraint.constant = 15
                     }
                     
                     cell.curriculumFifthClass.text = feedDetailList?.results?.curriculum_list_array[4].title ?? ""
                     cell.curriculumFifthClassTime.text = feedDetailList?.results?.curriculum_list_array[4].video_duration ?? ""
                     if feedDetailList?.results?.curriculum_list_array[4].freeview ?? "N" == "N" {
                         cell.curriculumFifthClassImg.isHidden = true
-                        cell.classLbl5TimeLblConstraint.priority = UILayoutPriority(999)
+                        cell.freeBadgeImg5Width.constant = 0
+                        cell.classLbl5TimeLblConstraint.constant = 0
                     } else {
                         cell.curriculumFifthClass.isHidden = false
-                        cell.classLbl5TimeLblConstraint.priority = UILayoutPriority(111)
+                        cell.freeBadgeImg5Width.constant = 30
+                        cell.classLbl5TimeLblConstraint.constant = 15
                     }
                 }
                 cell.selectionStyle = .none
@@ -1882,16 +1904,24 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     self.childView.popupLikeBtnClick = {
                         self.sender = self.childView.likeBtn
                         self.curriculumLike(sender: self.sender!)
-                        UIView.animate(withDuration: 0.5, delay: 1) {
-                            self.hidePopupView()
+                        UIView.animate(withDuration: 0.1) {
+                            self.childView.likeBtn.setImage(UIImage(named: "class_new_likeBtn"), for: .normal)
+                        } completion: { _ in
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+                                self.hidePopupView()
+                            }
                         }
                     }
 
                     self.childView.popupDislikeBtnClick = {
                         self.sender = self.childView.dislikeBtn
                         self.curriculumDislike(sender: self.sender!)
-                        UIView.animate(withDuration: 0.5, delay: 1) {
-                            self.hidePopupView()
+                        UIView.animate(withDuration: 0.1) {
+                            self.childView.dislikeBtn.setImage(UIImage(named: "class_new_dislikeActive"), for: .normal)
+                        } completion: { _ in
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+                                self.hidePopupView()
+                            }
                         }
                     }
 
@@ -1924,21 +1954,48 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 cell.selectionStyle = .none
                 return cell
             }else if section == 4{
-                let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassNoticeTitleTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+                var cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCoachCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if self.feedDetailList != nil{
-                    cell.coachImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.curriculum?.coach_class?.coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                    cell.coachRollGubunImg.isHidden = true
-    //                cell.coachProfileBtn.tag = feedDetailList?.results?.curriculum?.coach_class?.coach_id ?? 0
-                    cell.noticeTextView.attributedText = (self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "").html2AttributedString
-                    cell.noticeTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
-    //                cell.noticeTextView.text = self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? ""
-                    cell.noticeTextView.textContainer.maximumNumberOfLines = 3
-                    cell.noticeTextView.textContainer.lineBreakMode = .byTruncatingTail
-                    cell.noticeDetailBtn.tag = self.feedDetailList?.results?.curriculum?.coach_class?.notice?.id ?? 0
+                    
+                    if self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "" != ""{
+                        cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCoach2Cell", for: indexPath) as! ChildDetailClassTableViewCell
+                        cell.classCoachWithBtn.isHidden = true
+                        cell.noticeTextView.textContainer.maximumNumberOfLines = 3
+                        cell.noticeTextView.textContainer.lineBreakMode = .byTruncatingTail
+                        cell.noticeTextView.attributedText = (self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "").html2AttributedString
+                        cell.noticeTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+                        cell.noticeReadmoreBtn.tag = feedDetailList?.results?.curriculum?.coach_class?.notice?.id ?? 0
+                    }
+                    
+                    cell.classCoachImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.curriculum?.coach_class?.coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+                    cell.classCoachName.text = "\(feedDetailList?.results?.curriculum?.coach_class?.coach_name ?? "")"
+                    cell.classCoachWithBtn.isHidden = true
+                    cell.classCoachProfileBtn.tag = feedDetailList?.results?.curriculum?.coach_class?.coach_id ?? 0
+                    
+                    cell.coachGradientView.layer.borderColor = UIColor(hexString: "#EFEFEF").cgColor
+                    cell.coachGradientView.layer.borderWidth = 1
                 }
-                cell.noticeView.layer.cornerRadius = 12
+                
                 cell.selectionStyle = .none
                 return cell
+                
+                
+                
+//                let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassNoticeTitleTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+//                if self.feedDetailList != nil{
+//                    cell.coachImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.curriculum?.coach_class?.coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+//                    cell.coachRollGubunImg.isHidden = true
+//    //                cell.coachProfileBtn.tag = feedDetailList?.results?.curriculum?.coach_class?.coach_id ?? 0
+//                    cell.noticeTextView.attributedText = (self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "").html2AttributedString
+//                    cell.noticeTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+//    //                cell.noticeTextView.text = self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? ""
+//                    cell.noticeTextView.textContainer.maximumNumberOfLines = 3
+//                    cell.noticeTextView.textContainer.lineBreakMode = .byTruncatingTail
+//                    cell.noticeDetailBtn.tag = self.feedDetailList?.results?.curriculum?.coach_class?.notice?.id ?? 0
+//                }
+//                cell.noticeView.layer.cornerRadius = 12
+//                cell.selectionStyle = .none
+//                return cell
             }else if section == 5{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "height1cell", for: indexPath)
                 cell.backgroundView?.backgroundColor = UIColor.white
@@ -2450,6 +2507,7 @@ extension ChildDetailClassViewController{
     */
     func haveSave(sender:UIButton){
         sender.isUserInteractionEnabled = false
+        print("tag : \(sender.tag)")
         let row = sender.tag / 10000
         let likeGubun = sender.tag % 10000 // 1 : Y delete  2 : N post
         let comment_id = replyArray?[row].id ?? 0

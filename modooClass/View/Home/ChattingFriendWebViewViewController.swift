@@ -64,7 +64,7 @@ class ChattingFriendWebViewViewController: UIViewController ,WKNavigationDelegat
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("채팅상세", screenClass: "ChattingFriendWebViewViewController")
+        Analytics.logEvent("채팅상세", parameters: [AnalyticsParameterScreenName : "ChattingFriendWebViewViewController"])
     }
     
     /** **뷰를 로드 할 때 타는 메소드 */
@@ -681,7 +681,7 @@ extension ChattingFriendWebViewViewController:WKScriptMessageHandler {
             }
             
             if category != ""{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamContentType : category!,
@@ -689,7 +689,7 @@ extension ChattingFriendWebViewViewController:WKScriptMessageHandler {
                         AFEventParamCurrency:"KRW"
                     ]);
             }else{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamRevenue: price!,

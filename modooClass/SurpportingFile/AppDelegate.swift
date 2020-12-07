@@ -22,7 +22,7 @@ import AVFoundation
 - 알림 메인 화면을 보기 위한 뷰 컨트롤러
 */
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterDelegate , AppsFlyerTrackerDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterDelegate , AppsFlyerLibDelegate {
     
 
     /** **앱 윈도우 */
@@ -68,11 +68,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
     /** **앱 방향 */
     var orientationLock = UIInterfaceOrientationMask.portrait
     
-    func onConversionDataSuccess(_ conversionInfo: [AnyHashable : Any]!) {
+    func onConversionDataSuccess(_ conversionInfo: [AnyHashable : Any]) {
         
     }
     
-    func onConversionDataFail(_ error: Error!) {
+    func onConversionDataFail(_ error: Error) {
         
     }
     
@@ -133,10 +133,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
         FBSDKCoreKit.ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         //appsflyer
-        AppsFlyerTracker.shared().appsFlyerDevKey = "ejNYPJw3wf5SXtqbyjhAaK";
-        AppsFlyerTracker.shared().appleAppID = "1464482964"  /* id 값이 붙지 않습니다 */
-        AppsFlyerTracker.shared().delegate = self
-        AppsFlyerTracker.shared().isDebug = true
+        AppsFlyerLib.shared().appsFlyerDevKey = "ejNYPJw3wf5SXtqbyjhAaK";
+        AppsFlyerLib.shared().appleAppID = "1464482964"  /* id 값이 붙지 않습니다 */
+        AppsFlyerLib.shared().delegate = self
+        AppsFlyerLib.shared().isDebug = true
         
         UIApplication.shared.applicationIconBadgeNumber = 0
         
@@ -262,7 +262,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
         KOSession.handleDidBecomeActive()
         
         //앱스 플라이어
-        AppsFlyerTracker.shared().trackAppLaunch() 
+        AppsFlyerLib.shared().start() 
         
         // 응용 프로그램이 비활성 상태 일 때 일시 중지되었거나 아직 시작되지 않은 모든 작업을 다시 시작합니다. 응용 프로그램이 백그라운드에서 이전에 있었던 경우 선택적으로 사용자 인터페이스를 새로 고칩니다.
         

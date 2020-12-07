@@ -46,7 +46,7 @@ class HomeProfileViewController: UIViewController {
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("내정보", screenClass: "HomeProfileViewController")
+        Analytics.logEvent("내정보", parameters: [AnalyticsParameterScreenName : "HomeProfileViewController"])
     }
     /** **뷰가 사라지고 타는 메소드 */
     override func viewDidDisappear(_ animated: Bool) {

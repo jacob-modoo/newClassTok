@@ -71,7 +71,7 @@ class AlarmViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("알림", screenClass: "AlarmViewController")
+        Analytics.logEvent("알림", parameters: [AnalyticsParameterScreenName : "AlarmViewController"])
 //        navigationController?.interactivePopGestureRecognizer?.delegate = nil
 //        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }

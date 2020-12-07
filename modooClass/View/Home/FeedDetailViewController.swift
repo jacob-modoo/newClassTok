@@ -205,7 +205,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
         super.viewDidAppear(animated)
         navigationController?.interactivePopGestureRecognizer?.delegate? = self
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("참여단", screenClass: "FeedDetailViewController")
+        Analytics.logEvent("참여단", parameters: [AnalyticsParameterScreenName : "FeedDetailViewController"])
         if self.pushGubun == 2{
             DispatchQueue.main.async {
                 let feedStoryboard: UIStoryboard = UIStoryboard(name: "Feed", bundle: nil)

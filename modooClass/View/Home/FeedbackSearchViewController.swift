@@ -94,7 +94,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("검색", screenClass: "FeedbackSearchViewController")
+        Analytics.logEvent("검색", parameters: [AnalyticsParameterScreenName : "FeedbackSearchViewController"])
     }
     
     override func viewDidDisappear(_ animated: Bool) {

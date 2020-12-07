@@ -78,13 +78,23 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate{
         guard let accessToken = loginConn.accessToken else {return}
 
         let authorization = "\(tokenType) \(accessToken)"
+        var dataValue:Any?
+
         DispatchQueue.main.async {
-            Alamofire.request("https://openapi.naver.com/v1/nid/me", method: .get, parameters: nil ,headers: ["Authorization" : authorization]).responseJSON { response in
-                guard response.result.isSuccess else {
-                    print("Error while fetching remote rooms: \(String(describing:response.result.error))")
-                    return
+            AF.request("https://openapi.naver.com/v1/nid/me", method: .get, parameters: nil ,headers: ["Authorization" : authorization]).responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    print("naver api request success")
+                    dataValue = value
+                case .failure(let error):
+                    print("Error while fetching remote rooms: \(String(describing:error))")
                 }
-                guard let result = response.result.value as? [String: Any] else {return}
+                
+//                guard response.result.isSuccess else {
+//                    print("Error while fetching remote rooms: \(String(describing:response.result.error))")
+//                    return
+//                }
+                guard let result = dataValue as? [String: Any] else {return}
                 guard let object = result["response"] as? [String: Any] else {return}
                 //            guard let birthday = object["birthday"] as? String else {return}
                 //            guard let name = object["name"] as? String else {return}

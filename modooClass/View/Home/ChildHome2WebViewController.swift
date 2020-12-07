@@ -657,7 +657,7 @@ extension ChildHome2WebViewController:WKScriptMessageHandler {
             }
             
             if category != ""{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamContentType : category!,
@@ -665,7 +665,7 @@ extension ChildHome2WebViewController:WKScriptMessageHandler {
                         AFEventParamCurrency:"KRW"
                     ]);
             }else{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamRevenue: price!,

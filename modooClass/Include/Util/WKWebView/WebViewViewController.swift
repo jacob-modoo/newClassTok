@@ -601,7 +601,7 @@ extension WebViewViewController:WKScriptMessageHandler {
             }
             
             if category != ""{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamContentType : category!,
@@ -609,7 +609,7 @@ extension WebViewViewController:WKScriptMessageHandler {
                         AFEventParamCurrency:"KRW"
                     ]);
             }else{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamRevenue: price!,

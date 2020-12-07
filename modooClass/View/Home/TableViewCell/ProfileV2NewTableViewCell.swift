@@ -27,20 +27,20 @@ class ProfileV2NewTableViewCell: UITableViewCell {
     
 //    ProfileV2SocialNetworkCell
     @IBOutlet weak var instagramView: UIView!
+    @IBOutlet weak var instagramViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var instaToFbConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var facebookView: UIView!
+    @IBOutlet weak var fbViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var fbToYtConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var youtubeView: UIView!
+    @IBOutlet weak var ytViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var ytToHmConstraint: NSLayoutConstraint!
+    
+    
     @IBOutlet weak var otherView: UIView!
-    
-    @IBOutlet weak var fbToInstaConstraint: NSLayoutConstraint!
-    @IBOutlet weak var fbToSuperviewContraint: NSLayoutConstraint!
-    @IBOutlet weak var ytToFbConstraint: NSLayoutConstraint!
-    @IBOutlet weak var ytToInstaContraint: NSLayoutConstraint!
-    @IBOutlet weak var ytToSuperviewContraint: NSLayoutConstraint!
-    @IBOutlet weak var otherToYtConstraint: NSLayoutConstraint!
-    @IBOutlet weak var otherToFbContraint: NSLayoutConstraint!
-    @IBOutlet weak var otherToInstaContraint: NSLayoutConstraint!
-    @IBOutlet weak var otherToSuperviewContrint: NSLayoutConstraint!
-    
+    @IBOutlet weak var hmViewWidth: NSLayoutConstraint!
     
 //    ProfileV2FriendOfferCell
     @IBOutlet weak var profileMainBtn: UIFixedButton!
@@ -147,7 +147,6 @@ extension ProfileV2NewTableViewCell: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let row = indexPath.row
         let cell:ProfileV2NewCollectionViewCell = classCollectionView.dequeueReusableCell(withReuseIdentifier: "ProfileV2NewCollectionViewCell", for: indexPath) as! ProfileV2NewCollectionViewCell
-        print("class list - name : \(class_list_arr[row].class_name ?? "")")
         cell.collectionViewImg.sd_setImage(with: URL(string: "\(class_list_arr[row].class_photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
         cell.collectionViewClassNameLbl.text = "\(class_list_arr[row].class_name ?? "NO TITLE")"
         cell.collectionViewHelpCountLbl.text  = "👍\(convertCurrency(money: NSNumber(value: class_list_arr[row].helpful_cnt ?? 0), style: .decimal))"
@@ -155,17 +154,12 @@ extension ProfileV2NewTableViewCell: UICollectionViewDelegate, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        add action when the cell is clicked
-        print("the cell is tapped")
-        if class_list_arr.count > 0{
-            let class_id = class_list_arr[indexPath.row].class_id ?? 0
-            NotificationCenter.default.post(name: NSNotification.Name("goToClassDetail"), object: class_id)
-        }
+        let class_id = class_list_arr[indexPath.row].class_id ?? 0
+        NotificationCenter.default.post(name: NSNotification.Name("goToClassDetail"), object: class_id)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellSize = CGSize(width: 168, height: 112)
         return cellSize
     }
-    
 }

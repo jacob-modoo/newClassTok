@@ -83,7 +83,7 @@ class AddInfoTagInterestViewController: UIViewController {
             }
         }) { error in
             Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
-                
+                print("Add info tag interestVC line 86")
             })
         }
     }

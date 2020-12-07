@@ -93,26 +93,31 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var curriculumFirstClassImg: UIImageView!
     @IBOutlet var curriculumFirstClassTime: UILabel!
     @IBOutlet weak var classLblToTimeLblConstraint: NSLayoutConstraint!
+    @IBOutlet weak var freeBadgeImg1Width: NSLayoutConstraint!
     
     @IBOutlet var curriculumSecondClass: UILabel!
     @IBOutlet weak var curriculumSecondClassImg: UIImageView!
     @IBOutlet var curriculumSecondClassTime: UILabel!
     @IBOutlet weak var classLbl2TimeLblConstraint: NSLayoutConstraint!
+    @IBOutlet weak var freeBadgeImg2Width: NSLayoutConstraint!
     
     @IBOutlet var curriculumThirdClass: UILabel!
     @IBOutlet weak var curriculumThirdClassImg: UIImageView!
     @IBOutlet var curriculumThirdClassTime: UILabel!
     @IBOutlet weak var classLbl3TimeLblConstraint: NSLayoutConstraint!
+    @IBOutlet weak var freeBadgeImg3Width: NSLayoutConstraint!
     
     @IBOutlet weak var curriculumFourthClass: UILabel!
     @IBOutlet weak var curriculumFourthClassImg: UIImageView!
     @IBOutlet weak var curriculumFourthClassTime: UILabel!
     @IBOutlet weak var classLbl4TimeLblConstraint: NSLayoutConstraint!
+    @IBOutlet weak var freeBadgeImg4Width: NSLayoutConstraint!
     
     @IBOutlet weak var curriculumFifthClass: UILabel!
     @IBOutlet weak var curriculumFifthClassImg: UIImageView!
     @IBOutlet weak var curriculumFifthClassTime: UILabel!
     @IBOutlet weak var classLbl5TimeLblConstraint: NSLayoutConstraint!
+    @IBOutlet weak var freeBadgeImg5Width: NSLayoutConstraint!
     
     
 //    DetailClassPriceCell
@@ -127,6 +132,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classCoachWithBtn: UIButton!
     @IBOutlet weak var classCoachProfileBtn: UIButton!
     @IBOutlet weak var coachGradientView: GradientView!
+    @IBOutlet weak var noticeReadmoreBtn: UIButton!
     
 //    DetailClassReview1Cell
     @IBOutlet weak var reviewScore: UIFixedLabel!
@@ -141,6 +147,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var review1FeedbackImg: UIImageView!
     @IBOutlet weak var reviewFeedWithImg: UIImageView!
     @IBOutlet weak var reviewUserContentConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bestFeedbackMark: UIButton!
     
 //    DetailClassReview2Cell
     @IBOutlet weak var review2UserImg: UIImageView!
@@ -152,6 +159,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var review2FeedbackImg: UIImageView!
     @IBOutlet weak var review2FeedWithImg: UIImageView!
     @IBOutlet weak var review2UserContentConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bestFeedbackMark2: UIButton!
     
 //    DetailClassRecomCollectionViewCell
     @IBOutlet weak var recomUserName: UIFixedLabel!
@@ -247,11 +255,4 @@ extension ChildDetailClassTableViewCell: UICollectionViewDelegate, UICollectionV
             return size
         }
     }
-    
-    
-    
-    
-
 }
-
-

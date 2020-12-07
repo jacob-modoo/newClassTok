@@ -58,7 +58,7 @@ class HomeIntroWebViewController : UIViewController ,WKNavigationDelegate,WKUIDe
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("클래스", screenClass: "HomeIntroWebViewController")
+        Analytics.logEvent("클래스", parameters: [AnalyticsParameterScreenName : "HomeIntroWebViewController"])
         let time = DispatchTime.now() + .seconds(1)
         DispatchQueue.main.asyncAfter(deadline: time) {
             self.animationView.stop()
@@ -763,7 +763,7 @@ extension HomeIntroWebViewController:WKScriptMessageHandler {
             }
             
             if category != ""{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamContentType : category!,
@@ -771,7 +771,7 @@ extension HomeIntroWebViewController:WKScriptMessageHandler {
                         AFEventParamCurrency:"KRW"
                     ]);
             }else{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamRevenue: price!,

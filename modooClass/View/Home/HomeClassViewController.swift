@@ -48,7 +48,7 @@ class HomeClassViewController: UIViewController {
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("내강좌", screenClass: "HomeClassViewController")
+        Analytics.logEvent("내강좌", parameters: [AnalyticsParameterScreenName : "HomeClassViewController"])
     }
     /** **뷰가 사라지고 타는 메소드 */
     override func viewDidDisappear(_ animated: Bool) {

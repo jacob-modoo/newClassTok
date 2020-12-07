@@ -10,8 +10,8 @@ import Foundation
 import Alamofire
 
 func alamofireNetCheck(){
-    let sessionManager = Alamofire.SessionManager.default
-    sessionManager.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
+    let sessionManager = AF.session
+    sessionManager.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
         dataTasks.forEach { $0.cancel() }
         uploadTasks.forEach { $0.cancel() }
         downloadTasks.forEach { $0.cancel() }

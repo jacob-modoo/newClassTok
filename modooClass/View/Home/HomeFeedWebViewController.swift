@@ -55,7 +55,7 @@ class HomeFeedWebViewController: UIViewController ,WKNavigationDelegate,WKUIDele
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("새소식", screenClass: "HomeFeedWebViewController")
+        Analytics.logEvent("새소식", parameters: [AnalyticsParameterScreenName : "HomeFeedWebViewController"])
         let time = DispatchTime.now() + .seconds(1)
         DispatchQueue.main.asyncAfter(deadline: time) {
             self.animationView.stop()
@@ -724,7 +724,7 @@ extension HomeFeedWebViewController:WKScriptMessageHandler {
             }
             
             if category != ""{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamContentType : category!,
@@ -732,7 +732,7 @@ extension HomeFeedWebViewController:WKScriptMessageHandler {
                         AFEventParamCurrency:"KRW"
                     ]);
             }else{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamRevenue: price!,

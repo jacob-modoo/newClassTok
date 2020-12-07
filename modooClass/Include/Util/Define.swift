@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import Alamofire
 
 // 앱 최초 실행했는지
 let bool_isFirstAppRun = "isFirstAppRunKey"
@@ -60,8 +61,8 @@ let DEVICE_IPHONEXSMAX = 12
 let DEVICE_ETC = 0
 let DEVICE_IPAD = 50
 
-var header = ["Content-Type":"application/x-www-form-urlencoded"]//,"Authorization": "bearer \(UserDefaultSetting.getUserDefaultsString(forKey: sessionToken) as! String)"]
-var multipartHeader = ["Content-Type":"multipart/form-data"]//,"Authorization": "bearer \(UserDefaultSetting.getUserDefaultsString(forKey: sessionToken) as! String)"]
+var header : HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]//,"Authorization": "bearer \(UserDefaultSetting.getUserDefaultsString(forKey: sessionToken) as! String)"]
+var multipartHeader : HTTPHeaders = ["Content-Type":"multipart/form-data"]//,"Authorization": "bearer \(UserDefaultSetting.getUserDefaultsString(forKey: sessionToken) as! String)"]
 
 // 스크린 크기
 let DEF_SCREEN_WIDTH: CGFloat = UIScreen.main.bounds.width

@@ -16,7 +16,7 @@ class LoginApi: NSObject {
     let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
     let systemVersion = UIDevice.current.systemVersion
     let deviceModel = UIDevice.modelName
-    let loginHeader = ["Content-Type": "application/x-www-form-urlencoded"]
+    let loginHeader:HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
     
 //    MARK: - 일반 로그인
     func auth(id:String,password:String,success: @escaping(_ data: LoginModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
@@ -35,7 +35,7 @@ class LoginApi: NSObject {
             "app_info":"\(appVersion ?? "")"
         ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/login/Auth", method: .post, parameters: param, encoding: URLEncoding.default, headers: loginHeader)
+        let request = AF.request("\(apiUrl)/login/Auth", method: .post, parameters: param, encoding: URLEncoding.default, headers: loginHeader)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -68,7 +68,7 @@ class LoginApi: NSObject {
             "app_info":"\(appVersion ?? "")"
         ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/login/socialAuth", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
+        let request = AF.request("\(apiUrl)/login/socialAuth", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -89,7 +89,7 @@ class LoginApi: NSObject {
             "auth":auth
         ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/login/phoneAuth", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
+        let request = AF.request("\(apiUrl)/login/phoneAuth", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -109,7 +109,7 @@ class LoginApi: NSObject {
             "code":code
         ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/login/phoneVerification", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
+        let request = AF.request("\(apiUrl)/login/phoneVerification", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -131,7 +131,7 @@ class LoginApi: NSObject {
             "name":name
         ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/login/profile", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
+        let request = AF.request("\(apiUrl)/login/profile", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -153,7 +153,7 @@ class LoginApi: NSObject {
             "auth":auth
             ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/login/passwd", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
+        let request = AF.request("\(apiUrl)/login/passwd", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -185,7 +185,7 @@ class LoginApi: NSObject {
 //        print("url_3 : \(url_3)")
         print("parameter : ",parameter)
         
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
+        AF.upload(multipartFormData: { (multipartFormData) in
             if url_1 == ""{
                 let imageData1 = file_1.jpegData(compressionQuality: 1)
                 multipartFormData.append(imageData1!, withName: "file_1", fileName: "file_1.jpeg", mimeType: "image/jpeg")
@@ -201,20 +201,21 @@ class LoginApi: NSObject {
             for (key, value) in parameter {
                 multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
             }
-        }, to: "\(apiUrl)/user" , method: .post, headers: multipartHeader){ (result) in
-            switch result {
-            case .success(let upload, _, _):
-                upload.uploadProgress(closure: { (progress) in
-                    print("uploading \(progress)")
-                })
-                upload.response { response in
-                    let statusCode = response.response?.statusCode
-                    if statusCode == 200 {
-                        let dic = LoginModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post : \(apiUrl)/user"))
-                        success(dic)
-                    }else {
-                        fail(response.error)
-                    }
+        }, to: "\(apiUrl)/user" , method: .post, headers: multipartHeader)
+            
+        .uploadProgress(queue: .main, closure: { progress in
+            print("Upload progress: \(progress.fractionCompleted)")
+        })
+        
+        .response { result in
+            switch result.result {
+            case .success( _):
+                let statusCode = result.response?.statusCode
+                if statusCode == 200 {
+                    let dic = LoginModel.init(dic: convertToDictionary(data: result.data!,apiURL: "post : \(apiUrl)/user"))
+                    success(dic)
+                }else {
+                    fail(result.error)
                 }
             case .failure( _): break
                 //print encodingError.description
@@ -228,7 +229,7 @@ class LoginApi: NSObject {
     func interestList(success: @escaping(_ data: InterestModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         print(header)
-        let request = Alamofire.request("\(apiUrl)/interest", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/interest", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -245,7 +246,7 @@ class LoginApi: NSObject {
     func jobList(success: @escaping(_ data: JobModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         print(header)
-        let request = Alamofire.request("\(apiUrl)/job", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/job", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode

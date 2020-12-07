@@ -75,7 +75,7 @@ class ChattingWebViewController: UIViewController ,WKNavigationDelegate,WKUIDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("채팅", screenClass: "ChattingWebViewController")
+        Analytics.logEvent("채팅", parameters: [AnalyticsParameterScreenName : "ChattingWebViewController"])
 //        navigationController?.interactivePopGestureRecognizer?.delegate = nil
 //        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
@@ -680,7 +680,7 @@ extension ChattingWebViewController:WKScriptMessageHandler {
             }
             
             if category != ""{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamContentType : category!,
@@ -688,7 +688,7 @@ extension ChattingWebViewController:WKScriptMessageHandler {
                         AFEventParamCurrency:"KRW"
                     ]);
             }else{
-                AppsFlyerTracker.shared().trackEvent(AFEventPurchase,
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
                      withValues: [
                         AFEventParamContentId:id!,
                         AFEventParamRevenue: price!,

@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import ReadMoreTextView
 
 class ProfileV2NewViewController: BaseViewController {
     
@@ -59,7 +58,7 @@ class ProfileV2NewViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("프로필", screenClass: "ProfileV2NewViewController")
+        Analytics.logEvent("프로필", parameters: [AnalyticsParameterScreenName : "ProfileV2NewViewController"])
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -513,27 +512,21 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
     
     func gridView1(cell:ProfileV2NewTableViewCell , row:Int){
         let checkRow = (row*3)
-//        if active_comment_list[checkRow].youtu_address ?? "" != ""{
-//            cell.photoView1.isHidden = false
-//            cell.noPhotoView1.isHidden = true
-//            cell.photoBackImage1.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].youtu_image_address ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
-//            cell.photoLikeCount1.text = "👍 \(active_comment_list[checkRow].like_cnt ?? 0)"
-//            cell.photoPlayImg1.isHidden = false
-//
-//            cell.photoBtn1.tag = checkRow
-//            if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.user_id{
-//                cell.photoLikeBtn1.isHidden = true
-//            }else{
-//                cell.photoLikeBtn1.isHidden = false
-//            }
-//            if active_comment_list[checkRow].like_status ?? "N" == "N"{
-//                cell.photoLikeBtn1.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
-//                cell.photoLikeBtn1.tag = (checkRow * 10000) + 1
-//            }else{
-//                cell.photoLikeBtn1.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
-//                cell.photoLikeBtn1.tag = (checkRow * 10000) + 2
-//            }
-//        }else{
+        if comment_list_arr[checkRow].play_status ?? "" == "Y"{
+            cell.photoView1.isHidden = false
+            cell.noPhotoView1.isHidden = true
+            cell.photoBackImage1.sd_setImage(with: URL(string: "\(comment_list_arr[checkRow].photo_data ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
+            cell.photoLikeCount1.text = "👍 \(comment_list_arr[checkRow].like_cnt ?? 0)"
+            cell.photoPlayImg1.isHidden = false
+            cell.photoBtn1.tag = checkRow
+            if comment_list_arr[checkRow].new_flag ?? "N" == "N"{
+                cell.photoLikeBtn1.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
+                cell.photoLikeBtn1.tag = (checkRow * 10000) + 1
+            }else{
+                cell.photoLikeBtn1.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
+                cell.photoLikeBtn1.tag = (checkRow * 10000) + 2
+            }
+        }else{
             cell.photoPlayImg1.isHidden = true
             if comment_list_arr[checkRow].photo_data ?? "" != "" {
                 cell.photoView1.isHidden = false
@@ -603,31 +596,26 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
                     cell.noPhotoLikeBtn1.tag = (checkRow * 10000) + 2
                 }
             }
-//        }
+        }
     }
     
     func gridView2(cell:ProfileV2NewTableViewCell , row:Int){
         let checkRow = (row*3)+1
-//        if active_comment_list[checkRow].youtu_address ?? "" != ""{
-//            cell.photoView2.isHidden = false
-//            cell.noPhotoView2.isHidden = true
-//            cell.photoBackImage2.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].youtu_image_address ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
-//            cell.photoLikeCount2.text = "👍 \(active_comment_list[checkRow].like_cnt ?? 0)"
-//            cell.photoPlayImg2.isHidden = false
-//            cell.photoBtn2.tag = checkRow
-//            if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.user_id{
-//                cell.photoLikeBtn2.isHidden = true
-//            }else{
-//                cell.photoLikeBtn2.isHidden = false
-//            }
-//            if active_comment_list[checkRow].like_status ?? "N" == "N"{
-//                cell.photoLikeBtn2.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
-//                cell.photoLikeBtn2.tag = (checkRow * 10000) + 1
-//            }else{
-//                cell.photoLikeBtn2.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
-//                cell.photoLikeBtn2.tag = (checkRow * 10000) + 2
-//            }
-//        }else{
+        if comment_list_arr[checkRow].play_status ?? "" == "Y"{
+            cell.photoView2.isHidden = false
+            cell.noPhotoView2.isHidden = true
+            cell.photoBackImage2.sd_setImage(with: URL(string: "\(comment_list_arr[checkRow].photo_data ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
+            cell.photoLikeCount2.text = "👍 \(comment_list_arr[checkRow].like_cnt ?? 0)"
+            cell.photoPlayImg2.isHidden = false
+            cell.photoBtn2.tag = checkRow
+            if comment_list_arr[checkRow].new_flag ?? "N" == "N"{
+                cell.photoLikeBtn2.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
+                cell.photoLikeBtn2.tag = (checkRow * 10000) + 1
+            }else{
+                cell.photoLikeBtn2.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
+                cell.photoLikeBtn2.tag = (checkRow * 10000) + 2
+            }
+        }else{
             cell.photoPlayImg2.isHidden = true
             if comment_list_arr[checkRow].photo_data ?? "" != "" {
                 cell.photoView2.isHidden = false
@@ -689,31 +677,26 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
                     cell.noPhotoLikeBtn2.tag = (checkRow * 10000) + 2
                 }
             }
-//        }
+        }
     }
     
     func gridView3(cell:ProfileV2NewTableViewCell , row:Int){
         let checkRow = (row*3)+2
-//        if active_comment_list[checkRow].youtu_address ?? "" != ""{
-//            cell.photoView3.isHidden = false
-//            cell.noPhotoView3.isHidden = true
-//            cell.photoBackImage3.sd_setImage(with: URL(string: "\(active_comment_list[checkRow].youtu_image_address ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
-//            cell.photoLikeCount3.text = "👍 \(active_comment_list[checkRow].like_cnt ?? 0)"
-//            cell.photoPlayImg3.isHidden = false
-//            cell.photoBtn3.tag = checkRow
-//            if active_comment_list[checkRow].like_status ?? "N" == "N"{
-//                cell.photoLikeBtn3.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
-//                cell.photoLikeBtn3.tag = (checkRow * 10000) + 1
-//            }else{
-//                cell.photoLikeBtn3.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
-//                cell.photoLikeBtn3.tag = (checkRow * 10000) + 2
-//            }
-//            if UserManager.shared.userInfo.results?.user?.id ?? 0 == self.user_id{
-//                cell.photoLikeBtn3.isHidden = true
-//            }else{
-//                cell.photoLikeBtn3.isHidden = false
-//            }
-//        }else{
+        if comment_list_arr[checkRow].play_status ?? "" == "Y"{
+            cell.photoView3.isHidden = false
+            cell.noPhotoView3.isHidden = true
+            cell.photoBackImage3.sd_setImage(with: URL(string: "\(comment_list_arr[checkRow].photo_data ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
+            cell.photoLikeCount3.text = "👍 \(comment_list_arr[checkRow].like_cnt ?? 0)"
+            cell.photoPlayImg3.isHidden = false
+            cell.photoBtn3.tag = checkRow
+            if comment_list_arr[checkRow].new_flag ?? "N" == "N"{
+                cell.photoLikeBtn3.setImage(UIImage(named: "profileV2_heart_default"), for: .normal)
+                cell.photoLikeBtn3.tag = (checkRow * 10000) + 1
+            }else{
+                cell.photoLikeBtn3.setImage(UIImage(named: "profileV2_heart_active"), for: .normal)
+                cell.photoLikeBtn3.tag = (checkRow * 10000) + 2
+            }
+        }else{
             cell.photoPlayImg3.isHidden = true
             if comment_list_arr[checkRow].photo_data ?? "" != "" {
                 cell.photoView3.isHidden = false
@@ -775,7 +758,7 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
                     cell.noPhotoLikeBtn3.tag = (checkRow * 10000) + 2
                 }
             }
-//        }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -891,12 +874,13 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
                     cell.readMoreBtn.isHidden = true
                     cell.introTextLbl.text = user_comment.html2String
                 } else {
+                    cell.readMoreBtnHeight.constant = 24
                     cell.readMoreBtn.isHidden = false
                     if cell.readMoreBtn.tag == 0 {
                         cell.introTextLbl.numberOfLines = 2
 //                        cell.introTextLbl.sizeToFit()
                         cell.introTextLbl.text = user_comment.html2String
-                        cell.introTextLbl.addTrailing(with: "...")
+//                        cell.introTextLbl.addTrailing(with: "...")
                         cell.readMoreBtn.setTitle("더보기", for: .normal)
                         cell.readMoreBtn.underlineText()
                     } else {
@@ -913,130 +897,35 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
             return cell
         case 2:
             let cell:ProfileV2NewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileV2SocialNetworkCell", for: indexPath) as! ProfileV2NewTableViewCell
+            
             if profileNewModel?.results?.sns_instagram ?? "" != "" {
-                cell.instagramView.isHidden = false
+                cell.instagramViewWidth.constant = 30
+                cell.instaToFbConstraint.constant = 12
             } else {
-                cell.instagramView.isHidden = true
-                if profileNewModel?.results?.sns_facebook ?? "" != "" {
-//                    fb constraint priority to superview
-                    cell.fbToSuperviewContraint.priority = UILayoutPriority(999)
-                } else {
-                    cell.facebookView.isHidden = true
-                    if profileNewModel?.results?.sns_youtube ?? "" != "" {
-                        cell.ytToSuperviewContraint.priority = UILayoutPriority(999)
-                    } else {
-                        cell.youtubeView.isHidden = true
-                        if profileNewModel?.results?.sns_homepage ?? "" != "" {
-                            cell.otherToSuperviewContrint.priority = UILayoutPriority(999)
-                        } else {
-                            cell.otherView.isHidden = true
-                        }
-                    }
-                }
+                cell.instagramViewWidth.constant = 0
+                cell.instaToFbConstraint.constant = 0
             }
             
             if profileNewModel?.results?.sns_facebook ?? "" != "" {
-                cell.facebookView.isHidden = false
-                if profileNewModel?.results?.sns_instagram ?? "" != "" {
-                    cell.fbToInstaConstraint.priority = UILayoutPriority(999)
-//                    if profileNewModel?.results?.sns_instagram ?? "" != "" {
-//                        cell.ytToInstaContraint.priority = UILayoutPriority(222)
-//                    } else {
-//                        cell.ytToSuperviewContraint.priority = UILayoutPriority(222)
-//                    }
-                } else {
-                    cell.fbToSuperviewContraint.priority = UILayoutPriority(999)
-                }
-                
+                cell.fbViewWidth.constant = 30
+                cell.fbToYtConstraint.constant = 12
             } else {
-                cell.facebookView.isHidden = true
-                if profileNewModel?.results?.sns_youtube ?? "" != "" {
-//                    YT constraint priority to superview
-                    if profileNewModel?.results?.sns_instagram ?? "" != "" {
-                        cell.ytToInstaContraint.priority = UILayoutPriority(999)
-                    } else {
-                        cell.ytToSuperviewContraint.priority = UILayoutPriority(999)
-                    }
-                } else {
-                    if profileNewModel?.results?.sns_homepage ?? "" != "" {
-                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
-                            cell.otherToInstaContraint.priority = UILayoutPriority(999)
-                        } else {
-                            cell.otherToSuperviewContrint.priority = UILayoutPriority(999)
-                        }
-                    }
-                }
+                cell.fbViewWidth.constant = 0
+                cell.fbToYtConstraint.constant = 0
             }
             
             if profileNewModel?.results?.sns_youtube ?? "" != "" {
-                cell.youtubeView.isHidden = false
-//                if profileNewModel?.results?.sns_homepage ?? "" != "" {
-////                    HM constraint priority to superview
-                    if profileNewModel?.results?.sns_facebook ?? "" != "" {
-                        cell.ytToFbConstraint.priority = UILayoutPriority(999)
-//                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
-//                            cell.otherToInstaContraint.priority = UILayoutPriority(333)
-//                        } else {
-//                            cell.otherToSuperviewContrint.priority = UILayoutPriority(333)
-//                        }
-                    } else {
-                        cell.ytToFbConstraint.priority = UILayoutPriority(111)
-                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
-                            cell.ytToInstaContraint.priority = UILayoutPriority(999)
-                        } else {
-                            cell.ytToSuperviewContraint.priority = UILayoutPriority(999)
-                        }
-                    }
-//                }
+                cell.ytViewWidth.constant = 30
+                cell.ytToHmConstraint.constant = 12
             } else {
-                cell.youtubeView.isHidden = true
-                if profileNewModel?.results?.sns_homepage ?? "" != "" {
-//                    HM constraint priority to superview
-                    if profileNewModel?.results?.sns_facebook ?? "" != "" {
-                        cell.otherToFbContraint.priority = UILayoutPriority(999)
-                        cell.otherToInstaContraint.priority = UILayoutPriority(111)
-                        cell.otherToSuperviewContrint.priority = UILayoutPriority(111)
-                    } else {
-                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
-                            cell.otherToInstaContraint.priority = UILayoutPriority(999)
-                            cell.otherToSuperviewContrint.priority = UILayoutPriority(111)
-                        } else {
-                            cell.otherToInstaContraint.priority = UILayoutPriority(111)
-                            cell.otherToSuperviewContrint.priority = UILayoutPriority(999)
-                        }
-                    }
-                }
+                cell.ytViewWidth.constant = 0
+                cell.ytToHmConstraint.constant = 0
             }
+            
             if profileNewModel?.results?.sns_homepage ?? "" != "" {
-                cell.otherView.isHidden = false
-                if profileNewModel?.results?.sns_youtube ?? "" != "" {
-                    cell.otherToYtConstraint.priority = UILayoutPriority(999)
-//                    if profileNewModel?.results?.sns_facebook ?? "" != "" {
-//                        cell.otherToFbContraint.priority = UILayoutPriority(999)
-//                        cell.otherToInstaContraint.priority = UILayoutPriority(111)
-//                        cell.otherToSuperviewContrint.priority = UILayoutPriority(111)
-//                    } else {
-//                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
-//                            cell.otherToInstaContraint.priority = UILayoutPriority(999)
-//                            cell.otherToSuperviewContrint.priority = UILayoutPriority(111)
-//                        } else {
-//                            cell.otherToInstaContraint.priority = UILayoutPriority(111)
-//                            cell.otherToSuperviewContrint.priority = UILayoutPriority(999)
-//                        }
-//                    }
-                } else {
-                    if profileNewModel?.results?.sns_facebook ?? "" != "" {
-                        cell.otherToFbContraint.priority = UILayoutPriority(999)
-                    } else {
-                        if profileNewModel?.results?.sns_instagram ?? "" != "" {
-                            cell.otherToInstaContraint.priority = UILayoutPriority(999)
-                        } else {
-                            cell.otherToSuperviewContrint.priority = UILayoutPriority(999)
-                        }
-                    }
-                }
+                cell.hmViewWidth.constant = 30
             } else {
-                cell.otherView.isHidden = true
+                cell.hmViewWidth.constant = 0
             }
             
             cell.selectionStyle = .none

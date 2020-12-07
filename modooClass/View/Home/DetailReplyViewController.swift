@@ -654,7 +654,6 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                 
                 cell.userName.text = list?.results?.user_name ?? ""
                 cell.reply_userPhoto.sd_setImage(with: URL(string: "\(list?.results?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                print("like_yn value : \(list?.results?.like_me ?? "")")
                 if list?.results?.like_me ?? "" == "Y" {
 //                    cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
 //                    cell.likeBtn.tag = self.tagForLikeBtn*10000 + 1
@@ -704,11 +703,9 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                 }else{
                     cell.rollGubunImg.isHidden = true
                 }
-                if list?.results?.coach_yn ?? "N" == "Y"{ 
-                    cell.coachStar.isHidden = false
-                }else{
-                    cell.coachStar.isHidden = true
-                }
+               
+                cell.coachStar.isHidden = true
+                
             }
             cell.selectionStyle = .none
             return cell
@@ -775,11 +772,8 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                 }else{
                     cell.rollGubunImg.isHidden = true
                 }
-                if replyArray[row].coach_yn ?? "N" == "Y"{
-                    cell.coachStar.isHidden = false
-                }else{
-                    cell.coachStar.isHidden = true
-                }
+                 
+                cell.coachStar.isHidden = true
                 
                 cell.replyContentView.layer.cornerRadius = 12
                 cell.likeCountBtn.layer.shadowOpacity = 0.1
@@ -885,9 +879,28 @@ extension DetailReplyViewController {
      */
     func haveFirstSave(sender:UIButton){
         let likeGubun = sender.tag % 10000 // 1 : Y delete  2 : N post
-        let row = sender.tag / 10000
-        let btnTag:[String:Any] = ["btnTag":sender, "likeGubun":likeGubun]  // refers to "haveSave" func in ChildDetailClsasVC to change the like-count
-        NotificationCenter.default.post(name: NSNotification.Name("updateLikeCount"), object: nil, userInfo: btnTag)
+        var row = 0
+        
+        var type = ""
+        if likeGubun == 1{
+            type = "delete"
+        }else{
+            type = "post"
+        }
+        
+        if noticeCheck == false {
+            row = sender.tag / 10000
+            print("btnTag: \(sender)\nlikeGubun: \(likeGubun)")
+            let btnTag:[String:Any] = ["btnTag":sender, "likeGubun":likeGubun]  // refers to "haveSave" func in ChildDetailClsasVC to change the like-count
+            NotificationCenter.default.post(name: NSNotification.Name("updateLikeCount"), object: nil, userInfo: btnTag)
+        } else {
+            FeedApi.shared.replyCommentLike(comment_id: self.comment_id, method_type: type) { result in
+                print("likebtn is pressed")
+            } fail: { error in
+                print("havesaveFirst api call error")
+            }
+
+        }
         
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         let cell = self.tableView.cellForRow(at: selectedIndexPath) as! DetailReplyTableViewCell
@@ -953,7 +966,7 @@ extension DetailReplyViewController {
                     cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
                     cell.likeCountBtn.setTitle(" \(self.replyArray[row].like ?? 0)", for: .normal)
                 }
-                self.replyArray[row].like = result.results?.like ?? 0
+//                self.replyArray[row].like = result.results?.like ?? 0
                 DispatchQueue.main.async {
                     self.tableView.reloadRows(at: [selectedIndexPath], with: .none)
                     sender.isUserInteractionEnabled = true

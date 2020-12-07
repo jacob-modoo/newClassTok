@@ -115,7 +115,7 @@ class ShareAppViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func copyLinkBtnClicked(_ sender: UIButton) {
-        let request = Alamofire.request("\(apiUrl)/tracking/share/\(self.class_id ?? 0)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/tracking/share/\(self.class_id ?? 0)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
 
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -130,7 +130,7 @@ class ShareAppViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func fbShareBtnClicked(_ sender: UIButton) {
         
-        let request = Alamofire.request("\(apiUrl)/tracking/share/\(self.class_id ?? 0)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/tracking/share/\(self.class_id ?? 0)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -152,7 +152,7 @@ class ShareAppViewController: UIViewController, UIGestureRecognizerDelegate {
         let photoUrl = self.class_photo ?? ""
         let title = self.class_name ?? ""
         
-        let request = Alamofire.request("\(apiUrl)/tracking/share/\(self.class_id ?? 0)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/tracking/share/\(self.class_id ?? 0)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
 
         request.response { response in
             let statusCode = response.response?.statusCode

@@ -22,24 +22,23 @@ class CustomTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    lazy var cellImg: UIImageView = {
+        var imageView = UIImageView(frame: CGRect(x: 12, y: self.frame.height/2, width: 24, height: 24))
+        return imageView
+    }()
     
     lazy var eventLbl: UILabel = {
-        let eventLbl = UILabel(frame: CGRect(x: 20, y: self.frame.height/2, width: 180, height: 26))
+        let eventLbl = UILabel(frame: CGRect(x: cellImg.frame.maxX+10, y: self.frame.height/2, width: 180, height: 26))
         eventLbl.textColor = UIColor(hexString: "#707070")
-        eventLbl.font = UIFont(name: "Apple SD Gothic Neo", size: 18)
+        eventLbl.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
         
         return eventLbl
     }()
     
     lazy var pointLbl: UILabel = {
-        let pointLbl = UILabel(frame: CGRect(x: self.frame.width-75, y: self.frame.height/2, width: 120, height: 23))
+        let pointLbl = UILabel(frame: CGRect(x: self.frame.width-75, y: self.frame.height/2, width: 120, height: 20))
         pointLbl.textColor = UIColor(hexString: "#FF5A5F")
-        pointLbl.font = UIFont(name: "Apple SD Gothic Neo", size: 12)
+        pointLbl.font = UIFont(name: "Apple SD Gothic Neo", size: 11)
         pointLbl.textAlignment = .center
     
         return pointLbl
@@ -50,6 +49,10 @@ class CustomTableViewCell: UITableViewCell {
         // Initialization code
     }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -59,6 +62,13 @@ class CustomTableViewCell: UITableViewCell {
         settingImage.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         settingImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         settingImage.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        self.addSubview(cellImg)
+        
+        cellImg.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        cellImg.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        cellImg.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        cellImg.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         self.addSubview(eventLbl)
         

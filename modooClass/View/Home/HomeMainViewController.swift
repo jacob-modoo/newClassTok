@@ -40,6 +40,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     let window = UIApplication.shared.keyWindow
     let height:CGFloat = 326
     
+    var eventModel:EventModel?
     var pageControl: UIPageControl?
     var pendingPage: Int?
     var tableView = UITableView()
@@ -404,13 +405,14 @@ extension HomeMainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell:CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
         let row = indexPath.row
      
+        let cellImage = [UIImage(named: ""),UIImage(named: "open_class_icon"), UIImage(named: "coach_studio_icon"), UIImage(named: "story_writing_icon")]
         let url = URL(string: "\(FeedDetailManager.shared.eventModel.results?.event_list_arr[row].image ?? "")")
 //        let ratio = (sizeOfImageAt(url: url!)?.width ?? 0)/(sizeOfImageAt(url: url!)?.height ?? 0)
 //        let newHeight = (cell.settingImage.frame.width)/ratio
 //        cell.settingImage.frame.height =  newHeight
         
         cell.settingImage.sd_setImage(with: url)
-            
+        cell.cellImg.image = cellImage[row]
         cell.eventLbl.text = "\(FeedDetailManager.shared.eventModel.results?.event_list_arr[row].title ?? "")"
         cell.pointLbl.text = "\(FeedDetailManager.shared.eventModel.results?.event_list_arr[row].event_text ?? "")"
         

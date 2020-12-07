@@ -16,7 +16,7 @@ class ProfileApi: NSObject {
 //    MARK: - 프로필 리스트
     func profileList(success: @escaping(_ data: ProfileModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/profile_app", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/profile_app", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -32,7 +32,7 @@ class ProfileApi: NSObject {
 //    MARK: - 친구프로필 리스트
     func profileFriendList(user_id:Int,success: @escaping(_ data: ProfileFriendModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/profile_app/\(user_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/profile_app/\(user_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -49,7 +49,7 @@ class ProfileApi: NSObject {
 //    MARK: - 세팅 리스트
     func settingList(success: @escaping(_ data: ProfileSettingModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/config", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/config", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -75,7 +75,7 @@ class ProfileApi: NSObject {
             ] as [String : Any]
         
         if type == "class"{
-            let request = Alamofire.request("\(apiUrl)/config/\(type)", method: .post, parameters: param2, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/config/\(type)", method: .post, parameters: param2, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -86,7 +86,7 @@ class ProfileApi: NSObject {
                 }
             }
         }else{
-            let request = Alamofire.request("\(apiUrl)/config/\(type)", method: .post, parameters: param1, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/config/\(type)", method: .post, parameters: param1, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -103,7 +103,7 @@ class ProfileApi: NSObject {
 //    MARK: - 알림 취소하기
     func opencallDelete(class_id:Int,success: @escaping(_ data: ProfileSettingModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/opencall/\(class_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/opencall/\(class_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -120,7 +120,7 @@ class ProfileApi: NSObject {
     //    MARK: - 프로필 리스트
     func profileFriendInfo(user_id:Int,success: @escaping(_ data: ProfileFriendInfoModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/friendInfo/\(user_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/friendInfo/\(user_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -136,7 +136,7 @@ class ProfileApi: NSObject {
     //    MARK: - 프로필 리스트
        func profileV2AllList(success: @escaping(_ data: ProfileV2Model)-> Void, fail: @escaping (_ error: Error?)-> Void){
            
-           let request = Alamofire.request("\(apiUrl)/profileInfo", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+           let request = AF.request("\(apiUrl)/profileInfo", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
            
            request.response { response in
                let statusCode = response.response?.statusCode
@@ -152,7 +152,7 @@ class ProfileApi: NSObject {
     //    MARK: - 프로필 리스트 V2
     func profileV2List(user_id:Int,success: @escaping(_ data: ProfileV2Model)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/profileInfo/\(user_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/profileInfo/\(user_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -168,7 +168,7 @@ class ProfileApi: NSObject {
     //    MARK: - ProfileNewModel
     func profileV3List(user_id:Int, page:Int, success: @escaping(_ data: ProfileNewModel)-> Void, fail: @escaping(_ error: Error?)->Void) {
         
-        let request = Alamofire.request("\(apiUrl)/interested/profile/\(user_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/interested/profile/\(user_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -184,7 +184,7 @@ class ProfileApi: NSObject {
     //    MARK: - 프로필 클래스 리스트
     func profileV2ActiveList(user_id:Int,page:Int,success: @escaping(_ data: ProfileV2Model)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/profileInfo_active/\(user_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/profileInfo_active/\(user_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -200,7 +200,7 @@ class ProfileApi: NSObject {
     //    MARK: - 프로필 운영클래스 리스트
     func profileV2ClassList(user_id:Int,page:Int,success: @escaping(_ data: ProfileV2Model)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/profileInfo_class/\(user_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/profileInfo_class/\(user_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -216,7 +216,7 @@ class ProfileApi: NSObject {
     //    MARK: - 프로필 리뷰 리스트
     func profileV2ReviewList(user_id:Int,page:Int,success: @escaping(_ data: ProfileV2Model)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/profileInfo_review/\(user_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/profileInfo_review/\(user_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -232,7 +232,7 @@ class ProfileApi: NSObject {
     //    MARK: - 프로필 스크랩 리스트
     func profileV2ScrapList(user_id:Int,page:Int,success: @escaping(_ data: ProfileV2Model)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/profileInfo_scrap/\(user_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/profileInfo_scrap/\(user_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -256,7 +256,7 @@ class ProfileApi: NSObject {
             "type":type
             ] as [String : Any]
         if type == "delete"{
-            let request = Alamofire.request("\(apiUrl)/squareLike", method: .post, parameters: param2, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/squareLike", method: .post, parameters: param2, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -267,7 +267,7 @@ class ProfileApi: NSObject {
                 }
             }
         }else{
-            let request = Alamofire.request("\(apiUrl)/squareLike", method: .post, parameters: param1, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/squareLike", method: .post, parameters: param1, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {

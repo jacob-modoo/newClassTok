@@ -64,7 +64,7 @@ class ProfileV2ViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Analytics.setAnalyticsCollectionEnabled(true)
-        Analytics.setScreenName("프로필", screenClass: "ProfileV2ViewController")
+        Analytics.logEvent("프로필", parameters: [AnalyticsParameterScreenName : "ProfileV2ViewController"])
     }
 
     /** **뷰가 사라지고 타는 메소드 */

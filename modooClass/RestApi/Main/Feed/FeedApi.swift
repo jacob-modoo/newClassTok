@@ -17,7 +17,7 @@ class FeedApi: NSObject {
     func feedList(success: @escaping(_ data: FeedModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         print(header)
-        let request = Alamofire.request("\(apiUrl)/appMainV2", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/appMainV2", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -34,7 +34,7 @@ class FeedApi: NSObject {
 //    MARK: - 피드 배너
     func bannerList(success: @escaping(_ data: BannerModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/app_banner", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/app_banner", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -51,7 +51,7 @@ class FeedApi: NSObject {
 //    MARK: - 피드 순위
     func searchRank(success: @escaping(_ data: SearchRankModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/app_search", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/app_search", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -73,7 +73,7 @@ class FeedApi: NSObject {
             "search":search
             ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/class_search/\(page)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/class_search/\(page)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -89,7 +89,7 @@ class FeedApi: NSObject {
 //    MARK: - 피드 버튼 클릭시 클래스 이동
     func searchClassCategory(api_type:String,success: @escaping(_ data: SearchModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/app_category/\(api_type)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/app_category/\(api_type)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -106,7 +106,7 @@ class FeedApi: NSObject {
     func alarmSave(class_id:String,type:String,success: @escaping(_ data: HaveNAlarmSaveModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         if type == "post"{
-            let request = Alamofire.request("\(apiUrl)/opencall/\(class_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/opencall/\(class_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -117,7 +117,7 @@ class FeedApi: NSObject {
                 }
             }
         }else{
-            let request = Alamofire.request("\(apiUrl)/opencall/\(class_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/opencall/\(class_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -134,7 +134,7 @@ class FeedApi: NSObject {
     func class_have(class_id:Int,type:String,success: @escaping(_ data: HaveNAlarmSaveModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         if type == "post"{
-            let request = Alamofire.request("\(apiUrl)/have/\(class_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/have/\(class_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -145,7 +145,7 @@ class FeedApi: NSObject {
                 }
             }
         }else{
-            let request = Alamofire.request("\(apiUrl)/have/\(class_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/have/\(class_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -161,7 +161,7 @@ class FeedApi: NSObject {
 //    MARK: - 클래스 디테일 데이터
     func appClassData(class_id:Int,success: @escaping(_ data: FeedAppClassModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
 
-        let request = Alamofire.request("\(apiUrl)/classMain/\(class_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/classMain/\(class_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -176,7 +176,7 @@ class FeedApi: NSObject {
 //    MARK: - 미션페이징
     func AppClassMissionPageListData(mission_id:Int,page:Int,success: @escaping(_ data: AppClassMissionPageList)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/curriculumMission/\(mission_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/curriculumMission/\(mission_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -194,7 +194,7 @@ class FeedApi: NSObject {
         let param = ["type":help_type]
         
         if method_type == "post"{
-            let request = Alamofire.request("\(apiUrl)/curriculumLike/\(curriculum_id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/curriculumLike/\(curriculum_id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -205,7 +205,7 @@ class FeedApi: NSObject {
                 }
             }
         }else{
-            let request = Alamofire.request("\(apiUrl)/curriculumLike/\(curriculum_id)", method: .delete, parameters: param, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/curriculumLike/\(curriculum_id)", method: .delete, parameters: param, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -221,7 +221,7 @@ class FeedApi: NSObject {
 //    MARK: - 클래스 디테일 댓글
     func appClassDataComment(curriculum_id:Int, page:Int, type:String, success: @escaping(_ data: FeedAppClassDetailReplyModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/app_comment/curriculum/\(curriculum_id)/\(page)/\(type)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/app_comment/curriculum/\(curriculum_id)/\(page)/\(type)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -238,7 +238,7 @@ class FeedApi: NSObject {
     func replyCommentLike(comment_id:Int,method_type:String,success: @escaping(_ data: FeedAppClassDetailReplyLikeModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         if method_type == "post"{
-            let request = Alamofire.request("\(apiUrl)/like/comment/\(comment_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/like/comment/\(comment_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -249,7 +249,7 @@ class FeedApi: NSObject {
                 }
             }
         }else{
-            let request = Alamofire.request("\(apiUrl)/like/comment/\(comment_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/like/comment/\(comment_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -308,7 +308,7 @@ class FeedApi: NSObject {
             }
         }
         
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
+        AF.upload(multipartFormData: { (multipartFormData) in
             if photo != nil {
                 let imageData = photo!.jpegData(compressionQuality: 0.5)
                 multipartFormData.append(imageData!, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
@@ -316,32 +316,31 @@ class FeedApi: NSObject {
             for (key, value) in param {
                 multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
             }
-        }, to: "\(apiUrl)/app_comment/\(class_id)/\(curriculum)" , method: .post, headers: multipartHeader){ (result) in
-            switch result {
-            case .success(let upload, _, _):
-                upload.uploadProgress(closure: { (progress) in
-                    print("uploading \(progress)")
-                })
-                upload.response { response in
-                    let statusCode = response.response?.statusCode
-                    if statusCode == 200 {
-                        let dic = FeedAppClassDetailReplySendModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post : \(apiUrl)/app_comment/\(class_id)/\(curriculum)"))
-                        success(dic)
-                    }else {
-                        fail(response.error)
-                    }
+        }, to: "\(apiUrl)/app_comment/\(class_id)/\(curriculum)" , method: .post, headers: multipartHeader)
+        
+        .uploadProgress(queue: .main, closure: { progress in
+            print("Upload progress: \(progress.fractionCompleted)")
+        })
+        .response { result in
+            switch result.result {
+            case .success( _):
+                let statusCode = result.response?.statusCode
+                if statusCode == 200 {
+                    let dic = FeedAppClassDetailReplySendModel.init(dic: convertToDictionary(data: result.data!,apiURL: "post : \(apiUrl)/app_comment/\(class_id)/\(curriculum)"))
+                    success(dic)
+                }else {
+                    fail(result.error)
                 }
             case .failure( _): break
-                //print encodingError.description
+                
             }
         }
-        
     }
     
 //    MARK: - 댓글 상세
     func replyDetail(comment_id:Int,page:Int,success: @escaping(_ data: FeedAppClassCommentDetailReplyModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/app_comment_content/\(comment_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/app_comment_content/\(comment_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -359,7 +358,7 @@ class FeedApi: NSObject {
     func replyClass_feed(class_id:Int,page:Int,sort:String,success: @escaping(_ data: FeedAppClassCommunityReplyModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         let param = "?page=\(page)&sort=\(sort)"
-        let request = Alamofire.request("\(apiUrl)/class_feed/\(class_id)\(param)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/class_feed/\(class_id)\(param)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -375,7 +374,7 @@ class FeedApi: NSObject {
 //    MARK: - 댓글 삭제
     func replyDelete(comment_id:Int,success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/comment/\(comment_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/comment/\(comment_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -396,7 +395,7 @@ class FeedApi: NSObject {
             "mode":"delete"
             ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/comment/\(id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/comment/\(id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -412,7 +411,7 @@ class FeedApi: NSObject {
 //    MARK: - 앱 커리큘럼 데이터
     func app_curriculum(class_id:Int,success: @escaping(_ data: FeedAppCurriculumModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/curriculum_v2/\(class_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/curriculum_v2/\(class_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -427,7 +426,7 @@ class FeedApi: NSObject {
 //    MARK: - 다음 커리큘럼 데이터
     func curriculum_next(class_id:Int,curriculum_id:Int,success: @escaping(_ data: FeedAppCurriculumNextModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/curriculum_next/\(class_id)/\(curriculum_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/curriculum_next/\(class_id)/\(curriculum_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -443,7 +442,7 @@ class FeedApi: NSObject {
 //    MARK: - 앱 응원하기 데이터
     func app_cheer(class_id:Int,success: @escaping(_ data: FeedAppCheerModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/cheering/\(class_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/cheering/\(class_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -458,7 +457,7 @@ class FeedApi: NSObject {
 //    MARK: - 모두 응원하기
     func cheering_all(class_id:Int,success: @escaping(_ data: FeedAppCheeringModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/cheering/\(class_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/cheering/\(class_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -473,7 +472,7 @@ class FeedApi: NSObject {
 //    MARK: - 한명 응원하기
     func cheering_one(class_id:Int,user_id:Int,success: @escaping(_ data: FeedAppCheeringModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/cheering/\(class_id)/\(user_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/cheering/\(class_id)/\(user_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -489,7 +488,7 @@ class FeedApi: NSObject {
     func friend_add(user_id:Int,friend_status:String,success: @escaping(_ data: FeedAppCheeringModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         if friend_status == "Y"{
-            let request = Alamofire.request("\(apiUrl)/friend/\(user_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/friend/\(user_id)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -500,7 +499,7 @@ class FeedApi: NSObject {
                 }
             }
         }else{
-            let request = Alamofire.request("\(apiUrl)/friend/\(user_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/friend/\(user_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -522,7 +521,7 @@ class FeedApi: NSObject {
             "review_point":review_point
             ] as [String : Any]
         
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
+        AF.upload(multipartFormData: { (multipartFormData) in
             if photo != nil {
                 let imageData = photo!.jpegData(compressionQuality: 0.5)
                 multipartFormData.append(imageData!, withName: "photo", fileName: "photo.jpg", mimeType: "image/jpg")
@@ -530,32 +529,31 @@ class FeedApi: NSObject {
             for (key, value) in param {
                 multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
             }
-        }, to: "\(mission_doneApi)/\(mission_id)" , method: .post, headers: multipartHeader){ (result) in
-            switch result {
-            case .success(let upload, _, _):
-                upload.uploadProgress(closure: { (progress) in
-                    print("uploading \(progress)")
-                })
-                upload.response { response in
-                    let statusCode = response.response?.statusCode
-                    if statusCode == 200 {
-                        let dic = FeedAppClassMissionCompleteModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post-mutipart : \(mission_doneApi)/\(mission_id)"))
-                        success(dic)
-                    }else {
-                        fail(response.error)
-                    }
+        }, to: "\(mission_doneApi)/\(mission_id)" , method: .post, headers: multipartHeader)
+        
+        .uploadProgress(queue: .main, closure: { progress in
+            print("Upload progress: \(progress.fractionCompleted)")
+        })
+        .response { result in
+            switch result.result {
+            case .success( _):
+                let statusCode = result.response?.statusCode
+                if statusCode == 200 {
+                    let dic = FeedAppClassMissionCompleteModel.init(dic: convertToDictionary(data: result.data!,apiURL: "post-mutipart : \(mission_doneApi)/\(mission_id)"))
+                    success(dic)
+                }else {
+                    fail(result.error)
                 }
             case .failure( _): break
-                //print encodingError.description
+
             }
         }
-        
     }
     
 //    MARK: - 클래스 나가기
     func class_out(class_id:Int,success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/drop/\(class_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/drop/\(class_id)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -577,7 +575,7 @@ class FeedApi: NSObject {
             "curriculum_id":curriculum_id
             ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/playTracking", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/playTracking", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -600,7 +598,7 @@ class FeedApi: NSObject {
             "curriculum_id":curriculum_id
             ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/playTracking", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/playTracking", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -621,7 +619,7 @@ class FeedApi: NSObject {
             "class_id": class_id,
         "user_id": user_id] as [String : Any]
 
-        Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+        AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
              switch response.result
             {
             case .success:
@@ -638,7 +636,7 @@ class FeedApi: NSObject {
         
         let param = ["hash" : hash_id]
         let url = URL.init(string: "https://api2.enfit.net/api/v3/tracking")
-        let request = Alamofire.request("\(url!)/event_popup", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(url!)/event_popup", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
@@ -655,7 +653,7 @@ class FeedApi: NSObject {
         let url = URL.init(string: "https://search.enfit.net/api/v1/class/search_suggest")!
         let param = ["keyword": keyword] as [String : Any]
 
-        Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+        AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
              switch response.result
             {
             case .success:
@@ -674,7 +672,7 @@ class FeedApi: NSObject {
             "mode":"delete"
             ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/manager/class/\(class_id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/manager/class/\(class_id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -697,7 +695,7 @@ class FeedApi: NSObject {
             ,"iap_return":iap_return
             ] as [String : Any]
         
-        let request = Alamofire.request("https://api.enfit.net/api/v3/iap_complete?token=\(UserDefaultSetting.getUserDefaultsString(forKey: sessionToken) as! String)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("https://api.enfit.net/api/v3/iap_complete?token=\(UserDefaultSetting.getUserDefaultsString(forKey: sessionToken) as! String)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -719,7 +717,7 @@ class FeedApi: NSObject {
             "status":status
             ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/conditionCheck", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/conditionCheck", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -736,7 +734,7 @@ class FeedApi: NSObject {
     //    MARK: - 클래스 상태 보내기
     func class_conditionInfo(class_id:Int,success: @escaping(_ data: FeedAppClassConditionInfoModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/conditionInfo/\(class_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/conditionInfo/\(class_id)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -752,7 +750,7 @@ class FeedApi: NSObject {
     //    MARK: - 좋아요 멤버 리스트
     func replyLikeList(comment_id:Int,comment_str_id:String,page:Int,success: @escaping(_ data: FeedReplyLikeModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         if comment_id != 0{
-            let request = Alamofire.request("\(apiUrl)/comment_like/\(comment_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/comment_like/\(comment_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
             request.response { response in
                 let statusCode = response.response?.statusCode
                 if statusCode == 200 {
@@ -763,7 +761,7 @@ class FeedApi: NSObject {
                 }
             }
         }else{
-            let request = Alamofire.request("\(apiUrl)/comment_like/\(comment_str_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+            let request = AF.request("\(apiUrl)/comment_like/\(comment_str_id)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
             
             request.response { response in
                 let statusCode = response.response?.statusCode
@@ -781,7 +779,7 @@ class FeedApi: NSObject {
 //    MARK: - 앱 메인 버전 2 리스트
     func appMainPilotV2(success: @escaping(_ data: PilotModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/pilot/appMain", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/pilot/appMain", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -798,7 +796,7 @@ class FeedApi: NSObject {
 //    MARK: - App Event List
     func event_list(success: @escaping(_ data: EventModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/story_btn", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/story_btn", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -814,7 +812,7 @@ class FeedApi: NSObject {
 //    MARK: - 앱 메인 버전 2 추천 리스트
     func appMainPilotRecommendV2(success: @escaping(_ data: PilotRecommendModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/pilot/appRecommend", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/pilot/appRecommend", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -831,7 +829,7 @@ class FeedApi: NSObject {
 //    MARK: - 앱 메인 버전 2 리뷰 대시보드
     func appMainPilotReviewDashboardV2(class_id:Int,success: @escaping(_ data: ReviewDashboardModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("https://api6.enfit.net/api/class/\(class_id)/dashboard", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("https://api6.enfit.net/api/class/\(class_id)/dashboard", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -850,7 +848,7 @@ class FeedApi: NSObject {
         
         let param = ["user_id":user_id]
         
-        let request = Alamofire.request("https://api6.enfit.net/api/class/\(class_id)/review/\(score)/\(page)", method: .get, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("https://api6.enfit.net/api/class/\(class_id)/review/\(score)/\(page)", method: .get, parameters: param, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -869,7 +867,7 @@ class FeedApi: NSObject {
         
         let param = ["type":type]
         
-        let request = Alamofire.request("\(apiUrl)/squareLike/\(comment_id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/squareLike/\(comment_id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
         request.response { response in
             let status = response.response?.statusCode
             if status == 200 {
@@ -884,7 +882,7 @@ class FeedApi: NSObject {
 //    MARK: - 피드 디테일 리스트
     func appSquareDetail(feedId:String,success: @escaping(_ data: SquareDetailModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/squareDetail/\(feedId)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/squareDetail/\(feedId)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -916,7 +914,7 @@ class FeedApi: NSObject {
         var param:Dictionary = [:] as [String : Any]
         param = param1
         
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
+        AF.upload(multipartFormData: { (multipartFormData) in
             if photo != nil {
                 let imageData = photo!.jpegData(compressionQuality: 0.5)
                 multipartFormData.append(imageData!, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
@@ -924,26 +922,26 @@ class FeedApi: NSObject {
             for (key, value) in param {
                 multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
             }
-        }, to: "\(apiUrl)/squareComment/\(articleId)" , method: .post, headers: multipartHeader){ (result) in
-            switch result {
-            case .success(let upload, _, _):
-                upload.uploadProgress(closure: { (progress) in
-                    print("uploading \(progress)")
-                })
-                upload.response { response in
-                    let statusCode = response.response?.statusCode
-                    if statusCode == 200 {
-                        let dic = SquareReplySaveModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post : \(apiUrl)/squareComment/\(articleId)"))
-                        success(dic)
-                    }else {
-                        fail(response.error)
-                    }
+        }, to: "\(apiUrl)/squareComment/\(articleId)" , method: .post, headers: multipartHeader)
+        
+        .uploadProgress(queue: .main, closure: { progress in
+            print("Upload progress: \(progress.fractionCompleted)")
+        })
+        
+        .response { result in
+            switch result.result {
+            case .success( _):
+                let statusCode = result.response?.statusCode
+                if statusCode == 200 {
+                    let dic = SquareReplySaveModel.init(dic: convertToDictionary(data: result.data!,apiURL: "post : \(apiUrl)/squareComment/\(articleId)"))
+                    success(dic)
+                }else {
+                    fail(result.error)
                 }
             case .failure( _): break
-                //print encodingError.description
+                
             }
         }
-        
     }
     
     func squareReplyDelete(articleId:String,success: @escaping(_ data: FeedAppClassDetailReplySendModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
@@ -952,7 +950,7 @@ class FeedApi: NSObject {
         "type":"delete"
         ] as [String : Any]
         
-        let request = Alamofire.request("\(apiUrl)/squareComment/\(articleId)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/squareComment/\(articleId)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -967,7 +965,7 @@ class FeedApi: NSObject {
     
     func squareCommentList(articleId:String,page:Int,success: @escaping(_ data: SquareReplyCommentListModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let request = Alamofire.request("\(apiUrl)/squareDetail_comment/\(articleId)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/squareDetail_comment/\(articleId)/\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
