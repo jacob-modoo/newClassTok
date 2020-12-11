@@ -47,6 +47,7 @@ class ChildDetailIntroViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
         print("ChildDetailIntroViewController viewDidDisappear")
     }
     
@@ -82,8 +83,9 @@ class ChildDetailIntroViewController: UIViewController {
         
         if let temp = notification.object {
             self.class_id = temp as! Int
+            self.feedAppCheerModel = FeedDetailManager.shared.feedAppCheerModel
             DispatchQueue.main.async {
-                self.app_cheer()
+                self.tableView.reloadData()
             }
         }
     }
@@ -132,22 +134,6 @@ extension ChildDetailIntroViewController:UITableViewDelegate,UITableViewDataSour
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-}
-
-extension ChildDetailIntroViewController{
-    
-    /**
-    **파라미터가 없고 반환값이 없는 메소드 > 응원하기 리스트 불러오는 함수
-     
-     - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
-     */
-    func app_cheer(){
-        self.feedAppCheerModel = FeedDetailManager.shared.feedAppCheerModel
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
 }
 
 extension ChildDetailIntroViewController: UIGestureRecognizerDelegate,UIScrollViewDelegate{

@@ -204,7 +204,7 @@ class Class_recom_list: NSObject {
 class RecommendationList: NSObject {
     var name:String?
     var package_payment:String?
-    var package_sale_per:String?
+    var package_sale_per:Int?
     var photo:String?
     var user_name:String?
     var helpful_cnt:Int?
@@ -218,7 +218,7 @@ class RecommendationList: NSObject {
         self.init()
         name = DictionaryToString(dic: dic, strName: "name")
         package_payment = DictionaryToString(dic: dic, strName: "package_payment")
-        package_sale_per = DictionaryToString(dic: dic, strName: "package_sale_per")
+        package_sale_per = DictionaryToInt(dic: dic, intName: "package_sale_per")
         photo = DictionaryToString(dic: dic, strName: "photo")
         user_name = DictionaryToString(dic: dic, strName: "user_name")
         helpful_cnt = DictionaryToInt(dic: dic, intName: "helpful_cnt")
@@ -363,6 +363,7 @@ class Curriculum:NSObject{
     var button_text:String?
     var button_text2:String?
     var materials_file:String?
+    var materials_subject:String?
     var head:String?
     var button_before_id:Int?
     var button_next_curriculum_id:Int?
@@ -389,6 +390,7 @@ class Curriculum:NSObject{
         button_text = DictionaryToString(dic: dic, strName: "button_text")
         button_text2 = DictionaryToString(dic: dic, strName: "button_text2")
         materials_file = DictionaryToString(dic: dic, strName: "materials_file")
+        materials_subject = DictionaryToString(dic: dic, strName: "materials_subject")
         head = DictionaryToString(dic: dic, strName: "head")
         button_before_id = DictionaryToInt(dic: dic, intName: "button_before_id")
         button_next_curriculum_id = DictionaryToInt(dic: dic, intName: "button_next_curriculum_id")

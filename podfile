@@ -43,7 +43,7 @@ target 'modooClass' do
         t.build_configurations.each do |config|
           config.build_settings.delete('CODE_SIGNING_ALLOWED')
           config.build_settings.delete('CODE_SIGNING_REQUIRED')
-          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
         end
       end
   end

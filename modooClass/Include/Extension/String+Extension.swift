@@ -177,14 +177,44 @@ extension String {
         words.append(word)
         return words
     }
-
-}
-
-extension String {
+    
+    func getCleanedURL() -> URL? {
+        guard self.isEmpty == false else {
+            return nil
+        }
+        if let url = URL(string: self) {
+            return url
+        } else {
+            if let urlEscapedString = self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) , let escapedURL = URL(string: urlEscapedString){
+                return escapedURL
+            }
+        }
+        return nil
+     }
+    
+    func underline(fullStr:String , str:String) -> NSAttributedString{
+        let attributedString = NSMutableAttributedString(string: fullStr)
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "AppleSDGothicNeo-Bold", size: 18)!, range: (fullStr as NSString).range(of:str))
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: 2, range: (fullStr as NSString).range(of:str))
+        
+        attributedString.addAttribute(NSAttributedString.Key.underlineColor , value: UIColor(hexString: "#FF5A5F"), range: (fullStr as NSString).range(of:str))
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: "#1a1a1a") , range: (fullStr as NSString).range(of:str))
+        return attributedString
+    }
+    
+    func strikeline(str:String) -> NSAttributedString{
+            let attributedString = NSMutableAttributedString(string: str)
+            attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 14)!, range: (str as NSString).range(of:str))
+            attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributedString.length))
+            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: "#b4b4b4") , range: (str as NSString).range(of:str))
+            return attributedString
+    }
+    
     func md5() ->   String {
         let data = Data(utf8) as NSData
         var hash = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
         CC_MD5(data.bytes, CC_LONG(data.length), &hash)
         return hash.map { String(format: "%02hhx", $0) }.joined()
     }
+
 }

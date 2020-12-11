@@ -30,6 +30,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var storyView: UIView!
     @IBOutlet weak var tabImg5: UIImageView!
     @IBOutlet weak var tabView: UIView!
+    @IBOutlet weak var tabViewBottomHeight: NSLayoutConstraint!
     
     let homeViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
@@ -51,22 +52,16 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FeedApi.shared.event_list(success: { result in
-            if result.code! == "200"{
-                FeedDetailManager.shared.eventModel = result
-            }else{
-            }
-        }) { error in
-            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
-            })
-        }
+        
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         tableView.isScrollEnabled = tableView.contentSize.height > tableView.frame.height
         
+        deviceCheck()
         versionCheck()
+        print("event have : ", UserManager.shared.userInfo.results?.event_yn ?? "")
         if UserManager.shared.userInfo.results?.event_yn ?? "" == "Y" {
             openPopupVC()
         }
@@ -112,6 +107,14 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        FeedApi.shared.event_list(success: { result in
+            if result.code! == "200"{
+                FeedDetailManager.shared.eventModel = result
+            }else{
+            }
+        }) { error in
+            
+        }
     }
     
     //이 뷰를 벗어나면 네비게이션 보이게 설정
@@ -343,6 +346,14 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             return CGSize(width: width, height: height)
         } else {
             return nil
+        }
+    }
+    
+    func deviceCheck() {
+        if UIDevice.current.hasNotch {
+            self.tabViewBottomHeight.constant = 34
+        } else {
+            self.tabViewBottomHeight.constant = 0
         }
     }
     

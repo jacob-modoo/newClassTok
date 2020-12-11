@@ -25,6 +25,7 @@ class UIFixedLabel:UILabel{
     enum LabelFontWeight:Int{
         case Regular = 1
         case Bold = 2
+        case Italic = 3
     }
 
     enum LabelColor:Int {
@@ -65,8 +66,11 @@ class UIFixedLabel:UILabel{
                 self.font = UIFont(name: "AppleSDGothicNeo-Regular", size: labelFontSize())
             case .Bold:
                 self.font = UIFont(name: "AppleSDGothicNeo-Bold", size: labelFontSize())
+            case .Italic:
+                self.font = UIFont(name: "AppleSDGothicNeo-Italic", size: labelFontSize())
             case .none:
                 self.font = UIFont(name: "AppleSDGothicNeo-Bold", size: labelFontSize())
+                
             }
         }
     }

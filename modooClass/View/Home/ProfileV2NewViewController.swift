@@ -513,6 +513,7 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
     func gridView1(cell:ProfileV2NewTableViewCell , row:Int){
         let checkRow = (row*3)
         if comment_list_arr[checkRow].play_status ?? "" == "Y"{
+            cell.photoGradientViewHeight1.constant = cell.photoView1.frame.height
             cell.photoView1.isHidden = false
             cell.noPhotoView1.isHidden = true
             cell.photoBackImage1.sd_setImage(with: URL(string: "\(comment_list_arr[checkRow].photo_data ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
@@ -528,6 +529,7 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
             }
         }else{
             cell.photoPlayImg1.isHidden = true
+            cell.photoGradientViewHeight1.constant = cell.photoView1.frame.height/2
             if comment_list_arr[checkRow].photo_data ?? "" != "" {
                 cell.photoView1.isHidden = false
                 cell.noPhotoView1.isHidden = true
@@ -602,6 +604,7 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
     func gridView2(cell:ProfileV2NewTableViewCell , row:Int){
         let checkRow = (row*3)+1
         if comment_list_arr[checkRow].play_status ?? "" == "Y"{
+            cell.photoGradientViewHeight2.constant = cell.photoView2.frame.height
             cell.photoView2.isHidden = false
             cell.noPhotoView2.isHidden = true
             cell.photoBackImage2.sd_setImage(with: URL(string: "\(comment_list_arr[checkRow].photo_data ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
@@ -617,6 +620,7 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
             }
         }else{
             cell.photoPlayImg2.isHidden = true
+            cell.photoGradientViewHeight2.constant = cell.photoView2.frame.height/2
             if comment_list_arr[checkRow].photo_data ?? "" != "" {
                 cell.photoView2.isHidden = false
                 cell.noPhotoView2.isHidden = true
@@ -683,6 +687,8 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
     func gridView3(cell:ProfileV2NewTableViewCell , row:Int){
         let checkRow = (row*3)+2
         if comment_list_arr[checkRow].play_status ?? "" == "Y"{
+            cell.photoGradientViewHeight3.constant = cell.photoView3.frame.height
+            
             cell.photoView3.isHidden = false
             cell.noPhotoView3.isHidden = true
             cell.photoBackImage3.sd_setImage(with: URL(string: "\(comment_list_arr[checkRow].photo_data ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
@@ -698,6 +704,7 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
             }
         }else{
             cell.photoPlayImg3.isHidden = true
+            cell.photoGradientViewHeight3.constant = cell.photoView3.frame.height/2
             if comment_list_arr[checkRow].photo_data ?? "" != "" {
                 cell.photoView3.isHidden = false
                 cell.noPhotoView3.isHidden = true

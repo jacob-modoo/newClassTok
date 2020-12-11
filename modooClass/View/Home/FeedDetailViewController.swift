@@ -33,8 +33,10 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var textView2: UIView!
     /** **자식 컨트롤러 디테일응원하기 뷰 */
     @IBOutlet weak var textView3: UIView!
-    /** **a view for sharing view controller*/
+    /** *a view for ShareViewController */
     @IBOutlet weak var textView4: UIView!
+    /** *textView for descriptionVC */
+    @IBOutlet weak var textView5: UIView!
     
     /** **자식 컨트롤러 디테일클래스 뷰 추가 여부 */
      var textViewAddCheck = false
@@ -44,6 +46,10 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var textView2AddCheck = false
     /** **자식 컨트롤러 디테일응원하기 뷰 추가 여부 */
     var textView3AddCheck = false
+    /** **자식 컨트롤러 디테일응원하기 뷰 추가 여부 */
+    var textView4AddCheck = false
+    /** **자식 컨트롤러 디테일응원하기 뷰 추가 여부 */
+    var textView5AddCheck = false
     /** **처음 로딩시 클래스 가입이 제대로 되어있는지 체크 인덱스 */
     var viewCheck = 1
     /** **자식 컨트롤러 몇번째 뷰 포커스 인덱스 */
@@ -56,6 +62,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var tab3DataChange = true
     /** **자식 컨트롤러 디테일응원하기 뷰 데이터 리로딩 여부 */
     var tab4DataChange = true
+    var tab5DataChange = true
     /** **영상 플레이어 데이터 리로딩 여부 */
     var videoDataChange = true
     /** **클래스 아이디 */
@@ -85,6 +92,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var class_photo:String?
     
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
+    let feedStoryboard = UIStoryboard(name: "Feed", bundle: nil)
 //    let webViewStoryboard: UIStoryboard = UIStoryboard(name: "WebView", bundle: nil)
 //    let profileStoryboard: UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
     
@@ -180,6 +188,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
             textView2.removeFromSuperview()
             textView3.removeFromSuperview()
             textView4.removeFromSuperview()
+            textView5.removeFromSuperview()
         }
     }
     
@@ -208,8 +217,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
         Analytics.logEvent("참여단", parameters: [AnalyticsParameterScreenName : "FeedDetailViewController"])
         if self.pushGubun == 2{
             DispatchQueue.main.async {
-                let feedStoryboard: UIStoryboard = UIStoryboard(name: "Feed", bundle: nil)
-                let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "DetailReplyViewController") as! DetailReplyViewController
+                let newViewController = self.feedStoryboard.instantiateViewController(withIdentifier: "DetailReplyViewController") as! DetailReplyViewController
                 newViewController.comment_id = self.comment_id
                 newViewController.class_id = self.class_id
                 newViewController.commentType = "class"
@@ -400,6 +408,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
         tab2DataChange = true
         tab3DataChange = true
         tab4DataChange = true
+        tab5DataChange = true
         FeedDetailManager.shared.feedDetailList = FeedAppClassModel()
         FeedDetailManager.shared.feedAppCurriculumModel = FeedAppCurriculumModel()
         FeedDetailManager.shared.reviewDashboardModel = ReviewDashboardModel()
@@ -413,10 +422,9 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
      */
     func moveToClass(){
         DispatchQueue.main.async {
-            let storyboard = UIStoryboard(name: "Feed", bundle: nil)
-            let controller: ChildDetailClassViewController = storyboard.instantiateViewController(withIdentifier: "ChildDetailClassViewController") as! ChildDetailClassViewController
+            let controller: ChildDetailClassViewController = self.feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailClassViewController") as! ChildDetailClassViewController
             controller.view.frame = CGRect(x: 0, y: 0, width: self.textView.frame.width, height: self.textView.frame.height)
-            if self.textViewAddCheck == false{
+            if self.textViewAddCheck == false {
                 self.addChild(controller)
                 self.textView.addSubview(controller.view)
                 controller.view.snp.makeConstraints{ (make) in
@@ -435,13 +443,14 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
      
      - Throws: `Error` 뷰 데이터가 존속되어있지 않은 경우 `Error`
      */
-    func detailClassData(){
+    func detailClassData() {
         let textViewY = self.textView.frame.origin.y
         
         self.textView1.isHidden = true
         self.textView2.isHidden = true
         self.textView3.isHidden = true
         self.textView4.isHidden = true
+        self.textView5.isHidden = true
         if self.tableViewCheck == 1{
             if self.tab1DataChange == true{
                 FeedApi.shared.appClassData(class_id:class_id,success: { [unowned self] result in
@@ -495,14 +504,12 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                     })
                 }
             }else{
-                let storyboard = UIStoryboard(name: "Feed", bundle: nil)
-                let controller: ChildDetailClassViewController = storyboard.instantiateViewController(withIdentifier: "ChildDetailClassViewController") as! ChildDetailClassViewController
+                let controller: ChildDetailClassViewController = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailClassViewController") as! ChildDetailClassViewController
                 controller.didMove(toParent: self)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DetailClassIdSend"), object: class_id)
             }
         }else if self.tableViewCheck == 2{
-            let storyboard = UIStoryboard(name: "Feed", bundle: nil)
-            let controller: ChildDetailCurriculumViewController = storyboard.instantiateViewController(withIdentifier: "ChildDetailCurriculumViewController") as! ChildDetailCurriculumViewController
+            let controller: ChildDetailCurriculumViewController = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailCurriculumViewController") as! ChildDetailCurriculumViewController
             
             if self.tab2DataChange == true{
                 DispatchQueue.main.async {
@@ -560,9 +567,9 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
             }
         }else if self.tableViewCheck == 3{
             if self.tab3DataChange == true{
-                let storyboard = UIStoryboard(name: "Feed", bundle: nil)
-                let controller: ChildDetailReviewViewController = storyboard.instantiateViewController(withIdentifier: "ChildDetailReviewViewController") as! ChildDetailReviewViewController
+                let controller: ChildDetailReviewViewController = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailReviewViewController") as! ChildDetailReviewViewController
                 controller.view.frame = CGRect(x: 0, y: 0, width: self.textView.frame.width, height: self.textView.frame.height)
+                print("textView2AddCheck :", textView2AddCheck)
                 if self.textView2AddCheck == false{
                     self.addChild(controller)
                     self.textView2.addSubview(controller.view)
@@ -592,8 +599,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                     })
                 }
             }else{
-                let storyboard = UIStoryboard(name: "Feed", bundle: nil)
-                let controller: ChildDetailReviewViewController = storyboard.instantiateViewController(withIdentifier: "ChildDetailReviewViewController") as! ChildDetailReviewViewController
+                let controller: ChildDetailReviewViewController = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailReviewViewController") as! ChildDetailReviewViewController
                 DispatchQueue.main.async {
                     self.textView2.frame.origin.y = (self.textView2.frame.origin.y * 4)
                     self.textView2.isHidden = false
@@ -607,8 +613,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
             }
         }else if self.tableViewCheck == 4{
             if self.tab4DataChange == true{
-                let storyboard = UIStoryboard(name: "Feed", bundle: nil)
-                let controller: ChildDetailIntroViewController = storyboard.instantiateViewController(withIdentifier: "ChildDetailIntroViewController") as! ChildDetailIntroViewController
+                let controller: ChildDetailIntroViewController = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailIntroViewController") as! ChildDetailIntroViewController
                 controller.view.frame = CGRect(x: 0, y: 0, width: self.textView.frame.width, height: self.textView.frame.height)
                 if self.textView3AddCheck == false{
                     self.addChild(controller)
@@ -628,9 +633,18 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                         
                     })
                 }
+                
+                FeedApi.shared.app_cheer(class_id: self.class_id) { result in
+                    FeedDetailManager.shared.feedAppCheerModel = result
+                    NotificationCenter.default.post(name: NSNotification.Name("DetailCheerSend"), object: self.class_id)
+                    self.tab4DataChange = false
+                } fail: { error in
+                    
+                }
+
+                
             }else{
-                let storyboard = UIStoryboard(name: "Feed", bundle: nil)
-                let controller: ChildDetailIntroViewController = storyboard.instantiateViewController(withIdentifier: "ChildDetailIntroViewController") as! ChildDetailIntroViewController
+                let controller: ChildDetailIntroViewController = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailIntroViewController") as! ChildDetailIntroViewController
                 DispatchQueue.main.async {
                     self.textView3.frame.origin.y = (self.textView3.frame.origin.y * 4)
                     self.textView3.isHidden = false
@@ -642,9 +656,8 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                     })
                 }
             }
-        } else {
-            let storyboard = UIStoryboard(name: "Feed", bundle: nil)
-            let controller: ShareAppViewController = storyboard.instantiateViewController(withIdentifier: "ShareAppViewController") as! ShareAppViewController
+        } else if self.tableViewCheck == 5 {
+            let controller: ShareAppViewController = feedStoryboard.instantiateViewController(withIdentifier: "ShareAppViewController") as! ShareAppViewController
             controller.share_point = self.share_point
             controller.share_address = self.share_address
             controller.share_img = self.share_img ?? ""
@@ -653,23 +666,76 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
             controller.class_name = self.class_name
             controller.class_id = self.class_id
             
+            controller.view.frame = CGRect(x: 0, y: 0, width: self.textView.frame.width, height: self.textView.frame.height)
+            if self.textView4AddCheck == false{
+                self.addChild(controller)
+                self.textView4.addSubview(controller.view)
+                self.textView4.isHidden = false
+                controller.view.snp.makeConstraints{ (make) in
+                    make.top.bottom.leading.trailing.equalTo(self.textView4)
+                }
+                self.textView4AddCheck = true
+            }
             DispatchQueue.main.async {
+                self.textView4.frame.origin.y = (self.textView4.frame.origin.y * 4)
+                self.textView4.isHidden = false
+                controller.didMove(toParent: self)
+                UIView.animate(withDuration: 0.3,delay: 0.0, animations: {
+                    self.textView4.frame.origin.y = textViewY
+                }, completion: { (isCompleted) in
+                    
+                })
+            }
+            
+        } else {
+            if tab5DataChange == true {
+                let controller = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailDescriptionViewController") as! ChildDetailDescriptionViewController
+                controller.feedDetailList = self.feedDetailList
+
                 controller.view.frame = CGRect(x: 0, y: 0, width: self.textView.frame.width, height: self.textView.frame.height)
+                if self.textView5AddCheck == false{
                     self.addChild(controller)
-                    self.textView4.addSubview(controller.view)
+                    self.textView5.addSubview(controller.view)
+                    self.textView5.isHidden = false
                     controller.view.snp.makeConstraints{ (make) in
-                        make.top.bottom.leading.trailing.equalTo(self.textView1)
+                        make.top.bottom.leading.trailing.equalTo(self.textView5)
                     }
+                    self.textView5AddCheck = true
+                }
                 DispatchQueue.main.async {
-                    self.textView4.frame.origin.y = (self.textView4.frame.origin.y * 4)
-                    self.textView4.isHidden = false
+                    self.textView5.frame.origin.y = (self.textView5.frame.origin.y * 4)
+                    self.textView5.isHidden = false
                     controller.didMove(toParent: self)
                     UIView.animate(withDuration: 0.3,delay: 0.0, animations: {
-                        self.textView4.frame.origin.y = textViewY
+                        self.textView5.frame.origin.y = textViewY
                     }, completion: { (isCompleted) in
+                        
+                    })
+                }
+                FeedApi.shared.appClassData(class_id:class_id) { result in
+                    FeedDetailManager.shared.feedDetailList = result
+                    NotificationCenter.default.post(name: NSNotification.Name("ClassDescriptionSend"), object: self.class_id)
+                    self.tab5DataChange = false
+                } fail: { error in
+                    Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+                        print("api hatosiiiiiiii 55555555")
+                    })
+                }
+                
+            } else {
+                let controller = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailDescriptionViewController") as! ChildDetailDescriptionViewController
+                DispatchQueue.main.async {
+                    self.textView5.frame.origin.y = (self.textView5.frame.origin.y * 4)
+                    self.textView5.isHidden = false
+                    controller.didMove(toParent: self)
+                    UIView.animate(withDuration: 0.3,delay: 0.0, animations: {
+                        self.textView5.frame.origin.y = textViewY
+                    }, completion: { (isCompleted) in
+                        
                     })
                 }
             }
+            
         }
     }
 }

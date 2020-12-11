@@ -244,7 +244,7 @@ class ChildHome2WebViewController: UIViewController ,WKNavigationDelegate,WKUIDe
             myURL = URL(string:"\(url)")
         }
 
-//         myURL = URL(string: "https://junghee.modooclass.net/class/orientation/821")
+//         myURL = URL(string: "https://junghee.modooclass.net/class/orientation/821") /**orientation page test*/
         
         var request = URLRequest(url: myURL!, cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy)
 

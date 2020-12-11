@@ -109,7 +109,12 @@ class ProfileV2NewTableViewCell: UITableViewCell {
     @IBOutlet weak var photoLikeBtn2: UIButton!
     @IBOutlet weak var photoLikeBtn3: UIButton!
     
-//    ProfileV2EmptyActivityCell
+    @IBOutlet weak var photoGradientViewHeight1: NSLayoutConstraint!
+    @IBOutlet weak var photoGradientViewHeight2: NSLayoutConstraint!
+    @IBOutlet weak var photoGradientViewHeight3: NSLayoutConstraint!
+    
+    
+    //    ProfileV2EmptyActivityCell
     @IBOutlet weak var feedbackNoHaveLbl: UIFixedLabel!
     @IBOutlet weak var profileNoStoryBtn: UIFixedButton!
     @IBOutlet weak var profileNoStoryLblView: UIView!

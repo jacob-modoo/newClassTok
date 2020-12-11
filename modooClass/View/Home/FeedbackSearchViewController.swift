@@ -46,6 +46,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     var suggestedSource : [String] = [String]()
     let dropDown = AutoSearchEngine()
     var page = 1
+    var startPosition = 0
     
     let sameView = UIView()
     let feedStoryboard: UIStoryboard = UIStoryboard(name: "Feed", bundle: nil)
@@ -69,7 +70,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
                 app_search(query: searchWord,order : self.order)
             }
         }
-
+        
         searchView.layer.cornerRadius = 15
         searchView.layer.borderColor = UIColor(hexString: "#efefef").cgColor
         searchView.layer.borderWidth = 1
@@ -95,6 +96,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
         super.viewDidAppear(animated)
         Analytics.setAnalyticsCollectionEnabled(true)
         Analytics.logEvent("검색", parameters: [AnalyticsParameterScreenName : "FeedbackSearchViewController"])
+//        tableView.isScrollEnabled = (tableView.contentSize.height < tableView.frame.size.height)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -272,40 +274,22 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     }
     
     func sizeOfImageAt(url: URL) -> CGSize? {
-            // with CGImageSource we avoid loading the whole image into memory
-            guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
-                return nil
-            }
-
-            let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
-            guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
-                return nil
-            }
-
-            if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
-                let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
-                return CGSize(width: width, height: height)
-            } else {
-                return nil
-            }
+        // with CGImageSource we avoid loading the whole image into memory
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
+            return nil
         }
-    
-    func underline(fullStr:String , str:String) -> NSAttributedString{
-        let attributedString = NSMutableAttributedString(string: fullStr)
-        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "AppleSDGothicNeo-Bold", size: 18)!, range: (fullStr as NSString).range(of:str))
-        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: 2, range: (fullStr as NSString).range(of:str))
-        
-        attributedString.addAttribute(NSAttributedString.Key.underlineColor , value: UIColor(hexString: "#FF5A5F"), range: (fullStr as NSString).range(of:str))
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: "#1a1a1a") , range: (fullStr as NSString).range(of:str))
-        return attributedString
-    }
-    
-    func strikeline(str:String) -> NSAttributedString{
-            let attributedString = NSMutableAttributedString(string: str)
-            attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 14)!, range: (str as NSString).range(of:str))
-            attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributedString.length))
-            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: "#b4b4b4") , range: (str as NSString).range(of:str))
-            return attributedString
+
+        let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+        guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
+            return nil
+        }
+
+        if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
+            let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
+            return CGSize(width: width, height: height)
+        } else {
+            return nil
+        }
     }
     
     func gradientView1(cell: FeedbackSearchTableViewCell, row: Int) {
@@ -314,10 +298,9 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
         cell.coachName.text = "\(searchListArr[checkRow].coach_name ?? "")•총 \(searchListArr[checkRow].curriculum_cnt ?? 0)강"
         cell.className.text = "\(searchListArr[checkRow].class_name ?? "")"
         if searchListArr[checkRow].price_sale ?? "" != "0"{
-            print("price sale : \(searchListArr[checkRow].price_sale ?? "")")
             cell.classSalePer.text = "\(searchListArr[checkRow].price_sale ?? "")%"
         }
-        cell.classSalePrice.text = "월 \(convertCurrency(money: NSNumber(value: Int(searchListArr[checkRow].payment_price ?? "")!), style: .decimal))원"
+        cell.classSalePrice.text = "월 \(searchListArr[checkRow].payment_price ?? "")원"
         if searchListArr[checkRow].class_have_status ?? "N" == "N"{
             cell.scrapBtn.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
             cell.scrapBtn.tag = checkRow
@@ -326,7 +309,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
             cell.scrapBtn.tag = checkRow
         }
         cell.classDetailMoveBtn.tag = checkRow
-        cell.classActiveCount.text = "\(convertCurrency(money: (NSNumber(value: searchListArr[checkRow].helpful_cnt ?? 0)), style : NumberFormatter.Style.decimal))명 참여"
+        cell.classActiveCount.text = "\(convertCurrency(money: (NSNumber(value: searchListArr[checkRow].helpful_cnt ?? 0)), style : NumberFormatter.Style.decimal))명 추천"
         
     }
     
@@ -338,7 +321,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
         if searchListArr[checkRow].price_sale ?? "" != "0"{
             cell.classSalePer2.text = "\(searchListArr[checkRow].price_sale ?? "")%"
         }
-        cell.classSalePrice2.text = "월 \(convertCurrency(money: NSNumber(value: Int(searchListArr[checkRow].payment_price ?? "")!), style: .decimal))원"
+        cell.classSalePrice2.text = "월 \(searchListArr[checkRow].payment_price ?? "")원"
 
         if searchListArr[checkRow].class_have_status ?? "N" == "N"{
             cell.scrapBtn2.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
@@ -348,7 +331,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
             cell.scrapBtn2.tag = checkRow
         }
         cell.classDetailMoveBtn2.tag = checkRow
-        cell.classActiveCount2.text = "\(convertCurrency(money: (NSNumber(value: searchListArr[checkRow].helpful_cnt ?? 0)), style : NumberFormatter.Style.decimal))명 참여"
+        cell.classActiveCount2.text = "\(convertCurrency(money: (NSNumber(value: searchListArr[checkRow].helpful_cnt ?? 0)), style : NumberFormatter.Style.decimal))명 추천"
     }
 }
 
@@ -748,7 +731,6 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                     return cell
                 }
             }
-            
         }
     }
     
@@ -1213,5 +1195,29 @@ extension FeedbackSearchViewController: UITextViewDelegate, UITextFieldDelegate 
                 }
             }
         }
+    }
+}
+
+extension FeedbackSearchViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        
+        startPosition = Int(scrollView.contentOffset.y)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        let isPositionUp = CGFloat(startPosition)<scrollView.contentOffset.y
+//
+//        let path = tableView.indexPathsForVisibleRows
+//        var cell: UITableViewCell?
+//        if isPositionUp  {
+//            if let object = path[0] {
+//                cell = tableView.cellForRow(at: object)
+//            }
+//        } else {
+//            if let last = path?.last {
+//                cell = tableView.cellForRow(at: last)
+//            }
+//        }
     }
 }

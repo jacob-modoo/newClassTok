@@ -216,17 +216,12 @@ class HomeClassViewController: UIViewController {
     
     
     @IBAction func myProfileBtnClicked(_ sender: UIButton) {
-        if sender.tag == 1 {
-            let pageArr = ["HomeIntroWebViewController":0,
-                           "HomeClassViewController":1,
-                           "HomeFeedWebViewController":2,
-                           "ProfileV2NewViewController":3]
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveToPage"), object: pageArr["ProfileV2NewViewController"])
-            }
-        } else {
-            let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "HomeProfileViewController") as! HomeProfileViewController
-            self.navigationController?.pushViewController(newViewController, animated: true)
+        let pageArr = ["HomeIntroWebViewController":0,
+                       "HomeClassViewController":1,
+                       "HomeFeedWebViewController":2,
+                       "ProfileV2NewViewController":3]
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveToPage"), object: pageArr["ProfileV2NewViewController"])
         }
     }
     
@@ -639,14 +634,14 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             if HomeMain2Manager.shared.pilotAppMain.results?.app_notice_link ?? "" != ""{
                 cell.notificationBtn.isHidden = false
                 cell.notificationBtn.setTitle("  "+"\(HomeMain2Manager.shared.pilotAppMain.results?.app_notice ?? "")"+"  ", for: .normal)
+                cell.classTitleViewBotttom.constant = 36
+                cell.ClassTitleViewHeight.constant = 123
             } else {
                 cell.notificationBtn.isHidden = true
+                cell.classTitleViewBotttom.constant = 15
+                cell.ClassTitleViewHeight.constant = 102
             }
-            if HomeMain2Manager.shared.pilotAppMain.results?.guide_address ?? "" != ""{
-                cell.classTitleBtn.isHidden = false
-            }else{
-                cell.classTitleBtn.isHidden = true
-            }
+            
             cell.selectionStyle = .none
             return cell
         case 1:
@@ -679,7 +674,6 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 cell.classTitle.text = "클래스 참여하기"
                 cell.classTitle.font = cell.classTitle.font.withSize(18)
-                cell.classTitleBtn.isHidden = true
             }
             cell.selectionStyle = .none
             return cell
@@ -780,7 +774,6 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 cell.classTitle.text = "클래스를 평가해주세요."
                 cell.classTitle.font = cell.classTitle.font.withSize(18)
-                cell.classTitleBtn.isHidden = true
             }
             cell.selectionStyle = .none
             return cell
@@ -815,7 +808,6 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 cell.classTitle.text = "관심 클래스"
                 cell.classTitle.font = cell.classTitle.font.withSize(18)
-                cell.classTitleBtn.isHidden = true
             }
             cell.selectionStyle = .none
             return cell

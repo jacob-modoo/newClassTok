@@ -966,7 +966,7 @@ extension DetailReplyViewController {
                     cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
                     cell.likeCountBtn.setTitle(" \(self.replyArray[row].like ?? 0)", for: .normal)
                 }
-//                self.replyArray[row].like = result.results?.like ?? 0
+                self.replyArray[row].like = result.results?.like ?? 0
                 DispatchQueue.main.async {
                     self.tableView.reloadRows(at: [selectedIndexPath], with: .none)
                     sender.isUserInteractionEnabled = true

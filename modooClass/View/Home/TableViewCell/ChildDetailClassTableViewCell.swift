@@ -32,7 +32,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classDescriptionLbl: UIFixedLabel!
     @IBOutlet weak var classDescriptionBtn: UIButton!
     @IBOutlet weak var sharePointBtnView: UIButton!
-    @IBOutlet weak var likeBtnPopupView: ChildDetailClassPopupView!
+    @IBOutlet weak var descriptionRedIcon: UIImageView!
     
 //    DetailClassContentTitleTableViewCell
     @IBOutlet weak var contentTitleLbl: UILabel!
@@ -214,22 +214,21 @@ extension ChildDetailClassTableViewCell: UICollectionViewDelegate, UICollectionV
             let cell = classRecomCollectionView.dequeueReusableCell(withReuseIdentifier: "ChildDetailClassRecomCollectionViewCell", for: indexPath) as! ChildDetailClassRecomCollectionViewCell
             self.bringSubviewToFront(self.classRecomCollectionView)
             cell.collectionViewClassName.text = recommendationList_arr[row].name ?? ""
-            cell.collectionViewHelpCnt.text = "👍 \(convertCurrency(money: NSNumber(value: recommendationList_arr[row].helpful_cnt ?? 0), style: .decimal))"
+            cell.collectionViewHelpCnt.text = "👍 \(convertCurrency(money: NSNumber(value: recommendationList_arr[row].helpful_cnt ?? 0), style: .decimal))명 추천"
             cell.collectionViewImg.sd_setImage(with: URL(string: "\(recommendationList_arr[row].photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo2"))
             cell.collectionViewPriceLbl.text = "월 \(recommendationList_arr[row].package_payment ?? "")원"
-            cell.price_per_lbl.text = "\(recommendationList_arr[row].package_sale_per ?? "")%"
+            if recommendationList_arr[row].package_sale_per ?? 0 > 0 {
+                cell.price_per_lbl.text = "\(recommendationList_arr[row].package_sale_per ?? 0)%"
+            }
             return cell
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("collection view general")
         if collectionView.tag == 2 {
-            print("collection view recom count : \(recommendationList_arr.count)")
             if recommendationList_arr.count > 0{
                 let class_id = recommendationList_arr[indexPath.row].class_id ?? 0
                 NotificationCenter.default.post(name: NSNotification.Name("goToClassDetail"), object: class_id)
-                print("class id : \(class_id)")
                 recommendationList_arr.removeAll()
                 classRecomCollectionView.performBatchUpdates {
                     let indexSet = IndexSet(integersIn: 0...0)
@@ -241,9 +240,7 @@ extension ChildDetailClassTableViewCell: UICollectionViewDelegate, UICollectionV
             }
         } else {
 //            add selectItem action for collectionView.tag = 1
-            print("collection view body")
         }
-
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

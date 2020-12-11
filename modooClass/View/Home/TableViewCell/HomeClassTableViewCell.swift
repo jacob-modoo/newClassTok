@@ -17,12 +17,13 @@ class HomeClassTableViewCell: UITableViewCell {
     
 //    HomeClassTitleCell
     @IBOutlet weak var classTitle: UIFixedLabel!
-    @IBOutlet weak var classTitleBtn: UIFixedButton!
     @IBOutlet weak var notificationBtn: UIFixedButton!
     
     @IBOutlet weak var iconLevelImg: UIImageView!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userBackgroundImg: UIImageView!
+    @IBOutlet var classTitleViewBotttom: NSLayoutConstraint!
+    @IBOutlet var ClassTitleViewHeight: NSLayoutConstraint!
     
 //    HomeClassTimerCell
     @IBOutlet weak var timerText: UILabel!

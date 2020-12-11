@@ -11,6 +11,8 @@ import UIKit
 class ChildDetailIntroTableViewCell: UITableViewCell {
 
     @IBOutlet weak var classIntroContent: UITextView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

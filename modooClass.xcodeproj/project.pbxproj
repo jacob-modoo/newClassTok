@@ -106,6 +106,8 @@
 		0E37A8ED2356DD6000283F9A /* FeedInAppPurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37A8EC2356DD6000283F9A /* FeedInAppPurchaseModel.swift */; };
 		0E3D60FC23542CDD0082752D /* UIFixedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3D60FB23542CDD0082752D /* UIFixedClass.swift */; };
 		0E3E76F922D5E106009524EC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E76F822D5E106009524EC /* Date+Extension.swift */; };
+		0E4B3D29257FB75800EC142E /* ChildDetailDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B3D28257FB75800EC142E /* ChildDetailDescriptionViewController.swift */; };
+		0E4B3D3A2580566000EC142E /* ChildDetailDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B3D392580566000EC142E /* ChildDetailDescriptionTableViewCell.swift */; };
 		0E4C1C28231CFC37008C6733 /* DetailReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C1C27231CFC37008C6733 /* DetailReplyTableViewCell.swift */; };
 		0E4C1C2C231DF1F8008C6733 /* TabBarItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C1C2B231DF1F8008C6733 /* TabBarItem+Extension.swift */; };
 		0E515C9F252EA2C400F8C5AA /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E515C9E252EA2C400F8C5AA /* UIDevice+Extension.swift */; };
@@ -391,6 +393,8 @@
 		0E3E76F822D5E106009524EC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		0E4798F922F7ADF90097EF8E /* Device.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Device.md; sourceTree = "<group>"; };
 		0E4798FA22F7AF620097EF8E /* Version.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Version.md; sourceTree = "<group>"; };
+		0E4B3D28257FB75800EC142E /* ChildDetailDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailDescriptionViewController.swift; sourceTree = "<group>"; };
+		0E4B3D392580566000EC142E /* ChildDetailDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		0E4C1C27231CFC37008C6733 /* DetailReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReplyTableViewCell.swift; sourceTree = "<group>"; };
 		0E4C1C2B231DF1F8008C6733 /* TabBarItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarItem+Extension.swift"; sourceTree = "<group>"; };
 		0E515C9E252EA2C400F8C5AA /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
@@ -841,6 +845,7 @@
 				0EDE67CB22A79AA800C2B3C1 /* ChildDetailCurriculumViewController.swift */,
 				0E2B9E9623C818060012EF3B /* ChildDetailReviewViewController.swift */,
 				0E2B9E9823C818420012EF3B /* ChildDetailIntroViewController.swift */,
+				0E4B3D28257FB75800EC142E /* ChildDetailDescriptionViewController.swift */,
 				0ED7F52822B1CF3000CF2F92 /* DetailMissionCompleteViewController.swift */,
 				0E1A967B22AA5BA0001261B2 /* DetailReplyViewController.swift */,
 				0E8E9757238E073500842694 /* ReplyLikeViewController.swift */,
@@ -991,6 +996,7 @@
 				0E2017BA230E8940005581E4 /* ChildDetailCurriculumTableViewCell.swift */,
 				0E2B9E9A23C81BD80012EF3B /* ChildDetailReviewTableViewCell.swift */,
 				0E2B9E9C23C81BE70012EF3B /* ChildDetailIntroTableViewCell.swift */,
+				0E4B3D392580566000EC142E /* ChildDetailDescriptionTableViewCell.swift */,
 				0ED7F53722B1F03C00CF2F92 /* DetailMissionCompleteTableViewCell.swift */,
 				0E4C1C27231CFC37008C6733 /* DetailReplyTableViewCell.swift */,
 				0E8E9759238E07ED00842694 /* ReplyLikeTableViewCell.swift */,
@@ -1616,6 +1622,7 @@
 				0E2C2F1B2281602D006653C8 /* LoginViewController.swift in Sources */,
 				0ED03D4122A4EFA800AD48A3 /* ReadMoreTextView.swift in Sources */,
 				0E33C34E22F121F1000AECC2 /* ChattingFriendWebViewViewController.swift in Sources */,
+				0E4B3D29257FB75800EC142E /* ChildDetailDescriptionViewController.swift in Sources */,
 				0E01408223FA466E00DAB35F /* StoryDetailViewController.swift in Sources */,
 				0E1A8D6B22937D3300D581F5 /* Image.swift in Sources */,
 				0E93EBB52386666A00DC3A5B /* HomeFeedWebViewController.swift in Sources */,
@@ -1700,6 +1707,7 @@
 				0E788A97256CD5220051F7FE /* ChildDetailClassRecomCollectionViewCell.swift in Sources */,
 				0E2C2F2E22825169006653C8 /* Indicator.swift in Sources */,
 				0ED7F52022B0D9E300CF2F92 /* FeedAppCheeringModel.swift in Sources */,
+				0E4B3D3A2580566000EC142E /* ChildDetailDescriptionTableViewCell.swift in Sources */,
 				0E2B9E9F23CC4E4C0012EF3B /* ReviewModel.swift in Sources */,
 				0E2C2F1922815CA3006653C8 /* Define.swift in Sources */,
 				0EDE67D522A9E26D00C2B3C1 /* FeedAppClassDetailReplyModel.swift in Sources */,
@@ -1857,7 +1865,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.7;
+				CURRENT_PROJECT_VERSION = 2.1.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
@@ -1880,7 +1888,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.7;
+				CURRENT_PROJECT_VERSION = 2.1.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
@@ -1903,7 +1911,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.7;
+				CURRENT_PROJECT_VERSION = 2.1.0;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1925,7 +1933,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.7;
+				CURRENT_PROJECT_VERSION = 2.1.0;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -2071,7 +2079,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/SurpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.7;
+				CURRENT_PROJECT_VERSION = 2.1.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2173,7 +2181,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/SurpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.7;
+				CURRENT_PROJECT_VERSION = 2.1.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (

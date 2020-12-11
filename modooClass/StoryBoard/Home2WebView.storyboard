@@ -206,10 +206,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailClassInfoTableViewCell" id="NXg-aC-xne" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NXg-aC-xne" id="2sP-99-pvs">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffy-Y6-Pv4" userLabel="Main View">
@@ -360,7 +360,7 @@
                                                     </constraints>
                                                 </view>
                                                 <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="l4O-jL-EQH" customClass="UIFixedTextView" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="12" width="382" height="32"/>
+                                                    <rect key="frame" x="16" y="12" width="382" height="33"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -398,7 +398,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailClassInfoQTableViewCell" rowHeight="264" id="VLS-Mx-M3I" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="264"/>
+                                        <rect key="frame" x="0.0" y="73" width="414" height="264"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VLS-Mx-M3I" id="rrt-wo-p26">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="264"/>
@@ -631,23 +631,23 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailClassInfoITableViewCell" id="bEc-dc-Tfh" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="336" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="337" width="414" height="153"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bEc-dc-Tfh" id="da8-F0-IA6">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="153"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FzM-ma-iCe" userLabel="Main View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="146"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="curriculumV2_default" translatesAutoresizingMaskIntoConstraints="NO" id="sKo-1N-wiA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="100" id="8Ym-yu-cI0"/>
                                                             </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aa4-oi-rMC" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="-6" width="382" height="60"/>
+                                                            <rect key="frame" x="16" y="70" width="382" height="60"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply_user_default" translatesAutoresizingMaskIntoConstraints="NO" id="mxU-FK-CND">
                                                                     <rect key="frame" x="8" y="8" width="44" height="44"/>
@@ -803,7 +803,7 @@
                                                     </constraints>
                                                 </view>
                                                 <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iMR-Ah-9NH" customClass="UIFixedTextView" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="34" width="382" height="0.0"/>
+                                                    <rect key="frame" x="16" y="110" width="382" height="33"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -844,14 +844,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailContentTableViewCell" id="8AA-P5-9Fz" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="380" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="490" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8AA-P5-9Fz" id="zuZ-5N-IdT">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O4y-Rg-HMe" customClass="UIFixedTextView" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="16" width="382" height="12"/>
+                                                    <rect key="frame" x="16" y="16" width="382" height="33"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -882,7 +882,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailReviewTableViewCell" id="xLO-bf-iAj" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="424" width="414" height="111"/>
+                                        <rect key="frame" x="0.0" y="555" width="414" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xLO-bf-iAj" id="vJj-FE-PrE">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="111"/>
@@ -1021,7 +1021,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailReview2TableViewCell" id="4IS-7l-TDM" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="535" width="414" height="208"/>
+                                        <rect key="frame" x="0.0" y="666" width="414" height="208"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4IS-7l-TDM" id="L5V-wI-bOB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="208"/>
@@ -1254,7 +1254,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailInterestTableViewCell" id="e9A-yG-wXs" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="743" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="874" width="414" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e9A-yG-wXs" id="c1X-Ed-25b">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
@@ -1337,7 +1337,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailLikeInfoTableViewCell" id="P1S-IH-G34" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="795" width="414" height="48"/>
+                                        <rect key="frame" x="0.0" y="926" width="414" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P1S-IH-G34" id="zuD-bJ-pVB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
@@ -1346,9 +1346,29 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Kd-ri-7fc">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                                                     <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0tw-Lz-LcK" userLabel="RightBtn View">
+                                                            <rect key="frame" x="0.0" y="0.0" width="207" height="48"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QBt-TY-5tx">
+                                                                    <rect key="frame" x="-17" y="-40" width="240" height="128"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ciU-aH-5u7" userLabel="LeftBtn View">
+                                                            <rect key="frame" x="207" y="0.0" width="207" height="48"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F2H-x9-8oU">
+                                                                    <rect key="frame" x="-17" y="-42" width="240" height="128"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIm-8Y-pTp" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="207" height="48"/>
-                                                            <state key="normal" title="도움돼요 88" image="class_main_like"/>
+                                                            <state key="normal" title="도움돼요 88" image="profile_main_likeBtn"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="typeAdapter">
                                                                     <integer key="value" value="7"/>
@@ -1385,15 +1405,25 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
+                                                        <constraint firstItem="0tw-Lz-LcK" firstAttribute="centerY" secondItem="2Kd-ri-7fc" secondAttribute="centerY" id="5Yl-no-x1V"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ciU-aH-5u7" secondAttribute="trailing" id="7g6-2N-RHG"/>
                                                         <constraint firstAttribute="bottom" secondItem="Zq8-sh-7wJ" secondAttribute="bottom" id="9PU-jr-C9R"/>
                                                         <constraint firstItem="Zq8-sh-7wJ" firstAttribute="leading" secondItem="oIm-8Y-pTp" secondAttribute="trailing" id="HdY-wX-vea"/>
+                                                        <constraint firstItem="ciU-aH-5u7" firstAttribute="width" secondItem="0tw-Lz-LcK" secondAttribute="width" id="JFV-pN-Wzv"/>
+                                                        <constraint firstItem="0tw-Lz-LcK" firstAttribute="top" secondItem="2Kd-ri-7fc" secondAttribute="top" id="JaC-EA-OKP"/>
+                                                        <constraint firstAttribute="bottom" secondItem="0tw-Lz-LcK" secondAttribute="bottom" id="ONk-S1-c59"/>
                                                         <constraint firstItem="Zq8-sh-7wJ" firstAttribute="width" secondItem="oIm-8Y-pTp" secondAttribute="width" id="PY5-qS-5xI"/>
+                                                        <constraint firstItem="ciU-aH-5u7" firstAttribute="centerY" secondItem="2Kd-ri-7fc" secondAttribute="centerY" id="VtS-Kp-gdC"/>
                                                         <constraint firstAttribute="bottom" secondItem="oIm-8Y-pTp" secondAttribute="bottom" id="Xkf-Vw-2rA"/>
+                                                        <constraint firstAttribute="bottom" secondItem="ciU-aH-5u7" secondAttribute="bottom" id="ZFS-eS-wlI"/>
                                                         <constraint firstItem="oIm-8Y-pTp" firstAttribute="top" secondItem="2Kd-ri-7fc" secondAttribute="top" id="a8J-uW-dhK"/>
                                                         <constraint firstAttribute="height" constant="48" id="d9a-eF-x3a"/>
                                                         <constraint firstAttribute="trailing" secondItem="Zq8-sh-7wJ" secondAttribute="trailing" id="dwJ-ph-tkP"/>
                                                         <constraint firstItem="Zq8-sh-7wJ" firstAttribute="top" secondItem="2Kd-ri-7fc" secondAttribute="top" id="iAs-fx-5cX"/>
+                                                        <constraint firstItem="0tw-Lz-LcK" firstAttribute="leading" secondItem="2Kd-ri-7fc" secondAttribute="leading" id="ogQ-94-Q0s"/>
+                                                        <constraint firstItem="ciU-aH-5u7" firstAttribute="top" secondItem="2Kd-ri-7fc" secondAttribute="top" id="rn3-ao-wzC"/>
                                                         <constraint firstItem="oIm-8Y-pTp" firstAttribute="leading" secondItem="2Kd-ri-7fc" secondAttribute="leading" id="wQG-ph-Xe7"/>
+                                                        <constraint firstItem="ciU-aH-5u7" firstAttribute="leading" secondItem="0tw-Lz-LcK" secondAttribute="trailing" id="znw-Nr-y7s"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDO-ty-eqD">
@@ -1430,7 +1460,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetail1TableViewCell" rowHeight="170" id="mOW-oi-Zb4" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="843" width="414" height="170"/>
+                                        <rect key="frame" x="0.0" y="974" width="414" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mOW-oi-Zb4" id="tfv-sw-4xw">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
@@ -1648,7 +1678,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetail2TableViewCell" rowHeight="360" id="rrT-Mm-OZU" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1013" width="414" height="360"/>
+                                        <rect key="frame" x="0.0" y="1144" width="414" height="360"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rrT-Mm-OZU" id="Y1s-Qw-lD2">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="360"/>
@@ -1889,7 +1919,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetail3TableViewCell" rowHeight="360" id="3Oj-b3-xeg" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1373" width="414" height="360"/>
+                                        <rect key="frame" x="0.0" y="1504" width="414" height="360"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Oj-b3-xeg" id="vdq-8N-zl7">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="360"/>
@@ -2103,16 +2133,16 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailEmptyTableViewCell" id="old-yz-fj8" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1733" width="414" height="112"/>
+                                        <rect key="frame" x="0.0" y="1864" width="414" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="old-yz-fj8" id="olI-q2-VEc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uDr-fu-Rke" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uDr-fu-Rke" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="16" width="382" height="80"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="첫번째 댓글을 남겨주세요 !😀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2a0-bv-qvu" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="첫번째 댓글을 남겨주세요 !😀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2a0-bv-qvu" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="116.5" y="32.5" width="149.5" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -2129,7 +2159,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLW-CS-agh">
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLW-CS-agh">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
                                                             <connections>
                                                                 <action selector="emptyViewBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="Swj-uL-I1x"/>
@@ -2171,13 +2201,13 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailOverTableViewCell" id="BnO-YW-Q6F" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1845" width="414" height="68"/>
+                                        <rect key="frame" x="0.0" y="1976" width="414" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BnO-YW-Q6F" id="Ufc-45-ynh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZx-dY-ppV" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZx-dY-ppV" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="16" width="382" height="36"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -2223,16 +2253,16 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailLikeInfo2TableViewCell" id="X9V-v9-vCG" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1913" width="414" height="66"/>
+                                        <rect key="frame" x="0.0" y="2044" width="414" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X9V-v9-vCG" id="DnL-jq-HL5">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBX-Hn-fE7">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBX-Hn-fE7">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도움돼요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geX-Ed-Jmt" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="도움돼요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geX-Ed-Jmt" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="16" y="18" width="43.5" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -2249,7 +2279,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzD-PT-xcs" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzD-PT-xcs" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="64.5" y="25.5" width="28.5" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -2266,13 +2296,13 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Hu-K6-JwX">
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Hu-K6-JwX">
                                                             <rect key="frame" x="16" y="18" width="77" height="30"/>
                                                             <connections>
                                                                 <action selector="likeListBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="e57-VI-VTj"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="댓글" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKX-1I-XGG" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="댓글" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKX-1I-XGG" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="103" y="25.5" width="22" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -2289,7 +2319,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7km-eO-stj" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7km-eO-stj" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="130" y="25.5" width="28.5" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -2306,7 +2336,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIb-12-eSr" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIb-12-eSr" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="369.5" y="25.5" width="28.5" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -2343,14 +2373,14 @@
                                                         <constraint firstItem="ZKX-1I-XGG" firstAttribute="centerY" secondItem="wBX-Hn-fE7" secondAttribute="centerY" id="vBY-nu-Uyi"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Agv-Rh-Ss5">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Agv-Rh-Ss5">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
                                                     <color key="backgroundColor" name="BackColor_mainColor2"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="R2T-Ae-EyM"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3t-MI-xya">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3t-MI-xya">
                                                     <rect key="frame" x="0.0" y="65" width="414" height="1"/>
                                                     <color key="backgroundColor" name="BackColor_mainColor2"/>
                                                     <constraints>
@@ -2378,13 +2408,13 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailActiveTitleTableViewCell" id="Lel-1H-aHX" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1979" width="414" height="112"/>
+                                        <rect key="frame" x="0.0" y="2110" width="414" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lel-1H-aHX" id="Rvc-HD-hDf">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOL-E5-yam" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uOL-E5-yam" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="16" width="414" height="80"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ded-am-QdU">
@@ -2418,13 +2448,13 @@
                                                                 <action selector="activeProfileBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="qiE-v8-Zbn"/>
                                                             </connections>
                                                         </button>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mt-zF-YtG">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5mt-zF-YtG">
                                                             <rect key="frame" x="74" y="16" width="89.5" height="48"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qB8-n4-5pR">
+                                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qB8-n4-5pR">
                                                                     <rect key="frame" x="0.0" y="5.5" width="89.5" height="37"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="담당 코치" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TR-Xl-mTO" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="담당 코치" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TR-Xl-mTO" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="52.5" height="17"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -2441,14 +2471,14 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="manBadge" translatesAutoresizingMaskIntoConstraints="NO" id="41F-JT-VZQ">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="manBadge" translatesAutoresizingMaskIntoConstraints="NO" id="41F-JT-VZQ">
                                                                             <rect key="frame" x="56.5" y="0.0" width="10" height="10"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="10" id="4Bs-np-cH3"/>
                                                                                 <constraint firstAttribute="height" constant="10" id="dwm-e1-dtG"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팔로워 99명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnu-84-VzG" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="팔로워 99명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnu-84-VzG" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="29" y="22" width="60.5" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -2465,7 +2495,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="withoutMember" translatesAutoresizingMaskIntoConstraints="NO" id="MbC-Xt-r6Q">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="withoutMember" translatesAutoresizingMaskIntoConstraints="NO" id="MbC-Xt-r6Q">
                                                                             <rect key="frame" x="0.0" y="17.5" width="24" height="24"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="24" id="ObP-Cy-Sku"/>
@@ -2496,7 +2526,7 @@
                                                                 <constraint firstItem="qB8-n4-5pR" firstAttribute="centerY" secondItem="5mt-zF-YtG" secondAttribute="centerY" id="b9T-tC-hO3"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uY2-a5-3OM">
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uY2-a5-3OM">
                                                             <rect key="frame" x="318" y="25" width="80" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="80" id="dBY-Ih-cYL"/>
@@ -2559,22 +2589,22 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryDetailActiveTableViewCell" rowHeight="133" id="V3Q-IX-5Eg" customClass="StoryDetailTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="2091" width="414" height="133"/>
+                                        <rect key="frame" x="0.0" y="2222" width="414" height="133"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V3Q-IX-5Eg" id="kqd-fj-YSF">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ht3-tP-9w9">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ht3-tP-9w9">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="133"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bh5-8Q-lg0" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bh5-8Q-lg0" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="1" width="136.5" height="131"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwP-od-6EK">
+                                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vwP-od-6EK">
                                                                     <rect key="frame" x="5" y="15" width="126.5" height="63"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hG2-Oq-q35">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hG2-Oq-q35">
                                                                             <rect key="frame" x="47.5" y="0.0" width="32" height="32"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="32" id="jwL-Ga-vgR"/>
@@ -2592,7 +2622,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zT7-lT-0bj" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zT7-lT-0bj" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="48" width="126.5" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                             <nil key="textColor"/>
@@ -2620,7 +2650,7 @@
                                                                         <constraint firstItem="hG2-Oq-q35" firstAttribute="centerX" secondItem="vwP-od-6EK" secondAttribute="centerX" id="ySB-rt-9Rn"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsd-EZ-1fH" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fsd-EZ-1fH" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="71" width="136.5" height="60"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -2647,7 +2677,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5h-8t-665" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5h-8t-665" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="8" y="108" width="14" height="15"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2661,13 +2691,13 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsz-Qw-W8v" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsz-Qw-W8v" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="136.5" height="131"/>
                                                                     <connections>
                                                                         <action selector="activeMoveBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="LrF-by-sTd"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEb-qn-9Xk">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEb-qn-9Xk">
                                                                     <rect key="frame" x="8" y="101" width="120.5" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="22" id="e78-x3-GSy"/>
@@ -2706,13 +2736,13 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXQ-nr-htT" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AXQ-nr-htT" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="138.5" y="1" width="137" height="131"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m55-cA-wnF">
+                                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m55-cA-wnF">
                                                                     <rect key="frame" x="5" y="15" width="127" height="63"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Z5-KL-a3t">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Z5-KL-a3t">
                                                                             <rect key="frame" x="47.5" y="0.0" width="32" height="32"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="32" id="OfL-Xa-3NJ"/>
@@ -2730,7 +2760,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTi-yS-vdr" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTi-yS-vdr" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="48" width="127" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                             <nil key="textColor"/>
@@ -2758,7 +2788,7 @@
                                                                         <constraint firstItem="mTi-yS-vdr" firstAttribute="top" secondItem="1Z5-KL-a3t" secondAttribute="bottom" constant="16" id="v1u-dw-cvL"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3J-ga-iPA" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3J-ga-iPA" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="71" width="137" height="60"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -2785,7 +2815,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMY-06-QfO" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMY-06-QfO" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="8" y="108" width="14" height="15"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2799,13 +2829,13 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRS-x3-DWA" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRS-x3-DWA" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="137" height="131"/>
                                                                     <connections>
                                                                         <action selector="activeMoveBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="sn3-OQ-Cid"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mL-p9-GBE">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mL-p9-GBE">
                                                                     <rect key="frame" x="8" y="101" width="121" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="22" id="WSR-4V-mMB"/>
@@ -2844,13 +2874,13 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85z-4w-dHd" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="85z-4w-dHd" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="277.5" y="1" width="136.5" height="131"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NC1-5h-UKN">
+                                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NC1-5h-UKN">
                                                                     <rect key="frame" x="5" y="15" width="126.5" height="63"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1wd-82-lr3">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1wd-82-lr3">
                                                                             <rect key="frame" x="47" y="0.0" width="32" height="32"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="32" id="Z2c-Zn-abO"/>
@@ -2868,7 +2898,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnA-sK-VuH" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnA-sK-VuH" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="48" width="126.5" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                             <nil key="textColor"/>
@@ -2896,7 +2926,7 @@
                                                                         <constraint firstItem="1wd-82-lr3" firstAttribute="centerX" secondItem="NC1-5h-UKN" secondAttribute="centerX" id="vvn-cR-0Vi"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHB-wc-OJD" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IHB-wc-OJD" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="71" width="136.5" height="60"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -2923,7 +2953,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbQ-8q-KL5" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbQ-8q-KL5" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="8" y="108" width="14" height="15"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2937,13 +2967,13 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l2A-pc-RsB" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l2A-pc-RsB" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="136.5" height="131"/>
                                                                     <connections>
                                                                         <action selector="activeMoveBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="wnW-q9-PHD"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNc-Uo-bal">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNc-Uo-bal">
                                                                     <rect key="frame" x="8" y="101" width="120.5" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="22" id="QGV-69-8Ke"/>
@@ -2982,10 +3012,10 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn5-Wz-tfK">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fn5-Wz-tfK">
                                                             <rect key="frame" x="0.0" y="1" width="136.5" height="131"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MSU-K6-19u">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MSU-K6-19u">
                                                                     <rect key="frame" x="0.0" y="0.0" width="136.5" height="131"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -2993,7 +3023,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
-                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK7-sv-Nki" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JK7-sv-Nki" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="71" width="136.5" height="60"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -3020,7 +3050,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQP-Ck-dd8" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQP-Ck-dd8" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="8" y="108" width="14" height="15"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3034,20 +3064,20 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="9iq-Po-yHg">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="9iq-Po-yHg">
                                                                     <rect key="frame" x="53.5" y="50.5" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="Hw7-n2-Wge"/>
                                                                         <constraint firstAttribute="width" constant="30" id="Rhp-av-vF1"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R62-Ju-eaB" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R62-Ju-eaB" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="4" y="4" width="128.5" height="123"/>
                                                                     <connections>
                                                                         <action selector="activeMoveBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="iUM-zB-eLT"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nv2-t1-9v3">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nv2-t1-9v3">
                                                                     <rect key="frame" x="8" y="101" width="120.5" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="22" id="ahx-MA-20I"/>
@@ -3080,10 +3110,10 @@
                                                                 <constraint firstItem="R62-Ju-eaB" firstAttribute="leading" secondItem="fn5-Wz-tfK" secondAttribute="leading" constant="4" id="srB-nw-9lN"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgY-wb-p37">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgY-wb-p37">
                                                             <rect key="frame" x="138.5" y="1" width="137" height="131"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YJb-tw-Vcy">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YJb-tw-Vcy">
                                                                     <rect key="frame" x="0.0" y="0.0" width="137" height="131"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -3091,7 +3121,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
-                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RA5-7T-rNn" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RA5-7T-rNn" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="71" width="137" height="60"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -3118,7 +3148,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFV-tc-L1i" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFV-tc-L1i" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="8" y="108" width="14" height="15"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3132,20 +3162,20 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="dxS-Fn-ZqM">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="dxS-Fn-ZqM">
                                                                     <rect key="frame" x="53.5" y="50.5" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="bIT-Za-Ll6"/>
                                                                         <constraint firstAttribute="width" constant="30" id="wd4-r0-Yz0"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9r3-cJ-DtX" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9r3-cJ-DtX" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="4" y="4" width="129" height="123"/>
                                                                     <connections>
                                                                         <action selector="activeMoveBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="dyo-mb-dID"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlS-pO-YM7">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlS-pO-YM7">
                                                                     <rect key="frame" x="8" y="101" width="121" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="22" id="lYT-u8-bTG"/>
@@ -3178,10 +3208,10 @@
                                                                 <constraint firstAttribute="bottom" secondItem="RA5-7T-rNn" secondAttribute="bottom" id="wg4-t4-chM"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ClU-C7-fAT">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ClU-C7-fAT">
                                                             <rect key="frame" x="277.5" y="1" width="136.5" height="131"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j47-DY-Gbn">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j47-DY-Gbn">
                                                                     <rect key="frame" x="0.0" y="0.0" width="136.5" height="131"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -3189,7 +3219,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
-                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNP-bC-TIs" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                                <view alpha="0.30000001192092896" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNP-bC-TIs" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="71" width="136.5" height="60"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -3216,7 +3246,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjG-Ki-lH6" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjG-Ki-lH6" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="8" y="108" width="14" height="15"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3230,20 +3260,20 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="7hT-cd-UsY">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="7hT-cd-UsY">
                                                                     <rect key="frame" x="53" y="50.5" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="2eR-sC-NLm"/>
                                                                         <constraint firstAttribute="width" constant="30" id="QRS-ZB-CKn"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0F-Zf-ub8" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0F-Zf-ub8" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="4" y="4" width="128.5" height="123"/>
                                                                     <connections>
                                                                         <action selector="activeMoveBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="3US-D1-yRA"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJm-yI-b4C">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJm-yI-b4C">
                                                                     <rect key="frame" x="8" y="101" width="120.5" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="22" id="4Nf-xI-58M"/>
@@ -3685,42 +3715,6 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgc-g4-H1q">
-                                                                    <rect key="frame" x="307" y="21" width="75" height="30"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="5UR-Kc-NU7"/>
-                                                                        <constraint firstAttribute="width" constant="75" id="v67-Fr-n3F"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                                                    <color key="tintColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <state key="normal" title="내 정보"/>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="15"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="typeAdapter">
-                                                                            <integer key="value" value="7"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontAdapter">
-                                                                            <integer key="value" value="1"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="colorAdapter">
-                                                                            <integer key="value" value="11"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                            <real key="value" value="1"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                            <color key="value" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="backColorAdapter">
-                                                                            <integer key="value" value="0"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                    <connections>
-                                                                        <action selector="myProfileBtnClicked:" destination="Paf-XC-5zz" eventType="touchUpInside" id="Kps-mI-DYl"/>
-                                                                    </connections>
-                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyQ-4j-Fve" userLabel="Notification Btn" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="92" y="68" width="164" height="24"/>
                                                                     <constraints>
@@ -3748,16 +3742,14 @@
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="bgc-g4-H1q" secondAttribute="trailing" id="5Jh-kL-sXh"/>
-                                                                <constraint firstItem="bgc-g4-H1q" firstAttribute="centerY" secondItem="nD9-Ji-Fum" secondAttribute="centerY" id="IXW-X7-cHN"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HyQ-4j-Fve" secondAttribute="trailing" constant="50" id="N1g-Y3-Ehs"/>
                                                                 <constraint firstItem="Rea-sm-3Hq" firstAttribute="leading" secondItem="nD9-Ji-Fum" secondAttribute="leading" constant="48" id="NFG-DR-5Tm"/>
-                                                                <constraint firstItem="bgc-g4-H1q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eY9-mh-7ch" secondAttribute="trailing" constant="16" id="NmT-Mk-vMh"/>
                                                                 <constraint firstAttribute="bottom" secondItem="HyQ-4j-Fve" secondAttribute="bottom" constant="-20" id="ObW-yg-NmQ"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Rea-sm-3Hq" secondAttribute="bottom" id="URj-rU-7nK"/>
                                                                 <constraint firstItem="eY9-mh-7ch" firstAttribute="leading" secondItem="Rea-sm-3Hq" secondAttribute="trailing" constant="16" id="cgd-ti-O3P"/>
                                                                 <constraint firstItem="HyQ-4j-Fve" firstAttribute="leading" secondItem="eY9-mh-7ch" secondAttribute="leading" id="esU-PG-vqh"/>
                                                                 <constraint firstAttribute="height" constant="72" id="fJC-ku-43B"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eY9-mh-7ch" secondAttribute="trailing" constant="90" id="s6T-f1-VFv"/>
                                                                 <constraint firstItem="eY9-mh-7ch" firstAttribute="centerY" secondItem="nD9-Ji-Fum" secondAttribute="centerY" id="wwh-VO-f8Q"/>
                                                             </constraints>
                                                         </view>
@@ -3781,8 +3773,9 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="ClassTitleViewHeight" destination="5hs-mC-Xuy" id="UXG-Fa-PZj"/>
                                             <outlet property="classTitle" destination="eY9-mh-7ch" id="VI0-mJ-rtH"/>
-                                            <outlet property="classTitleBtn" destination="bgc-g4-H1q" id="CUV-a2-D5G"/>
+                                            <outlet property="classTitleViewBotttom" destination="ogj-4e-wH6" id="p3L-gI-1RE"/>
                                             <outlet property="iconLevelImg" destination="hid-C5-R49" id="6WK-sj-W30"/>
                                             <outlet property="notificationBtn" destination="HyQ-4j-Fve" id="hGT-We-B90"/>
                                             <outlet property="userBackgroundImg" destination="MI7-tn-h48" id="yuW-HU-6AE"/>
@@ -3797,7 +3790,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임 안녕하세요" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phE-ME-B0F" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="5" width="306" height="24"/>
+                                                    <rect key="frame" x="16" y="5" width="382" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -3813,34 +3806,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVM-sK-UBR" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="338" y="5" width="60" height="24"/>
-                                                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="7L3-AN-Che"/>
-                                                        <constraint firstAttribute="width" constant="60" id="Mfp-8O-H4T"/>
-                                                    </constraints>
-                                                    <state key="normal" title="가이드"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="typeAdapter">
-                                                            <integer key="value" value="7"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontAdapter">
-                                                            <integer key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="colorAdapter">
-                                                            <integer key="value" value="11"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="LVM-sK-UBR" firstAttribute="leading" secondItem="phE-ME-B0F" secondAttribute="trailing" constant="16" id="5Dl-ld-FDH"/>
-                                                <constraint firstItem="LVM-sK-UBR" firstAttribute="top" secondItem="phE-ME-B0F" secondAttribute="top" id="CeB-U4-Hf9"/>
-                                                <constraint firstAttribute="trailing" secondItem="LVM-sK-UBR" secondAttribute="trailing" constant="16" id="S5U-1h-Z7N"/>
+                                                <constraint firstAttribute="trailing" secondItem="phE-ME-B0F" secondAttribute="trailing" constant="16" id="Vcr-s0-8Gj"/>
                                                 <constraint firstItem="phE-ME-B0F" firstAttribute="top" secondItem="LrL-mo-jyW" secondAttribute="top" constant="5" id="atw-GS-4hf"/>
                                                 <constraint firstAttribute="bottom" secondItem="phE-ME-B0F" secondAttribute="bottom" constant="5" id="ol2-Gf-P2V"/>
                                                 <constraint firstItem="phE-ME-B0F" firstAttribute="leading" secondItem="LrL-mo-jyW" secondAttribute="leading" constant="16" id="vSA-9Q-O7Z"/>
@@ -3849,7 +3817,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="classTitle" destination="phE-ME-B0F" id="lWN-FD-e6L"/>
-                                            <outlet property="classTitleBtn" destination="LVM-sK-UBR" id="JSK-MK-hkv"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeClassManagerCell" id="All-Ea-amE" customClass="HomeClassTableViewCell" customModule="modooClass" customModuleProvider="target">
@@ -11162,10 +11129,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="kw9-Ig-lxq">
-                                                                    <rect key="frame" x="53.5" y="53" width="30" height="30"/>
+                                                                    <rect key="frame" x="104.5" y="10" width="22" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="30" id="3Ou-dz-N4L"/>
-                                                                        <constraint firstAttribute="height" constant="30" id="Jff-8g-gLN"/>
+                                                                        <constraint firstAttribute="width" constant="22" id="3Ou-dz-N4L"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="Jff-8g-gLN"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hR0-Ic-kah" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
@@ -11194,8 +11161,8 @@
                                                                 <constraint firstAttribute="bottom" secondItem="PiQ-hU-hsR" secondAttribute="bottom" id="4NM-Pl-NIs"/>
                                                                 <constraint firstAttribute="trailing" secondItem="FSO-j8-Y8R" secondAttribute="trailing" id="If4-bR-h65"/>
                                                                 <constraint firstItem="hR0-Ic-kah" firstAttribute="leading" secondItem="jvk-wa-myX" secondAttribute="leading" constant="4" id="JNc-uS-3Y7"/>
-                                                                <constraint firstItem="kw9-Ig-lxq" firstAttribute="centerX" secondItem="jvk-wa-myX" secondAttribute="centerX" id="KX6-sN-RVR"/>
                                                                 <constraint firstAttribute="bottom" secondItem="G1Y-bd-7ab" secondAttribute="bottom" constant="8" id="Rjk-cg-6tt"/>
+                                                                <constraint firstAttribute="trailing" secondItem="kw9-Ig-lxq" secondAttribute="trailing" constant="10" id="TwU-ig-yAC"/>
                                                                 <constraint firstItem="FSO-j8-Y8R" firstAttribute="top" secondItem="jvk-wa-myX" secondAttribute="top" id="USo-dU-AQ7"/>
                                                                 <constraint firstAttribute="bottom" secondItem="hR0-Ic-kah" secondAttribute="bottom" constant="4" id="VgF-8O-PWd"/>
                                                                 <constraint firstItem="PiQ-hU-hsR" firstAttribute="leading" secondItem="jvk-wa-myX" secondAttribute="leading" id="Vzi-XS-N0q"/>
@@ -11203,7 +11170,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="PiQ-hU-hsR" secondAttribute="trailing" id="aTF-H0-zn2"/>
                                                                 <constraint firstItem="FSO-j8-Y8R" firstAttribute="leading" secondItem="jvk-wa-myX" secondAttribute="leading" id="dOq-DF-QQg"/>
                                                                 <constraint firstItem="G1Y-bd-7ab" firstAttribute="leading" secondItem="jvk-wa-myX" secondAttribute="leading" constant="8" id="eVu-nt-29I"/>
-                                                                <constraint firstItem="kw9-Ig-lxq" firstAttribute="centerY" secondItem="jvk-wa-myX" secondAttribute="centerY" id="jyw-gB-GvY"/>
+                                                                <constraint firstItem="kw9-Ig-lxq" firstAttribute="top" secondItem="jvk-wa-myX" secondAttribute="top" constant="10" id="okH-F9-NTW"/>
                                                                 <constraint firstItem="bwr-5W-QXX" firstAttribute="leading" secondItem="jvk-wa-myX" secondAttribute="leading" constant="8" id="suu-jb-265"/>
                                                                 <constraint firstAttribute="bottom" secondItem="bwr-5W-QXX" secondAttribute="bottom" constant="8" id="u9S-wZ-G57"/>
                                                             </constraints>
@@ -11261,10 +11228,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="xQM-D1-Y9e">
-                                                                    <rect key="frame" x="53.5" y="53" width="30" height="30"/>
+                                                                    <rect key="frame" x="105" y="10" width="22" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="30" id="Nct-eU-ar5"/>
-                                                                        <constraint firstAttribute="height" constant="30" id="utB-f7-34U"/>
+                                                                        <constraint firstAttribute="width" constant="22" id="Nct-eU-ar5"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="utB-f7-34U"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcz-aO-9ye" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
@@ -11291,19 +11258,19 @@
                                                                 <constraint firstAttribute="bottom" secondItem="Kg9-Sj-hEy" secondAttribute="bottom" constant="8" id="65h-zT-mce"/>
                                                                 <constraint firstItem="GRx-WK-bnK" firstAttribute="leading" secondItem="L6o-P3-xhe" secondAttribute="leading" id="BGR-fT-aCf"/>
                                                                 <constraint firstItem="GRx-WK-bnK" firstAttribute="top" secondItem="L6o-P3-xhe" secondAttribute="top" id="Bfg-fn-Ywf"/>
+                                                                <constraint firstAttribute="trailing" secondItem="xQM-D1-Y9e" secondAttribute="trailing" constant="10" id="ESM-rT-bwx"/>
                                                                 <constraint firstAttribute="bottom" secondItem="hcz-aO-9ye" secondAttribute="bottom" constant="4" id="EeA-u5-xVh"/>
                                                                 <constraint firstItem="exx-Xm-q48" firstAttribute="leading" secondItem="L6o-P3-xhe" secondAttribute="leading" constant="8" id="GzM-nA-E28"/>
                                                                 <constraint firstAttribute="trailing" secondItem="hcz-aO-9ye" secondAttribute="trailing" constant="4" id="PFV-Eh-hym"/>
                                                                 <constraint firstAttribute="trailing" secondItem="sdT-2K-75r" secondAttribute="trailing" id="S98-SE-eGo"/>
                                                                 <constraint firstAttribute="bottom" secondItem="GRx-WK-bnK" secondAttribute="bottom" id="WA2-hH-ctz"/>
-                                                                <constraint firstItem="xQM-D1-Y9e" firstAttribute="centerY" secondItem="L6o-P3-xhe" secondAttribute="centerY" id="WXH-01-5Lr"/>
                                                                 <constraint firstAttribute="trailing" secondItem="GRx-WK-bnK" secondAttribute="trailing" id="iet-zB-r3F"/>
                                                                 <constraint firstAttribute="bottom" secondItem="exx-Xm-q48" secondAttribute="bottom" constant="8" id="mKo-Ng-PFV"/>
                                                                 <constraint firstItem="hcz-aO-9ye" firstAttribute="top" secondItem="L6o-P3-xhe" secondAttribute="top" constant="4" id="pCb-0j-YY6"/>
+                                                                <constraint firstItem="xQM-D1-Y9e" firstAttribute="top" secondItem="L6o-P3-xhe" secondAttribute="top" constant="10" id="uBX-13-JiN"/>
                                                                 <constraint firstItem="hcz-aO-9ye" firstAttribute="leading" secondItem="L6o-P3-xhe" secondAttribute="leading" constant="4" id="wMp-tM-pje"/>
                                                                 <constraint firstItem="sdT-2K-75r" firstAttribute="leading" secondItem="L6o-P3-xhe" secondAttribute="leading" id="xbk-Ue-dxO"/>
                                                                 <constraint firstAttribute="trailing" secondItem="exx-Xm-q48" secondAttribute="trailing" constant="8" id="xci-Pe-ekm"/>
-                                                                <constraint firstItem="xQM-D1-Y9e" firstAttribute="centerX" secondItem="L6o-P3-xhe" secondAttribute="centerX" id="zdA-fV-tU4"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Do-k0-lcQ">
@@ -11359,10 +11326,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="Fw6-Vm-AHe">
-                                                                    <rect key="frame" x="53" y="53" width="30" height="30"/>
+                                                                    <rect key="frame" x="104.5" y="10" width="22" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="30" id="9Y7-Ps-kdu"/>
-                                                                        <constraint firstAttribute="height" constant="30" id="acj-bE-UjQ"/>
+                                                                        <constraint firstAttribute="width" constant="22" id="9Y7-Ps-kdu"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="acj-bE-UjQ"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKh-cL-p53" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
@@ -11386,6 +11353,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="vsJ-HL-Jbq" secondAttribute="bottom" id="6Jr-tZ-wsS"/>
                                                                 <constraint firstAttribute="bottom" secondItem="H02-si-dko" secondAttribute="bottom" constant="8" id="8ti-EE-khC"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Fw6-Vm-AHe" secondAttribute="trailing" constant="10" id="9hA-rZ-zax"/>
                                                                 <constraint firstItem="gqQ-Fp-m6a" firstAttribute="leading" secondItem="9Do-k0-lcQ" secondAttribute="leading" constant="8" id="BfA-Dn-60e"/>
                                                                 <constraint firstAttribute="bottom" secondItem="DqN-ni-cAA" secondAttribute="bottom" id="Cdv-TY-PGr"/>
                                                                 <constraint firstAttribute="bottom" secondItem="SKh-cL-p53" secondAttribute="bottom" constant="4" id="Ijj-sa-eSw"/>
@@ -11393,11 +11361,10 @@
                                                                 <constraint firstItem="DqN-ni-cAA" firstAttribute="leading" secondItem="9Do-k0-lcQ" secondAttribute="leading" id="KEp-EL-Z0T"/>
                                                                 <constraint firstItem="vsJ-HL-Jbq" firstAttribute="top" secondItem="9Do-k0-lcQ" secondAttribute="top" id="PdH-uK-d7V"/>
                                                                 <constraint firstAttribute="trailing" secondItem="SKh-cL-p53" secondAttribute="trailing" constant="4" id="Qjx-gb-Zhw"/>
+                                                                <constraint firstItem="Fw6-Vm-AHe" firstAttribute="top" secondItem="9Do-k0-lcQ" secondAttribute="top" constant="10" id="S93-Of-wrk"/>
                                                                 <constraint firstItem="vsJ-HL-Jbq" firstAttribute="leading" secondItem="9Do-k0-lcQ" secondAttribute="leading" id="ecA-Rv-X60"/>
                                                                 <constraint firstAttribute="trailing" secondItem="gqQ-Fp-m6a" secondAttribute="trailing" constant="8" id="lkn-cc-jyO"/>
                                                                 <constraint firstItem="SKh-cL-p53" firstAttribute="leading" secondItem="9Do-k0-lcQ" secondAttribute="leading" constant="4" id="meB-NE-4Ij"/>
-                                                                <constraint firstItem="Fw6-Vm-AHe" firstAttribute="centerX" secondItem="9Do-k0-lcQ" secondAttribute="centerX" id="nqX-NN-hrj"/>
-                                                                <constraint firstItem="Fw6-Vm-AHe" firstAttribute="centerY" secondItem="9Do-k0-lcQ" secondAttribute="centerY" id="pww-Jv-1Bf"/>
                                                                 <constraint firstItem="SKh-cL-p53" firstAttribute="top" secondItem="9Do-k0-lcQ" secondAttribute="top" constant="4" id="qWg-nS-Jhq"/>
                                                                 <constraint firstAttribute="bottom" secondItem="gqQ-Fp-m6a" secondAttribute="bottom" constant="8" id="stW-y0-syA"/>
                                                                 <constraint firstItem="H02-si-dko" firstAttribute="leading" secondItem="9Do-k0-lcQ" secondAttribute="leading" constant="8" id="uQm-Vx-G1g"/>
@@ -11471,6 +11438,9 @@
                                             <outlet property="photoBtn1" destination="hR0-Ic-kah" id="42b-WY-h7x"/>
                                             <outlet property="photoBtn2" destination="hcz-aO-9ye" id="a7U-O3-luH"/>
                                             <outlet property="photoBtn3" destination="SKh-cL-p53" id="ei5-wN-pyE"/>
+                                            <outlet property="photoGradientViewHeight1" destination="Cgv-i1-56q" id="PCk-7r-fsK"/>
+                                            <outlet property="photoGradientViewHeight2" destination="fha-UG-u61" id="Kiy-I5-a7W"/>
+                                            <outlet property="photoGradientViewHeight3" destination="hc1-xQ-K6Q" id="Ola-Kf-iyf"/>
                                             <outlet property="photoLikeBtn1" destination="bwr-5W-QXX" id="RBe-6u-kmF"/>
                                             <outlet property="photoLikeBtn2" destination="exx-Xm-q48" id="JFl-qn-1SU"/>
                                             <outlet property="photoLikeBtn3" destination="gqQ-Fp-m6a" id="pW4-HZ-SxV"/>
@@ -12031,6 +12001,7 @@
                         <outlet property="tabLbl3" destination="BvH-rn-aZc" id="nCF-gP-we4"/>
                         <outlet property="tabLbl4" destination="DXe-j6-Ea3" id="do3-j1-vv4"/>
                         <outlet property="tabView" destination="GTw-oV-KIS" id="pmv-Hy-u6T"/>
+                        <outlet property="tabViewBottomHeight" destination="Z8e-qX-8ne" id="leU-xM-wxX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jlm-ws-mGj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -13333,9 +13304,6 @@
         <designable name="LLa-de-gDK">
             <size key="intrinsicContentSize" width="14" height="15"/>
         </designable>
-        <designable name="LVM-sK-UBR">
-            <size key="intrinsicContentSize" width="33" height="27"/>
-        </designable>
         <designable name="Lbu-v9-JKl">
             <size key="intrinsicContentSize" width="63" height="26.5"/>
         </designable>
@@ -13748,7 +13716,6 @@
         <image name="class_group_mission_emoji3" width="40" height="40"/>
         <image name="class_iconV2_Active" width="20" height="20"/>
         <image name="class_image_add" width="24" height="24"/>
-        <image name="class_main_like" width="24" height="24"/>
         <image name="class_participate_btn" width="71.5" height="17"/>
         <image name="class_reply_emoticon" width="24" height="24"/>
         <image name="class_week_best2" width="248" height="40"/>
@@ -13779,6 +13746,7 @@
         <image name="profile_iconV2" width="20" height="20"/>
         <image name="profile_input" width="151" height="17"/>
         <image name="profile_instagram_icon" width="24" height="24"/>
+        <image name="profile_main_likeBtn" width="24" height="24"/>
         <image name="profile_otherNetwork_icon" width="24" height="24"/>
         <image name="profile_share_content_img" width="68" height="49"/>
         <image name="profile_youtube_icon" width="24" height="24"/>
