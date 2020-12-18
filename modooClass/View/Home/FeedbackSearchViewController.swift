@@ -133,9 +133,9 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     @IBAction func categoryBtnClicked(_ sender: UIButton) {
         
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .transitionFlipFromTop, animations: {
-            let indexPath = IndexPath(row: 0, section: 0)
-//            let indexPath = NSIndexPath(row: NSNotFound, section: 0)
-            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+//            let indexPath = IndexPath(row: 0, section: 0)
+            let indexPath = NSIndexPath(row: NSNotFound, section: 0)
+            self.tableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
         }, completion: {_ in
             DispatchQueue.main.async {
                 if sender.tag == 10000{
@@ -519,9 +519,12 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                 let url = URL(string: "\(self.rankList?.results?.event_list_arr[0].image ?? "")")!
                 let ratio = (sizeOfImageAt(url: url)?.width ?? 0)/(sizeOfImageAt(url: url)?.height ?? 0)
                 let newHeight = cell.eventImg.frame.width/ratio
-                cell.eventImgHeight.constant = newHeight
-                
-                cell.eventImg.sd_setImage(with: url, completed: nil)
+                if self.rankList?.results?.event_list_arr[0].image ?? "" != "" {
+                    cell.eventImgHeight.constant = newHeight
+                    cell.eventImg.sd_setImage(with: url, completed: nil)
+                } else {
+                    cell.eventImgHeight.constant = 0
+                }
                 
                 cell.selectionStyle = .none
                 return cell

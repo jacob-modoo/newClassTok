@@ -341,9 +341,11 @@ extension AlarmViewController{
                             }
                             
                         }else if type == 2 || type == 3{//댓글상세
+                            print("comment id : \(self.alarmArray[row].mcComment_id ?? 0)")
                             let newViewController = self.feedStoryboard.instantiateViewController(withIdentifier: "DetailReplyViewController") as! DetailReplyViewController
                             newViewController.comment_id = self.alarmArray[row].mcComment_id ?? 0
                             newViewController.class_id = self.alarmArray[row].mcClass_id ?? 0
+                            newViewController.noticeCheck = true
                             if self.alarmArray[row].mcCurriculum_id ?? 0 == 0{
                                 newViewController.commentType = "class"
                             }else{

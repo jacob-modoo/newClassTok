@@ -569,7 +569,6 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
             if self.tab3DataChange == true{
                 let controller: ChildDetailReviewViewController = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailReviewViewController") as! ChildDetailReviewViewController
                 controller.view.frame = CGRect(x: 0, y: 0, width: self.textView.frame.width, height: self.textView.frame.height)
-                print("textView2AddCheck :", textView2AddCheck)
                 if self.textView2AddCheck == false{
                     self.addChild(controller)
                     self.textView2.addSubview(controller.view)
@@ -639,7 +638,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                     NotificationCenter.default.post(name: NSNotification.Name("DetailCheerSend"), object: self.class_id)
                     self.tab4DataChange = false
                 } fail: { error in
-                    
+                    print("intro api call error!")
                 }
 
                 
@@ -718,7 +717,6 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                     self.tab5DataChange = false
                 } fail: { error in
                     Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
-                        print("api hatosiiiiiiii 55555555")
                     })
                 }
                 
@@ -735,7 +733,6 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                     })
                 }
             }
-            
         }
     }
 }

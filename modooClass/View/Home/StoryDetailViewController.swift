@@ -76,7 +76,6 @@ class StoryDetailViewController: UIViewController {
     var youtube_url = ""
     var youtube_load = false
     var feedId = "S182711"//"M186759"//"Q185271"//"R5363"//"M182754"//"R5363" //"S182711"  "Q185271"
-    var feedChangeId = ""
     var list:SquareDetailModel?
     var videoPlayer:AVPlayer!
     let playerController = AVPlayerViewController()
@@ -175,7 +174,6 @@ class StoryDetailViewController: UIViewController {
     @objc func chattingCheck(notification:Notification){
         guard let chattingUrl = notification.userInfo?["chattingUrl"] as? String else { return }
         let newViewController = UIStoryboard(name: "ChattingWebView", bundle: nil).instantiateViewController(withIdentifier: "ChattingFriendWebViewViewController") as! ChattingFriendWebViewViewController
-        print(chattingUrl)
         newViewController.url = chattingUrl
         newViewController.tokenCheck = true
         self.navigationController?.pushViewController(newViewController, animated: true)
@@ -184,10 +182,6 @@ class StoryDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        if feedId != feedChangeId{
-            feedId = feedChangeId
-            squareDetail()
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -275,13 +269,14 @@ class StoryDetailViewController: UIViewController {
     
     /** **this button will delete the feed*/
     @IBAction func moreBtnClicked(_ sender: UIButton) {
+        let content_id = self.list?.results?.content_id ?? 0
         Alert.With(self, title: "알림", content: "게시물을 삭제하시겠어요?", btn1Title: "취소", btn1Handler: {
         }, btn2Title: "확인", btn2Handler: {
-            FeedApi.shared.feed_delete(id: self.list?.results?.content_id ?? 0, success: { [unowned self] result in
+            FeedApi.shared.feed_delete(id: content_id, success: { [unowned self] result in
                 if result.code == "200"{
                     if self.active_comment_list.count != 0 {
                         for i in 0..<self.active_comment_list.count {
-                            if self.list?.results?.content_id ?? 0 == self.active_comment_list[i].id ?? 0 {
+                            if content_id == self.active_comment_list[i].id ?? 0 {
                                 self.active_comment_list.remove(at: i)
                                 break
                             }
@@ -416,14 +411,17 @@ class StoryDetailViewController: UIViewController {
     }
     
     @IBAction func replyMoreBtnClicked(_ sender: UIButton) {
+        let comment_id = self.list?.results?.comment_reply?.list_arr[sender.tag].comment_id ?? ""
         Alert.With(self, btn1Title: "삭제", btn1Handler: {
             DispatchQueue.main.async {
-                FeedApi.shared.squareReplyDelete(articleId: "\(self.list?.results?.comment_reply?.list_arr[sender.tag].comment_id ?? "")",success: { [unowned self] result in
+                FeedApi.shared.squareReplyDelete(articleId: comment_id, success: { [unowned self] result in
                     if result.code == "200"{
                         for addArray in 0 ..< (self.list?.results?.comment_reply?.list_arr.count ?? 0)! {
-                            if self.list?.results?.comment_reply?.list_arr[sender.tag].comment_id ?? "" == "\(self.list?.results?.comment_reply?.list_arr[addArray].comment_id ?? "")"{
+                            if comment_id == "\(self.list?.results?.comment_reply?.list_arr[addArray].comment_id ?? "")"{
                                 self.list?.results?.comment_reply?.list_arr.remove(at: addArray)
-                                self.tableView.reloadData()
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadSections([4,5,6], with: .automatic)
+                                }
                                 break
                             }
                         }
@@ -441,8 +439,6 @@ class StoryDetailViewController: UIViewController {
         let sameVC = home2WebViewStoryboard.instantiateViewController(withIdentifier: "StoryDetailViewController") as! StoryDetailViewController
         sameVC.feedId = self.feedId
         self.navigationController?.pushViewController(sameVC, animated: true)
-//        self.navigationController?.storyPopOrPushController(feedId: self.feedId)
-//        squareDetail()
     }
     
     @IBAction func likeCountBtnClicked(_ sender: UIButton) {
@@ -469,7 +465,13 @@ class StoryDetailViewController: UIViewController {
             replyWriteCheck()
         }else{
             let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
-            newViewController.user_id = self.list?.results?.comment_reply?.list_arr[sender.tag].user_id ?? 0
+            let friend_id = self.list?.results?.comment_reply?.list_arr[sender.tag].user_id ?? 0
+            if UserManager.shared.userInfo.results?.user?.id == friend_id {
+                newViewController.isMyProfile = true
+            }else{
+                newViewController.isMyProfile = false
+            }
+            newViewController.user_id = friend_id
             self.ytView.pauseVideo()
             self.playerController.player?.pause()
             self.navigationController?.pushViewController(newViewController, animated: true)
@@ -510,7 +512,9 @@ class StoryDetailViewController: UIViewController {
                 self.replyTextView.text = ""
                 self.textViewTab()
                 self.emoticonNumber = 0
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadSections([4,5,6], with: .automatic)
+                }
             }
             
             Indicator.hideActivityIndicator(uiView: self.view)
@@ -1139,7 +1143,6 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoTableViewCell", for: indexPath) as! StoryDetailTableViewCell
                 cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
-                print("this is mcClass_id: \(self.list?.results?.mcClass_id ?? 0)")
                 if self.list?.results?.mcClass_id ?? 0 == 0 {
                     cell.classLinkView.isHidden = true
                     cell.contentIfNeeded.isHidden = false
@@ -1227,9 +1230,9 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 }
                 cell.reviewClassName.text = "\(self.list?.results?.class_name ?? "")"
                 if self.list?.results?.star == 1 || self.list?.results?.star == 2 {
-                    cell.userReviewStar1.image = UIImage(named: "dislike_btn_with_title")
+                    cell.userReviewStar1.image = UIImage(named: "review_not_recommended")
                 }else {
-                    cell.userReviewStar1.image = UIImage(named: "like_btn_with_title")
+                    cell.userReviewStar1.image = UIImage(named: "review_recom_short")
                 }
             }
             /** this statement will correct the written tag in 스토리 작성 page*/
@@ -1341,11 +1344,11 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                         cell.replyContentTextView.textContainer.lineBreakMode = .byTruncatingTail
                     }else{ }
                     
-                    if self.list?.results?.comment_reply?.list_arr[row].coach_yn ?? "N" == "Y"{
-                        cell.coachStar.isHidden = false
-                    }else{
-                        cell.coachStar.isHidden = true
-                    }
+//                    if self.list?.results?.comment_reply?.list_arr[row].coach_yn ?? "N" == "Y"{
+//                        cell.coachStar.isHidden = false
+//                    }else{
+//                        cell.coachStar.isHidden = true
+//                    }
                     
                     cell.replyContentView.layer.cornerRadius = 12
                     cell.likeCountBtn.layer.shadowOpacity = 0.1
@@ -1381,24 +1384,28 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
             cell.classCoachImg.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
             cell.classCoachName.text = "\(self.list?.results?.user_info?.user_name ?? "")"
             
-            if self.list?.results?.user_info?.friend_status ?? "Y" == "Y"{
-                cell.classCoachWithBtn.setImage(UIImage(named: "messageImgV2"), for: .normal)
-                cell.classCoachWithBtn.tag = 2
-            }else{
-                cell.classCoachWithBtn.setImage(UIImage(named: "follow_profile"), for: .normal)
-                cell.classCoachWithBtn.tag = 1
+            if self.list?.results?.user_info?.user_id ?? 0 != UserManager.shared.userInfo.results?.user?.id ?? 0 {
+                if self.list?.results?.user_info?.friend_status ?? "Y" == "Y"{
+                    cell.classCoachWithBtn.setImage(UIImage(named: "messageImgV2"), for: .normal)
+                    cell.classCoachWithBtn.tag = 2
+                }else{
+                    cell.classCoachWithBtn.setImage(UIImage(named: "follow_profile"), for: .normal)
+                    cell.classCoachWithBtn.tag = 1
+                }
+                cell.classCoachProfileBtn.tag = self.list?.results?.user_info?.user_id ?? 0
+                
+                if self.list?.results?.user_info?.gender ?? "M" == "M"{
+                    cell.genderBadge.image = UIImage(named: "manBadge")
+                }else if self.list?.results?.user_info?.gender ?? "M" == "F"{
+                    cell.genderBadge.image = UIImage(named: "womanBadge")
+                }else{
+                    cell.genderBadge.isHidden = true
+                }
+            } else {
+                cell.classCoachWithBtn.isHidden = true
             }
-            cell.classCoachProfileBtn.tag = self.list?.results?.user_info?.user_id ?? 0
             
-            if self.list?.results?.user_info?.gender ?? "M" == "M"{
-                cell.genderBadge.image = UIImage(named: "manBadge")
-            }else if self.list?.results?.user_info?.gender ?? "M" == "F"{
-                cell.genderBadge.image = UIImage(named: "womanBadge")
-            }else{
-                cell.genderBadge.isHidden = true
-            }
-            
-            cell.classWithoutCnt.text = "팔로워 \(convertCurrency(money: (NSNumber(value: self.list?.results?.user_info?.mcFriend_cnt ?? 0)), style : NumberFormatter.Style.decimal))명"
+            cell.classWithoutCnt.text = "팔로워 \(convertCurrency(money: (NSNumber(value: self.list?.results?.user_info?.mcFriend_cnt ?? 0)), style : .decimal))명"
             cell.selectionStyle = .none
             return cell
         case 8:

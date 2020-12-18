@@ -344,13 +344,15 @@ class StoryReplyDetailViewController: UIViewController {
     }
     
     @IBAction func replyMoreBtnClicked(_ sender: UIButton) {
-        print(self.listArr[sender.tag].comment_id ?? "")
+        print("** comment_id : \(sender.tag)")
+        print("** feedID : \(self.listArr[sender.tag].comment_id ?? "")")
+        let comment_id = self.listArr[sender.tag].comment_id ?? ""
         Alert.With(self, btn1Title: "삭제", btn1Handler: {
             DispatchQueue.main.async {
-                FeedApi.shared.squareReplyDelete(articleId: "\(self.listArr[sender.tag].comment_id ?? "")",success: { [unowned self] result in
+                FeedApi.shared.squareReplyDelete(articleId: comment_id,success: { [unowned self] result in
                     if result.code == "200"{
                         for addArray in 0 ..< (self.listArr.count) {
-                            if self.listArr[sender.tag].comment_id ?? "" == "\(self.listArr[addArray].comment_id ?? "")"{
+                            if comment_id == "\(self.listArr[addArray].comment_id ?? "")"{
                                 self.listArr.remove(at: addArray)
                                 if self.listArr.count > 0{
                                     self.replyEmptyView.isHidden = true

@@ -14,6 +14,7 @@ class PopupShowViewController: UIViewController {
     @IBOutlet weak var linkBtn: UIFixedButton!
     @IBOutlet weak var openLaterBtn: UIButton!
     @IBOutlet weak var closeBtn: UIButton!
+    @IBOutlet var bottomViewHeight: NSLayoutConstraint!
     
     
     var openLater = false
@@ -23,7 +24,12 @@ class PopupShowViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("device has notch : ", UIDevice.current.hasNotch)
+        if UIDevice.current.hasNotch == true {
+            self.bottomViewHeight.constant = 34
+        } else {
+            self.bottomViewHeight.constant = 0
+        }
         self.popupImg.sd_setImage(with: URL(string: "\(UserManager.shared.userInfo.results?.event_image ?? "")"))
     }
     
@@ -38,7 +44,7 @@ class PopupShowViewController: UIViewController {
     }
   
     deinit {
-        
+        print("PopupShowViewController deinit")
     }
     
     @IBAction func linkBtnClicked(_ sender: UIButton) {

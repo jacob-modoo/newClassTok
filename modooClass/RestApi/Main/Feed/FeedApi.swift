@@ -944,23 +944,35 @@ class FeedApi: NSObject {
         }
     }
     
-    func squareReplyDelete(articleId:String,success: @escaping(_ data: FeedAppClassDetailReplySendModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+    func squareReplyDelete(articleId:String, success: @escaping(_ data: FeedAppClassDefaultModel) -> Void, fail: @escaping (_ error: Error?)-> Void){
         
-        let param:Dictionary = [
-        "type":"delete"
-        ] as [String : Any]
-        
-        let request = AF.request("\(apiUrl)/squareComment/\(articleId)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        let request = AF.request("\(apiUrl)/comment/\(articleId)", method: .delete, parameters: nil, encoding: URLEncoding.default, headers: header)
         
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
-                let dic = FeedAppClassDetailReplySendModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post : \(apiUrl)/squareComment/\(articleId)"))
+                let dic = FeedAppClassDefaultModel.init(dic: convertToDictionary(data: response.data!,apiURL: "delete : \(apiUrl)/comment/\(articleId)"))
                 success(dic)
             }else {
                 fail(response.error)
             }
         }
+        
+//        let param:Dictionary = [
+//        "type":"delete"
+//        ] as [String : Any]
+//
+//        let request = AF.request("\(apiUrl)/squareComment/\(articleId)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+//
+//        request.response { response in
+//            let statusCode = response.response?.statusCode
+//            if statusCode == 200 {
+//                let dic = FeedAppClassDetailReplySendModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post : \(apiUrl)/squareComment/\(articleId)"))
+//                success(dic)
+//            }else {
+//                fail(response.error)
+//            }
+//        }
     }
     
     func squareCommentList(articleId:String,page:Int,success: @escaping(_ data: SquareReplyCommentListModel)-> Void, fail: @escaping (_ error: Error?)-> Void){

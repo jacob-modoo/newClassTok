@@ -124,7 +124,6 @@ class ProfileV2NewTableViewCell: UITableViewCell {
     @IBOutlet private weak var classCollectionView: UICollectionView!
     
     var class_list_arr:Array = Array<Class_New_List>()
-    var comment_list_arr:Array = Array<Comment_List>()
     var profileNewModel:ProfileNewModel?
     
     override func awakeFromNib() {
@@ -160,7 +159,11 @@ extension ProfileV2NewTableViewCell: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let class_id = class_list_arr[indexPath.row].class_id ?? 0
-        NotificationCenter.default.post(name: NSNotification.Name("goToClassDetail"), object: class_id)
+        let tag = indexPath.row
+        let status = class_list_arr[tag].status ?? 0
+        let classValue = ["id":class_id, "tag":tag, "status":status]
+        
+        NotificationCenter.default.post(name: NSNotification.Name("goToClassDetail"), object: nil, userInfo: classValue)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -1072,20 +1072,22 @@ class ChildDetailClassViewController: UIViewController {
             let class_id = notification.object as! Int
             self.navigationController?.popOrPushController(class_id: class_id)
 //
-            if self.feedDetailList?.results?.user_status ?? "" == "spectator" {
-                self.tableView.beginUpdates()
-                self.recommendationList?.removeAll()
-                for addArray in 0..<(self.feedDetailList?.results?.class_recom_list?.list_arr.count ?? 0) {
-                    self.recommendationList?.append((self.feedDetailList?.results?.class_recom_list?.list_arr[addArray])!)
-                }
-                self.tableView.reloadSections(NSIndexSet(index: 7) as IndexSet, with: .fade)
-                self.tableView.endUpdates()
-                print("updated section 7")
-            }
+//            if self.feedDetailList?.results?.user_status ?? "" == "spectator" {
+//                self.tableView.beginUpdates()
+            self.recommendationList?.removeAll()
             for addArray in 0..<(self.feedDetailList?.results?.class_recom_list?.list_arr.count ?? 0) {
                 self.recommendationList?.append((self.feedDetailList?.results?.class_recom_list?.list_arr[addArray])!)
             }
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadSections([7], with: .automatic)
+                print("** updated section 7")
+            }
+                
+//            }
+//            for addArray in 0..<(self.feedDetailList?.results?.class_recom_list?.list_arr.count ?? 0) {
+//                self.recommendationList?.append((self.feedDetailList?.results?.class_recom_list?.list_arr[addArray])!)
+//            }
+//            self.tableView.reloadData()
         }
     }
     
@@ -1591,7 +1593,6 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                 if self.feedDetailList != nil{
                     cell.classPriceImg.sd_setImage(with: URL(string: "\(feedDetailList?.results?.photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                     cell.classPriceName.text = "\(feedDetailList?.results?.class_name ?? "")"
-                    print("class price : ", feedDetailList?.results?.price ?? "umumuan yuq")
 //                    if feedDetailList?.results?.sale_per ?? "" != "0" {
 //                        cell.classSalePrice.text = "[\(feedDetailList?.results?.sale_per ?? "")%] \(feedDetailList?.results?.price ?? "")원"
 //                        cell.classOriginalPrice.attributedText = strikeline(str: "\(feedDetailList?.results?.origin_price ?? "")원")
@@ -2155,7 +2156,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
             if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
                 if section == 11{
                     if self.replyArray != nil{
-                        if row == (self.replyArray!.count){
+                        if row == (self.replyArray!.count)-1 {
                             if self.replyArray!.count < self.feedReplyList?.results!.total ?? 0 {
                                 Indicator.showActivityIndicator(uiView: self.view)
                                 self.page = self.page + 1
@@ -2167,7 +2168,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
             }else{
                 if section == 10{
                     if self.replyArray != nil{
-                        if row == (self.replyArray!.count){
+                        if row == (self.replyArray!.count)-1 {
                             if self.replyArray!.count < self.feedReplyList?.results!.total ?? 0 {
                                 Indicator.showActivityIndicator(uiView: self.view)
                                 self.page = self.page + 1
@@ -2183,147 +2184,144 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
     func replyCell(cell:ChildDetailClassTableViewCell,indexPath:IndexPath , rowCheck:Bool) -> ChildDetailClassTableViewCell{
         var cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply1TableViewCell") as! ChildDetailClassTableViewCell
         let row = indexPath.row
-        if replyArray != nil{
-            if replyArray!.count > 0{
-                if replyArray?[row].reply_count ?? 0 > 0 {
-                    if replyArray?[row].photo ?? "" == "" && replyArray?[row].emoticon ?? 0 == 0{
-                        cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply1TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                        cell.readMoreBtn.tag = row
-                        if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                            cell.readMoreBtn.isUserInteractionEnabled = true
-                        }
-                    }else{
-                        if replyArray?[row].content ?? "" != "" {
-                            cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply3TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                            cell.readMoreBtn.tag = row
-                            if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                                cell.readMoreBtn.isUserInteractionEnabled = true
-                            }
-                        }else{
-                            cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply5TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                        }
-                        cell.replyPhotoBtn.tag = row
-                        if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                            cell.replyPhotoBtn.isUserInteractionEnabled = false
-                        }
-                        if replyArray?[row].emoticon ?? 0 == 0{
-                            cell.replyPhoto.sd_setImage(with: URL(string: "\(replyArray?[row].photo ?? "")"), placeholderImage: UIImage(named: "user_default"))
-                            cell.replyPhotoHeightConst.constant = 160
-                            cell.replyPhotoWidthConst.constant = 160
-                        }else{
-                            cell.replyPhoto.image = UIImage(named: "emti\(replyArray?[row].emoticon ?? 0)")
-                            cell.replyPhotoHeightConst.constant = 80
-                            cell.replyPhotoWidthConst.constant = 80
-                        }
-                        let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-                        cell.replyPhoto.addGestureRecognizer(pictureTap)
-                        if replyArray?[row].play_file ?? "" == ""{
-                            cell.youtubePlayImg.isHidden = true
-                        }else{
-                            cell.youtubePlayImg.isHidden = false
-                        }
-                    }
-                    if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                        cell.replyMoreBtn.isUserInteractionEnabled = false
-                    }
-                    cell.replyMoreBtn.tag = row
-                    cell.replyMoreBtn.setTitle("답글 \(replyArray?[row].reply_count ?? 0)개 보기", for: .normal)
-                }else{
-                    if replyArray?[row].photo ?? "" == "" && replyArray?[row].emoticon ?? 0 == 0{
-                        cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply2TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                        if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                            cell.readMoreBtn.isUserInteractionEnabled = true
-                        }
-                        cell.readMoreBtn.tag = row
-                    }else{
-                        if replyArray?[row].content ?? "" != "" {
-                            cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply4TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                            cell.readMoreBtn.tag = row
-                            if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                                cell.readMoreBtn.isUserInteractionEnabled = true
-                            }
-                        }else{
-                            cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply6TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                        }
-                        cell.replyPhotoBtn.tag = row
-                        if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                            cell.replyPhotoBtn.isUserInteractionEnabled = false
-                        }
-                        if replyArray?[row].emoticon ?? 0 == 0{
-                            cell.replyPhoto.sd_setImage(with: URL(string: "\(replyArray?[row].photo ?? "")"), placeholderImage: UIImage(named: "user_default"))
-                            cell.replyPhotoHeightConst.constant = 160
-                            cell.replyPhotoWidthConst.constant = 160
-                        }else{
-                            cell.replyPhoto.image = UIImage(named: "emti\(replyArray?[row].emoticon ?? 0)")
-                            cell.replyPhotoHeightConst.constant = 80
-                            cell.replyPhotoWidthConst.constant = 80
-                        }
-                        let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-                        cell.replyPhoto.addGestureRecognizer(pictureTap)
-                        if replyArray?[row].play_file ?? "" == ""{
-                            cell.youtubePlayImg.isHidden = true
-                        }else{
-                            cell.youtubePlayImg.isHidden = false
-                        }
-                    }
-                    cell.replyCount.text = "답글 달기"
-                }
+        
+        if replyArray?[row].reply_count ?? 0 > 0 {
+            if replyArray?[row].photo ?? "" == "" && replyArray?[row].emoticon ?? 0 == 0{
+                cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply1TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+                cell.readMoreBtn.tag = row
                 if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                    cell.replyReadBtn.isUserInteractionEnabled = false
+                    cell.readMoreBtn.isUserInteractionEnabled = true
                 }
-                cell.replyReadBtn.tag = row
-                
-                if replyArray?[row].like_me == "Y" {
-                    cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                    cell.likeCountBtn.tag = row*10000 + 1
-                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
-                    cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
-                }else{
-                    cell.likeCountBtn.tag = row*10000 + 2
-                    cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
-                    cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
-                }
-                if replyArray?[row].user_id == UserManager.shared.userInfo.results?.user?.id {
-                    cell.moreBtn.tag = replyArray?[row].id ?? 0
-                    cell.moreBtn.isHidden = false
-                }else{
-                    cell.moreBtn.isHidden = true
-                }
-                if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                    cell.moreBtn.isUserInteractionEnabled = false
-                }
-                cell.friendProfileBtn.tag = row//replyArray[row].user_id ?? 0
-                cell.friendProfile2Btn.tag = row//replyArray[row].user_id ?? 0
-                cell.reply_userPhoto.sd_setImage(with: URL(string: "\(replyArray?[row].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                cell.userName.text = replyArray?[row].user_name ?? ""
+            }else{
                 if replyArray?[row].content ?? "" != "" {
-                    cell.replyContentTextView.text = replyArray?[row].content ?? ""
-    //                cell.replyContentTextView.textContainer.maximumNumberOfLines = 5
-                    cell.replyContentTextView.textContainer.lineBreakMode = .byTruncatingTail
-                }else{ }
-                              
-                cell.replyContentView.layer.cornerRadius = 12
-                cell.likeCountBtn.layer.shadowOpacity = 0.1
-                cell.likeCountBtn.layer.shadowRadius = 3
-                cell.likeCountBtn.layer.shadowOffset = CGSize(width: 0,height: 2)
-                cell.replyTime.text = replyArray?[row].time_spilled ?? "0분전"
-                
-                if replyArray?[row].friend_status ?? "Y" != "Y"{
-                    if replyArray?[row].user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
-                        cell.rollGubunImg.isHidden = true
-                    }else{
-                        cell.rollGubunImg.isHidden = false
+                    cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply3TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+                    cell.readMoreBtn.tag = row
+                    if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+                        cell.readMoreBtn.isUserInteractionEnabled = true
                     }
                 }else{
-                    cell.rollGubunImg.isHidden = true
+                    cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply5TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 }
-                if replyArray?[row].coach_yn ?? "N" == "Y"{
-                    cell.coachStar.isHidden = false
+                cell.replyPhotoBtn.tag = row
+                if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+                    cell.replyPhotoBtn.isUserInteractionEnabled = false
+                }
+                if replyArray?[row].emoticon ?? 0 == 0{
+                    cell.replyPhoto.sd_setImage(with: URL(string: "\(replyArray?[row].photo ?? "")"), placeholderImage: UIImage(named: "user_default"))
+                    cell.replyPhotoHeightConst.constant = 160
+                    cell.replyPhotoWidthConst.constant = 160
                 }else{
-                    cell.coachStar.isHidden = true
+                    cell.replyPhoto.image = UIImage(named: "emti\(replyArray?[row].emoticon ?? 0)")
+                    cell.replyPhotoHeightConst.constant = 80
+                    cell.replyPhotoWidthConst.constant = 80
+                }
+                let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+                cell.replyPhoto.addGestureRecognizer(pictureTap)
+                if replyArray?[row].play_file ?? "" == ""{
+                    cell.youtubePlayImg.isHidden = true
+                }else{
+                    cell.youtubePlayImg.isHidden = false
                 }
             }
+            if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+                cell.replyMoreBtn.isUserInteractionEnabled = false
+            }
+            cell.replyMoreBtn.tag = row
+            cell.replyMoreBtn.setTitle("답글 \(replyArray?[row].reply_count ?? 0)개 보기", for: .normal)
+        }else{
+            if replyArray?[row].photo ?? "" == "" && replyArray?[row].emoticon ?? 0 == 0{
+                cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply2TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+                if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+                    cell.readMoreBtn.isUserInteractionEnabled = true
+                }
+                cell.readMoreBtn.tag = row
+            }else{
+                if replyArray?[row].content ?? "" != "" {
+                    cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply4TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+                    cell.readMoreBtn.tag = row
+                    if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+                        cell.readMoreBtn.isUserInteractionEnabled = true
+                    }
+                }else{
+                    cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply6TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+                }
+                cell.replyPhotoBtn.tag = row
+                if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+                    cell.replyPhotoBtn.isUserInteractionEnabled = false
+                }
+                if replyArray?[row].emoticon ?? 0 == 0{
+                    cell.replyPhoto.sd_setImage(with: URL(string: "\(replyArray?[row].photo ?? "")"), placeholderImage: UIImage(named: "user_default"))
+                    cell.replyPhotoHeightConst.constant = 160
+                    cell.replyPhotoWidthConst.constant = 160
+                }else{
+                    cell.replyPhoto.image = UIImage(named: "emti\(replyArray?[row].emoticon ?? 0)")
+                    cell.replyPhotoHeightConst.constant = 80
+                    cell.replyPhotoWidthConst.constant = 80
+                }
+                let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+                cell.replyPhoto.addGestureRecognizer(pictureTap)
+                if replyArray?[row].play_file ?? "" == ""{
+                    cell.youtubePlayImg.isHidden = true
+                }else{
+                    cell.youtubePlayImg.isHidden = false
+                }
+            }
+            cell.replyCount.text = "답글 달기"
+        }
+        if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+            cell.replyReadBtn.isUserInteractionEnabled = false
+        }
+        cell.replyReadBtn.tag = row
+        
+        if replyArray?[row].like_me == "Y" {
+            cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
+            cell.likeCountBtn.tag = row*10000 + 1
+            cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
+            cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
+        }else{
+            cell.likeCountBtn.tag = row*10000 + 2
+            cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
+            cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
+            cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
+        }
+        if replyArray?[row].user_id == UserManager.shared.userInfo.results?.user?.id {
+            cell.moreBtn.tag = replyArray?[row].id ?? 0
+            cell.moreBtn.isHidden = false
+        }else{
+            cell.moreBtn.isHidden = true
+        }
+        if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+            cell.moreBtn.isUserInteractionEnabled = false
+        }
+        cell.friendProfileBtn.tag = row//replyArray[row].user_id ?? 0
+        cell.friendProfile2Btn.tag = row//replyArray[row].user_id ?? 0
+        cell.reply_userPhoto.sd_setImage(with: URL(string: "\(replyArray?[row].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+        cell.userName.text = replyArray?[row].user_name ?? ""
+        if replyArray?[row].content ?? "" != "" {
+            cell.replyContentTextView.text = replyArray?[row].content ?? ""
+//                cell.replyContentTextView.textContainer.maximumNumberOfLines = 5
+            cell.replyContentTextView.textContainer.lineBreakMode = .byTruncatingTail
+        }else{ }
+                      
+        cell.replyContentView.layer.cornerRadius = 12
+        cell.likeCountBtn.layer.shadowOpacity = 0.1
+        cell.likeCountBtn.layer.shadowRadius = 3
+        cell.likeCountBtn.layer.shadowOffset = CGSize(width: 0,height: 2)
+        cell.replyTime.text = replyArray?[row].time_spilled ?? "0분전"
+        
+        if replyArray?[row].friend_status ?? "Y" != "Y"{
+            if replyArray?[row].user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
+                cell.rollGubunImg.isHidden = true
+            }else{
+                cell.rollGubunImg.isHidden = false
+            }
+        }else{
+            cell.rollGubunImg.isHidden = true
+        }
+        if replyArray?[row].coach_yn ?? "N" == "Y"{
+            cell.coachStar.isHidden = false
+        }else{
+            cell.coachStar.isHidden = true
         }
         
         return cell

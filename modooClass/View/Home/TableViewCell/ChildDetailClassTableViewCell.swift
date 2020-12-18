@@ -234,7 +234,7 @@ extension ChildDetailClassTableViewCell: UICollectionViewDelegate, UICollectionV
                     let indexSet = IndexSet(integersIn: 0...0)
                     self.classRecomCollectionView.reloadSections(indexSet)
                 } completion: { _ in
-                    print("updated collection view")
+                    print("** updated collection view")
                 }
 
             }

@@ -7,6 +7,7 @@
 //
 
 import XCTest
+
 @testable import modooClass
 
 class modooClassTests: XCTestCase {

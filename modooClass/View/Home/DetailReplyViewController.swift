@@ -343,6 +343,7 @@ class DetailReplyViewController: UIViewController {
     
     /** **자신이 쓴 댓글 더보기 버튼 클릭 > 댓글 삭제할지 알림  */
     @IBAction func moreBtnMainClicked(_ sender: UIButton) {
+        print("** comment_id : \(sender.tag)")
         Alert.With(self, btn1Title: "삭제", btn1Handler: {
             DispatchQueue.main.async {
                 self.replyDelete(comment_id: sender.tag,type:"main")
@@ -352,6 +353,7 @@ class DetailReplyViewController: UIViewController {
     
     /** **자신이 쓴 댓글 더보기 버튼 클릭 > 댓글 삭제할지 알림  */
     @IBAction func moreBtnClicked(_ sender: UIButton) {
+        print("** comment_id : \(sender.tag)")
         Alert.With(self, btn1Title: "삭제", btn1Handler: {
             DispatchQueue.main.async {
                 self.replyDelete(comment_id: sender.tag,type:"reply")
@@ -897,7 +899,7 @@ extension DetailReplyViewController {
             FeedApi.shared.replyCommentLike(comment_id: self.comment_id, method_type: type) { result in
                 print("likebtn is pressed")
             } fail: { error in
-                print("havesaveFirst api call error")
+                print("haveFirstSave api call error")
             }
 
         }

@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wDe-eI-uJG">
-                                <rect key="frame" x="0.0" y="321" width="414" height="496"/>
+                                <rect key="frame" x="0.0" y="321" width="414" height="498"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailReplyFirst1TableViewCell" rowHeight="170" id="xHF-Sh-8hN" customClass="DetailReplyTableViewCell" customModule="modooClass" customModuleProvider="target">
@@ -142,7 +142,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrg-eR-5gf" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrg-eR-5gf" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="99" y="11.5" width="50" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="50" id="Fh8-WH-ON9"/>
@@ -454,7 +454,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjr-rV-crv" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjr-rV-crv" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="99" y="11.5" width="50" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="50" id="zIM-8F-hXV"/>
@@ -782,7 +782,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gth-He-pGW" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gth-He-pGW" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="100" y="67.5" width="50" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="50" id="z71-WH-byc"/>
@@ -1086,7 +1086,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uB1-AI-X1A" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uB1-AI-X1A" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="45" y="11.5" width="31" height="13"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1316,7 +1316,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBK-8C-XwO" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBK-8C-XwO" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="45" y="11.5" width="31" height="13"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1546,7 +1546,7 @@
                                                                         <constraint firstAttribute="width" constant="60" id="oSe-3T-XmT"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vR0-RZ-14n" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vR0-RZ-14n" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="46" y="77.5" width="31" height="13"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1683,7 +1683,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khe-gG-276">
-                                <rect key="frame" x="0.0" y="733" width="414" height="84"/>
+                                <rect key="frame" x="0.0" y="735" width="414" height="84"/>
                                 <subviews>
                                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCn-8Y-M1C">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
@@ -1719,10 +1719,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asJ-Wz-HUB">
-                                <rect key="frame" x="0.0" y="817" width="414" height="45"/>
+                                <rect key="frame" x="0.0" y="819" width="414" height="43"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9I-Vl-W7C">
-                                        <rect key="frame" x="8" y="7" width="36" height="32"/>
+                                        <rect key="frame" x="8" y="5" width="36" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="k8t-Zw-JYi"/>
                                             <constraint firstAttribute="height" constant="32" id="sRo-cs-0AP"/>
@@ -1734,11 +1734,11 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KE3-Qn-R3V">
-                                        <rect key="frame" x="52" y="5" width="346" height="35"/>
+                                        <rect key="frame" x="52" y="5" width="346" height="33"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메세지를 남겨주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBu-dT-r0l" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="64" y="14" width="272" height="17"/>
+                                        <rect key="frame" x="64" y="14" width="272" height="15"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
                                         <color key="textColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1755,7 +1755,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FXy-O2-Hx1" customClass="UIFixedTextView" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="57" y="6" width="279" height="33"/>
+                                        <rect key="frame" x="57" y="6" width="279" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="MainPoint_mainColor"/>
                                         <constraints>
@@ -1780,7 +1780,7 @@
                                         </connections>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="982-oD-qvc">
-                                        <rect key="frame" x="336" y="8" width="32" height="32"/>
+                                        <rect key="frame" x="336" y="6" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="GLn-4f-RLT"/>
                                             <constraint firstAttribute="height" constant="32" id="WTh-FC-Zvg"/>
@@ -1796,7 +1796,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5B-sy-7qn">
-                                        <rect key="frame" x="368" y="9" width="30" height="30"/>
+                                        <rect key="frame" x="368" y="7" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bmp-42-pLa"/>
                                             <constraint firstAttribute="width" constant="30" id="ij7-hj-k3H"/>
@@ -1861,7 +1861,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="답글 보기" id="ZJE-cs-uTW">
-                        <barButtonItem key="leftBarButtonItem" image="back" id="rr4-47-s08">
+                        <barButtonItem key="leftBarButtonItem" image="thin_back_gray" id="rr4-47-s08">
                             <color key="tintColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="returnBackBtnClicked:" destination="m0C-Q0-T6y" id="vGb-RP-v5e"/>
@@ -2543,7 +2543,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailClassPriceCell" id="ht6-Tx-UZB" customClass="ChildDetailClassTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="205" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="338" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ht6-Tx-UZB" id="egb-Wm-tXB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -2719,7 +2719,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailClassCoachCell" id="uck-R6-hcr" customClass="ChildDetailClassTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="249" width="414" height="112"/>
+                                        <rect key="frame" x="0.0" y="382" width="414" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uck-R6-hcr" id="een-WO-Qe2">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
@@ -2872,7 +2872,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailClassCoach2Cell" id="xij-YB-62W" customClass="ChildDetailClassTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="361" width="414" height="176.5"/>
+                                        <rect key="frame" x="0.0" y="494" width="414" height="176.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xij-YB-62W" id="uAH-sj-7jz">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="176.5"/>
@@ -3108,7 +3108,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailClassCurriculumCell" id="Zzi-YN-QYp" customClass="ChildDetailClassTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="537.5" width="414" height="437"/>
+                                        <rect key="frame" x="0.0" y="670.5" width="414" height="437"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zzi-YN-QYp" id="vxq-yt-ubK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="437"/>
@@ -3579,7 +3579,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailClassReview1Cell" rowHeight="269" id="ghB-mP-PEH" customClass="ChildDetailClassTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="974.5" width="414" height="269"/>
+                                        <rect key="frame" x="0.0" y="1107.5" width="414" height="269"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ghB-mP-PEH" id="4AZ-gJ-4si">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="269"/>
@@ -5028,7 +5028,7 @@
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월 99,000원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Set-Xc-kKw" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                                        <rect key="frame" x="6" y="0.0" width="89" height="20.5"/>
+                                                                                        <rect key="frame" x="4" y="0.0" width="89" height="20.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <nil key="highlightedColor"/>
@@ -5047,7 +5047,7 @@
                                                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Set-Xc-kKw" secondAttribute="trailing" constant="20" id="1uf-Vf-UIe"/>
                                                                                     <constraint firstItem="vUd-NO-lA9" firstAttribute="leading" secondItem="ekF-ed-Gfm" secondAttribute="leading" id="5aw-EE-MAu"/>
                                                                                     <constraint firstItem="Set-Xc-kKw" firstAttribute="top" secondItem="ekF-ed-Gfm" secondAttribute="top" id="8wg-N4-rb1"/>
-                                                                                    <constraint firstItem="Set-Xc-kKw" firstAttribute="leading" secondItem="vUd-NO-lA9" secondAttribute="trailing" constant="6" id="OZD-Cf-QeR"/>
+                                                                                    <constraint firstItem="Set-Xc-kKw" firstAttribute="leading" secondItem="vUd-NO-lA9" secondAttribute="trailing" constant="4" id="OZD-Cf-QeR"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="Set-Xc-kKw" secondAttribute="bottom" id="Rc7-KA-4y5"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="vUd-NO-lA9" secondAttribute="bottom" id="VZw-Uf-9JE"/>
                                                                                     <constraint firstItem="vUd-NO-lA9" firstAttribute="top" secondItem="ekF-ed-Gfm" secondAttribute="top" id="xNM-B8-mrs"/>
@@ -5470,7 +5470,7 @@
                                                                         <action selector="readMoreBtnClicked:" destination="s2m-75-bqC" eventType="touchUpInside" id="m42-C0-VAp"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGe-73-lxu" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGe-73-lxu" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="46" y="11.5" width="31" height="13"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -5811,7 +5811,7 @@
                                                                         <action selector="readMoreBtnClicked:" destination="s2m-75-bqC" eventType="touchUpInside" id="DOx-x0-jgF"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9E-al-48b" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9E-al-48b" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="46" y="11.5" width="31" height="13"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -6131,7 +6131,7 @@
                                                                         <action selector="readMoreBtnClicked:" destination="s2m-75-bqC" eventType="touchUpInside" id="VFl-CB-EC4"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJc-7K-N2g" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJc-7K-N2g" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="46" y="11.5" width="31" height="13"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -6504,7 +6504,7 @@
                                                                         <action selector="readMoreBtnClicked:" destination="s2m-75-bqC" eventType="touchUpInside" id="ahW-pV-I4S"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wk7-pi-E0O" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wk7-pi-E0O" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="46" y="11.5" width="31" height="13"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -6838,7 +6838,7 @@
                                                                         <constraint firstAttribute="width" constant="80" id="ofD-MK-eX3"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lou-bf-3nr" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lou-bf-3nr" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="46" y="25.5" width="31" height="13"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -7175,7 +7175,7 @@
                                                                         <constraint firstAttribute="width" constant="80" id="ekR-Ur-iLy"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWU-4u-bGR" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32분전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWU-4u-bGR" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="46" y="5" width="31" height="13.5"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -7918,7 +7918,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="fLf-Ah-LZP">
-                                        <rect key="frame" x="34" y="57" width="346" height="708.5"/>
+                                        <rect key="frame" x="34" y="57" width="346" height="714"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailMissionCompleteTableViewCell" rowHeight="370" id="6Gi-Af-TE4" customClass="DetailMissionCompleteTableViewCell" customModule="modooClass" customModuleProvider="target">
@@ -7932,7 +7932,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="346" height="60"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미션인증" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVw-IT-m7b" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="10" y="20.5" width="336" height="19.5"/>
+                                                                    <rect key="frame" x="10" y="19" width="336" height="22"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
                                                                     <color key="textColor" red="0.45490196078431372" green="0.38039215686274508" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
@@ -8004,7 +8004,7 @@
                                                                             </connections>
                                                                         </button>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미션 사진을 먼저 올리신 후 여기를 클릭하여 내용을 적어주세요..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-Tl-3YW" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                            <rect key="frame" x="153" y="42" width="173" height="61"/>
+                                                                            <rect key="frame" x="153" y="42" width="173" height="58"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -8126,7 +8126,7 @@
                                         </connections>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미션 내용은 강의 댓글에 공유됩니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGa-pq-yht" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="773.5" width="414" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="779" width="414" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -8705,7 +8705,7 @@
                                                             <rect key="frame" x="185" y="17" width="213" height="86"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQl-Lf-uZm" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="5" width="213" height="13.5"/>
+                                                                    <rect key="frame" x="0.0" y="5" width="213" height="15"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -8722,7 +8722,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4T-g2-b6V" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="23.5" width="213" height="34"/>
+                                                                    <rect key="frame" x="0.0" y="25" width="213" height="34"/>
                                                                     <string key="text">근육통을 이겨내자
 근육통을 이겨내자</string>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
@@ -8741,7 +8741,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미션완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbq-ZR-2OK" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="66" width="42" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="66" width="43.5" height="15"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                                     <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -8758,7 +8758,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재생 중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhk-g8-UfH" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="66" y="66" width="34.5" height="15"/>
+                                                                    <rect key="frame" x="67.5" y="66" width="36" height="15"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                                     <color key="textColor" red="0.078431372549019607" green="0.82352941176470584" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -8775,7 +8775,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재생 중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyN-Y4-cZ0" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="66" width="34.5" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="66" width="36" height="15"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                                     <color key="textColor" red="0.078431372549019607" green="0.82352941176470584" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -8792,7 +8792,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play_check" translatesAutoresizingMaskIntoConstraints="NO" id="RKW-aJ-0qA">
-                                                                    <rect key="frame" x="42" y="59.5" width="24" height="24"/>
+                                                                    <rect key="frame" x="43.5" y="59.5" width="24" height="24"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="24" id="gid-eZ-J8W"/>
                                                                         <constraint firstAttribute="height" constant="24" id="tQu-Y6-MX0"/>
@@ -8932,7 +8932,7 @@
                                                             <rect key="frame" x="185" y="17" width="213" height="86"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuL-Hw-8tm" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="5" width="14" height="13.5"/>
+                                                                    <rect key="frame" x="0.0" y="5" width="15.5" height="15"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="11"/>
                                                                     <color key="textColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -8949,14 +8949,14 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FreeBadge" translatesAutoresizingMaskIntoConstraints="NO" id="hYI-D2-2EV">
-                                                                    <rect key="frame" x="19" y="4.5" width="30" height="15"/>
+                                                                    <rect key="frame" x="20.5" y="5" width="30" height="15"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="30" id="8Ke-mE-GQL"/>
                                                                         <constraint firstAttribute="height" constant="15" id="AmW-AD-ZzO"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1MV-IA-Dcp" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="23.5" width="213" height="34"/>
+                                                                    <rect key="frame" x="0.0" y="25" width="213" height="34"/>
                                                                     <string key="text">근육통을 이겨내자
 근육통을 이겨내자</string>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
@@ -8975,7 +8975,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재생 중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGz-xh-Cct" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="66" width="34.5" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="66" width="36" height="15"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                                     <color key="textColor" red="0.078431372550000003" green="0.82352941180000006" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -9372,14 +9372,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChildDetailDescriptionContentCell" id="tdM-uE-6fb" customClass="ChildDetailDescriptionTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="106" width="414" height="235"/>
+                                        <rect key="frame" x="0.0" y="106" width="414" height="215.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tdM-uE-6fb" id="hPm-av-9Ne">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="235"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 스피치 상태 진단" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pke-8D-QNL" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="11" width="374" height="20.5"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -9396,7 +9396,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G7a-Os-cBK" customClass="UIFixedTextView" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="31.5" width="382" height="183.5"/>
+                                                    <rect key="frame" x="16" y="28" width="382" height="167.5"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
@@ -9491,7 +9491,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="좋아요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTr-oj-PKN" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="15" width="358" height="20.5"/>
+                                                <rect key="frame" x="16" y="14" width="358" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -9568,17 +9568,17 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReplyLikeTableViewCell" id="gsU-GR-fSg" customClass="ReplyLikeTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="56"/>
+                                                <rect key="frame" x="0.0" y="28" width="414" height="63"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gsU-GR-fSg" id="RWj-v8-7Jf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="63"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="saK-C5-PKF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="63"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply_user_default" translatesAutoresizingMaskIntoConstraints="NO" id="jsC-R2-8LG">
-                                                                    <rect key="frame" x="16" y="8" width="40" height="40"/>
+                                                                    <rect key="frame" x="16" y="11.5" width="40" height="40"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="Jmp-fs-UEp"/>
                                                                         <constraint firstAttribute="width" constant="40" id="o4w-iM-KBs"/>
@@ -9596,30 +9596,30 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coachStar" translatesAutoresizingMaskIntoConstraints="NO" id="4QB-wx-DUO">
-                                                                    <rect key="frame" x="16" y="8" width="12" height="12"/>
+                                                                    <rect key="frame" x="16" y="11.5" width="12" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="6ur-R8-mgW"/>
                                                                         <constraint firstAttribute="width" constant="12" id="zxI-xf-yeZ"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="withoutClassIcon" translatesAutoresizingMaskIntoConstraints="NO" id="g3M-kp-UaT">
-                                                                    <rect key="frame" x="36" y="28" width="20" height="20"/>
+                                                                    <rect key="frame" x="36" y="31.5" width="20" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="20" id="7Ll-eE-c3K"/>
                                                                         <constraint firstAttribute="height" constant="20" id="s85-eJ-4e3"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eac-iz-kmX">
-                                                                    <rect key="frame" x="16" y="8" width="40" height="40"/>
+                                                                    <rect key="frame" x="16" y="11.5" width="40" height="40"/>
                                                                     <connections>
                                                                         <action selector="friendProfileBtnClicked:" destination="SaI-QX-2wJ" eventType="touchUpInside" id="GWa-PY-cSM"/>
                                                                     </connections>
                                                                 </button>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rCn-5O-pPL">
-                                                                    <rect key="frame" x="72" y="12" width="234" height="32"/>
+                                                                    <rect key="frame" x="72" y="12" width="234" height="39"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yk-gP-3jU" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="29" height="13.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="36.5" height="17"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -9636,7 +9636,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="한줄상태명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7Z-cS-h0A" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="18.5" width="234" height="13.5"/>
+                                                                            <rect key="frame" x="0.0" y="22" width="234" height="17"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -9840,6 +9840,10 @@
                                 <rect key="frame" x="0.0" y="277" width="414" height="619"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hg4-a9-pT5">
+                                <rect key="frame" x="0.0" y="277" width="414" height="619"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vN-xd-MXB" userLabel="Top Black-color View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
@@ -9896,6 +9900,7 @@
                             <constraint firstAttribute="trailing" secondItem="giS-Gb-rbN" secondAttribute="trailing" id="eh6-lf-COq"/>
                             <constraint firstItem="wPM-5a-pZj" firstAttribute="leading" secondItem="yC9-92-YYA" secondAttribute="leading" id="eln-Oh-Mhl"/>
                             <constraint firstItem="AJ4-zf-88k" firstAttribute="leading" secondItem="yC9-92-YYA" secondAttribute="leading" id="fGk-S2-drV"/>
+                            <constraint firstItem="Hg4-a9-pT5" firstAttribute="leading" secondItem="yC9-92-YYA" secondAttribute="leading" id="fNP-vD-bsG"/>
                             <constraint firstItem="ItS-Y9-zuB" firstAttribute="leading" secondItem="yC9-92-YYA" secondAttribute="leading" id="fax-Tu-hJa"/>
                             <constraint firstItem="MR6-gC-wxq" firstAttribute="leading" secondItem="yC9-92-YYA" secondAttribute="leading" id="g6B-CV-Zfu"/>
                             <constraint firstItem="PXc-VF-RNI" firstAttribute="trailing" secondItem="yC9-92-YYA" secondAttribute="trailing" id="gnw-6m-0bK"/>
@@ -9904,7 +9909,10 @@
                             <constraint firstItem="buY-Hs-s8P" firstAttribute="top" secondItem="yC9-92-YYA" secondAttribute="top" id="l0m-Ah-jnj"/>
                             <constraint firstItem="J9S-6Y-DzY" firstAttribute="top" secondItem="1vN-xd-MXB" secondAttribute="bottom" id="nda-d4-azK"/>
                             <constraint firstAttribute="bottom" secondItem="AJ4-zf-88k" secondAttribute="bottom" id="oge-ar-l0C"/>
+                            <constraint firstItem="Hg4-a9-pT5" firstAttribute="top" secondItem="buY-Hs-s8P" secondAttribute="bottom" id="rjX-6J-X9j"/>
                             <constraint firstItem="yC9-92-YYA" firstAttribute="bottom" secondItem="Hhw-Am-BGr" secondAttribute="bottom" id="sdE-lw-fjC"/>
+                            <constraint firstItem="yC9-92-YYA" firstAttribute="trailing" secondItem="Hg4-a9-pT5" secondAttribute="trailing" id="uZd-zD-5S7"/>
+                            <constraint firstAttribute="bottom" secondItem="Hg4-a9-pT5" secondAttribute="bottom" id="vHs-Ui-RHU"/>
                             <constraint firstItem="wPM-5a-pZj" firstAttribute="trailing" secondItem="yC9-92-YYA" secondAttribute="trailing" id="vLd-mS-3bs"/>
                             <constraint firstAttribute="trailing" secondItem="1vN-xd-MXB" secondAttribute="trailing" id="vSh-fM-v0a"/>
                             <constraint firstItem="J9S-6Y-DzY" firstAttribute="leading" secondItem="ck8-A3-lCX" secondAttribute="leading" id="xfI-5C-vAH"/>
@@ -10384,7 +10392,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fu9-Vh-gDL">
                                                                     <rect key="frame" x="0.0" y="-0.5" width="114.5" height="33.5"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rO7-W8-phk">
+                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rO7-W8-phk">
                                                                             <rect key="frame" x="78.5" y="-2.5" width="36" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="36" id="THP-ez-vMK"/>
@@ -10406,7 +10414,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </button>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AM0-J7-yRf" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AM0-J7-yRf" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="68.5" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -10423,7 +10431,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xee-uL-rBg" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xee-uL-rBg" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="20" width="114.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -10961,7 +10969,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vi0-Ff-8Zm">
                                                                     <rect key="frame" x="0.0" y="-0.5" width="114.5" height="33.5"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCO-M0-04v">
+                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCO-M0-04v">
                                                                             <rect key="frame" x="78.5" y="-2.5" width="36" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="58B-bQ-U1P"/>
@@ -10983,7 +10991,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </button>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skg-g3-On5" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skg-g3-On5" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="68.5" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -11000,7 +11008,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cht-g2-eGV" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cht-g2-eGV" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="20" width="114.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -11707,14 +11715,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChildDetailIntroContentCell" id="W6y-3w-Xyd" customClass="ChildDetailIntroTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="252"/>
+                                        <rect key="frame" x="0.0" y="72" width="414" height="251"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W6y-3w-Xyd" id="6Ao-RJ-0jK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="252"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="251"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="클래스 소개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBi-FQ-v9a" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="16" width="382" height="20.5"/>
+                                                    <rect key="frame" x="16" y="16" width="382" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -11731,7 +11739,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dJ2-b0-GHt">
-                                                    <rect key="frame" x="16" y="52.5" width="382" height="183.5"/>
+                                                    <rect key="frame" x="16" y="51.5" width="382" height="183.5"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
@@ -13682,7 +13690,7 @@
             <size key="intrinsicContentSize" width="53" height="13.5"/>
         </designable>
         <designable name="5ed-ap-5IN">
-            <size key="intrinsicContentSize" width="29.5" height="17"/>
+            <size key="intrinsicContentSize" width="29" height="17"/>
         </designable>
         <designable name="60V-PL-heG">
             <size key="intrinsicContentSize" width="29.5" height="17"/>
@@ -13697,7 +13705,7 @@
             <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
         <designable name="6wm-Nd-5oK">
-            <size key="intrinsicContentSize" width="53.5" height="30.5"/>
+            <size key="intrinsicContentSize" width="55.5" height="31"/>
         </designable>
         <designable name="704-bg-F62">
             <size key="intrinsicContentSize" width="52" height="15"/>
@@ -13709,7 +13717,7 @@
             <size key="intrinsicContentSize" width="83" height="27"/>
         </designable>
         <designable name="7yk-gP-3jU">
-            <size key="intrinsicContentSize" width="29" height="13.5"/>
+            <size key="intrinsicContentSize" width="36.5" height="17"/>
         </designable>
         <designable name="8AH-hH-HZu">
             <size key="intrinsicContentSize" width="133" height="22"/>
@@ -13727,7 +13735,7 @@
             <size key="intrinsicContentSize" width="31.5" height="14.5"/>
         </designable>
         <designable name="AIN-LM-Yc8">
-            <size key="intrinsicContentSize" width="184.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="133" height="15"/>
         </designable>
         <designable name="AM0-J7-yRf">
             <size key="intrinsicContentSize" width="68.5" height="15"/>
@@ -13736,7 +13744,7 @@
             <size key="intrinsicContentSize" width="86" height="20.5"/>
         </designable>
         <designable name="BCS-Jb-wGM">
-            <size key="intrinsicContentSize" width="53.5" height="30.5"/>
+            <size key="intrinsicContentSize" width="55.5" height="31"/>
         </designable>
         <designable name="BWU-4u-bGR">
             <size key="intrinsicContentSize" width="31" height="13.5"/>
@@ -13745,10 +13753,10 @@
             <size key="intrinsicContentSize" width="10" height="32"/>
         </designable>
         <designable name="CGa-pq-yht">
-            <size key="intrinsicContentSize" width="243" height="20.5"/>
+            <size key="intrinsicContentSize" width="178.5" height="15"/>
         </designable>
         <designable name="CQl-Lf-uZm">
-            <size key="intrinsicContentSize" width="14" height="13.5"/>
+            <size key="intrinsicContentSize" width="15.5" height="15"/>
         </designable>
         <designable name="Cht-g2-eGV">
             <size key="intrinsicContentSize" width="53" height="13.5"/>
@@ -13763,13 +13771,13 @@
             <size key="intrinsicContentSize" width="101" height="34"/>
         </designable>
         <designable name="DGz-xh-Cct">
-            <size key="intrinsicContentSize" width="34.5" height="14.5"/>
+            <size key="intrinsicContentSize" width="36" height="15"/>
         </designable>
         <designable name="DRd-qa-FnZ">
             <size key="intrinsicContentSize" width="83" height="27"/>
         </designable>
         <designable name="DuL-Hw-8tm">
-            <size key="intrinsicContentSize" width="14" height="13.5"/>
+            <size key="intrinsicContentSize" width="15.5" height="15"/>
         </designable>
         <designable name="EEG-PY-eCf">
             <size key="intrinsicContentSize" width="57" height="32"/>
@@ -13784,13 +13792,13 @@
             <size key="intrinsicContentSize" width="42" height="14.5"/>
         </designable>
         <designable name="FXy-O2-Hx1">
-            <size key="intrinsicContentSize" width="10" height="33"/>
+            <size key="intrinsicContentSize" width="10" height="31"/>
         </designable>
         <designable name="G7a-Os-cBK">
-            <size key="intrinsicContentSize" width="3372" height="33"/>
+            <size key="intrinsicContentSize" width="3091" height="33"/>
         </designable>
         <designable name="H7e-F4-FzE">
-            <size key="intrinsicContentSize" width="117" height="30"/>
+            <size key="intrinsicContentSize" width="124" height="32"/>
         </designable>
         <designable name="HKP-94-HMw">
             <size key="intrinsicContentSize" width="63.5" height="20.5"/>
@@ -13823,7 +13831,7 @@
             <size key="intrinsicContentSize" width="31" height="13.5"/>
         </designable>
         <designable name="Kwm-Nq-Vc2">
-            <size key="intrinsicContentSize" width="62.5" height="33.5"/>
+            <size key="intrinsicContentSize" width="61" height="33"/>
         </designable>
         <designable name="LGe-73-lxu">
             <size key="intrinsicContentSize" width="31" height="13.5"/>
@@ -13859,7 +13867,7 @@
             <size key="intrinsicContentSize" width="30" height="17"/>
         </designable>
         <designable name="RGJ-Aw-lec">
-            <size key="intrinsicContentSize" width="88.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="65.5" height="15"/>
         </designable>
         <designable name="RII-FR-xPh">
             <size key="intrinsicContentSize" width="78" height="20.5"/>
@@ -13877,7 +13885,7 @@
             <size key="intrinsicContentSize" width="89" height="20.5"/>
         </designable>
         <designable name="SoO-gx-AKf">
-            <size key="intrinsicContentSize" width="42" height="14.5"/>
+            <size key="intrinsicContentSize" width="43.5" height="15"/>
         </designable>
         <designable name="UWd-7j-Hwy">
             <size key="intrinsicContentSize" width="28.5" height="15"/>
@@ -13886,7 +13894,7 @@
             <size key="intrinsicContentSize" width="10" height="33"/>
         </designable>
         <designable name="Vhk-g8-UfH">
-            <size key="intrinsicContentSize" width="34.5" height="14.5"/>
+            <size key="intrinsicContentSize" width="36" height="15"/>
         </designable>
         <designable name="WQb-sC-cME">
             <size key="intrinsicContentSize" width="42" height="14.5"/>
@@ -13898,19 +13906,19 @@
             <size key="intrinsicContentSize" width="31" height="13.5"/>
         </designable>
         <designable name="X7Y-Wu-Rwd">
-            <size key="intrinsicContentSize" width="29.5" height="17"/>
+            <size key="intrinsicContentSize" width="29" height="17"/>
         </designable>
         <designable name="Xee-uL-rBg">
             <size key="intrinsicContentSize" width="53" height="13.5"/>
         </designable>
         <designable name="XyN-Y4-cZ0">
-            <size key="intrinsicContentSize" width="34.5" height="14.5"/>
+            <size key="intrinsicContentSize" width="36" height="15"/>
         </designable>
         <designable name="Yrg-eR-5gf">
             <size key="intrinsicContentSize" width="31" height="13.5"/>
         </designable>
         <designable name="ZTr-oj-PKN">
-            <size key="intrinsicContentSize" width="44.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="47" height="22"/>
         </designable>
         <designable name="Za3-kE-TAy">
             <size key="intrinsicContentSize" width="191" height="31"/>
@@ -13931,7 +13939,7 @@
             <size key="intrinsicContentSize" width="68.5" height="15"/>
         </designable>
         <designable name="bVw-IT-m7b">
-            <size key="intrinsicContentSize" width="55.5" height="19.5"/>
+            <size key="intrinsicContentSize" width="62.5" height="22"/>
         </designable>
         <designable name="cLi-zs-vqN">
             <size key="intrinsicContentSize" width="191" height="31"/>
@@ -13961,7 +13969,7 @@
             <size key="intrinsicContentSize" width="57" height="32"/>
         </designable>
         <designable name="hBu-dT-r0l">
-            <size key="intrinsicContentSize" width="116" height="17"/>
+            <size key="intrinsicContentSize" width="103.5" height="15"/>
         </designable>
         <designable name="hRu-7o-X3m">
             <size key="intrinsicContentSize" width="86" height="20.5"/>
@@ -13971,7 +13979,7 @@
             <size key="intrinsicContentSize" width="29.5" height="17"/>
         </designable>
         <designable name="iCt-we-dgL">
-            <size key="intrinsicContentSize" width="29.5" height="17"/>
+            <size key="intrinsicContentSize" width="29" height="17"/>
         </designable>
         <designable name="iw1-kC-Axj">
             <size key="intrinsicContentSize" width="30" height="27"/>
@@ -13984,10 +13992,10 @@
         </designable>
         <designable name="kM7-gs-oEx"/>
         <designable name="lbq-ZR-2OK">
-            <size key="intrinsicContentSize" width="42" height="14.5"/>
+            <size key="intrinsicContentSize" width="43.5" height="15"/>
         </designable>
         <designable name="ldO-0y-aXF">
-            <size key="intrinsicContentSize" width="29.5" height="17"/>
+            <size key="intrinsicContentSize" width="29" height="17"/>
         </designable>
         <designable name="lou-bf-3nr">
             <size key="intrinsicContentSize" width="31" height="13.5"/>
@@ -13999,13 +14007,13 @@
             <size key="intrinsicContentSize" width="43.5" height="15"/>
         </designable>
         <designable name="mqY-HR-hu1">
-            <size key="intrinsicContentSize" width="42" height="14.5"/>
+            <size key="intrinsicContentSize" width="43.5" height="15"/>
         </designable>
         <designable name="n3m-Bk-VNj">
             <size key="intrinsicContentSize" width="125" height="20.5"/>
         </designable>
         <designable name="n7Z-cS-h0A">
-            <size key="intrinsicContentSize" width="48" height="13.5"/>
+            <size key="intrinsicContentSize" width="54.5" height="15"/>
         </designable>
         <designable name="ns7-VI-196">
             <size key="intrinsicContentSize" width="128" height="15"/>
@@ -14023,7 +14031,7 @@
             <size key="intrinsicContentSize" width="73.5" height="17"/>
         </designable>
         <designable name="pke-8D-QNL">
-            <size key="intrinsicContentSize" width="145.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="120.5" height="17"/>
         </designable>
         <designable name="pna-dC-su5">
             <size key="intrinsicContentSize" width="68.5" height="15"/>
@@ -14032,10 +14040,10 @@
             <size key="intrinsicContentSize" width="70.5" height="19.5"/>
         </designable>
         <designable name="qh2-Tl-3YW">
-            <size key="intrinsicContentSize" width="431" height="20.5"/>
+            <size key="intrinsicContentSize" width="404.5" height="19.5"/>
         </designable>
         <designable name="qpp-WG-FBt">
-            <size key="intrinsicContentSize" width="42" height="14.5"/>
+            <size key="intrinsicContentSize" width="43.5" height="15"/>
         </designable>
         <designable name="rJO-K1-gvS">
             <size key="intrinsicContentSize" width="42" height="14.5"/>
@@ -14044,10 +14052,10 @@
             <size key="intrinsicContentSize" width="160" height="17"/>
         </designable>
         <designable name="rRQ-aa-5ix">
-            <size key="intrinsicContentSize" width="29.5" height="17"/>
+            <size key="intrinsicContentSize" width="29" height="17"/>
         </designable>
         <designable name="rRU-m8-CbB">
-            <size key="intrinsicContentSize" width="33" height="33.5"/>
+            <size key="intrinsicContentSize" width="32.5" height="33"/>
         </designable>
         <designable name="sCm-8A-qjI">
             <size key="intrinsicContentSize" width="83" height="27"/>
@@ -14071,7 +14079,7 @@
             <size key="intrinsicContentSize" width="31" height="13.5"/>
         </designable>
         <designable name="ugc-1f-45R">
-            <size key="intrinsicContentSize" width="82" height="30"/>
+            <size key="intrinsicContentSize" width="88" height="32"/>
         </designable>
         <designable name="uq0-5e-Odp">
             <size key="intrinsicContentSize" width="183" height="17"/>
@@ -14111,10 +14119,10 @@
             <size key="intrinsicContentSize" width="31" height="13.5"/>
         </designable>
         <designable name="yBi-FQ-v9a">
-            <size key="intrinsicContentSize" width="78" height="20.5"/>
+            <size key="intrinsicContentSize" width="73.5" height="19.5"/>
         </designable>
         <designable name="yRA-4K-BIM">
-            <size key="intrinsicContentSize" width="29.5" height="17"/>
+            <size key="intrinsicContentSize" width="29" height="17"/>
         </designable>
         <designable name="ymw-FI-vpw">
             <size key="intrinsicContentSize" width="208.5" height="12"/>
@@ -14130,7 +14138,6 @@
         <image name="FreeBadge" width="29" height="14"/>
         <image name="app_main_searchV2" width="22" height="22"/>
         <image name="arrow_bottom_gray" width="24" height="24"/>
-        <image name="back" width="24" height="24"/>
         <image name="back_btn" width="24" height="24"/>
         <image name="back_left_white" width="24" height="24"/>
         <image name="class_description_main" width="24" height="24"/>
@@ -14178,6 +14185,7 @@
         <image name="search_scrap_icon_activeV2" width="24" height="24"/>
         <image name="search_scrap_icon_defaultV2" width="24" height="24"/>
         <image name="share_icon_new" width="36" height="36"/>
+        <image name="thin_back_gray" width="24" height="24"/>
         <image name="withoutClassIcon" width="20" height="20"/>
         <image name="withoutIconV2" width="82" height="28"/>
         <image name="youtubePlayReplyIcon" width="76" height="74"/>

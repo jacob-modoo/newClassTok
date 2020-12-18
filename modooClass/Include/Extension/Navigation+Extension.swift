@@ -105,7 +105,7 @@ extension UINavigationController {
             }
         }
         if popVC != nil {
-            popVC.feedChangeId = feedId
+            popVC.feedId = feedId
             popToViewController(popVC, animated: true)
 //            popVC.feedDetailUpdatePost()
 //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "feedDetailUpdatePost"), object: nil)
@@ -113,7 +113,6 @@ extension UINavigationController {
             let storyboard = UIStoryboard.init(name: "Home2WebView", bundle: nil)
             popVC = (storyboard.instantiateViewController(withIdentifier: "StoryDetailViewController") as! StoryDetailViewController)
             popVC.feedId = feedId
-            popVC.feedChangeId = feedId
             pushViewController(popVC, animated: true)
         }
     }

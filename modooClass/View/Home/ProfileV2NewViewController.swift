@@ -16,14 +16,13 @@ class ProfileV2NewViewController: BaseViewController {
     @IBOutlet weak var profilePageTitleViewHeight: NSLayoutConstraint!
     
     var refreshControl = UIRefreshControl()
-    var page = 1
-    var profileModel:ProfileV2Model?
     var profileNewModel:ProfileNewModel?
+    var class_list_arr:Array? = Array<Class_New_List>()
+    var comment_list_arr:Array = Array<Comment_List>()
     var pageOpen:Bool = false
     var activeTotalPage = 1
     var textLineCount = 0
-    var active_comment_list:Array = Array<Active_comment>()
-    var comment_list_arr:Array = Array<Comment_List>()
+    var page = 1
     var missionTextView:UITextView?
     var socialNetwork:Bool?
     var user_id = UserManager.shared.userInfo.results?.user?.id ?? 0
@@ -40,9 +39,16 @@ class ProfileV2NewViewController: BaseViewController {
     lazy var emoticonView = EmoticonView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.addSubview(refreshControl)
+        self.view.isUserInteractionEnabled = false
+        Indicator.showActivityIndicator(uiView: self.view)
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            self.view.isUserInteractionEnabled = true
+            Indicator.hideActivityIndicator(uiView: self.view)
+        }
         self.profileNewList()
+        tableView.addSubview(refreshControl)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToClassDetail), name: NSNotification.Name(rawValue: "goToClassDetail"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadActiveList), name: NSNotification.Name(rawValue: "updateProfileActiveList"), object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -68,15 +74,12 @@ class ProfileV2NewViewController: BaseViewController {
         print("deinit")
         NotificationCenter.default.removeObserver(self)
         comment_list_arr.removeAll()
+        class_list_arr = nil
     }
     
     @IBAction func profileBtnClicked(_ sender: UIButton) {
         let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "HomeProfileViewController") as! HomeProfileViewController
         self.navigationController?.pushViewController(newViewController, animated: true)
-    }
-    
-    @IBAction func profilePhotoBtnClicked(_ sender: UIButton) {
-        
     }
     
     @IBAction func backBtnClicked(_ sender: UIButton) {
@@ -155,7 +158,7 @@ class ProfileV2NewViewController: BaseViewController {
     @IBAction func coachStudioBtnClicked(_ sender: UIButton) {
         if self.profileNewModel?.results?.class_studio_link ?? "" != ""{
             let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-            newViewController.url = self.profileNewModel?.results?.class_link ?? ""
+            newViewController.url = self.profileNewModel?.results?.class_studio_link ?? ""
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
     }
@@ -175,6 +178,10 @@ class ProfileV2NewViewController: BaseViewController {
     }
     
     @IBAction func readMoreBtnClicked(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1) {
+            let indexPath = NSIndexPath(row: 0, section: 0)
+            self.tableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: true)
+        }
         if sender.tag == 0 {
             sender.tag = 1
         } else {
@@ -234,7 +241,6 @@ class ProfileV2NewViewController: BaseViewController {
     }
     
     @objc func imageTapped(_ sender: UITapGestureRecognizer) {
-        print("uigesture-recognizer")
         let imageView = sender.view as! UIImageView
         Alert.WithImageView(self, image: imageView.image!, btn1Title: "", btn1Handler: {
             
@@ -248,9 +254,17 @@ class ProfileV2NewViewController: BaseViewController {
     }
     
     @objc func goToClassDetail(_ notification:Notification){
-        if notification.object as? Int != nil {
-            let class_id = notification.object as! Int
-            self.navigationController?.popOrPushController(class_id: class_id)
+        if notification.userInfo as NSDictionary? != nil {
+            let class_id = notification.userInfo?["id"] as! Int
+            let tag = notification.userInfo?["tag"] as! Int
+            let class_status = notification.userInfo?["status"] as! Int
+            if class_status < 6 {
+                let newViewConroller = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+                newViewConroller.url = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].manager_link ?? ""
+                self.navigationController?.pushViewController(newViewConroller, animated: true)
+            } else {
+                self.navigationController?.popOrPushController(class_id: class_id)
+            }
         }
     }
     
@@ -287,7 +301,20 @@ class ProfileV2NewViewController: BaseViewController {
         ProfileApi.shared.profileV3List(user_id: self.user_id, page: self.page) { [unowned self] result in
             if result.code == "200"{
                 self.profileNewModel = result
-                print("the status of api data : ", self.profileNewModel?.results?.mode ?? "data not arrived yet")
+                self.activeTotalPage = result.results?.total_page ?? 0
+                
+                for addArray in 0..<(result.results?.class_list_arr.count ?? 0) {
+                    self.class_list_arr?.append((result.results?.class_list_arr[addArray])!)
+                }
+                
+                for addArray in 0..<(result.results?.comment_list_arr.count)! {
+                    self.comment_list_arr.append((result.results?.comment_list_arr[addArray])!)
+                }
+                DispatchQueue.main.async {
+                    self.endOfWork()
+                    self.tableView.reloadData()
+                }
+                
                 if self.profileNewModel?.results?.mode ?? "" != "myprofile" {
                     self.profilePageTitleView.isHidden = false
                     self.profilePageTitleViewHeight.constant = 44
@@ -301,8 +328,7 @@ class ProfileV2NewViewController: BaseViewController {
                     }
                 }
 //                self.activeList()
-                self.activeNewList()
-                
+//                self.activeNewList()
                 
             } else {
                 print("여기??")
@@ -334,100 +360,6 @@ class ProfileV2NewViewController: BaseViewController {
             print(eroor ?? "error in calling *profileV3List* api")
         }
 
-    }
-    
-    func ProfileList(){
-        ProfileApi.shared.profileV2List(user_id: self.user_id, success: { [unowned self] result in
-            if result.code == "200"{
-                self.profileModel = result
-                let width: CGFloat = 200.0
-                self.missionTextView = UITextView(frame: CGRect(x: 0, y: 0, width: width, height: 44))
-                let setHeightUsingCSS = "<html><head><style type=\"text/css\"> img{ max-height: 100%; max-width: \(self.view.frame.width - 32); !important; width: auto; height: auto;} </style> </head><body> \(self.profileModel?.results?.user_info?.profile_comment ?? "") </body></html>"
-                print("height set by CSS : \(setHeightUsingCSS)")
-                self.missionTextView!.attributedText = setHeightUsingCSS.html2AttributedString
-                self.missionTextView!.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
-                
-                self.missionTextView!.translatesAutoresizingMaskIntoConstraints = true
-                self.missionTextView!.sizeToFit()
-                self.missionTextView!.isScrollEnabled = false
-                self.missionTextView!.isEditable = false
-                self.missionTextView!.isSelectable = false
-                
-                let textSize = CGSize(width: self.missionTextView!.frame.size.width, height: CGFloat(Float.infinity));
-                let rHeight = Float(self.missionTextView!.sizeThatFits(textSize).height)
-                var lineCount:Float = 0
-                let charSize = Float(self.missionTextView!.font!.lineHeight)
-                lineCount = floor(rHeight / charSize)
-                self.textLineCount = Int(lineCount)
-                
-                self.activeList()
-            }else{
-                print("여기??")
-                Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
-                    self.endOfWork()
-                })
-            }
-        }) { error in
-            print("아님 여기???")
-            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
-                self.endOfWork()
-            })
-        }
-    }
-    
-    func getHeightFromText(txtLbl: UILabel, strText : String!) -> CGFloat {
-        let textLbl : UILabel! = UILabel(frame: CGRect(x: txtLbl.frame.origin.x, y: txtLbl.frame.origin.y, width: txtLbl.frame.size.width, height: 0)) //UITextView(frame: CGRect(x: txtView.frame.origin.x, y: 0,
-//        width: txtView.frame.size.width,
-//        height: 0))
-        textLbl.text = strText
-//        textLbl.font = UIFont(name: "Fira Sans", size:  16.0)
-        textLbl.sizeToFit()
-
-        var txt_frame : CGRect! = CGRect()
-        txt_frame = textLbl.frame
-
-        var size : CGSize! = CGSize()
-        size = txt_frame.size
-
-        size.height = txt_frame.size.height
-
-        return size.height
-    }
-    
-    
-    func activeList(){
-        ProfileApi.shared.profileV2ActiveList(user_id: self.user_id,page:self.page, success: { [unowned self] result in
-            if result.code == "200"{
-//                self.profileModel = result
-                self.activeTotalPage = result.results?.active_comment_total_page ?? 0
-                for addArray in 0 ..< (result.results?.active_comment_list.count)! {
-                    self.active_comment_list.append((result.results?.active_comment_list[addArray])!)
-                }
-                
-                DispatchQueue.main.async {
-                    self.endOfWork()
-                    self.tableView.reloadData()
-                }
-            }
-        }) { error in
-            
-        }
-    }
-    
-    func addActiveList(){
-        ProfileApi.shared.profileV2ActiveList(user_id: self.user_id,page:self.page, success: { [unowned self] result in
-            if result.code == "200"{
-                for addArray in 0 ..< (result.results?.active_comment_list.count)! {
-                    self.active_comment_list.append((result.results?.active_comment_list[addArray])!)
-                }
-                DispatchQueue.main.async {
-                    self.endOfWork()
-                    self.tableView.reloadData()
-                }
-            }
-        }) { error in
-            
-        }
     }
     
     /**
@@ -491,6 +423,25 @@ class ProfileV2NewViewController: BaseViewController {
                 self.endOfWork()
             })
         }
+    }
+    
+    func getHeightFromText(txtLbl: UILabel, strText : String!) -> CGFloat {
+        let textLbl : UILabel! = UILabel(frame: CGRect(x: txtLbl.frame.origin.x, y: txtLbl.frame.origin.y, width: txtLbl.frame.size.width, height: 0)) //UITextView(frame: CGRect(x: txtView.frame.origin.x, y: 0,
+//        width: txtView.frame.size.width,
+//        height: 0))
+        textLbl.text = strText
+//        textLbl.font = UIFont(name: "Fira Sans", size:  16.0)
+        textLbl.sizeToFit()
+
+        var txt_frame : CGRect! = CGRect()
+        txt_frame = textLbl.frame
+
+        var size : CGSize! = CGSize()
+        size = txt_frame.size
+
+        size.height = txt_frame.size.height
+
+        return size.height
     }
     
     func boldText(fullText:String, fullTextSize: CGFloat, boldText:String, boldTextSize: CGFloat) -> NSAttributedString {
@@ -1000,9 +951,9 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
         case 7:
             let cell:ProfileV2NewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileV2CollectionViewCell", for: indexPath) as! ProfileV2NewTableViewCell
             if self.profileNewModel != nil {
-                if self.profileNewModel?.results?.class_list_arr.count ?? 0 > 0 {
-                    for i in 0..<(self.profileNewModel?.results?.class_list_arr.count ?? 0) {
-                        cell.class_list_arr.append((self.profileNewModel?.results?.class_list_arr[i])!)
+                if self.class_list_arr?.count ?? 0 > 0 {
+                    for i in 0..<(self.class_list_arr?.count ?? 0) {
+                        cell.class_list_arr.append((self.class_list_arr?[i])!)
                     }
                 }
             }

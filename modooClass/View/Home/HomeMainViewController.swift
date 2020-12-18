@@ -39,8 +39,8 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     let chattingStoryboard: UIStoryboard = UIStoryboard(name: "ChattingWebView", bundle: nil)
     let alarmStoryboard: UIStoryboard = UIStoryboard(name: "Alarm", bundle: nil)
     let window = UIApplication.shared.keyWindow
-    let height:CGFloat = 326
     
+    var height:CGFloat = 326
     var eventModel:EventModel?
     var pageControl: UIPageControl?
     var pendingPage: Int?
@@ -61,7 +61,8 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         
         deviceCheck()
         versionCheck()
-        print("event have : ", UserManager.shared.userInfo.results?.event_yn ?? "")
+        getDataForEvent()
+        
         if UserManager.shared.userInfo.results?.event_yn ?? "" == "Y" {
             openPopupVC()
         }
@@ -107,14 +108,6 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        FeedApi.shared.event_list(success: { result in
-            if result.code! == "200"{
-                FeedDetailManager.shared.eventModel = result
-            }else{
-            }
-        }) { error in
-            
-        }
     }
     
     //이 뷰를 벗어나면 네비게이션 보이게 설정
@@ -164,7 +157,11 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func tabPlusBtnClicked(_ sender: UIButton) {
-         
+        if FeedDetailManager.shared.eventModel.results?.event_list_arr[0].image ?? "" != ""{
+            self.height = 326
+        } else {
+            self.height = 216
+        }
         if inFirstResponder == true {
             onClickView()
         } else {
@@ -395,6 +392,17 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
     }
+    
+    func getDataForEvent() {
+        FeedApi.shared.event_list(success: { result in
+            if result.code! == "200"{
+                FeedDetailManager.shared.eventModel = result
+            }else{
+            }
+        }) { error in
+            print("** get: error in calling event_list api")
+        }
+    }
 }
 
 extension HomeMainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -442,7 +450,12 @@ extension HomeMainViewController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row
         switch row {
         case 0:
-            return 110
+            if FeedDetailManager.shared.eventModel.results?.event_list_arr[0].image ?? "" != "" {
+                return 110
+            } else {
+                return 0
+            }
+            
         case 1,2,3:
             return 72
         default:
