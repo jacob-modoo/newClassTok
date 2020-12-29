@@ -11,10 +11,10 @@ import Foundation
 class CircleProgressBar {
     let shapeLayer = CAShapeLayer()
     let trackLayer = CAShapeLayer()
-    let dotLayer = CAShapeLayer()
-    let dotBoardLayer = CAShapeLayer()
-    let goalLayer = CAShapeLayer()
-    let textlayer = ECATextLayer()
+//    let dotLayer = CAShapeLayer()
+//    let dotBoardLayer = CAShapeLayer()
+//    let goalLayer = CAShapeLayer()
+//    let textlayer = ECATextLayer()
     var circleView:UIView = UIView.init(frame: CGRect.zero)
     
     func circleAddProgress(width:CGFloat,height:CGFloat,progress:CGFloat,golePoint:CGFloat,action:Bool) -> UIView{
@@ -31,88 +31,88 @@ class CircleProgressBar {
         circleView.layer.addSublayer(trackLayer)
         
         shapeLayer.path = circularPath.cgPath
-        if golePoint < progress{
-            shapeLayer.strokeColor = UIColor(named: "MainPoint_subColor2")?.cgColor//UIColor(hexString: "#25E9AD").cgColor
-        }else{
+//        if golePoint < progress{
+//            shapeLayer.strokeColor = UIColor(named: "MainPoint_subColor2")?.cgColor//UIColor(hexString: "#25E9AD").cgColor
+//        }else{
             shapeLayer.strokeColor = UIColor(named: "MainPoint_mainColor")?.cgColor//UIColor(hexString: "#7461f2").cgColor
-        }
+//        }
         
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = 5
-        shapeLayer.strokeEnd = 0//progress
+        shapeLayer.strokeEnd = progress
         shapeLayer.lineCap = .round
         circleView.layer.addSublayer(shapeLayer)
         
-        if golePoint < progress{
-            goalLayer.path = circularPath.cgPath
-            goalLayer.strokeColor = UIColor(named: "MainPoint_mainColor")?.cgColor
-            goalLayer.fillColor = UIColor.clear.cgColor
-            goalLayer.lineWidth = 5
-            goalLayer.strokeStart = 0
-            goalLayer.strokeEnd = golePoint
-            goalLayer.lineCap = .round
-            circleView.layer.addSublayer(goalLayer)
-        }
+//        if golePoint < progress{
+//            goalLayer.path = circularPath.cgPath
+//            goalLayer.strokeColor = UIColor(named: "MainPoint_mainColor")?.cgColor
+//            goalLayer.fillColor = UIColor.clear.cgColor
+//            goalLayer.lineWidth = 5
+//            goalLayer.strokeStart = 0
+//            goalLayer.strokeEnd = golePoint
+//            goalLayer.lineCap = .round
+//            circleView.layer.addSublayer(goalLayer)
+//        }
+//
+//        dotBoardLayer.path = circularPath.cgPath
+//        dotBoardLayer.strokeColor =  UIColor.red.cgColor
+//        dotBoardLayer.fillColor = UIColor.clear.cgColor
+//        dotBoardLayer.lineWidth = 12.5
+//        dotBoardLayer.strokeStart = golePoint - 0.001
+//        dotBoardLayer.strokeEnd = golePoint
+//        dotBoardLayer.lineCap = .round
+//        circleView.layer.addSublayer(dotBoardLayer)
+//
+//        dotLayer.path = circularPath.cgPath
+//        dotLayer.strokeColor = UIColor(named: "MainPoint_mainColor")?.cgColor
+//        dotLayer.fillColor = UIColor.clear.cgColor
+//        dotLayer.lineWidth = 10
+//        dotLayer.strokeStart = golePoint - 0.001
+//        dotLayer.strokeEnd = golePoint
+//        dotLayer.lineCap = .round
+//        circleView.layer.addSublayer(dotLayer)
         
-        dotBoardLayer.path = circularPath.cgPath
-        dotBoardLayer.strokeColor =  UIColor.white.cgColor
-        dotBoardLayer.fillColor = UIColor.clear.cgColor
-        dotBoardLayer.lineWidth = 12.5
-        dotBoardLayer.strokeStart = golePoint - 0.001
-        dotBoardLayer.strokeEnd = golePoint
-        dotBoardLayer.lineCap = .round
-        //circleView.layer.addSublayer(dotBoardLayer)
+//        let pointCheck = point(progress: golePoint, radius: height/2)
+//        var textX:CGFloat = pointCheck.x
+//        var textY:CGFloat = pointCheck.y
+//        if pointCheck.x < width/2 {
+//            if pointCheck.y < height/2{
+//                // 1/4 지점
+//                textX = pointCheck.x - 20
+//                textY = pointCheck.y - 20
+//            }else{
+//                // 3/4 지점
+//                textX = pointCheck.x - 20
+//                textY = pointCheck.y + 20
+//            }
+//        }else{
+//            if pointCheck.y < height/2{
+//                // 2/4 지점
+//                textX = pointCheck.x + 20
+//                textY = pointCheck.y - 20
+//            }else{
+//                // 4/4 지점
+//                textX = pointCheck.x + 20
+//                textY = pointCheck.y + 20
+//            }
+//        }
         
-        dotLayer.path = circularPath.cgPath
-        dotLayer.strokeColor = UIColor(named: "MainPoint_mainColor")?.cgColor
-        dotLayer.fillColor = UIColor.clear.cgColor
-        dotLayer.lineWidth = 10
-        dotLayer.strokeStart = golePoint - 0.001
-        dotLayer.strokeEnd = golePoint
-        dotLayer.lineCap = .round
-        //circleView.layer.addSublayer(dotLayer)
-        
-        let pointCheck = point(progress: golePoint, radius: height/2)
-        var textX:CGFloat = pointCheck.x
-        var textY:CGFloat = pointCheck.y
-        if pointCheck.x < width/2 {
-            if pointCheck.y < height/2{
-                // 1/4 지점
-                textX = pointCheck.x - 20
-                textY = pointCheck.y - 20
-            }else{
-                // 3/4 지점
-                textX = pointCheck.x - 20
-                textY = pointCheck.y + 20
-            }
-        }else{
-            if pointCheck.y < height/2{
-                // 2/4 지점
-                textX = pointCheck.x + 20
-                textY = pointCheck.y - 20
-            }else{
-                // 4/4 지점
-                textX = pointCheck.x + 20
-                textY = pointCheck.y + 20
-            }
-        }
-        
-        textlayer.frame = CGRect(x: textX, y: textY-5, width: 30, height: 30)
-        textlayer.fontSize = 12
-        textlayer.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)!
-        textlayer.alignmentMode = .center
-        //textlayer.string = "\(Int(round(golePoint*100)))%"
-        textlayer.isWrapped = false
-        textlayer.truncationMode = .none
-        textlayer.backgroundColor = UIColor.white.cgColor
-        textlayer.foregroundColor = UIColor(named: "MainPoint_mainColor")?.cgColor//UIColor(hexString: "#25E9AD").cgColor
-        textlayer.cornerRadius = 15
-        textlayer.contentsScale = UIScreen.main.scale
-        textlayer.convert(dotLayer.position, to: dotLayer)
-        circleView.layer.addSublayer(textlayer)
+//        textlayer.frame = CGRect(x: textX, y: textY-5, width: 30, height: 30)
+//        textlayer.fontSize = 12
+//        textlayer.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)!
+//        textlayer.alignmentMode = .center
+//        textlayer.string = "\(Int(round(golePoint*100)))%"
+//        textlayer.isWrapped = false
+//        textlayer.truncationMode = .none
+//        textlayer.backgroundColor = UIColor.white.cgColor
+//        textlayer.foregroundColor = UIColor(named: "MainPoint_mainColor")?.cgColor//UIColor(hexString: "#25E9AD").cgColor
+//        textlayer.cornerRadius = 15
+//        textlayer.contentsScale = UIScreen.main.scale
+//        textlayer.convert(dotLayer.position, to: dotLayer)
+//        circleView.layer.addSublayer(textlayer)
         
         if action == true{
-            shapeLayer.strokeEnd = 0//progress
+            shapeLayer.strokeEnd = progress
             let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
             basicAnimation.toValue = progress
             basicAnimation.duration = 2

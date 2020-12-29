@@ -131,12 +131,10 @@ class ProfileV2NewViewController: BaseViewController {
         }
     }
     
-    @IBAction func unFriendBtn(_ sender: UIButton) {
-        Alert.WithUnfriend(self, btn1Title: "팔로우 취소", btn1Handler: {
-            self.friend_add(sender: sender)
-        }, btn2Title: "취소") {
-//            will just dismiss the alert
-        }
+    @IBAction func sendMsgBtnClicked(_ sender: UIButton) {
+        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+        newViewController.url = self.profileNewModel?.results?.chat_link ?? ""
+        self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
     @IBAction func addFriendBtnClicked(_ sender: UIButton) {
@@ -144,9 +142,12 @@ class ProfileV2NewViewController: BaseViewController {
             if profileNewModel?.results?.friend_yn ?? "N" != "Y" {
                 friend_add(sender: sender)
             } else {
-                let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-                newViewController.url = self.profileNewModel?.results?.chat_link ?? ""
-                self.navigationController?.pushViewController(newViewController, animated: true)
+                Alert.WithUnfriend(self, btn1Title: "팔로우 취소", btn1Handler: {
+                    print("** sender tag \(sender.tag)")
+                    self.friend_add(sender: sender)
+                }, btn2Title: "취소") {
+                    
+                }
             }
         } else {
             let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
@@ -192,7 +193,11 @@ class ProfileV2NewViewController: BaseViewController {
     
     @IBAction func activeMoveBtnClicked(_ sender: UIButton) {
         let tag = sender.tag
-        self.navigationController?.storyPopOrPushController(feedId: "\(self.comment_list_arr[tag].id ?? "")")
+        let feedId = self.comment_list_arr[tag].id ?? ""
+        let sameVC = home2WebViewStoryboard.instantiateViewController(withIdentifier: "StoryDetailViewController") as! StoryDetailViewController
+        sameVC.feedId = feedId
+        self.navigationController?.pushViewController(sameVC, animated: true)
+//        self.navigationController?.storyPopOrPushController(feedId: "\(self.comment_list_arr[tag].id ?? "")")
     }
     
     @IBAction func profileLikeBtnClicked(_ sender: UIButton) {
@@ -298,33 +303,33 @@ class ProfileV2NewViewController: BaseViewController {
      - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
      */
     func profileNewList(){
-        ProfileApi.shared.profileV3List(user_id: self.user_id, page: self.page) { [unowned self] result in
+        ProfileApi.shared.profileV3List(user_id: self.user_id, page: self.page) { [weak self] result in
             if result.code == "200"{
-                self.profileNewModel = result
-                self.activeTotalPage = result.results?.total_page ?? 0
+                self?.profileNewModel = result
+                self?.activeTotalPage = result.results?.total_page ?? 0
                 
                 for addArray in 0..<(result.results?.class_list_arr.count ?? 0) {
-                    self.class_list_arr?.append((result.results?.class_list_arr[addArray])!)
+                    self?.class_list_arr?.append((result.results?.class_list_arr[addArray])!)
                 }
                 
                 for addArray in 0..<(result.results?.comment_list_arr.count)! {
-                    self.comment_list_arr.append((result.results?.comment_list_arr[addArray])!)
+                    self?.comment_list_arr.append((result.results?.comment_list_arr[addArray])!)
                 }
                 DispatchQueue.main.async {
-                    self.endOfWork()
-                    self.tableView.reloadData()
+                    self?.endOfWork()
+                    self?.tableView.reloadData()
                 }
                 
-                if self.profileNewModel?.results?.mode ?? "" != "myprofile" {
-                    self.profilePageTitleView.isHidden = false
-                    self.profilePageTitleViewHeight.constant = 44
+                if self?.profileNewModel?.results?.mode ?? "" != "myprofile" {
+                    self?.profilePageTitleView.isHidden = false
+                    self?.profilePageTitleViewHeight.constant = 44
                 } else {
-                    if isMyProfile == true {
-                        self.profilePageTitleView.isHidden = false
-                        self.profilePageTitleViewHeight.constant = 44
+                    if self?.isMyProfile == true {
+                        self?.profilePageTitleView.isHidden = false
+                        self?.profilePageTitleViewHeight.constant = 44
                     } else {
-                        self.profilePageTitleView.isHidden = true
-                        self.profilePageTitleViewHeight.constant = 0
+                        self?.profilePageTitleView.isHidden = true
+                        self?.profilePageTitleViewHeight.constant = 0
                     }
                 }
 //                self.activeList()
@@ -332,8 +337,8 @@ class ProfileV2NewViewController: BaseViewController {
                 
             } else {
                 print("여기??")
-                Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
-                    self.endOfWork()
+                Alert.With(self!, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+                    self?.endOfWork()
                 })
             }
         } fail: { error in
@@ -345,19 +350,19 @@ class ProfileV2NewViewController: BaseViewController {
     }
     
     func activeNewList() {
-        ProfileApi.shared.profileV3List(user_id: self.user_id, page: self.page) { [unowned self] result in
+        ProfileApi.shared.profileV3List(user_id: self.user_id, page: self.page) { [weak self] result in
             if result.code == "200" {
-                self.activeTotalPage = result.results?.total_page ?? 0
+                self?.activeTotalPage = result.results?.total_page ?? 0
                 for addArray in 0..<(result.results?.comment_list_arr.count)! {
-                    self.comment_list_arr.append((result.results?.comment_list_arr[addArray])!)
+                    self?.comment_list_arr.append((result.results?.comment_list_arr[addArray])!)
                 }
                 DispatchQueue.main.async {
-                    self.endOfWork()
-                    self.tableView.reloadData()
+                    self?.endOfWork()
+                    self?.tableView.reloadData()
                 }
             }
         } fail: { eroor in
-            print(eroor ?? "error in calling *profileV3List* api")
+        
         }
 
     }
@@ -385,29 +390,36 @@ class ProfileV2NewViewController: BaseViewController {
                 let indexPath = IndexPath(row: 0, section: 3)
                 if let visibleIndexPaths = self.tableView.indexPathsForVisibleRows?.firstIndex(of: indexPath as IndexPath) {
                     if visibleIndexPaths != NSNotFound {
-                        let indexPath = IndexPath(row: 0, section: 3)
                         let cell = self.tableView.cellForRow(at: indexPath) as! ProfileV2NewTableViewCell//ProfileV2FriendOfferCell
                         if self.profileNewModel?.results?.friend_yn ?? "Y" == "Y"{
-                            cell.profileMainBtn.borderWidth = 1
-                            cell.profileMainBtn.borderColor = UIColor(hexString: "#FF5A5F")
-                            cell.profileMainBtn.backgroundColor = .white
-                            cell.profileMainBtn.setTitle("메세지", for: .normal)
-                            cell.profileMainBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
+                            cell.msgSendBtn.borderWidth = 1
+                            cell.msgSendBtn.borderColor = UIColor(hexString: "#FF5A5F")
+                            cell.msgSendBtn.backgroundColor = .white
+                            cell.msgSendBtn.setTitle("메세지", for: .normal)
+                            cell.msgSendBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
+                            cell.addFriendBtn.backgroundColor = .white
+                            cell.addFriendBtn.setTitle("팔로잉", for: .normal)
+                            cell.addFriendBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
+                            cell.addFriendBtn.borderWidth = 1
+                            cell.addFriendBtn.borderColor = UIColor(hexString: "#B4B4B4")
                         }else{
-                            cell.profileMainBtn.backgroundColor = UIColor(hexString: "#FF5A5F")
-                            cell.profileMainBtn.setTitle("팔로우", for: .normal)
-                            cell.profileMainBtn.setTitleColor(.white, for: .normal)
+                            cell.addFriendBtn.imageView?.isHidden = true
+                            cell.addFriendBtn.titleEdgeInsets.right = 0
+                            cell.addFriendBtn.borderWidth = 0
+                            cell.addFriendBtn.backgroundColor = UIColor(hexString: "#FF5A5F")
+                            cell.addFriendBtn.setTitle("팔로우", for: .normal)
+                            cell.addFriendBtn.setTitleColor(.white, for: .normal)
                         }
                         DispatchQueue.main.async {
-                            UIView.animate(withDuration: 0.5) {
+                            UIView.animate(withDuration: 0.3) {
                                 if self.profileNewModel?.results?.friend_yn ?? "Y" == "Y"{
-                                    cell.profileMsgBtnWidth.constant = (self.view.frame.width/2)-22
-                                    cell.profileMsgBtnLeadConstraint.constant = 12
-                                    cell.profileFollowingBtn.isHidden = false
+                                    cell.msgSendBtnWidth.constant = (self.view.frame.width/2)-22
+                                    cell.addFriendBtnTrailing.constant = 12
+                                    cell.msgSendBtn.isHidden = false
                                 }else{
-                                    cell.profileMsgBtnWidth.constant = 0
-                                    cell.profileMsgBtnLeadConstraint.constant = 0
-                                    cell.profileFollowingBtn.isHidden = true
+                                    cell.msgSendBtnWidth.constant = 0
+                                    cell.addFriendBtnTrailing.constant = 0
+                                    cell.msgSendBtn.isHidden = true
                                 }
                             }
                         }
@@ -891,35 +903,39 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
         case 3:
             let cell:ProfileV2NewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileV2FriendOfferCell", for: indexPath) as! ProfileV2NewTableViewCell
             if self.profileNewModel != nil {
-                cell.profileMainBtn.tag = self.profileNewModel?.results?.user_id ?? 0
+                cell.addFriendBtn.tag = self.profileNewModel?.results?.user_id ?? 0
                 if profileNewModel?.results?.mode ?? "" != "myprofile" {
                     if profileNewModel?.results?.friend_yn ?? "N" != "Y" {
-                        cell.profileMainBtn.backgroundColor = UIColor(hexString: "#FF5A5F")
-                        cell.profileMainBtn.setTitle("팔로우", for: .normal)
-                        cell.profileMainBtn.setTitleColor(.white, for: .normal)
-                        cell.profileMsgBtnWidth.constant = 0
-                        cell.profileMsgBtnLeadConstraint.constant = 0
-                        cell.profileFollowingBtn.isHidden = true
+                        cell.addFriendBtn.backgroundColor = UIColor(hexString: "#FF5A5F")
+                        cell.addFriendBtn.setTitleColor(.white, for: .normal)
+                        cell.addFriendBtnTrailing.constant = 0
+                        cell.addFriendBtn.setTitle("팔로우", for: .normal)
+                        cell.addFriendBtn.borderWidth = 0
+                        cell.addFriendBtn.imageView?.isHidden = true
+                        cell.msgSendBtnWidth.constant = 0
+                        cell.msgSendBtn.isHidden = true
                     } else {
-                        cell.profileMainBtn.setTitle("메세지", for: .normal)
-                        cell.profileMainBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                        cell.profileMainBtn.backgroundColor = .white
-                        cell.profileMsgBtnWidth.constant = (self.view.frame.width/2)-22
-                        cell.profileMsgBtnLeadConstraint.constant = 12
-                        cell.profileFollowingBtn.isHidden = false
+                        cell.addFriendBtn.imageView?.isHidden = false
+                        cell.addFriendBtnTrailing.constant = 12
+                        cell.addFriendBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
+                        cell.addFriendBtn.borderWidth = 1
+                        cell.addFriendBtn.borderColor = UIColor(hexString: "#B4B4B4")
+                        cell.msgSendBtnWidth.constant = (self.view.frame.width/2)-22
+                        cell.msgSendBtn.isHidden = false
                     }
                 } else {
-                    cell.profileMsgBtnWidth.constant = 0
-                    cell.profileMsgBtnLeadConstraint.constant = 0
-                    cell.profileFollowingBtn.isHidden = true
-                    
-                    cell.profileMainBtn.backgroundColor = .white
-                    cell.profileMainBtn.setTitle("프로필 편집", for: .normal)
-                    cell.profileMainBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                    cell.profileMainBtn.borderWidth = 1
-                    cell.profileMainBtn.borderColor = UIColor(hexString: "#B4B4B4")
+                    cell.msgSendBtnWidth.constant = 0
+                    cell.addFriendBtnTrailing.constant = 0
+                    cell.msgSendBtn.isHidden = true
+                    cell.addFriendBtn.imageView?.isHidden = true
+                    cell.addFriendBtn.backgroundColor = .white
+                    cell.addFriendBtn.setTitle("프로필 편집", for: .normal)
+                    cell.addFriendBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
+                    cell.addFriendBtn.borderWidth = 1
+                    cell.addFriendBtn.borderColor = UIColor(hexString: "#B4B4B4")
                 }
             }
+            
             cell.selectionStyle = .none
             return cell
         case 4:

@@ -607,7 +607,7 @@ class ChildDetailClassViewController: UIViewController {
             newViewController.class_id = self.class_id
             newViewController.commentType = "curriculum"
             newViewController.missionCheck = false
-            newViewController.noticeCheck = true
+            newViewController.isNotification = true
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
     }
@@ -918,6 +918,7 @@ class ChildDetailClassViewController: UIViewController {
         guard let replyCount = notification.userInfo?["replyCount"] as? Int else { return }
         guard let commentLikeCount = notification.userInfo?["commentLikeCount"] as? Int else { return }
         guard let preHave = notification.userInfo?["preHave"] as? String else { return }
+        print("** preHave : \(preHave)\n** replyCount :  \(replyCount)\n** commentLikeCount : \(commentLikeCount)")
         
         self.tableView.beginUpdates()
         if self.feedDetailList?.results?.curriculum?.coach_class?.notice?.like_cnt != commentLikeCount || self.feedDetailList?.results?.curriculum?.coach_class?.notice?.reply_cnt != replyCount || self.feedDetailList?.results?.curriculum?.coach_class?.notice?.like_me != preHave{
@@ -1485,12 +1486,12 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     }
                 case 3:
                     return 0
-                case 4:
-                    if self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "" == ""{
-                        return 0
-                    }else{
-                        return 1
-                    }
+//                case 4:
+//                    if self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "" == ""{
+//                        return 0
+//                    }else{
+//                        return 1
+//                    }
                 case 5:
                     if (feedDetailList?.results?.conditionList.count ?? 0)! > 0{
                         if cheerViewExitCheck == false{
@@ -1502,7 +1503,7 @@ extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSour
                     }else{
                         return 0
                     }
-                case 6,7,8,11:
+                case 4,6,7,8,11:
                     return 1
                 case 9:
                     if replyArray!.count == 0 {

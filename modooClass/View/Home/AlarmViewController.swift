@@ -345,7 +345,7 @@ extension AlarmViewController{
                             let newViewController = self.feedStoryboard.instantiateViewController(withIdentifier: "DetailReplyViewController") as! DetailReplyViewController
                             newViewController.comment_id = self.alarmArray[row].mcComment_id ?? 0
                             newViewController.class_id = self.alarmArray[row].mcClass_id ?? 0
-                            newViewController.noticeCheck = true
+                            newViewController.isNotification = true
                             if self.alarmArray[row].mcCurriculum_id ?? 0 == 0{
                                 newViewController.commentType = "class"
                             }else{

@@ -96,6 +96,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
             messageNew.isHidden = true
         }
         let alarmBadgeCheck = UserDefaultSetting.getUserDefaultsInteger(forKey: alarmBadgeValue)
+        print("** alarmBadgeCheck : \(alarmBadgeCheck)")
         if alarmBadgeCheck > 0 {
             alarmNew.isHidden = false
         }else{

@@ -90,6 +90,7 @@ class HomeIntroWebViewController : UIViewController ,WKNavigationDelegate,WKUIDe
         contentController.add(LeakAvoider(delegate: self),name: "changeGroupHandler")
         contentController.add(LeakAvoider(delegate: self),name: "groupBackHandler")
         contentController.add(LeakAvoider(delegate: self),name: "gotoprofile")
+        contentController.add(LeakAvoider(delegate: self),name: "bannerTouchOnOff")
         contentController.add(LeakAvoider(delegate: self),name: "shareHandler")
 //        contentController.add(self,name: "classJoinHandler")
         contentController.add(LeakAvoider(delegate: self),name: "goToDetailClass")
@@ -587,6 +588,11 @@ extension HomeIntroWebViewController:WKScriptMessageHandler {
             }else{
                 
             }
+        }else if message.name == "bannerTouchOnOff" {
+//            webkit.messageHandlers.bannerTouchOnOff.postMessage()
+            let object = message.body
+            NotificationCenter.default.post(name: NSNotification.Name("disableScrolling"), object: object)
+            
         }else if message.name == "shareHandler" {
 //            let messageDic = message.body as! Dictionary<String,Any>
             var url:String?

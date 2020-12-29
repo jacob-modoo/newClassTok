@@ -63,6 +63,7 @@ class DetailReplyViewController: UIViewController {
     var missionCheck:Bool = false
     /** **공지사항인지 체크 유무 */
     var noticeCheck:Bool = false
+    var isNotification:Bool = false
     /** **키보드 사이즈 */
     var keyBoardSize:CGRect?
     /** **키보드위에 올리는 뷰 */
@@ -890,7 +891,7 @@ extension DetailReplyViewController {
             type = "post"
         }
         
-        if noticeCheck == false {
+        if isNotification  == false {
             row = sender.tag / 10000
             print("btnTag: \(sender)\nlikeGubun: \(likeGubun)")
             let btnTag:[String:Any] = ["btnTag":sender, "likeGubun":likeGubun]  // refers to "haveSave" func in ChildDetailClsasVC to change the like-count

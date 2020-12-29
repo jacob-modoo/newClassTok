@@ -466,7 +466,9 @@ class StoryDetailViewController: UIViewController {
         }else{
             let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
             let friend_id = self.list?.results?.comment_reply?.list_arr[sender.tag].user_id ?? 0
+            print("** friend_id : \(friend_id)")
             if UserManager.shared.userInfo.results?.user?.id == friend_id {
+                print("** friend_id equals my own id")
                 newViewController.isMyProfile = true
             }else{
                 newViewController.isMyProfile = false
@@ -820,7 +822,12 @@ class StoryDetailViewController: UIViewController {
                     cellFrame.width =  cellFrame.width - 15
                     if self.list?.results?.photo_arr.count ?? 0 > 0{
                         self.photoSizeImage.sd_setImage(with: URL(string: "\(self.list?.results?.photo_arr[0].photo_url ?? "")"), placeholderImage: UIImage(named: "curriculumV2_default"), options: [], completed: { (theImage, error, cache, url) in
-                            self.photoSize = self.getAspectRatioAccordingToiPhones(cellImageFrame: cellFrame,downloadedImage: theImage!)
+                            var downImg = UIImage(named: "curriculumV2_default")
+                            if theImage != nil {
+                                downImg = theImage
+                            }
+                            
+                            self.photoSize = self.getAspectRatioAccordingToiPhones(cellImageFrame: cellFrame, downloadedImage: downImg!)
                             UIView.animate(withDuration: 0.0, animations: {
                                 
                                 if self.firstExec == true{

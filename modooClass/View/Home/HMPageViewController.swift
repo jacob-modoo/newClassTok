@@ -40,9 +40,24 @@ class HMPageViewController : UIPageViewController {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "homeTitleChange"), object: 0)
             }
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(disableScrolling), name: NSNotification.Name(rawValue: "disableScrolling"), object: nil)
        
     }
 
+    @objc func disableScrolling(_ notification : Notification) {
+        let object = notification.object as! Int
+        for view in self.view.subviews {
+            if let subVIew = view as? UIScrollView {
+                if object > 0 {
+                    subVIew.isScrollEnabled = false
+                } else {
+                    subVIew.isScrollEnabled = true
+                }
+            }
+        }
+    }
+    
     /**
      Scrolls to the next view controller.
      */

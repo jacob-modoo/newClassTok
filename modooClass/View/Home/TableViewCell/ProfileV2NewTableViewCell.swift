@@ -43,11 +43,10 @@ class ProfileV2NewTableViewCell: UITableViewCell {
     @IBOutlet weak var hmViewWidth: NSLayoutConstraint!
     
 //    ProfileV2FriendOfferCell
-    @IBOutlet weak var profileMainBtn: UIFixedButton!
-    @IBOutlet weak var profileFollowingBtn: UIFixedButton!
-    @IBOutlet weak var profileMsgBtnLeadConstraint: NSLayoutConstraint!
-    @IBOutlet weak var profileMsgBtnWidth: NSLayoutConstraint!
-    
+    @IBOutlet var addFriendBtn: UIFixedButton!
+    @IBOutlet var addFriendBtnTrailing: NSLayoutConstraint!
+    @IBOutlet var msgSendBtn: UIFixedButton!
+    @IBOutlet var msgSendBtnWidth: NSLayoutConstraint!
     
 //    ProfileV2TableTitleCell
     @IBOutlet weak var profileTableViewTitleLbl: UIFixedLabel!
