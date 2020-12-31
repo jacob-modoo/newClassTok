@@ -28,7 +28,7 @@ class StoryReplyDetailViewController: UIViewController {
     var feedId = ""
     var page = 1
     var emoticonNumber:Int = 0
-    var keyboardShow:Bool?
+    var keyboardShow = false
     var keyBoardSize:CGRect?
     var customView: UIView!
     private let imageView = UIImageView()
@@ -89,9 +89,7 @@ class StoryReplyDetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if keyboardShow == false {
-            self.replyTextView.becomeFirstResponder()
-        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -466,7 +464,7 @@ class StoryReplyDetailViewController: UIViewController {
      - Throws: `Error` 오브젝트 값이 제대로 안넘어 오는경우 `Error`
      */
     @objc func keyboardWillShow(notification: Notification) {
-        if keyboardShow ?? false == false {
+        if keyboardShow == false {
             print("이거 혹시 두번타니?")
             if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 self.keyBoardSize = kbSize

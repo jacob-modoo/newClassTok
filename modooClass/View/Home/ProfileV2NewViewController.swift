@@ -132,8 +132,9 @@ class ProfileV2NewViewController: BaseViewController {
     }
     
     @IBAction func sendMsgBtnClicked(_ sender: UIButton) {
-        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+        let newViewController = chattingStoryboard.instantiateViewController(withIdentifier: "ChattingFriendWebViewViewController") as! ChattingFriendWebViewViewController
         newViewController.url = self.profileNewModel?.results?.chat_link ?? ""
+        print("** newViewController : \(newViewController.url)")
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
@@ -390,26 +391,7 @@ class ProfileV2NewViewController: BaseViewController {
                 let indexPath = IndexPath(row: 0, section: 3)
                 if let visibleIndexPaths = self.tableView.indexPathsForVisibleRows?.firstIndex(of: indexPath as IndexPath) {
                     if visibleIndexPaths != NSNotFound {
-                        let cell = self.tableView.cellForRow(at: indexPath) as! ProfileV2NewTableViewCell//ProfileV2FriendOfferCell
-                        if self.profileNewModel?.results?.friend_yn ?? "Y" == "Y"{
-                            cell.msgSendBtn.borderWidth = 1
-                            cell.msgSendBtn.borderColor = UIColor(hexString: "#FF5A5F")
-                            cell.msgSendBtn.backgroundColor = .white
-                            cell.msgSendBtn.setTitle("메세지", for: .normal)
-                            cell.msgSendBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                            cell.addFriendBtn.backgroundColor = .white
-                            cell.addFriendBtn.setTitle("팔로잉", for: .normal)
-                            cell.addFriendBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                            cell.addFriendBtn.borderWidth = 1
-                            cell.addFriendBtn.borderColor = UIColor(hexString: "#B4B4B4")
-                        }else{
-                            cell.addFriendBtn.imageView?.isHidden = true
-                            cell.addFriendBtn.titleEdgeInsets.right = 0
-                            cell.addFriendBtn.borderWidth = 0
-                            cell.addFriendBtn.backgroundColor = UIColor(hexString: "#FF5A5F")
-                            cell.addFriendBtn.setTitle("팔로우", for: .normal)
-                            cell.addFriendBtn.setTitleColor(.white, for: .normal)
-                        }
+                        let cell = self.tableView.cellForRow(at: indexPath) as! ProfileV2NewTableViewCell //ProfileV2FriendOfferCell
                         DispatchQueue.main.async {
                             UIView.animate(withDuration: 0.3) {
                                 if self.profileNewModel?.results?.friend_yn ?? "Y" == "Y"{
@@ -422,6 +404,7 @@ class ProfileV2NewViewController: BaseViewController {
                                     cell.msgSendBtn.isHidden = true
                                 }
                             }
+                            self.tableView.reloadSections([3], with: .automatic)
                         }
                     }
                 }
@@ -498,12 +481,12 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
                 cell.noPhotoView1.isHidden = true
                 cell.photoBackImage1.sd_setImage(with: URL(string: "\(comment_list_arr[checkRow].photo_data ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
 
-                if comment_list_arr[checkRow].like_cnt ?? 0 > 0 {
-                    cell.photoLikeCount1.isHidden = false
+//                if comment_list_arr[checkRow].like_cnt ?? 0 > 0 {
+//                    cell.photoLikeCount1.isHidden = false
                     cell.photoLikeCount1.text = "👍 \(comment_list_arr[checkRow].like_cnt ?? 0)"
-                } else {
-                    cell.photoLikeCount1.isHidden = true
-                }
+//                } else {
+//                    cell.photoLikeCount1.isHidden = true
+//                }
                 
 
                 cell.photoBtn1.tag = checkRow
@@ -915,7 +898,9 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
                         cell.msgSendBtnWidth.constant = 0
                         cell.msgSendBtn.isHidden = true
                     } else {
-                        cell.addFriendBtn.imageView?.isHidden = false
+                        cell.addFriendBtn.backgroundColor = .white
+                        cell.addFriendBtn.setTitle("팔로잉", for: .normal)
+                        cell.addFriendBtn.setImage(UIImage(named: "arrow_bottom_small"), for: .normal)
                         cell.addFriendBtnTrailing.constant = 12
                         cell.addFriendBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
                         cell.addFriendBtn.borderWidth = 1

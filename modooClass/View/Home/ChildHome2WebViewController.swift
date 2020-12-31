@@ -449,7 +449,6 @@ extension ChildHome2WebViewController:WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print(message.name , " : message.name")
         if message.name == "changeGroupHandler" {
-            print("changeGroupHandler: alert \(message.body)")
             if message.body as? String == "close"{
                 if webView.canGoBack == true{
                     webView.goBack()

@@ -253,18 +253,23 @@ class StoryDetailViewController: UIViewController {
     }
     
     @IBAction func emptyViewBtnClicked(_ sender: UIButton) {
-        let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "StoryReplyDetailViewController") as! StoryReplyDetailViewController
-        newViewController.feedId = self.feedId
-        newViewController.replyCount = self.list?.results?.comment_reply?.reply_total ?? 0
-        newViewController.keyboardShow = false
-        self.navigationController?.pushViewController(newViewController, animated: true)
-        
-        DispatchQueue.main.async {
-            if self.keyboardShow == true {
-                self.view.endEditing(true)
-                self.textViewTab()
-            }
+        self.replyTextView.becomeFirstResponder()
+        UIView.animate(withDuration: 0.5) {
+            let indexPath = NSIndexPath(row: 0, section: 5)
+            self.tableView.scrollToRow(at: indexPath as IndexPath, at: .middle, animated: true)
         }
+//        let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "StoryReplyDetailViewController") as! StoryReplyDetailViewController
+//        newViewController.feedId = self.feedId
+//        newViewController.replyCount = self.list?.results?.comment_reply?.reply_total ?? 0
+//        newViewController.keyboardShow = false
+//        self.navigationController?.pushViewController(newViewController, animated: true)
+//
+//        DispatchQueue.main.async {
+//            if self.keyboardShow == true {
+//                self.view.endEditing(true)
+//                self.textViewTab()
+//            }
+//        }
     }
     
     /** **this button will delete the feed*/
