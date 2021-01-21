@@ -244,7 +244,7 @@ class ChildHome2WebViewController: UIViewController ,WKNavigationDelegate,WKUIDe
             myURL = URL(string:"\(url)")
         }
 
-//         myURL = URL(string: "https://junghee.modooclass.net/class/orientation/821") /**orientation page test*/
+//        myURL = URL(string: "https://junghee.modooclass.net/class/orientation/1291") /**orientation page test*/
         
         var request = URLRequest(url: myURL!, cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy)
 
@@ -447,7 +447,7 @@ class ChildHome2WebViewController: UIViewController ,WKNavigationDelegate,WKUIDe
 extension ChildHome2WebViewController:WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message.name , " : message.name")
+        print("** ",message.name , " : message.name")
         if message.name == "changeGroupHandler" {
             if message.body as? String == "close"{
                 if webView.canGoBack == true{

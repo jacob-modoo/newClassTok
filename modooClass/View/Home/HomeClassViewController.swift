@@ -11,6 +11,7 @@ import Firebase
 
 class HomeClassViewController: UIViewController {
     
+    var favorite_status = "Y"
     var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
     let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
@@ -177,16 +178,17 @@ class HomeClassViewController: UIViewController {
         tableView.beginUpdates()
         HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].button_point1 = ""
         tableView.endUpdates()
-        if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? "" != "" {
-            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? ""
-            self.navigationController?.pushViewController(newViewController, animated: true)
-        } else {
+//        if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? "" != "" {
+//            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+//            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? ""
+//            self.navigationController?.pushViewController(newViewController, animated: true)
+//        } else {
+        print("** class_id (HomeClassVC) : \(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].class_id ?? 0)")
             let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
             newViewController.class_id = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].class_id ?? 0
             newViewController.pushGubun = 1
             self.navigationController?.pushViewController(newViewController, animated: true)
-        }
+//        }
     }
     
     @IBAction func reviewWriteBtnClicked(_ sender: UIButton) {
@@ -305,7 +307,7 @@ extension HomeClassViewController{
         let tag = sender.tag
         let class_id = HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[tag].class_id ?? 0
         var type = ""
-        if HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[tag].favorites_status ?? "" == "Y"{
+        if self.favorite_status == "Y" {
             type = "delete"
         }else{
             type = "post"
@@ -313,11 +315,11 @@ extension HomeClassViewController{
         
         FeedApi.shared.class_have(class_id:class_id,type:type,success: { [unowned self] result in
             if result.code == "200"{
-                if HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[tag].favorites_status ?? "" == "Y"{
-                    HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[tag].favorites_status = "N"
+                if self.favorite_status == "Y"{
+                    self.favorite_status = "N"
                     sender.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
                 }else{
-                    HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[tag].favorites_status = "Y"
+                    self.favorite_status = "Y"
                     sender.setImage(UIImage(named:"search_scrap_icon_activeV2"), for: .normal)
                 }
                 self.tableView.reloadData()
@@ -383,7 +385,7 @@ extension HomeClassViewController{
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        self.handleScroll()
+        self.handleScroll()
     }
         
     func handleScroll() {
@@ -392,7 +394,7 @@ extension HomeClassViewController{
             
             for indexPath in indexPathsForVisibleRows {
                 if let cell = tableView.cellForRow(at: indexPath) as? HomeClassTableViewCell {
-                    if indexPath.section == 2{
+                    if indexPath.section == 3 {
                         if focusCell == nil {
                             let rect = tableView.rectForRow(at: indexPath)
                             if tableView.bounds.contains(rect) {
@@ -408,10 +410,10 @@ extension HomeClassViewController{
                                                     cell.class_best_scrollview.contentOffset.y = cell.class_best_scrollview.frame.height
                                                 }
                                             }, completion: nil)
-                                        }else if (HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[indexPath.row].week_best_list.count) == 3{
+                                        } else if (HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[indexPath.row].week_best_list.count)! == 3{
                                             UIView.animateKeyframes(withDuration: seconds, delay: 0, options: [.repeat], animations: {
                                                 UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0) {
-                                                    cell.class_best_scrollview.contentOffset.y = 0 // shuyerda hato chiqyaptida
+                                                    cell.class_best_scrollview.contentOffset.y = 0
                                                 }
                                                 UIView.addKeyframe(withRelativeStartTime: 0.33, relativeDuration: 0.05) {
                                                     cell.class_best_scrollview.contentOffset.y = cell.class_best_scrollview.frame.height
@@ -485,10 +487,9 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
      - Throws: `Error` 스크롤이 이상한 값으로 넘어올 경우 `Error`
      */
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        self.handleScroll()
+        self.handleScroll()
         if refreshControl.isRefreshing {
             DispatchQueue.main.async {
-                
                 HomeMain2Manager.shared.pilotAppMain = PilotModel()
                 HomeMain2Manager.shared.pilotRecommendMain = PilotRecommendModel()
                 self.appMainPilotList()
@@ -793,7 +794,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                 if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].review_star_status ?? "" == "helpful"{
                     cell.classReviewStar1.image = UIImage(named: "like_btn_with_title")
                 }else{
-                    cell.classReviewStar1.image = UIImage(named: "dislike_btn_with_title")
+                    cell.classReviewStar1.isHidden = true
                 }
                 
                 cell.reviewWriteBtn.tag = row
@@ -820,11 +821,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                 cell.classFavoriteRecommendBtn.tag = row
                 cell.classParticipateBtn.tag = HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].class_id ?? 0
                 cell.classScrapBtn.tag = row
-                if HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].favorites_status ?? "" == "Y"{
-                    cell.classScrapBtn.setImage(UIImage(named:"search_scrap_icon_activeV2"), for: .normal)
-                }else{
-                    cell.classScrapBtn.setImage(UIImage(named:"search_scrap_icon_defaultV2"), for: .normal)
-                }
+
                 cell.classInBtn.tag = HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].class_id ?? 0
             }
             cell.selectionStyle = .none

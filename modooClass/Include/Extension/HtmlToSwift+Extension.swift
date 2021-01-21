@@ -29,6 +29,15 @@ extension Data {
 }
 
 extension String {
+    func convertToAttributedFromHTML() -> NSAttributedString? {
+        var attributedText: NSAttributedString?
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue]
+        if let data = data(using: .unicode, allowLossyConversion: true), let attrStr = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
+            attributedText = attrStr
+        }
+        return attributedText
+    }
+    
     var html2AttributedString: NSAttributedString? {
         return Data(utf8).html2AttributedString
     }

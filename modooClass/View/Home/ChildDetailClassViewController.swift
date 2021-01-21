@@ -176,7 +176,7 @@ class ChildDetailClassViewController: UIViewController {
   
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        reloadView()
         if self.feedDetailList?.results?.user_status ?? "" != "spectator" {
             let dismiss = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
             self.view.addGestureRecognizer(dismiss)
@@ -999,6 +999,7 @@ class ChildDetailClassViewController: UIViewController {
         Indicator.showActivityIndicator(uiView: self.view)
         if let temp = notification.object {
             self.class_id = temp as! Int
+            print("** class_id  : \(class_id)")
             DispatchQueue.main.async {
                 self.replyArray?.removeAll()
                 self.page = 1
@@ -1375,13 +1376,17 @@ extension ChildDetailClassViewController:UITextViewDelegate{
     }
 }
 
-extension ChildDetailClassViewController:UITableViewDelegate,UITableViewDataSource{
+extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSource {
     
     /**
      - Parameters:
         - scrollView: this function is called when scrolling is stopped
      */
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        reloadView()
+    }
+    
+    func reloadView() {
         if refreshControl.isRefreshing {
             self.tableView.isUserInteractionEnabled = false
             DispatchQueue.main.async {
@@ -2440,7 +2445,7 @@ extension ChildDetailClassViewController{
                 self.tableViewBottom2.isActive = false
             }
         }
-        
+        print("** curriculum id : \(self.feedDetailList?.results?.curriculum?.id ?? 99)")
         DispatchQueue.main.async {
             self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: self.type)
         }

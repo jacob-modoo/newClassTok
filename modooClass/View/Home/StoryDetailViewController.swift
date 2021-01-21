@@ -8,7 +8,7 @@
 
 import UIKit
 import YoutubePlayer_in_WKWebView
-//import BMPlayer
+import BMPlayer
 import AVFoundation
 import Photos
 import CropViewController
@@ -101,27 +101,7 @@ class StoryDetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.chattingCheck), name: NSNotification.Name(rawValue: "feedDetailValueSend"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.feedDetailFriend), name: NSNotification.Name(rawValue: "feedDetailFriend"), object: nil )
         
-        FeedApi.shared.appMainPilotV2(success: { result in
-            if result.code == "200" {
-                HomeMain2Manager.shared.pilotAppMain = result
-            } else {
-            }
-        }) { error in
-            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
-            })
-        }
-        
-        ProfileApi.shared.profileV2ActiveList(user_id: self.user_id,page:self.page, success: { [unowned self] result in
-            if result.code == "200"{
-//                self.profileModel = result
-                for addArray in 0 ..< (result.results?.active_comment_list.count)! {
-                    self.active_comment_list.append((result.results?.active_comment_list[addArray])!)
-                }
-            }
-        }) { error in
-            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
-            })
-        }
+        reloadView()
         
         replyBorderView.layer.borderWidth = 1
         replyBorderView.layer.borderColor = UIColor(hexString: "#eeeeee").cgColor
@@ -225,6 +205,30 @@ class StoryDetailViewController: UIViewController {
                 sender.tag += 1
             }
             replyLikeHave(sender: sender)
+        }
+    }
+    
+    func reloadView() {
+        FeedApi.shared.appMainPilotV2(success: { result in
+            if result.code == "200" {
+                HomeMain2Manager.shared.pilotAppMain = result
+            } else {
+            }
+        }) { error in
+            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+            })
+        }
+        
+        ProfileApi.shared.profileV2ActiveList(user_id: self.user_id,page:self.page, success: { [unowned self] result in
+            if result.code == "200"{
+//                self.profileModel = result
+                for addArray in 0 ..< (result.results?.active_comment_list.count)! {
+                    self.active_comment_list.append((result.results?.active_comment_list[addArray])!)
+                }
+            }
+        }) { error in
+            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+            })
         }
     }
     
@@ -1396,6 +1400,14 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
             cell.classCoachImg.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
             cell.classCoachName.text = "\(self.list?.results?.user_info?.user_name ?? "")"
             
+            if self.list?.results?.user_info?.gender ?? "M" == "M"{
+                cell.genderBadge.image = UIImage(named: "manBadge")
+            }else if self.list?.results?.user_info?.gender ?? "M" == "F"{
+                cell.genderBadge.image = UIImage(named: "womanBadge")
+            }else{
+                cell.genderBadge.isHidden = true
+            }
+            
             if self.list?.results?.user_info?.user_id ?? 0 != UserManager.shared.userInfo.results?.user?.id ?? 0 {
                 if self.list?.results?.user_info?.friend_status ?? "Y" == "Y"{
                     cell.classCoachWithBtn.setImage(UIImage(named: "messageImgV2"), for: .normal)
@@ -1405,14 +1417,6 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.classCoachWithBtn.tag = 1
                 }
                 cell.classCoachProfileBtn.tag = self.list?.results?.user_info?.user_id ?? 0
-                
-                if self.list?.results?.user_info?.gender ?? "M" == "M"{
-                    cell.genderBadge.image = UIImage(named: "manBadge")
-                }else if self.list?.results?.user_info?.gender ?? "M" == "F"{
-                    cell.genderBadge.image = UIImage(named: "womanBadge")
-                }else{
-                    cell.genderBadge.isHidden = true
-                }
             } else {
                 cell.classCoachWithBtn.isHidden = true
             }

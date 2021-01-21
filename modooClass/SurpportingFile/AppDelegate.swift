@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import Firebase
+import FirebaseDatabase
 import FBSDKCoreKit
 import NaverThirdPartyLogin
 import AudioToolbox
@@ -68,6 +69,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
     /** **앱 방향 */
     var orientationLock = UIInterfaceOrientationMask.portrait
     
+    var ref: DatabaseReference!
+    
     func onConversionDataSuccess(_ conversionInfo: [AnyHashable : Any]) {
         
     }
@@ -87,6 +90,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
         remoteConfig = RemoteConfig.remoteConfig()
         remoteConfig!.setDefaults(fromPlist: "RemoteConfigDefaults")
         checkFirebaseRemote()
+        
+        //firebase DB
+        ref = Database.database().reference()
         
         //naver
         let instance = NaverThirdPartyLoginConnection.getSharedInstance()
@@ -404,6 +410,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
                     }
                 }else{
                     Toast.showNotification(message: "\(body_comment ?? "")", controller: self.topMostViewController()!)
+                    print("** appdelegate badge value is changed! ")
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "home2MainAlarmBadgeChange"), object: alarmCount)
                 }
                 

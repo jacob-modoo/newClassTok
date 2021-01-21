@@ -591,6 +591,11 @@ extension HomeIntroWebViewController:WKScriptMessageHandler {
         }else if message.name == "bannerTouchOnOff" {
 //            webkit.messageHandlers.bannerTouchOnOff.postMessage()
             let object = message.body
+            if object as! Int > 0 {
+                webView.scrollView.isScrollEnabled = false
+            } else {
+                webView.scrollView.isScrollEnabled = true
+            }
             NotificationCenter.default.post(name: NSNotification.Name("disableScrolling"), object: object)
             
         }else if message.name == "shareHandler" {

@@ -38,7 +38,9 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     let feedStoryboard: UIStoryboard = UIStoryboard(name: "Feed", bundle: nil)
     let chattingStoryboard: UIStoryboard = UIStoryboard(name: "ChattingWebView", bundle: nil)
     let alarmStoryboard: UIStoryboard = UIStoryboard(name: "Alarm", bundle: nil)
+    let chatStoryboard: UIStoryboard = UIStoryboard(name: "Chatting", bundle: nil)
     let window = UIApplication.shared.keyWindow
+    let user_id =  UserManager.shared.userInfo.results?.user?.id ?? 0
     
     var height:CGFloat = 326
     var eventModel:EventModel?
@@ -48,11 +50,10 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     var inFirstResponder:Bool = false
     var isShown:Bool = false
     var isProfilePage = false
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -89,6 +90,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         Analytics.setAnalyticsCollectionEnabled(false)
+        print("** Home Main View Controller!!!")
         let chatBadgeCheck = UserDefaultSetting.getUserDefaultsInteger(forKey: chattingBadgeValue)
         if chatBadgeCheck > 0 {
             messageNew.isHidden = false
@@ -187,7 +189,8 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func messageBtnClicked(_ sender: UIButton) {
         print("messageBtnClicked")
-        let newViewController = self.chattingStoryboard.instantiateViewController(withIdentifier: "ChattingWebViewController") as! ChattingWebViewController
+//        let newViewController = self.chattingStoryboard.instantiateViewController(withIdentifier: "ChattingWebViewController") as! ChattingWebViewController
+        let newViewController = chatStoryboard.instantiateViewController(withIdentifier: "ChattingViewController") as! ChattingViewController
         UserDefaultSetting.setUserDefaultsInteger(0, forKey: chattingBadgeValue)
         APPDELEGATE?.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
     }
@@ -242,6 +245,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     @objc func home2MainAlarmBadgeChange(notification:Notification){
+        print("** new alarm : \(notification.object ?? 99)")
         let alarmBadgeCheck = UserDefaultSetting.getUserDefaultsInteger(forKey: alarmBadgeValue)
         if alarmBadgeCheck > 0 {
             alarmNew.isHidden = false
@@ -395,6 +399,7 @@ class HomeMainViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func getDataForEvent() {
+//       getting data for event page
         FeedApi.shared.event_list(success: { result in
             if result.code! == "200"{
                 FeedDetailManager.shared.eventModel = result

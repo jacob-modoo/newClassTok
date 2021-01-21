@@ -162,7 +162,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     }
     
     deinit {
-        print("deinit")
+        print("** deinit")
         deinitObserve()
     }
     
@@ -456,6 +456,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                 FeedApi.shared.appClassData(class_id:class_id,success: { [unowned self] result in
                     Indicator.hideActivityIndicator(uiView: self.view)
                     if result.code == "200"{
+                        print("** feedDetailVC - 200")
                         FeedDetailManager.shared.feedDetailList = result
                         moveToClass()
                     }else if result.code == "102"{
@@ -468,22 +469,10 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                             self.deinitObserve()
                             self.navigationController?.popViewController(animated: true)
                         })
-                    }else if result.code == "106"{ /**this response code will open 1:1 training info page*/
+                    }else if result.code == "106"{      /**this response code will open 1:1 training info page and  첫인사 page */
+                        print("** the viewCHECK  is : \(viewCheck)")
                         if self.viewCheck == 1{
-                            let newViewController = UIStoryboard(name: "ChildWebView", bundle: nil).instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-                            newViewController.url = result.results!.url!
-                            newViewController.tokenCheck = false
-                            newViewController.classOpenCheck = true
-                            Indicator.hideActivityIndicator(uiView: self.view)
-                            self.viewCheck = 2
-                            self.navigationController?.pushViewController(newViewController, animated: true)
-                            
-                        }else{
-                            self.deinitObserve()
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                    }else if result.code == "107"{ /**this response code will open 첫인사 page*/
-                        if self.viewCheck == 1{
+                            print("** curriculum_id : \(result.results?.curriculum?.id ?? 0)")
                             FeedDetailManager.shared.feedDetailList = result
                             moveToClass()
                             let newViewController = UIStoryboard(name: "ChildWebView", bundle: nil).instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
@@ -494,10 +483,28 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                             self.viewCheck = 2
                             self.navigationController?.pushViewController(newViewController, animated: true)
                         }else{
+                            print("** feedDetailVC - 106 viewCheck : else")
                             self.deinitObserve()
                             self.navigationController?.popViewController(animated: true)
                         }
-                    }
+                    } // else if result.code == "107"{ /**this response code will open 첫인사 page*/
+//                        if self.viewCheck == 1{
+//                            print("** feedDetailVC - 107 viewCheck : 1")
+//                            FeedDetailManager.shared.feedDetailList = result
+//                            moveToClass()
+//                            let newViewController = UIStoryboard(name: "ChildWebView", bundle: nil).instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+//                            newViewController.url = result.results!.url!
+//                            newViewController.tokenCheck = false
+//                            newViewController.classOpenCheck = true
+//                            Indicator.hideActivityIndicator(uiView: self.view)
+//                            self.viewCheck = 2
+//                            self.navigationController?.pushViewController(newViewController, animated: true)
+//                        }else{
+//                            print("** feedDetailVC - 107 viewCheck : else")
+//                            self.deinitObserve()
+//                            self.navigationController?.popViewController(animated: true)
+//                        }
+//                    }
                 }) { error in
                     Indicator.hideActivityIndicator(uiView: self.view)
                     Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
@@ -506,6 +513,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
             }else{
                 let controller: ChildDetailClassViewController = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailClassViewController") as! ChildDetailClassViewController
                 controller.didMove(toParent: self)
+                print("** appearing second time!")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DetailClassIdSend"), object: class_id)
             }
         }else if self.tableViewCheck == 2{

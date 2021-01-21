@@ -60,13 +60,11 @@ class AddInfoPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scale: CGFloat = DEF_WIDTH_375_SCALE
-        view.transform = view.transform.scaledBy(x: scale, y: scale)
         
         let url = URL(string: UserManager.shared.userInfo.results?.user?.photo ?? "")
-        if url != nil {
-            let data = (try? Data(contentsOf: url!))!
-            let image: UIImage = UIImage(data: data)!
+        let data = try? Data(contentsOf: url!)
+        if data != nil {
+            let image = UIImage(data: data!) ?? UIImage(named: "reply_user_default")
             image1.image = image
             profile_image = image
             imageRemoveBtn1.isHidden = false

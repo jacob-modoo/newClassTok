@@ -178,6 +178,9 @@
 		0E97C19123A22B5A0013D489 /* Snow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E97C18F23A22B5A0013D489 /* Snow.sks */; };
 		0E97C19223A22B5A0013D489 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E97C19023A22B5A0013D489 /* Assets.xcassets */; };
 		0E97C19523A22BDC0013D489 /* SnowScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E97C19423A22BDC0013D489 /* SnowScene.swift */; };
+		0EA4DA8225A43F8F0054AA85 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA4DA8125A43F8F0054AA85 /* ChattingViewController.swift */; };
+		0EA4DA8925A456FC0054AA85 /* ChattingFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA4DA8825A456FC0054AA85 /* ChattingFriendViewController.swift */; };
+		0EA4DA9025A54C4F0054AA85 /* ChattingFriendViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA4DA8F25A54C4F0054AA85 /* ChattingFriendViewControllerCell.swift */; };
 		0EA55CA422CAE0F800FD7D15 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA55CA322CAE0F800FD7D15 /* NotificationService.swift */; };
 		0EA55CA822CAE0F800FD7D15 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0EA55CA122CAE0F800FD7D15 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0EA55CAE22CAE2C900FD7D15 /* PushDownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA55CAD22CAE2C900FD7D15 /* PushDownloadImage.swift */; };
@@ -225,6 +228,9 @@
 		0EDEA817248E201D00ED837A /* AutoSearchEngineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EDEA816248E201D00ED837A /* AutoSearchEngineCell.xib */; };
 		0EDEA819248E202F00ED837A /* AutoSearchEngineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDEA818248E202F00ED837A /* AutoSearchEngineCell.swift */; };
 		0EDEA81B248E204600ED837A /* AutoSearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDEA81A248E204600ED837A /* AutoSearchEngine.swift */; };
+		0EE48D3125B80B79000F2506 /* ChattingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE48D3025B80B79000F2506 /* ChattingTableViewCell.swift */; };
+		0EE48D3925B850C0000F2506 /* ChattingListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE48D3825B850C0000F2506 /* ChattingListApi.swift */; };
+		0EE48D4625B850F9000F2506 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE48D4525B850F9000F2506 /* ChatListModel.swift */; };
 		0EE94C4723EA4C980059E43F /* HomeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94C4623EA4C980059E43F /* HomeMainViewController.swift */; };
 		0EE94C4923EA4D2A0059E43F /* HMPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94C4823EA4D2A0059E43F /* HMPageViewController.swift */; };
 		0EEC5C742462855700C0C047 /* ShareAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC5C732462855700C0C047 /* ShareAppViewController.swift */; };
@@ -464,6 +470,9 @@
 		0E97C18F23A22B5A0013D489 /* Snow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Snow.sks; sourceTree = "<group>"; };
 		0E97C19023A22B5A0013D489 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E97C19423A22BDC0013D489 /* SnowScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowScene.swift; sourceTree = "<group>"; };
+		0EA4DA8125A43F8F0054AA85 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
+		0EA4DA8825A456FC0054AA85 /* ChattingFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingFriendViewController.swift; sourceTree = "<group>"; };
+		0EA4DA8F25A54C4F0054AA85 /* ChattingFriendViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingFriendViewControllerCell.swift; sourceTree = "<group>"; };
 		0EA55CA122CAE0F800FD7D15 /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EA55CA322CAE0F800FD7D15 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		0EA55CA522CAE0F800FD7D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -522,6 +531,9 @@
 		0EDEA816248E201D00ED837A /* AutoSearchEngineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoSearchEngineCell.xib; sourceTree = "<group>"; };
 		0EDEA818248E202F00ED837A /* AutoSearchEngineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoSearchEngineCell.swift; sourceTree = "<group>"; };
 		0EDEA81A248E204600ED837A /* AutoSearchEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoSearchEngine.swift; sourceTree = "<group>"; };
+		0EE48D3025B80B79000F2506 /* ChattingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewCell.swift; sourceTree = "<group>"; };
+		0EE48D3825B850C0000F2506 /* ChattingListApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingListApi.swift; sourceTree = "<group>"; };
+		0EE48D4525B850F9000F2506 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		0EE94C4623EA4C980059E43F /* HomeMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainViewController.swift; sourceTree = "<group>"; };
 		0EE94C4823EA4D2A0059E43F /* HMPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMPageViewController.swift; sourceTree = "<group>"; };
 		0EEC5C732462855700C0C047 /* ShareAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAppViewController.swift; sourceTree = "<group>"; };
@@ -698,6 +710,7 @@
 				0E1C854622D448FE0047A8CE /* PushNotification */,
 				0E1D3F7C22963663003629FB /* Feed */,
 				0E7F848922B8C5840031764C /* Alarm */,
+				0EE48D3725B8503F000F2506 /* Chat */,
 				0E7F84AF22BA1EC40031764C /* Profile */,
 			);
 			path = Main;
@@ -851,6 +864,8 @@
 				0E8E9757238E073500842694 /* ReplyLikeViewController.swift */,
 				0E1F59FC22E683F600B3977A /* ChattingWebViewController.swift */,
 				0E33C34D22F121F1000AECC2 /* ChattingFriendWebViewViewController.swift */,
+				0EA4DA8125A43F8F0054AA85 /* ChattingViewController.swift */,
+				0EA4DA8825A456FC0054AA85 /* ChattingFriendViewController.swift */,
 				0EAE2DF3227ACB3A00E91161 /* AlarmViewController.swift */,
 				0EEC5C732462855700C0C047 /* ShareAppViewController.swift */,
 				0E6990342477B6300076EE89 /* PopupShowViewController.swift */,
@@ -999,10 +1014,12 @@
 				0E4B3D392580566000EC142E /* ChildDetailDescriptionTableViewCell.swift */,
 				0ED7F53722B1F03C00CF2F92 /* DetailMissionCompleteTableViewCell.swift */,
 				0E4C1C27231CFC37008C6733 /* DetailReplyTableViewCell.swift */,
+				0EA4DA8F25A54C4F0054AA85 /* ChattingFriendViewControllerCell.swift */,
 				0E8E9759238E07ED00842694 /* ReplyLikeTableViewCell.swift */,
 				0E7F848422B788E60031764C /* AlarmTableViewCell.swift */,
 				0E29F8692473AF6D002B7C55 /* CustomTableViewCell.swift */,
 				0EDEA818248E202F00ED837A /* AutoSearchEngineCell.swift */,
+				0EE48D3025B80B79000F2506 /* ChattingTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1209,6 +1226,23 @@
 				0EB5EC1F23164414005555FE /* EmoticonCollectionViewCell.xib */,
 			);
 			path = Emoticon;
+			sourceTree = "<group>";
+		};
+		0EE48D3725B8503F000F2506 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				0EE48D3825B850C0000F2506 /* ChattingListApi.swift */,
+				0EE48D4425B850D9000F2506 /* DataModel */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		0EE48D4425B850D9000F2506 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				0EE48D4525B850F9000F2506 /* ChatListModel.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		0EF70BB4236AB64C00E1D224 /* InAppPurchase */ = {
@@ -1634,6 +1668,7 @@
 				0ED7F53022B1D36800CF2F92 /* Table_Collection_Animations.swift in Sources */,
 				0E8EB57723B9826F0065D226 /* PilotRecommendModel.swift in Sources */,
 				0E1D3F832296580A003629FB /* BannerModel.swift in Sources */,
+				0EE48D4625B850F9000F2506 /* ChatListModel.swift in Sources */,
 				0EDEA8132489E2CC00ED837A /* AutoSearchModel.swift in Sources */,
 				0E1D3FFD2297B96D003629FB /* GradientView.swift in Sources */,
 				0E1A96A522B08BE3001261B2 /* FeedAppCurriculumNextModel.swift in Sources */,
@@ -1642,6 +1677,7 @@
 				0E1C854822D449190047A8CE /* PushNotificationModel.swift in Sources */,
 				0E2B9E9D23C81BE70012EF3B /* ChildDetailIntroTableViewCell.swift in Sources */,
 				0E8EB57C23BAC1260065D226 /* HomeMain2Manager.swift in Sources */,
+				0EA4DA9025A54C4F0054AA85 /* ChattingFriendViewControllerCell.swift in Sources */,
 				0E2017B2230D06C1005581E4 /* ChildDetailClassTableViewCell.swift in Sources */,
 				0E0B84EE228E750E0055F044 /* LoginModel.swift in Sources */,
 				0E0B84FA228EA5A70055F044 /* AlertManager.swift in Sources */,
@@ -1667,6 +1703,7 @@
 				0E0B84E5228D37D20055F044 /* PasswordSearchViewController.swift in Sources */,
 				0ED8CF2C2397A1D8007760BA /* ChildHome2WebViewController.swift in Sources */,
 				0ED03D4E22A5194800AD48A3 /* HtmlToSwift+Extension.swift in Sources */,
+				0EE48D3125B80B79000F2506 /* ChattingTableViewCell.swift in Sources */,
 				0E8E1F0D23C2FC1C0086C0AF /* ProfileV2ViewController.swift in Sources */,
 				0E2B9E9923C818420012EF3B /* ChildDetailIntroViewController.swift in Sources */,
 				0E8DDA5E23B458F00050ECB5 /* HomeClassTableViewCell.swift in Sources */,
@@ -1711,6 +1748,7 @@
 				0E2B9E9F23CC4E4C0012EF3B /* ReviewModel.swift in Sources */,
 				0E2C2F1922815CA3006653C8 /* Define.swift in Sources */,
 				0EDE67D522A9E26D00C2B3C1 /* FeedAppClassDetailReplyModel.swift in Sources */,
+				0EE48D3925B850C0000F2506 /* ChattingListApi.swift in Sources */,
 				0EEC5C742462855700C0C047 /* ShareAppViewController.swift in Sources */,
 				0E23A98C2329CC9400CA3497 /* ConvertToData.swift in Sources */,
 				0ED8CF302399D737007760BA /* AddInfoTagInterestTableViewCell.swift in Sources */,
@@ -1760,6 +1798,7 @@
 				0E37A8E92356A66D00283F9A /* INAppPurchase.swift in Sources */,
 				0E29F86724739CF4002B7C55 /* StoryEventViewController.swift in Sources */,
 				0E1A8D592292795800D581F5 /* AlamofireNetworkCancel.swift in Sources */,
+				0EA4DA8225A43F8F0054AA85 /* ChattingViewController.swift in Sources */,
 				0E8DDA5923B455530050ECB5 /* HomeClassViewController.swift in Sources */,
 				0E6A0F11229E079A00497733 /* SearchModel.swift in Sources */,
 				0E7B1B2623D699EA002050C1 /* HomeProfileCollectionViewCell.swift in Sources */,
@@ -1790,6 +1829,7 @@
 				0EB4853D23432FF80012BA2F /* NavigationAnimation.swift in Sources */,
 				0E4C1C28231CFC37008C6733 /* DetailReplyTableViewCell.swift in Sources */,
 				0E7F84ED22BB8F350031764C /* Notification+Extension.swift in Sources */,
+				0EA4DA8925A456FC0054AA85 /* ChattingFriendViewController.swift in Sources */,
 				0E37A8E52355477A00283F9A /* TextField+Extension.swift in Sources */,
 				0E7F848E22B8C6BA0031764C /* AlarmModel.swift in Sources */,
 				0E2B9E9B23C81BD80012EF3B /* ChildDetailReviewTableViewCell.swift in Sources */,

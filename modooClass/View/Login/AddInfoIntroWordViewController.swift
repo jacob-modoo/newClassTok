@@ -45,8 +45,6 @@ class AddInfoIntroWordViewController: UIViewController ,UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scale: CGFloat = DEF_WIDTH_375_SCALE
-        view.transform = view.transform.scaledBy(x: scale, y: scale)
         let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tapGesture)
         checkTextField()

@@ -19,6 +19,7 @@ class HomeProfileViewController: UIViewController {
     let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
     let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
+    let chattingStoryboard: UIStoryboard = UIStoryboard(name: "ChattingWebView", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -194,8 +195,9 @@ class HomeProfileViewController: UIViewController {
                     self.navigationController?.pushViewController(newViewController, animated: true)
                 }else{
                     if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 6{
-                        newViewController.url = HomeMain2Manager.shared.profileModel.results?.chat_link ?? ""
-                        self.navigationController?.pushViewController(newViewController, animated: true)
+                        let chatViewController = chattingStoryboard.instantiateViewController(withIdentifier: "ChattingFriendWebViewViewController") as! ChattingFriendWebViewViewController
+                        chatViewController.url = HomeMain2Manager.shared.profileModel.results?.chat_link ?? ""
+                        self.navigationController?.pushViewController(chatViewController, animated: true)
                     }else if (tag - (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0)) == 7{
                         newViewController.url = HomeMain2Manager.shared.profileModel.results?.support_address ?? ""
                         self.navigationController?.pushViewController(newViewController, animated: true)

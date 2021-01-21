@@ -3065,10 +3065,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="9iq-Po-yHg">
-                                                                    <rect key="frame" x="53.5" y="50.5" width="30" height="30"/>
+                                                                    <rect key="frame" x="104.5" y="10" width="22" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="Hw7-n2-Wge"/>
-                                                                        <constraint firstAttribute="width" constant="30" id="Rhp-av-vF1"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="Hw7-n2-Wge"/>
+                                                                        <constraint firstAttribute="width" constant="22" id="Rhp-av-vF1"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R62-Ju-eaB" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
@@ -3095,14 +3095,14 @@
                                                                 <constraint firstItem="MSU-K6-19u" firstAttribute="top" secondItem="fn5-Wz-tfK" secondAttribute="top" id="L39-is-G89"/>
                                                                 <constraint firstAttribute="bottom" secondItem="MSU-K6-19u" secondAttribute="bottom" id="LzJ-Zk-Bgo"/>
                                                                 <constraint firstItem="MSU-K6-19u" firstAttribute="leading" secondItem="fn5-Wz-tfK" secondAttribute="leading" id="MhZ-Em-YVa"/>
+                                                                <constraint firstItem="9iq-Po-yHg" firstAttribute="top" secondItem="fn5-Wz-tfK" secondAttribute="top" constant="10" id="Q8J-ro-mN4"/>
                                                                 <constraint firstAttribute="trailing" secondItem="nv2-t1-9v3" secondAttribute="trailing" constant="8" id="Rix-qe-q7Z"/>
                                                                 <constraint firstItem="JK7-sv-Nki" firstAttribute="leading" secondItem="fn5-Wz-tfK" secondAttribute="leading" id="V0h-Q7-ZjK"/>
                                                                 <constraint firstItem="aQP-Ck-dd8" firstAttribute="leading" secondItem="fn5-Wz-tfK" secondAttribute="leading" constant="8" id="VEQ-ST-h6N"/>
+                                                                <constraint firstAttribute="trailing" secondItem="9iq-Po-yHg" secondAttribute="trailing" constant="10" id="Vle-i7-KKt"/>
                                                                 <constraint firstAttribute="trailing" secondItem="R62-Ju-eaB" secondAttribute="trailing" constant="4" id="e03-0S-5KD"/>
                                                                 <constraint firstAttribute="trailing" secondItem="JK7-sv-Nki" secondAttribute="trailing" id="eBz-l8-XNx"/>
                                                                 <constraint firstItem="R62-Ju-eaB" firstAttribute="top" secondItem="fn5-Wz-tfK" secondAttribute="top" constant="4" id="fxn-4b-5cD"/>
-                                                                <constraint firstItem="9iq-Po-yHg" firstAttribute="centerY" secondItem="fn5-Wz-tfK" secondAttribute="centerY" id="ggG-X2-kFE"/>
-                                                                <constraint firstItem="9iq-Po-yHg" firstAttribute="centerX" secondItem="fn5-Wz-tfK" secondAttribute="centerX" id="j5f-sq-3Iw"/>
                                                                 <constraint firstAttribute="bottom" secondItem="aQP-Ck-dd8" secondAttribute="bottom" constant="8" id="kM6-vL-DTU"/>
                                                                 <constraint firstAttribute="bottom" secondItem="JK7-sv-Nki" secondAttribute="bottom" id="ka9-uo-dh1"/>
                                                                 <constraint firstAttribute="bottom" secondItem="nv2-t1-9v3" secondAttribute="bottom" constant="8" id="mrF-SI-wnT"/>
@@ -3163,10 +3163,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="dxS-Fn-ZqM">
-                                                                    <rect key="frame" x="53.5" y="50.5" width="30" height="30"/>
+                                                                    <rect key="frame" x="105" y="10" width="22" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="bIT-Za-Ll6"/>
-                                                                        <constraint firstAttribute="width" constant="30" id="wd4-r0-Yz0"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="bIT-Za-Ll6"/>
+                                                                        <constraint firstAttribute="width" constant="22" id="wd4-r0-Yz0"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9r3-cJ-DtX" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
@@ -3192,6 +3192,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="9r3-cJ-DtX" secondAttribute="trailing" constant="4" id="44H-xv-Ody"/>
                                                                 <constraint firstItem="RA5-7T-rNn" firstAttribute="leading" secondItem="cgY-wb-p37" secondAttribute="leading" id="61C-gN-q97"/>
                                                                 <constraint firstAttribute="trailing" secondItem="YJb-tw-Vcy" secondAttribute="trailing" id="9kQ-G3-9Ez"/>
+                                                                <constraint firstAttribute="trailing" secondItem="dxS-Fn-ZqM" secondAttribute="trailing" constant="10" id="H8Q-pI-QKd"/>
                                                                 <constraint firstAttribute="bottom" secondItem="9r3-cJ-DtX" secondAttribute="bottom" constant="4" id="JEc-Bk-TmZ"/>
                                                                 <constraint firstItem="NlS-pO-YM7" firstAttribute="leading" secondItem="cgY-wb-p37" secondAttribute="leading" constant="8" id="N0z-Ri-7dW"/>
                                                                 <constraint firstItem="9r3-cJ-DtX" firstAttribute="leading" secondItem="cgY-wb-p37" secondAttribute="leading" constant="4" id="OLV-T2-6af"/>
@@ -3200,11 +3201,10 @@
                                                                 <constraint firstAttribute="bottom" secondItem="YJb-tw-Vcy" secondAttribute="bottom" id="Xag-ab-iAe"/>
                                                                 <constraint firstAttribute="trailing" secondItem="RA5-7T-rNn" secondAttribute="trailing" id="dyH-hM-ruK"/>
                                                                 <constraint firstItem="NFV-tc-L1i" firstAttribute="leading" secondItem="cgY-wb-p37" secondAttribute="leading" constant="8" id="fnh-4k-yWI"/>
+                                                                <constraint firstItem="dxS-Fn-ZqM" firstAttribute="top" secondItem="cgY-wb-p37" secondAttribute="top" constant="10" id="h6b-hL-Cy5"/>
                                                                 <constraint firstAttribute="bottom" secondItem="NlS-pO-YM7" secondAttribute="bottom" constant="8" id="haz-aY-ooI"/>
                                                                 <constraint firstAttribute="bottom" secondItem="NFV-tc-L1i" secondAttribute="bottom" constant="8" id="pxE-WW-mAi"/>
-                                                                <constraint firstItem="dxS-Fn-ZqM" firstAttribute="centerY" secondItem="cgY-wb-p37" secondAttribute="centerY" id="qJo-q8-GF2"/>
                                                                 <constraint firstItem="YJb-tw-Vcy" firstAttribute="top" secondItem="cgY-wb-p37" secondAttribute="top" id="qQG-pJ-7eU"/>
-                                                                <constraint firstItem="dxS-Fn-ZqM" firstAttribute="centerX" secondItem="cgY-wb-p37" secondAttribute="centerX" id="wKb-sY-aHr"/>
                                                                 <constraint firstAttribute="bottom" secondItem="RA5-7T-rNn" secondAttribute="bottom" id="wg4-t4-chM"/>
                                                             </constraints>
                                                         </view>
@@ -3261,10 +3261,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileV2_play" translatesAutoresizingMaskIntoConstraints="NO" id="7hT-cd-UsY">
-                                                                    <rect key="frame" x="53" y="50.5" width="30" height="30"/>
+                                                                    <rect key="frame" x="104.5" y="10" width="22" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="2eR-sC-NLm"/>
-                                                                        <constraint firstAttribute="width" constant="30" id="QRS-ZB-CKn"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="2eR-sC-NLm"/>
+                                                                        <constraint firstAttribute="width" constant="22" id="QRS-ZB-CKn"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0F-Zf-ub8" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
@@ -3287,7 +3287,6 @@
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="u0F-Zf-ub8" secondAttribute="trailing" constant="4" id="1Pz-ud-3Y4"/>
-                                                                <constraint firstItem="7hT-cd-UsY" firstAttribute="centerY" secondItem="ClU-C7-fAT" secondAttribute="centerY" id="B1a-eq-O18"/>
                                                                 <constraint firstItem="u0F-Zf-ub8" firstAttribute="top" secondItem="ClU-C7-fAT" secondAttribute="top" constant="4" id="BTn-wt-Zvm"/>
                                                                 <constraint firstAttribute="trailing" secondItem="j47-DY-Gbn" secondAttribute="trailing" id="DOv-YI-cCE"/>
                                                                 <constraint firstItem="QJm-yI-b4C" firstAttribute="leading" secondItem="ClU-C7-fAT" secondAttribute="leading" constant="8" id="FHs-Ag-OCH"/>
@@ -3296,13 +3295,14 @@
                                                                 <constraint firstItem="j47-DY-Gbn" firstAttribute="top" secondItem="ClU-C7-fAT" secondAttribute="top" id="IM6-gG-uk5"/>
                                                                 <constraint firstAttribute="bottom" secondItem="u0F-Zf-ub8" secondAttribute="bottom" constant="4" id="JYs-DE-rhF"/>
                                                                 <constraint firstItem="tjG-Ki-lH6" firstAttribute="leading" secondItem="ClU-C7-fAT" secondAttribute="leading" constant="8" id="JfS-aX-LM6"/>
+                                                                <constraint firstItem="7hT-cd-UsY" firstAttribute="top" secondItem="ClU-C7-fAT" secondAttribute="top" constant="10" id="Nhp-pO-INc"/>
                                                                 <constraint firstAttribute="trailing" secondItem="QJm-yI-b4C" secondAttribute="trailing" constant="8" id="RY9-fB-8Oc"/>
                                                                 <constraint firstItem="u0F-Zf-ub8" firstAttribute="leading" secondItem="ClU-C7-fAT" secondAttribute="leading" constant="4" id="Tft-pF-WxH"/>
+                                                                <constraint firstAttribute="trailing" secondItem="7hT-cd-UsY" secondAttribute="trailing" constant="10" id="V6E-sk-f0Y"/>
                                                                 <constraint firstAttribute="bottom" secondItem="hNP-bC-TIs" secondAttribute="bottom" id="Xgd-Cz-1Hj"/>
                                                                 <constraint firstItem="j47-DY-Gbn" firstAttribute="leading" secondItem="ClU-C7-fAT" secondAttribute="leading" id="bEG-r9-9qS"/>
                                                                 <constraint firstItem="hNP-bC-TIs" firstAttribute="leading" secondItem="ClU-C7-fAT" secondAttribute="leading" id="iZl-Cw-2PK"/>
                                                                 <constraint firstAttribute="trailing" secondItem="hNP-bC-TIs" secondAttribute="trailing" id="mp9-ox-Wms"/>
-                                                                <constraint firstItem="7hT-cd-UsY" firstAttribute="centerX" secondItem="ClU-C7-fAT" secondAttribute="centerX" id="y3a-b2-BTn"/>
                                                                 <constraint firstAttribute="bottom" secondItem="QJm-yI-b4C" secondAttribute="bottom" constant="8" id="yRb-au-CxZ"/>
                                                             </constraints>
                                                         </view>
@@ -9605,12 +9605,12 @@
         <!--ProfileV2 New View Controller-->
         <scene sceneID="J8r-OP-dGE">
             <objects>
-                <viewController storyboardIdentifier="ProfileV2NewViewController" id="Fxx-cl-JVD" customClass="ProfileV2NewViewController" customModule="modooClass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileV2NewViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fxx-cl-JVD" customClass="ProfileV2NewViewController" customModule="modooClass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X7U-fc-E0U">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGd-gf-Pqx" userLabel="Top View">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGd-gf-Pqx" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdz-g2-ri7">
@@ -13370,7 +13370,7 @@
             <size key="intrinsicContentSize" width="31" height="13.5"/>
         </designable>
         <designable name="UyP-0e-u5X">
-            <size key="intrinsicContentSize" width="67" height="24"/>
+            <size key="intrinsicContentSize" width="77" height="24"/>
         </designable>
         <designable name="UzH-as-BKR">
             <size key="intrinsicContentSize" width="88.5" height="34"/>

@@ -51,6 +51,7 @@ class ChattingFriendWebViewViewController: UIViewController ,WKNavigationDelegat
     /** **뷰가 나타나기 시작 할 때 타는 메소드 */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("** i am here man")
         navigationController?.setNavigationBarHidden(true, animated: animated)
         navigationController?.navigationBar.barTintColor = UIColor(hexString: "#ffffff")
     }

@@ -39,6 +39,9 @@ PODS:
   - Firebase/Crashlytics (7.2.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 7.2.0)
+  - Firebase/Database (7.2.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 7.2.0)
   - Firebase/RemoteConfig (7.2.0):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 7.2.0)
@@ -68,6 +71,9 @@ PODS:
     - GoogleDataTransport (~> 8.0)
     - nanopb (~> 2.30906.0)
     - PromisesObjC (~> 1.2)
+  - FirebaseDatabase (7.2.0):
+    - FirebaseCore (~> 7.0)
+    - leveldb-library (~> 1.22)
   - FirebaseInstallations (7.2.0):
     - FirebaseCore (~> 7.0)
     - GoogleUtilities/Environment (~> 7.0)
@@ -107,6 +113,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.1.1):
     - GoogleUtilities/Logger
+  - leveldb-library (1.22)
   - lottie-ios (3.1.9)
   - nanopb (2.30906.0):
     - nanopb/decode (= 2.30906.0)
@@ -138,6 +145,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/CoreOnly
   - Firebase/Crashlytics
+  - Firebase/Database
   - Firebase/RemoteConfig
   - FTPopOverMenu_Swift (~> 0.2.0)
   - lottie-ios
@@ -162,12 +170,14 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCrashlytics
+    - FirebaseDatabase
     - FirebaseInstallations
     - FirebaseRemoteConfig
     - FTPopOverMenu_Swift
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - leveldb-library
     - lottie-ios
     - nanopb
     - naveridlogin-sdk-ios
@@ -194,12 +204,14 @@ SPEC CHECKSUMS:
   FirebaseCore: c959e8a598f83125c01c1700d9161b236ab3833c
   FirebaseCoreDiagnostics: 2d508e12e77e9691ca67d1669b91ee80f0985b29
   FirebaseCrashlytics: 8afbf6e9c3731adee0e721870c9e7b40b0e8fd44
+  FirebaseDatabase: efb4d986413f55f7d9a05e621bd86ca1589e6ca7
   FirebaseInstallations: 9ab3a9a6522e687f59ff9bcfd92949ac85073f3c
   FirebaseRemoteConfig: 73cad38920c491ea81c5c66f9e94a87f265b85a4
   FTPopOverMenu_Swift: c91ce7301c358264743de028bc28177ee9d8e1a4
   GoogleAppMeasurement: 57a0df93dc2feb5176b1bac06012dbd725191ba5
   GoogleDataTransport: e4085e6762f36a6141738f46b0153473ce57fb18
   GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c
+  leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
@@ -211,6 +223,6 @@ SPEC CHECKSUMS:
   VIMediaCache: aa650f82cb114c68a343beb4e67416cf5eb2f3a2
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 86ead5963c43705ddbcc117138796539c8458159
+PODFILE CHECKSUM: 6df9d13f609edd8fe68803bd00d8c614bb498a8a
 
 COCOAPODS: 1.8.4

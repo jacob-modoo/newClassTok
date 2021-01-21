@@ -10,6 +10,7 @@ target 'modooClass' do
   pod 'Firebase/RemoteConfig'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Database'
   pod 'Alamofire'
   pod 'FBSDKCoreKit/Swift'
   pod 'FBSDKLoginKit/Swift'

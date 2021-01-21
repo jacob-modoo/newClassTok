@@ -11,5 +11,5 @@ import Foundation
 class UserManager: NSObject {
     static let shared = UserManager()
     var userInfo = LoginModel()
-    
+    var chatList = ChatListModel()
 }

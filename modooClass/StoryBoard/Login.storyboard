@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -266,7 +266,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="휴대폰번호 입력" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGf-z4-SlD" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="100" width="164.5" height="31.5"/>
+                                <rect key="frame" x="20" y="100" width="139" height="26.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -291,7 +291,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가입했던 번호는 로그인으로 새로운 번호는 회원가입으로 진행됩니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFe-oM-ien" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="139.5" width="204.5" height="31.5"/>
+                                <rect key="frame" x="20" y="134.5" width="220.5" height="34"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -308,7 +308,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9NZ-Dp-N2T" customClass="UIFixedTextField" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="201" width="374" height="24"/>
+                                <rect key="frame" x="20" y="198.5" width="374" height="24"/>
                                 <color key="tintColor" name="MainPoint_mainColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="CWh-ac-Iny"/>
@@ -332,14 +332,14 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6il-c1-t5j">
-                                <rect key="frame" x="20" y="230" width="374" height="1"/>
+                                <rect key="frame" x="20" y="227.5" width="374" height="1"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="gJy-AV-ewK"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBF-X2-FxD" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="285" width="374" height="50"/>
+                                <rect key="frame" x="20" y="282.5" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="T3D-BB-D2V"/>
                                 </constraints>
@@ -374,7 +374,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6X-vu-ZaB" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="118.5" y="368" width="177" height="27"/>
+                                <rect key="frame" x="118.5" y="365.5" width="177" height="27"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
                                 <inset key="contentEdgeInsets" minX="50" minY="0.0" maxX="50" maxY="10"/>
                                 <state key="normal" title="비밀번호 찾기">
@@ -399,7 +399,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EoQ-xD-2Lz">
-                                <rect key="frame" x="365" y="196" width="29" height="29"/>
+                                <rect key="frame" x="365" y="193.5" width="29" height="29"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="on_eye"/>
                                 <connections>
@@ -407,7 +407,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIZ-46-2cp" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="238" width="374" height="15"/>
+                                <rect key="frame" x="20" y="235.5" width="374" height="15"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                 <color key="textColor" red="0.8862745098" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -944,6 +944,21 @@
                                     <action selector="returnBackBtnClicked:" destination="wWJ-dc-Vu1" eventType="touchUpInside" id="ejf-O4-JBc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4KL-Ef-d8w">
+                                <rect key="frame" x="367" y="69.5" width="32" height="32"/>
+                                <fontDescription key="fontDescription" name="NotoSansOriya" family="Noto Sans Oriya" pointSize="14"/>
+                                <state key="normal" title="SKIP">
+                                    <color key="titleColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipBtnClicked:" destination="wWJ-dc-Vu1" eventType="touchUpInside" id="5TN-hk-4UN"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="IW9-Df-9op">
+                                <rect key="frame" x="0.0" y="44" width="414" height="2.5"/>
+                                <color key="progressTintColor" name="MainPoint_mainColor"/>
+                                <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="클래스톡에서 활동할 재미있는 닉네임을 적어주세요 :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Enj-jV-cZV" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                 <rect key="frame" x="20" y="150.5" width="293.5" height="17"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
@@ -1042,11 +1057,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="IW9-Df-9op">
-                                <rect key="frame" x="0.0" y="44" width="414" height="2.5"/>
-                                <color key="progressTintColor" name="MainPoint_mainColor"/>
-                                <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6L-me-vLD" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                 <rect key="frame" x="20" y="116" width="57.5" height="26.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
@@ -1064,16 +1074,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4KL-Ef-d8w">
-                                <rect key="frame" x="367" y="69.5" width="32" height="32"/>
-                                <fontDescription key="fontDescription" name="NotoSansOriya" family="Noto Sans Oriya" pointSize="14"/>
-                                <state key="normal" title="SKIP">
-                                    <color key="titleColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="skipBtnClicked:" destination="wWJ-dc-Vu1" eventType="touchUpInside" id="5TN-hk-4UN"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wb9-EO-aib"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2064,7 +2064,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나를 표현하는 사진" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCG-1R-CPj" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="116" width="194" height="31.5"/>
+                                <rect key="frame" x="20" y="116" width="164" height="26.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="26"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2089,7 +2089,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="함께하는 수강생들과 더 친밀해질 수 있어요 어떠한 사진이어도 무관해요 :)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gt-tX-nju" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="155.5" width="220" height="31.5"/>
+                                <rect key="frame" x="20" y="150.5" width="236.5" height="34"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2106,7 +2106,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haf-TE-lDo">
-                                <rect key="frame" x="20" y="227" width="374" height="164"/>
+                                <rect key="frame" x="20" y="209.5" width="374" height="164"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hj2-ry-ew4" userLabel="View1">
                                         <rect key="frame" x="105" y="0.0" width="164" height="164"/>
@@ -2115,7 +2115,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="164" height="164"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="직접 업로드 (프로필)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwF-wz-WLD" userLabel="직접 업로드 (대표 사진)" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="120" width="164" height="29"/>
+                                                <rect key="frame" x="0.0" y="119" width="164" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2185,7 +2185,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정말 정말 올릴 사진이 없으시면.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYd-dv-s6k" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="431" width="374" height="20.5"/>
+                                <rect key="frame" x="20" y="403.5" width="374" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2202,7 +2202,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BHO-5o-NCs">
-                                <rect key="frame" x="0.0" y="467.5" width="414" height="180"/>
+                                <rect key="frame" x="0.0" y="425.5" width="414" height="180"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="8ri-l3-XZ8"/>
@@ -2336,16 +2336,16 @@
                             <constraint firstItem="LB1-pB-y4E" firstAttribute="leading" secondItem="wLM-De-SNE" secondAttribute="leading" constant="20" id="5jv-3T-145"/>
                             <constraint firstItem="wLM-De-SNE" firstAttribute="bottom" secondItem="LB1-pB-y4E" secondAttribute="bottom" constant="20" id="7Pf-Yb-6ay"/>
                             <constraint firstItem="wLM-De-SNE" firstAttribute="trailing" secondItem="BHO-5o-NCs" secondAttribute="trailing" id="8fo-RX-RsQ"/>
-                            <constraint firstItem="haf-TE-lDo" firstAttribute="top" secondItem="9gt-tX-nju" secondAttribute="bottom" constant="40" id="Co9-du-ggG"/>
+                            <constraint firstItem="haf-TE-lDo" firstAttribute="top" secondItem="9gt-tX-nju" secondAttribute="bottom" constant="25" id="Co9-du-ggG"/>
                             <constraint firstItem="BHO-5o-NCs" firstAttribute="leading" secondItem="wLM-De-SNE" secondAttribute="leading" id="HgV-Vw-CkR"/>
                             <constraint firstItem="wLM-De-SNE" firstAttribute="trailing" secondItem="mKl-le-3jP" secondAttribute="trailing" constant="15" id="M3O-ch-6bK"/>
                             <constraint firstItem="9gt-tX-nju" firstAttribute="top" secondItem="hCG-1R-CPj" secondAttribute="bottom" constant="8" id="MmS-Wq-W5a"/>
                             <constraint firstItem="9gt-tX-nju" firstAttribute="leading" secondItem="wLM-De-SNE" secondAttribute="leading" constant="20" id="My3-w6-REz"/>
                             <constraint firstItem="YYd-dv-s6k" firstAttribute="leading" secondItem="wLM-De-SNE" secondAttribute="leading" constant="20" id="TDK-x5-XGu"/>
                             <constraint firstItem="hYv-LJ-nbb" firstAttribute="leading" secondItem="7To-9c-F7c" secondAttribute="leading" id="X1g-ck-bgp"/>
-                            <constraint firstItem="YYd-dv-s6k" firstAttribute="top" secondItem="haf-TE-lDo" secondAttribute="bottom" constant="40" id="ZFE-91-jg6"/>
+                            <constraint firstItem="YYd-dv-s6k" firstAttribute="top" secondItem="haf-TE-lDo" secondAttribute="bottom" constant="30" id="ZFE-91-jg6"/>
                             <constraint firstItem="wLM-De-SNE" firstAttribute="trailing" secondItem="haf-TE-lDo" secondAttribute="trailing" constant="20" id="bw5-ye-l00"/>
-                            <constraint firstItem="BHO-5o-NCs" firstAttribute="top" secondItem="YYd-dv-s6k" secondAttribute="bottom" constant="16" id="cW3-NJ-JUO"/>
+                            <constraint firstItem="BHO-5o-NCs" firstAttribute="top" secondItem="YYd-dv-s6k" secondAttribute="bottom" constant="5" id="cW3-NJ-JUO"/>
                             <constraint firstItem="7k1-dE-KyP" firstAttribute="top" secondItem="wLM-De-SNE" secondAttribute="top" constant="24" id="eAG-Mh-f1d"/>
                             <constraint firstItem="7k1-dE-KyP" firstAttribute="leading" secondItem="wLM-De-SNE" secondAttribute="leading" constant="10" id="fRP-rQ-V8q"/>
                             <constraint firstItem="hYv-LJ-nbb" firstAttribute="top" secondItem="wLM-De-SNE" secondAttribute="top" id="hoj-XU-2PH"/>
@@ -2863,7 +2863,7 @@
             <size key="intrinsicContentSize" width="6" height="25.5"/>
         </designable>
         <designable name="9gt-tX-nju">
-            <size key="intrinsicContentSize" width="220" height="31.5"/>
+            <size key="intrinsicContentSize" width="236.5" height="34"/>
         </designable>
         <designable name="A80-Sg-Wgf">
             <size key="intrinsicContentSize" width="228" height="17"/>
@@ -2890,7 +2890,7 @@
             <size key="intrinsicContentSize" width="3.5" height="15"/>
         </designable>
         <designable name="FIZ-46-2cp">
-            <size key="intrinsicContentSize" width="3.5" height="14.5"/>
+            <size key="intrinsicContentSize" width="3.5" height="15"/>
         </designable>
         <designable name="Fqi-yJ-e92">
             <size key="intrinsicContentSize" width="183" height="26.5"/>
@@ -2920,7 +2920,7 @@
             <size key="intrinsicContentSize" width="3.5" height="15"/>
         </designable>
         <designable name="LB1-pB-y4E">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="30" height="32"/>
         </designable>
         <designable name="NwJ-So-5gB">
             <size key="intrinsicContentSize" width="131.5" height="26.5"/>
@@ -2954,7 +2954,7 @@
             <size key="intrinsicContentSize" width="284" height="44"/>
         </designable>
         <designable name="YYd-dv-s6k">
-            <size key="intrinsicContentSize" width="218" height="20.5"/>
+            <size key="intrinsicContentSize" width="178.5" height="17"/>
         </designable>
         <designable name="Yl8-lq-Wno">
             <size key="intrinsicContentSize" width="284" height="44"/>
@@ -2981,7 +2981,7 @@
             <size key="intrinsicContentSize" width="6" height="25.5"/>
         </designable>
         <designable name="cBF-X2-FxD">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="30" height="32"/>
         </designable>
         <designable name="d4O-dK-Wtn">
             <size key="intrinsicContentSize" width="45" height="27"/>
@@ -2993,7 +2993,7 @@
             <size key="intrinsicContentSize" width="3.5" height="15"/>
         </designable>
         <designable name="gGf-z4-SlD">
-            <size key="intrinsicContentSize" width="164.5" height="31.5"/>
+            <size key="intrinsicContentSize" width="139" height="26.5"/>
         </designable>
         <designable name="gSv-mW-kaS">
             <size key="intrinsicContentSize" width="6" height="25.5"/>
@@ -3002,10 +3002,10 @@
             <size key="intrinsicContentSize" width="189" height="26.5"/>
         </designable>
         <designable name="hCG-1R-CPj">
-            <size key="intrinsicContentSize" width="194" height="31.5"/>
+            <size key="intrinsicContentSize" width="164" height="26.5"/>
         </designable>
         <designable name="hwF-wz-WLD">
-            <size key="intrinsicContentSize" width="55.5" height="29"/>
+            <size key="intrinsicContentSize" width="57.5" height="30"/>
         </designable>
         <designable name="i6L-me-vLD">
             <size key="intrinsicContentSize" width="57.5" height="26.5"/>
@@ -3035,7 +3035,7 @@
             <size key="intrinsicContentSize" width="52.5" height="17"/>
         </designable>
         <designable name="sFe-oM-ien">
-            <size key="intrinsicContentSize" width="204.5" height="31.5"/>
+            <size key="intrinsicContentSize" width="220.5" height="34"/>
         </designable>
         <designable name="w0u-cq-ohM">
             <size key="intrinsicContentSize" width="205" height="17"/>

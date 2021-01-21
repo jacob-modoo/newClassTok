@@ -27,8 +27,6 @@ class AddInfoGenderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scale: CGFloat = DEF_WIDTH_375_SCALE
-        view.transform = view.transform.scaledBy(x: scale, y: scale)
         progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 3)
         let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tapGesture)

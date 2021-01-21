@@ -1,5 +1,12 @@
 # pod migration 
 
+### 2021.01.15
+
+Downloading dependencies
+Installing Firebase 7.2.0
+Installing FirebaseDatabase (7.2.0)
+Installing leveldb-library (1.22)
+
 ### 2020.12.05
 
 Downloading dependencies
