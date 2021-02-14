@@ -10,7 +10,6 @@ import UIKit
 
 @IBDesignable class ChildDetailClassPopupView : UIView {
     
-//    @IBOutlet var containerView: UIView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var dislikeBtn: UIButton!
     
@@ -65,20 +64,16 @@ import UIKit
     
     
     @IBAction func popupLikeBtnClicked(_ sender: UIButton) {
-        print("popup like btn is clicked")
         popupLikeBtnClick?()
         
     }
     
     @IBAction func popupDislikeBtnClicked(_ sender: UIButton) {
-        
-        print("popup dislike btn is clicked")
         popupDislikeBtnClick?()
     }
     
     @IBAction func popupExitBtnClicked(_ sender: UIButton) {
 //        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "closePopupView"), object: nil)
-        print("popup exit btn is clicked")
         popupExitBtnClick?()
     }
     

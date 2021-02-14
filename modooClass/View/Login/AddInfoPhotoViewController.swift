@@ -60,19 +60,9 @@ class AddInfoPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let url = URL(string: UserManager.shared.userInfo.results?.user?.photo ?? "")
-        let data = try? Data(contentsOf: url!)
-        if data != nil {
-            let image = UIImage(data: data!) ?? UIImage(named: "reply_user_default")
-            image1.image = image
-            profile_image = image
-            imageRemoveBtn1.isHidden = false
-        } else {
-            image1.image = nil //UIImage(named: "reply_user_default")
-        }
-        
+     
         checkImgField()
+        setProfileImg()
         image1.layer.cornerRadius = image1.frame.width/2
         imageSelectBtn1.layer.cornerRadius = imageSelectBtn1.bounds.width/2
         image1.clipsToBounds = true
@@ -206,6 +196,22 @@ class AddInfoPhotoViewController: UIViewController {
     @IBAction func imagePickerBtnClicked(_ sender: UIButton) {
         imageTag = sender.tag
         imagePicked()
+    }
+    
+    func setProfileImg() {
+        let userImgUrl = UserManager.shared.userInfo.results?.user?.photo ?? ""
+        if userImgUrl != "" {
+            guard let url = URL(string: userImgUrl) else {
+                return
+            }
+            let data = try? Data(contentsOf: url)
+            let image = UIImage(data: data!) ?? UIImage(named: "reply_user_default")
+            image1.image = image
+            profile_image = image
+            imageRemoveBtn1.isHidden = false
+        } else {
+            image1.image = nil //UIImage(named: "reply_user_default")
+        }
     }
     
     func imagePicked(){

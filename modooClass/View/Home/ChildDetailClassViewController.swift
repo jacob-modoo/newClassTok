@@ -136,7 +136,8 @@ class ChildDetailClassViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCount), name: NSNotification.Name(rawValue: "updateLikeCount"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToClassDetail), name: NSNotification.Name("goToClassDetail"), object: nil)
         tableView.addSubview(refreshControl)
-        
+        let url = HomeMain2Manager.shared.pilotAppMain.results?.app_guidance_link ?? "https://www.modooclass.net/class/"
+        print("** acctivity url \(url)")
         replyBorderView.layer.borderWidth = 1
         replyBorderView.layer.borderColor = UIColor(hexString: "#eeeeee").cgColor
         replyBorderView.layer.cornerRadius = 15
@@ -244,14 +245,6 @@ class ChildDetailClassViewController: UIViewController {
                 }else{}
             } else {
                 self.view.endEditing(true)
-//                self.showContent = !self.showContent
-//                DispatchQueue.main.async {
-//                    if self.showContent == true{
-//                        self.tableView.reloadSections([1,2,3], with: .fade)
-//                    }else{
-//                        self.tableView.reloadSections([1,2,3], with: .fade)
-//                    }
-//                }
                 if let parentVC = self.parent as? FeedDetailViewController {
                     parentVC.feedDetailList = self.feedDetailList
                     parentVC.tableViewCheck = 6

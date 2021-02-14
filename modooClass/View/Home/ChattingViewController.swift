@@ -8,17 +8,22 @@
 
 import Foundation
 import UIKit
+import SwiftSoup
 
 class ChattingViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
     var chatList:ChatListModel?
-    var chat_list_arr:Array? = Array<Chat_list>()
+    var chat_list_arr:Array = Array<Chat_list>()
     var page = 1
+    var messageType = ""
+    var emojiNumber = ""
+    lazy var emoticonView = EmoticonView()
+    var checkId = 0
     
-    
-    
+    let user_id = UserManager.shared.userInfo.results?.user?.id ?? 0
+    let chattingStoryboard = UIStoryboard(name: "Chatting", bundle: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.view.addSubview(refreshControl!)
@@ -51,57 +56,101 @@ class ChattingViewController: UIViewController {
         ChattingListApi.shared.chatList(page: page) { result in
             if result.code == "200" {
                 self.chatList = result
-                print("** caht list data: \(self.chatList?.results?.list_arr.count ?? 99)")
-                for addArray in 0 ..< (self.chatList?.results?.list_arr.count ?? 0)! {
-                    self.chat_list_arr?.append((self.chatList?.results?.list_arr[addArray])!)
-                }
+                self.chatDetailList()
                 self.tableView.reloadData()
             }
         } fail: { error in
             Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인") {
-        
             }
         }
     }
     
-    func chatDetailList(page:Int) {
+    func chatDetailList() {
         ChattingListApi.shared.chatList(page: page) { [unowned self] result in
             if result.code == "200" {
-                self.chatList =  result
-                for addArray in 0 ..< (self.chatList?.results?.list_arr.count ?? 0)! {
-                    self.chat_list_arr?.append((self.chatList?.results?.list_arr[addArray])!)
+//                self.chatList =  result
+                for addArray in 0 ..< (self.chatList?.results?.curr_total ?? 0)! {
+                    if chatList?.results?.list_arr[addArray].user_id.count ?? 0 > 1 {
+                        self.chat_list_arr.append((self.chatList?.results?.list_arr[addArray])!)
+                    }
                 }
+                
                 self.tableView.reloadData()
                 Indicator.hideActivityIndicator(uiView: self.view)
             }
         } fail: { error in
             Indicator.hideActivityIndicator(uiView: self.view)
+            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인") {
+            }
         }
     }
+    
+    func convertHtmlToString(cell: ChattingTableViewCell, row: Int) {
+        let msg = chat_list_arr[row].last_message ?? ""
+        do {
+            let doc:Document = try SwiftSoup.parse(msg)
+            let body = doc.body()
+            let bodyElements = try body?.select("body").select("span")
+            let emoji = try bodyElements?.attr("class")
+            let image = try bodyElements?.attr("style")
+            if image?.contains("background-image:url") == true {
+                let imageUrl = msg.components(separatedBy: "('").last?.components(separatedBy: "')").first ?? ""
+                cell.messagePhoto.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "reply_user_default"))
+                cell.messageLbl.text = try doc.text()
+                cell.messagePhotoWidth.constant = 28
+                cell.msgTrailingCons.constant = 10
+            } else {
+                if emoji?.isEmpty == false {
+                    self.emojiNumber = "\(emoji ?? "").png"
+                    for i in emoticonView.items {
+                        if i == emojiNumber {
+                            cell.messagePhoto.image = UIImage(named: i)
+                        }
+                    }
+                    cell.messageLbl.text = try doc.text()
+                    cell.messagePhotoWidth.constant = 28
+                    cell.msgTrailingCons.constant = 10
+                } else {
+                    cell.messageLbl.text = try doc.text()
+                    cell.messagePhotoWidth.constant = 0
+                    cell.msgTrailingCons.constant = 0
+                }
+            }
+        } catch Exception.Error(type: let type, Message: let message) {
+            print(type)
+            print(message)
+        } catch {
+            print("\(error)")
+        }
+        
+    }
+    
 }
 
 extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if chatList != nil {
-        print("** chat list is : \(self.chatList?.results?.list_arr.count ?? 9)")
+        if chat_list_arr.count > 0 {
             if section == 0 {
                 return 1
             } else {
-                return self.chatList?.results?.list_arr.count ?? 0
+                return self.chat_list_arr.count
             }
-//        } else {
-//            print("** chat list is nil")
-//            return 0
-//        }
+        } else {
+            if section == 0 {
+                return 1
+            } else {
+                return 0
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
+        
         switch section {
         case 0:
-            print("** section 0")
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChattingListAdminCell", for: indexPath) as! ChattingTableViewCell
             cell.adminPhoto.image = UIImage(named: "app_Icon2")
             cell.adminMessage.text = "평일 오잔 8시 00분 ~ 오후 5시 00분"
@@ -110,20 +159,25 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         case 1:
-            print("** section 1")
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ChattingListMessageCell", for: indexPath) as! ChattingTableViewCell
-            let url = URL(string: "\(chat_list_arr?[row].photo?[1] ?? "no value")")
-            print("** photo url : \(String(describing: url))")
-            cell.userPhoto.sd_setImage(with: url, placeholderImage: UIImage(named: "reply_user_default"))
-            cell.userName.text = "\(chatList?.results?.list_arr[row].user_name?[1] ?? "")"
             
-            cell.messageLbl.attributedText = "\(chatList?.results?.list_arr[row].last_message ?? "")".convertToAttributedFromHTML()
-            cell.timeLbl.text = "\(chatList?.results?.list_arr[row].time ?? "")"
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChattingListMessageCell", for: indexPath) as! ChattingTableViewCell
+            
+            convertHtmlToString(cell: cell, row: row)
+            
+            if user_id != chat_list_arr[row].user_id[0] {
+                checkId = 0
+            } else {
+                checkId = 1
+            }
+            
+            let url = URL(string: "\(chat_list_arr[row].photo[checkId] )")
+            cell.userPhoto.sd_setImage(with: url, placeholderImage: UIImage(named: "reply_user_default"))
+            cell.userName.text = "\(chat_list_arr[row].user_name[checkId] )"
+            cell.timeLbl.text = "\(chat_list_arr[row].time ?? "")"
             
             cell.selectionStyle = .none
             return cell
         default:
-            print("** default section")
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChattingListAdminCell", for: indexPath) as! ChattingTableViewCell
             cell.selectionStyle = .none
             return cell
@@ -139,22 +193,26 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        bosganda keyingi pagega idong!
-        print("the row is clicked!")
+        let row = indexPath.row
+        let newViewController = chattingStoryboard.instantiateViewController(withIdentifier: "ChattingFriendViewController") as! ChattingFriendViewController
+        newViewController.chat_id = chat_list_arr[row].chatId ?? 0
+        self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let section = indexPath.section
-////        let row = indexPath.row
-//
-//        DispatchQueue.main.async {
-//            if section == 1 {
-//                if self.chatList?.results?.list_arr.count ?? 0 < self.chatList?.results?.total ?? 0 {
-////                    Indicator.showActivityIndicator(uiView: self.view)
-////                    self.page += 1
-////                    self.chatDetailList(page: self.page)
-//                }
-//            }
-//        }
-//    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let section = indexPath.section
+        let row = indexPath.row
+
+        DispatchQueue.main.async {
+            if section == 1 {
+                if row == self.chat_list_arr.count-1 {
+                    if self.page < self.chatList?.results?.page_total ?? 0 {
+                        Indicator.showActivityIndicator(uiView: self.view)
+                        self.page = self.page + 1
+                        self.chatDetailList()
+                    }
+                }
+            }
+        }
+    }
 }

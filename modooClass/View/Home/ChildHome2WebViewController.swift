@@ -83,7 +83,7 @@ class ChildHome2WebViewController: UIViewController ,WKNavigationDelegate,WKUIDe
         contentController.add(LeakAvoider(delegate: self),name: "goToAlarm")
         contentController.add(LeakAvoider(delegate: self),name: "logout")
 //        contentController.add(self,name: "goToWebView")
-//        contentController.add(self,name: "goToChatDetail")
+        contentController.add(LeakAvoider(delegate: self),name: "goToChatDetail")
         contentController.add(LeakAvoider(delegate: self),name: "gotoprofile")
         contentController.add(LeakAvoider(delegate: self),name: "gotofriendprofile")
         contentController.add(LeakAvoider(delegate: self),name: "kakaoFriendHandler")

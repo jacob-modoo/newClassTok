@@ -23,6 +23,8 @@ class ChattingTableViewCell: UITableViewCell {
     @IBOutlet weak var messagePhoto: UIImageView!
     @IBOutlet weak var messagePhotoWidth: NSLayoutConstraint!
     @IBOutlet weak var msgTrailingCons: NSLayoutConstraint!
+    @IBOutlet weak var userOnlineBadge: UIButton!
+    @IBOutlet weak var messageCount: UIButton!
     
     
     

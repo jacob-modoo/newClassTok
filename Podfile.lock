@@ -130,6 +130,7 @@ PODS:
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
   - SnapKit (5.0.1)
+  - SwiftSoup (2.3.2)
   - VIMediaCache (0.4)
   - YoutubePlayer-in-WKWebView (0.3.4)
 
@@ -152,6 +153,7 @@ DEPENDENCIES:
   - naveridlogin-sdk-ios
   - ReverseExtension
   - SDWebImage
+  - SwiftSoup
   - YoutubePlayer-in-WKWebView (~> 0.3.0)
 
 SPEC REPOS:
@@ -186,6 +188,7 @@ SPEC REPOS:
     - ReverseExtension
     - SDWebImage
     - SnapKit
+    - SwiftSoup
     - VIMediaCache
     - YoutubePlayer-in-WKWebView
 
@@ -220,9 +223,10 @@ SPEC CHECKSUMS:
   ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftSoup: f97bc4e988c7729d6457f9642f974c617a6e2510
   VIMediaCache: aa650f82cb114c68a343beb4e67416cf5eb2f3a2
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 6df9d13f609edd8fe68803bd00d8c614bb498a8a
+PODFILE CHECKSUM: ab2291936d8ec0bbccac7d5c96f18571a91eda06
 
 COCOAPODS: 1.8.4

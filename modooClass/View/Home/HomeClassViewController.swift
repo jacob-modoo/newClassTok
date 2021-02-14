@@ -746,11 +746,12 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                     
                     let days = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].openDday ?? -1
                     if days <= 0{
-                        if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].end_date ?? 0 >= 300{
-                            cell.class_week.text = "무료"
-                        }else{
-                            cell.class_week.text = "  \(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].end_date ?? 0)일 남음  "
-                        }
+                        cell.class_week.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].end_date_info ?? "")"
+//                        if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].end_date ?? 0 >= 300{
+//                            cell.class_week.text = "무료"
+//                        }else{
+//                            cell.class_week.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].end_date_info ?? "")"
+//                        }
                         cell.class_open_view.isHidden = true
                     }else{
                         cell.class_week.text = " \(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].start_date ?? "10/17") 시작 "

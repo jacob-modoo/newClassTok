@@ -178,13 +178,17 @@
 		0E97C19123A22B5A0013D489 /* Snow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E97C18F23A22B5A0013D489 /* Snow.sks */; };
 		0E97C19223A22B5A0013D489 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E97C19023A22B5A0013D489 /* Assets.xcassets */; };
 		0E97C19523A22BDC0013D489 /* SnowScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E97C19423A22BDC0013D489 /* SnowScene.swift */; };
+		0E9C73AE25C8F30400759E2D /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9C73AD25C8F30300759E2D /* ChatRoomModel.swift */; };
 		0EA4DA8225A43F8F0054AA85 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA4DA8125A43F8F0054AA85 /* ChattingViewController.swift */; };
 		0EA4DA8925A456FC0054AA85 /* ChattingFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA4DA8825A456FC0054AA85 /* ChattingFriendViewController.swift */; };
-		0EA4DA9025A54C4F0054AA85 /* ChattingFriendViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA4DA8F25A54C4F0054AA85 /* ChattingFriendViewControllerCell.swift */; };
+		0EA4DA9025A54C4F0054AA85 /* ChattingRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA4DA8F25A54C4F0054AA85 /* ChattingRoomTableViewCell.swift */; };
 		0EA55CA422CAE0F800FD7D15 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA55CA322CAE0F800FD7D15 /* NotificationService.swift */; };
 		0EA55CA822CAE0F800FD7D15 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0EA55CA122CAE0F800FD7D15 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0EA55CAE22CAE2C900FD7D15 /* PushDownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA55CAD22CAE2C900FD7D15 /* PushDownloadImage.swift */; };
 		0EA55CB122CCB4B100FD7D15 /* RootView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA55CB022CCB4B100FD7D15 /* RootView+Extension.swift */; };
+		0EA7718B25CA6E93002190F4 /* ChatHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA7718A25CA6E93002190F4 /* ChatHistoryModel.swift */; };
+		0EA93C3025D7E24C0042F88D /* ChattingPageSideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA93C2F25D7E24C0042F88D /* ChattingPageSideMenuView.swift */; };
+		0EA93C3725D7E2650042F88D /* ChattingPageSideMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EA93C3625D7E2650042F88D /* ChattingPageSideMenuView.xib */; };
 		0EAE2D89227A65DF00E91161 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE2D88227A65DF00E91161 /* AppDelegate.swift */; };
 		0EAE2D90227A65E200E91161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EAE2D8F227A65E200E91161 /* Assets.xcassets */; };
 		0EAE2DA9227A65E200E91161 /* modooClassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE2DA8227A65E200E91161 /* modooClassUITests.swift */; };
@@ -470,14 +474,18 @@
 		0E97C18F23A22B5A0013D489 /* Snow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Snow.sks; sourceTree = "<group>"; };
 		0E97C19023A22B5A0013D489 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E97C19423A22BDC0013D489 /* SnowScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowScene.swift; sourceTree = "<group>"; };
+		0E9C73AD25C8F30300759E2D /* ChatRoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomModel.swift; sourceTree = "<group>"; };
 		0EA4DA8125A43F8F0054AA85 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		0EA4DA8825A456FC0054AA85 /* ChattingFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingFriendViewController.swift; sourceTree = "<group>"; };
-		0EA4DA8F25A54C4F0054AA85 /* ChattingFriendViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingFriendViewControllerCell.swift; sourceTree = "<group>"; };
+		0EA4DA8F25A54C4F0054AA85 /* ChattingRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingRoomTableViewCell.swift; sourceTree = "<group>"; };
 		0EA55CA122CAE0F800FD7D15 /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EA55CA322CAE0F800FD7D15 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		0EA55CA522CAE0F800FD7D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EA55CAD22CAE2C900FD7D15 /* PushDownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDownloadImage.swift; sourceTree = "<group>"; };
 		0EA55CB022CCB4B100FD7D15 /* RootView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootView+Extension.swift"; sourceTree = "<group>"; };
+		0EA7718A25CA6E93002190F4 /* ChatHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryModel.swift; sourceTree = "<group>"; };
+		0EA93C2F25D7E24C0042F88D /* ChattingPageSideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingPageSideMenuView.swift; sourceTree = "<group>"; };
+		0EA93C3625D7E2650042F88D /* ChattingPageSideMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingPageSideMenuView.xib; sourceTree = "<group>"; };
 		0EAE2D85227A65DF00E91161 /* modooClass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = modooClass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EAE2D88227A65DF00E91161 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EAE2D8F227A65E200E91161 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1014,7 +1022,7 @@
 				0E4B3D392580566000EC142E /* ChildDetailDescriptionTableViewCell.swift */,
 				0ED7F53722B1F03C00CF2F92 /* DetailMissionCompleteTableViewCell.swift */,
 				0E4C1C27231CFC37008C6733 /* DetailReplyTableViewCell.swift */,
-				0EA4DA8F25A54C4F0054AA85 /* ChattingFriendViewControllerCell.swift */,
+				0EA4DA8F25A54C4F0054AA85 /* ChattingRoomTableViewCell.swift */,
 				0E8E9759238E07ED00842694 /* ReplyLikeTableViewCell.swift */,
 				0E7F848422B788E60031764C /* AlarmTableViewCell.swift */,
 				0E29F8692473AF6D002B7C55 /* CustomTableViewCell.swift */,
@@ -1201,6 +1209,8 @@
 				0EAE2D94227A65E200E91161 /* Info.plist */,
 				0E2C2F202281653C006653C8 /* Bridging-Header.h */,
 				0EDEA816248E201D00ED837A /* AutoSearchEngineCell.xib */,
+				0EA93C2F25D7E24C0042F88D /* ChattingPageSideMenuView.swift */,
+				0EA93C3625D7E2650042F88D /* ChattingPageSideMenuView.xib */,
 				0E909D3E25523F000034B558 /* ChildDetailClassPopupView.swift */,
 				0E909D38255237760034B558 /* ChildDetailClassVCPopup.xib */,
 				0E29F86524739CF3002B7C55 /* StoryEventViewController.swift */,
@@ -1241,6 +1251,8 @@
 			isa = PBXGroup;
 			children = (
 				0EE48D4525B850F9000F2506 /* ChatListModel.swift */,
+				0E9C73AD25C8F30300759E2D /* ChatRoomModel.swift */,
+				0EA7718A25CA6E93002190F4 /* ChatHistoryModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -1479,6 +1491,7 @@
 				0E7F848722B874B00031764C /* GoogleService-Info.plist in Resources */,
 				0E2EA74E22C2134F0065D12A /* FirstStart.storyboard in Resources */,
 				0E209100235E8B54000A6C6F /* KakaoBankTopViewAnimation.storyboard in Resources */,
+				0EA93C3725D7E2650042F88D /* ChattingPageSideMenuView.xib in Resources */,
 				0E97C18C239F8A4D0013D489 /* webViewLodingLottie3.json in Resources */,
 				0ED8CF262397A184007760BA /* ChildWebView.storyboard in Resources */,
 				0E97C19123A22B5A0013D489 /* Snow.sks in Resources */,
@@ -1663,6 +1676,8 @@
 				0E8F852D23700BE30015DB8E /* JobModel.swift in Sources */,
 				0E0B8502228EA6320055F044 /* AlertViewTint.swift in Sources */,
 				0E2C2F3122825929006653C8 /* JoinViewController.swift in Sources */,
+				0EA7718B25CA6E93002190F4 /* ChatHistoryModel.swift in Sources */,
+				0EA93C3025D7E24C0042F88D /* ChattingPageSideMenuView.swift in Sources */,
 				0E5E93492569636A00BB079F /* CustomPresentationViewController.swift in Sources */,
 				0E0B84EC228E30FD0055F044 /* LoginApi.swift in Sources */,
 				0ED7F53022B1D36800CF2F92 /* Table_Collection_Animations.swift in Sources */,
@@ -1677,7 +1692,7 @@
 				0E1C854822D449190047A8CE /* PushNotificationModel.swift in Sources */,
 				0E2B9E9D23C81BE70012EF3B /* ChildDetailIntroTableViewCell.swift in Sources */,
 				0E8EB57C23BAC1260065D226 /* HomeMain2Manager.swift in Sources */,
-				0EA4DA9025A54C4F0054AA85 /* ChattingFriendViewControllerCell.swift in Sources */,
+				0EA4DA9025A54C4F0054AA85 /* ChattingRoomTableViewCell.swift in Sources */,
 				0E2017B2230D06C1005581E4 /* ChildDetailClassTableViewCell.swift in Sources */,
 				0E0B84EE228E750E0055F044 /* LoginModel.swift in Sources */,
 				0E0B84FA228EA5A70055F044 /* AlertManager.swift in Sources */,
@@ -1788,6 +1803,7 @@
 				0E1A8D62229292C600D581F5 /* UserManager.swift in Sources */,
 				0E8F463F2373DE3B00A6545D /* AddInfoAgreeTableViewCell.swift in Sources */,
 				0E7F84CA22BB1B400031764C /* WebViewViewController.swift in Sources */,
+				0E9C73AE25C8F30400759E2D /* ChatRoomModel.swift in Sources */,
 				0ED265AC2379006100D88502 /* UITableview+Extension.swift in Sources */,
 				0E2EA76022C991580065D12A /* NetworkOut.swift in Sources */,
 				0ED03CFE22A09F5E00AD48A3 /* HaveNAlarmSaveModel.swift in Sources */,

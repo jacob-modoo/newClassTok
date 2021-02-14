@@ -75,10 +75,10 @@ class Chat_list: NSObject {
     var updated_at:String?
     var unread_order:Int?
     var unread_count:Int?
-    var user_id:Array<Int>?
-    var user_name:Array<String>?
-    var photo:Array<String>?
-    var login:Array<String>?
+    var user_id:Array = [Int]()
+    var user_name:Array = [String]()
+    var photo:Array = [String]()
+    var login:Array = [Bool]()
     var time:String?
     var chatId:Int?
     var unread:Int?
@@ -105,34 +105,34 @@ class Chat_list: NSObject {
         unread_count = DictionaryToInt(dic: dic, intName: "unread_count")
         time = DictionaryToString(dic: dic, strName: "time")
         chatId = DictionaryToInt(dic: dic, intName: "chatId")
-        unread = DictionaryToInt(dic: dic, intName: "unread")
+        unread = DictionaryToInt(dic: dic, intName: "unread")  
         date = DictionaryToString(dic: dic, strName: "date")
         
-        if let list = dic["user_id"] as? Array<Int> {
+        if let list = dic["user_id"] as? [Int] {
             let array:Array = list
             for listTemp in array {
-                user_id?.append(listTemp)
+                user_id.append(listTemp)
             }
         }
         
-        if let list = dic["user_name"] as? Array<String> {
+        if let list = dic["user_name"] as? [String] {
             let array:Array = list
             for listTemp in array {
-                user_name?.append(listTemp)
+                user_name.append(listTemp)
             }
         }
         
-        if let list = dic["photo"] as? Array<String> {
-            let array:Array  = list
+        if let list = dic["photo"] as? [String] {
+            let array:Array = list
             for listTemp in array {
-                photo?.append(listTemp)
+                photo.append(listTemp)
             }
         }
         
-        if let list = dic["login"] as? Array<String> {
+        if let list = dic["login"] as? [Bool] {
             let array:Array = list
             for listTemp in array {
-                login?.append(listTemp)
+                login.append(listTemp)
             }
         }
     }

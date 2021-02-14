@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
         checkFirebaseRemote()
         
         //firebase DB
-        ref = Database.database().reference()
+//        ref = Database.database().reference()
         
         //naver
         let instance = NaverThirdPartyLoginConnection.getSharedInstance()

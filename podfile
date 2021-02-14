@@ -17,6 +17,7 @@ target 'modooClass' do
   pod 'FBSDKShareKit/Swift'
   pod 'SDWebImage'
   pod 'AMShimmer'
+  pod 'SwiftSoup'
   # pod 'Fabric', '~> 1.10.2'
   # pod 'Crashlytics', '~>  3.13.4'
   pod 'CropViewController'

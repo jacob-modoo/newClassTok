@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftSoup
 
 //let htmlString = "Put Your YourHTML String Here"
 //
@@ -43,6 +44,10 @@ extension String {
     }
     var html2String: String {
         return html2AttributedString?.string ?? ""
+    }
+    
+    func convertToStringFromHtml() {
+        
     }
 }
 

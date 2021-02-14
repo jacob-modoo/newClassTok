@@ -62,7 +62,10 @@ let DEVICE_ETC = 0
 let DEVICE_IPAD = 50
 
 var header : HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]//,"Authorization": "bearer \(UserDefaultSetting.getUserDefaultsString(forKey: sessionToken) as! String)"]
-var multipartHeader : HTTPHeaders = ["Content-Type":"multipart/form-data"]//,"Authorization": "bearer \(UserDefaultSetting.getUserDefaultsString(forKey: sessionToken) as! String)"]
+var multipartHeader : HTTPHeaders = [
+    "Content-Type":"multipart/form-data",
+    "Content-Disposition":"form-data"
+]//,"Authorization": "bearer \(UserDefaultSetting.getUserDefaultsString(forKey: sessionToken) as! String)"]
 
 // 스크린 크기
 let DEF_SCREEN_WIDTH: CGFloat = UIScreen.main.bounds.width

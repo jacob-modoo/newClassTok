@@ -77,6 +77,7 @@ class Main_class_list:NSObject{
     var mcCurriculum_cnt:Int?
     var week_curriculum_cnt:Int?
     var end_date:Int?
+    var end_date_info:String?
     var class_open_date:String?
     var start_date:String?
     var mission_per:Int?
@@ -151,6 +152,7 @@ class Main_class_list:NSObject{
         mcCurriculum_cnt = DictionaryToInt(dic: dic, intName: "mcCurriculum_cnt")
         week_curriculum_cnt = DictionaryToInt(dic: dic, intName: "week_curriculum_cnt")
         end_date = DictionaryToInt(dic: dic, intName: "end_date")
+        end_date_info = DictionaryToString(dic: dic, strName: "end_date_info")
         class_open_date = DictionaryToString(dic: dic, strName: "class_open_date")
         start_date = DictionaryToString(dic: dic, strName: "start_date")
         mission_per = DictionaryToInt(dic: dic, intName: "mission_per")

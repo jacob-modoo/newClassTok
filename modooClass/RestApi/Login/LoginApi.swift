@@ -34,7 +34,7 @@ class LoginApi: NSObject {
             "device_model":"\(deviceModel)",
             "app_info":"\(appVersion ?? "")"
         ] as [String : Any]
-        
+        print("** parameter : \(param)")
         let request = AF.request("\(apiUrl)/login/Auth", method: .post, parameters: param, encoding: URLEncoding.default, headers: loginHeader)
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -67,7 +67,7 @@ class LoginApi: NSObject {
             "device_model":"\(deviceModel)",
             "app_info":"\(appVersion ?? "")"
         ] as [String : Any]
-        
+        print("** parameter : \(parameter)")
         let request = AF.request("\(apiUrl)/login/socialAuth", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
         request.response { response in
             let statusCode = response.response?.statusCode
@@ -89,6 +89,7 @@ class LoginApi: NSObject {
             "auth":auth
         ] as [String : Any]
         
+        print("** parameter : \(parameter)")
         let request = AF.request("\(apiUrl)/login/phoneAuth", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)
         request.response { response in
             let statusCode = response.response?.statusCode
