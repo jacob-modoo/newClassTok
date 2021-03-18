@@ -200,3 +200,40 @@ class ChatMessageImageList: NSObject {
         
     }
 }
+
+class ChatFirebaseDB: NSObject {
+    
+    var sender:String?
+    var sender_name:String?
+    var message:String?
+    var emoticon:String?
+    var image:String?
+    var read:Int?
+    var date:String?
+    var photo:String?
+    var time:String?
+    var user_only:String?
+    var idx:Int?
+    var unread_count:Int?
+
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic: Dictionary<String, Any>) {
+        self.init()
+        idx = DictionaryToInt(dic: dic, intName: "idx")
+        photo = DictionaryToString(dic: dic, strName: "photo")
+        message = DictionaryToString(dic: dic, strName: "message")
+        emoticon = DictionaryToString(dic: dic, strName: "emoticon")
+        image = DictionaryToString(dic: dic, strName: "image")
+        date = DictionaryToString(dic: dic, strName: "date")
+        time = DictionaryToString(dic: dic, strName: "time")
+        read = DictionaryToInt(dic: dic, intName: "read")
+        user_only = DictionaryToString(dic: dic, strName: "user_only")
+        sender = DictionaryToString(dic: dic, strName: "sender")
+        sender_name = DictionaryToString(dic: dic, strName: "sender_name")
+        unread_count = DictionaryToInt(dic: dic, intName: "unread_count")
+    }
+}
+

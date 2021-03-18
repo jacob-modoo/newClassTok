@@ -281,7 +281,7 @@ extension ChildDetailDescriptionViewController: UITableViewDelegate, UITableView
         } else if section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChildDetailDescriptionContentCell", for: indexPath) as! ChildDetailDescriptionTableViewCell
             cell.descriptionSubtitle.text = feedDetailList?.results?.curriculum?.study?.title ?? ""
-            cell.descriptionContent.text = (feedDetailList?.results?.curriculum?.study?.content ?? "").html2String
+            cell.descriptionContent.text = feedDetailList?.results?.curriculum?.study?.content ?? ""
             cell.descriptionContent.sizeToFit()
             cell.selectionStyle = .none
             return cell

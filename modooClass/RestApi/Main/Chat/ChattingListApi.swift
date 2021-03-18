@@ -45,105 +45,53 @@ class ChattingListApi: NSObject {
         }
     }
     
+//    MARK: - Get chat room id
+    func getChatroomId(chatRoomId:String, success: @escaping(_ data: ChatRoomPModel)->Void, fail: @escaping(_ error: Error?)->Void) {
+        
+        let request = AF.request("\(apiUrl)/chatRoomData/P\(chatRoomId)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        
+        request.response { response in
+            let statusCode = response.response?.statusCode
+            if statusCode == 200 {
+                let dic = ChatRoomPModel.init(dic: convertToDictionary(data: response.data!, apiURL: "get : \(apiUrl)/chatRoomData/P\(chatRoomId)"))
+                success(dic)
+            } else {
+                fail(response.error)
+            }
+        }
+    }
+    
 //    MARK: - Chat reply save
-    func chatReplySave(tempIdx:Int, sender:Int, sender_name:String, message:String, emoticon:String, image:UIImage?, read:Int, chat_room_id:Int, success: @escaping(_ data: ChatHistoryListModel)->Void, fail: @escaping(_ error: Error?)->Void) {
+    func chatReplySave(tempIdx:Int, sender:Int, sender_name:String, message:String, emoticon:String, image:String, read:Int, chat_room_id:Int, success: @escaping(_ data: ChatHistoryListModel)->Void, fail: @escaping(_ error: Error?)->Void) {
         
-        var param:Dictionary = [:] as [String : Any]
-//        var param:Dictionary = [
-//            "temp_idx":tempIdx,
-//            "sender":sender,
-//            "sender_name":sender_name,
-//            "message":message,
-//            "emoticon":emoticon,
-//            "image":image,
-//            "read":read
-//        ] as [String:Any]
+        var param:Dictionary = [
+            "temp_idx":tempIdx,
+            "sender":sender,
+            "sender_name":sender_name,
+            "message":message,
+            "emoticon":emoticon,
+            "image":image,
+            "read":read
+        ] as [String : Any]
         
-        if image != nil {
-//            param["emoticon"] = nil
-//            param["message"] = ""
-            param = [
-                "temp_idx":tempIdx,
-                "sender":sender,
-                "sender_name":sender_name,
-                "message":message,
-                "emoticon":emoticon,
-                "image":image!,
-                "read":read
-            ]
-
+        if image != "" {
+            param["emoticon"] = nil
+            param["message"] = ""
         } else {
-            param = [
-                "temp_idx":tempIdx,
-                "sender":sender,
-                "sender_name":sender_name,
-                "message":message,
-                "emoticon":emoticon,
-//                "image":image!,
-                "read":read
-            ]
-//            param["image"] = nil
+            param["image"] = nil
             if emoticon == "" {
-                param = [
-                    "temp_idx":tempIdx,
-                    "sender":sender,
-                    "sender_name":sender_name,
-                    "message":message,
-                    "emoticon":emoticon,
-                    "image":image!,
-                    "read":read
-                ]
-//                param["emoticon"] = nil
+                param["emoticon"] = nil
             }
         }
         
-//        var param1:Dictionary = [
-//            "temp_idx":tempIdx,
-//            "sender":sender,
-//            "sender_name":sender_name,
-//            "message":message,
-//            "emoticon":emoticon,
-//            "read":read
-//            ] as [String : Any]
-
-//        if emoticon != 100{
-//            param1 = [
-//                "message":message,
-//                "emoticon":emoticon
-//            ] as [String : Any]
-//        }else{
-//
-//        }
-
-//        var param:Dictionary = [:] as [String : Any]
-//        param = param1
-        
-        AF.upload(multipartFormData: { (multipartFormData) in
-            if image != nil {
-                let imageData = image!.jpegData(compressionQuality: 0.5)
-                multipartFormData.append(imageData!, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
-            }
-            for (key, value) in param {
-                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
-            }
-        }, to: "\(apiUrl)/chat_app/\(chat_room_id)", method: .post, headers: multipartHeader)
-        
-        .uploadProgress(queue: .main) { progress in
-            print("Upload progress: \(progress.fractionCompleted)")
-        }
-        
-        .response { result in
-            switch result.result {
-            case .success( _):
-                let statusCode = result.response?.statusCode
-                if statusCode == 200 {
-                    let dic = ChatHistoryListModel.init(dic: convertToDictionary(data: result.data!, apiURL: "post : \(apiUrl)/chat_app/\(chat_room_id)"))
-                    success(dic)
-                } else {
-                    fail(result.error)
-                }
-            case .failure( _): break
-                
+        let request = AF.request("\(apiUrl)/chat_app/\(chat_room_id)", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
+        request.response  { response in
+            let  status = response.response?.statusCode
+            if status == 200 {
+                let dic = ChatHistoryListModel.init(dic: convertToDictionary(data: response.data!, apiURL: "post : \(apiUrl)/chat_app/\(chat_room_id)"))
+                success(dic)
+            } else {
+                fail(response.error)
             }
         }
     }
@@ -165,40 +113,72 @@ class ChattingListApi: NSObject {
     }
     
 //    MARK: - Chat image to url
-//    func chatImage2URL(image:UIImage?, success: @escaping(_ data: ChatMessageImg2URLModel)->Void, fail: @escaping(_ error: Error?)->Void) {
-//        let param = [
-//
-//            "image":image
-//
-//        ] as  [String:UIImage]
-//        AF.upload(multipartFormData: { (multipartFormData) in
-//            if image != nil {
-//                let imageData = image!.jpegData(compressionQuality: 0.5)
-//                multipartFormData.append(imageData!, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
-//            }
-//            for (key, value) in param {
-//                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
-//            }
-//        }, to: "\(apiUrl)/\(image!)", method: .post, headers: multipartHeader)
-//
-//        .uploadProgress(queue: .main) { progress in
-//            print("Upload progress: \(progress.fractionCompleted)")
-//        }
-//
-//        .response { result in
-//            switch result.result {
-//            case .success( _):
-//                let statusCode = result.response?.statusCode
-//                if statusCode == 200 {
-//                    let dic = ChatMessageImg2URLModel.init(dic: convertToDictionary(data: result.data!, apiURL: "post : \(apiUrl)/\(image!)"))
-//                    success(dic)
-//                } else {
-//                    fail(result.error)
-//                }
-//            case .failure( _): break
-//
-//            }
-//        }
-//
-//    }
+    func chatImage2URL(image:UIImage?, success: @escaping(_ data: ChatMessageImg2URLModel)->Void, fail: @escaping(_ error: Error?)->Void) {
+        let param = [
+
+            "image":image as Any
+
+        ] as [String:Any]
+        AF.upload(multipartFormData: { (multipartFormData) in
+            if image != nil {
+                let imageData = image!.jpegData(compressionQuality: 0.5)
+                multipartFormData.append(imageData!, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
+            }
+            for (key, value) in param {
+                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
+            }
+        }, to: "\(apiUrl)/photo", method: .post, headers: multipartHeader)
+
+        .uploadProgress(queue: .main) { progress in
+            print("Upload progress: \(progress.fractionCompleted)")
+        }
+
+        .response { result in
+            switch result.result {
+            case .success( _):
+                let statusCode = result.response?.statusCode
+                if statusCode == 200 {
+                    let dic = ChatMessageImg2URLModel.init(dic: convertToDictionary(data: result.data!, apiURL: "post : \(apiUrl)/photo"))
+                    success(dic)
+                } else {
+                    fail(result.error)
+                }
+            case .failure( _): break
+
+            }
+        }
+    }
+    
+//    MARK: chat_read - inform that message was read
+    func chatRead(chatId: Int, success: @escaping(_ data: ChatReadModel)->Void, fail: @escaping(_ error: Error?)->Void) {
+        
+        let request = AF.request("\(apiUrl)/chat_read/\(chatId)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+        
+        request.response { result in
+            let status = result.response?.statusCode
+            if status == 200 {
+                let dic = ChatReadModel.init(dic: convertToDictionary(data: result.data!, apiURL: "post : \(apiUrl)/chat_read/\(chatId)"))
+                success(dic)
+            } else {
+                fail(result.error)
+            }
+        }
+    }
+
+//    MARK: chat_leave - leave chat room
+    func chat_leave(chatId: Int, success: @escaping(_ data: ChatReadModel)->Void, fail: @escaping(_ error: Error?)->Void) {
+        
+        let request = AF.request("\(apiUrl)/chat_leave/\(chatId)", method: .post, parameters: nil, encoding: URLEncoding.default, headers: header)
+        
+        request.response { result in
+            let status = result.response?.statusCode
+            if status == 200 {
+                let dic = ChatReadModel.init(dic: convertToDictionary(data: result.data!, apiURL: "post : \(apiUrl)/chat_leave/\(chatId)"))
+                success(dic)
+            } else {
+                fail(result.error)
+            }
+        }
+    }
 }
+

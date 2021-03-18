@@ -52,3 +52,14 @@ public func DictionaryToBool(dic:Dictionary<String, Any>,boolName:String) -> Boo
         return false
     }
 }
+
+public func convertToDictionary(text: String) -> [String: Any]? {
+    if let data = text.data(using: .utf8) {
+        do {
+            return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+        } catch {
+            print("\(error)")
+        }
+    }
+    return nil
+}

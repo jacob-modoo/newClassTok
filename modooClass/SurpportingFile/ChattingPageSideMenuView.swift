@@ -16,6 +16,8 @@ class ChattingPageSideMenuView: UIView {
     @IBOutlet weak var user2Lbl: UIFixedLabel!
     @IBOutlet weak var user2ImgView: UIImageView!
     
+    @IBOutlet weak var switchBtn: UISwitch!
+    
     var profileBtnClick: (()->Void)?
     var switchBtnClick: (()->Void)?
     var leaveChatBtnClick: (()->Void)?
@@ -43,6 +45,7 @@ class ChattingPageSideMenuView: UIView {
     
     
     func initialize() {
+        
         let view = Bundle.main.loadNibNamed("ChattingPageSideMenuView", owner: self, options: nil)?.first as! UIView
 //        let name = String(describing: type(of: self))
 //        let bundle = Bundle(for: type(of: self))
@@ -59,6 +62,8 @@ class ChattingPageSideMenuView: UIView {
             view.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
 
+        switchBtn.transform = CGAffineTransform(scaleX: 0.65, y: 0.65)
+        switchBtn.onTintColor = UIColor(hexString: "#FF5A5F")
     }
     
     @IBAction func prifileBtnClicked(_ sender: UIButton) {

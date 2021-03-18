@@ -30,6 +30,7 @@ class ProfileNewModel: NSObject {
 class ProfileNewResults: NSObject {
     
     var mode:String?
+    var mcChat_id:Int?
     var friend_yn:String?
     var user_id:Int?
     var user_name:String?
@@ -66,6 +67,7 @@ class ProfileNewResults: NSObject {
     convenience init(dic:Dictionary<String, Any>) {
         self.init()
         mode = DictionaryToString(dic: dic, strName: "mode")
+        mcChat_id = DictionaryToInt(dic: dic, intName: "mcChat_id")
         friend_yn = DictionaryToString(dic: dic, strName: "friend_yn")
         user_id = DictionaryToInt(dic: dic, intName: "user_id")
         user_name = DictionaryToString(dic: dic, strName: "user_name")

@@ -90,6 +90,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var share_point:String?
     var class_name:String?
     var class_photo:String?
+    var fromOrientationPage:Bool?
     
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     let feedStoryboard = UIStoryboard(name: "Feed", bundle: nil)
@@ -291,7 +292,12 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     /** **이전 버튼 클릭 > 앞단계 뷰로 이동 */
     @IBAction func openBackBtnClicked(_ sender: UIButton) {
         self.deinitObserve()
-        self.navigationController?.popViewController(animated: true)
+//        if self.fromOrientationPage == true {
+//            self.navigationController?.popViewControllers(viewsToPop: 1)
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPage"), object: nil)
+//        } else {
+            self.navigationController?.popViewController(animated: true)
+//        }
     }
     
     @IBAction func manageVideoPlayerBtnClicked(_ sender: UIButton) {

@@ -116,4 +116,9 @@ extension UINavigationController {
             pushViewController(popVC, animated: true)
         }
     }
+    
+    func removePreviousController(total: Int){
+        let totalViewControllers = self.viewControllers.count
+        self.viewControllers.removeSubrange(totalViewControllers-total..<totalViewControllers - 1)
+    }
 }

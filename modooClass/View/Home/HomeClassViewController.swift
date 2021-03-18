@@ -12,6 +12,7 @@ import Firebase
 class HomeClassViewController: UIViewController {
     
     var favorite_status = "Y"
+    var chatRoom:ChatRoomPModel?
     var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
     let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
@@ -28,6 +29,9 @@ class HomeClassViewController: UIViewController {
         }
         tableView.addSubview(refreshControl)
         pushCheck()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshPage(_:)), name: NSNotification.Name(rawValue: "refreshPage"), object: nil)
+        
     }
     
     //이 뷰에서만 네비게이션 안보이게 설정
@@ -146,11 +150,18 @@ class HomeClassViewController: UIViewController {
     }
     
     @IBAction func classManagerQuestionBtnClicked(_ sender: UIButton) {
-        let tag = sender.tag
-        if HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].chat_link ?? "" != ""{
-            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[tag].chat_link ?? ""
-            self.navigationController?.pushViewController(newViewController, animated: true)
+        let chat_user_id = HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[sender.tag].chat_user_id ?? ""
+        ChattingListApi.shared.getChatroomId(chatRoomId: chat_user_id) { result in
+            if result.code == "200" {
+                self.chatRoom = result
+                let chatId = self.chatRoom?.results?.mcChat_id ?? 0
+                let storyboard: UIStoryboard = UIStoryboard(name: "Chatting", bundle: nil)
+                let newViewController = storyboard.instantiateViewController(withIdentifier: "ChattingFriendViewController") as! ChattingFriendViewController
+                newViewController.chat_id = chatId
+                self.navigationController?.pushViewController(newViewController, animated: true)
+            }
+        } fail: { error in
+            print("error in calling getChatroomID api")
         }
     }
     
@@ -178,17 +189,18 @@ class HomeClassViewController: UIViewController {
         tableView.beginUpdates()
         HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].button_point1 = ""
         tableView.endUpdates()
-//        if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? "" != "" {
-//            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-//            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? ""
-//            self.navigationController?.pushViewController(newViewController, animated: true)
-//        } else {
+        if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? "" != "" {
+            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+//            if wait page contains "orientation" remove last VC from navigation stack
+            newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? ""
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        } else {
         print("** class_id (HomeClassVC) : \(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].class_id ?? 0)")
             let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
             newViewController.class_id = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].class_id ?? 0
             newViewController.pushGubun = 1
             self.navigationController?.pushViewController(newViewController, animated: true)
-//        }
+        }
     }
     
     @IBAction func reviewWriteBtnClicked(_ sender: UIButton) {
@@ -497,6 +509,14 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
         }
     }
     
+    @objc func refreshPage(_ notification: NSNotification){
+        DispatchQueue.main.async {
+            HomeMain2Manager.shared.pilotAppMain = PilotModel()
+            HomeMain2Manager.shared.pilotRecommendMain = PilotRecommendModel()
+            self.appMainPilotList()
+        }
+    }
+    
     /**
     **파라미터가 없고 반환값이 없는 메소드 > 새로고침 컨트롤이 끝났을때 타는 함수
      
@@ -729,7 +749,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                     cell.class_my_progress.layer.sublayers![1].cornerRadius = 2
                     cell.class_my_progress.subviews[1].clipsToBounds = true
                     
-                    cell.class_my_progress.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
+                    cell.class_my_progress.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                     
                     cell.class_group_mamber_count.text = "멤버 \(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].group_member_count ?? 0)"
                     cell.coachImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].coach_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))

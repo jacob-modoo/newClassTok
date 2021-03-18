@@ -55,9 +55,14 @@ class ChildDetailClassViewController: UIViewController {
     /** *called when neither likeBtn nor dislikeBtn has value*/
     @IBOutlet weak var childView: ChildDetailClassPopupView!
     @IBOutlet weak var transparentView: UIView!
-    
+    @IBOutlet weak var classMoveBtnWidthConst: NSLayoutConstraint!
+    @IBOutlet weak var questionImg: UIImageView!
+    @IBOutlet weak var questionBtn: UIButton!
     @IBOutlet weak var videoPlayerView: UIView!
     @IBOutlet weak var nextClassBtn: UIButton!
+    @IBOutlet weak var submitMission: UIButton!
+    @IBOutlet weak var submitComment: UIButton!
+    @IBOutlet weak var missionSubmitView: GradientView!
     
     var refreshControl = UIRefreshControl()
     /** **클래스 커리큘럼 소개 리스트 */
@@ -112,9 +117,6 @@ class ChildDetailClassViewController: UIViewController {
         return tv
     }()
     
-    @IBOutlet weak var classMoveBtnWidthConst: NSLayoutConstraint!
-    @IBOutlet weak var questionImg: UIImageView!
-    @IBOutlet weak var questionBtn: UIButton!
     var cheerViewExitCheck = false
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     
@@ -637,6 +639,41 @@ class ChildDetailClassViewController: UIViewController {
         }
     }
     
+    @IBAction func submitMissionOrCommentBtnClicked(_ sender: UIButton) {
+        if sender.tag == 0 {
+            self.view.endEditing(true)
+            self.emoticonSelectView.isHidden = true
+            if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
+                replyWriteCheck()
+            }else{
+                DispatchQueue.main.async {
+                    self.videoStop()
+                }
+                
+                let indexPath = IndexPath(row: 0, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                let cell = self.tableView.cellForRow(at: indexPath) as! ChildDetailClassTableViewCell
+                let newViewController = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "DetailMissionCompleteViewController") as! DetailMissionCompleteViewController
+                
+                if feedDetailList?.results?.mission_yn ?? "Y" == "N" {
+                    self.showToast2(message: "🔊 미션이 완료 했습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
+                } else {
+                    if feedDetailList?.results?.mission_count ?? 0 > 0 {
+                        self.view.endEditing(true)
+                        newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
+                        self.navigationController?.pushToViewBottomController(vc: newViewController)
+                        cell.classLikeView.isHidden = false
+                    } else {
+                        newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
+                        self.navigationController?.pushToViewBottomController(vc: newViewController)
+                    }
+                }
+            }
+        } else {
+            print("** the button with tag 1 is pressed?")
+            self.textViewTab()
+        }
+    }
     /** **댓글 더보기 클릭 > 댓글을 삭제할지 선택 */
     @IBAction func moreBtnClicked(_ sender: UIButton) {
         Alert.With(self, btn1Title: "삭제", btn1Handler: {
@@ -1075,7 +1112,6 @@ class ChildDetailClassViewController: UIViewController {
             }
             DispatchQueue.main.async {
                 self.tableView.reloadSections([7], with: .automatic)
-                print("** updated section 7")
             }
                 
 //            }
@@ -1153,6 +1189,8 @@ class ChildDetailClassViewController: UIViewController {
                             self.replySendBtnWidthConst.constant = 30
                             self.classMoveBtn.alpha = 0
                             self.classMoveBtnWidthConst.constant = 0
+                            self.missionSubmitView.isHidden = true
+                            self.replySendView.isHidden = false
                             self.view.layoutIfNeeded()
                         }, completion: nil)
 
@@ -1206,6 +1244,8 @@ class ChildDetailClassViewController: UIViewController {
                     self.replySendBtnWidthConst.constant = 0
                     self.classMoveBtn.alpha = 1
                     self.classMoveBtnWidthConst.constant = 112
+                    self.missionSubmitView.isHidden = false
+                    self.replySendView.isHidden = true
                     self.view.layoutIfNeeded()
                 }, completion: nil)
 
@@ -1236,7 +1276,7 @@ class ChildDetailClassViewController: UIViewController {
         }
         self.replyArray?.remove(at: arrayNumber)
         DispatchQueue.main.async {
-            self.tableView.reloadSections([10], with: .automatic)
+            self.tableView.reloadSections([7,9,10], with: .automatic)
         }
     }
 }
@@ -1982,7 +2022,7 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
                         cell.classCoachWithBtn.isHidden = true
                         cell.noticeTextView.textContainer.maximumNumberOfLines = 3
                         cell.noticeTextView.textContainer.lineBreakMode = .byTruncatingTail
-                        cell.noticeTextView.attributedText = (self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "").html2AttributedString
+                        cell.noticeTextView.text = self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? ""
                         cell.noticeTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
                         cell.noticeReadmoreBtn.tag = feedDetailList?.results?.curriculum?.coach_class?.notice?.id ?? 0
                     }
@@ -2363,15 +2403,19 @@ extension ChildDetailClassViewController{
     func appClassDetail(){
         self.feedDetailList = FeedDetailManager.shared.feedDetailList
         
-        if feedDetailList?.results?.mission_yn ?? "Y" == "N" {
-            self.classMoveBtn.setImage(UIImage(named: "mission_done"), for: .normal)
-        } else {
+//        if feedDetailList?.results?.mission_yn ?? "Y" == "N" {
+//            self.classMoveBtn.setImage(UIImage(named: "mission_done"), for: .normal)
+//        } else {
             if feedDetailList?.results?.mission_count ?? 0 > 0 {
-                self.classMoveBtn.setImage(UIImage(named: "mission_do_again"), for: .normal)
+                self.submitMission.backgroundColor = UIColor(hexString: "#B4B4B4")
+                self.submitMission.setTitle("미션 재인증하기", for: .normal)
+//                self.classMoveBtn.setImage(UIImage(named: "mission_do_again"), for: .normal)
             } else {
-                self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
+                self.submitMission.backgroundColor = UIColor(hexString: "#FF5A5F")
+                self.submitMission.setTitle("미션 인증하기", for: .normal)
+//                self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
             }
-        }
+//        }
         
         for addArray in 0..<(self.feedDetailList?.results?.class_recom_list?.list_arr.count ?? 0) {
             self.recommendationList?.append((self.feedDetailList?.results?.class_recom_list?.list_arr[addArray])!)
@@ -2430,7 +2474,7 @@ extension ChildDetailClassViewController{
                 }
             }
         }else{
-            self.replySendView.isHidden = false
+//            self.replySendView.isHidden = false
             if tableViewBottom1 != nil{
                 self.tableViewBottom1.isActive = true
             }
@@ -2624,7 +2668,7 @@ extension ChildDetailClassViewController{
                 self.emoticonNumber = 0
                 sender.isUserInteractionEnabled = true
                 DispatchQueue.main.async {
-                    self.tableView.reloadSections([7,10], with: .automatic)
+                    self.tableView.reloadSections([7,9,10], with: .automatic)
                     Indicator.hideActivityIndicator(uiView: self.view)
                 }
             }else{
@@ -2657,7 +2701,7 @@ extension ChildDetailClassViewController{
                     self.replyArray?.remove(at: row)
                     self.feedDetailList?.results?.curriculum?.comment?.total = self.replyArray!.count
                     DispatchQueue.main.async {
-                        self.tableView.reloadSections([7,10], with: .automatic)
+                        self.tableView.reloadSections([7,9,10], with: .automatic)
                         Indicator.hideActivityIndicator(uiView: self.view)
                     }
                 }

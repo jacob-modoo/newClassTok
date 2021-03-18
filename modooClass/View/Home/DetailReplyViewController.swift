@@ -325,17 +325,21 @@ class DetailReplyViewController: UIViewController {
         if missionCheck == false{
             if noticeCheck == false{
                 if commentType == "class"{
+                    print("** commentType is CLASS")
                     let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.like ?? 0 , "preHave":list?.results?.like_me ?? "N"] as [String : Any]
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classParamChange"), object: nil,userInfo: userInfo)
                 }else{
+                    print("** commentType is not CLASS")
                     let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.like ?? 0,"preHave":list?.results?.like_me ?? "N"] as [String : Any]
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumParamChange"), object: nil,userInfo: userInfo)
                 }
             }else{
+                print("** notice Check is true")
                 let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.like ?? 0,"preHave":list?.results?.like_me ?? "N"] as [String : Any]
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noticeParamChange"), object: nil,userInfo: userInfo)
             }
         }else{
+            print("** mission check is true")
             let userInfo = [ "comment_id" : self.comment_id , "commentLikeCount":list?.results?.like ?? 0,"preHave":list?.results?.like_me ?? "N"] as [String : Any]
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "missionParamChange"), object: nil,userInfo: userInfo)
         }

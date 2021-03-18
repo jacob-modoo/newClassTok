@@ -7498,7 +7498,107 @@
                                     <constraint firstItem="1CM-uv-2nf" firstAttribute="leading" secondItem="nA3-83-y5a" secondAttribute="trailing" constant="2" id="xjl-QN-8wR"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nwD-QI-sqn" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81n-US-fLl" userLabel="Msg Send View" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="817" width="414" height="45"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gf7-if-NbW" userLabel="Mission Btn View">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="45"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjC-Fp-pJY">
+                                                <rect key="frame" x="16" y="4.5" width="187" height="36"/>
+                                                <color key="backgroundColor" red="1" green="0.3529411764705882" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="36" id="Bct-HP-98i"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="미션 인증하기"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="submitMissionOrCommentBtnClicked:" destination="s2m-75-bqC" eventType="touchUpInside" id="Cy0-4c-FYk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="cjC-Fp-pJY" secondAttribute="trailing" constant="4" id="ASM-vi-3Vd"/>
+                                            <constraint firstItem="cjC-Fp-pJY" firstAttribute="leading" secondItem="gf7-if-NbW" secondAttribute="leading" constant="16" id="Pas-eh-uH9"/>
+                                            <constraint firstItem="cjC-Fp-pJY" firstAttribute="centerY" secondItem="gf7-if-NbW" secondAttribute="centerY" id="yRC-v3-Kh5"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PCn-Xb-pDK" userLabel="Comment Btn View">
+                                        <rect key="frame" x="207" y="0.0" width="207" height="45"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlX-5p-vaU">
+                                                <rect key="frame" x="4" y="4.5" width="187" height="36"/>
+                                                <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="36" id="j5E-AU-Tct"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="댓글 남기기">
+                                                    <color key="titleColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.85490196078431369" green="0.85882352941176465" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="submitMissionOrCommentBtnClicked:" destination="s2m-75-bqC" eventType="touchUpInside" id="cZk-OT-PGR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="VlX-5p-vaU" firstAttribute="centerY" secondItem="PCn-Xb-pDK" secondAttribute="centerY" id="7OK-eu-iey"/>
+                                            <constraint firstAttribute="trailing" secondItem="VlX-5p-vaU" secondAttribute="trailing" constant="16" id="LQX-Qn-fno"/>
+                                            <constraint firstItem="VlX-5p-vaU" firstAttribute="leading" secondItem="PCn-Xb-pDK" secondAttribute="leading" constant="4" id="gCw-Zk-vnT"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="PCn-Xb-pDK" secondAttribute="trailing" id="MA0-x5-nFF"/>
+                                    <constraint firstItem="PCn-Xb-pDK" firstAttribute="leading" secondItem="gf7-if-NbW" secondAttribute="trailing" id="R7A-IF-Kq9"/>
+                                    <constraint firstAttribute="bottom" secondItem="PCn-Xb-pDK" secondAttribute="bottom" id="S8x-eq-jvi"/>
+                                    <constraint firstItem="PCn-Xb-pDK" firstAttribute="top" secondItem="81n-US-fLl" secondAttribute="top" id="Wax-sh-buW"/>
+                                    <constraint firstAttribute="bottom" secondItem="gf7-if-NbW" secondAttribute="bottom" id="X7K-qr-qiu"/>
+                                    <constraint firstItem="PCn-Xb-pDK" firstAttribute="width" secondItem="gf7-if-NbW" secondAttribute="width" id="XJk-5g-XiP"/>
+                                    <constraint firstItem="gf7-if-NbW" firstAttribute="leading" secondItem="81n-US-fLl" secondAttribute="leading" id="ibL-6K-x7g"/>
+                                    <constraint firstItem="gf7-if-NbW" firstAttribute="top" secondItem="81n-US-fLl" secondAttribute="top" id="rsy-lQ-mMy"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
+                                        <real key="value" value="-0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nwD-QI-sqn" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="817" width="414" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YvD-N9-m5n">
@@ -7647,7 +7747,7 @@
                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                        <color key="value" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
                                         <real key="value" value="0.0"/>
@@ -7808,12 +7908,15 @@
                             <constraint firstItem="yKg-Um-YT1" firstAttribute="top" secondItem="J9m-hk-WNP" secondAttribute="bottom" id="3Nk-94-Xiu"/>
                             <constraint firstItem="Di4-CF-kdz" firstAttribute="top" secondItem="J9m-hk-WNP" secondAttribute="bottom" constant="-180" id="3lb-NN-vL1"/>
                             <constraint firstItem="Di4-CF-kdz" firstAttribute="leading" secondItem="QD6-h4-8pC" secondAttribute="leading" id="58Q-Mz-ylW"/>
+                            <constraint firstItem="nwD-QI-sqn" firstAttribute="leading" secondItem="81n-US-fLl" secondAttribute="leading" id="5Ik-gW-yII"/>
                             <constraint firstItem="QD6-h4-8pC" firstAttribute="trailing" secondItem="r1H-QC-OSP" secondAttribute="trailing" id="C78-9c-uji"/>
                             <constraint firstItem="QD6-h4-8pC" firstAttribute="bottom" secondItem="r1H-QC-OSP" secondAttribute="bottom" id="EYL-Zz-16c"/>
                             <constraint firstItem="QD6-h4-8pC" firstAttribute="trailing" secondItem="bqH-kb-egH" secondAttribute="trailing" id="Gi3-w0-8xJ"/>
                             <constraint firstItem="7h3-yu-ymu" firstAttribute="leading" secondItem="QD6-h4-8pC" secondAttribute="leading" id="PJg-ao-1oy"/>
+                            <constraint firstItem="nwD-QI-sqn" firstAttribute="bottom" secondItem="81n-US-fLl" secondAttribute="bottom" id="SD3-n6-gdB"/>
                             <constraint firstItem="r1H-QC-OSP" firstAttribute="leading" secondItem="QD6-h4-8pC" secondAttribute="leading" id="SQB-mN-KUT"/>
                             <constraint firstItem="J9m-hk-WNP" firstAttribute="leading" secondItem="QD6-h4-8pC" secondAttribute="leading" id="Sgh-N4-N0b"/>
+                            <constraint firstItem="nwD-QI-sqn" firstAttribute="top" secondItem="81n-US-fLl" secondAttribute="top" id="TPA-9N-fto"/>
                             <constraint firstItem="J9m-hk-WNP" firstAttribute="trailing" secondItem="QD6-h4-8pC" secondAttribute="trailing" id="Tb0-sD-UIq"/>
                             <constraint firstItem="nwD-QI-sqn" firstAttribute="leading" secondItem="QD6-h4-8pC" secondAttribute="leading" id="V1X-EP-hAS"/>
                             <constraint firstItem="QD6-h4-8pC" firstAttribute="trailing" secondItem="Di4-CF-kdz" secondAttribute="trailing" id="VoQ-WK-xEH"/>
@@ -7825,6 +7928,7 @@
                             <constraint firstItem="bqH-kb-egH" firstAttribute="leading" secondItem="QD6-h4-8pC" secondAttribute="leading" id="fuA-zb-dDj"/>
                             <constraint firstItem="Khm-WA-ekC" firstAttribute="leading" secondItem="QD6-h4-8pC" secondAttribute="leading" id="hcJ-V4-OsG"/>
                             <constraint firstItem="yKg-Um-YT1" firstAttribute="leading" secondItem="QD6-h4-8pC" secondAttribute="leading" id="msd-qJ-0Bc"/>
+                            <constraint firstItem="nwD-QI-sqn" firstAttribute="trailing" secondItem="81n-US-fLl" secondAttribute="trailing" id="nhb-Ns-n3N"/>
                             <constraint firstItem="QD6-h4-8pC" firstAttribute="trailing" secondItem="7h3-yu-ymu" secondAttribute="trailing" id="nk2-4L-WhU"/>
                             <constraint firstItem="7h3-yu-ymu" firstAttribute="top" secondItem="bqH-kb-egH" secondAttribute="bottom" id="sak-NC-yUv"/>
                             <constraint firstItem="nwD-QI-sqn" firstAttribute="top" secondItem="Khm-WA-ekC" secondAttribute="bottom" id="vSH-1e-Gs5"/>
@@ -7840,6 +7944,7 @@
                         <outlet property="emoticonImg" destination="nIf-t7-d6u" id="C5Q-NP-7q7"/>
                         <outlet property="emoticonSelectView" destination="bqH-kb-egH" id="SYz-9E-lV3"/>
                         <outlet property="emoticonViewExitBtn" destination="8rh-yJ-SkP" id="a5j-sk-Alh"/>
+                        <outlet property="missionSubmitView" destination="81n-US-fLl" id="JsO-1f-Vgq"/>
                         <outlet property="nextClassBtn" destination="Hdb-9m-HQH" id="d9Q-KV-vdu"/>
                         <outlet property="paymentView" destination="r1H-QC-OSP" id="GUd-6p-99N"/>
                         <outlet property="questionBtn" destination="2f7-Xt-yHE" id="UHm-ZI-ehP"/>
@@ -7855,6 +7960,8 @@
                         <outlet property="scrapBtn" destination="6sI-Jx-Qrq" id="Gg7-9y-syz"/>
                         <outlet property="scrapCount" destination="oPE-6g-REc" id="PEt-cU-Y62"/>
                         <outlet property="scrapImg" destination="VII-Vo-WVW" id="fNh-fG-Xyl"/>
+                        <outlet property="submitComment" destination="VlX-5p-vaU" id="pU5-tV-3zc"/>
+                        <outlet property="submitMission" destination="cjC-Fp-pJY" id="ViY-zV-M0b"/>
                         <outlet property="tableView" destination="yKg-Um-YT1" id="8cP-H2-Ilg"/>
                         <outlet property="tableViewBottom1" destination="Ynu-s5-uaE" id="9r4-Nn-Doy"/>
                         <outlet property="tableViewBottom2" destination="ebF-hF-JBd" id="isP-VD-HQd"/>
@@ -10392,7 +10499,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fu9-Vh-gDL">
                                                                     <rect key="frame" x="0.0" y="-0.5" width="114.5" height="33.5"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rO7-W8-phk">
+                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rO7-W8-phk">
                                                                             <rect key="frame" x="78.5" y="-2.5" width="36" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="36" id="THP-ez-vMK"/>
@@ -10414,7 +10521,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </button>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AM0-J7-yRf" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AM0-J7-yRf" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="68.5" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -10431,7 +10538,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xee-uL-rBg" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xee-uL-rBg" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="20" width="114.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -10632,7 +10739,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H04-xb-dxr">
                                                                     <rect key="frame" x="0.0" y="-0.5" width="114.5" height="33.5"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqD-YV-40x">
+                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqD-YV-40x">
                                                                             <rect key="frame" x="78.5" y="-2.5" width="36" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="UE8-PG-RZl"/>
@@ -10654,7 +10761,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </button>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UN-rI-IWm" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UN-rI-IWm" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="68.5" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -10671,7 +10778,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nd-Qb-mU0" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nd-Qb-mU0" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="20" width="114.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -10969,7 +11076,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vi0-Ff-8Zm">
                                                                     <rect key="frame" x="0.0" y="-0.5" width="114.5" height="33.5"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCO-M0-04v">
+                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCO-M0-04v">
                                                                             <rect key="frame" x="78.5" y="-2.5" width="36" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="58B-bQ-U1P"/>
@@ -10991,7 +11098,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </button>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skg-g3-On5" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="사용자 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skg-g3-On5" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="68.5" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -11008,7 +11115,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cht-g2-eGV" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2019.06.29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cht-g2-eGV" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="20" width="114.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -11715,14 +11822,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChildDetailIntroContentCell" id="W6y-3w-Xyd" customClass="ChildDetailIntroTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="252"/>
+                                        <rect key="frame" x="0.0" y="72" width="414" height="251"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W6y-3w-Xyd" id="6Ao-RJ-0jK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="252"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="251"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="클래스 소개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBi-FQ-v9a" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="16" width="382" height="20.5"/>
+                                                    <rect key="frame" x="16" y="16" width="382" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -11739,7 +11846,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dJ2-b0-GHt">
-                                                    <rect key="frame" x="16" y="52.5" width="382" height="183.5"/>
+                                                    <rect key="frame" x="16" y="51.5" width="382" height="183.5"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
@@ -14119,7 +14226,7 @@
             <size key="intrinsicContentSize" width="31" height="13.5"/>
         </designable>
         <designable name="yBi-FQ-v9a">
-            <size key="intrinsicContentSize" width="78" height="20.5"/>
+            <size key="intrinsicContentSize" width="73.5" height="19.5"/>
         </designable>
         <designable name="yRA-4K-BIM">
             <size key="intrinsicContentSize" width="29" height="17"/>

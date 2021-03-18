@@ -30,7 +30,7 @@ class ProfileV2NewViewController: BaseViewController {
     private var expandableText:NSRange?
     let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
-    let chattingStoryboard: UIStoryboard = UIStoryboard(name: "ChattingWebView", bundle: nil)
+    let chattingStoryboard: UIStoryboard = UIStoryboard(name: "Chatting", bundle: nil)
     let feedStoryboard: UIStoryboard = UIStoryboard(name: "Feed", bundle: nil)
     
     let storyColor = ["#CDDEF2", "#B2C1D2", "#D9DFEE", "#DFDFDF"]
@@ -132,9 +132,8 @@ class ProfileV2NewViewController: BaseViewController {
     }
     
     @IBAction func sendMsgBtnClicked(_ sender: UIButton) {
-        let newViewController = chattingStoryboard.instantiateViewController(withIdentifier: "ChattingFriendWebViewViewController") as! ChattingFriendWebViewViewController
-        newViewController.url = self.profileNewModel?.results?.chat_link ?? ""
-        print("** newViewController : \(newViewController.url)")
+        let newViewController = chattingStoryboard.instantiateViewController(withIdentifier: "ChattingFriendViewController") as! ChattingFriendViewController
+        newViewController.chat_id = self.profileNewModel?.results?.mcChat_id ?? 0
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     

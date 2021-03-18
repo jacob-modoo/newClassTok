@@ -27,11 +27,16 @@ class ChattingFriendViewController: UIViewController {
     @IBOutlet weak var transparentView: UIView!
     @IBOutlet weak var sideMenuView: ChattingPageSideMenuView!
     @IBOutlet weak var sideMenuViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var replySendView: GradientView!
     
+    var senderId = 0
+    var isSender:Bool?
+    var chat_read_log = "entry"
     var chat_id = 0
     var page = 1
     var user_id = UserManager.shared.userInfo.results?.user?.id ?? 0
-    var myId = 0
+    var notMyId = 0
+    var imageURL = ""
     var customView:UIView!
     var emoticonNumber:Int = 0
     var keyboardShow = false
@@ -41,6 +46,7 @@ class ChattingFriendViewController: UIViewController {
     var chatHistory:ChatHistoryModel?
     var chat_history_arr:Array = Array<ChatHistoryList>()
     var emojiNumber = ""
+    var ref:DatabaseReference = Database.database().reference()
     private var image: UIImage?
     private var croppingStyle = CropViewCroppingStyle.default
     private var croppedRect = CGRect.zero
@@ -60,9 +66,6 @@ class ChattingFriendViewController: UIViewController {
         super.viewDidLoad()
         
         reloadChatHistory()
-        reply_border_view.layer.borderWidth = 1
-        reply_border_view.layer.borderColor = UIColor(hexString: "#eeeeee").cgColor
-        reply_border_view.layer.cornerRadius  = 15
         
         emoticonView.WithEmoticon { [unowned self] eNumber in
             self.emoticonSelectView.isHidden = false
@@ -71,26 +74,46 @@ class ChattingFriendViewController: UIViewController {
             self.image = nil
         }
         
+        reply_textView.delegate = self
         
-//        self.tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.sideMenuProfileTag(_ :)), name: NSNotification.Name(rawValue: "sideMenuProfileTag"), object: nil)
-//        replySendView.layer.shadowColor = UIColor(hexString: "#757575").cgColor
-//        replySendView.layer.shadowOffset = CGSize(width: 0.0, height: -6.0)
-//        replySendView.layer.shadowOpacity = 0.05
-//        replySendView.layer.shadowRadius = 4
-//        replySendView.layer.masksToBounds = false
+       
+        reply_border_view.layer.borderWidth = 1
+        reply_border_view.layer.borderColor = UIColor(hexString: "#eeeeee").cgColor
+        reply_border_view.layer.cornerRadius = 15
+        reply_textView.layer.cornerRadius = 15
+        reply_textView.autocorrectionType = .no
+
+        replySendView.layer.shadowColor = UIColor(hexString: "#757575").cgColor
+        replySendView.layer.shadowOffset = CGSize(width: 0.0, height: -6.0)
+        replySendView.layer.shadowOpacity = 0.05
+        replySendView.layer.shadowRadius = 4
+        replySendView.layer.masksToBounds = false
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.listensUserLog()
+        self.listenerForMessages()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("** ChattingViewController disappeared")
+        
+        self.ref.child("chat_read_log").child("\(self.notMyId)").child("\(self.chat_id)").removeAllObservers()
+        self.ref.child("chat").child("\(self.chat_id)").child("\(self.user_id)").removeAllObservers()
     }
     
     deinit {
@@ -104,7 +127,6 @@ class ChattingFriendViewController: UIViewController {
     
     
     @IBAction func moreBtnClicked(_ sender: UIButton) {
-        print("** more btn is clicked")
         self.sideMenuOpen()
     }
     
@@ -157,7 +179,7 @@ class ChattingFriendViewController: UIViewController {
     @IBAction func replySendBtnClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         if self.reply_textView.text?.isBlank == false || self.emoticonImg.image != nil{
-            messageReplySend()
+            self.messageReplySend()
         }else{
             Alert.With(self, title: "댓글을 입력해주세요", btn1Title: "확인", btn1Handler: {
                 self.reply_textView.becomeFirstResponder()
@@ -171,20 +193,6 @@ class ChattingFriendViewController: UIViewController {
         self.image = nil
     }
     
-    @objc func sideMenuProfileTag(_ notification : Notification) {
-        if let tag = notification.object as? Int {
-            let chatUserId = self.chatRoom?.results?.list_arr[tag].user_id ?? 0
-            let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
-//            if chatUserId == self.user_id {
-                newViewController.isMyProfile = true
-//            } else {
-//                newViewController.isMyProfile = false
-//            }
-            newViewController.user_id = chatUserId
-            self.navigationController?.pushViewController(newViewController, animated: true)
-        }
-    }
-    
     func sideMenuOpen() {
         print("popup view is showing!!!")
         if keyboardShow == true {
@@ -192,7 +200,16 @@ class ChattingFriendViewController: UIViewController {
         }
         
         self.sideMenuView.leaveChatBtnClick = {
-            print("** leaveChatBtnClicked")
+            
+            ChattingListApi.shared.chat_leave(chatId: self.chat_id) { result in
+                if result.code == "200" {
+                    print("** leaveChatBtnClicked")
+                    self.hidePopupView()
+                    self.navigationController?.popViewController(animated: true)
+                }
+            } fail: { (error) in
+            }
+
         }
         
         self.sideMenuView.menuExitBtnClick = {
@@ -248,53 +265,33 @@ class ChattingFriendViewController: UIViewController {
 
     }
     
-    @objc func swipeGesture(_ sender: UISwipeGestureRecognizer) {
-        print("swiped up")
-        if sender.state == .ended {
-            self.hidePopupView()
-        }
-    }
-    
-    func sizeOfImageAt(url: URL) -> CGSize? {
-        // with CGImageSource we avoid loading the whole image into memory
-        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
-            return nil
-        }
-
-        let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
-        guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
-            return nil
-        }
-
-        if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
-            let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
-            return CGSize(width: width, height: height)
-        } else {
-            return nil
-        }
-    }
-    
     func reloadChatHistory() {
         ChattingListApi.shared.chatHistory(chat_room_id: chat_id, page: page) { [unowned self] result in
             if result.code == "200" {
+                
                 self.chatHistory = result
                 
-                self.chatHistory?.results?.list_arr.reverse()
                 for addArray in 0..<(self.chatHistory?.results?.list_arr.count ?? 0)! {
                     self.chat_history_arr.append((self.chatHistory?.results?.list_arr[addArray])!)
                 }
-//                DispatchQueue.main.async {
-//                    let indexPath = IndexPath(row: chat_history_arr.count-1, section: 0)
-//                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-//                }
+                
+                if self.chatHistory?.results?.total ?? 0 > 1 {
+                    self.tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
+                }
+                
                 chatRoomDetail()
-                print("** chat room list count : \(chat_history_arr[0].id ?? 0 )")
-                self.tableView.reloadData()
-                scrollToFirsLastRow()
-                Indicator.hideActivityIndicator(uiView: self.view)
+                
+                DispatchQueue.main.async {
+                    let indexSet = IndexSet.init(integer: 0)
+                    self.tableView.reloadSections(indexSet, with: .automatic)
+                }
             }
+                
+                
+//                Indicator.hideActivityIndicator(uiView: self.view)
+            
         } fail: { error in
-            Indicator.hideActivityIndicator(uiView: self.view)
+//            Indicator.hideActivityIndicator(uiView: self.view)
             Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인") {
             }
         }
@@ -305,18 +302,21 @@ class ChattingFriendViewController: UIViewController {
             if result.code == "200" {
                 self.chatRoom = result
                 
-                
                 for addArray in 0..<(self.chatRoom?.results?.list_arr.count ?? 0) {
-                    self.chatRoomList.append((chatRoom?.results?.list_arr[addArray])!)
+                    self.chatRoomList.append((self.chatRoom?.results?.list_arr[addArray])!)
                 }
                 
-                if user_id == chatRoomList[0].user_id ?? 0 {
-                    myId = 1
+                var checkId = 0
+                if self.user_id == self.chatRoomList[0].user_id ?? 0 {
+                    checkId = 1
                 } else {
-                    myId = 0
+                    checkId = 0
                 }
-                self.profileTitle.text = "\(chatRoomList[myId].user_name ?? "")님과 1:1 대화"
-                self.tableView.reloadData()
+                self.profileTitle.text = "\(self.chatRoomList[checkId].user_name ?? "")님과 1:1 대화"
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         } fail: { error in
             Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인") {
@@ -329,20 +329,19 @@ class ChattingFriendViewController: UIViewController {
             if result.code == "200" {
                 self.chatHistory = result
                 
-//                self.chatHistory?.results?.list_arr.reverse()
-                self.chat_history_arr.reverse()
                 for addArray in 0..<(self.chatHistory?.results?.list_arr.count ?? 0)! {
                     self.chat_history_arr.append((self.chatHistory?.results?.list_arr[addArray])!)
                 }
-                self.chat_history_arr.reverse()
                 
-//                DispatchQueue.main.async {
-//                    let indexPath = IndexPath(row: chat_history_arr.count-1, section: 0)
-//                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-//                }
-                print("** chat room list count : \(chat_history_arr[0].id ?? 0 )")
-                self.tableView.reloadData()
-                scrollToFirsLastRow()
+                if self.chatHistory?.results?.total ?? 0 > 1 {
+                    self.tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
+                }
+                
+                DispatchQueue.main.async {
+                    let indexSet = IndexSet.init(integer: 0)
+                    self.tableView.reloadSections(indexSet, with: .none)
+                }
+                
                 Indicator.hideActivityIndicator(uiView: self.view)
             }
         } fail: { error in
@@ -353,18 +352,133 @@ class ChattingFriendViewController: UIViewController {
 
     }
     
-    func scrollToFirsLastRow() {
-        let indexPath = NSIndexPath(row: self.chat_history_arr.count - 1, section: 0)
-        self.tableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: false)
+    func listensUserLog() {
+        self.ref.child("chat_read_log").child("\(self.notMyId)").child("\(self.chat_id)").observe(.value, with: { (snapshot) in
+
+            if let value = snapshot.value as? [String:Any] {
+                guard let idx = value["mcChatLog_id"] as? Int else {return}
+                
+                for i in 0..<self.chat_history_arr.count {
+
+
+//                            if self.chat_history_arr[i].unread_count ?? 0 > 0 {
+//                                self.chat_history_arr[i].unread_count = 0
+//                            print("** api  successed to be called")
+//                                let indexPath = IndexPath(row: i, section: 0)
+//                                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//                            }
+
+
+//                    if self.user_id != self.chat_history_arr[i].user_id {
+                        if idx >= self.chat_history_arr[i].idx ?? 0 {
+                            self.chat_history_arr[i].unread_count = 0
+                            let indexPath = IndexPath(row: i, section: 0)
+                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        }
+//                            else {
+//                                self.chat_history_arr[i].unread_count = 1
+//                                print("** row \(i) updating to 1")
+//                                let indexPath = IndexPath(row: i, section: 0)
+//                                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//                            }
+//                    }
+                }
+                
+                for i in 0..<(self.chat_history_arr.count) {
+                    if self.chat_history_arr[i].unread_count ?? 0 > 1 {
+                        self.chat_history_arr[i].unread_count = 1
+                        let indexPath = IndexPath(row: i, section: 0)
+                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+                }
+            }
+        })
+    }
+    
+    func listenerForMessages() {
+        self.ref.child("chat").child("\(self.chat_id)").child("\(self.user_id)").observe(.value, with: { (snapshot) in
+                
+            guard let value = convertToDictionary(text: snapshot.value as? String ?? "") else {
+                return
+            }
+            
+            let newData = ChatFirebaseDB(dic: value)
+            let sender_id = Int(newData.sender ?? "") ?? 0
+            
+//                self.isOnline =  true
+//            self.chatReadApiCalled(chatId: self.chat_id)
+        
+        
+            if sender_id != self.user_id {
+
+//                    let temp = ChatHistoryList.init()
+//                    temp.idx = newData.idx
+//                    temp.sender = Int(newData.sender ?? "") ?? 0
+//                    temp.sender_name = newData.sender_name
+//                    temp.emoticon = newData.emoticon
+//                    temp.user_only = newData.user_only
+//                    temp.image = newData.image
+//                    temp.photo = newData.photo
+//                    temp.unread_count = newData.unread_count
+//                    temp.message = newData.message
+//                    temp.time = newData.time
+//                    temp.date = newData.date
+//
+                
+//                    self.chat_history_arr[0].unread_count = newData.unread_count
+//                    print("** unread_count : \(self.chat_history_arr[0].unread_count ?? 0)")
+//                self.chat_history_arr.append(temp)
+//                    if self.isOnline == true {
+                    
+//                    }
+
+                
+//                for i in 0..<(self.chat_history_arr.count) {
+//                    if self.chat_history_arr[i].unread_count ?? 0 > 1 {
+//                        self.chat_history_arr[i].unread_count = 1
+//                        print("** the row \(i) updated to 1")
+//
+////
+//                        let indexPath = IndexPath(row: i, section: 0)
+//                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//                    }
+//                }
+//                self.listensUserLog()
+//
+                self.chatReadApiCalled(chatId: self.chat_id)
+                
+                print("** listener is listening : \(value)")
+                self.page = 1
+                self.chat_history_arr.removeAll()
+                self.chatDetailMessages()
+                
+//
+                
+                
+                    
+                
+//                    DispatchQueue.main.async {
+//                        let indexSet = IndexSet.init(integer: 0)
+//                        self.tableView.reloadSections(indexSet, with: .automatic)
+//                    }
+                
+            }
+          
+        })
+        
     }
     
     func messageReplySend() {
 //        https://api2.enfit.net/api/v3/chat/{chat_room_id}
-//        sender.isUserInteractionEnabled = false
         let content = self.reply_textView.text
         let user_name = UserManager.shared.userInfo.results?.user?.nickname ?? ""
-        Indicator.showActivityIndicator(uiView: self.view)
-        ChattingListApi.shared.chatReplySave(tempIdx: randomTempIdx(), sender: self.user_id, sender_name: user_name, message: content ?? "", emoticon: "emti\(emoticonNumber)", image: self.image, read: 1, chat_room_id: self.chat_id) { [unowned self] result in
+//        Indicator.showActivityIndicator(uiView: self.view)
+        var emojiString = ""
+        if emoticonNumber > 0 {
+            emojiString = "emti\(emoticonNumber).png"
+        }
+        
+        ChattingListApi.shared.chatReplySave(tempIdx: randomTempIdx(), sender: self.user_id, sender_name: user_name, message: content ?? "", emoticon: emojiString, image: imageURL, read: 0, chat_room_id: self.chat_id) { [unowned self] result in
             if result.code == "200" {
                 let temp = ChatHistoryList.init()
                 temp.idx = result.results?.idx
@@ -372,13 +486,23 @@ class ChattingFriendViewController: UIViewController {
                 temp.sender_name = result.results?.sender_name
                 temp.emoticon = result.results?.emoticon
                 temp.image = result.results?.image
-//                temp.created_at = result.results?.created_at
-//                temp.updated_at = result.results?.updated_at
+                temp.photo = result.results?.photo
                 temp.unread_count = result.results?.unread_count
-//                temp.friend_status = result.results?.friend_status
                 temp.message = result.results?.message
                 temp.time = result.results?.time
                 temp.date = result.results?.date
+
+//                self.chat_history_arr.append(temp)
+//                self.chat_history_arr.reverse()
+                self.chat_history_arr.insert(temp, at: 0)
+//                self.chat_history_arr.reverse()
+
+                self.chatHistory?.results?.total = (self.chatHistory?.results?.total ?? 0) + 1
+                self.imageURL = ""
+                
+                self.senderId = result.results?.sender ?? 0
+
+
                 self.emoticonSelectView.isHidden = true
                 self.emoticonImg.image = nil
                 self.replyTextViewLbl.isHidden = false
@@ -392,35 +516,43 @@ class ChattingFriendViewController: UIViewController {
                     self.customView = nil
                 }
                 
-                self.chat_history_arr.reverse()
-                self.chat_history_arr.insert(temp, at: 0)
-                self.chat_history_arr.reverse()
-                
-                self.chatHistory?.results?.total = (self.chatHistory?.results?.total ?? 0) + 1
-                
                 self.emoticonNumber = 0
-//                sender.isUserInteractionEnabled = true
+                
                 DispatchQueue.main.async {
-                    self.tableView.reloadSections([0], with: .automatic)
-                    Indicator.hideActivityIndicator(uiView: self.view)
+                    let indexSet = IndexSet.init(integer: 0)
+                    self.tableView.reloadSections(indexSet, with: .automatic)
+//                    Indicator.hideActivityIndicator(uiView: self.view)
                 }
                 
+                self.chatReadApiCalled(chatId: self.chat_id)
+                
             } else {
-                Indicator.hideActivityIndicator(uiView: self.view)
+//                Indicator.hideActivityIndicator(uiView: self.view)
             }
         } fail: { error in
-            Indicator.hideActivityIndicator(uiView: self.view)
-//            sender.isUserInteractionEnabled = true
+//            Indicator.hideActivityIndicator(uiView: self.view)
         }
 
         
         
     }
     
-//    func paramForMsgReplySave() -> Dictionary<String, Any> {
-//
-//
-//    }
+    func chatReadApiCalled(chatId: Int) {
+        ChattingListApi.shared.chatRead(chatId: chatId) { result in
+            if result.code == "200" {
+//                    for i in 0..<self.chat_history_arr.count {
+//                        if self.chat_history_arr[i].unread_count ?? 0 > 0 {
+//                            self.chat_history_arr[i].unread_count = 0
+                        print("** api  successed to be called")
+//                            let indexPath = IndexPath(row: i, section: 0)
+//                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//                        }
+//                    }
+            }
+        } fail: { error in
+            print("\(error.debugDescription)")
+        }
+    }
     
     func randomTempIdx() -> Int {
         let date = Date()
@@ -433,8 +565,7 @@ class ChattingFriendViewController: UIViewController {
         let minute = calendar.component(.minute, from: date)
         let randomInt = Int.random(in: 1...10)*(99999 - 11111 + 1) + 11111
         let tempId = hour+minute+randomInt
-        print("** hour : \(hour)")
-        print("** minute : \(minute)")
+        
         return tempId
     }
     
@@ -460,11 +591,61 @@ class ChattingFriendViewController: UIViewController {
         })
     }
     
+    func sizeOfImageAt(url: URL) -> CGSize? {
+        // with CGImageSource we avoid loading the whole image into memory
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
+            return nil
+        }
+
+        let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+        guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
+            return nil
+        }
+
+        if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
+            let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
+            return CGSize(width: width, height: height)
+        } else {
+            return nil
+        }
+    }
+    
+}
+
+@objc extension ChattingFriendViewController {
+    
     /** **텍스트뷰 클릭 > 이모티콘뷰 숨기기 */
-    @objc func textViewTab(){
+    func textViewTab(){
         if self.customView != nil {
             self.customView.removeFromSuperview()
             self.customView = nil
+        }
+    }
+    
+    func imageTapped(_ sender: UITapGestureRecognizer) {
+        guard let image = sender.view as? UIImageView else {return}
+        Alert.WithImageView(self, image: image.image!, btn1Title: "") {
+            print("** image tapped")
+        }
+    }
+    
+    func sideMenuProfileTag(_ notification : Notification) {
+        if let tag = notification.object as? Int {
+            let chatUserId = self.chatRoom?.results?.list_arr[tag].user_id ?? 0
+            let newViewController = home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+//            if chatUserId == self.user_id {
+                newViewController.isMyProfile = true
+//            } else {
+//                newViewController.isMyProfile = false
+//            }
+            newViewController.user_id = chatUserId
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
+    }
+    
+    func swipeGesture(_ sender: UISwipeGestureRecognizer) {
+        if sender.state == .ended {
+            self.hidePopupView()
         }
     }
     
@@ -476,7 +657,7 @@ class ChattingFriendViewController: UIViewController {
      
      - Throws: `Error` 오브젝트 값이 제대로 안넘어 오는경우 `Error`
      */
-    @objc func keyboardWillShow(notification: Notification) {
+    func keyboardWillShow(notification: Notification) {
         if keyboardShow == false {
             print("이거 혹시 두번타니?")
             if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -504,7 +685,7 @@ class ChattingFriendViewController: UIViewController {
      
      - Throws: `Error` 오브젝트 값이 제대로 안넘어 오는경우 `Error`
      */
-    @objc func keyboardWillHide(notification: Notification) {
+    func keyboardWillHide(notification: Notification) {
         if keyboardShow == true {
             if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 self.keyBoardSize = nil
@@ -515,9 +696,7 @@ class ChattingFriendViewController: UIViewController {
                         self.reply_textView.gestureRecognizers?.removeLast()
 //                    }
                 }
-                
                 UIView.animate(withDuration: 0.5, animations: {
-                    
                     if #available(iOS 11.0, *) {
                         self.tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
                         self.view.frame.size.height = self.view.frame.size.height + kbSize.height
@@ -531,7 +710,7 @@ class ChattingFriendViewController: UIViewController {
         }
     }
     
-    @objc func keyboardWillChange(notification: Notification) {
+    func keyboardWillChange(notification: Notification) {
         if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if keyboardShow == true {
                 if kbSize.size.height < self.keyBoardSize?.height ?? 0{
@@ -543,80 +722,153 @@ class ChattingFriendViewController: UIViewController {
             }
         }
     }
-    
-    func retrieveMessages() {
-        let messageDB = Database.database().reference().child("message")
-        
-        messageDB.observe(.childAdded) { (snapshot) in
-//            let snapshotValue = snapshot.value as! Dictionary<String, String>
-//            let sender = snapshotValue["Sender"]
-//            let text = snapshotValue["MessageBody"]
-        }
-    }
-    
 }
 
 extension ChattingFriendViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if chatHistory != nil {
-            switch section {
-            case 0:
-                if chat_history_arr.count > 0 {
-                    return chat_history_arr.count
-                } else {
-                    return 0
-                }
-            case 1:
-                if chat_history_arr.count > 0 {
-                    return 0
-                } else {
-                    return 1
-                }
-            default:
+        switch section {
+        case 1:
+            if chatHistory?.results?.total ?? 0 > 0 {
+                return 0
+            } else {
                 return 1
             }
-        }
-        return 1
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if chat_history_arr.count > 0 {
-            return 2
-        } else {
+        case 0:
+            if chatHistory?.results?.total ?? 0 > 0 {
+//                var counter = 0
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "yyyy-MM-dd"
+//                dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC") as TimeZone?
+//
+//                for i in 0..<self.chat_history_arr.count-1 {
+//                    let pastDate = dateFormatter.date(from: self.chat_history_arr[i+1].date ?? "")
+//                    let currentDate = dateFormatter.date(from: self.chat_history_arr[i].date ?? "")
+//
+//                    if currentDate! > pastDate! {
+//                        counter += 1
+//                    }
+//                }
+                
+                return chat_history_arr.count  //+counter
+            } else {
+                return 0
+            }
+        default:
             return 1
         }
+        
+        
+//        switch section {
+//        case 0:
+//            if chatHistory?.results?.page_total ?? 0 > 0 {
+//                return chat_history_arr.count
+//            } else {
+//                return 0
+//            }
+//        case 1:
+//            print("** number of rows - case 99")
+//            if chatHistory?.results?.page_total ?? 0 > 0 {
+//                print("** number of rows - case 1")
+//                return 0
+//            } else {
+//                print("** number of rows")
+//                return 1
+//            }
+//        default:
+//            print("** number of rows - case 999")
+//            return 1
+//        }
     }
+    
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        if chat_history_arr.count > 0 {
+//            return 2
+//        } else {
+//            return 2
+//        }
+//    }
     
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //
-//        let title = "time arr"
+//        tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
 //
-//        return "\(title)"
+//        return "section \(section)"
 //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
-        var cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomEmptyCell", for: indexPath) as! ChattingRoomTableViewCell
+        
         
         switch section {
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomEmptyCell", for: indexPath) as! ChattingRoomTableViewCell
+            print("** empty cell")
+            var checkId = 0
+            if user_id == chatRoom?.results?.list_arr[0].user_id ?? 0 {
+                checkId = 1
+            } else {
+                checkId = 0
+            }
+            cell.emptyChatLbl.text = "\(chatRoom?.results?.list_arr[checkId].user_name ?? "")님과 즐거운 시간되세요"
+            if self.chatHistory?.results?.total ?? 0 > 1 {
+                cell.transform = CGAffineTransform(scaleX: 1, y: -1)
+            }
+            cell.selectionStyle = .none
+            return cell
+            
+//        case 2:
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "yyyy-MM-dd"
+//
+//
+//            for i in 0..<self.chat_history_arr.count {
+//                let pastDate = dateFormatter.date(from: self.chat_history_arr[i+1].date ?? "")
+//                let currentDate = dateFormatter.date(from: self.chat_history_arr[i].date ?? "")
+//
+//                print("** pastDate : \(String(describing: pastDate))")
+//                print("** currentDate : \(String(describing: currentDate))")
+//
+//
+//
+//            }
+//
+//
+//            if self.chatHistory?.results?.total ?? 0 > 10 {
+//                cell.transform = CGAffineTransform(scaleX: 1, y: -1)
+//            }
+//            cell.selectionStyle = .none
+//            return cell
+        
         case 0:
+            
+            var cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomEmptyCell", for: indexPath) as! ChattingRoomTableViewCell
             if chat_history_arr.count > 0 {
                 
-//                let isSame = (chat_history_arr[row].date ?? "").compare(chat_history_arr[row+1].date ?? "") == ComparisonResult.orderedSame
-//
-//                if isSame == false {
-//                    cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomMsgDateCell", for: indexPath) as! ChattingRoomTableViewCell
-//
-//                    cell.msgDateLbl.text = chat_history_arr[row].date ?? ""
-//                    print("** is false ")
-//                }
-//
-//                print("** isSame : \(isSame)")
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC") as TimeZone?
+
+                for i in 0..<self.chat_history_arr.count-1 {
+                    let pastDate = dateFormatter.date(from: self.chat_history_arr[i+1].date ?? "")
+                    let currentDate = dateFormatter.date(from: self.chat_history_arr[i].date ?? "")
+
+                    if currentDate! > pastDate! {
+                        cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomMsgDateCell", for: indexPath) as! ChattingRoomTableViewCell
+                        cell.msgDateLbl.text = self.chat_history_arr[row].date ?? ""
+//                        print("** pastDate : \(pastDate)\n** currentDate : \(currentDate)")
+                    }
+                }
                 
+                if chat_history_arr[row].sender ?? 0 != 0 && chat_history_arr[row].sender ?? 0 != self.user_id {
+                    self.isSender = false
+                } else {
+                    self.isSender = true
+                }
                 
-                if chat_history_arr[row].sender ?? 0 != self.user_id {
+                if self.isSender == false {
     //                received msg
+                    
                     if chat_history_arr[row].image ?? "" != "" {
                         cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomReceivedImgCell", for: indexPath) as! ChattingRoomTableViewCell
                         
@@ -629,12 +881,28 @@ extension ChattingFriendViewController: UITableViewDelegate, UITableViewDataSour
                         guard let imgUrl = URL(string: "\(chat_history_arr[row].image ?? "")") else {
                             return cell
                         }
-//                        let ratio = (sizeOfImageAt(url: imgUrl)?.width ?? 0)/(sizeOfImageAt(url: imgUrl)?.height ?? 0)
-//                        let imgHeight = (sizeOfImageAt(url: imgUrl)?.width ?? 0)/ratio
-//                        let imgWidth = (sizeOfImageAt(url: imgUrl)?.height ?? 0)/ratio
                         
-                        cell.msgReceivedImgWidth.constant = 160  //imgWidth
-                        cell.msgReceivedImgHeight.constant = 160  //imgHeight
+//                        let ratio = (sizeOfImageAt(url: imgUrl)?.width ?? 0)/(sizeOfImageAt(url: imgUrl)?.height ?? 0)
+//                        let imgHeight = (sizeOfImageAt(url: imgUrl)?.width ?? 0) //  /ratio
+//                        let imgWidth = (sizeOfImageAt(url: imgUrl)?.height ?? 0) // /ratio
+//
+//
+//                        var newHeight = 0 as CGFloat
+//                        var newWidth = 0 as CGFloat
+//                        if imgWidth > 960 {
+//                            let ratio = imgWidth/960
+//                            newHeight = imgHeight/ratio
+//                            newWidth = 960
+//                        }
+                        
+                        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+                        cell.msgReceivedImg.addGestureRecognizer(tapGesture)
+                        
+                        
+//                        print("** imgHeight : \(newHeight)\n** imgWidth : \(newWidth)")
+                        
+                        cell.msgReceivedImgWidth.constant = 160 //newWidth  //imgWidth
+                        cell.msgReceivedImgHeight.constant = 160 //newHeight  //imgHeight
                         cell.msgReceivedImg.sd_setImage(with: imgUrl, placeholderImage: UIImage(named: "home_default_photo"))
                         
                         cell.msgReceivedTimeLbl.text = "\(chat_history_arr[row].time ?? "")"
@@ -649,7 +917,10 @@ extension ChattingFriendViewController: UITableViewDelegate, UITableViewDataSour
                             
                             cell.msgReceivedImgHeight.constant = 120
                             cell.msgReceivedImgWidth.constant = 120
-                            self.emojiNumber = "\(chat_history_arr[row].emoticon ?? "").png"
+                            self.emojiNumber = "\(chat_history_arr[row].emoticon ?? "")"
+                            if !self.emojiNumber.contains(".") {
+                                self.emojiNumber = "\(emojiNumber).png"
+                            }
                             for emoji in emoticonView.items {
                                 if emoji == emojiNumber {
                                     cell.msgReceivedImg.image = UIImage(named: emoji)
@@ -667,7 +938,10 @@ extension ChattingFriendViewController: UITableViewDelegate, UITableViewDataSour
                             cell.userNameLbl.text = chat_history_arr[row].user_name ?? ""
                             cell.msgReceivedImgHeight.constant = 120
                             cell.msgReceivedImgWidth.constant = 120
-                            self.emojiNumber = "\(chat_history_arr[row].emoticon ?? "").png"
+                            self.emojiNumber = "\(chat_history_arr[row].emoticon ?? "")"
+                            if !self.emojiNumber.contains(".") {
+                                self.emojiNumber = "\(emojiNumber).png"
+                            }
                             for emoji in emoticonView.items {
                                 if emoji == emojiNumber {
                                     cell.msgReceivedImg.image = UIImage(named: emoji)
@@ -697,6 +971,10 @@ extension ChattingFriendViewController: UITableViewDelegate, UITableViewDataSour
 //                        let imgHeight = (sizeOfImageAt(url: imgUrl)?.width ?? 0)/ratio
 //                        let imgWidth = (sizeOfImageAt(url: imgUrl)?.height ?? 0)/ratio
                         
+                        
+                        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+                        cell.msgSentImgView.addGestureRecognizer(tapGesture)
+                        
                         cell.msgSentImgHeight.constant = 160 //imgHeight
                         cell.msgSentImgWidth.constant = 160  //imgWidth
                         
@@ -713,7 +991,10 @@ extension ChattingFriendViewController: UITableViewDelegate, UITableViewDataSour
                             cell.msgSentImgHeight.constant = 120
                             cell.msgSentImgWidth.constant = 120
                             
-                            self.emojiNumber = "\(chat_history_arr[row].emoticon ?? "").png"
+                            self.emojiNumber = "\(chat_history_arr[row].emoticon ?? "")"
+                            if !self.emojiNumber.contains(".") {
+                                self.emojiNumber = "\(emojiNumber).png"
+                            }
                             for emoji in emoticonView.items {
                                 if emoji == emojiNumber {
                                     cell.msgSentImgView.image = UIImage(named: emoji)
@@ -733,7 +1014,10 @@ extension ChattingFriendViewController: UITableViewDelegate, UITableViewDataSour
                             cell.msgSentImgHeight.constant = 120
                             cell.msgSentImgWidth.constant = 120
                             
-                            self.emojiNumber = "\(chat_history_arr[row].emoticon ?? "").png"
+                            self.emojiNumber = "\(chat_history_arr[row].emoticon ?? "")"
+                            if !self.emojiNumber.contains(".") {
+                                self.emojiNumber = "\(emojiNumber).png"
+                            }
                             for emoji in emoticonView.items {
                                 if emoji == emojiNumber {
                                     cell.msgSentImgView.image = UIImage(named: emoji)
@@ -758,21 +1042,17 @@ extension ChattingFriendViewController: UITableViewDelegate, UITableViewDataSour
                     }
                 }
             }
-//            cell.transform = CGAffineTransform(scaleX: 1, y: -1)
-            cell.selectionStyle = .none
-            return cell
-        case 1:
-            if user_id == chatRoom?.results?.list_arr[0].user_id ?? 0 {
-                myId = 1
-            } else {
-                myId = 0
+            if self.chatHistory?.results?.total ?? 0 > 1 {
+                cell.transform = CGAffineTransform(scaleX: 1, y: -1)
             }
-            cell.emptyChatLbl.text = "\(chatRoom?.results?.list_arr[myId].user_name ?? "")님과 즐거운 시간되세요"
-//            cell.transform = CGAffineTransform(scaleX: 1, y: -1)
+            
             cell.selectionStyle = .none
             return cell
         default:
-//            cell.transform = CGAffineTransform(scaleX: 1, y: -1)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomEmptyCell", for: indexPath) as! ChattingRoomTableViewCell
+            if self.chatHistory?.results?.total ?? 0 > 1 {
+                cell.transform = CGAffineTransform(scaleX: 1, y: -1)
+            }
             cell.selectionStyle = .none
             return cell
         }
@@ -784,8 +1064,8 @@ extension ChattingFriendViewController: UITableViewDelegate, UITableViewDataSour
         
         DispatchQueue.main.async {
             if section == 0 {
-                if row == self.chat_history_arr.count-1 {
-                    if self.page < self.chatHistory?.results?.page_total ?? 0 {
+                if self.page < self.chatHistory?.results?.page_total ?? 0 {
+                    if row == self.chat_history_arr.count-1 {
                         Indicator.showActivityIndicator(uiView: self.view)
                         self.page += 1
                         self.chatDetailMessages()
@@ -960,7 +1240,6 @@ extension ChattingFriendViewController: CropViewControllerDelegate, UIImagePicke
 //            self.imageView.isHidden = false
 //            cropViewController.dismiss(animated: true, completion: nil)
 //        }
-        print("** selected image")
         self.image = image
 //        self.emoticonSelectView.isHidden = false
 //        self.emoticonImg.image = ImageScale().scaleImage(image: image)
@@ -972,16 +1251,16 @@ extension ChattingFriendViewController: CropViewControllerDelegate, UIImagePicke
 //        }
         
         cropViewController.dismiss(animated: true) {
-//            self.messageReplySend()
-//            ChattingListApi.shared.chatImage2URL(image: image) { (result) in
-//                if result.code == "200" {
-//                    print("** successfull : \(result.results?.photo_url ?? "")")
-//                    
-//                }
-//            } fail: { (error) in
-//                print("\(String(describing: error))")
-//            }
-
+            ChattingListApi.shared.chatImage2URL(image: image) { (result) in
+                if result.code == "200" {
+                    self.imageURL = result.results?.photo_url ?? ""
+                    self.messageReplySend()
+                }
+            } fail: { (error) in
+                print("\(String(describing: error))")
+            }
+            
+            
         }
         
     }
@@ -1077,10 +1356,10 @@ extension ChattingFriendViewController: UITextViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.view.endEditing(true)
         self.emoticonSelectView.isHidden = true
-        if self.reply_textView.text.isEmpty != true || self.emoticonImg.image != nil{
-            replyWriteCheck()
-        }else{
-            
-        }
+//        if self.reply_textView.text.isEmpty != true || self.emoticonImg.image != nil{
+//            replyWriteCheck()
+//        }else{
+//
+//        }
     }
 }

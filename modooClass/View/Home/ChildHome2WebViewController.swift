@@ -22,6 +22,7 @@ class ChildHome2WebViewController: UIViewController ,WKNavigationDelegate,WKUIDe
     var url = ""
     var webView: WKWebView!
     var networkView:NetworkOutView?
+    var chatRoom:ChatRoomPModel?
     var tokenCheck = true
     var classOpenCheck = false
     var webViewScrollOffset:CGPoint?
@@ -83,6 +84,8 @@ class ChildHome2WebViewController: UIViewController ,WKNavigationDelegate,WKUIDe
         contentController.add(LeakAvoider(delegate: self),name: "goToAlarm")
         contentController.add(LeakAvoider(delegate: self),name: "logout")
 //        contentController.add(self,name: "goToWebView")
+        contentController.add(LeakAvoider(delegate: self),name: "goToChatList")
+        contentController.add(LeakAvoider(delegate: self),name: "goToChatRoom")
         contentController.add(LeakAvoider(delegate: self),name: "goToChatDetail")
         contentController.add(LeakAvoider(delegate: self),name: "gotoprofile")
         contentController.add(LeakAvoider(delegate: self),name: "gotofriendprofile")
@@ -94,9 +97,12 @@ class ChildHome2WebViewController: UIViewController ,WKNavigationDelegate,WKUIDe
         contentController.add(LeakAvoider(delegate: self),name: "webViewExit")
         contentController.add(LeakAvoider(delegate: self),name: "goToSearch")
         contentController.add(LeakAvoider(delegate: self),name: "goToProfile")
+        contentController.add(LeakAvoider(delegate: self),name: "goToHome")
+        contentController.add(LeakAvoider(delegate: self),name: "skipToDetailClass")
         contentController.add(LeakAvoider(delegate: self),name: "goToStoreReview")
         contentController.add(LeakAvoider(delegate: self),name: "goToFeedDetail")
         contentController.add(LeakAvoider(delegate: self),name: "goToFeedReply")
+        
 //        contentController.add(self,name: "classJoinHandler")
         
         config.userContentController = contentController
@@ -244,7 +250,7 @@ class ChildHome2WebViewController: UIViewController ,WKNavigationDelegate,WKUIDe
             myURL = URL(string:"\(url)")
         }
 
-//        myURL = URL(string: "https://junghee.modooclass.net/class/orientation/1291") /**orientation page test*/
+//        myURL = URL(string: "https://junghee.classtok.net/class/orientation/1291") /**orientation page test*/
         
         var request = URLRequest(url: myURL!, cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy)
 
@@ -544,15 +550,18 @@ extension ChildHome2WebViewController:WKScriptMessageHandler {
                 print("error \(error)")
             })
         }else if message.name == "goToDetailClass" {
-            
             if message.body as! Int != 0{
                 self.navigationController?.popOrPushController(class_id: message.body as! Int)
-//                let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
-//                newViewController.class_id = message.body as! Int
-//                newViewController.pushGubun = 1
-//                self.navigationController?.pushViewController(newViewController, animated: true)
             }else{
                 
+            }
+        }else if message.name == "skipToDetailClass" {
+            if message.body as! Int != 0{
+                let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
+                newViewController.class_id = message.body as! Int
+                newViewController.fromOrientationPage = true
+                newViewController.pushGubun = 1
+                self.navigationController?.pushViewController(newViewController, animated: true)
             }
         }else if message.name == "classJoinHandler" {
             if message.body as! Int != 0{
@@ -670,6 +679,36 @@ extension ChildHome2WebViewController:WKScriptMessageHandler {
                         AFEventParamRevenue: price!,
                         AFEventParamCurrency:"KRW"
                     ]);
+            }
+        }else if message.name == "goToChatRoom"{
+            print("goToChatRoom: alert \(message.body)")
+            if message.body as! String != ""{
+                //message.body = room_id
+                var chatId = 0
+                
+                ChattingListApi.shared.getChatroomId(chatRoomId: message.body as! String) { result in
+                    if result.code == "200" {
+                        self.chatRoom = result
+                        chatId = self.chatRoom?.results?.mcChat_id ?? 0
+                        
+                        let storyboard: UIStoryboard = UIStoryboard(name: "Chatting", bundle: nil)
+                        let newViewController = storyboard.instantiateViewController(withIdentifier: "ChattingFriendViewController") as! ChattingFriendViewController
+        //                newViewController.url = "https://chat.modooclass.net/class/chat/\(message.body as! String)"
+                        newViewController.chat_id = chatId
+                        self.navigationController?.pushViewController(newViewController, animated: true)
+                    }
+                } fail: { error in
+                    print("error in calling getChatroomID api")
+                }
+            }else{
+                
+            }
+        }else if message.name == "goToChatList"{
+            print("goToChatList: alert \(message.body)")
+            if message.body as! String == "list" {
+                let storyboard: UIStoryboard = UIStoryboard(name: "Chatting", bundle: nil)
+                let newViewController = storyboard.instantiateViewController(withIdentifier: "ChattingViewController") as! ChattingViewController
+                self.navigationController?.pushViewController(newViewController, animated: true)
             }
         }else if message.name == "goToChatDetail"{
             print("goToChatDetail: alert \(message.body)")
@@ -888,6 +927,11 @@ extension ChildHome2WebViewController:WKScriptMessageHandler {
                 }
                 newViewController.user_id = (message.body as? Int ?? 0)!
                 self.navigationController?.pushViewController(newViewController, animated: true)
+            }
+        }else if message.name == "goToHome"{
+            if message.body as? String != "" {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPage"), object: nil)
+                self.navigationController?.popViewController(animated: true)
             }
         }else if message.name == "goToStoreReview"{
             if message.body as? String ?? "" == "review"{

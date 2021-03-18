@@ -195,10 +195,17 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     }
     
     @IBAction func eventImgBtnClicked(_ sender: UIButton) {
-        let url = "\(self.rankList?.results?.event_list_arr[0].link ?? "")"
-        let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-        newViewController.url = url
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        let stringUrl = self.rankList?.results?.event_list_arr[0].link ?? ""
+        if stringUrl.contains("classtok") == true {
+            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
+            newViewController.url = stringUrl
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        } else {
+            guard let url = URL(string: stringUrl) else { return }
+            if UIApplication.shared.canOpenURL(url) {
+                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
     }
     
     /**
