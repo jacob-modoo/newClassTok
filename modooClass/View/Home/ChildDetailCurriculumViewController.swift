@@ -243,12 +243,7 @@ extension ChildDetailCurriculumViewController:UITableViewDelegate,UITableViewDat
                     }else{
                         cell.curriculumPlayTimeLbl.text = " New "
                     }
-                    if feedAppCurriculumModel?.results?.manageList[row].data ?? 0 == 0{
-                        cell.curriculumChapterLbl.text = "OT"
-                    }else{
-                        cell.curriculumChapterLbl.text = "\(feedAppCurriculumModel?.results?.manageList[row].data ?? 0)강"
-                    }
-
+                    
                     if feedAppCurriculumModel?.results?.manageList[row].mcMission_stamp_id ?? 0 > 0{
                         cell.curriculumMissionCheckLbl.isHidden = false
                         cell.curriculumMissionCheckImg.isHidden = false

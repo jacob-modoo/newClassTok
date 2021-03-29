@@ -331,6 +331,7 @@ class Management_class_pilot:NSObject{
     var class_group_data:Int?
     var class_signup_data:Int?
     var coach_wait_cnt:Int?
+    var coach_wait_text:String?
     var chat_link:String?
     var chat_user_id:String?
     var manager_link:String?
@@ -350,6 +351,7 @@ class Management_class_pilot:NSObject{
         class_group_data = DictionaryToInt(dic: dic, intName: "class_group_data")
         class_signup_data = DictionaryToInt(dic: dic, intName: "class_signup_data")
         coach_wait_cnt = DictionaryToInt(dic: dic, intName: "coach_wait_cnt")
+        coach_wait_text = DictionaryToString(dic: dic, strName: "coach_wait_text")
         chat_link = DictionaryToString(dic: dic, strName: "chat_link")
         chat_user_id = DictionaryToString(dic: dic, strName: "chat_user_id")
         manager_link = DictionaryToString(dic: dic, strName: "manager_link")

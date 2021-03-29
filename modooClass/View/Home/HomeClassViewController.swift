@@ -380,7 +380,7 @@ extension HomeClassViewController{
         for temp in (HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[row].week_best_list)! {
             let subView = UIView(frame: CGRect(x: 0, y: (viewHeight*indexCount), width: viewWidth, height: viewHeight))
             let bestLable = UILabel(frame: CGRect.zero)
-            bestLable.text = "\(indexCount+1). \(temp.user_name ?? "") \(temp.total_point ?? 0)점"
+            bestLable.text = "\(temp.no ?? 0). \(temp.user_name ?? "") \(temp.total_point ?? 0)점"
             bestLable.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
             bestLable.textAlignment = .left
             bestLable.sizeToFit()
@@ -682,6 +682,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                 }else{
                     cell.managerReplyView.isHidden = true
                 }
+                cell.coachWaitTxtLbl.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].coach_wait_text ?? "")"
                 cell.replyCount.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].coach_wait_cnt ?? 0)"
                 cell.classManagerBtn.tag = row
                 cell.classManagerBtn.setTitle("\(HomeMain2Manager.shared.pilotAppMain.results?.management_class_arr[row].button_text2 ?? "")", for: .normal)
@@ -813,9 +814,13 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
 //                review_wait : 작성하기 , coach_wait : 작성완료 , coach_send : 답변도착
                 cell.reviewWriteCompleteBtn.setTitle("리뷰쓰기", for: .normal)
                 if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].review_star_status ?? "" == "helpful"{
+                    cell.classReviewLblTopConstraint.constant = 0
+                    cell.classReviewImgHeight.constant = 22
                     cell.classReviewStar1.image = UIImage(named: "like_btn_with_title")
                 }else{
                     cell.classReviewStar1.isHidden = true
+                    cell.classReviewLblTopConstraint.constant = 4
+                    cell.classReviewImgHeight.constant = 0
                 }
                 
                 cell.reviewWriteBtn.tag = row
@@ -838,7 +843,7 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
             if HomeMain2Manager.shared.pilotAppMain.results != nil{
                 cell.classImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].class_photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
                 cell.className.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].class_short_name ?? "")"
-                cell.classMember.text = "총 \(HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].curriculum_cnt ?? 0)강 주 \(HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].week_mission_cnt ?? 0)회 미션"
+                cell.classMember.text = "총 \(HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].curriculum_cnt ?? 0)강 ･ 주 \(HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].week_mission_cnt ?? 0)회 미션"
                 cell.classFavoriteRecommendBtn.tag = row
                 cell.classParticipateBtn.tag = HomeMain2Manager.shared.pilotAppMain.results?.favorites_class_arr[row].class_id ?? 0
                 cell.classScrapBtn.tag = row

@@ -180,7 +180,8 @@ class ChildDetailClassViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reloadView()
-        if self.feedDetailList?.results?.user_status ?? "" != "spectator" {
+        print("*** my  user status:  \(self.feedDetailList?.results?.user_status ?? "")")
+        if self.feedDetailList?.results?.user_status ?? "" == "member" {
             let dismiss = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
             self.view.addGestureRecognizer(dismiss)
             
@@ -1586,7 +1587,7 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
             if section == 0{
                 let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassMenuTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if self.feedDetailList != nil{
-                    cell.chapterSubjectLbl.text = "\(self.feedDetailList?.results?.curriculum?.head ?? ""). \(self.feedDetailList?.results?.curriculum?.title ?? "")"
+                    cell.chapterSubjectLbl.text = "\(self.feedDetailList?.results?.curriculum?.head ?? "") \(self.feedDetailList?.results?.curriculum?.title ?? "")"
 //                    if self.feedDetailList?.results?.curriculum?.study?.content ?? "" == "" {
                         cell.classContentBtn.isHidden = true
 //                    }else{
@@ -1869,7 +1870,7 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
             }else if section == 10{
                 let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassTotalReplyTitleTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if replyArray != nil{
-                    replyArray!.count > 0 ? (cell.totalReplyCount.text = "댓글 \(feedReplyList?.results?.total ?? 0)개") : (cell.totalReplyCount.text = "댓글이 아직 없습니다") /*turnary operator*/
+                    cell.totalReplyCount.text = "댓글 \(feedReplyList?.results?.total ?? 0)개"
                 }
                 cell.selectionStyle = .none
                 return cell
@@ -2068,19 +2069,12 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
                 let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassTotalReplyTitleTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 cell.communityLbl.text = ""
                 if replyArray != nil{
-                    if replyArray!.count > 0 {
+                    if self.type == "all" {
                         cell.totalReplyCount.text = "댓글 \(feedReplyList?.results?.total ?? 0)개"
-                    } else {
-                        switch self.type {
-                        case "all":
-                            cell.totalReplyCount.text = "댓글이 아직 없습니다"
-                        case "questions":
-                            cell.totalReplyCount.text = "질문 댓글이 아직 없습니다"
-                        case "coach":
-                            cell.totalReplyCount.text = "코치 댓글이 아직 없습니다"
-                        default:
-                            cell.totalReplyCount.text = "댓글이 아직 없습니다"
-                        }
+                    } else if self.type == "questions" {
+                        cell.totalReplyCount.text = "질문 댓글 \(feedReplyList?.results?.total ?? 0)개"
+                    } else if self.type == "coach" {
+                        cell.totalReplyCount.text = "코치 댓글 \(feedReplyList?.results?.total ?? 0)개"
                     }
                 }
                 cell.selectionStyle = .none
@@ -2348,7 +2342,7 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
         cell.likeCountBtn.layer.shadowOffset = CGSize(width: 0,height: 2)
         cell.replyTime.text = replyArray?[row].time_spilled ?? "0분전"
         
-        if replyArray?[row].friend_status ?? "Y" != "Y"{
+        if replyArray?[row].friend_yn ?? "Y" != "Y"{
             if replyArray?[row].user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
                 cell.rollGubunImg.isHidden = true
             }else{

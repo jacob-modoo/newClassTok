@@ -95,6 +95,7 @@ class AppClassCommentDetailReply:NSObject{
         emoticon = DictionaryToInt(dic: dic, intName: "emoticon")
         coach_yn = DictionaryToString(dic: dic, strName: "coach_yn")
         play_file = DictionaryToString(dic: dic, strName: "play_file")
+        friend_status = DictionaryToString(dic: dic, strName: "friend_status")
         youtu_address = DictionaryToString(dic: dic, strName: "youtu_address")
         profile_url = DictionaryToString(dic: dic, strName: "profile_url")
         if let reply = dic["reply"] as? Dictionary<String, Any> {

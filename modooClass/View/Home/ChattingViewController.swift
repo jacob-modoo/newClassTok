@@ -30,12 +30,14 @@ class ChattingViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        Indicator.showActivityIndicator(uiView: self.view)
+//        reloadView()
+        self.listenerForChatList()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadView), name: NSNotification.Name(rawValue: "reload"), object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.listenerForChatList()
+//        self.listenerForChatList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,36 +58,36 @@ class ChattingViewController: UIViewController {
     
     @IBAction func backBtnClicked(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+        self.firebaseRef.child("chat_read").child("\(user_id)").removeAllObservers()
     }
     
     
-//    func reloadView() {
-//        ChattingListApi.shared.chatList(page: page) { [unowned self] result in
-//            if result.code == "200" {
-//                self.chatList = result
-//
-//
-//                    self.chat_list_arr.removeAll()
-//
-//
-//                for addArray in 0 ..< (self.chatList?.results?.curr_total ?? 0)! {
-//                    if self.chatList?.results?.list_arr[addArray].user_id.count ?? 0 > 1 {
-//                        self.chat_list_arr.append((self.chatList?.results?.list_arr[addArray])!)
-//                    }
-//                }
-//
-//                DispatchQueue.main.async {
-//                    let indexSet = IndexSet.init(integer: 1)
-//                    self.tableView.reloadSections(indexSet, with: .automatic)
-//                }
-//            }
-//        } fail: { error in
-//            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인") {
-//            }
-//        }
-//    }
+    @objc func reloadView() {
+        ChattingListApi.shared.chatList(page: page) { [weak self] result in
+            if result.code == "200" {
+                self?.chatList = result
+
+                self?.chat_list_arr.removeAll()
+
+                for addArray in 0 ..< (self?.chatList?.results?.curr_total ?? 0)! {
+                    if self?.chatList?.results?.list_arr[addArray].user_id.count ?? 0 > 1 {
+                        self?.chat_list_arr.append((self?.chatList?.results?.list_arr[addArray])!)
+                    }
+                }
+
+                DispatchQueue.main.async {
+                    let indexSet = IndexSet.init(integer: 1)
+                    self?.tableView.reloadSections(indexSet, with: .automatic)
+                }
+            }
+        } fail: { error in
+            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인") {
+            }
+        }
+    }
     
     func listenerForChatList() {
+        Indicator.showActivityIndicator(uiView: self.view)
         self.firebaseRef.child("chat_read").child("\(user_id)").observe(.value) { (snapshot) in
 
             let value = snapshot.value as? [String:Any]
@@ -204,7 +206,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChattingListAdminCell", for: indexPath) as! ChattingTableViewCell
             cell.adminPhoto.image = UIImage(named: "app_Icon2")
             cell.adminMessage.text = "평일 오전 8시 00분 ~ 오후 5시 00분"
-            cell.adminName.text = "문의사항 있으시면 대화 남겨주세요."
+            cell.adminName.text = "문의사항이 있으시면, 터치해주세요."
             
             cell.selectionStyle = .none
             return cell

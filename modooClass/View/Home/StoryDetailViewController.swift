@@ -1155,7 +1155,8 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
         let row = indexPath.row
         switch section {
         case 0:
-            if self.list?.results?.play_file_app ?? "" != "" || self.list?.results?.youtube_file ?? "" != ""{
+//            if self.list?.results?.play_file_app ?? "" != "" || self.list?.results?.youtube_file ?? "" != "" {
+            if self.list?.results?.photo_arr.count ?? 0 == 0{
                 let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoTableViewCell", for: indexPath) as! StoryDetailTableViewCell
                 cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
@@ -1176,7 +1177,7 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.selectionStyle = .none
                 return cell
             }else{
-                if self.list?.results?.photo_arr.count ?? 0 > 0{
+//                if self.list?.results?.photo_arr.count ?? 0 > 0{
                     let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoITableViewCell", for: indexPath) as! StoryDetailTableViewCell
                     var cellFrame = cell.frame.size
                     cellFrame.height =  cellFrame.height - 15
@@ -1207,30 +1208,30 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.replyPhotoImg.sd_setImage(with: URL(string: "\(self.list?.results?.photo_arr[0].photo_url ?? "")"), placeholderImage: UIImage(named: "curriculumV2_default"))
                     cell.selectionStyle = .none
                     return cell
-                }else{
-                    let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoQTableViewCell", for: indexPath) as! StoryDetailTableViewCell
-                    cell.replyUserPhoto.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                    cell.replyUserName.text = self.list?.results?.user_info?.user_name ?? ""
-                    cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                    cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
-                    
-                    if self.list?.results?.mcClass_id ?? 0 == 0 {
-                        cell.classLinkView.isHidden = true
-                        cell.contentIfNeeded.isHidden = false
-                        cell.contentIfNeeded.text = "\(self.list?.results?.content ?? "")"
-                    }else{
-                        cell.classLinkView.isHidden = false
-                        cell.contentIfNeeded.isHidden = true
-                    }
-                    
-                    if self.list?.results?.class_signup_data ?? 0 > 20{
-                        cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로잉."
-                    }else{
-                        cell.classSalePrice.text = "\(self.list?.results?.coach_name ?? "")님의 클래스 오픈을 축하해주세요 ✨"
-                    }
-                    cell.selectionStyle = .none
-                    return cell
-                }
+//                }else{
+//                    let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoQTableViewCell", for: indexPath) as! StoryDetailTableViewCell
+//                    cell.replyUserPhoto.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+//                    cell.replyUserName.text = self.list?.results?.user_info?.user_name ?? ""
+//                    cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+//                    cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
+//
+//                    if self.list?.results?.mcClass_id ?? 0 == 0 {
+//                        cell.classLinkView.isHidden = true
+//                        cell.contentIfNeeded.isHidden = false
+//                        cell.contentIfNeeded.text = "\(self.list?.results?.content ?? "")"
+//                    }else{
+//                        cell.classLinkView.isHidden = false
+//                        cell.contentIfNeeded.isHidden = true
+//                    }
+//
+//                    if self.list?.results?.class_signup_data ?? 0 > 20{
+//                        cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로잉."
+//                    }else{
+//                        cell.classSalePrice.text = "\(self.list?.results?.coach_name ?? "")님의 클래스 오픈을 축하해주세요 ✨"
+//                    }
+//                    cell.selectionStyle = .none
+//                    return cell
+//                }
             }
             
         case 1:

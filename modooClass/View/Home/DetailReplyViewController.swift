@@ -700,7 +700,7 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
 //                }else{
 //                    cell.rollGubunImg.isHidden = true
 //                }
-                
+                print("** friend status \(list?.results?.friend_status ?? "yyyy")")
                 if list?.results?.friend_status ?? "Y" != "Y"{
                     if list?.results?.user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
                         cell.rollGubunImg.isHidden = true
@@ -769,8 +769,8 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
 //                    cell.replyContentTextView.attributedText = (replyArray[row].content ?? "").html2AttributedString
 //                    cell.replyContentTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
                 }else{ }
-                
-                if replyArray[row].friend_status ?? "Y" != "Y"{
+                print("** friend status  2 \(replyArray[row].friend_yn ?? "yyyy")")
+                if replyArray[row].friend_yn ?? "Y" != "Y"{
                     if replyArray[row].user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
                         cell.rollGubunImg.isHidden = true
                     }else{

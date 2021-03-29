@@ -568,11 +568,12 @@ class FeedApi: NSObject {
     }
     
 //    MARK: - 비디오 총 시간 보내기
-    func playTracking(duration:Int,curriculum_id:Int,success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+    func playTracking(duration:Int, curriculum_id:Int, current_position:String, success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         let param = [
             "duration":duration,
-            "curriculum_id":curriculum_id
+            "curriculum_id":curriculum_id,
+            "current_position":current_position
             ] as [String : Any]
         
         let request = AF.request("\(apiUrl)/playTracking", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)
@@ -617,7 +618,7 @@ class FeedApi: NSObject {
         let url = URL.init(string: "https://search.enfit.net/api/v1/userLogging/class")!
         let param = [
             "class_id": class_id,
-        "user_id": user_id] as [String : Any]
+            "user_id": user_id] as [String : Any]
 
         AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
              switch response.result

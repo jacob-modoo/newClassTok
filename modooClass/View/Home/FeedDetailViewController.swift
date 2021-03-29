@@ -91,6 +91,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var class_name:String?
     var class_photo:String?
     var fromOrientationPage:Bool?
+    var current_position = ""
     
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     let feedStoryboard = UIStoryboard(name: "Feed", bundle: nil)
@@ -767,9 +768,11 @@ extension FeedDetailViewController:BMPlayerDelegate{
         case .readyToPlay:
             if let duration = self.player?.avPlayer?.currentItem?.asset.duration {
                 let seconds = CMTimeGetSeconds(duration)
+                self.current_position = Int(player.playerLayer?.player?.currentItem!.currentTime().seconds ?? 0.0).secondsToTime()
                 self.duration = Int(seconds)
-                FeedApi.shared.playTracking(duration : self.duration,curriculum_id: self.curriculum_id ,success: { result in
+                FeedApi.shared.playTracking(duration : self.duration, curriculum_id: self.curriculum_id, current_position: self.current_position, success: { result in
                     if result.code == "200"{
+                        print("** current position : \(self.current_position)")
                     }
                 }) { error in
                 }
@@ -835,9 +838,10 @@ extension FeedDetailViewController:BMPlayerDelegate{
             if "\(UserDefaultSetting.getUserDefaultsString(forKey: videoPlayUrl) ?? "")" == loadUrl{
                 player.seek(UserDefaultSetting.getUserDefaultsDouble(forKey: videoPlayTime))
             }
-            UserDefaultSetting.setUserDefaultsString("", forKey: videoPlayUrl)
-            UserDefaultSetting.setUserDefaultsDouble(0.0, forKey: videoPlayTime)
-            print("123123123")
+            
+            UserDefaultSetting.setUserDefaultsString(loadUrl ?? "", forKey: videoPlayUrl)
+//            UserDefaultSetting.setUserDefaultsDouble(Double(player.playerLayer?.player?.currentItem!.currentTime().seconds ?? 0.00000), forKey: videoPlayTime)
+            
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
         }else{
             timer?.invalidate()
@@ -866,6 +870,7 @@ extension FeedDetailViewController:BMPlayerDelegate{
      */
     @objc func onTimerFires(){
         trakingTime = trakingTime + 1
+        UserDefaultSetting.setUserDefaultsDouble(Double(player.playerLayer?.player?.currentItem!.currentTime().seconds ?? 0.0), forKey: videoPlayTime)
     }
     
     /**

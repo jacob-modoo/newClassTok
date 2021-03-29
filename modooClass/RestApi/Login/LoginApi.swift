@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import UserNotifications
 
 class LoginApi: NSObject {
     
@@ -17,6 +18,9 @@ class LoginApi: NSObject {
     let systemVersion = UIDevice.current.systemVersion
     let deviceModel = UIDevice.modelName
     let loginHeader:HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
+    let current = UNUserNotificationCenter.current()
+    var notification_available = "N"
+    
     
 //    MARK: - 일반 로그인
     func auth(id:String,password:String,success: @escaping(_ data: LoginModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
@@ -25,6 +29,15 @@ class LoginApi: NSObject {
         #else
         
         #endif
+        
+        current.getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized {
+                self.notification_available = "Y"
+            } else if settings.authorizationStatus == .denied {
+                self.notification_available = "N"
+            }
+        }
+        
         let param = [
             "user_id":id,
             "passwd":password,
@@ -32,7 +45,8 @@ class LoginApi: NSObject {
             "device_type":"I",
             "device_info":"\(systemVersion)",
             "device_model":"\(deviceModel)",
-            "app_info":"\(appVersion ?? "")"
+            "app_info":"\(appVersion ?? "")",
+            "notification_available":"\(notification_available)"
         ] as [String : Any]
         print("** parameter : \(param)")
         let request = AF.request("\(apiUrl)/login/Auth", method: .post, parameters: param, encoding: URLEncoding.default, headers: loginHeader)
@@ -56,6 +70,14 @@ class LoginApi: NSObject {
         
         #endif
         
+        current.getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized {
+                self.notification_available = "Y"
+            } else if settings.authorizationStatus == .denied {
+                self.notification_available = "N"
+            }
+        }
+        
         let parameter = [
             "provider":provider,
             "social_id":social_id,
@@ -65,7 +87,8 @@ class LoginApi: NSObject {
             "device_type":"I",
             "device_info":"\(systemVersion)",
             "device_model":"\(deviceModel)",
-            "app_info":"\(appVersion ?? "")"
+            "app_info":"\(appVersion ?? "")",
+            "notification_available":"\(notification_available)"
         ] as [String : Any]
         print("** parameter : \(parameter)")
         let request = AF.request("\(apiUrl)/login/socialAuth", method: .post, parameters: parameter, encoding: URLEncoding.default, headers: loginHeader)

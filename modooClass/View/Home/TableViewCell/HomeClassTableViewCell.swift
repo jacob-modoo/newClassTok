@@ -37,6 +37,7 @@ class HomeClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classManagerBtn: UIFixedButton!
     @IBOutlet weak var classInBtn: UIButton!
     @IBOutlet weak var managerReplyView: UIView!
+    @IBOutlet weak var coachWaitTxtLbl: UILabel!
     
 //    HomeFeedMyClassCell
     @IBOutlet var class_open_view: UIView!
@@ -83,8 +84,10 @@ class HomeClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classRePurchaseBtn: UIFixedButton!
     @IBOutlet weak var classRecommendBtn: UIFixedButton!
     @IBOutlet weak var reviewWriteBtn: UIButton!
+    @IBOutlet weak var classReviewLblTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var classReviewImgHeight: NSLayoutConstraint!
     
-//    HomeClassCategoryTitleCell
+    //    HomeClassCategoryTitleCell
     @IBOutlet weak var categoryTitle: UIFixedLabel!
     
 //    HomeClassCategoryCell

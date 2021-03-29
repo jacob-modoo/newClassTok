@@ -234,6 +234,7 @@ class Week_best:NSObject{
     var user_id:Int?
     var total_point:Int?
     var user_name:String?
+    var no:Int?
     override init() {
            super.init()
     }
@@ -243,6 +244,7 @@ class Week_best:NSObject{
         user_id = DictionaryToInt(dic: dic, intName: "user_id")
         total_point = DictionaryToInt(dic: dic, intName: "total_point")
         user_name = DictionaryToString(dic: dic, strName: "user_name")
+        no = DictionaryToInt(dic: dic, intName: "no")
     }
 }
     

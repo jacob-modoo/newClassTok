@@ -718,7 +718,7 @@ class AppClassCommentList:NSObject{
     var emoticon:Int?
     var job_name:String?
     var interest:String?
-    var friend_status:String?
+    var friend_yn:String?
     var coach_reply_status:String?
     var play_file:String?
     var youtu_address:String?
@@ -750,7 +750,7 @@ class AppClassCommentList:NSObject{
         emoticon = DictionaryToInt(dic: dic, intName: "emoticon")
         job_name = DictionaryToString(dic: dic, strName: "job_name")
         interest = DictionaryToString(dic: dic, strName: "interest")
-        friend_status = DictionaryToString(dic: dic, strName: "friend_status")
+        friend_yn = DictionaryToString(dic: dic, strName: "friend_yn")
         coach_reply_status = DictionaryToString(dic: dic, strName: "coach_reply_status")
         play_file = DictionaryToString(dic: dic, strName: "play_file")
         youtu_address = DictionaryToString(dic: dic, strName: "youtu_address")
