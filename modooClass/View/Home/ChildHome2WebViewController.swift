@@ -683,7 +683,7 @@ extension ChildHome2WebViewController:WKScriptMessageHandler {
         }else if message.name == "goToChatRoom"{
             print("goToChatRoom: alert \(message.body)")
             if message.body as! String != ""{
-                //message.body = room_id
+                //message.body = user_id
                 var chatId = 0
                 
                 ChattingListApi.shared.getChatroomId(chatRoomId: message.body as! String) { result in
@@ -693,7 +693,6 @@ extension ChildHome2WebViewController:WKScriptMessageHandler {
                         
                         let storyboard: UIStoryboard = UIStoryboard(name: "Chatting", bundle: nil)
                         let newViewController = storyboard.instantiateViewController(withIdentifier: "ChattingFriendViewController") as! ChattingFriendViewController
-        //                newViewController.url = "https://chat.modooclass.net/class/chat/\(message.body as! String)"
                         newViewController.chat_id = chatId
                         self.navigationController?.pushViewController(newViewController, animated: true)
                     }

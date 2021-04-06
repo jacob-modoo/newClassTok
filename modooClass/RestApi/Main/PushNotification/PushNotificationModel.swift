@@ -21,6 +21,7 @@ class PushNotificationModel: NSObject {
     var mcClass_id:Int?
     var mcComment_id:Int?
     var mcCurriculum_id:Int?
+    var chat_id:Int?
     
     var short_name:String?
     var created_at:String?
@@ -54,6 +55,7 @@ class PushNotificationModel: NSObject {
         mcClass_id = DictionaryToInt(dic: dic, intName: "mcClass_id")
         mcComment_id = DictionaryToInt(dic: dic, intName: "mcComment_id")
         mcCurriculum_id = DictionaryToInt(dic: dic, intName: "mcCurriculum_id")
+        chat_id = DictionaryToInt(dic: dic, intName: "chat_id")
         
         short_name = DictionaryToString(dic: dic, strName: "short_name")
         created_at = DictionaryToString(dic: dic, strName: "created_at")

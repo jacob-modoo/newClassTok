@@ -92,17 +92,20 @@ class ChildDetailReviewViewController: UIViewController {
     /** *Will filter feedbacks given to each class*/
     @IBAction func feedbackFilteringBtnClicked(_ sender: UIButton) {
         if sender.tag == 0 {
-            self.page = 1
-            self.score = "*"
-            reviewListFiltering()
+            if self.score != "*" {
+                self.score = "*"
+                reviewListFiltering()
+            }
         } else if sender.tag == 1 {
-            self.page = 1
-            self.score = "1000"
-            reviewListFiltering()
+            if  self.score != "1000" {
+                self.score = "1000"
+                reviewListFiltering()
+            }
         } else {
-            self.page = 1
-            self.score = "2000"
-            reviewListFiltering()
+            if self.score != "2000" {
+                self.score = "2000"
+                reviewListFiltering()
+            }
         }
     }
     
@@ -120,7 +123,6 @@ class ChildDetailReviewViewController: UIViewController {
      - Throws: `Error` 오브젝트 값이 제대로 안넘어 오는경우 `Error`
      */
     @objc func dataReload(notification:Notification){
-        
         if let temp = notification.object {
             self.class_id = temp as! Int
             DispatchQueue.main.async {
@@ -128,7 +130,6 @@ class ChildDetailReviewViewController: UIViewController {
             }
         }
     }
-    
 }
 
 
@@ -289,8 +290,7 @@ extension ChildDetailReviewViewController:UITableViewDelegate,UITableViewDataSou
                 
                 if self.reviewList_arr[row].best_flag ?? "N" == "N" {
                     cell.bestFeedbackMark.isHidden = true
-                }
-                if self.reviewList_arr[row].best_flag ?? "N" == "Y" {
+                } else {
                     cell.bestFeedbackMark.isHidden = false
                 }
 
@@ -319,8 +319,8 @@ extension ChildDetailReviewViewController:UITableViewDelegate,UITableViewDataSou
         let section = indexPath.section
         let row = indexPath.row
         if section == 4{
-            if row == (reviewList_arr.count)-2{
-                if reviewList_arr.count < reviewModel?.results?.total ?? 0 {
+            if row == (reviewList_arr.count)-1{
+                if self.page < reviewModel?.results?.page_total ?? 0 {
                     self.page = self.page + 1
                     app_reviewList()
                 }
@@ -392,20 +392,38 @@ extension ChildDetailReviewViewController{
      */
     func app_review(){
         self.reviewDashboardModel = FeedDetailManager.shared.reviewDashboardModel
-        app_reviewList()
-        
-    }
-    
-    func app_reviewList(){
         FeedApi.shared.appMainPilotReviewListV2(user_id:self.user_id, class_id: self.class_id, score: self.score, page:self.page, success: { [unowned self] result in
             self.reviewModel = result
+
             if result.code == "200"{
                 if result.results?.page_total ?? 0 >= result.results?.page ?? 0 {
                     for addArray in 0 ..< (self.reviewModel?.results?.reviewList_arr.count ?? 0)! {
                         self.reviewList_arr.append((self.reviewModel?.results?.reviewList_arr[addArray])!)
                     }
                 }
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }) { error in
+            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+
+            })
+        }
+    }
+    
+    func app_reviewList(){
+        FeedApi.shared.appMainPilotReviewListV2(user_id:self.user_id, class_id: self.class_id, score: self.score, page:self.page, success: { [unowned self] result in
+            self.reviewModel = result
+            if result.code == "200"{
+                if result.results?.page_total ?? 0 >= self.reviewModel?.results?.page ?? 0 {
+                    for addArray in 0 ..< (self.reviewModel?.results?.reviewList_arr.count ?? 0)! {
+                        self.reviewList_arr.append((self.reviewModel?.results?.reviewList_arr[addArray])!)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }) { error in
             Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
@@ -417,9 +435,8 @@ extension ChildDetailReviewViewController{
     /** *The function which filters the review feedbacks */
     func reviewListFiltering(){
         self.reviewList_arr.removeAll()
-        DispatchQueue.main.async {
-            self.app_reviewList()
-        }
+        self.page = 1
+        self.app_reviewList()
     }
 }
 

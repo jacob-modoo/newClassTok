@@ -19,9 +19,7 @@ class ChattingRoomTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var msgSentImgHeight: NSLayoutConstraint!
     @IBOutlet weak var msgSentImgWidth: NSLayoutConstraint!
     @IBOutlet weak var msgSentReadLbl: UIFixedLabel!
-    @IBOutlet weak var msgSentTimeLbl: UIFixedLabel!
-    @IBOutlet weak var msgSentTxtLbl: UIFixedTextView!
-    
+    @IBOutlet weak var msgSentTimeLbl: UIFixedLabel!    
     
 //    ChatRoomReceivedMsgCell
     @IBOutlet weak var userImgView: UIImageView!
@@ -37,23 +35,16 @@ class ChattingRoomTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var emptyChatLbl: UIFixedLabel!
     
 //    ChatRoomDateCell
-    @IBOutlet weak var msgDateLbl: UIFixedLabel!
     @IBOutlet weak var userImgTopConstraint: NSLayoutConstraint!
     
     
 //    override func layoutSubviews() {
 //        super.layoutSubviews()
-        
+//        
 //        msgReceivedTextView.delegate = self
-//        msgSentTxtLbl.delegate = self
 //    }
     
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        let url = "\(URL)"
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "openLinkUrl"), object: url)
-        print("** ketdi")
-        return false
-    }
+    
     
 }
 

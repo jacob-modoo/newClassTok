@@ -238,7 +238,7 @@ class Toast {
         })
     }
 
-    static func showButtonNotification(message: String , url:String , controller: UIViewController) {
+    static func showButtonNotification(message: String , chat_id:Int , controller: UIViewController) {
 
         let toastContainer = UIView(frame: CGRect())
         toastContainer.backgroundColor = UIColor(hexString: "#4D4B57")
@@ -269,7 +269,7 @@ class Toast {
 //        toastButton.addAction(for: .touchUpInside, { [unowned self] in
 //
 //        })
-        toastButton.accessibilityHint = url
+        toastButton.accessibilityHint = "\(chat_id)"
 
         toastLabel.attributedText = attributedString
 
@@ -333,20 +333,21 @@ class Toast {
     }
 
     @objc static func buttonTapped(sender: UIButton){
-        if APPDELEGATE?.topMostViewController()?.isKind(of: FeedDetailViewController.self) == true{
+        if APPDELEGATE?.topMostViewController()?.isKind(of: FeedDetailViewController.self) == true {
             let vc:FeedDetailViewController = APPDELEGATE?.topMostViewController() as! FeedDetailViewController
             vc.player?.pause()
         }
         
-        if APPDELEGATE?.topMostViewController()?.isKind(of: ChattingFriendWebViewViewController.self) == true{
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "chattingWebViewReloadCheck"), object: sender.accessibilityHint!)
+        if APPDELEGATE?.topMostViewController()?.isKind(of: ChattingFriendViewController.self) == true {
+            let chatId = Int(sender.accessibilityHint!)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "chattingViewReload"), object: chatId)
         }else{
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tabbarIndexChange"), object: 1)
             let time = DispatchTime.now() + .seconds(1)
             DispatchQueue.main.asyncAfter(deadline: time) {
-                let storyboard: UIStoryboard = UIStoryboard(name: "ChattingWebView", bundle: nil)
-                let newViewController = storyboard.instantiateViewController(withIdentifier: "ChattingFriendWebViewViewController") as! ChattingFriendWebViewViewController
-                newViewController.url = sender.accessibilityHint!
+                let storyboard: UIStoryboard = UIStoryboard(name: "Chatting", bundle: nil)
+                let newViewController = storyboard.instantiateViewController(withIdentifier: "ChattingFriendViewController") as! ChattingFriendViewController
+                newViewController.chat_id = Int(sender.accessibilityHint!)!
                 APPDELEGATE?.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: false)
             }
         }

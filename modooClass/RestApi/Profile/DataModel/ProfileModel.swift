@@ -61,6 +61,7 @@ class ProfileResults:NSObject{
     var scrap_link:String?
     var friend_link:String?
     var notice_address:String?
+    var guide_address:String?
     
     var profileManageClass:ProfileManageClass?
     var profileManageClass_arr:Array = Array<ProfileManageClass>()
@@ -101,6 +102,7 @@ class ProfileResults:NSObject{
         review_link = DictionaryToString(dic: dic, strName: "review_link")
         class_open_link = DictionaryToString(dic: dic, strName: "class_open_link")
         chat_link = DictionaryToString(dic: dic, strName: "chat_link")
+        guide_address = DictionaryToString(dic: dic, strName: "guide_address")
         friend_link = DictionaryToString(dic: dic, strName: "friend_link")
         notice_address = DictionaryToString(dic: dic, strName: "notice_address")
         service_address = DictionaryToString(dic: dic, strName: "service_address")

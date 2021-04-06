@@ -175,7 +175,7 @@ class HomeProfileViewController: UIViewController {
         
         let tag = sender.tag
             if tag == 1{
-                newViewController.url = "https://www.modooclass.net/class/activityguidance"
+                newViewController.url = HomeMain2Manager.shared.profileModel.results?.guide_address ?? ""
                 self.navigationController?.pushViewController(newViewController, animated: true)
             }else if tag == 2{
                 newViewController.url = HomeMain2Manager.shared.profileModel.results?.payment_link ?? ""
@@ -413,7 +413,7 @@ extension HomeProfileViewController : UITableViewDataSource,UITableViewDelegate{
         if HomeMain2Manager.shared.profileModel.results != nil{
             switch section {
 //            case 0,1,4,6,8,10,11:
-            case 0,1,4,8,10,11:
+            case 0,1,8,10,11:
                 return 1
             case 2:
                 if HomeMain2Manager.shared.profileModel.results != nil{
@@ -431,11 +431,21 @@ extension HomeProfileViewController : UITableViewDataSource,UITableViewDelegate{
                 }
             case 3:
                 return 4
-            case 5:
-                if HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0 > 0{
-                    return (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count)! + 1
-                }else{
+            case 4:
+                if HomeMain2Manager.shared.profileModel.results?.class_open_link ?? "" != "" {
                     return 1
+                } else {
+                    return 0
+                }
+            case 5:
+                if HomeMain2Manager.shared.profileModel.results?.class_open_link ?? "" != "" {
+                    if HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count ?? 0 > 0{
+                        return (HomeMain2Manager.shared.profileModel.results?.profileManageClass_arr.count)! + 1
+                    }else{
+                        return 1
+                    }
+                }else {
+                    return 0
                 }
             case 6,7:
                 return 0
@@ -499,8 +509,12 @@ extension HomeProfileViewController : UITableViewDataSource,UITableViewDelegate{
             cell.selectionStyle = .none
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HomeProfileTabCell", for: indexPath) as! HomeProfileTableViewCell
+            var cell = tableView.dequeueReusableCell(withIdentifier: "HomeProfileTabCell", for: indexPath) as! HomeProfileTableViewCell
             cell.pointText.text = "\(HomeMain2Manager.shared.profileModel.results?.point ?? "0")"
+            if HomeMain2Manager.shared.profileModel.results?.point_link ?? "" == "" {
+                cell = tableView.dequeueReusableCell(withIdentifier: "HomeProfileNoPointTabCell", for: indexPath) as! HomeProfileTableViewCell
+            }
+            
             cell.withmeCnt.text = "\(HomeMain2Manager.shared.profileModel.results?.follower_count ?? 0)"
             cell.favoriteCnt.text = "\(HomeMain2Manager.shared.profileModel.results?.scrap_count ?? 0)"
             cell.selectionStyle = .none
@@ -663,6 +677,23 @@ extension HomeProfileViewController : UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 3 {
+            if indexPath.row == 0 {
+                if HomeMain2Manager.shared.profileModel.results?.guide_address ?? "" == "" {
+                    return 0
+                } else {
+                    return UITableView.automaticDimension
+                }
+            }
+        } else if indexPath.section == 9 {
+            if indexPath.row == 0 {
+                if HomeMain2Manager.shared.profileModel.results?.notice_address ?? "" == "" {
+                    return 0
+                } else {
+                    return UITableView.automaticDimension
+                }
+            }
+        }
         return UITableView.automaticDimension
     }
 }

@@ -230,46 +230,73 @@
                                 <action selector="switchBtnClicked:" destination="-1" eventType="valueChanged" id="bOz-Gc-XWR"/>
                             </connections>
                         </switch>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCZ-1F-Xuf">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AJm-cT-7s4" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                             <rect key="frame" x="16" y="84.5" width="209" height="40"/>
-                            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCZ-1F-Xuf">
+                                    <rect key="frame" x="0.0" y="0.0" width="209" height="40"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" red="0.70588235294117641" green="0.70588235294117641" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="채팅방 나가기"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="typeAdapter">
+                                            <integer key="value" value="6"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontAdapter">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="colorAdapter">
+                                            <integer key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="backColorAdapter">
+                                            <integer key="value" value="14"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="leaveChatBtnClicked:" destination="-1" eventType="touchUpInside" id="eA8-1y-B3o"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="sC9-mM-Wby"/>
+                                <constraint firstAttribute="bottom" secondItem="JCZ-1F-Xuf" secondAttribute="bottom" id="5EE-3v-3uZ"/>
+                                <constraint firstItem="JCZ-1F-Xuf" firstAttribute="top" secondItem="AJm-cT-7s4" secondAttribute="top" id="6xu-w2-F33"/>
+                                <constraint firstAttribute="trailing" secondItem="JCZ-1F-Xuf" secondAttribute="trailing" id="7Ur-VY-uhf"/>
+                                <constraint firstItem="JCZ-1F-Xuf" firstAttribute="leading" secondItem="AJm-cT-7s4" secondAttribute="leading" id="E6M-Bd-g79"/>
+                                <constraint firstAttribute="height" constant="40" id="nTd-2b-tFM"/>
                             </constraints>
-                            <color key="tintColor" red="0.70588235294117641" green="0.70588235294117641" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="채팅방 나가기"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="typeAdapter">
-                                    <integer key="value" value="6"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontAdapter">
-                                    <integer key="value" value="1"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="colorAdapter">
-                                    <integer key="value" value="12"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="backColorAdapter">
-                                    <integer key="value" value="14"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                    <color key="value" name="FontColor_subColor3"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="10"/>
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                    <color key="value" name="BackColor_mainColor"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                    <color key="value" name="BackColor_mainColor"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
+                                    <real key="value" value="-0.5"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="leaveChatBtnClicked:" destination="-1" eventType="touchUpInside" id="eA8-1y-B3o"/>
-                            </connections>
-                        </button>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="AJm-cT-7s4" firstAttribute="top" secondItem="4rl-qW-Ihp" secondAttribute="bottom" constant="30" id="9rN-NZ-C8m"/>
                         <constraint firstAttribute="trailing" secondItem="yxJ-Op-DBz" secondAttribute="trailing" constant="16" id="HQO-ad-JFG"/>
+                        <constraint firstAttribute="trailing" secondItem="AJm-cT-7s4" secondAttribute="trailing" constant="16" id="KCN-sS-rZh"/>
                         <constraint firstItem="4rl-qW-Ihp" firstAttribute="leading" secondItem="7bj-IK-OcU" secondAttribute="leading" constant="16" id="arp-eM-r1X"/>
-                        <constraint firstItem="JCZ-1F-Xuf" firstAttribute="leading" secondItem="7bj-IK-OcU" secondAttribute="leading" constant="16" id="d6E-xp-7yO"/>
                         <constraint firstItem="gjr-eU-RhV" firstAttribute="top" secondItem="7bj-IK-OcU" secondAttribute="top" constant="10" id="jab-ea-mjM"/>
                         <constraint firstItem="gjr-eU-RhV" firstAttribute="leading" secondItem="7bj-IK-OcU" secondAttribute="leading" constant="16" id="lR1-sH-UeA"/>
-                        <constraint firstItem="JCZ-1F-Xuf" firstAttribute="top" secondItem="4rl-qW-Ihp" secondAttribute="bottom" constant="30" id="nUD-W2-R1g"/>
                         <constraint firstItem="4rl-qW-Ihp" firstAttribute="top" secondItem="gjr-eU-RhV" secondAttribute="bottom" constant="16" id="nXM-3E-6wI"/>
-                        <constraint firstAttribute="trailing" secondItem="JCZ-1F-Xuf" secondAttribute="trailing" constant="16" id="uKl-XV-hfB"/>
+                        <constraint firstItem="AJm-cT-7s4" firstAttribute="leading" secondItem="7bj-IK-OcU" secondAttribute="leading" constant="16" id="utf-TS-Ska"/>
                         <constraint firstItem="yxJ-Op-DBz" firstAttribute="centerY" secondItem="4rl-qW-Ihp" secondAttribute="centerY" id="yJS-kl-9fl"/>
                     </constraints>
                 </view>
@@ -312,8 +339,14 @@
     <resources>
         <image name="exit" width="24" height="24"/>
         <image name="reply_user_default" width="40" height="40"/>
+        <namedColor name="BackColor_mainColor">
+            <color red="0.93699997663497925" green="0.93699997663497925" blue="0.93699997663497925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="ButtonTextColor2">
             <color red="1" green="0.3529999852180481" blue="0.37299999594688416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FontColor_subColor3">
+            <color red="0.70599997043609619" green="0.70599997043609619" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

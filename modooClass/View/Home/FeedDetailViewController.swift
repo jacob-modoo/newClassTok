@@ -91,7 +91,6 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var class_name:String?
     var class_photo:String?
     var fromOrientationPage:Bool?
-    var current_position = ""
     
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     let feedStoryboard = UIStoryboard(name: "Feed", bundle: nil)
@@ -463,7 +462,6 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                 FeedApi.shared.appClassData(class_id:class_id,success: { [unowned self] result in
                     Indicator.hideActivityIndicator(uiView: self.view)
                     if result.code == "200"{
-                        print("** feedDetailVC - 200")
                         FeedDetailManager.shared.feedDetailList = result
                         moveToClass()
                     }else if result.code == "102"{
@@ -477,9 +475,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                             self.navigationController?.popViewController(animated: true)
                         })
                     }else if result.code == "106"{      /**this response code will open 1:1 training info page and  첫인사 page */
-                        print("** the viewCHECK  is : \(viewCheck)")
                         if self.viewCheck == 1{
-                            print("** curriculum_id : \(result.results?.curriculum?.id ?? 0)")
                             FeedDetailManager.shared.feedDetailList = result
                             moveToClass()
                             let newViewController = UIStoryboard(name: "ChildWebView", bundle: nil).instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
@@ -490,7 +486,6 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                             self.viewCheck = 2
                             self.navigationController?.pushViewController(newViewController, animated: true)
                         }else{
-                            print("** feedDetailVC - 106 viewCheck : else")
                             self.deinitObserve()
                             self.navigationController?.popViewController(animated: true)
                         }
@@ -702,10 +697,10 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
             }
             
         } else {
+            let controller = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailDescriptionViewController") as! ChildDetailDescriptionViewController
+            controller.filePath = nil
             if tab5DataChange == true {
-                let controller = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailDescriptionViewController") as! ChildDetailDescriptionViewController
                 controller.feedDetailList = self.feedDetailList
-
                 controller.view.frame = CGRect(x: 0, y: 0, width: self.textView.frame.width, height: self.textView.frame.height)
                 if self.textView5AddCheck == false{
                     self.addChild(controller)
@@ -736,7 +731,6 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                 }
                 
             } else {
-                let controller = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailDescriptionViewController") as! ChildDetailDescriptionViewController
                 DispatchQueue.main.async {
                     self.textView5.frame.origin.y = (self.textView5.frame.origin.y * 4)
                     self.textView5.isHidden = false
@@ -768,11 +762,12 @@ extension FeedDetailViewController:BMPlayerDelegate{
         case .readyToPlay:
             if let duration = self.player?.avPlayer?.currentItem?.asset.duration {
                 let seconds = CMTimeGetSeconds(duration)
-                self.current_position = Int(player.playerLayer?.player?.currentItem!.currentTime().seconds ?? 0.0).secondsToTime()
+                let user_id = UserManager.shared.userInfo.results?.user?.id ?? 0
+                let current_position = Int(player.playerLayer?.player?.currentItem!.currentTime().seconds ?? 0.0).secondsToTime()
                 self.duration = Int(seconds)
-                FeedApi.shared.playTracking(duration : self.duration, curriculum_id: self.curriculum_id, current_position: self.current_position, success: { result in
+                FeedApi.shared.playTracking(user_id: user_id, duration : self.duration, curriculum_id: self.curriculum_id, current_position: current_position, success: { result in
                     if result.code == "200"{
-                        print("** current position : \(self.current_position)")
+                        print("** current position : \(current_position)")
                     }
                 }) { error in
                 }
@@ -810,13 +805,17 @@ extension FeedDetailViewController:BMPlayerDelegate{
     func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
         if trakingTime > 9{
             let user_id = UserManager.shared.userInfo.results?.user?.id ?? 0
+            let current_position = Int(player.playerLayer?.player?.currentItem!.currentTime().seconds ?? 0.0).secondsToTime()
             if FeedDetailManager.shared.feedDetailList.results?.user_status ?? "" == "spectator" {
                 FeedApi.shared.playTrackingTimeSpectator(class_id: self.class_id, user_id: user_id, success: { result in
                     }) { error in
                         print("Error in POST for playTrackingTimeSpectator API: \(String(describing: error))")
                 }
             } else {
-                FeedApi.shared.playTrackingTime(user_id: user_id , duration : Int(currentTime),curriculum_id: self.curriculum_id ,success: { result in
+                FeedApi.shared.playTrackingTime(user_id: user_id , current_position: current_position, duration: Int(currentTime),curriculum_id: self.curriculum_id ,success: { result in
+                    if result.code == "200"{
+                        print("** current position time-tracker: \(current_position)")
+                    }
                 }) { error in
                 }
             }

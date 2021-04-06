@@ -19,6 +19,7 @@ class ProfileV2NewViewController: BaseViewController {
     var profileNewModel:ProfileNewModel?
     var class_list_arr:Array? = Array<Class_New_List>()
     var comment_list_arr:Array = Array<Comment_List>()
+    var chatRoom:ChatRoomPModel?
     var pageOpen:Bool = false
     var activeTotalPage = 1
     var textLineCount = 0
@@ -132,9 +133,19 @@ class ProfileV2NewViewController: BaseViewController {
     }
     
     @IBAction func sendMsgBtnClicked(_ sender: UIButton) {
-        let newViewController = chattingStoryboard.instantiateViewController(withIdentifier: "ChattingFriendViewController") as! ChattingFriendViewController
-        newViewController.chat_id = self.profileNewModel?.results?.mcChat_id ?? 0
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        let chat_user_id = self.profileNewModel?.results?.user_id ?? 0
+        ChattingListApi.shared.getChatroomId(chatRoomId: "\(chat_user_id)") { result in
+            if result.code == "200" {
+                self.chatRoom = result
+                let chatId = self.chatRoom?.results?.mcChat_id ?? 0
+                let newViewController = self.chattingStoryboard.instantiateViewController(withIdentifier: "ChattingFriendViewController") as! ChattingFriendViewController
+                newViewController.chat_id = chatId
+                print("** chat  id : \(chatId)")
+                self.navigationController?.pushViewController(newViewController, animated: true)
+            }
+        } fail: { error in
+            print("error in calling getChatroomID api")
+        }
     }
     
     @IBAction func addFriendBtnClicked(_ sender: UIButton) {

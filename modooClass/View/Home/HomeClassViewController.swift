@@ -195,7 +195,6 @@ class HomeClassViewController: UIViewController {
             newViewController.url = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? ""
             self.navigationController?.pushViewController(newViewController, animated: true)
         } else {
-        print("** class_id (HomeClassVC) : \(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].class_id ?? 0)")
             let newViewController = feedStoryboard.instantiateViewController(withIdentifier: "FeedDetailViewController") as! FeedDetailViewController
             newViewController.class_id = HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].class_id ?? 0
             newViewController.pushGubun = 1
@@ -412,7 +411,7 @@ extension HomeClassViewController{
                             if tableView.bounds.contains(rect) {
                                 if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[indexPath.row].week_best_list.count ?? 0 > 1{
                                     DispatchQueue.main.async {
-                                        let seconds = Double(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[indexPath.row].week_best_list.count ?? 0) * 3 + 3
+                                        let seconds = Double(HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[indexPath.row].week_best_list.count ?? 0) * 3 + 1
                                         if (HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[indexPath.row].week_best_list.count)! == 2 {
                                             UIView.animateKeyframes(withDuration: seconds, delay: 0, options: [.repeat], animations: {
                                                 UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0) {
@@ -812,9 +811,19 @@ extension HomeClassViewController : UITableViewDelegate,UITableViewDataSource{
                 cell.classImg.sd_setImage(with: URL(string: "\(HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].class_photo ?? "")"), placeholderImage: UIImage(named: "home_default_photo"))
                 cell.className.text = "\(HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].class_name ?? "")"
 //                review_wait : 작성하기 , coach_wait : 작성완료 , coach_send : 답변도착
-                cell.reviewWriteCompleteBtn.setTitle("리뷰쓰기", for: .normal)
+                if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].status ?? "" != "review_wait" {
+                    cell.reviewWriteCompleteBtn.setTitle("작성완료", for: .normal)
+                    cell.reviewWriteCompleteBtn.backgroundColor = UIColor(hexString: "#efefef")
+                    cell.reviewWriteCompleteBtn.setTitleColor(UIColor(hexString: "#b4b4b4"), for: .normal)
+                } else {
+                    cell.reviewWriteCompleteBtn.setTitle("리뷰쓰기", for: .normal)
+                    cell.reviewWriteCompleteBtn.backgroundColor = UIColor(named: "MainPoint_subColor4")
+                    cell.reviewWriteCompleteBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
+                }
+                
                 if HomeMain2Manager.shared.pilotAppMain.results?.class_review_arr[row].review_star_status ?? "" == "helpful"{
                     cell.classReviewLblTopConstraint.constant = 0
+                    cell.classReviewStar1.isHidden = false
                     cell.classReviewImgHeight.constant = 22
                     cell.classReviewStar1.image = UIImage(named: "like_btn_with_title")
                 }else{

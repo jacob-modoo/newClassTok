@@ -568,9 +568,10 @@ class FeedApi: NSObject {
     }
     
 //    MARK: - 비디오 총 시간 보내기
-    func playTracking(duration:Int, curriculum_id:Int, current_position:String, success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+    func playTracking(user_id:Int, duration:Int, curriculum_id:Int, current_position:String, success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         let param = [
+            "user_id":user_id,
             "duration":duration,
             "curriculum_id":curriculum_id,
             "current_position":current_position
@@ -591,12 +592,13 @@ class FeedApi: NSObject {
     }
     
 //    MARK: - 플레이 타임 10초 간격 보내기
-    func playTrackingTime(user_id:Int,duration:Int,curriculum_id:Int,success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+    func playTrackingTime(user_id:Int, current_position:String, duration:Int, curriculum_id:Int,success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         let param = [
             "user_id":user_id,
             "duration":duration,
-            "curriculum_id":curriculum_id
+            "curriculum_id":curriculum_id,
+            "current_position":current_position
             ] as [String : Any]
         
         let request = AF.request("\(apiUrl)/playTracking", method: .post, parameters: param, encoding: URLEncoding.default, headers: header)

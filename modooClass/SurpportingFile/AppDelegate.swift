@@ -67,8 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
     /** **프로필 URL */
     var profile_url = ""
     /** **앱 방향 */
+    var chat_id = 0
     var orientationLock = UIInterfaceOrientationMask.portrait
-    
+    var chatRoom:ChatRoomPModel?
     var ref: DatabaseReference!
     
     func onConversionDataSuccess(_ conversionInfo: [AnyHashable : Any]) {
@@ -304,7 +305,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
     /** **애플리케이션이 APNS 받으면 태그 나누는곳 */
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let state: UIApplication.State = application.applicationState
-        print("userInfo : ",userInfo)
+        print("** userInfo : ",userInfo)
         let apsNotificationDict = userInfo["aps"] as? [AnyHashable : Any]
         if apsNotificationDict == nil {
             return
@@ -379,15 +380,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
                 UINotificationFeedbackGenerator().notificationOccurred(.success)
                 AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate, nil)
                 
-                if self.push_type == 8{
-                    if self.topMostViewController()?.isKind(of: ChattingFriendWebViewViewController.self) == true{
-                        let viewcontroller:ChattingFriendWebViewViewController = self.topMostViewController() as! ChattingFriendWebViewViewController
-                        if viewcontroller.url != pushUrl! {
-                            Toast.showButtonNotification(message: "\(body_comment ?? "")", url: self.push_url, controller: self.topMostViewController()!)
+                if self.push_type == 8 {
+                    ChattingListApi.shared.getChatroomId(chatRoomId: "\(self.friend_id)") { result in
+                        if result.code == "200" {
+                            let chatId = result.results?.mcChat_id ?? 0
+                            if self.topMostViewController()?.isKind(of: ChattingFriendViewController.self) == true {
+                                if self.chat_id != chatId {
+                                    Toast.showButtonNotification(message: "\(body_comment ?? "")", chat_id: chatId, controller: (self.topMostViewController())!)
+                                }
+                            } else {
+                                Toast.showButtonNotification(message: "\(body_comment ?? "")", chat_id: chatId, controller: (self.topMostViewController())!)
+                            }
                         }
-                    }else{
-                        Toast.showButtonNotification(message: "\(body_comment ?? "")", url: self.push_url, controller: self.topMostViewController()!)
+                    } fail: { error in
+                        print("error in calling getChatroomID api")
                     }
+                    
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "home2MainChatBadgeChange"), object: chatCount)
                 }else if self.push_type == 10{
                     let favorites_class = Favorites_class_pilot.init()
@@ -532,16 +540,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
             let newViewController = storyboard.instantiateViewController(withIdentifier: "AlarmViewController") as! AlarmViewController
             topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
         }else if push_type == 8{//메세지
-            if topMostViewController()?.isKind(of: ChattingFriendWebViewViewController.self) == true{
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "chattingWebViewReloadCheck"), object: self.push_url)
-            }else{
-                let time = DispatchTime.now() + .seconds(1)
-                DispatchQueue.main.asyncAfter(deadline: time) {
-                    let storyboard: UIStoryboard = UIStoryboard(name: "ChattingWebView", bundle: nil)
-                    let newViewController = storyboard.instantiateViewController(withIdentifier: "ChattingFriendWebViewViewController") as! ChattingFriendWebViewViewController
-                    newViewController.url = self.push_url
-                    self.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: false)
+            ChattingListApi.shared.getChatroomId(chatRoomId: "\(self.friend_id)") { result in
+                if result.code == "200" {
+                    let chatId = result.results?.mcChat_id ?? 0
+
+                    if self.topMostViewController()?.isKind(of: ChattingFriendViewController.self) == true {
+                        if self.chat_id != chatId {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "chattingViewReload"), object: chatId)
+                        }
+                    }else{
+                        let time = DispatchTime.now() + .seconds(1)
+                        DispatchQueue.main.asyncAfter(deadline: time) {
+                            let storyboard: UIStoryboard = UIStoryboard(name: "Chatting", bundle: nil)
+                            let newViewController = storyboard.instantiateViewController(withIdentifier: "ChattingFriendViewController") as! ChattingFriendViewController
+                            newViewController.chat_id = chatId
+                            self.topMostViewController()?.navigationController?.pushViewController(newViewController, animated: true)
+                        }
+                    }
                 }
+            } fail: { error in
+                print("error in calling getChatroomID api")
             }
         }else{
             

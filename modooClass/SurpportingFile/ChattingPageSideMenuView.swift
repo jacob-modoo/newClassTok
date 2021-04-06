@@ -17,6 +17,7 @@ class ChattingPageSideMenuView: UIView {
     @IBOutlet weak var user2ImgView: UIImageView!
     
     @IBOutlet weak var switchBtn: UISwitch!
+    @IBOutlet weak var chatExitBtn: UIButton!
     
     var profileBtnClick: (()->Void)?
     var switchBtnClick: (()->Void)?

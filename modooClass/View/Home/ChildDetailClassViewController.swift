@@ -162,8 +162,6 @@ class ChildDetailClassViewController: UIViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
-        replyArray = nil
         print("ChildDetailClassViewController deinit")
     }
     
@@ -180,7 +178,6 @@ class ChildDetailClassViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reloadView()
-        print("*** my  user status:  \(self.feedDetailList?.results?.user_status ?? "")")
         if self.feedDetailList?.results?.user_status ?? "" == "member" {
             let dismiss = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
             self.view.addGestureRecognizer(dismiss)
@@ -202,6 +199,8 @@ class ChildDetailClassViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+        replyArray = nil
     }
     
     /** **클래스 소개 보기 버튼 클릭 > 클래스 소개를 펼쳐줌 */
@@ -776,20 +775,25 @@ class ChildDetailClassViewController: UIViewController {
     /** *This button is used to filter comments*/
     @IBAction func filteringBtnClicked(_ sender: UIButton) {
         if sender.tag == 0 {
-            self.type = "all"
-            filteredComment(type: self.type)
+            if self.type != "all" {
+                self.type = "all"
+                filteredComment(type: self.type)
+            }
         } else if sender.tag == 1 {
-            self.type = "questions"
-            filteredComment(type: self.type)
+            if self.type != "questions" {
+                self.type = "questions"
+                filteredComment(type: self.type)
+            }
         } else {
-            self.type = "coach"
-            filteredComment(type: self.type)
+            if self.type != "coach" {
+                self.type = "coach"
+                filteredComment(type: self.type)
+            }
         }
     }
     
     /** *This func opens popup view if  classLike_yn == "N"*/
     func animatePopup() {
-        print("popup view is showing!!!")
         if keyboardShow == true {
             self.hideKeyboard()
         }

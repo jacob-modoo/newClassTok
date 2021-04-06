@@ -1156,6 +1156,7 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
         switch section {
         case 0:
 //            if self.list?.results?.play_file_app ?? "" != "" || self.list?.results?.youtube_file ?? "" != "" {
+            print("** the count of photo \(self.list?.results?.mcClass_id ?? 0)")
             if self.list?.results?.photo_arr.count ?? 0 == 0{
                 let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoTableViewCell", for: indexPath) as! StoryDetailTableViewCell
                 cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
@@ -1204,8 +1205,11 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                         cell.classSalePrice.text = "\(self.list?.results?.coach_name ?? "")님의 클래스 오픈을 축하해주세요 ✨"
                     }
                     
+                let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
                     cell.replyPhotoImgHeightConst.constant = self.photoSize
+                
                     cell.replyPhotoImg.sd_setImage(with: URL(string: "\(self.list?.results?.photo_arr[0].photo_url ?? "")"), placeholderImage: UIImage(named: "curriculumV2_default"))
+                cell.replyPhotoImg.addGestureRecognizer(pictureTap)
                     cell.selectionStyle = .none
                     return cell
 //                }else{

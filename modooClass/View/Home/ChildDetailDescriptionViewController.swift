@@ -30,6 +30,7 @@ class ChildDetailDescriptionViewController: UIViewController {
     var feedDetailList:FeedAppClassModel?
     /** *interaction controller */
     var interaction: UIDocumentInteractionController?
+    var filePath:Any?
     
     lazy var previewItem = NSURL()
     
@@ -127,10 +128,11 @@ class ChildDetailDescriptionViewController: UIViewController {
     }
     
     @IBAction func downloadBtnClicked(_ sender: UIButton) {
-        fileDownload { (succes, path) in
-            DispatchQueue.main.async(execute: {
-                self.openFileWithPath(pdfPath: path)
-            })
+        if self.filePath != nil {
+            self.openFileWithPath(pdfPath: self.filePath as! URL)
+            print("** ochil sim sim")
+        } else {
+            self.showToast2(message: "파일이 다운로드중입니다..", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
         }
     }
     
@@ -138,6 +140,7 @@ class ChildDetailDescriptionViewController: UIViewController {
     @objc func dataReload(notification:Notification){
         if let temp = notification.object {
             self.class_id = temp as! Int
+            
             self.feedDetailList = FeedDetailManager.shared.feedDetailList
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -281,7 +284,13 @@ extension ChildDetailDescriptionViewController: UITableViewDelegate, UITableView
         } else if section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChildDetailDescriptionContentCell", for: indexPath) as! ChildDetailDescriptionTableViewCell
             cell.descriptionSubtitle.text = feedDetailList?.results?.curriculum?.study?.title ?? ""
-            cell.descriptionContent.text = feedDetailList?.results?.curriculum?.study?.content ?? ""
+            cell.descriptionContent.text = (feedDetailList?.results?.curriculum?.study?.content ?? "").html2String
+            
+            if feedDetailList?.results?.curriculum?.materials_subject ?? "" != "" {
+                self.fileDownload { (success, filePath) in
+                    self.filePath = filePath
+                }
+            }
             cell.descriptionContent.sizeToFit()
             cell.selectionStyle = .none
             return cell
