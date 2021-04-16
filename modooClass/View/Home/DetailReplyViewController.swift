@@ -315,31 +315,25 @@ class DetailReplyViewController: UIViewController {
         if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
             replyWriteCheck()
         }else{
-            commentDataUpdated()
             self.navigationController?.popViewController(animated: true)
         }
     }
     
     func commentDataUpdated() {
-        
         if missionCheck == false{
             if noticeCheck == false{
                 if commentType == "class"{
-                    print("** commentType is CLASS")
                     let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.like ?? 0 , "preHave":list?.results?.like_me ?? "N"] as [String : Any]
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classParamChange"), object: nil,userInfo: userInfo)
                 }else{
-                    print("** commentType is not CLASS")
                     let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.like ?? 0,"preHave":list?.results?.like_me ?? "N"] as [String : Any]
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumParamChange"), object: nil,userInfo: userInfo)
                 }
             }else{
-                print("** notice Check is true")
                 let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.like ?? 0,"preHave":list?.results?.like_me ?? "N"] as [String : Any]
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noticeParamChange"), object: nil,userInfo: userInfo)
             }
         }else{
-            print("** mission check is true")
             let userInfo = [ "comment_id" : self.comment_id , "commentLikeCount":list?.results?.like ?? 0,"preHave":list?.results?.like_me ?? "N"] as [String : Any]
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "missionParamChange"), object: nil,userInfo: userInfo)
         }
@@ -348,7 +342,6 @@ class DetailReplyViewController: UIViewController {
     
     /** **자신이 쓴 댓글 더보기 버튼 클릭 > 댓글 삭제할지 알림  */
     @IBAction func moreBtnMainClicked(_ sender: UIButton) {
-        print("** comment_id : \(sender.tag)")
         Alert.With(self, btn1Title: "삭제", btn1Handler: {
             DispatchQueue.main.async {
                 self.replyDelete(comment_id: sender.tag,type:"main")
@@ -358,7 +351,6 @@ class DetailReplyViewController: UIViewController {
     
     /** **자신이 쓴 댓글 더보기 버튼 클릭 > 댓글 삭제할지 알림  */
     @IBAction func moreBtnClicked(_ sender: UIButton) {
-        print("** comment_id : \(sender.tag)")
         Alert.With(self, btn1Title: "삭제", btn1Handler: {
             DispatchQueue.main.async {
                 self.replyDelete(comment_id: sender.tag,type:"reply")
@@ -649,7 +641,7 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.replyContentTextView.text = list?.results?.content ?? ""
                     cell.replyContentTextView.textContainer.lineBreakMode = .byTruncatingTail
 //                    let attributedString  = NSMutableAttributedString(string: "Your string" , attributes: attributes)
-//                    cell.replyContentTextView.attributedText = (list?.results?.content ?? "").html2AttributedString
+                    cell.replyContentTextView.attributedText = (list?.results?.content ?? "").html2AttributedString
                     cell.replyContentTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14.5)
 //                    cell.replyContentTextView.text = list?.results?.content ?? ""
                 }else{ }
@@ -766,7 +758,7 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                 if replyArray[row].content ?? "" != "" {
                     cell.replyContentTextView.text = replyArray[row].content ?? ""
                     cell.replyContentTextView.textContainer.lineBreakMode = .byTruncatingTail
-//                    cell.replyContentTextView.attributedText = (replyArray[row].content ?? "").html2AttributedString
+                    cell.replyContentTextView.attributedText = (replyArray[row].content ?? "").html2AttributedString
 //                    cell.replyContentTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
                 }else{ }
                 print("** friend status  2 \(replyArray[row].friend_yn ?? "yyyy")")

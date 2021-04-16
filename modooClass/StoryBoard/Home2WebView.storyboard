@@ -2139,10 +2139,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kfd-Yd-URS" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kfd-Yd-URS" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="16" width="382" height="80"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="첫번째 댓글을 남겨주세요 !😀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2a0-bv-qvu" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="첫번째 댓글을 남겨주세요 !😀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2a0-bv-qvu" customClass="UIFixedLabel" customModule="modooClass" customModuleProvider="target">
                                                             <rect key="frame" x="116.5" y="32.5" width="149.5" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -2159,7 +2159,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLW-CS-agh">
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLW-CS-agh">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
                                                             <connections>
                                                                 <action selector="emptyViewBtnClicked:" destination="xHp-tR-KbN" eventType="touchUpInside" id="Swj-uL-I1x"/>
@@ -3656,7 +3656,7 @@
                                                                                         <constraint firstAttribute="bottom" secondItem="nM4-MS-QzS" secondAttribute="bottom" id="tPE-dz-FFw"/>
                                                                                     </constraints>
                                                                                 </view>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply_user_default" translatesAutoresizingMaskIntoConstraints="NO" id="e3N-e7-42B" userLabel="User Image">
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply_user_default" translatesAutoresizingMaskIntoConstraints="NO" id="e3N-e7-42B" userLabel="User Image">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                                                                     <userDefinedRuntimeAttributes>
                                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -9912,7 +9912,7 @@
                                                                                         <constraint firstAttribute="bottom" secondItem="cuR-wm-tnt" secondAttribute="bottom" id="oUd-R8-lqO"/>
                                                                                     </constraints>
                                                                                 </view>
-                                                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply_user_default" translatesAutoresizingMaskIntoConstraints="NO" id="OH0-oM-zKB" userLabel="User Image">
+                                                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply_user_default" translatesAutoresizingMaskIntoConstraints="NO" id="OH0-oM-zKB" userLabel="User Image">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                                                                     <userDefinedRuntimeAttributes>
                                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -13540,7 +13540,7 @@
             <size key="intrinsicContentSize" width="31" height="13.5"/>
         </designable>
         <designable name="UyP-0e-u5X">
-            <size key="intrinsicContentSize" width="77" height="24"/>
+            <size key="intrinsicContentSize" width="67" height="24"/>
         </designable>
         <designable name="UzH-as-BKR">
             <size key="intrinsicContentSize" width="88.5" height="34"/>

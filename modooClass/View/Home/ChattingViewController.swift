@@ -205,7 +205,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChattingListAdminCell", for: indexPath) as! ChattingTableViewCell
             cell.adminPhoto.image = UIImage(named: "app_Icon2")
-            cell.adminMessage.text = "평일 오전 8시 00분 ~ 오후 5시 00분"
+            cell.adminMessage.text = "평일 오전 9시 00분 ~ 오후 5시 00분"
             cell.adminName.text = "문의사항이 있으시면, 터치해주세요."
             
             cell.selectionStyle = .none

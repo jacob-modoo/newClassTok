@@ -32,6 +32,7 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     /** **검색 후 클래스 리스트 */
     var searchList:SearchModel?
     var searchListArr:Array = Array<SearchList>()
+    var eventListArr:Array = Array<EventList>()
     /** **검색 체크 유무 */
     var searchCheck:Bool = false
     /** **키보드 보임 유무 */
@@ -533,6 +534,10 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                     cell.eventImgHeight.constant = 0
                 }
                 
+//                print("** rranklist : \(rankList?.results?.event_list_arr.count ?? 0)")
+//                cell.rankList = self.rankList
+//                cell.collectionTag = 3
+                
                 cell.selectionStyle = .none
                 return cell
             case 5:
@@ -617,10 +622,12 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                 case 2:
                     let cell:FeedbackSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SearchAfterListCell", for: indexPath) as! FeedbackSearchTableViewCell
                     if searchListArr.count > (row*2)+1 {
+                        cell.gradientView2.isHidden = false
                         self.gradientView1(cell: cell, row: row)
                         self.gradientView2(cell: cell, row: row)
                     } else {
                         self.gradientView1(cell: cell, row: row)
+                        cell.gradientView2.isHidden = true
                     }
                     cell.selectionStyle = .none
                     return cell
@@ -978,6 +985,12 @@ extension FeedbackSearchViewController{
             
             if result.code! == "200"{
                 self.rankList = result
+//                if self.rankList?.results?.event_list_arr.count ?? 0 > 0 {
+//                    for arr in 0..<(self.rankList?.results?.event_list_arr.count)! {
+//                        self.eventListArr.append((self.rankList?.results?.event_list_arr[arr])!)
+//                    }
+//                }
+
                 DispatchQueue.main.async {
                     self.endOfWork()
                    

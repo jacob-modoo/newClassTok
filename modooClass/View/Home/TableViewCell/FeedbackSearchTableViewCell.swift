@@ -15,9 +15,6 @@ protocol MoreTableViewCellDelegate :AnyObject{
 class FeedbackSearchTableViewCell: UITableViewCell {
 
     @IBOutlet weak var beforeTitle: UIFixedLabel!
-    var collectionTag = 1
-    
-    var rankList:SearchRankModel?
     
     @IBOutlet weak var collectionViewHeightConst1: NSLayoutConstraint!
     @IBOutlet weak var collectionViewHeightConst2: NSLayoutConstraint!
@@ -33,6 +30,8 @@ class FeedbackSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var specialRewardImg: UIImageView!
     @IBOutlet weak var eventImg: UIImageView!
     @IBOutlet weak var eventImgHeight: NSLayoutConstraint!
+    @IBOutlet weak var eventCollectionView: UICollectionView!
+    @IBOutlet weak var eventCollectionViewHeight: NSLayoutConstraint!
     
 //    SearchAfterTitleCell
     @IBOutlet weak var afterTitle: UIFixedLabel!
@@ -80,11 +79,18 @@ class FeedbackSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryBtn3: UIButton!
     @IBOutlet weak var categoryBtn4: UIButton!
     @IBOutlet weak var bottomLineView: UIView!
+    
     weak var delegate : MoreTableViewCellDelegate?
+    var timer = Timer()
+    var counter = 0
+    var collectionTag = 1
+    var rankList:SearchRankModel?
+    var eventListArr:Array = Array<EventList>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+//        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(scrollEventImg), userInfo: nil, repeats: true)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -92,6 +98,19 @@ class FeedbackSearchTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+//    @objc func scrollEventImg() {
+//        print("** collection view img count : \(rankList?.results?.event_list_arr.count ??  0)\n** counter : \(counter)")
+//        var index = IndexPath.init(item: counter, section: 0)
+//        if rankList?.results?.event_list_arr.count ?? 0 > counter {
+////            eventCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+//            counter += 1
+//        } else {
+//            counter = 0
+//            index = IndexPath.init(item: counter, section: 0)
+////            eventCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+//        }
+//    }
 
     func callColection(){
         let layout = LeftAlignedFlowLayout()
@@ -104,6 +123,25 @@ class FeedbackSearchTableViewCell: UITableViewCell {
             layout.estimatedItemSize = CGSize(width: 50, height: 30)
             collectionView2.collectionViewLayout = layout
             collectionView2.reloadData()
+        }
+    }
+    
+    func sizeOfImageAt(url: URL) -> CGSize? {
+        // with CGImageSource we avoid loading the whole image into memory
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
+            return nil
+        }
+
+        let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+        guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
+            return nil
+        }
+
+        if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
+            let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
+            return CGSize(width: width, height: height)
+        } else {
+            return nil
         }
     }
     
@@ -125,7 +163,7 @@ extension FeedbackSearchTableViewCell:UICollectionViewDelegate,UICollectionViewD
         }else if collectionTag == 2{
             return rankList?.results?.interest_list_arr.count ?? 0
         }else{
-            return 0
+            return 0 //  rankList?.results?.event_list_arr.count ?? 0
         }
     }
     
@@ -139,7 +177,8 @@ extension FeedbackSearchTableViewCell:UICollectionViewDelegate,UICollectionViewD
             cell.searchWord.layer.masksToBounds = true
             cell.searchListBtn.tag = row
             return cell
-        }else{
+//        }else if collectionTag == 2{
+        } else {
             let cell:FeedbackSearchCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedbackSearch2", for: indexPath) as! FeedbackSearchCollectionViewCell
             cell.searchWord.text = "  # \(rankList?.results?.interest_list_arr[row].name ?? "")  "
             cell.searchWord.layer.cornerRadius = 15
@@ -147,6 +186,22 @@ extension FeedbackSearchTableViewCell:UICollectionViewDelegate,UICollectionViewD
             cell.searchListBtn.tag = row
             return cell
         }
+//        else {
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchBeforeEventCollectionViewCell", for: indexPath) as! SearchBeforeEventCollectionViewCell
+//
+//            /** *this piece of code sets image height according to its size */
+//            let url = URL(string: "\(self.rankList?.results?.event_list_arr[row].image ?? "")")!
+//            let ratio = (sizeOfImageAt(url: url)?.width ?? 0)/(sizeOfImageAt(url: url)?.height ?? 0)
+//            let newHeight = cell.eventImg.frame.width/ratio
+//            if self.rankList?.results?.event_list_arr[row].image ?? "" != "" {
+//                eventCollectionViewHeight.constant = newHeight
+//                cell.eventImg.sd_setImage(with: url, completed: nil)
+//            } else {
+//                eventCollectionViewHeight.constant = 0
+//            }
+//
+//            return cell
+//        }
         
     }
     
@@ -164,8 +219,13 @@ extension FeedbackSearchTableViewCell :UICollectionViewDelegateFlowLayout {
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //
-//        let size = CGSize(width :self.collectionView.frame.width,height: self.collectionView.frame.height)
-//        return size
+//        if collectionTag == 3 {
+//            let size = CGSize(width: self.eventCollectionView.frame.width, height: self.eventCollectionView.frame.height)
+//            return size
+//        } else {
+//            return UICollectionViewFlowLayout.automaticSize
+//        }
+//
 //
 //    }
     

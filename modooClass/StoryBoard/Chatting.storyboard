@@ -99,7 +99,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gn-Ct-ezK" userLabel="Image View">
                                                     <rect key="frame" x="0.0" y="0.0" width="78" height="82"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_iconNew" translatesAutoresizingMaskIntoConstraints="NO" id="7Kd-yi-nQE">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_iconNew" translatesAutoresizingMaskIntoConstraints="NO" id="7Kd-yi-nQE">
                                                             <rect key="frame" x="16" y="16" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="GsG-jl-S0U"/>
@@ -226,7 +226,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </button>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply_user_default" translatesAutoresizingMaskIntoConstraints="NO" id="9zo-8L-U5K">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply_user_default" translatesAutoresizingMaskIntoConstraints="NO" id="9zo-8L-U5K">
                                                                     <rect key="frame" x="16" y="16" width="50" height="50"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="50" id="7bC-8c-phv"/>
@@ -591,17 +591,17 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatRoomSentImgTxtCell" id="1Wd-cP-QRP" customClass="ChattingRoomTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="88" width="414" height="324"/>
+                                        <rect key="frame" x="0.0" y="88" width="414" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Wd-cP-QRP" id="iHI-W9-k8C">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="324"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W87-OS-OPP">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="324"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="330"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4J0-8c-id5" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                            <rect key="frame" x="157" y="0.0" width="100" height="28"/>
+                                                            <rect key="frame" x="157" y="6" width="100" height="28"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021/02/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIl-MD-ulD">
                                                                     <rect key="frame" x="18.5" y="7" width="63" height="14.5"/>
@@ -641,7 +641,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mAj-6W-GXI">
-                                                            <rect key="frame" x="238" y="40" width="160" height="160"/>
+                                                            <rect key="frame" x="238" y="46" width="160" height="160"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="160" id="Nud-AU-jbs"/>
                                                                 <constraint firstAttribute="width" constant="160" id="i0w-bf-QHM"/>
@@ -653,7 +653,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3m-ya-EEC" userLabel="Time View">
-                                                            <rect key="frame" x="20" y="290" width="89" height="30"/>
+                                                            <rect key="frame" x="20" y="296" width="89" height="30"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7b-vE-CVj">
                                                                     <rect key="frame" x="35" y="9.5" width="4.5" height="11"/>
@@ -701,7 +701,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjj-gS-knb" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                            <rect key="frame" x="117" y="212" width="281" height="100"/>
+                                                            <rect key="frame" x="117" y="218" width="281" height="100"/>
                                                             <subviews>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="b4R-0Y-tEi" customClass="UIFixedTextView" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="0.0" width="261" height="100"/>
@@ -749,7 +749,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="4J0-8c-id5" firstAttribute="top" secondItem="W87-OS-OPP" secondAttribute="top" id="16T-TA-jNA"/>
+                                                        <constraint firstItem="4J0-8c-id5" firstAttribute="top" secondItem="W87-OS-OPP" secondAttribute="top" constant="6" id="16T-TA-jNA"/>
                                                         <constraint firstItem="mAj-6W-GXI" firstAttribute="top" secondItem="4J0-8c-id5" secondAttribute="bottom" constant="12" id="83c-ea-nGc"/>
                                                         <constraint firstAttribute="trailing" secondItem="mAj-6W-GXI" secondAttribute="trailing" constant="16" id="Emz-Au-efO"/>
                                                         <constraint firstItem="vjj-gS-knb" firstAttribute="top" secondItem="mAj-6W-GXI" secondAttribute="bottom" constant="12" id="UDA-Uu-hXC"/>
@@ -781,17 +781,17 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatRoomSentImgCell" id="bPk-do-jgk" customClass="ChattingRoomTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="412" width="414" height="212"/>
+                                        <rect key="frame" x="0.0" y="418" width="414" height="218"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bPk-do-jgk" id="9Jj-7G-GvY">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="212"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="218"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Qb-YE-5IO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="212"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="218"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27z-jR-zL3" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                            <rect key="frame" x="157" y="0.0" width="100" height="28"/>
+                                                            <rect key="frame" x="157" y="6" width="100" height="28"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021/02/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scv-8x-Hu2">
                                                                     <rect key="frame" x="18.5" y="7" width="63" height="14.5"/>
@@ -831,7 +831,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mtg-R4-gwV">
-                                                            <rect key="frame" x="238" y="40" width="160" height="160"/>
+                                                            <rect key="frame" x="238" y="46" width="160" height="160"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="160" id="Yt7-44-DD0"/>
                                                                 <constraint firstAttribute="height" constant="160" id="eY4-qR-2gr"/>
@@ -843,7 +843,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spR-NM-3Bt" userLabel="Time View">
-                                                            <rect key="frame" x="141" y="170" width="89" height="30"/>
+                                                            <rect key="frame" x="141" y="176" width="89" height="30"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R23-FC-H3o">
                                                                     <rect key="frame" x="34.5" y="9.5" width="5" height="11"/>
@@ -899,7 +899,7 @@
                                                         <constraint firstItem="Mtg-R4-gwV" firstAttribute="bottom" secondItem="spR-NM-3Bt" secondAttribute="bottom" id="RMi-OU-cdL"/>
                                                         <constraint firstItem="27z-jR-zL3" firstAttribute="centerX" secondItem="3Qb-YE-5IO" secondAttribute="centerX" id="XHs-bH-ZBu"/>
                                                         <constraint firstItem="spR-NM-3Bt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Qb-YE-5IO" secondAttribute="leading" constant="20" id="Y7S-1H-IwB"/>
-                                                        <constraint firstItem="27z-jR-zL3" firstAttribute="top" secondItem="3Qb-YE-5IO" secondAttribute="top" id="ezG-3Q-3Wi"/>
+                                                        <constraint firstItem="27z-jR-zL3" firstAttribute="top" secondItem="3Qb-YE-5IO" secondAttribute="top" constant="6" id="ezG-3Q-3Wi"/>
                                                         <constraint firstAttribute="bottom" secondItem="Mtg-R4-gwV" secondAttribute="bottom" constant="12" id="ob9-Mr-ExP"/>
                                                     </constraints>
                                                 </view>
@@ -922,17 +922,17 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatRoomSentTextCell" id="pMj-EY-luS" customClass="ChattingRoomTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="624" width="414" height="152"/>
+                                        <rect key="frame" x="0.0" y="636" width="414" height="158"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pMj-EY-luS" id="PtQ-SI-ppq">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="152"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-vn-Mpp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="152"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cik-Km-rmr" userLabel="Date View" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                            <rect key="frame" x="157" y="0.0" width="100" height="28"/>
+                                                            <rect key="frame" x="157" y="6" width="100" height="28"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021/02/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJZ-27-1ay">
                                                                     <rect key="frame" x="18.5" y="7" width="63" height="14.5"/>
@@ -972,7 +972,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gje-1v-XMo" userLabel="Time View">
-                                                            <rect key="frame" x="20" y="118" width="89" height="30"/>
+                                                            <rect key="frame" x="20" y="124" width="89" height="30"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdj-yA-a65">
                                                                     <rect key="frame" x="34.5" y="9.5" width="5" height="11"/>
@@ -1021,7 +1021,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fh7-5x-Oge" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                            <rect key="frame" x="117" y="40" width="281" height="100"/>
+                                                            <rect key="frame" x="117" y="46" width="281" height="100"/>
                                                             <subviews>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dfg-Kp-48C" customClass="UIFixedTextView" customModule="modooClass" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="0.0" width="261" height="100"/>
@@ -1072,7 +1072,7 @@
                                                         <constraint firstItem="gje-1v-XMo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bfE-vn-Mpp" secondAttribute="leading" constant="20" id="6U4-uZ-6GM"/>
                                                         <constraint firstItem="Fh7-5x-Oge" firstAttribute="bottom" secondItem="gje-1v-XMo" secondAttribute="bottom" constant="-8" id="KnX-B6-YoC"/>
                                                         <constraint firstItem="Fh7-5x-Oge" firstAttribute="top" secondItem="cik-Km-rmr" secondAttribute="bottom" constant="12" id="R3Q-XN-l4G"/>
-                                                        <constraint firstItem="cik-Km-rmr" firstAttribute="top" secondItem="bfE-vn-Mpp" secondAttribute="top" id="RfN-Uc-kkb"/>
+                                                        <constraint firstItem="cik-Km-rmr" firstAttribute="top" secondItem="bfE-vn-Mpp" secondAttribute="top" constant="6" id="RfN-Uc-kkb"/>
                                                         <constraint firstItem="Fh7-5x-Oge" firstAttribute="leading" secondItem="gje-1v-XMo" secondAttribute="trailing" constant="8" id="dRt-cS-HeA"/>
                                                         <constraint firstAttribute="trailing" secondItem="Fh7-5x-Oge" secondAttribute="trailing" constant="16" id="rFg-PS-Drp"/>
                                                         <constraint firstItem="cik-Km-rmr" firstAttribute="centerX" secondItem="bfE-vn-Mpp" secondAttribute="centerX" id="x4O-Fq-aqL"/>
@@ -1095,14 +1095,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatRoomReceivedImgTxtCell" id="FNj-L8-PHa" customClass="ChattingRoomTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="776" width="414" height="328"/>
+                                        <rect key="frame" x="0.0" y="794" width="414" height="328"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FNj-L8-PHa" id="XUS-VM-Tuh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="328"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIF-Ch-Kbc" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="157" y="11" width="100" height="28"/>
+                                                    <rect key="frame" x="157" y="17" width="100" height="28"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021/02/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvd-mg-rMZ">
                                                             <rect key="frame" x="18.5" y="7" width="63" height="14.5"/>
@@ -1161,7 +1161,7 @@
                                                         <action selector="profileBtnClicked:" destination="gBM-2S-Cq2" eventType="touchUpInside" id="mRK-tI-DRT"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oSA-s3-4Wh">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oSA-s3-4Wh">
                                                     <rect key="frame" x="16" y="45" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="6eh-bT-g19"/>
@@ -1290,7 +1290,7 @@
                                                 <constraint firstItem="mHz-uS-wym" firstAttribute="leading" secondItem="oSA-s3-4Wh" secondAttribute="leading" id="O3H-do-HTq"/>
                                                 <constraint firstItem="mHz-uS-wym" firstAttribute="top" secondItem="oSA-s3-4Wh" secondAttribute="top" id="P2q-zR-8WC"/>
                                                 <constraint firstItem="mHz-uS-wym" firstAttribute="bottom" secondItem="oSA-s3-4Wh" secondAttribute="bottom" id="Zwn-9v-bMv"/>
-                                                <constraint firstItem="eIF-Ch-Kbc" firstAttribute="top" secondItem="XUS-VM-Tuh" secondAttribute="topMargin" id="gi0-Eb-oia"/>
+                                                <constraint firstItem="eIF-Ch-Kbc" firstAttribute="top" secondItem="XUS-VM-Tuh" secondAttribute="topMargin" constant="6" id="gi0-Eb-oia"/>
                                                 <constraint firstItem="wne-oz-tH4" firstAttribute="top" secondItem="9Fo-3n-CIB" secondAttribute="bottom" constant="8" id="iqG-CE-1kJ"/>
                                                 <constraint firstItem="mHz-uS-wym" firstAttribute="trailing" secondItem="oSA-s3-4Wh" secondAttribute="trailing" id="otQ-jy-iA4"/>
                                             </constraints>
@@ -1310,14 +1310,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatRoomReceivedImgCell" id="BJK-VW-kKb" customClass="ChattingRoomTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1104" width="414" height="249.5"/>
+                                        <rect key="frame" x="0.0" y="1122" width="414" height="249.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BJK-VW-kKb" id="d81-zM-jOn">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umI-hS-9Oy" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="157" y="11" width="100" height="28"/>
+                                                    <rect key="frame" x="157" y="17" width="100" height="28"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021/02/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4U-Z9-V7y">
                                                             <rect key="frame" x="18.5" y="7" width="63" height="14.5"/>
@@ -1376,7 +1376,7 @@
                                                         <action selector="profileBtnClicked:" destination="gBM-2S-Cq2" eventType="touchUpInside" id="KX4-cc-Wtu"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oBO-ap-By8">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oBO-ap-By8">
                                                     <rect key="frame" x="16" y="45" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="7EQ-OH-Ke4"/>
@@ -1456,7 +1456,7 @@
                                                 <constraint firstItem="umI-hS-9Oy" firstAttribute="centerX" secondItem="d81-zM-jOn" secondAttribute="centerX" id="EHw-YH-Pd0"/>
                                                 <constraint firstAttribute="bottom" secondItem="xn9-gM-mQD" secondAttribute="bottom" constant="12" id="N29-VK-Bmx"/>
                                                 <constraint firstItem="Qak-b4-G05" firstAttribute="leading" secondItem="oBO-ap-By8" secondAttribute="leading" id="TqP-Pb-WrG"/>
-                                                <constraint firstItem="umI-hS-9Oy" firstAttribute="top" secondItem="d81-zM-jOn" secondAttribute="topMargin" id="ZC1-L1-3mM"/>
+                                                <constraint firstItem="umI-hS-9Oy" firstAttribute="top" secondItem="d81-zM-jOn" secondAttribute="topMargin" constant="6" id="ZC1-L1-3mM"/>
                                                 <constraint firstItem="Qak-b4-G05" firstAttribute="top" secondItem="oBO-ap-By8" secondAttribute="top" id="bYh-Mj-m1c"/>
                                                 <constraint firstItem="5fG-OG-lmp" firstAttribute="top" secondItem="oBO-ap-By8" secondAttribute="top" constant="4" id="mlW-QT-Z73"/>
                                                 <constraint firstItem="Qak-b4-G05" firstAttribute="bottom" secondItem="oBO-ap-By8" secondAttribute="bottom" id="uyf-b0-rik"/>
@@ -1476,14 +1476,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatRoomReceivedTextCell" id="YwB-Ji-6rh" customClass="ChattingRoomTableViewCell" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1353.5" width="414" height="156"/>
+                                        <rect key="frame" x="0.0" y="1371.5" width="414" height="156"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YwB-Ji-6rh" id="YEb-lT-IOw">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="156"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aM4-SW-CAZ" customClass="GradientView" customModule="modooClass" customModuleProvider="target">
-                                                    <rect key="frame" x="157" y="11" width="100" height="28"/>
+                                                    <rect key="frame" x="157" y="17" width="100" height="28"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021/02/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aec-mI-vIT">
                                                             <rect key="frame" x="18.5" y="7" width="63" height="14.5"/>
@@ -1542,7 +1542,7 @@
                                                         <action selector="profileBtnClicked:" destination="gBM-2S-Cq2" eventType="touchUpInside" id="Rmq-nZ-FD4"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D7W-ZN-Ihs">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D7W-ZN-Ihs">
                                                     <rect key="frame" x="16" y="45" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="Jol-jI-XM9"/>
@@ -1643,7 +1643,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="UIj-hl-LGq" firstAttribute="leading" secondItem="D7W-ZN-Ihs" secondAttribute="trailing" constant="8" id="1vG-pV-fJb"/>
-                                                <constraint firstItem="aM4-SW-CAZ" firstAttribute="top" secondItem="YEb-lT-IOw" secondAttribute="topMargin" id="2oC-cD-OGx"/>
+                                                <constraint firstItem="aM4-SW-CAZ" firstAttribute="top" secondItem="YEb-lT-IOw" secondAttribute="topMargin" constant="6" id="2oC-cD-OGx"/>
                                                 <constraint firstAttribute="bottom" secondItem="axQ-29-CHe" secondAttribute="bottom" constant="12" id="59k-Ia-jlT"/>
                                                 <constraint firstItem="W5h-Pn-rNp" firstAttribute="bottom" secondItem="D7W-ZN-Ihs" secondAttribute="bottom" id="5zW-3d-UiD"/>
                                                 <constraint firstItem="W5h-Pn-rNp" firstAttribute="top" secondItem="D7W-ZN-Ihs" secondAttribute="top" id="8rw-F0-3z3"/>

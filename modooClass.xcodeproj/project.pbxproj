@@ -123,6 +123,7 @@
 		0E788A97256CD5220051F7FE /* ChildDetailClassRecomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E788A96256CD5220051F7FE /* ChildDetailClassRecomCollectionViewCell.swift */; };
 		0E7991EF2564BE420056773F /* Toast+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7991EE2564BE420056773F /* Toast+Extension.swift */; };
 		0E7B1B2623D699EA002050C1 /* HomeProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B1B2523D699E9002050C1 /* HomeProfileCollectionViewCell.swift */; };
+		0E7D29BD261EDAD000CD4EA9 /* SearchBeforeEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D29BC261EDAD000CD4EA9 /* SearchBeforeEventCollectionViewCell.swift */; };
 		0E7F848522B788E60031764C /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F848422B788E60031764C /* AlarmTableViewCell.swift */; };
 		0E7F848722B874B00031764C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E7F848622B874AF0031764C /* GoogleService-Info.plist */; };
 		0E7F848B22B8C69D0031764C /* AlarmApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F848A22B8C69D0031764C /* AlarmApi.swift */; };
@@ -420,6 +421,7 @@
 		0E788A96256CD5220051F7FE /* ChildDetailClassRecomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailClassRecomCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E7991EE2564BE420056773F /* Toast+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+Extension.swift"; sourceTree = "<group>"; };
 		0E7B1B2523D699E9002050C1 /* HomeProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E7D29BC261EDAD000CD4EA9 /* SearchBeforeEventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBeforeEventCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E7F848422B788E60031764C /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		0E7F848622B874AF0031764C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E7F848A22B8C69D0031764C /* AlarmApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmApi.swift; sourceTree = "<group>"; };
@@ -1037,6 +1039,7 @@
 				0E7B1B2523D699E9002050C1 /* HomeProfileCollectionViewCell.swift */,
 				0E788A96256CD5220051F7FE /* ChildDetailClassRecomCollectionViewCell.swift */,
 				0E01408723FB848B00DAB35F /* StoryDetailCollectionViewCell.swift */,
+				0E7D29BC261EDAD000CD4EA9 /* SearchBeforeEventCollectionViewCell.swift */,
 				0E8E1F1123C2FCD60086C0AF /* ProfileV2CollectionViewCell.swift */,
 				0ED040A2255CC50B00F0F852 /* ProfileV2NewCollectionVIewCell.swift */,
 				0E0B269A232F57E7006C8649 /* FeedbackSearchCollectionViewCell.swift */,
@@ -1686,6 +1689,7 @@
 				0EE48D4625B850F9000F2506 /* ChatListModel.swift in Sources */,
 				0EDEA8132489E2CC00ED837A /* AutoSearchModel.swift in Sources */,
 				0E1D3FFD2297B96D003629FB /* GradientView.swift in Sources */,
+				0E7D29BD261EDAD000CD4EA9 /* SearchBeforeEventCollectionViewCell.swift in Sources */,
 				0E1A96A522B08BE3001261B2 /* FeedAppCurriculumNextModel.swift in Sources */,
 				0ED7F51E22B0C22E00CF2F92 /* FeedAppCheerModel.swift in Sources */,
 				0E01408623FB49BF00DAB35F /* SquareDetailModel.swift in Sources */,
@@ -1921,7 +1925,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.16;
+				CURRENT_PROJECT_VERSION = 2.0.12;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
@@ -1931,7 +1935,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.11;
+				MARKETING_VERSION = 2.0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationContentExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1944,7 +1948,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.16;
+				CURRENT_PROJECT_VERSION = 2.0.12;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
@@ -1954,7 +1958,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.11;
+				MARKETING_VERSION = 2.0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationContentExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1967,7 +1971,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.16;
+				CURRENT_PROJECT_VERSION = 2.0.12;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1976,7 +1980,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.11;
+				MARKETING_VERSION = 2.0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1989,7 +1993,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.16;
+				CURRENT_PROJECT_VERSION = 2.0.12;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1998,7 +2002,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.11;
+				MARKETING_VERSION = 2.0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2135,7 +2139,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/SurpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.16;
+				CURRENT_PROJECT_VERSION = 2.0.12;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2148,7 +2152,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.11;
+				MARKETING_VERSION = 2.0.12;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2237,7 +2241,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/SurpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.16;
+				CURRENT_PROJECT_VERSION = 2.0.12;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2250,7 +2254,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.11;
+				MARKETING_VERSION = 2.0.12;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

@@ -127,7 +127,6 @@ class ChildDetailClassViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
  //       NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardFrameWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.classIdCheck), name: NSNotification.Name(rawValue: "DetailClassIdSend"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.replyParamChange), name: NSNotification.Name(rawValue: "curriculumParamChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.replyDeleteChange), name: NSNotification.Name(rawValue: "curriculumReplyDelete"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.classLikeView), name: NSNotification.Name(rawValue: "classLikeView"), object: nil )
@@ -138,8 +137,7 @@ class ChildDetailClassViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCount), name: NSNotification.Name(rawValue: "updateLikeCount"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToClassDetail), name: NSNotification.Name("goToClassDetail"), object: nil)
         tableView.addSubview(refreshControl)
-        let url = HomeMain2Manager.shared.pilotAppMain.results?.app_guidance_link ?? "https://www.modooclass.net/class/"
-        print("** acctivity url \(url)")
+        
         replyBorderView.layer.borderWidth = 1
         replyBorderView.layer.borderColor = UIColor(hexString: "#eeeeee").cgColor
         replyBorderView.layer.cornerRadius = 15
@@ -175,6 +173,11 @@ class ChildDetailClassViewController: UIViewController {
         super.didMove(toParent:parent)
     }
   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.classIdCheck), name: NSNotification.Name(rawValue: "DetailClassIdSend"), object: nil )
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reloadView()
@@ -184,23 +187,18 @@ class ChildDetailClassViewController: UIViewController {
             
             let checkGuide = UserDefaultSetting.getUserDefaultsInteger(forKey: "checkGuide")
             if checkGuide == 1{
-                print("the guide is already has been shown!")
             } else {
                 let done = 1
                 UserDefaultSetting.setUserDefaultsInteger(done, forKey: "checkGuide")
                 self.moveGuide()
             }
-        }else {
-            print("user status is 'spectator'")
         }
     }
     
-    
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-        replyArray = nil
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "DetailClassIdSend"), object: nil)
+//        replyArray = nil
     }
     
     /** **클래스 소개 보기 버튼 클릭 > 클래스 소개를 펼쳐줌 */
@@ -434,7 +432,7 @@ class ChildDetailClassViewController: UIViewController {
                 if self.feedDetailList?.results?.curriculum_before_id ?? 0 == 0 {
                     self.showToast(message: "        🔊 첫번째 강의 입니다.>.<더이상 이동할수 없습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
                 } else {
-                    FeedApi.shared.curriculum_next(class_id: feedDetailList?.results?.mcClass_id ?? 0, curriculum_id: feedDetailList?.results?.curriculum?.button_before_id ?? 0 ,success: { [unowned self] result in
+                    FeedApi.shared.curriculum_next(class_id: feedDetailList?.results?.mcClass_id ?? 0, curriculum_id: feedDetailList?.results?.curriculum_before_id ?? 0 ,success: { [unowned self] result in
                         if result.code == "200"{
                             self.navigationController?.popToViewBottomController(ofClass: FeedDetailViewController.self)
                             DispatchQueue.main.async {
@@ -467,7 +465,6 @@ class ChildDetailClassViewController: UIViewController {
         } else {
             if self.feedDetailList?.results?.user_status == "spectator" {
                 if self.feedDetailList?.results?.curriculum_after_id ?? 0 == 0 {
-                    print("afterID is called")
                     self.showToast(message: "        🔊 체험판은 강의 이동이 불가합니다.>.<수강신청 하기.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
                 } else {
                     FeedApi.shared.curriculum_next(class_id: self.feedDetailList?.results?.mcClass_id ?? 0, curriculum_id: self.feedDetailList?.results?.curriculum_after_id ?? 0 ,success: { [unowned self] result in
@@ -670,7 +667,6 @@ class ChildDetailClassViewController: UIViewController {
                 }
             }
         } else {
-            print("** the button with tag 1 is pressed?")
             self.textViewTab()
         }
     }
@@ -829,7 +825,6 @@ class ChildDetailClassViewController: UIViewController {
     }
     
     @objc func swipeGesture(_ sender: UISwipeGestureRecognizer) {
-        print("swiped up")
         if sender.state == .ended {
             self.hidePopupView()
         }
@@ -930,7 +925,6 @@ class ChildDetailClassViewController: UIViewController {
         guard let chattingUrl = notification.userInfo?["chattingUrl"] as? String else { return }
         videoStop()
         let newViewController = UIStoryboard(name: "ChattingWebView", bundle: nil).instantiateViewController(withIdentifier: "ChattingFriendWebViewViewController") as! ChattingFriendWebViewViewController
-        print(chattingUrl)
         newViewController.url = chattingUrl
         newViewController.tokenCheck = true
         self.navigationController?.pushViewController(newViewController, animated: true)
@@ -953,7 +947,6 @@ class ChildDetailClassViewController: UIViewController {
         guard let replyCount = notification.userInfo?["replyCount"] as? Int else { return }
         guard let commentLikeCount = notification.userInfo?["commentLikeCount"] as? Int else { return }
         guard let preHave = notification.userInfo?["preHave"] as? String else { return }
-        print("** preHave : \(preHave)\n** replyCount :  \(replyCount)\n** commentLikeCount : \(commentLikeCount)")
         
         self.tableView.beginUpdates()
         if self.feedDetailList?.results?.curriculum?.coach_class?.notice?.like_cnt != commentLikeCount || self.feedDetailList?.results?.curriculum?.coach_class?.notice?.reply_cnt != replyCount || self.feedDetailList?.results?.curriculum?.coach_class?.notice?.like_me != preHave{
@@ -1087,7 +1080,6 @@ class ChildDetailClassViewController: UIViewController {
      */
     @objc func flashNextClassBtn(notification: Notification){
         self.nextClassBtn.flash()
-        print("message received!")
     }
     
     /**
@@ -2337,8 +2329,9 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
         if replyArray?[row].content ?? "" != "" {
             cell.replyContentTextView.text = replyArray?[row].content ?? ""
 //                cell.replyContentTextView.textContainer.maximumNumberOfLines = 5
+            cell.replyContentTextView.attributedText = (replyArray?[row].content ?? "").html2AttributedString
             cell.replyContentTextView.textContainer.lineBreakMode = .byTruncatingTail
-        }else{ }
+        }
                       
         cell.replyContentView.layer.cornerRadius = 12
         cell.likeCountBtn.layer.shadowOpacity = 0.1
@@ -2401,9 +2394,13 @@ extension ChildDetailClassViewController{
     func appClassDetail(){
         self.feedDetailList = FeedDetailManager.shared.feedDetailList
         
-//        if feedDetailList?.results?.mission_yn ?? "Y" == "N" {
+        if feedDetailList?.results?.mission_yn ?? "Y" == "N" {
+            self.submitMission.isUserInteractionEnabled = false
+            self.submitMission.backgroundColor = UIColor(hexString: "#B4B4B4")
+            self.submitMission.setTitle("미션이 없습니다", for: .normal)
 //            self.classMoveBtn.setImage(UIImage(named: "mission_done"), for: .normal)
-//        } else {
+        } else {
+            self.submitMission.isUserInteractionEnabled = true
             if feedDetailList?.results?.mission_count ?? 0 > 0 {
                 self.submitMission.backgroundColor = UIColor(hexString: "#B4B4B4")
                 self.submitMission.setTitle("미션 재인증하기", for: .normal)
@@ -2413,7 +2410,7 @@ extension ChildDetailClassViewController{
                 self.submitMission.setTitle("미션 인증하기", for: .normal)
 //                self.classMoveBtn.setImage(UIImage(named: "mission_check"), for: .normal)
             }
-//        }
+        }
         
         for addArray in 0..<(self.feedDetailList?.results?.class_recom_list?.list_arr.count ?? 0) {
             self.recommendationList?.append((self.feedDetailList?.results?.class_recom_list?.list_arr[addArray])!)
@@ -2566,7 +2563,6 @@ extension ChildDetailClassViewController{
     */
     func haveSave(sender:UIButton){
         sender.isUserInteractionEnabled = false
-        print("tag : \(sender.tag)")
         let row = sender.tag / 10000
         let likeGubun = sender.tag % 10000 // 1 : Y delete  2 : N post
         let comment_id = replyArray?[row].id ?? 0
