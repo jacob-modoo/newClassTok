@@ -57,8 +57,8 @@ class ProfileNewResults: NSObject {
     
     var class_list:Class_New_List?
     var class_list_arr:Array = Array<Class_New_List>()
-    var comment_list:Comment_List?
-    var comment_list_arr:Array = Array<Comment_List>()
+    var comment_list:Activity_List?
+    var comment_list_arr:Array = Array<Activity_List>()
     
     override init() {
         super.init()
@@ -102,7 +102,7 @@ class ProfileNewResults: NSObject {
         if let list = dic["comment_list"] as? Array<Any> {
             let array:Array = list
             for listTemp in array {
-                let temp = Comment_List.init(dic: listTemp as! Dictionary<String,Any>)
+                let temp = Activity_List.init(dic: listTemp as! Dictionary<String,Any>)
                 comment_list_arr.append(temp)
             }
         }
@@ -136,16 +136,24 @@ class Class_New_List: NSObject {
     }
 }
 
-class Comment_List: NSObject {
+class Activity_List: NSObject {
     var id:String?
     var class_id:Int?
+    var curriculum_id:Int?
+    var created_at:String?
     var content:String?
+    var delete_yn:String?
     var emoticon:Int?
+    var mission_yn:String?
     var photo_data:String?
     var reply_cnt:Int?
     var like_cnt:Int?
     var play_status:String?
+    var class_name:String?
     var class_photo:String?
+    var status:Int?
+    var curriculum_no:Int?
+    var curriculum_title:String?
     var new_flag:String?
     
     override init() {
@@ -156,13 +164,21 @@ class Comment_List: NSObject {
         self.init()
         id = DictionaryToString(dic: dic, strName: "id")
         class_id = DictionaryToInt(dic: dic, intName: "class_id")
+        curriculum_id = DictionaryToInt(dic: dic, intName: "curriculum_id")
+        created_at = DictionaryToString(dic: dic, strName: "created_at")
         content = DictionaryToString(dic: dic, strName: "content")
+        delete_yn = DictionaryToString(dic: dic, strName: "delete_yn")
         emoticon = DictionaryToInt(dic: dic, intName: "emoticon")
+        mission_yn = DictionaryToString(dic: dic, strName: "mission_yn")
         photo_data = DictionaryToString(dic: dic, strName: "photo_data")
         reply_cnt = DictionaryToInt(dic: dic, intName: "reply_cnt")
         like_cnt = DictionaryToInt(dic: dic, intName: "like_cnt")
         play_status = DictionaryToString(dic: dic, strName: "play_status")
+        class_name = DictionaryToString(dic: dic, strName: "class_name")
         class_photo = DictionaryToString(dic: dic, strName: "class_photo")
+        status = DictionaryToInt(dic: dic, intName: "status")
+        curriculum_no = DictionaryToInt(dic: dic, intName: "curriculum_no")
+        curriculum_title = DictionaryToString(dic: dic, strName: "curriculum_title")
         new_flag = DictionaryToString(dic: dic, strName: "new_flag")
     }
 }

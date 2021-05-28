@@ -18,7 +18,7 @@ class ProfileV2NewViewController: BaseViewController {
     var refreshControl = UIRefreshControl()
     var profileNewModel:ProfileNewModel?
     var class_list_arr:Array? = Array<Class_New_List>()
-    var comment_list_arr:Array = Array<Comment_List>()
+    var comment_list_arr:Array = Array<Activity_List>()
     var chatRoom:ChatRoomPModel?
     var pageOpen:Bool = false
     var activeTotalPage = 1
@@ -534,11 +534,10 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
                     let randomIndex = Int(arc4random_uniform(UInt32(storyColor.count)))
                     cell.noPhotoView1.backgroundColor = UIColor(hexString: storyColor[randomIndex])
                 }
-                
                 if self.comment_list_arr[checkRow].emoticon ?? 0 > 0 {
                     cell.noPhotoEmoticon1.isHidden = false
                     cell.noPhotoUserImg1.isHidden = true
-                    cell.noPhotoEmoticon1.image = UIImage(named: "\(self.emoticonView.items[self.comment_list_arr[checkRow].emoticon ?? 0])")
+                    cell.noPhotoEmoticon1.image = UIImage(named: "emti\(self.comment_list_arr[checkRow].emoticon ?? 0)")
                 } else {
                     cell.noPhotoEmoticon1.isHidden = true
                     cell.noPhotoUserImg1.isHidden = false
@@ -618,11 +617,10 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
                     let randomIndex = Int(arc4random_uniform(UInt32(storyColor.count)))
                     cell.noPhotoView2.backgroundColor = UIColor(hexString: storyColor[randomIndex])
                 }
-                
                 if self.comment_list_arr[checkRow].emoticon ?? 0 > 0 {
                     cell.noPhotoEmoticon2.isHidden = false
                     cell.noPhotoUserImg2.isHidden = true
-                    cell.noPhotoEmoticon2.image = UIImage(named: "\(self.emoticonView.items[self.comment_list_arr[checkRow].emoticon ?? 0])")
+                    cell.noPhotoEmoticon2.image = UIImage(named: "emti\(self.comment_list_arr[checkRow].emoticon ?? 0)")
                 } else {
                     cell.noPhotoEmoticon2.isHidden = true
                     cell.noPhotoUserImg2.isHidden = false
@@ -702,11 +700,10 @@ extension ProfileV2NewViewController: UITableViewDataSource, UITableViewDelegate
                     let randomIndex = Int(arc4random_uniform(UInt32(storyColor.count)))
                     cell.noPhotoView3.backgroundColor = UIColor(hexString: storyColor[randomIndex])
                 }
-                
                 if self.comment_list_arr[checkRow].emoticon ?? 0 > 0 {
                     cell.noPhotoEmoticon3.isHidden = false
                     cell.noPhotoUserImg3.isHidden = true
-                    cell.noPhotoEmoticon3.image = UIImage(named: "\(self.emoticonView.items[self.comment_list_arr[checkRow].emoticon ?? 0])")
+                    cell.noPhotoEmoticon3.image = UIImage(named: "emti\(self.comment_list_arr[checkRow].emoticon ?? 0)")
                 } else {
                     cell.noPhotoEmoticon3.isHidden = true
                     cell.noPhotoUserImg3.isHidden = false

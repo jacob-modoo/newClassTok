@@ -90,7 +90,6 @@ class FeedbackSearchTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-//        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(scrollEventImg), userInfo: nil, repeats: true)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -99,20 +98,21 @@ class FeedbackSearchTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-//    @objc func scrollEventImg() {
-//        print("** collection view img count : \(rankList?.results?.event_list_arr.count ??  0)\n** counter : \(counter)")
-//        var index = IndexPath.init(item: counter, section: 0)
-//        if rankList?.results?.event_list_arr.count ?? 0 > counter {
-////            eventCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-//            counter += 1
-//        } else {
-//            counter = 0
-//            index = IndexPath.init(item: counter, section: 0)
-////            eventCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-//        }
-//    }
+    @objc func scrollEventImg() {
+        print("** collection view img count : \(rankList?.results?.event_list_arr.count ?? 0)\n** counter : \(counter)")
+        var index = IndexPath.init(item: counter, section: 0)
+        if rankList?.results?.event_list_arr.count ?? 0 > counter {
+            eventCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            counter += 1
+        } else {
+            counter = 0
+            index = IndexPath.init(item: counter, section: 0)
+            eventCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+        }
+    }
 
     func callColection(){
+        print("** call collection is called!")
         let layout = LeftAlignedFlowLayout()
         if collectionTag == 1{
             let layout = LeftAlignedFlowLayout()
@@ -158,26 +158,28 @@ class FeedbackSearchTableViewCell: UITableViewCell {
 
 extension FeedbackSearchTableViewCell:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionTag == 1{
+        if collectionView == collectionView1 {
             return rankList?.results?.search_list_arr.count ?? 0
-        }else if collectionTag == 2{
-            return rankList?.results?.interest_list_arr.count ?? 0
         }else{
-            return 0 //  rankList?.results?.event_list_arr.count ?? 0
+//        }else if collectionView == collectionView2 {
+            return rankList?.results?.interest_list_arr.count ?? 0
         }
+//        else{
+//            return rankList?.results?.event_list_arr.count ?? 0
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let row = indexPath.row
         
-        if collectionTag == 1{
+        if collectionView == collectionView1 {
             let cell:FeedbackSearchCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedbackSearch1", for: indexPath) as! FeedbackSearchCollectionViewCell
             cell.searchWord.text = "  # \(rankList?.results?.search_list_arr[row].name ?? "")  "
             cell.searchWord.layer.cornerRadius = 15
             cell.searchWord.layer.masksToBounds = true
             cell.searchListBtn.tag = row
             return cell
-//        }else if collectionTag == 2{
+//        }else if collectionView == collectionView2 {
         } else {
             let cell:FeedbackSearchCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedbackSearch2", for: indexPath) as! FeedbackSearchCollectionViewCell
             cell.searchWord.text = "  # \(rankList?.results?.interest_list_arr[row].name ?? "")  "
@@ -196,6 +198,7 @@ extension FeedbackSearchTableViewCell:UICollectionViewDelegate,UICollectionViewD
 //            if self.rankList?.results?.event_list_arr[row].image ?? "" != "" {
 //                eventCollectionViewHeight.constant = newHeight
 //                cell.eventImg.sd_setImage(with: url, completed: nil)
+////                timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(scrollEventImg), userInfo: nil, repeats: true)
 //            } else {
 //                eventCollectionViewHeight.constant = 0
 //            }
@@ -211,6 +214,9 @@ extension FeedbackSearchTableViewCell:UICollectionViewDelegate,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SearchKeyBoardHide"), object: nil)
+        if collectionView == eventCollectionView {
+            print("** the collectionCell is tapped!")
+        }
     }
     
 }
@@ -219,7 +225,7 @@ extension FeedbackSearchTableViewCell :UICollectionViewDelegateFlowLayout {
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //
-//        if collectionTag == 3 {
+//        if collectionView == eventCollectionView {
 //            let size = CGSize(width: self.eventCollectionView.frame.width, height: self.eventCollectionView.frame.height)
 //            return size
 //        } else {

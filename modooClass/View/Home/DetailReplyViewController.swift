@@ -51,6 +51,8 @@ class DetailReplyViewController: UIViewController {
     var curriculum_id = 0
     /** **댓글 아이디 */
     var comment_id = 0
+    /** *the comment  row  used to get userName*/
+    var comment_row = 0
     /** **페이지 */
     var page = 1
     /** **이모티콘 숫자 */
@@ -59,6 +61,14 @@ class DetailReplyViewController: UIViewController {
     var commentType = "class"
     /** **키보드 숨김 유무 */
     var keyboardShow = false
+    /** **애니메이션 시간 */
+    var animationDuration = 0.2 as TimeInterval
+    /** the Y value of the view**/
+    var contentY:CGFloat = 0
+    /** **뷰의 숨기는 속도 */
+    var minimumVelocityToHide = 1500 as CGFloat
+    /** **뷰의 숨기는 화면 비율 */
+    var minimumScreenRatioToHide = 0.5 as CGFloat
     /** **미션인지 체크 유무 */
     var missionCheck:Bool = false
     /** **공지사항인지 체크 유무 */
@@ -70,6 +80,11 @@ class DetailReplyViewController: UIViewController {
     var customView: UIView!
     /** *for sharing comment row*/
     var tagForLikeBtn = 0
+    var mention_name = ""
+    var originalText = ""
+    var mentionStatus = false
+    var mention_id = 0
+    var nameMentioned = false
     private let imageView = UIImageView()
     /** **미션 이미지 */
     private var image: UIImage?
@@ -80,9 +95,9 @@ class DetailReplyViewController: UIViewController {
     /** **크롭 각도 */
     private var croppedAngle = 0
     /** **댓글 리스트 */
-    var list:FeedAppClassCommentDetailReplyModel?
+    var list:CommentReplyDataModel?
     /** **댓글 리스트 페이징 배열 */
-    var replyArray:Array = Array<AppClassCommentList>()
+    var replyArray:Array = Array<CommentReplyList>()
     /** **이모티콘 확장 뷰 */
     lazy var emoticonView: EmoticonView = {
         let tv = EmoticonView()
@@ -96,9 +111,9 @@ class DetailReplyViewController: UIViewController {
     let childWebViewStoryboard: UIStoryboard = UIStoryboard(name: "ChildWebView", bundle: nil)
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
     
-    @IBOutlet weak var youtubeView: WKYTPlayerView!
-    var youtube_url = ""
-    var youtube_load = false
+//    @IBOutlet weak var youtubeView: WKYTPlayerView!
+//    var youtube_url = ""
+//    var youtube_load = false
     
     
     @IBOutlet weak var yotubeViewHeightConst: NSLayoutConstraint!
@@ -124,13 +139,18 @@ class DetailReplyViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.chattingCheck), name: NSNotification.Name(rawValue: "replyDetailValueSend"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.classDetailFriend), name: NSNotification.Name(rawValue: "replyDetailFriend"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCountMain), name: NSNotification.Name(rawValue: "updateLikeCountMain"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.updateLikeCountSub), name: NSNotification.Name(rawValue: "updateLikeCountSub"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.dataReload), name: NSNotification.Name(rawValue: "CommentDataSend"), object: nil )
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
+        panGesture.delegate = self
+        self.view.addGestureRecognizer(panGesture)
         
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         
@@ -146,9 +166,9 @@ class DetailReplyViewController: UIViewController {
         replySendView.layer.shadowRadius = 4
         replySendView.layer.masksToBounds = false
         
-        detailReplyData(comment_id: comment_id, page: page)
+//        detailReplyData(comment_id: comment_id)
         
-        youtubeView.delegate = self
+//        youtubeView.delegate = self
         
         let dismiss = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         dismiss.cancelsTouchesInView = false
@@ -166,18 +186,17 @@ class DetailReplyViewController: UIViewController {
     /** **뷰가 나타나기 시작 할 때 타는 메소드 */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     /** **뷰가 사라지기 시작 할 때 타는 메소드 */
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
         commentDataUpdated()
     }
     
     deinit {
-        print("deinit")
+        print("** detailCommentsVC deinit")
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -208,6 +227,24 @@ class DetailReplyViewController: UIViewController {
         view.endEditing(true)
     }
     
+    /** *will load the child comments*/
+    @objc func dataReload(notification:Notification){
+        if let dic = notification.userInfo as? [String:Any] {
+            if dic["isNotification"] != nil {
+                self.isNotification = true
+            } else {
+                self.tagForLikeBtn = dic["tagForLikeBtn"] as! Int
+            }
+            class_id = dic["class_id"] as! Int
+            self.comment_id = dic["comment_id"] as! Int
+            self.missionCheck = dic["missionCheck"] as! Bool
+            self.commentType = dic["commentType"] as! String
+            self.curriculum_id = dic["curriculum_id"] as! Int
+            DispatchQueue.main.async {
+                self.detailReplyData(comment_id: self.comment_id)
+            }
+        }
+    }
     /**
     **파라미터가 있고 반환값이 없는 메소드 > 앱이 백그라운드에서 포그라운드로 넘어올 시에 타는 함수
      
@@ -262,12 +299,12 @@ class DetailReplyViewController: UIViewController {
             replyWriteCheck()
         }else{
             let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
-            if UserManager.shared.userInfo.results?.user?.id == self.list?.results?.user_id ?? 0 {
+            if UserManager.shared.userInfo.results?.user?.id == self.list?.results?.comment?.user_id ?? 0 {
                 newViewController.isMyProfile = true
             }else{
                 newViewController.isMyProfile = false
             }
-            newViewController.user_id = self.list?.results?.user_id ?? 0
+            newViewController.user_id = self.list?.results?.comment?.user_id ?? 0
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
     }
@@ -291,11 +328,93 @@ class DetailReplyViewController: UIViewController {
          
     }
     
+    
+    @IBAction func parentCommentBtnClicked(_ sender: UIButton) {
+        self.mention_id = self.list?.results?.comment?.user_id ?? 0
+        self.mention_name = self.list?.results?.comment?.user_name ?? ""
+        
+        
+//        let words = self.replyTextView.text.separate(withChar: " ")
+//        if words[0] != "@\(mention_name)" {
+//            self.replyTextView.text = self.replyTextView.text.replacingOccurrences(of: words[0], with: "@\(mention_name)")
+//        }
+        replyMention(user_name: mention_name)
+        
+    }
+    
+    
+    @IBAction func childCommentBtnClicked(_ sender: UIButton) {
+        self.mention_id = self.replyArray[sender.tag].user_id ?? 0
+        self.mention_name = self.replyArray[sender.tag].user_name ?? ""
+        
+        
+//        if self.replyTextView.text.character(0) == "@" {
+//            self.replyTextView.text = ""
+//        }
+        replyMention(user_name: mention_name)
+//        if words[0] != "@\(mention_name)" {
+//            s
+//        } else if self.replyTextView.text == "" {
+//            replyMention(user_name: mention_name)
+//        }
+//
+    }
+    
+    func replyMention(user_name: String) {
+        if keyboardShow == false {
+            replyTextView.becomeFirstResponder()
+        }
+        
+        self.mentionStatus = true
+        if self.replyTextView.text.count > 0 && self.replyTextView.text.hasPrefix("@") != true {
+            self.replyTextView.text.insert(contentsOf: "@\(mention_name) ", at: self.replyTextView.text.startIndex)
+        } else if self.replyTextView.text.count > 0 && self.replyTextView.text.hasPrefix("@") != false {
+            let words = self.replyTextView.text.separate(withChar: " ")
+            self.replyTextView.text = self.replyTextView.text.replacingOccurrences(of: words[0], with: "@\(mention_name) ")
+        } else {
+            self.replyTextView.text = "@\(user_name) \(self.replyTextView.text ?? "")"
+        }
+        
+        let attributedWithTextColor: NSAttributedString = "\(self.replyTextView.text ?? "")".attributedStringWithColor(["@\(user_name)"], color: UIColor(hexString: "#2277FF"))
+        self.replyTextView.attributedText = attributedWithTextColor
+        
+        
+//        self.replyTextView.attributedText = resolveHashTags(userName: user_name, text: self.replyTextView.text)
+        self.replyTextView.textColor = UIColor(hexString: "#484848")
+        self.replyTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
+        self.replyTextViewLbl.isHidden = true
+        
+    }
+    
+    func resolveHashTags(userName: String, text : String) -> NSAttributedString {
+//        var length : Int = 0
+//        let text:String = text
+//        let words:[String] = text.separate(withChar: " ")
+//        let hashtagWords = words.flatMap({$0.separate(withChar: "@\(userName)")})
+//        let attrs = [NSAttributedString.Key.foregroundColor : UIColor.blue]
+//        let attrString = NSMutableAttributedString(string: text, attributes: attrs)
+        
+        let range = (text as NSString).range(of: "@\(userName)")
+        let someStr = NSMutableAttributedString.init(string: text)
+        someStr.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.blue, range: range)
+        
+//        for word in hashtagWords {
+//            if word.hasPrefix("@\(userName)") {
+//                let matchRange:NSRange = NSMakeRange(length, word.count)
+//                let stringifiedWord:String = word
+//                attrString.addAttribute(NSAttributedString.Key.link, value: "\(stringifiedWord)", range: matchRange)
+//            }
+//            length += word.count
+//        }
+        return someStr
+    }
+    
     func replyWriteCheck(){
         Alert.WithReply(self, btn1Title: "삭제", btn1Handler: {
             self.replyTextView.text = nil
             self.emoticonImg.image = nil
             self.image = nil
+            self.replyTextViewLbl.isHidden = false
             if self.customView != nil{
                 self.customView.removeFromSuperview()
                 self.customView = nil
@@ -309,32 +428,49 @@ class DetailReplyViewController: UIViewController {
     }
     
     /** **뒤로 돌아가기 버튼 클릭 > 전 화면 뷰로 이동 */
-    @IBAction func returnBackBtnClicked(_ sender: UIBarButtonItem) {
+    @IBAction func returnBackBtnClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         self.emoticonSelectView.isHidden = true
         if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
             replyWriteCheck()
         }else{
-            self.navigationController?.popViewController(animated: true)
+            UIView.animate(withDuration: animationDuration, animations: {
+                self.slideViewVerticallyTo(self.view.frame.size.height)
+            }, completion: { (isCompleted) in
+                if isCompleted {
+                    if let parentVC = self.parent as? FeedDetailViewController {
+                        self.commentDataUpdated()
+                        parentVC.tableViewCheck = 1
+                        parentVC.detailClassData()
+                    }else{}
+                    self.slideViewVerticallyTo(0)
+                }
+            })
         }
+    }
+    
+    func videoStop(){
+        if let parentVC = self.parent as? FeedDetailViewController {
+            parentVC.videoStop()
+        }else{}
     }
     
     func commentDataUpdated() {
         if missionCheck == false{
             if noticeCheck == false{
                 if commentType == "class"{
-                    let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.like ?? 0 , "preHave":list?.results?.like_me ?? "N"] as [String : Any]
+                    let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.comment?.like_cnt ?? 0 , "preHave":list?.results?.comment?.like_flag ?? "N"] as [String : Any]
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classParamChange"), object: nil,userInfo: userInfo)
                 }else{
-                    let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.like ?? 0,"preHave":list?.results?.like_me ?? "N"] as [String : Any]
+                    let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.comment?.like_cnt ?? 0,"preHave":list?.results?.comment?.like_flag ?? "N"] as [String : Any]
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumParamChange"), object: nil,userInfo: userInfo)
                 }
             }else{
-                let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.like ?? 0,"preHave":list?.results?.like_me ?? "N"] as [String : Any]
+                let userInfo = [ "comment_id" : self.comment_id ,"replyCount": replyArray.count , "commentLikeCount":list?.results?.comment?.like_cnt ?? 0,"preHave":list?.results?.comment?.like_flag ?? "N"] as [String : Any]
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noticeParamChange"), object: nil,userInfo: userInfo)
             }
         }else{
-            let userInfo = [ "comment_id" : self.comment_id , "commentLikeCount":list?.results?.like ?? 0,"preHave":list?.results?.like_me ?? "N"] as [String : Any]
+            let userInfo = [ "comment_id" : self.comment_id , "commentLikeCount":list?.results?.comment?.like_cnt ?? 0,"preHave":list?.results?.comment?.like_flag ?? "N"] as [String : Any]
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "missionParamChange"), object: nil,userInfo: userInfo)
         }
         
@@ -417,11 +553,6 @@ class DetailReplyViewController: UIViewController {
         imagePicked()
     }
     
-    /** **뷰 버튼 클릭 > 텍스트뷰 포커스  */
-    @IBAction func keyboardFocusBtnClicked(_ sender: UIButton) {
-        replyTextView.becomeFirstResponder()
-    }
-    
     /** **이모티콘 선택 이미지 클릭 > 이모티콘뷰 보이기  */
     @IBAction func replyEmoticonBtnClicked(_ sender: UIButton) {
         replyTextView.becomeFirstResponder()
@@ -444,12 +575,6 @@ class DetailReplyViewController: UIViewController {
     
     @objc func classDetailFriend(notification:Notification){
         if let temp = notification.object {
-//            let newViewController = self.profileStoryboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-//            newViewController.user_id = temp as! Int
-//            self.navigationController?.pushViewController(newViewController, animated: true)
-//            let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
-//            newViewController.url = temp as! String
-//            self.navigationController?.pushViewController(newViewController, animated: true)
             let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
             if UserManager.shared.userInfo.results?.user?.id == temp as? Int {
                 newViewController.isMyProfile = true
@@ -511,26 +636,37 @@ class DetailReplyViewController: UIViewController {
      - Throws: `Error` 오브젝트 값이 제대로 안넘어 오는경우 `Error`
      */
     @objc func keyboardWillShow(notification: Notification) {
-        if keyboardShow == false {
-            print("이거 혹시 두번타니?")
-            if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                self.keyBoardSize = kbSize
-                UIView.animate(withDuration: 0.5, animations: {
-                    if #available(iOS 11.0, *) {
-//                        let window = UIApplication.shared.keyWindow
-//                        let bottomPadding = window?.safeAreaInsets.bottom
-//                        self.tableView.contentInset = UIEdgeInsets.init(top: kbSize.height, left: 0, bottom: 0, right: 0)
-//                        self.view.frame.origin.y = self.view.frame.origin.y - kbSize.height + bottomPadding!
-                        self.tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-                        self.view.frame.size.height = self.view.frame.size.height - kbSize.height
-                    }
-                    self.view.layoutIfNeeded()
-                    self.keyboardShow = true
-                }) { success in
-                    
+            guard let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+                
+                else {
+                    return
                 }
-            }
-            
+
+                UIView.animate(withDuration: 0, animations: {
+                    if #available(iOS 11.0, *) {
+                        self.keyBoardSize = kbSize
+                        let keyboardFrameInView = self.view.convert(self.keyBoardSize!, from: nil)
+                        let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame.insetBy(dx: 0, dy: -self.additionalSafeAreaInsets.bottom)
+                        let intersection = safeAreaFrame.intersection(keyboardFrameInView)
+
+                        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseInOut], animations: {
+                            self.additionalSafeAreaInsets.bottom = intersection.height
+//                            self.replySendBtnWidthConst.constant = 30
+//                            self.classMoveBtn.alpha = 0
+//                            self.classMoveBtnWidthConst.constant = 0
+//                            self.missionSubmitView.isHidden = true
+                            self.replySendView.isHidden = false
+                            self.view.layoutIfNeeded()
+                        }, completion: nil)
+
+                        self.keyboardShow = true
+        //                    if APPDELEGATE?.topMostViewController()?.isKind(of: FeedDetailViewController.self) == true{
+//                            self.coachQuestionView.isHidden = false
+        //                    }
+                        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+                    }
+                }) {
+                    success in
         }
     }
     
@@ -544,28 +680,35 @@ class DetailReplyViewController: UIViewController {
      */
     @objc func keyboardWillHide(notification: Notification) {
         if keyboardShow == true {
+            
             if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            
+                UIView.animate(withDuration: 0, animations: {
                 self.keyBoardSize = nil
                 if self.customView != nil {
-                    self.customView.removeFromSuperview()
-                    self.customView = nil
-//                    if APPDELEGATE?.topMostViewController()?.isKind(of: DetailReplyViewController.self) == true{
-                        self.replyTextView.gestureRecognizers?.removeLast()
-//                    }
+                self.customView?.removeFromSuperview()
+                self.customView = nil
+                if APPDELEGATE?.topMostViewController()?.isKind(of: FeedDetailViewController.self) == true{
+                    self.replyTextView.gestureRecognizers?.removeLast()
                 }
+            }
                 
-                UIView.animate(withDuration: 0.5, animations: {
-                    
                     if #available(iOS 11.0, *) {
-//                        let window = UIApplication.shared.keyWindow
-//                        let bottomPadding = window?.safeAreaInsets.bottom
-//                        self.tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-//                        self.view.frame.origin.y = self.view.frame.origin.y + kbSize.height - bottomPadding!
-                        self.tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-                        self.view.frame.size.height = self.view.frame.size.height + kbSize.height
-                    }
+                        self.keyBoardSize = kbSize
+                        let keyboardFrameInView = self.view.convert(self.keyBoardSize!, from: nil)
+                        let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame.insetBy(dx: 0, dy: 0)
+                        let intersection = safeAreaFrame.intersection(keyboardFrameInView)
+                        self.additionalSafeAreaInsets.bottom = intersection.height
+                    
+                }
+
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseInOut], animations: {
                     self.view.layoutIfNeeded()
-                    self.keyboardShow = false
+                }, completion: nil)
+
+                self.keyboardShow = false
+                self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+
                 }) { success in
                     
                 }
@@ -613,21 +756,23 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
             var cell:DetailReplyTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailReplyFirst1TableViewCell") as! DetailReplyTableViewCell
             
             if list != nil{
-                if list?.results?.photo ?? "" == "" && list?.results?.emoticon ?? 0 == 0{
+                if list?.results?.comment?.photo_data ?? "" == "" && list?.results?.comment?.emoticon ?? 0 == 0{
                     cell = tableView.dequeueReusableCell(withIdentifier: "DetailReplyFirst1TableViewCell", for: indexPath) as! DetailReplyTableViewCell
+                    cell.replyContentTextView.textColor = UIColor(hexString: "#484848")
+                    cell.replyContentTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
                 }else{
-                    if list?.results?.content ?? "" != "" {
+                    if list?.results?.comment?.content ?? "" != "" {
                         cell = tableView.dequeueReusableCell(withIdentifier: "DetailReplyFirst2TableViewCell", for: indexPath) as! DetailReplyTableViewCell
                     }else{
                         cell = tableView.dequeueReusableCell(withIdentifier: "DetailReplyFirst3TableViewCell", for: indexPath) as! DetailReplyTableViewCell
                     }
                     
-                    if list?.results?.emoticon ?? 0 == 0{
-                        cell.replyPhoto.sd_setImage(with: URL(string: "\(list?.results?.photo ?? "")"), placeholderImage: UIImage(named: "user_default"))
+                    if list?.results?.comment?.emoticon ?? 0 == 0{
+                        cell.replyPhoto.sd_setImage(with: URL(string: "\(list?.results?.comment?.photo_data ?? "")"), placeholderImage: UIImage(named: "user_default"))
                         cell.replyPhotoHightConst.constant = 160
                         cell.replyPhotoWidthConst.constant = 160
                     }else{
-                        cell.replyPhoto.image = UIImage(named: "emti\(list?.results?.emoticon ?? 0)")
+                        cell.replyPhoto.image = UIImage(named: "emti\(list?.results?.comment?.emoticon ?? 0)")
                         cell.replyPhotoHightConst.constant = 80
                         cell.replyPhotoWidthConst.constant = 80
 
@@ -637,45 +782,68 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                     
                 }
                 
-                if list?.results?.content ?? "" != "" {
-                    cell.replyContentTextView.text = list?.results?.content ?? ""
+                if list?.results?.comment?.content ?? "" != "" {
+                    cell.replyContentTextView.text = list?.results?.comment?.content ?? ""
                     cell.replyContentTextView.textContainer.lineBreakMode = .byTruncatingTail
 //                    let attributedString  = NSMutableAttributedString(string: "Your string" , attributes: attributes)
-                    cell.replyContentTextView.attributedText = (list?.results?.content ?? "").html2AttributedString
-                    cell.replyContentTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14.5)
-//                    cell.replyContentTextView.text = list?.results?.content ?? ""
+                    cell.replyContentTextView.attributedText = (list?.results?.comment?.content ?? "").html2AttributedString
+                    cell.replyContentTextView.textColor = UIColor(hexString: "#484848")
+                    cell.replyContentTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
                 }else{ }
                 
-                cell.replyContentView.layer.cornerRadius = 12
-                cell.likeCountBtn.layer.shadowOpacity = 0.1
-                cell.likeCountBtn.layer.shadowRadius = 3
-                cell.likeCountBtn.layer.shadowOffset = CGSize(width: 0,height: 2)
+                if cell.replyContentTextView != nil {
+                    let padding = cell.replyContentTextView.textContainer.lineFragmentPadding
+                    cell.replyContentTextView.textContainerInset = .init(top: 0, left: -padding, bottom: 0, right: -padding)
+                    
+                    cell.replyContentTextView.setText(text: list?.results?.comment?.content ?? "", mentionColor: .blue, callBack: { (String, wordType) in
+                        if wordType == .hashtag {
+                            print("** hashtag is clicked")
+                        } else if wordType == .mention {
+//                            self.view.endEditing(true)
+//                            self.emoticonSelectView.isHidden = true
+//                            if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
+//                                self.replyWriteCheck()
+//                            }else{
+//                                self.videoStop()
+//                                let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+//                                if UserManager.shared.userInfo.results?.user?.id == self.list?.results?.comment?. ?? 0 {
+//                                    newViewController.isMyProfile = true
+//                                }else{
+//                                    newViewController.isMyProfile = false
+//                                }
+//                                newViewController.user_id = self.list?.results?.comment?.user_id ?? 0
+//                                newViewController.isMyProfile = true
+//                                self.navigationController?.pushViewController(newViewController, animated: true)
+//                            }
+                        }
+                    }, normalFont: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, mentionFont: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, nameTapped: false)
+                }
                 
-                cell.userName.text = list?.results?.user_name ?? ""
-                cell.reply_userPhoto.sd_setImage(with: URL(string: "\(list?.results?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                if list?.results?.like_me ?? "" == "Y" {
-//                    cell.likeBtn.setTitleColor(UIColor(named: "MainPoint_mainColor"), for: .normal)
-//                    cell.likeBtn.tag = self.tagForLikeBtn*10000 + 1
+                cell.userName.text = "\(list?.results?.comment?.user_name ?? "") | \(list?.results?.comment?.time_spilled ?? "")"
+                cell.reply_userPhoto.sd_setImage(with: URL(string: "\(list?.results?.comment?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+                if list?.results?.comment?.like_flag ?? "" == "Y" {
                     cell.likeCountBtn.tag = row*10000 + 1
-                    cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
-                    cell.likeCountBtn.setTitle(" \(list?.results?.like ?? 0)", for: .normal)
+                    cell.likeCountBtn.titleLabel?.font = .boldSystemFont(ofSize: 12)
+                    cell.likeCountBtn.setTitle("도움돼요 \(list?.results?.comment?.like_cnt ?? 0)", for: .normal)
                 }else{
-//                    cell.likeBtn.setTitleColor(UIColor(named: "FontColor_mainColor"), for: .normal)
-//                    cell.likeBtn.tag = self.tagForLikeBtn*10000 + 2
                     cell.likeCountBtn.tag = row*10000 + 2
-                    cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
-                    cell.likeCountBtn.setTitle(" \(list?.results?.like ?? 0)", for: .normal)
+                    cell.likeCountBtn.titleLabel?.font = .systemFont(ofSize: 12)
+                    if list?.results?.comment?.like_cnt ?? 0 > 0 {
+                        cell.likeCountBtn.setTitle("도움돼요 \(list?.results?.comment?.like_cnt ?? 0)", for: .normal)
+                    } else {
+                        cell.likeCountBtn.setTitle("도움돼요", for: .normal)
+                    }
                 }
-                if list?.results?.type ?? "" != "공지사항"{
-                    cell.noticeLbl.text = ""
-                }else{
+                if isNotification != false {
+                    cell.noticeLbl.isHidden = false
                     cell.noticeLbl.text = "•공지사항"
+                }else{
+                    cell.noticeLbl.isHidden = true
+                    cell.noticeLbl.text = ""
                 }
                 
-                if list?.results?.user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id {
-                    cell.moreBtn.tag = list?.results?.id ?? 0
+                if list?.results?.comment?.user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id {
+                    cell.moreBtn.tag = list?.results?.comment?.id ?? 0
                     cell.moreBtn.isHidden = false
                 }else{
                     cell.moreBtn.isHidden = true
@@ -684,35 +852,42 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
 //                if list?.results?.like ?? 0 > 0 {
 //                    cell.likeCountBtn.setTitle(" \(list?.results?.like ?? 0)", for: .normal)
 //                }
-                cell.replyTime.text = list?.results?.time_spilled ?? "0분전"
                 
                 // Todo://
 //                if list?.results?.roll != "M"{
 //                    cell.rollGubunImg.isHidden = false
 //                }else{
+                    cell.rollGubunImg.isHidden = true
+//                }
+//                if list?.results?.comment?.friend_status ?? "Y" != "Y"{
+//                    if list?.results?.comment?.user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
+//                        cell.rollGubunImg.isHidden = true
+//                    }else{
+//                        cell.rollGubunImg.isHidden = false
+//                    }
+//                }else{
 //                    cell.rollGubunImg.isHidden = true
 //                }
-                print("** friend status \(list?.results?.friend_status ?? "yyyy")")
-                if list?.results?.friend_status ?? "Y" != "Y"{
-                    if list?.results?.user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
-                        cell.rollGubunImg.isHidden = true
-                    }else{
-                        cell.rollGubunImg.isHidden = false
-                    }
-                }else{
-                    cell.rollGubunImg.isHidden = true
-                }
                
-                cell.coachStar.isHidden = true
+                if list?.results?.comment?.coach_flag ?? "N" != "Y" {
+                    cell.coachStar.isHidden = true
+                } else {
+                    cell.coachStar.isHidden = false
+                }
                 
             }
+            
             cell.selectionStyle = .none
             return cell
         }else{
             var cell:DetailReplyTableViewCell =  tableView.dequeueReusableCell(withIdentifier:  "DetailReplySecond1TableViewCell") as! DetailReplyTableViewCell
             if list != nil{
-                if replyArray[row].photo ?? "" == "" && replyArray[row].emoticon ?? 0 == 0{
+                if replyArray[row].photo_data ?? "" == "" && replyArray[row].emoticon ?? 0 == 0{
                     cell = tableView.dequeueReusableCell(withIdentifier: "DetailReplySecond1TableViewCell", for: indexPath) as! DetailReplyTableViewCell
+                    let padding = cell.replyContentTextView.textContainer.lineFragmentPadding
+                    cell.replyContentTextView.textContainerInset = .init(top: 0, left: -padding, bottom: 0, right: -padding)
+                    cell.replyContentTextView.textColor = UIColor(hexString: "#484848")
+                    cell.replyContentTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
                 }else{
                     if replyArray[row].content ?? "" != "" {
                         cell = tableView.dequeueReusableCell(withIdentifier: "DetailReplySecond2TableViewCell", for: indexPath) as! DetailReplyTableViewCell
@@ -720,7 +895,7 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                         cell = tableView.dequeueReusableCell(withIdentifier: "DetailReplySecond3TableViewCell", for: indexPath) as! DetailReplyTableViewCell
                     }
                     if replyArray[row].emoticon ?? 0 == 0{
-                        cell.replyPhoto.sd_setImage(with: URL(string: "\(replyArray[row].photo ?? "")"), placeholderImage: UIImage(named: "user_default"))
+                        cell.replyPhoto.sd_setImage(with: URL(string: "\(replyArray[row].photo_data ?? "")"), placeholderImage: UIImage(named: "user_default"))
                         cell.replyPhotoHightConst.constant = 160
                         cell.replyPhotoWidthConst.constant = 160
                     }else{
@@ -732,20 +907,22 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.replyPhoto.addGestureRecognizer(pictureTap)
                 }
                 
-                cell.userName.text = replyArray[row].user_name
+                
+                
+                cell.userName.text = "\(replyArray[row].user_name ?? "") | \(replyArray[row].time_spilled ?? "")"
                 cell.reply_userPhoto.sd_setImage(with: URL(string: "\(replyArray[row].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                cell.replyTime.text = replyArray[row].time_spilled ?? "0분전"
-                print("reply array like count : \(self.replyArray[row].like ?? 0)")
-                if replyArray[row].like_me ?? "" == "Y" {
+                if replyArray[row].like_flag ?? "" == "Y" {
                     cell.likeCountBtn.tag = row*10000 + 1
-                    cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
-                    cell.likeCountBtn.setTitle(" \(self.replyArray[row].like ?? 0)", for: .normal)
+                    cell.likeCountBtn.titleLabel?.font = .boldSystemFont(ofSize: 12)
+                    cell.likeCountBtn.setTitle("도움돼요 \(self.replyArray[row].like_cnt ?? 0)", for: .normal)
                 }else{
                     cell.likeCountBtn.tag = row*10000 + 2
-                    cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
-                    cell.likeCountBtn.setTitle(" \(self.replyArray[row].like ?? 0)", for: .normal)
+                    cell.likeCountBtn.titleLabel?.font = .systemFont(ofSize: 12)
+                    if self.replyArray[row].like_cnt ?? 0 > 0 {
+                        cell.likeCountBtn.setTitle("도움돼요 \(self.replyArray[row].like_cnt ?? 0)", for: .normal)
+                    } else {
+                        cell.likeCountBtn.setTitle("도움돼요", for: .normal)
+                    }
                 }
                 
                 if replyArray[row].user_id == UserManager.shared.userInfo.results?.user?.id {
@@ -759,28 +936,59 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.replyContentTextView.text = replyArray[row].content ?? ""
                     cell.replyContentTextView.textContainer.lineBreakMode = .byTruncatingTail
                     cell.replyContentTextView.attributedText = (replyArray[row].content ?? "").html2AttributedString
-//                    cell.replyContentTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+                    cell.replyContentTextView.textColor = UIColor(hexString: "#484848")
+                    cell.replyContentTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
                 }else{ }
-                print("** friend status  2 \(replyArray[row].friend_yn ?? "yyyy")")
-                if replyArray[row].friend_yn ?? "Y" != "Y"{
-                    if replyArray[row].user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
+//                if replyArray[row].friend_yn ?? "Y" != "Y"{
+//                    if replyArray[row].user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
                         cell.rollGubunImg.isHidden = true
-                    }else{
-                        cell.rollGubunImg.isHidden = false
-                    }
-                }else{
-                    cell.rollGubunImg.isHidden = true
+//                    }else{
+//                        cell.rollGubunImg.isHidden = false
+//                    }
+//                }else{
+//                    cell.rollGubunImg.isHidden = true
+//                }
+                
+                if replyArray[row].mention_name != "" {
+                    self.nameMentioned = true
+                    self.originalText = "@\(replyArray[row].mention_name ?? "") "
+                } else {
+                    self.nameMentioned = false
+                    self.originalText = ""
                 }
-                 
-                cell.coachStar.isHidden = true
                 
-                cell.replyContentView.layer.cornerRadius = 12
-                cell.likeCountBtn.layer.shadowOpacity = 0.1
-                cell.likeCountBtn.layer.shadowRadius = 3
-                cell.likeCountBtn.layer.shadowOffset = CGSize(width: 0,height: 2)
+                if cell.replyContentTextView != nil {
+                    cell.replyContentTextView.setText(text: "\(originalText)\(replyArray[row].content ?? "")", mentionColor: .blue, callBack: { (String, wordType) in
+                        if wordType == .hashtag {
+                            print("** hashtag is clicked")
+                        } else if wordType == .mention {
+                            self.view.endEditing(true)
+                            self.emoticonSelectView.isHidden = true
+                            if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
+                                self.replyWriteCheck()
+                            }else{
+                                self.videoStop()
+                                let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
+                                if UserManager.shared.userInfo.results?.user?.id == self.replyArray[row].mention_id ?? 0 {
+                                    newViewController.isMyProfile = true
+                                }else{
+                                    newViewController.isMyProfile = false
+                                }
+                                newViewController.user_id = self.replyArray[row].mention_id ?? 0
+                                newViewController.isMyProfile = true
+                                self.navigationController?.pushViewController(newViewController, animated: true)
+                            }
+                        }
+                    }, normalFont: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, mentionFont: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!, nameTapped: self.nameMentioned)
+                }
                 
+                if replyArray[row].coach_flag ?? "N" != "Y" {
+                    cell.coachStar.isHidden = true
+                } else {
+                    cell.coachStar.isHidden = false
+                }
+                cell.childCommentReplyBtn.tag = row
                 cell.friendProfileBtn.tag = row//replyArray[row].user_id ?? 0
-                cell.friendProfile2Btn.tag = row//replyArray[row].user_id ?? 0
             }else{
                 cell = tableView.dequeueReusableCell(withIdentifier:  "DetailReplySecond1TableViewCell", for: indexPath) as! DetailReplyTableViewCell
             }
@@ -817,9 +1025,9 @@ extension DetailReplyViewController:UITableViewDelegate,UITableViewDataSource{
         let row = indexPath.row
         if section == 1{
             if row == (replyArray.count)-2{
-                if replyArray.count < list?.results?.reply?.total ?? 0 {
+                if replyArray.count < list?.results?.total ?? 0 {
                     self.page = self.page + 1
-                    self.detailReplyData(comment_id: comment_id, page: self.page)
+                    self.detailReplyData(comment_id: comment_id)
                 }
             }
         }
@@ -837,35 +1045,21 @@ extension DetailReplyViewController {
      
      - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
      */
-    func detailReplyData(comment_id:Int,page:Int){
-        FeedApi.shared.replyDetail(comment_id: comment_id, page: page,success: { result in
-            if result.code == "200"{
-                self.list = result
-                for addArray in 0 ..< (self.list?.results?.reply?.appClassCommentList.count)! {
-                    self.replyArray.append((self.list?.results?.reply?.appClassCommentList[addArray])!)
-                }
-                if self.list?.results?.play_file ?? "" != "" {
-                    self.youtube_url = self.list?.results?.play_file ?? ""
-                }else{
-                    if self.list?.results?.youtu_address ?? "" != "" {
-                        self.youtube_url = self.list?.results?.youtu_address ?? ""
-                    }else{
-                        self.youtube_url = ""
-                    }
-                }
-                DispatchQueue.main.async {
-                    if self.youtube_load == false{
-                        self.videoLoad()
-                        self.youtube_load = true
-                    }else{
-                        self.youtube_load = true
-                    }
-                    self.tableView.reloadData()
-                }
+    func detailReplyData(comment_id:Int){
+        FeedApi.shared.commentReplyData(commentId: comment_id) { result in
+            self.list = result
+            self.replyArray.removeAll()
+            for addArray in 0 ..< (self.list?.results?.list_arr.count)! {
+                self.replyArray.append((self.list?.results?.list_arr[addArray])!)
             }
-        }) { error in
-            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } fail: { (error) in
+            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+            })
         }
+
     }
     
     /**
@@ -877,6 +1071,7 @@ extension DetailReplyViewController {
      - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
      */
     func haveFirstSave(sender:UIButton){
+        sender.isUserInteractionEnabled = false
         let likeGubun = sender.tag % 10000 // 1 : Y delete  2 : N post
         var row = 0
         
@@ -905,19 +1100,20 @@ extension DetailReplyViewController {
         let cell = self.tableView.cellForRow(at: selectedIndexPath) as! DetailReplyTableViewCell
         if likeGubun == 1{
             cell.likeCountBtn.tag = row*10000 + 2
-            self.list?.results?.like_me = "N"
-            self.list?.results?.like = (self.list?.results?.like ?? 0)-1
-            cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-            cell.likeCountBtn.setImage(UIImage(named: "comment_likBtn_default"), for: .normal)
-            cell.likeCountBtn.setTitle(" \(self.list?.results?.like ?? 0)", for: .normal)
-            
+            self.list?.results?.comment?.like_flag = "N"
+            self.list?.results?.comment?.like_cnt = (self.list?.results?.comment?.like_cnt ?? 0)-1
+            cell.likeCountBtn.titleLabel?.font = .systemFont(ofSize: 12)
+            if self.list?.results?.comment?.like_cnt ?? 0 > 0 {
+                cell.likeCountBtn.setTitle("도움돼요 \(self.list?.results?.comment?.like_cnt ?? 0)", for: .normal)
+            } else {
+                cell.likeCountBtn.setTitle("도움돼요", for: .normal)
+            }
         }else{
             cell.likeCountBtn.tag = row*10000 + 1
-            self.list?.results?.like_me = "Y"
-            self.list?.results?.like = (self.list?.results?.like ?? 0)+1
-            cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-            cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
-            cell.likeCountBtn.setTitle(" \(self.list?.results?.like ?? 0)", for: .normal)
+            self.list?.results?.comment?.like_flag = "Y"
+            self.list?.results?.comment?.like_cnt = (self.list?.results?.comment?.like_cnt ?? 0)+1
+            cell.likeCountBtn.titleLabel?.font = .boldSystemFont(ofSize: 12)
+            cell.likeCountBtn.setTitle("도움돼요 \(self.list?.results?.comment?.like_cnt ?? 0)", for: .normal)
         }
         DispatchQueue.main.async {
             self.tableView.reloadRows(at: [selectedIndexPath], with: .none)
@@ -951,23 +1147,26 @@ extension DetailReplyViewController {
             let cell = self.tableView.cellForRow(at: selectedIndexPath) as! DetailReplyTableViewCell
             if result.code == "200"{
                 if likeGubun == 1{
-                    self.replyArray[row].like_me = "N"
-                    self.replyArray[row].like = (self.replyArray[row].like ?? 0)-1
+                    self.replyArray[row].like_flag = "N"
+                    self.replyArray[row].like_cnt = (self.replyArray[row].like_cnt ?? 0)-1
                     cell.likeCountBtn.tag = row*10000 + 2
-                    cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
-                    cell.likeCountBtn.setTitle(" \(self.replyArray[row].like ?? 0)", for: .normal)
+                    cell.likeCountBtn.titleLabel?.font = .systemFont(ofSize: 12)
+                    if self.replyArray[row].like_cnt ?? 0 > 0 {
+                        cell.likeCountBtn.setTitle("도움돼요 \(self.replyArray[row].like_cnt ?? 0)", for: .normal)
+                    } else {
+                        cell.likeCountBtn.setTitle("도움돼요", for: .normal)
+                    }
                 }else{
-                    self.replyArray[row].like_me = "Y"
-                    self.replyArray[row].like = (self.replyArray[row].like ?? 0)+1
+                    self.replyArray[row].like_flag = "Y"
+                    self.replyArray[row].like_cnt = (self.replyArray[row].like_cnt ?? 0)+1
                     cell.likeCountBtn.tag = row*10000 + 1
-                    cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                    cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
-                    cell.likeCountBtn.setTitle(" \(self.replyArray[row].like ?? 0)", for: .normal)
+                    cell.likeCountBtn.titleLabel?.font = .boldSystemFont(ofSize: 12)
+                    cell.likeCountBtn.setTitle("도움돼요 \(self.replyArray[row].like_cnt ?? 0)", for: .normal)
                 }
-                self.replyArray[row].like = result.results?.like ?? 0
+//                self.replyArray[row].like_cnt = result.results?.like ?? 0
                 DispatchQueue.main.async {
-                    self.tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                    self.tableView.reloadData()
+//                    self.tableView.reloadRows(at: [selectedIndexPath], with: .none)
                     sender.isUserInteractionEnabled = true
                 }
                 
@@ -990,7 +1189,12 @@ extension DetailReplyViewController {
      */
     func replySend(commentType:String,sender:UIButton){
         sender.isUserInteractionEnabled = false
-        let replyText = self.replyTextView.text
+        var replyText = self.replyTextView.text
+        let words = replyText?.components(separatedBy: " ")
+        if words?[0] == "@\(self.mention_name)" {
+            replyText = replyText?.replacingOccurrences(of: "@\(mention_name) ", with: "")
+        }
+        
         self.emoticonSelectView.isHidden = true
         self.emoticonImg.image = nil
         self.replyTextView.text = nil
@@ -998,31 +1202,40 @@ extension DetailReplyViewController {
             self.customView.removeFromSuperview()
             self.customView = nil
         }
+        
         Indicator.showActivityIndicator(uiView: self.view)
-        FeedApi.shared.replySave(class_id: self.class_id, curriculum: self.curriculum_id, mcComment_id: self.comment_id, content: replyText!, commentType: commentType, commentChild: true,emoticon:self.emoticonNumber, photo: self.image,success: { result in
-            
+        FeedApi.shared.replySave(class_id: self.class_id, curriculum: self.curriculum_id, mcComment_id: self.comment_id, content: replyText!, commentType: commentType, commentChild: true,emoticon:self.emoticonNumber, photo: self.image, mentionStatus: self.mentionStatus, mention_id: self.mention_id,success: { result in
+
             if result.code == "200"{
-                let temp = AppClassCommentList.init()
+                let temp = CommentReplyList.init()
                 temp.id = result.results?.id
-                temp.type = result.results?.type
+//                temp.type = result.results?.type
                 temp.user_id = result.results?.user_id
                 temp.user_photo = result.results?.user_photo
                 temp.user_name = result.results?.user_name
                 temp.time_spilled = result.results?.time_spilled
                 temp.content = result.results?.content
-                temp.reply_count = result.results?.reply_count
-                temp.like = result.results?.like
-                temp.like_me = result.results?.like_me
-                temp.photo = result.results?.photo
-                temp.roll = result.results?.roll
-                temp.like_user = result.results?.like_user
-                temp.emoticon = result.results?.emoticon
+//                temp.reply = result.results?.reply_count
+                temp.like_cnt = result.results?.like
+//                temp.like_flag = result.results?.
+                temp.photo_data = result.results?.photo
+//                temp.roll = result.results?.roll
+//                temp.like_user = result.results?.like_user
+                temp.emoticon = self.emoticonNumber // result.results?.emoticon
+                temp.mention_id = Int(result.results?.mention_id ?? "")
+                temp.mention_name = result.results?.mention_name
+
+
 
                 self.replyArray.insert(temp, at: 0)
                 self.emoticonNumber = 0
-                self.list?.results?.reply_count = (self.list?.results?.reply_count ?? 0) + 1
+                self.image = nil
+                self.list?.results?.comment?.reply_cnt = (self.list?.results?.comment?.reply_cnt ?? 0) + 1
                 self.tableView.reloadSections([0,1], with: .automatic)
                 sender.isUserInteractionEnabled = true
+                self.replyTextViewLbl.isHidden = false
+                self.mention_name = ""
+                self.mention_id = 0
                 Indicator.hideActivityIndicator(uiView: self.view)
             }else{
                 Indicator.hideActivityIndicator(uiView: self.view)
@@ -1072,7 +1285,7 @@ extension DetailReplyViewController {
                     var indexSet = IndexSet.init(integer: 1)
                     self.tableView.reloadSections(indexSet, with: .automatic)
                     
-                    self.list?.results?.reply_count = (self.list?.results?.reply_count ?? 0) - 1
+                    self.list?.results?.comment?.reply_cnt = (self.list?.results?.comment?.reply_cnt ?? 0) - 1
                     indexSet = IndexSet.init(integer: 0)
                     self.tableView.reloadSections(indexSet, with: .automatic)
                 }
@@ -1348,55 +1561,147 @@ extension DetailReplyViewController:CropViewControllerDelegate, UIImagePickerCon
     
 }
 
-extension DetailReplyViewController:WKYTPlayerViewDelegate {
-    func playerView(_ playerView: WKYTPlayerView, didPlayTime playTime: Float) {
-    }
+extension DetailReplyViewController: UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
-    
-    func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
-        //        0 - 재생 안됨   1 - 재생 종료   2 - 재생 시작     3 - 일시중지    4 - 버퍼링
-//        var play_state = ""
-//        var play_time = 0
-        switch state.rawValue {
-        case 0:
-            self.youtubeView.playVideo()
-        case 1:
-//            play_state = "end"
+    /**
+    **파라미터가 있고 반환값이 없는 메소드 > 팬 제스처가 일어나기 시작하는 이벤트
+     
+     - Parameters:
+        - panGesture: panGesture 이벤트 값
+     
+     - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
+     */
+    @objc func onPan(_ panGesture: UIPanGestureRecognizer) {
+        switch panGesture.state {
+        case .began, .changed:
+            let translation = panGesture.translation(in: view)
+            let y = max(0, translation.y)
+            self.slideViewVerticallyTo(y)
             break
-        case 2:
-//            play_state = "start"
-            break
-        case 3:
-//            play_state = "pause"
+        case .ended:
+            let translation = panGesture.translation(in: view)
+            let velocity = panGesture.velocity(in: view)
+            let closing = (translation.y > self.view.frame.size.height * minimumScreenRatioToHide) ||
+                (velocity.y > minimumVelocityToHide)
+            
+            if closing {
+                UIView.animate(withDuration: animationDuration, animations: {
+                    self.slideViewVerticallyTo(self.view.frame.size.height)
+                }, completion: { (isCompleted) in
+                    if isCompleted {
+                        if let parentVC = self.parent as? FeedDetailViewController {
+                            self.commentDataUpdated()
+                            parentVC.tableViewCheck = 1
+                            parentVC.detailClassData()
+                        }else{}
+                        self.slideViewVerticallyTo(0)
+                    }
+                })
+            } else {
+                UIView.animate(withDuration: animationDuration, animations: {
+                    self.slideViewVerticallyTo(0)
+                })
+            }
             break
         default:
+            UIView.animate(withDuration: animationDuration, animations: {
+                self.slideViewVerticallyTo(0)
+            })
             break
         }
-        
     }
     
-    func playerViewDidBecomeReady(_ playerView: WKYTPlayerView) {
-        playerView.playVideo()
+    /**
+    **파라미터가 있고 반환값이 없는 메소드 > 수직으로 슬라이드 될떄 타는 함수
+     
+     - Parameters:
+        - y: y값
+     
+     - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
+     */
+    func slideViewVerticallyTo(_ y: CGFloat) {
+        self.view.frame.origin = CGPoint(x: 0, y: y)
     }
     
-    func playerView(_ playerView: WKYTPlayerView, didChangeTo quality: WKYTPlaybackQuality) {
-    }
-    
-    func playerView(_ playerView: WKYTPlayerView, receivedError error: WKYTPlayerError) {
-    }
-    
-    func videoLoad(){
-        let videoId = self.youtube_url.replace(target: "https://youtu.be/", withString: "").replace(target: "https://www.youtube.com/watch?v=", withString: "")
-        if self.youtube_url != "" {
-            self.youtubeViewAspect.isActive = true
-            self.yotubeViewHeightConst.isActive = false
-            self.youtubeView.load(withVideoId: videoId, playerVars: self.playerVars)
+    /**
+    **파라미터가 있고 반환값이 없는 메소드 > 제스쳐 인식 함수
+     
+     - Parameters:
+        - gestureRecognizer: gestureRecognizer 값
+        - otherGestureRecognizer: otherGestureRecognizer 값
+     
+     - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
+     */
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool{
+        if contentY == 0 {
+            return true
         }else{
-            self.youtubeViewAspect.isActive = false
-            self.yotubeViewHeightConst.isActive = true
-            self.yotubeViewHeightConst.constant = 0
+            return false
         }
-        
     }
     
+    /**
+    **파라미터가 있고 반환값이 없는 메소드 > 스크롤을 이용하여 스크롤이 상단 y=0 까지 올라오면 팬 제스처 실행
+     
+     - Parameters:
+        - scrollView: scrollView 값
+     
+     - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
+     */
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        contentY = scrollView.contentOffset.y
+    }
 }
+
+//extension DetailReplyViewController:WKYTPlayerViewDelegate {
+//    func playerView(_ playerView: WKYTPlayerView, didPlayTime playTime: Float) {
+//    }
+//
+//
+//    func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
+//        //        0 - 재생 안됨   1 - 재생 종료   2 - 재생 시작     3 - 일시중지    4 - 버퍼링
+////        var play_state = ""
+////        var play_time = 0
+//        switch state.rawValue {
+//        case 0:
+//            self.youtubeView.playVideo()
+//        case 1:
+////            play_state = "end"
+//            break
+//        case 2:
+////            play_state = "start"
+//            break
+//        case 3:
+////            play_state = "pause"
+//            break
+//        default:
+//            break
+//        }
+//
+//    }
+//
+//    func playerViewDidBecomeReady(_ playerView: WKYTPlayerView) {
+//        playerView.playVideo()
+//    }
+//
+//    func playerView(_ playerView: WKYTPlayerView, didChangeTo quality: WKYTPlaybackQuality) {
+//    }
+//
+//    func playerView(_ playerView: WKYTPlayerView, receivedError error: WKYTPlayerError) {
+//    }
+//
+//    func videoLoad(){
+//        let videoId = self.youtube_url.replace(target: "https://youtu.be/", withString: "").replace(target: "https://www.youtube.com/watch?v=", withString: "")
+//        if self.youtube_url != "" {
+//            self.youtubeViewAspect.isActive = true
+//            self.yotubeViewHeightConst.isActive = false
+//            self.youtubeView.load(withVideoId: videoId, playerVars: self.playerVars)
+//        }else{
+//            self.youtubeViewAspect.isActive = false
+//            self.yotubeViewHeightConst.isActive = true
+//            self.yotubeViewHeightConst.constant = 0
+//        }
+//
+//    }
+//
+//}

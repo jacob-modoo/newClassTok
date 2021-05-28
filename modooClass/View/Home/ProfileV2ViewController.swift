@@ -975,7 +975,6 @@ extension ProfileV2ViewController:UITableViewDelegate,UITableViewDataSource{
             }else{
                 managerCount = ((self.profileModel?.results?.manage_class_list.count ?? 0)/2)
             }
-            print("row : \(row) , managerCount : \(managerCount)")
             if row == managerCount-1{
                 cell.managerViewBottomConst.constant = 32
             }else{

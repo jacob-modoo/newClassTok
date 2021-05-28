@@ -113,21 +113,21 @@ class ChattingViewController: UIViewController {
             self.chat_list_arr.removeAll()
         }
         
-        ChattingListApi.shared.chatList(page: page) { [unowned self] result in
+        ChattingListApi.shared.chatList(page: page) { [weak self] result in
             if result.code == "200" {
-                self.chatList = result
+                self?.chatList = result
                 
-                for addArray in 0 ..< (self.chatList?.results?.curr_total ?? 0)! {
-                    if self.chatList?.results?.list_arr[addArray].user_id.count ?? 0 > 1 {
-                        self.chat_list_arr.append((self.chatList?.results?.list_arr[addArray])!)
+                for addArray in 0 ..< (self?.chatList?.results?.curr_total ?? 0)! {
+                    if self?.chatList?.results?.list_arr[addArray].user_id.count ?? 0 > 1 {
+                        self?.chat_list_arr.append((self?.chatList?.results?.list_arr[addArray])!)
                     }
                 }
 
                 DispatchQueue.main.async {
                     let indexSet = IndexSet.init(integer: 1)
-                    self.tableView.reloadSections(indexSet, with: .automatic)
+                    self?.tableView.reloadSections(indexSet, with: .automatic)
                 }
-                Indicator.hideActivityIndicator(uiView: self.view)
+                Indicator.hideActivityIndicator(uiView: (self?.view)!)
             }
         } fail: { error in
             Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인") {

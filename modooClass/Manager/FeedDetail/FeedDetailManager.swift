@@ -15,4 +15,5 @@ class FeedDetailManager: NSObject {
     var feedAppCheerModel = FeedAppCheerModel()
     var reviewDashboardModel = ReviewDashboardModel()
     var eventModel = EventModel()
+    var feedDetailData = CommentReplyDataModel()
 }

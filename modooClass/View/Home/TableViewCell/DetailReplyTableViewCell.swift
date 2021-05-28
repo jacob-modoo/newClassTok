@@ -12,27 +12,28 @@ class DetailReplyTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reply_userPhoto: UIImageView!
     @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var replyTime: UILabel!
+//    @IBOutlet weak var replyTime: UILabel!
     @IBOutlet weak var replyPhoto: UIImageView!
     @IBOutlet weak var replyPhotoHightConst: NSLayoutConstraint!
     @IBOutlet weak var replyPhotoWidthConst: NSLayoutConstraint!
     
-    @IBOutlet weak var replyCount: UILabel!
+//    @IBOutlet weak var replyCount: UILabel!
     
-    @IBOutlet weak var replyContentTextView: UITextView!
-    @IBOutlet weak var replyContentLabel: UILabel!
+    @IBOutlet weak var replyContentTextView: AttrTextView!
+//    @IBOutlet weak var replyContentLabel: UILabel!
     @IBOutlet weak var rollGubunImg: UIImageView!
-    @IBOutlet weak var replyReadBtn: UIButton!
+//    @IBOutlet weak var replyReadBtn: UIButton!
     
     @IBOutlet weak var noticeLbl: UILabel!
     
     @IBOutlet weak var coachStar: UIImageView!
     
     @IBOutlet weak var friendProfileBtn: UIButton!
-    @IBOutlet weak var friendProfile2Btn: UIButton!
+//    @IBOutlet weak var friendProfile2Btn: UIButton!
     @IBOutlet weak var likeCountBtn: UIButton!
     @IBOutlet weak var moreBtn: UIButton!
-    @IBOutlet weak var replyContentView: UIView!
+//    @IBOutlet weak var replyContentView: UIView!
+    @IBOutlet weak var childCommentReplyBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

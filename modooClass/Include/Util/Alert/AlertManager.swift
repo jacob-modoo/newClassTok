@@ -90,13 +90,15 @@ class Alert: NSObject {
     }
     // Alert With Title, Content, Btn1, Btn2
     
-    // Alert With Title, Content, Btn1, Image1
-    static func With(_ viewController:UIViewController , title:String, content:String,imageType:String, btn1Title:String, btn1Handler: @escaping () -> Void) {
+    // Alert With Title, Content, Btn1, Btn2, Image1
+    static func With(_ viewController:UIViewController , title:String, content:String,imageType:String, btn1Title:String, btn1Handler: @escaping () -> Void, btn2Title:String, btn2Handler: @escaping () -> Void) {
         let alert:AlertViewController = storyboard.instantiateViewController(withIdentifier: AlertType.WithBtn1Image.rawValue) as! AlertViewController
         alert.alertTitle = title
         alert.alertContent = content
         alert.btn1Title = btn1Title
         alert.btn1Click = btn1Handler
+        alert.btn2Title = btn2Title
+        alert.btn2Click = btn2Handler
         alert.imageType = imageType
         
         alert.alertType = .WithBtn1Image
@@ -278,6 +280,20 @@ class Alert: NSObject {
         let alert:AlertViewController = storyboard.instantiateViewController(withIdentifier: AlertType.WithUnfriend.rawValue) as! AlertViewController
         
         alert.alertType = .WithUnfriend
+        alert.btn1Title = btn1Title
+        alert.btn2Title = btn2Title
+        alert.btn1Click = btn1Handler
+        alert.btn2Click = btn2Handler
+        
+        alert.modalPresentationStyle = .overFullScreen
+        
+        viewController.present(alert, animated: false, completion: nil)
+    }
+    
+    static func WithEditComment(_ viewController:UIViewController, btn1Title:String, btn1Handler: @escaping () -> Void, btn2Title:String, btn2Handler: @escaping () -> Void) {
+        let alert:AlertViewController = storyboard.instantiateViewController(withIdentifier: AlertType.WithEditComment.rawValue) as! AlertViewController
+        
+        alert.alertType = .WithEditComment
         alert.btn1Title = btn1Title
         alert.btn2Title = btn2Title
         alert.btn1Click = btn1Handler

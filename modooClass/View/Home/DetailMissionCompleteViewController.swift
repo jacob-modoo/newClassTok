@@ -26,6 +26,8 @@ class DetailMissionCompleteViewController: UIViewController {
     var missionTextView:UITextView = UITextView()
     /** **active text field*/
     var activeTextField:UITextField?
+    /** *checking if the class is last or not */
+    var isLastClass = false
     /** **다음강의 버튼 */
     @IBOutlet var missionNextBtn: UIButton!
     /** **미션 완료 버튼 */
@@ -115,14 +117,14 @@ class DetailMissionCompleteViewController: UIViewController {
 //                self.navigationController?.pushViewController(newViewController, animated: true)
                 self.navigationController?.popToViewBottomController(ofClass: FeedDetailViewController.self)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumUpdatePost"), object: "review")
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reviewWebViewCheck"), object: newViewController.url)
                 //object: result.results?.study_address
             }, btn2Title: "거절", btn2Handler: {
             self.navigationController?.popToViewBottomController(ofClass: FeedDetailViewController.self)
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumUpdatePost"), object: "")
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
+//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
                 }
             })
         }else{
@@ -348,33 +350,45 @@ extension DetailMissionCompleteViewController{
             Indicator.hideActivityIndicator(uiView: self.view)
             if result.code == "200"{
                 sender.isUserInteractionEnabled = true
-                Alert.With(self, title: result.results!.title!, content: result.results!.content!, imageType: result.results!.type!, btn1Title: "확인", btn1Handler: {
-                    if result.results?.study_type ?? "" == "end"{
-                        DispatchQueue.main.async {
-                            Alert.WithReview(self, btn1Title: "리뷰쓰기", btn1Handler: {
-                                self.navigationController?.popToViewBottomController(ofClass: FeedDetailViewController.self)
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumUpdatePost"), object: "review")
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reviewWebViewCheck"), object: result.results?.study_address)
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
-                            }, btn2Title: "거절", btn2Handler: {
-                                self.navigationController?.popToViewBottomController(ofClass: FeedDetailViewController.self)
-                                DispatchQueue.main.async {
-                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumUpdatePost"), object: "")
-                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
-                                }
-                            })
-                        }
-                    }else{
+                if self.isLastClass == true {
+                    DispatchQueue.main.async {
+                        Alert.WithReview(self, btn1Title: "리뷰쓰기", btn1Handler: {
+                            self.navigationController?.popToViewBottomController(ofClass: FeedDetailViewController.self)
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumUpdatePost"), object: "review")
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reviewWebViewCheck"), object: result.results?.study_address)
+//                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
+                        }, btn2Title: "거절", btn2Handler: {
+                            self.navigationController?.popToViewBottomController(ofClass: FeedDetailViewController.self)
+                            DispatchQueue.main.async {
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumUpdatePost"), object: "")
+//                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
+                            }
+                        })
+                    }
+                } else {
+                    Alert.With(self, title: result.results!.title!, content: result.results!.content!, imageType: result.results!.type!, btn1Title: "확인", btn1Handler: {
                         self.navigationController?.popToViewBottomController(ofClass: FeedDetailViewController.self)
                         DispatchQueue.main.async {
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumUpdatePost"), object: "")
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
+    //                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "classLikeView"), object: "false")
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "flashNextClassBtn"), object: nil)
                         }
                         
-                    }
-                    
-                })
+                    }, btn2Title: "다음 강의로 이동합니다", btn2Handler: {
+                        FeedApi.shared.curriculum_next(class_id: FeedDetailManager.shared.feedDetailList.results?.mcClass_id ?? 0, curriculum_id:FeedDetailManager.shared.feedDetailList.results?.curriculum?.button_next_curriculum_id ?? 0 ,success: { [unowned self] result in
+                            if result.code == "200"{
+                                self.navigationController?.popToViewBottomController(ofClass: FeedDetailViewController.self)
+                                DispatchQueue.main.async {
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "curriculumUpdatePost"), object: "")
+                                }
+                            }
+                        }) { error in
+                            Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+                                
+                            })
+                        }
+                    })
+                }
             }else{
                 sender.isUserInteractionEnabled = true
             }

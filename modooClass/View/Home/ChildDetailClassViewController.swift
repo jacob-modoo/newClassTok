@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import Photos
 import CropViewController
+import FTPopOverMenu_Swift
 
 /**
 # ChildDetailClassViewController.swift 클래스 설명
@@ -82,7 +83,7 @@ class ChildDetailClassViewController: UIViewController {
     /** **댓글 페이징 */
     var page = 1
     /** *filtering variable*/
-    var type = "all"
+    var type = "best"
     /** **키보드 숨김 유무 */
     var keyboardShow = false
     /** **커리큘럼 소개 표시 유무 */
@@ -99,6 +100,7 @@ class ChildDetailClassViewController: UIViewController {
     var classTextView:UITextView?
     var sender:UIButton?
     var isShowPopup:Bool = true
+    var isNotification:Bool = false
     let window = UIApplication.shared.keyWindow
     let popupViewHeight = CGFloat(180)
     private let imageView = UIImageView()
@@ -119,6 +121,7 @@ class ChildDetailClassViewController: UIViewController {
     
     var cheerViewExitCheck = false
     let home2WebViewStoryboard: UIStoryboard = UIStoryboard(name: "Home2WebView", bundle: nil)
+    let feedViewStoryboard = UIStoryboard(name: "Feed", bundle: nil)
     
     /** **뷰 로드 완료시 타는 메소드 */
     override func viewDidLoad() {
@@ -129,7 +132,7 @@ class ChildDetailClassViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.replyParamChange), name: NSNotification.Name(rawValue: "curriculumParamChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.replyDeleteChange), name: NSNotification.Name(rawValue: "curriculumReplyDelete"), object: nil )
-        NotificationCenter.default.addObserver(self, selector: #selector(self.classLikeView), name: NSNotification.Name(rawValue: "classLikeView"), object: nil )
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.classLikeView), name: NSNotification.Name(rawValue: "classLikeView"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.noticeReplyDelete), name: NSNotification.Name(rawValue: "noticeReplyDelete"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.noticeParamChange), name: NSNotification.Name(rawValue: "noticeParamChange"), object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(self.chattingCheck), name: NSNotification.Name(rawValue: "classDetailchattingValueSend"), object: nil )
@@ -181,7 +184,7 @@ class ChildDetailClassViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reloadView()
-        if self.feedDetailList?.results?.user_status ?? "" == "member" {
+        if self.feedDetailList?.results?.user_status ?? "" != "spectator" {
             let dismiss = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
             self.view.addGestureRecognizer(dismiss)
             
@@ -384,8 +387,8 @@ class ChildDetailClassViewController: UIViewController {
             self.questionImg.image = UIImage(named: "question_checkbox_true")
             self.replyTextView.text = "#질문 \(self.replyTextView.text ?? "")"
             self.replyTextView.attributedText = resolveHashTags(text: self.replyTextView.text)
-            
-            self.replyTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+            self.replyTextView.textColor = UIColor(hexString: "#484848")
+            self.replyTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
             self.replyTextViewLbl.isHidden = true
         }else{
             sender.tag = 0
@@ -481,6 +484,7 @@ class ChildDetailClassViewController: UIViewController {
                     }
                 }
             } else {
+                self.nextClassBtn.flash(bool: false)
                 
                 if self.feedDetailList?.results?.curriculum?.id ?? 0 != self.feedDetailList?.results?.curriculum_after_id ?? 0 {
                     self.type = "all"
@@ -560,48 +564,19 @@ class ChildDetailClassViewController: UIViewController {
     
     /** **댓글 더 읽기 버튼 클릭 > 댓글 상세 뷰로 이동 ( DetailReplyViewController ) */
     @IBAction func readMoreBtnClicked(_ sender: UIButton) {
+        print("** user status : \(feedDetailList?.results?.user_status ?? "")")
         if feedDetailList?.results?.user_status == "spectator" {
             self.showToast(message: "        🔊 체험판은 강의 이동이 불가합니다.>.<수강신청 하기.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
         } else {
-            let tag = sender.tag
-            self.view.endEditing(true)
-            self.emoticonSelectView.isHidden = true
-            if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
-                replyWriteCheck()
-            }else{
-                self.view.endEditing(true)
-                videoStop()
-                let newViewController = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "DetailReplyViewController") as! DetailReplyViewController
-                newViewController.comment_id = replyArray?[tag].id ?? 0
-                newViewController.curriculum_id = self.feedDetailList?.results?.curriculum?.id ?? 0
-                newViewController.class_id = self.class_id
-                newViewController.commentType = "curriculum"
-                newViewController.missionCheck = false
-                newViewController.tagForLikeBtn = sender.tag
-                self.tagForLikeBtn = sender.tag*10000+1
-                self.navigationController?.pushViewController(newViewController, animated: true)
-            }
+            isNotification = false
+            readMoreDetail(sender: sender)
         }
     }
     
     /** **공지사항 더 읽기 버튼 클릭 > 공지사항 상세 뷰로 이동 ( DetailReplyViewController ) */
     @IBAction func noticeReadMoreBtnClicked(_ sender: UIButton) {
-        self.view.endEditing(true)
-        self.emoticonSelectView.isHidden = true
-        if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
-            replyWriteCheck()
-        }else{
-            self.view.endEditing(true)
-            videoStop()
-            let newViewController = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "DetailReplyViewController") as! DetailReplyViewController
-            newViewController.comment_id = sender.tag
-            newViewController.curriculum_id = self.feedDetailList?.results?.curriculum?.id ?? 0
-            newViewController.class_id = self.class_id
-            newViewController.commentType = "curriculum"
-            newViewController.missionCheck = false
-            newViewController.isNotification = true
-            self.navigationController?.pushViewController(newViewController, animated: true)
-        }
+        isNotification = true
+        readMoreDetail(sender: sender)
     }
     
     /** **이모티콘 클릭 > 이모티콘셀렉 뷰에 이미지 보이기 */
@@ -646,30 +621,20 @@ class ChildDetailClassViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.videoStop()
                 }
-                
-                let indexPath = IndexPath(row: 0, section: 0)
-                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-                let cell = self.tableView.cellForRow(at: indexPath) as! ChildDetailClassTableViewCell
                 let newViewController = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(withIdentifier: "DetailMissionCompleteViewController") as! DetailMissionCompleteViewController
-                
-                if feedDetailList?.results?.mission_yn ?? "Y" == "N" {
-                    self.showToast2(message: "🔊 미션이 완료 했습니다.", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
+                if feedDetailList?.results?.curriculum?.button_next_curriculum_id ?? 0 == 0 {
+                    newViewController.isLastClass = true
                 } else {
-                    if feedDetailList?.results?.mission_count ?? 0 > 0 {
-                        self.view.endEditing(true)
-                        newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
-                        self.navigationController?.pushToViewBottomController(vc: newViewController)
-                        cell.classLikeView.isHidden = false
-                    } else {
-                        newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
-                        self.navigationController?.pushToViewBottomController(vc: newViewController)
-                    }
+                    newViewController.isLastClass = false
                 }
+                newViewController.mission_id = feedDetailList?.results?.curriculum?.mission?.id ?? 0
+                self.navigationController?.pushToViewBottomController(vc: newViewController)
             }
         } else {
             self.textViewTab()
         }
     }
+    
     /** **댓글 더보기 클릭 > 댓글을 삭제할지 선택 */
     @IBAction func moreBtnClicked(_ sender: UIButton) {
         Alert.With(self, btn1Title: "삭제", btn1Handler: {
@@ -677,6 +642,16 @@ class ChildDetailClassViewController: UIViewController {
                 self.replyDelete(comment_id: sender.tag)
             }
         })
+        
+//        Alert.WithEditComment(self, btn1Title: "삭제하기", btn1Handler: {
+//            DispatchQueue.main.async {
+//                self.replyDelete(comment_id: sender.tag)
+//            }
+//        }, btn2Title: "수정하기", btn2Handler: {
+//            let newViewController = self.feedViewStoryboard.instantiateViewController(withIdentifier: "DetailEditCommentViewController") as! DetailEditCommentViewController
+//            self.navigationController?.pushViewController(newViewController, animated: true)
+//        })
+        
     }
     
     /** **강의를 만족해주세요 뷰 나가기 버튼 클릭 > 강의 만족 뷰 없애기 */
@@ -769,23 +744,8 @@ class ChildDetailClassViewController: UIViewController {
     }
     
     /** *This button is used to filter comments*/
-    @IBAction func filteringBtnClicked(_ sender: UIButton) {
-        if sender.tag == 0 {
-            if self.type != "all" {
-                self.type = "all"
-                filteredComment(type: self.type)
-            }
-        } else if sender.tag == 1 {
-            if self.type != "questions" {
-                self.type = "questions"
-                filteredComment(type: self.type)
-            }
-        } else {
-            if self.type != "coach" {
-                self.type = "coach"
-                filteredComment(type: self.type)
-            }
-        }
+    @IBAction func filterCommentBtnClicked(_ sender: UIButton) {
+        filterCommentBtnTapped(sender: sender)
     }
     
     /** *This func opens popup view if  classLike_yn == "N"*/
@@ -833,10 +793,88 @@ class ChildDetailClassViewController: UIViewController {
     /** *The function which filters the comments */
     func filteredComment(type:String) {
         if self.feedDetailList?.results?.user_status ?? "" != "spectator" {
-            self.replyArray?.removeAll()
+            Indicator.showActivityIndicator(uiView: self.view)
             DispatchQueue.main.async {
-                self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: type)
+                self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: type, filtering: true)
             }
+        }
+    }
+    
+    
+    func filterCommentBtnTapped(sender: UIButton) {
+        let config = FTConfiguration.shared
+        config.cornerRadius = 2
+        
+        config.backgoundTintColor = UIColor.white
+        config.menuSeparatorColor = UIColor(hexString: "#B4B4B4")
+        
+        let cellConfiguration = FTCellConfiguration()
+        
+        cellConfiguration.textAlignment = .center
+        cellConfiguration.textColor = UIColor(hexString: "#767676")
+        let cellconfig = [cellConfiguration,cellConfiguration,cellConfiguration,cellConfiguration]
+        
+        var menuOptionNameArray : [String] {
+            return ["인기순","최신순","질문","코치"]
+        }
+        var menuImageNameArray : [String] {
+            return ["","","",""]
+        }
+        
+        FTPopOverMenu.showForSender(sender: sender, with: menuOptionNameArray, menuImageArray: nil, cellConfigurationArray: cellconfig, done: { [unowned self] (selectedIndex) -> () in
+
+            if selectedIndex == 0 {
+                self.type = "best"
+            }else if selectedIndex == 1 {
+                self.type = "all"
+            }else if selectedIndex == 2 {
+                self.type = "questions"
+            }else{
+                self.type = "coach"
+            }
+        
+            self.page = 1
+            sender.setTitle("\(menuOptionNameArray[selectedIndex])", for: .normal)
+            filteredComment(type: self.type)
+        })
+    }
+    
+    /** *Shows the detailed comment*/
+    func readMoreDetail(sender: UIButton){
+        let tag = sender.tag
+        self.view.endEditing(true)
+        self.emoticonSelectView.isHidden = true
+        if self.replyTextView.text.isEmpty != true || self.emoticonImg.image != nil{
+            replyWriteCheck()
+        }else{
+            self.view.endEditing(true)
+            videoStop()
+            let parentVC = self.parent as? FeedDetailViewController
+            parentVC?.tableViewCheck = 7
+            self.tagForLikeBtn = sender.tag*10000+1
+            parentVC?.detailClassData()
+            let comment_type = "curriculum"
+            var commentData: [String:Any] = [:]
+            if isNotification == true {
+                commentData = ["comment_id":sender.tag,
+                               "curriculum_id":feedDetailList?.results?.curriculum?.id ?? 0,
+                               "class_id":class_id,
+                               "commentType":comment_type,
+                               "missionCheck":false,
+                               "isNotification":true
+                              ] as [String:Any]
+            } else {
+                commentData = ["comment_id":replyArray?[tag].id ?? 0,
+                               "curriculum_id":feedDetailList?.results?.curriculum?.id ?? 0,
+                               "tagForLikeBtn":tag,
+                               "class_id":class_id,
+                               "commentType":comment_type,
+                               "missionCheck":false
+                              ] as [String:Any]
+            }
+
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CommentDataSend"), object: nil, userInfo: commentData)
+            
         }
     }
     
@@ -982,12 +1020,12 @@ class ChildDetailClassViewController: UIViewController {
                     replyArray?[i].like = commentLikeCount
                     replyArray?[i].reply_count = replyCount
                     replyArray?[i].like_me = preHave
-                    var indexPath = IndexPath(row: i, section: 10)
-                    if self.feedDetailList?.results?.user_status ?? "" == "spectator" {
-                        indexPath = IndexPath(row: i, section: 11)
-                    } else {
-                        indexPath = IndexPath(row: i, section: 10)
-                    }
+                    let indexPath = IndexPath(row: i, section: 9)
+//                    if self.feedDetailList?.results?.user_status ?? "" == "spectator" {
+//                        indexPath = IndexPath(row: i, section: 11)
+//                    } else {
+//                        indexPath = IndexPath(row: i, section: 9)
+//                    }
                     if let visibleIndexPaths = self.tableView.indexPathsForVisibleRows?.firstIndex(of: indexPath as IndexPath) {
                         if visibleIndexPaths != NSNotFound {
                             self.tableView.reloadRows(at: [indexPath], with: .none)
@@ -1079,7 +1117,7 @@ class ChildDetailClassViewController: UIViewController {
      ** this is to flash next class btn
      */
     @objc func flashNextClassBtn(notification: Notification){
-        self.nextClassBtn.flash()
+        self.nextClassBtn.flash(bool: true)
     }
     
     /**
@@ -1273,7 +1311,7 @@ class ChildDetailClassViewController: UIViewController {
         }
         self.replyArray?.remove(at: arrayNumber)
         DispatchQueue.main.async {
-            self.tableView.reloadSections([7,9,10], with: .automatic)
+            self.tableView.reloadSections([7,8,9], with: .automatic)
         }
     }
 }
@@ -1326,7 +1364,7 @@ extension ChildDetailClassViewController:UITextViewDelegate{
             }
         }
         
-        textView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        textView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
         
         if self.replyTextView.contentSize.height >= 45 {
             self.replyTextView.isScrollEnabled = true
@@ -1503,12 +1541,6 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
                 }
             }else{
                 switch section {
-                case 0:
-                    if feedDetailList?.results?.curriculum != nil{
-                        return 1
-                    }else{
-                        return 0
-                    }
                 case 1,2:
                     if feedDetailList?.results?.curriculum?.study != nil {
                         if showContent == true{
@@ -1519,7 +1551,7 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
                     }else{
                         return 0
                     }
-                case 3:
+                case 3,6:
                     return 0
 //                case 4:
 //                    if self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? "" == ""{
@@ -1538,15 +1570,15 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
                     }else{
                         return 0
                     }
-                case 4,6,7,8,11:
+                case 0,4,7,10:
                     return 1
-                case 9:
+                case 8:
                     if replyArray!.count == 0 {
                         return 1
                     } else {
                         return 0
                     }
-                case 10:
+                case 9:
                     if replyArray != nil{
                         if replyArray!.count > 0{
                             return replyArray!.count
@@ -1866,6 +1898,8 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
             }else if section == 10{
                 let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassTotalReplyTitleTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if replyArray != nil{
+                    cell.filterCommentBtn.isHidden = true
+                    cell.filterCommentImg.isHidden = true
                     cell.totalReplyCount.text = "댓글 \(feedReplyList?.results?.total ?? 0)개"
                 }
                 cell.selectionStyle = .none
@@ -2020,7 +2054,8 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
                         cell.noticeTextView.textContainer.maximumNumberOfLines = 3
                         cell.noticeTextView.textContainer.lineBreakMode = .byTruncatingTail
                         cell.noticeTextView.text = self.feedDetailList?.results?.curriculum?.coach_class?.notice?.content ?? ""
-                        cell.noticeTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+                        cell.noticeTextView.textColor = UIColor(hexString: "#484848")
+                        cell.noticeTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
                         cell.noticeReadmoreBtn.tag = feedDetailList?.results?.curriculum?.coach_class?.notice?.id ?? 0
                     }
                     
@@ -2063,62 +2098,56 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
                 return cell
             }else if section == 7{
                 let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassTotalReplyTitleTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                cell.communityLbl.text = ""
-                if replyArray != nil{
-                    if self.type == "all" {
-                        cell.totalReplyCount.text = "댓글 \(feedReplyList?.results?.total ?? 0)개"
-                    } else if self.type == "questions" {
-                        cell.totalReplyCount.text = "질문 댓글 \(feedReplyList?.results?.total ?? 0)개"
-                    } else if self.type == "coach" {
-                        cell.totalReplyCount.text = "코치 댓글 \(feedReplyList?.results?.total ?? 0)개"
-                    }
-                }
+                cell.communityLbl.text = "커뮤니티"
+                cell.filterCommentBtn.isHidden = false
+                cell.filterCommentImg.isHidden = false
+                cell.totalReplyCount.text = "댓글 \(feedReplyList?.results?.total ?? 0)개"
                 cell.selectionStyle = .none
                 return cell
+//            }else if section == 8{
+//                let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCommentFilteringTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+//                if self.type == "all"{
+//                    cell.totalComment.borderWidth = 1
+//                    cell.totalComment.borderColor = UIColor(hexString: "#FF5A5F")
+//                    cell.totalComment.backgroundColor = .white
+//                    cell.totalComment.setTitleColor(UIColor(hexString: "FF5A5F"), for: .normal)
+//                    cell.questionComment.borderWidth = 0
+//                    cell.questionComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+//                    cell.questionComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+//                    cell.coachComment.borderWidth = 0
+//                    cell.coachComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+//                    cell.coachComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+//                } else if self.type == "questions"{
+//                    cell.questionComment.borderWidth = 1
+//                    cell.questionComment.borderColor = UIColor(hexString: "#FF5A5F")
+//                    cell.questionComment.backgroundColor = .white
+//                    cell.questionComment.setTitleColor(UIColor(hexString: "FF5A5F"), for: .normal)
+//                    cell.totalComment.borderWidth = 0
+//                    cell.totalComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+//                    cell.totalComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+//                    cell.coachComment.borderWidth = 0
+//                    cell.coachComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+//                    cell.coachComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+//                } else {
+//                    cell.coachComment.borderWidth = 1
+//                    cell.coachComment.borderColor = UIColor(hexString: "#FF5A5F")
+//                    cell.coachComment.backgroundColor = .white
+//                    cell.coachComment.setTitleColor(UIColor(hexString: "FF5A5F"), for: .normal)
+//                    cell.questionComment.borderWidth = 0
+//                    cell.questionComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+//                    cell.questionComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+//                    cell.totalComment.borderWidth = 0
+//                    cell.totalComment.backgroundColor = UIColor(hexString: "#F5F5F5")
+//                    cell.totalComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
+//                }
+//                cell.selectionStyle = .none
+//                return cell
             }else if section == 8{
-                let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassCommentFilteringTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                if self.type == "all"{
-                    cell.totalComment.borderWidth = 1
-                    cell.totalComment.borderColor = UIColor(hexString: "#FF5A5F")
-                    cell.totalComment.backgroundColor = .white
-                    cell.totalComment.setTitleColor(UIColor(hexString: "FF5A5F"), for: .normal)
-                    cell.questionComment.borderWidth = 0
-                    cell.questionComment.backgroundColor = UIColor(hexString: "#F5F5F5")
-                    cell.questionComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
-                    cell.coachComment.borderWidth = 0
-                    cell.coachComment.backgroundColor = UIColor(hexString: "#F5F5F5")
-                    cell.coachComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
-                } else if self.type == "questions"{
-                    cell.questionComment.borderWidth = 1
-                    cell.questionComment.borderColor = UIColor(hexString: "#FF5A5F")
-                    cell.questionComment.backgroundColor = .white
-                    cell.questionComment.setTitleColor(UIColor(hexString: "FF5A5F"), for: .normal)
-                    cell.totalComment.borderWidth = 0
-                    cell.totalComment.backgroundColor = UIColor(hexString: "#F5F5F5")
-                    cell.totalComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
-                    cell.coachComment.borderWidth = 0
-                    cell.coachComment.backgroundColor = UIColor(hexString: "#F5F5F5")
-                    cell.coachComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
-                } else {
-                    cell.coachComment.borderWidth = 1
-                    cell.coachComment.borderColor = UIColor(hexString: "#FF5A5F")
-                    cell.coachComment.backgroundColor = .white
-                    cell.coachComment.setTitleColor(UIColor(hexString: "FF5A5F"), for: .normal)
-                    cell.questionComment.borderWidth = 0
-                    cell.questionComment.backgroundColor = UIColor(hexString: "#F5F5F5")
-                    cell.questionComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
-                    cell.totalComment.borderWidth = 0
-                    cell.totalComment.backgroundColor = UIColor(hexString: "#F5F5F5")
-                    cell.totalComment.setTitleColor(UIColor(hexString: "#767676"), for: .normal)
-                }
-                cell.selectionStyle = .none
-                return cell
-            }else if section == 9{
                 let cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassNoCommentTableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 cell.noCommentLbl.text = "댓글이 존재하지 않습니다."
                 cell.selectionStyle = .none
                 return cell
-            }else if section == 10{
+            }else if section == 9{
                 var cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply1TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 if replyArray != nil{
                     if replyArray!.count > 0{
@@ -2140,7 +2169,7 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
         if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
             return 12
         }else{
-            return 12
+            return 11
         }
     }
     
@@ -2166,9 +2195,9 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
                 return 60
             case 3,6:
                 return 0.5
-            case 0,2,4,5,7,8,9,10:
+            case 0,2,4,5,7,8,9:
                 return UITableView.automaticDimension
-            case 11:
+            case 10:
                 return 25
             default:
                 return 1
@@ -2189,19 +2218,21 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
                             if self.replyArray!.count < self.feedReplyList?.results!.total ?? 0 {
                                 Indicator.showActivityIndicator(uiView: self.view)
                                 self.page = self.page + 1
-                                self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: self.type)
+                                self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: self.type, filtering: false)
                             }
                         }
                     }
                 }
             }else{
-                if section == 10{
+                if section == 9{
                     if self.replyArray != nil{
                         if row == (self.replyArray!.count)-1 {
-                            if self.replyArray!.count < self.feedReplyList?.results!.total ?? 0 {
-                                Indicator.showActivityIndicator(uiView: self.view)
-                                self.page = self.page + 1
-                                self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: self.type)
+                            if self.page < self.feedReplyList?.results?.total_page ?? 0 {
+                                if self.replyArray!.count < self.feedReplyList?.results!.total ?? 0 {
+                                    Indicator.showActivityIndicator(uiView: self.view)
+                                    self.page = self.page + 1
+                                    self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: self.type, filtering: false)
+                                }
                             }
                         }
                     }
@@ -2214,7 +2245,7 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
         var cell:ChildDetailClassTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply1TableViewCell") as! ChildDetailClassTableViewCell
         let row = indexPath.row
         
-        if replyArray?[row].reply_count ?? 0 > 0 {
+//        if replyArray?[row].reply_count ?? 0 > 0 {
             if replyArray?[row].photo ?? "" == "" && replyArray?[row].emoticon ?? 0 == 0{
                 cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply1TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
                 cell.readMoreBtn.tag = row
@@ -2252,66 +2283,81 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
                     cell.youtubePlayImg.isHidden = false
                 }
             }
-            if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                cell.replyMoreBtn.isUserInteractionEnabled = false
-            }
+//            if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+//                cell.replyMoreBtn.isUserInteractionEnabled = false
+//            }
             cell.replyMoreBtn.tag = row
-            cell.replyMoreBtn.setTitle("답글 \(replyArray?[row].reply_count ?? 0)개 보기", for: .normal)
-        }else{
-            if replyArray?[row].photo ?? "" == "" && replyArray?[row].emoticon ?? 0 == 0{
-                cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply2TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                    cell.readMoreBtn.isUserInteractionEnabled = true
-                }
-                cell.readMoreBtn.tag = row
-            }else{
-                if replyArray?[row].content ?? "" != "" {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply4TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                    cell.readMoreBtn.tag = row
-                    if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                        cell.readMoreBtn.isUserInteractionEnabled = true
-                    }
-                }else{
-                    cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply6TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
-                }
-                cell.replyPhotoBtn.tag = row
-                if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-                    cell.replyPhotoBtn.isUserInteractionEnabled = false
-                }
-                if replyArray?[row].emoticon ?? 0 == 0{
-                    cell.replyPhoto.sd_setImage(with: URL(string: "\(replyArray?[row].photo ?? "")"), placeholderImage: UIImage(named: "user_default"))
-                    cell.replyPhotoHeightConst.constant = 160
-                    cell.replyPhotoWidthConst.constant = 160
-                }else{
-                    cell.replyPhoto.image = UIImage(named: "emti\(replyArray?[row].emoticon ?? 0)")
-                    cell.replyPhotoHeightConst.constant = 80
-                    cell.replyPhotoWidthConst.constant = 80
-                }
-                let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-                cell.replyPhoto.addGestureRecognizer(pictureTap)
-                if replyArray?[row].play_file ?? "" == ""{
-                    cell.youtubePlayImg.isHidden = true
-                }else{
-                    cell.youtubePlayImg.isHidden = false
-                }
-            }
-            cell.replyCount.text = "답글 달기"
+        if replyArray?[row].reply_count ?? 0 > 0 {
+            cell.replyMoreBtn.setTitle("답글 \(replyArray?[row].reply_count ?? 0)", for: .normal)
+        } else {
+            cell.replyMoreBtn.setTitle("답글달기", for: .normal)
         }
-        if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
-            cell.replyReadBtn.isUserInteractionEnabled = false
+            
+        if cell.replyContentTextView != nil {
+            let padding = cell.replyContentTextView.textContainer.lineFragmentPadding
+            cell.replyContentTextView.textContainerInset = .init(top: 0, left: -padding, bottom: -padding, right: -padding)
         }
-        cell.replyReadBtn.tag = row
+        
+
+//        }else{
+//            if replyArray?[row].photo ?? "" == "" && replyArray?[row].emoticon ?? 0 == 0{
+//                cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply2TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+//                if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+//                    cell.readMoreBtn.isUserInteractionEnabled = true
+//                }
+//                cell.readMoreBtn.tag = row
+//            }else{
+//                if replyArray?[row].content ?? "" != "" {
+//                    cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply4TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+//                    cell.readMoreBtn.tag = row
+//                    if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+//                        cell.readMoreBtn.isUserInteractionEnabled = true
+//                    }
+//                }else{
+//                    cell = tableView.dequeueReusableCell(withIdentifier: "DetailClassReply6TableViewCell", for: indexPath) as! ChildDetailClassTableViewCell
+//                }
+//                cell.replyPhotoBtn.tag = row
+//                if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+//                    cell.replyPhotoBtn.isUserInteractionEnabled = false
+//                }
+//                if replyArray?[row].emoticon ?? 0 == 0{
+//                    cell.replyPhoto.sd_setImage(with: URL(string: "\(replyArray?[row].photo ?? "")"), placeholderImage: UIImage(named: "user_default"))
+//                    cell.replyPhotoHeightConst.constant = 160
+//                    cell.replyPhotoWidthConst.constant = 160
+//                }else{
+//                    print("** reply emoji number : \(replyArray?[row].emoticon ?? 0)")
+//                    cell.replyPhoto.image = UIImage(named: "emti\(replyArray?[row].emoticon ?? 0)")
+//                    cell.replyPhotoHeightConst.constant = 80
+//                    cell.replyPhotoWidthConst.constant = 80
+//                }
+//                let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+//                cell.replyPhoto.addGestureRecognizer(pictureTap)
+//                if replyArray?[row].play_file ?? "" == ""{
+//                    cell.youtubePlayImg.isHidden = true
+//                }else{
+//                    cell.youtubePlayImg.isHidden = false
+//                }
+//            }
+//            cell.replyCount.text = "답글 달기"
+//        }
+//        if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
+//            cell.replyMoreBtn.isUserInteractionEnabled = false
+//        }
+//        cell.replyReadBtn.tag = row
         
         if replyArray?[row].like_me == "Y" {
-            cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
+            cell.likeCountBtn.titleLabel?.font = .boldSystemFont(ofSize: 12)
             cell.likeCountBtn.tag = row*10000 + 1
-            cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
-            cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
+            cell.likeCountBtn.setTitle("도움돼요 \(self.replyArray?[row].like ?? 0)", for: .normal)
         }else{
+            cell.likeCountBtn.titleLabel?.font = .systemFont(ofSize: 12)
             cell.likeCountBtn.tag = row*10000 + 2
-            cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-            cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
-            cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
+            if self.replyArray?[row].like ?? 0 > 0 {
+                cell.likeCountBtn.setTitle("도움돼요 \(self.replyArray?[row].like ?? 0)", for: .normal)
+            } else {
+                cell.likeCountBtn.setTitle("도움돼요", for: .normal)
+            }
+            
         }
         if replyArray?[row].user_id == UserManager.shared.userInfo.results?.user?.id {
             cell.moreBtn.tag = replyArray?[row].id ?? 0
@@ -2323,31 +2369,23 @@ extension ChildDetailClassViewController: UITableViewDelegate, UITableViewDataSo
             cell.moreBtn.isUserInteractionEnabled = false
         }
         cell.friendProfileBtn.tag = row//replyArray[row].user_id ?? 0
-        cell.friendProfile2Btn.tag = row//replyArray[row].user_id ?? 0
         cell.reply_userPhoto.sd_setImage(with: URL(string: "\(replyArray?[row].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-        cell.userName.text = replyArray?[row].user_name ?? ""
+        cell.userName.text = "\(replyArray?[row].user_name ?? "") | \(replyArray?[row].time_spilled ?? "0분전")"
         if replyArray?[row].content ?? "" != "" {
             cell.replyContentTextView.text = replyArray?[row].content ?? ""
-//                cell.replyContentTextView.textContainer.maximumNumberOfLines = 5
             cell.replyContentTextView.attributedText = (replyArray?[row].content ?? "").html2AttributedString
             cell.replyContentTextView.textContainer.lineBreakMode = .byTruncatingTail
         }
-                      
-        cell.replyContentView.layer.cornerRadius = 12
-        cell.likeCountBtn.layer.shadowOpacity = 0.1
-        cell.likeCountBtn.layer.shadowRadius = 3
-        cell.likeCountBtn.layer.shadowOffset = CGSize(width: 0,height: 2)
-        cell.replyTime.text = replyArray?[row].time_spilled ?? "0분전"
         
-        if replyArray?[row].friend_yn ?? "Y" != "Y"{
-            if replyArray?[row].user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
+//        if replyArray?[row].friend_yn ?? "Y" != "Y"{
+//            if replyArray?[row].user_id ?? 0 == UserManager.shared.userInfo.results?.user?.id ?? 0 {
                 cell.rollGubunImg.isHidden = true
-            }else{
-                cell.rollGubunImg.isHidden = false
-            }
-        }else{
-            cell.rollGubunImg.isHidden = true
-        }
+//            }else{
+//                cell.rollGubunImg.isHidden = false
+//            }
+//        }else{
+//            cell.rollGubunImg.isHidden = true
+//        }
         if replyArray?[row].coach_yn ?? "N" == "Y"{
             cell.coachStar.isHidden = false
         }else{
@@ -2479,7 +2517,7 @@ extension ChildDetailClassViewController{
         }
         print("** curriculum id : \(self.feedDetailList?.results?.curriculum?.id ?? 99)")
         DispatchQueue.main.async {
-            self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: self.type)
+            self.appDetailComment(curriculum_id: self.feedDetailList?.results?.curriculum?.id ?? 0, page: self.page, type: self.type, filtering: false)
         }
     }
     
@@ -2492,15 +2530,21 @@ extension ChildDetailClassViewController{
      
      - Throws: `Error` 네트워크가 제대로 연결되지 않은 경우 `Error`
      */
-    func appDetailComment(curriculum_id:Int, page:Int, type:String){
+    func appDetailComment(curriculum_id:Int, page:Int, type:String, filtering:Bool){
         FeedApi.shared.appClassDataComment(curriculum_id: curriculum_id, page: page, type: type, success: { [unowned self] result in
             if result.code == "200"{
+                if filtering != false {
+                    print("** filtering")
+                    self.replyArray?.removeAll()
+                }
                 self.feedReplyList = result
                 for addArray in 0 ..< (self.feedReplyList?.results?.appClassCommentList.count ?? 0)! {
                     self.replyArray?.append((self.feedReplyList?.results?.appClassCommentList[addArray])!)
                 }
-                self.tableView.reloadData()
-                Indicator.hideActivityIndicator(uiView: self.view)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    Indicator.hideActivityIndicator(uiView: self.view)
+                }
             }
         }) { error in
             Indicator.hideActivityIndicator(uiView: self.view)
@@ -2581,26 +2625,27 @@ extension ChildDetailClassViewController{
                     if self.feedDetailList?.results?.user_status ?? "" == "spectator"{
                         selectedIndexPath = IndexPath(item:row , section: 11)
                     } else {
-                        selectedIndexPath = IndexPath(item:row , section: 10)
+                        selectedIndexPath = IndexPath(item:row , section: 9)
                     }
                      // you can change section for "spectator"
                     let cell = self.tableView.cellForRow(at: selectedIndexPath) as! ChildDetailClassTableViewCell
                     if likeGubun == 1{
+                        cell.likeCountBtn.titleLabel?.font = .systemFont(ofSize: 12)
                         self.replyArray?[row].like = (self.replyArray?[row].like ?? 0)-1
                         cell.likeCountBtn.tag = row*10000 + 2
                         self.replyArray?[row].like_me = "N"
-                        cell.likeCountBtn.setTitleColor(UIColor(hexString: "#B4B4B4"), for: .normal)
-                        cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_default"), for: .normal)
-                        cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
+                        if self.replyArray?[row].like ?? 0 > 0 {
+                            cell.likeCountBtn.setTitle("도움돼요 \(self.replyArray?[row].like ?? 0)", for: .normal)
+                        } else {
+                            cell.likeCountBtn.setTitle("도움돼요", for: .normal)
+                        }
                     }else{
+                        cell.likeCountBtn.titleLabel?.font = .boldSystemFont(ofSize: 12)
                         self.replyArray?[row].like = (self.replyArray?[row].like ?? 0)+1
                         cell.likeCountBtn.tag = row*10000 + 1
                         self.replyArray?[row].like_me = "Y"
-                        cell.likeCountBtn.setTitleColor(UIColor(hexString: "#FF5A5F"), for: .normal)
-                        cell.likeCountBtn.setImage(UIImage(named: "comment_likeBtn_active"), for: .normal)
-                        cell.likeCountBtn.setTitle(" \(self.replyArray?[row].like ?? 0)", for: .normal)
+                        cell.likeCountBtn.setTitle("도움돼요 \(self.replyArray?[row].like ?? 0)", for: .normal)
                     }
-                    
                     sender.isUserInteractionEnabled = true
                 }
             }else{
@@ -2624,11 +2669,11 @@ extension ChildDetailClassViewController{
         let curriculum_id = self.feedDetailList?.results?.curriculum?.id ?? 0
         let content = self.replyTextView.text
         Indicator.showActivityIndicator(uiView: self.view)
-        FeedApi.shared.replySave(class_id: self.class_id, curriculum: curriculum_id, mcComment_id: 0, content: content ?? "", commentType: "curriculum", commentChild: false,emoticon:self.emoticonNumber,photo:self.image,success: { [unowned self] result in
+        FeedApi.shared.replySave(class_id: self.class_id, curriculum: curriculum_id, mcComment_id: 0, content: content ?? "", commentType: "curriculum", commentChild: false,emoticon:self.emoticonNumber,photo:self.image,mentionStatus: false, mention_id: 0, success: { [unowned self] result in
             if result.code == "200"{
                 let temp = AppClassCommentList.init()
                 temp.id = result.results?.id
-                temp.type = result.results?.type
+//                temp.type = result.results?.type
                 temp.user_id = result.results?.user_id
                 temp.user_photo = result.results?.user_photo
                 temp.user_name = result.results?.user_name
@@ -2636,12 +2681,12 @@ extension ChildDetailClassViewController{
                 temp.content = result.results?.content
                 temp.reply_count = result.results?.reply_count
                 temp.like = result.results?.like
-                temp.like_me = result.results?.like_me
+//                temp.like_me = result.results?.like_me
                 temp.photo = result.results?.photo
-                temp.roll = result.results?.roll
-                temp.like_user = result.results?.like_user
-                temp.emoticon = result.results?.emoticon
-                temp.mcCurriculum_id = result.results?.mcCurriculum_id
+//                temp.roll = result.results?.roll
+//                temp.like_user = result.results?.like_user
+                temp.emoticon = self.emoticonNumber // result.results?.emoticon
+//                temp.mcCurriculum_id = result.results?.mcCurriculum_id
 
                 self.emoticonSelectView.isHidden = true
                 self.emoticonImg.image = nil
@@ -2656,13 +2701,14 @@ extension ChildDetailClassViewController{
                     self.customView?.removeFromSuperview()
                     self.customView = nil
                 }
-                
+                print("**  emoticon : \(self.emoticonNumber)")
                 self.replyArray?.insert(temp, at: 0)
                 self.feedReplyList?.results?.total = (self.feedReplyList?.results?.total ?? 0) + 1
                 self.emoticonNumber = 0
+                self.image = nil
                 sender.isUserInteractionEnabled = true
                 DispatchQueue.main.async {
-                    self.tableView.reloadSections([7,9,10], with: .automatic)
+                    self.tableView.reloadSections([7,8,9], with: .automatic)
                     Indicator.hideActivityIndicator(uiView: self.view)
                 }
             }else{
@@ -2695,7 +2741,7 @@ extension ChildDetailClassViewController{
                     self.replyArray?.remove(at: row)
                     self.feedDetailList?.results?.curriculum?.comment?.total = self.replyArray!.count
                     DispatchQueue.main.async {
-                        self.tableView.reloadSections([7,9,10], with: .automatic)
+                        self.tableView.reloadSections([7,8,9], with: .automatic)
                         Indicator.hideActivityIndicator(uiView: self.view)
                     }
                 }

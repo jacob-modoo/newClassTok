@@ -145,14 +145,13 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
                 }else{
                     if self.searchCheck == false{
                         self.searchWord = self.rankList?.results?.category_arr[sender.tag].name ?? ""
-                        self.app_search(query: self.rankList?.results?.category_arr[sender.tag].name ?? "",order : self.order)
+                        self.app_search(query: self.searchWord, order : self.order)
                     }else{
                         self.page = 1
                         self.searchListArr.removeAll()
-                        print(self.searchList?.results?.category_arr[sender.tag].name ?? "")
 //                        self.searchList = nil
                         self.searchWord = self.searchList?.results?.category_arr[sender.tag].name ?? ""
-                        self.app_search(query: self.searchList?.results?.category_arr[sender.tag].name ?? "",order : self.order)
+                        self.app_search(query: self.searchWord, order : self.order)
                     }
                 }
             }
@@ -166,11 +165,13 @@ class FeedbackSearchViewController: UIViewController,MoreTableViewCellDelegate{
     }
     
     @IBAction func lastSearchBtnClicked(_ sender: UIButton) {
-        app_search(query: rankList?.results?.search_list_arr[sender.tag].name ?? "",order : self.order)
+        self.searchWord = rankList?.results?.search_list_arr[sender.tag].name ?? ""
+        app_search(query: self.searchWord, order : self.order)
     }
     
     @IBAction func poppularSearchBtnClicked(_ sender: UIButton) {
-        app_search(query: rankList?.results?.interest_list_arr[sender.tag].name ?? "",order : self.order)
+        self.searchWord = rankList?.results?.interest_list_arr[sender.tag].name ??  ""
+        app_search(query: self.searchWord, order : self.order)
     }
     
     @IBAction func classDetailMoveBtnClicked(_ sender: UIButton) {
@@ -509,7 +510,6 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                         self.tableView.beginUpdates()
                         cell.collectionViewHeightConst2.constant = cell.collectionView2.contentSize.height
                         self.tableView.endUpdates()
-                        
                     }
                 }
                 cell.selectionStyle = .none
@@ -534,7 +534,7 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
                     cell.eventImgHeight.constant = 0
                 }
                 
-//                print("** rranklist : \(rankList?.results?.event_list_arr.count ?? 0)")
+//                print("** rranklist : \(eventListArr.count)")
 //                cell.rankList = self.rankList
 //                cell.collectionTag = 3
                 
@@ -761,10 +761,10 @@ extension FeedbackSearchViewController:UITableViewDelegate,UITableViewDataSource
         let row = indexPath.row
         if searchCheck == true{
             if section == 2{
-                if row == (searchListArr.count/2)-2{
+                if row == (searchListArr.count/2-2){
                     if searchList?.results?.total_page ?? 0 > page {
                         self.page = self.page + 1
-                        app_search(query: searchWord,order : self.order)
+                        app_search(query: self.searchWord,order : self.order)
                     }
                 }
             }
@@ -985,11 +985,11 @@ extension FeedbackSearchViewController{
             
             if result.code! == "200"{
                 self.rankList = result
-//                if self.rankList?.results?.event_list_arr.count ?? 0 > 0 {
-//                    for arr in 0..<(self.rankList?.results?.event_list_arr.count)! {
-//                        self.eventListArr.append((self.rankList?.results?.event_list_arr[arr])!)
-//                    }
-//                }
+                if self.rankList?.results?.event_list_arr.count ?? 0 > 0 {
+                    for arr in 0..<(self.rankList?.results?.event_list_arr.count)! {
+                        self.eventListArr.append((self.rankList?.results?.event_list_arr[arr])!)
+                    }
+                }
 
                 DispatchQueue.main.async {
                     self.endOfWork()

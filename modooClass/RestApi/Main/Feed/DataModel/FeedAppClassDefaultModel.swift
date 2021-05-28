@@ -21,6 +21,6 @@ class FeedAppClassDefaultModel: NSObject {
         self.init()
         code = DictionaryToString(dic: dic, strName: "code")
         message = DictionaryToString(dic: dic, strName: "message")
-//        results = DictionaryToInt(dic: dic, intName: "results")
+        results = DictionaryToInt(dic: dic, intName: "results")
     }
 }

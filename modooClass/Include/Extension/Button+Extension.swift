@@ -50,7 +50,7 @@ import Foundation
         pulse.damping = 1.0
         layer.add(pulse, forKey: nil)
     }
-    func flash() {
+    func flash(bool: Bool) {
         let flash = CABasicAnimation(keyPath: "opacity")
         flash.duration = 0.8
         flash.fromValue = 1
@@ -58,7 +58,11 @@ import Foundation
         flash.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         flash.autoreverses = true
         flash.repeatCount = 30
-        layer.add(flash, forKey: nil)
+        if bool == true {
+            layer.add(flash, forKey: nil)
+        } else {
+            layer.removeAllAnimations()
+        }
     }
 }
 

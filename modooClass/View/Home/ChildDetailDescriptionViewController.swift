@@ -93,10 +93,8 @@ class ChildDetailDescriptionViewController: UIViewController {
         let stringUrl = "\(feedDetailList?.results?.curriculum?.materials_file ?? "")"
         guard let itemUrl = stringUrl.getCleanedURL()
         else {
-            print("oshibka url :", stringUrl.getCleanedURL()!)
             return
         }
-        print("item url is : ", itemUrl)
         // then lets create your document folder url
         let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
@@ -130,7 +128,6 @@ class ChildDetailDescriptionViewController: UIViewController {
     @IBAction func downloadBtnClicked(_ sender: UIButton) {
         if self.filePath != nil {
             self.openFileWithPath(pdfPath: self.filePath as! URL)
-            print("** ochil sim sim")
         } else {
             self.showToast2(message: "파일이 다운로드중입니다..", font: UIFont(name: "AppleSDGothicNeo-Regular", size: 13)!)
         }

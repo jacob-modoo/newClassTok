@@ -187,7 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
             return KOSession.handleOpen(url)
         }
 //        enfitmodooclass:///class?class_id=449
-        let url_path:String = url.path
+        let url_path:String = url.absoluteString
         print("url_path : ",url_path)
         if (url_path == "/appSchemeClass") {
             var class_id:String

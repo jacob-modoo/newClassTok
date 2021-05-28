@@ -190,6 +190,7 @@
 		0EA7718B25CA6E93002190F4 /* ChatHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA7718A25CA6E93002190F4 /* ChatHistoryModel.swift */; };
 		0EA93C3025D7E24C0042F88D /* ChattingPageSideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA93C2F25D7E24C0042F88D /* ChattingPageSideMenuView.swift */; };
 		0EA93C3725D7E2650042F88D /* ChattingPageSideMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EA93C3625D7E2650042F88D /* ChattingPageSideMenuView.xib */; };
+		0EAD5E15263BCB9500955F0D /* DetailEditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD5E14263BCB9500955F0D /* DetailEditCommentViewController.swift */; };
 		0EAE2D89227A65DF00E91161 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE2D88227A65DF00E91161 /* AppDelegate.swift */; };
 		0EAE2D90227A65E200E91161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EAE2D8F227A65E200E91161 /* Assets.xcassets */; };
 		0EAE2DA9227A65E200E91161 /* modooClassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE2DA8227A65E200E91161 /* modooClassUITests.swift */; };
@@ -488,6 +489,7 @@
 		0EA7718A25CA6E93002190F4 /* ChatHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryModel.swift; sourceTree = "<group>"; };
 		0EA93C2F25D7E24C0042F88D /* ChattingPageSideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingPageSideMenuView.swift; sourceTree = "<group>"; };
 		0EA93C3625D7E2650042F88D /* ChattingPageSideMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingPageSideMenuView.xib; sourceTree = "<group>"; };
+		0EAD5E14263BCB9500955F0D /* DetailEditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditCommentViewController.swift; sourceTree = "<group>"; };
 		0EAE2D85227A65DF00E91161 /* modooClass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = modooClass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EAE2D88227A65DF00E91161 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EAE2D8F227A65E200E91161 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -870,6 +872,7 @@
 				0E4B3D28257FB75800EC142E /* ChildDetailDescriptionViewController.swift */,
 				0ED7F52822B1CF3000CF2F92 /* DetailMissionCompleteViewController.swift */,
 				0E1A967B22AA5BA0001261B2 /* DetailReplyViewController.swift */,
+				0EAD5E14263BCB9500955F0D /* DetailEditCommentViewController.swift */,
 				0E8E9757238E073500842694 /* ReplyLikeViewController.swift */,
 				0E1F59FC22E683F600B3977A /* ChattingWebViewController.swift */,
 				0E33C34D22F121F1000AECC2 /* ChattingFriendWebViewViewController.swift */,
@@ -1691,6 +1694,7 @@
 				0E1D3FFD2297B96D003629FB /* GradientView.swift in Sources */,
 				0E7D29BD261EDAD000CD4EA9 /* SearchBeforeEventCollectionViewCell.swift in Sources */,
 				0E1A96A522B08BE3001261B2 /* FeedAppCurriculumNextModel.swift in Sources */,
+				0EAD5E15263BCB9500955F0D /* DetailEditCommentViewController.swift in Sources */,
 				0ED7F51E22B0C22E00CF2F92 /* FeedAppCheerModel.swift in Sources */,
 				0E01408623FB49BF00DAB35F /* SquareDetailModel.swift in Sources */,
 				0E1C854822D449190047A8CE /* PushNotificationModel.swift in Sources */,
@@ -1925,7 +1929,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.12;
+				CURRENT_PROJECT_VERSION = 2.0.15;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
@@ -1935,7 +1939,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.12;
+				MARKETING_VERSION = 2.0.15;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationContentExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1948,7 +1952,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.12;
+				CURRENT_PROJECT_VERSION = 2.0.15;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
@@ -1958,7 +1962,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.12;
+				MARKETING_VERSION = 2.0.15;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationContentExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1971,7 +1975,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.12;
+				CURRENT_PROJECT_VERSION = 2.0.15;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1980,7 +1984,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.12;
+				MARKETING_VERSION = 2.0.15;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1993,7 +1997,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.12;
+				CURRENT_PROJECT_VERSION = 2.0.15;
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2002,7 +2006,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.12;
+				MARKETING_VERSION = 2.0.15;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.enfit.modooClass.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2139,7 +2143,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/SurpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.12;
+				CURRENT_PROJECT_VERSION = 2.0.15;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2152,7 +2156,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.12;
+				MARKETING_VERSION = 2.0.15;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2241,7 +2245,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = modooClass/SurpportingFile/modooClass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.12;
+				CURRENT_PROJECT_VERSION = 2.0.15;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2RB9Q95JKJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2254,7 +2258,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.12;
+				MARKETING_VERSION = 2.0.15;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

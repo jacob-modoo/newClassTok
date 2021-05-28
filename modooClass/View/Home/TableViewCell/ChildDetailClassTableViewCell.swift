@@ -17,7 +17,6 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var classSatisFiedLbl: UILabel!
     @IBOutlet weak var classNotSatisFixedLbl: UIFixedLabel!
     @IBOutlet weak var classCheerBtn: UIButton!
-    @IBOutlet weak var classCurriculumBtn: UIButton!
     @IBOutlet weak var classGroupChatBtn: UIButton!
     @IBOutlet weak var classGroupChatLbl: UILabel!
     @IBOutlet weak var classLikeView: UIView!
@@ -53,11 +52,13 @@ class ChildDetailClassTableViewCell: UITableViewCell {
 //    DetailClassTotalReplyTitleTableViewCell
     @IBOutlet var totalReplyCount: UILabel!
     @IBOutlet weak var communityLbl: UILabel!
+    @IBOutlet weak var filterCommentBtn: UIButton!
+    @IBOutlet weak var filterCommentImg: UIImageView!
     
 //    DetailClassCommentFilteringTableViewCell
-    @IBOutlet weak var totalComment: UIButton!
-    @IBOutlet weak var questionComment: UIButton!
-    @IBOutlet weak var coachComment: UIButton!
+//    @IBOutlet weak var totalComment: UIButton!
+//    @IBOutlet weak var questionComment: UIButton!
+//    @IBOutlet weak var coachComment: UIButton!
     
 //    DetailClassNoCommentTableViewCell
     @IBOutlet weak var noCommentLbl: UILabel!
@@ -66,16 +67,16 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var reply_userPhoto: UIImageView!
     @IBOutlet weak var rollGubunImg: UIImageView!
     @IBOutlet weak var friendProfileBtn: UIButton!
-    @IBOutlet weak var replyContentView: UIView!
+//    @IBOutlet weak var replyContentView: UIView!
     @IBOutlet weak var replyContentTextView: UITextView!
     @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var friendProfile2Btn: UIButton!
-    @IBOutlet weak var replyCount: UILabel!
+//    @IBOutlet weak var friendProfile2Btn: UIButton!
+//    @IBOutlet weak var replyCount: UILabel!
     @IBOutlet weak var readMoreBtn: UIButton!
-    @IBOutlet weak var replyTime: UILabel!
+//    @IBOutlet weak var replyTime: UILabel!
     @IBOutlet weak var likeCountBtn: UIButton!
     @IBOutlet weak var moreBtn: UIButton!
-    @IBOutlet weak var replyReadBtn: UIButton!
+//    @IBOutlet weak var replyReadBtn: UIButton!
     @IBOutlet weak var replyMoreBtn: UIButton! // 1 , 3 셀에서만 사용
     @IBOutlet weak var replyPhoto: UIImageView! // 3 , 4 셀에서만 사용
     @IBOutlet weak var replyPhotoHeightConst: NSLayoutConstraint!
@@ -83,7 +84,7 @@ class ChildDetailClassTableViewCell: UITableViewCell {
     @IBOutlet weak var coachStar: UIImageView!
     @IBOutlet weak var replyPhotoBtn: UIButton!
     @IBOutlet weak var youtubePlayImg: UIImageView!
-    @IBOutlet weak var likeCountView: UIView!
+//    @IBOutlet weak var likeCountView: UIView!
     
 //    DetailClassCurriculumCell
     @IBOutlet var curriculumClassTitleLbl: UILabel!

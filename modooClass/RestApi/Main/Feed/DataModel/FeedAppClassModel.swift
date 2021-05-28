@@ -679,6 +679,7 @@ class AppClassCoachList:NSObject{
 class AppClassComment:NSObject{
     var page:Int?
     var total:Int?
+    var total_page:Int?
     var curr:Int?
     var list:AppClassCommentList?
     var appClassCommentList:Array = Array<AppClassCommentList>()
@@ -690,6 +691,7 @@ class AppClassComment:NSObject{
         self.init()
         page = DictionaryToInt(dic: dic, intName: "page")
         total = DictionaryToInt(dic: dic, intName: "total")
+        total_page = DictionaryToInt(dic: dic, intName: "total_page")
         curr = DictionaryToInt(dic: dic, intName: "curr")
         if let list = dic["list"] as? Array<Any>{
             let array:Array = list
@@ -836,5 +838,147 @@ class AppClassConditionInfoResult:NSObject{
                 member_list_arr.append(temp)
             }
         }
+    }
+}
+
+
+class CommentReplyDataModel: NSObject {
+    var code:String?
+    var message:String?
+    var results:CommentReplyData?
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        code = DictionaryToString(dic: dic, strName: "code")
+        message = DictionaryToString(dic: dic, strName: "message")
+        if let results = dic["results"] as? Dictionary<String, Any> {
+            self.results = CommentReplyData.init(dic: results)
+        }
+    }
+}
+
+class CommentReplyData:NSObject {
+    var comment_id:Int?
+    var writer_id:Int?
+    var comment:ParentComment?
+    var list:CommentReplyList?
+    var list_arr:Array = Array<CommentReplyList>()
+    var total:Int?
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        comment_id = DictionaryToInt(dic: dic, intName: "comment_id")
+        writer_id = DictionaryToInt(dic: dic, intName: "writer_id")
+        total = DictionaryToInt(dic: dic, intName: "total")
+        
+        if let comment = dic["comment"] as? Dictionary<String, Any> {
+            self.comment = ParentComment.init(dic: comment)
+        }
+        
+        if let list = dic["list"] as? Array<Any>{
+            let array:Array = list
+            for listTemp in array {
+                let temp = CommentReplyList.init(dic: listTemp as! Dictionary<String, Any>)
+                list_arr.append(temp)
+            }
+        }
+    }
+}
+
+class ParentComment: NSObject {
+    var _id:String?
+    var id:Int?
+    var class_id:Int?
+    var user_id:Int?
+    var emoticon:Int?
+    var content:String?
+    var photo_data:String?
+    var user_name:String?
+    var user_photo:String?
+    var created_at:String?
+    var reply_cnt:Int?
+    var like_cnt:Int?
+    var writer_flag:String?
+    var like_flag:String?
+    var coach_flag:String?
+    var reply_flag:String?
+    var time_spilled:String?
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        _id = DictionaryToString(dic: dic, strName: "_id")
+        id = DictionaryToInt(dic: dic, intName: "id")
+        class_id = DictionaryToInt(dic: dic, intName: "class_id")
+        user_id = DictionaryToInt(dic: dic, intName: "user_id")
+        emoticon = DictionaryToInt(dic: dic, intName: "emoticon")
+        content = DictionaryToString(dic: dic, strName: "content")
+        photo_data = DictionaryToString(dic: dic, strName: "photo_data")
+        user_name = DictionaryToString(dic: dic, strName: "user_name")
+        user_photo = DictionaryToString(dic: dic, strName: "user_photo")
+        created_at = DictionaryToString(dic: dic, strName: "created_at")
+        reply_cnt = DictionaryToInt(dic: dic, intName: "reply_cnt")
+        like_cnt = DictionaryToInt(dic: dic, intName: "like_cnt")
+        writer_flag = DictionaryToString(dic: dic, strName: "writer_flag")
+        like_flag = DictionaryToString(dic: dic, strName: "like_flag")
+        coach_flag = DictionaryToString(dic: dic, strName: "coach_flag")
+        reply_flag = DictionaryToString(dic: dic, strName: "reply_flag")
+        time_spilled = DictionaryToString(dic: dic, strName: "time_spilled")
+    }
+}
+
+class CommentReplyList:NSObject {
+    var _id:String?
+    var id:Int?
+    var content:String?
+    var created_at:String?
+    var emoticon:Int?
+    var photo_data:String?
+    var parent_id:Int?
+    var user_id:Int?
+    var user_name:String?
+    var user_photo:String?
+    var like_cnt:Int?
+    var writer_flag:String?
+    var like_flag:String?
+    var coach_flag:String?
+    var time_spilled:String?
+    var mention_id:Int?
+    var mention_name:String?
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dic:Dictionary<String, Any>) {
+        self.init()
+        _id = DictionaryToString(dic: dic, strName: "_id")
+        id = DictionaryToInt(dic: dic, intName: "id")
+        content = DictionaryToString(dic: dic, strName: "content")
+        created_at = DictionaryToString(dic: dic, strName: "created_at")
+        emoticon = DictionaryToInt(dic: dic, intName: "emoticon")
+        photo_data = DictionaryToString(dic: dic, strName: "photo_data")
+        parent_id = DictionaryToInt(dic: dic, intName: "parent_id")
+        user_id = DictionaryToInt(dic: dic, intName: "user_id")
+        user_name = DictionaryToString(dic: dic, strName: "user_name")
+        user_photo = DictionaryToString(dic: dic, strName: "user_photo")
+        like_cnt = DictionaryToInt(dic: dic, intName: "like_cnt")
+        writer_flag = DictionaryToString(dic: dic, strName: "writer_flag")
+        like_flag = DictionaryToString(dic: dic, strName: "like_flag")
+        coach_flag = DictionaryToString(dic: dic, strName: "coach_flag")
+        time_spilled = DictionaryToString(dic: dic, strName: "time_spilled")
+        mention_id = DictionaryToInt(dic: dic, intName: "mention_id")
+        mention_name = DictionaryToString(dic: dic, strName: "mention_name")
     }
 }

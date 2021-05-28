@@ -270,7 +270,7 @@ extension ReplyLikeViewController:UITableViewDataSource,UITableViewDelegate{
         }
         if UserManager.shared.userInfo.results?.user?.id ?? 0 == friendArr[row].user_id ?? 0 {
             cell.moveBtn.tag = row*10000 + 1
-            friendArr[row].like_yn = "N"
+//            friendArr[row].like_yn = "N"
             cell.moveBtn.layer.cornerRadius = 2
             cell.moveBtn.backgroundColor = UIColor(hexString: "#EFEFEF")
             cell.moveBtn.setImage(UIImage(named: "likeCancellText"), for: .normal)

@@ -204,11 +204,15 @@ class AddInfoPhotoViewController: UIViewController {
             guard let url = URL(string: userImgUrl) else {
                 return
             }
-            let data = try? Data(contentsOf: url)
-            let image = UIImage(data: data!) ?? UIImage(named: "reply_user_default")
+            let defaultImgData = UIImage(named: "reply_user_default")
+            let data = (try? Data(contentsOf: url))
+            let image = UIImage(data: ((data ?? defaultImgData?.pngData())!))
             image1.image = image
             profile_image = image
             imageRemoveBtn1.isHidden = false
+            nextBtn.layer.borderColor = UIColor(hexString: "#ff5a5f").cgColor
+            nextBtn.setTitleColor(UIColor(named:"MainPoint_mainColor"), for: .normal)
+            nextBtn.isUserInteractionEnabled = true
         } else {
             image1.image = nil //UIImage(named: "reply_user_default")
         }

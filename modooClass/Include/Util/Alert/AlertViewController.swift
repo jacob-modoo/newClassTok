@@ -27,7 +27,8 @@ enum AlertType:String {
     case WithToolTipInfoView = "Alert16"
     case WithInfoWirteStart = "Alert17"
     case WithInterestCheck = "Alert18"
-    case WithUnfriend = "AlertUnfriend"
+    case WithUnfriend = "Alert19"
+    case WithEditComment = "Alert20"
 }
 
 class AlertViewController: UIViewController {
@@ -142,6 +143,10 @@ class AlertViewController: UIViewController {
             break
         case .WithUnfriend:
             self.setBtnBtn2()
+            break
+        case .WithEditComment:
+            self.setBtnBtn2()
+            break
         }
         view.layoutIfNeeded()
     }

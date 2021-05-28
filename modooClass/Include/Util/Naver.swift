@@ -11,7 +11,7 @@ import NaverThirdPartyLogin
 import Alamofire
 
 
-class Naver{
+class Naver {
     var thirdPartyLoginConn: NaverThirdPartyLoginConnection?
     
     func naverLogin(viewController:UIViewController){
@@ -72,33 +72,21 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate{
     }
 //    // ---- 8
     public func getNaverEmailFromURL() {
-        print("Success getNaverEmailFromURL")
         guard let loginConn = NaverThirdPartyLoginConnection.getSharedInstance() else {return}
         guard let tokenType = loginConn.tokenType else {return}
         guard let accessToken = loginConn.accessToken else {return}
 
         let authorization = "\(tokenType) \(accessToken)"
-        var dataValue:Any?
-
+        let urlStr = "https://openapi.naver.com/v1/nid/me"
+        let url = URL(string: urlStr)!
+        
         DispatchQueue.main.async {
-            AF.request("https://openapi.naver.com/v1/nid/me", method: .get, parameters: nil ,headers: ["Authorization" : authorization]).responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    print("naver api request success")
-                    dataValue = value
-                case .failure(let error):
-                    print("Error while fetching remote rooms: \(String(describing:error))")
-                }
-                
-//                guard response.result.isSuccess else {
-//                    print("Error while fetching remote rooms: \(String(describing:response.result.error))")
-//                    return
-//                }
-                guard let result = dataValue as? [String: Any] else {return}
+            AF.request(url, method: .get, parameters: nil ,headers: ["Authorization" : authorization]).responseJSON { response in
+                guard let result = response.value as? [String: Any] else {return}
                 guard let object = result["response"] as? [String: Any] else {return}
-                //            guard let birthday = object["birthday"] as? String else {return}
-                //            guard let name = object["name"] as? String else {return}
-                //            guard let email = object["email"] as? String else {return}
+//                guard let birthday = object["birthday"] as? String else {return}
+//                guard let name = object["name"] as? String else {return}
+//                guard let email = object["email"] as? String else {return}
                 guard let naverId = object["id"] as? String else {return}
                 guard let naverName = object["name"] as? String else {return}
                 LoginApi.shared.socialAuth(provider: "naver", social_id: naverId, name: naverName, payload: result, success: { result in

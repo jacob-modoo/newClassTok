@@ -77,7 +77,7 @@ class FeedApi: NSObject {
         request.response { response in
             let statusCode = response.response?.statusCode
             if statusCode == 200 {
-                let dic = SearchModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post : \(apiUrl)/class_search\(page)"))
+                let dic = SearchModel.init(dic: convertToDictionary(data: response.data!,apiURL: "post : \(apiUrl)/class_search/\(page)"))
                 success(dic)
             }else {
                 fail(response.error)
@@ -264,17 +264,26 @@ class FeedApi: NSObject {
     }
     
 //    MARK: - commentType = class 클래스에 댓글 남기기 , curriculum 클래스안에 커리큘럼 댓글 남기기 , mcComment 댓글 상세에서 남기기
-    func replySave(class_id:Int,curriculum:Int,mcComment_id:Int,content:String,commentType:String,commentChild:Bool,emoticon:Int,photo:UIImage?,success: @escaping(_ data: FeedAppClassDetailReplySendModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
+    func replySave(class_id:Int,curriculum:Int,mcComment_id:Int,content:String,commentType:String,commentChild:Bool,emoticon:Int,photo:UIImage?,mentionStatus:Bool,mention_id:Int,success: @escaping(_ data: FeedAppClassDetailReplySendModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
         
         var param1:Dictionary = [
             "content":content
             ] as [String : Any]
         
         if emoticon != 100{
-            param1 = [
-                "content":content,
-                "emoticon":emoticon
-            ] as [String : Any]
+            if mentionStatus == true {
+                param1 = [
+                    "content":content,
+                    "emoticon":emoticon,
+                    "mention_id":mention_id
+                ] as [String : Any]
+            } else {
+                param1 = [
+                    "content":content,
+                    "emoticon":emoticon
+                ] as [String : Any]
+            }
+            
         }else{
             
         }
@@ -285,11 +294,20 @@ class FeedApi: NSObject {
         ] as [String : Any]
         
         if emoticon != 100{
-            param2 = [
-                "mcComment_id":mcComment_id,
-                "content":content,
-                "emoticon":emoticon
-            ] as [String : Any]
+            if mentionStatus == true {
+                param2 = [
+                    "mcComment_id":mcComment_id,
+                    "content":content,
+                    "emoticon":emoticon,
+                    "mention_id":mention_id
+                ] as [String : Any]
+            } else {
+                param2 = [
+                    "mcComment_id":mcComment_id,
+                    "content":content,
+                    "emoticon":emoticon
+                ] as [String : Any]
+            }
         }
         
         var param:Dictionary = [:] as [String : Any]
@@ -617,7 +635,7 @@ class FeedApi: NSObject {
     
 //    MARK: - play tracking for "spectator"
     func playTrackingTimeSpectator(class_id:Int, user_id:Int,success: @escaping(_ data: FeedAppClassDefaultModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
-        let url = URL.init(string: "https://search.enfit.net/api/v1/userLogging/class")!
+        let url = URL.init(string: "https://search.classtok.net/api/v1/userLogging/class")!
         let param = [
             "class_id": class_id,
             "user_id": user_id] as [String : Any]
@@ -653,7 +671,7 @@ class FeedApi: NSObject {
     
 //    MARK: - auto-completing search function
     func autoCompleteSearch(keyword:String, success: @escaping(_ data: AutoSearchModel)-> Void, fail: @escaping (_ error: Error?)-> Void){
-        let url = URL.init(string: "https://search.enfit.net/api/v1/class/search_suggest")!
+        let url = URL.init(string: "https://search.classtok.net/api/v1/class/search_suggest")!
         let param = ["keyword": keyword] as [String : Any]
 
         AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
@@ -988,6 +1006,22 @@ class FeedApi: NSObject {
                 let dic = SquareReplyCommentListModel.init(dic: convertToDictionary(data: response.data!,apiURL: "get : \(apiUrl)/squareDetail_comment/\(articleId)/\(page)"))
                 success(dic)
             }else {
+                fail(response.error)
+            }
+        }
+    }
+    
+//    MARK: - comment reply data
+    func commentReplyData(commentId:Int, success: @escaping(_ data: CommentReplyDataModel)->Void, fail: @escaping(_ error: Error?)->Void) {
+        
+        let request = AF.request("\(apiUrl)/comment_reply/\(commentId)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: header)
+        
+        request.response { response in
+            let statusCode = response.response?.statusCode
+            if statusCode == 200 {
+                let dic = CommentReplyDataModel.init(dic: convertToDictionary(data: response.data!, apiURL: "get : \(apiUrl)/comment_reply/\(commentId)"))
+                success(dic)
+            } else {
                 fail(response.error)
             }
         }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AuthenticationServices
 
 class FirstLoginViewController: BaseViewController {
     
@@ -33,6 +34,11 @@ class FirstLoginViewController: BaseViewController {
         UIApplication.shared.windows.first?.rootViewController = UINavigationController.init(rootViewController: newRootVC)
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
+    
+    @IBAction func appleLoginBtnClicked(_ sender: UIButton) {
+        handleAuthorizationAppleIDButtonPress()
+    }
+    
     
     @IBAction func kakaoLoginBtnClicked(_ sender: UIButton) {
         if Kakao().checkRequestKakao(){
@@ -77,6 +83,22 @@ class FirstLoginViewController: BaseViewController {
         }
     }
     
+    
+    @objc func handleAuthorizationAppleIDButtonPress() {
+        if #available(iOS 13.0, *) {
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+        } else {
+            Alert.With(self, title: "Apple 로그인은 iOS 13.0 이상 버전에서만 사용할 수 있습니다.\n다른 옵션을 선택하십시오.", btn1Title: "확인", btn1Handler: {
+            })
+        }
+    }
     
   /**
       **파라미터가 있고 반환값이 없는 메소드 > 소셜로그인 처리 함수
@@ -160,5 +182,67 @@ class FirstLoginViewController: BaseViewController {
                 print("parameterError")
             }
         }
+    }
+}
+
+@available(iOS 13.0, *)
+extension FirstLoginViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+            // 시스템에서 계정을 만듭니다.
+            //이 데모 앱을 위해 userIdentifier를 키 체인에 저장합니다.
+            do {
+                try KeychainItem(service: "kr.co.enfit.modooClass", account: "userIdentifier").saveItem(userIdentifier)
+            } catch {
+                print("Unable to save userIdentifier to keychain.")
+            }
+            
+            print("userIdentifier : \(userIdentifier) , fullName?.givenName : \(fullName?.familyName ?? "") , fullName?.familyName : \(fullName?.givenName ?? "") , email : \(email ?? "")")
+            
+            LoginApi.shared.socialAuth(provider: "apple", social_id: userIdentifier, name: "\(fullName?.familyName ?? "")\(fullName?.givenName ?? "")", payload: appleIDCredential, success: { result in
+                if result.code! == "200"{
+                    UserManager.shared.userInfo = result
+                    self.loginMove(socialId: userIdentifier, socialName: "\(fullName?.givenName ?? "")\(fullName?.familyName ?? "")", socialProvider: "apple", token: result.results!.token!)
+                }else{
+                    Indicator.hideActivityIndicator(uiView: self.view)
+                    Alert.With(self, title: isNoLoginString, btn1Title: "확인", btn1Handler: {})
+                }
+            }) { error in
+                Indicator.hideActivityIndicator(uiView: self.view)
+                print("error : \(String(describing: error?.localizedDescription))")
+            }
+            
+        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
+            // 기존 iCloud Keychain 자격 증명을 사용하여 로그인합니다.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            print("username : \(username) , password : \(password)")
+            //이 데모 앱의 목적을 위해 비밀번호 자격 증명을 경고로 표시합니다.
+//            DispatchQueue.main.async {
+//                let message = "앱이 키 체인에서 선택한 자격 증명을 받았습니다. \n\n Username: \(username)\n Password: \(password)"
+//                let alertController = UIAlertController(title: "받은 키 체인 자격 증명",
+//                                                        message: message,
+//                                                        preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "나가기", style: .cancel, handler: nil))
+//                self.present(alertController, animated: true, completion: nil)
+//            }
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+    }
+}
+
+@available(iOS 13.0, *)
+extension FirstLoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }

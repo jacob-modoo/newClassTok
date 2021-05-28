@@ -209,6 +209,7 @@ class StoryDetailViewController: UIViewController {
     }
     
     func reloadView() {
+        Indicator.showActivityIndicator(uiView: self.view)
         FeedApi.shared.appMainPilotV2(success: { result in
             if result.code == "200" {
                 HomeMain2Manager.shared.pilotAppMain = result
@@ -425,7 +426,7 @@ class StoryDetailViewController: UIViewController {
             DispatchQueue.main.async {
                 FeedApi.shared.squareReplyDelete(articleId: comment_id, success: { [unowned self] result in
                     if result.code == "200"{
-                        for addArray in 0 ..< (self.list?.results?.comment_reply?.list_arr.count ?? 0)! {
+                        for addArray in 0 ..< (self.list?.results?.comment_reply?.list_arr.count ?? 0) {
                             if comment_id == "\(self.list?.results?.comment_reply?.list_arr[addArray].comment_id ?? "")"{
                                 self.list?.results?.comment_reply?.list_arr.remove(at: addArray)
                                 DispatchQueue.main.async {
@@ -475,9 +476,7 @@ class StoryDetailViewController: UIViewController {
         }else{
             let newViewController = self.home2WebViewStoryboard.instantiateViewController(withIdentifier: "ProfileV2NewViewController") as! ProfileV2NewViewController
             let friend_id = self.list?.results?.comment_reply?.list_arr[sender.tag].user_id ?? 0
-            print("** friend_id : \(friend_id)")
             if UserManager.shared.userInfo.results?.user?.id == friend_id {
-                print("** friend_id equals my own id")
                 newViewController.isMyProfile = true
             }else{
                 newViewController.isMyProfile = false
@@ -772,102 +771,101 @@ class StoryDetailViewController: UIViewController {
         self.ytView.isHidden = true
         self.vmView.isHidden = true
         
-        FeedApi.shared.appSquareDetail(feedId: self.feedId,success: { [unowned self] result in
-            Indicator.hideActivityIndicator(uiView: self.view)
+        FeedApi.shared.appSquareDetail(feedId: self.feedId,success: { [weak self] result in
+            Indicator.showActivityIndicator(uiView: (self?.view)!)
             if result.code == "200"{
-                self.list = result
+                self?.list = result
                 DispatchQueue.main.async {
-                    self.ytAspectConst.priority = .defaultHigh
-                    self.ytHeightConst.priority = .defaultLow
-                    self.vmAspectConst.priority = .defaultHigh
-                    self.vmHeightConst.priority = .defaultLow
+                    self?.ytAspectConst.priority = .defaultHigh
+                    self?.ytHeightConst.priority = .defaultLow
+                    self?.vmAspectConst.priority = .defaultHigh
+                    self?.vmHeightConst.priority = .defaultLow
                     
-                    if self.list?.results?.play_file_app ?? "" != ""{
-                        self.ytView.isHidden = true
-                        self.vmView.isHidden = false
-                        let url = URL(fileURLWithPath: "\(self.list?.results?.play_file_app ?? "")")
+                    if self?.list?.results?.play_file_app ?? "" != ""{
+                        self?.ytView.isHidden = true
+                        self?.vmView.isHidden = false
+                        let url = URL(fileURLWithPath: "\(self?.list?.results?.play_file_app ?? "")")
                         let player = AVPlayer(url: url)
-                        self.playerController.player = player
-    //                    player.play()
+                        self?.playerController.player = player
+                        player.play()
                         
                     }else{
-                        if self.list?.results?.youtube_file ?? "" != ""{
+                        if self?.list?.results?.youtube_file ?? "" != ""{
     //                        Indicator.showActivityIndicator(uiView: self.view)
-                            self.ytView.isHidden = false
-                            self.vmView.isHidden = true
-                            self.youtube_url = self.list?.results?.youtube_file ?? ""
-                            self.videoLoad()
+                            self?.ytView.isHidden = false
+                            self?.vmView.isHidden = true
+                            self?.youtube_url = self?.list?.results?.youtube_file ?? ""
+                            self?.videoLoad()
                         }else{
-                            self.ytAspectConst.priority = .defaultLow
-                            self.ytHeightConst.priority = .defaultHigh
-                            self.vmAspectConst.priority = .defaultLow
-                            self.vmHeightConst.priority = .defaultHigh
-                            self.ytHeightConst.constant = 0
-                            self.vmHeightConst.constant = 0
-                            self.ytView.pauseVideo()
-                            self.playerController.player?.pause()
+                            self?.ytAspectConst.priority = .defaultLow
+                            self?.ytHeightConst.priority = .defaultHigh
+                            self?.vmAspectConst.priority = .defaultLow
+                            self?.vmHeightConst.priority = .defaultHigh
+                            self?.ytHeightConst.constant = 0
+                            self?.vmHeightConst.constant = 0
+                            self?.ytView.pauseVideo()
+                            self?.playerController.player?.pause()
                         }
                     }
-                    self.view.layoutIfNeeded()
+                    self?.view.layoutIfNeeded()
                     
-                    for addArray in 0 ..< (self.list?.results?.user_info?.active_list_arr.count ?? 0)! {
-                        if self.list?.results?.id ?? "" == "\(self.list?.results?.user_info?.active_list_arr[addArray].id ?? 0)"{
-                            self.list?.results?.user_info?.active_list_arr.remove(at: addArray)
+                    for addArray in 0 ..< (self?.list?.results?.user_info?.active_list_arr.count ?? 0)! {
+                        if self?.list?.results?.id ?? "" == "\(self?.list?.results?.user_info?.active_list_arr[addArray].id ?? 0)"{
+                            self?.list?.results?.user_info?.active_list_arr.remove(at: addArray)
                             break
                         }
                     }
                 
-                    self.user_photo.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                    let message = "\(self.list?.results?.user_info?.user_name ?? "")의 \(self.list?.results?.type ?? "")"
+                    self?.user_photo.sd_setImage(with: URL(string: "\(self?.list?.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+                    let message = "\(self?.list?.results?.user_info?.user_name ?? "")의 \(self?.list?.results?.type ?? "")"
                     let attributedString = NSMutableAttributedString(string: message)
 
-                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: "#484848"), range: (message as NSString).range(of:"의 \(self.list?.results?.type ?? "")"))
-                    attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 14)!, range: (message as NSString).range(of:"의 \(self.list?.results?.type ?? "")"))
+                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: "#484848"), range: (message as NSString).range(of:"의 \(self?.list?.results?.type ?? "")"))
+                    attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "AppleSDGothicNeo-Regular", size: 14)!, range: (message as NSString).range(of:"의 \(self?.list?.results?.type ?? "")"))
 
-                    self.viewTitle.attributedText = attributedString
+                    self?.viewTitle.attributedText = attributedString
                     
-                    var cellFrame = self.view.frame.size
-                    cellFrame.height =  cellFrame.height - 15
-                    cellFrame.width =  cellFrame.width - 15
-                    if self.list?.results?.photo_arr.count ?? 0 > 0{
-                        self.photoSizeImage.sd_setImage(with: URL(string: "\(self.list?.results?.photo_arr[0].photo_url ?? "")"), placeholderImage: UIImage(named: "curriculumV2_default"), options: [], completed: { (theImage, error, cache, url) in
+                    let cellFrame = self?.view.frame.size
+//                    cellFrame.height =  cellFrame.height - 15
+//                    cellFrame.width =  cellFrame.width - 15
+                    if self?.list?.results?.photo_arr.count ?? 0 > 0{
+                        self?.photoSizeImage.sd_setImage(with: URL(string: "\(self?.list?.results?.photo_arr[0].photo_url ?? "")"), placeholderImage: UIImage(named: "curriculumV2_default"), options: [], completed: { (theImage, error, cache, url) in
                             var downImg = UIImage(named: "curriculumV2_default")
                             if theImage != nil {
                                 downImg = theImage
                             }
                             
-                            self.photoSize = self.getAspectRatioAccordingToiPhones(cellImageFrame: cellFrame, downloadedImage: downImg!)
+                            self?.photoSize = (self?.getAspectRatioAccordingToiPhones(cellImageFrame: cellFrame!, downloadedImage: downImg!))!
                             UIView.animate(withDuration: 0.0, animations: {
                                 
-                                if self.firstExec == true{
-                                    self.firstExec = false
+                                if self?.firstExec == true{
+                                    self?.firstExec = false
                                 }else{
-                                    self.scrollToFirstRow()
+                                    self?.scrollToFirstRow()
                                 }
                             }, completion: { _ in
                                 DispatchQueue.main.async {
-                                    self.tableView.reloadData()
+                                    self?.tableView.reloadData()
                                 }
                             })
                         })
                     }else{
                         UIView.animate(withDuration: 0.0, animations: {
-                            
-                            if self.firstExec == true{
-                                self.firstExec = false
+                            if self?.firstExec == true{
+                                self?.firstExec = false
                             }else{
-                                self.scrollToFirstRow()
+                                self?.scrollToFirstRow()
                             }
                         }, completion: { _ in
                             DispatchQueue.main.async {
-                                self.tableView.reloadData()
+                                self?.tableView.reloadData()
                             }
                         })
                     }
                 }
-                
+                Indicator.hideActivityIndicator(uiView: (self?.view)!)
             }
-            self.endOfWork()
+            self?.endOfWork()
         }) { error in
             self.endOfWork()
             Indicator.hideActivityIndicator(uiView: self.view)
@@ -928,6 +926,7 @@ class StoryDetailViewController: UIViewController {
                 cell.noPhotoView1.isHidden = false
                 cell.noPhotoProfileText1.text = "\(self.list?.results?.user_info?.active_list_arr[checkRow].content ?? "")"
                 cell.noPhotoLikeCount1.text = "👍 \(self.list?.results?.user_info?.active_list_arr[checkRow].like_cnt ?? 0)"
+//                if list?.results?.user_info?.active_list_arr[checkRow].emo===
                 cell.noPhotoUserImg1.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.active_list_arr[checkRow].user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 
                 let randomIndex = Int(arc4random_uniform(UInt32(randomColor.count)))
@@ -1156,9 +1155,9 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
         switch section {
         case 0:
 //            if self.list?.results?.play_file_app ?? "" != "" || self.list?.results?.youtube_file ?? "" != "" {
-            print("** the count of photo \(self.list?.results?.mcClass_id ?? 0)")
-            if self.list?.results?.photo_arr.count ?? 0 == 0{
+            if self.list?.results?.photo_arr.count ?? 0 == 0 && self.list?.results?.emoticon ?? 0 == 0{
                 let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoTableViewCell", for: indexPath) as! StoryDetailTableViewCell
+                print("** info table view")
                 cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
                 cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
                 if self.list?.results?.mcClass_id ?? 0 == 0 {
@@ -1177,65 +1176,73 @@ extension StoryDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 }
                 cell.selectionStyle = .none
                 return cell
-            }else{
-//                if self.list?.results?.photo_arr.count ?? 0 > 0{
-                    let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoITableViewCell", for: indexPath) as! StoryDetailTableViewCell
-                    var cellFrame = cell.frame.size
-                    cellFrame.height =  cellFrame.height - 15
-                    cellFrame.width =  cellFrame.width - 15
-                    if self.list?.results?.type ?? "" == "미션"{
-                        cell.missionCompleteImg.isHidden = false
-                    }else{
-                        cell.missionCompleteImg.isHidden = true
-                    }
-                    if self.list?.results?.mcClass_id ?? 0 == 0 {
-                        cell.classLinkView.isHidden = true
-                        cell.contentIfNeeded.isHidden = false
-                        cell.contentIfNeeded.text = "\(self.list?.results?.content ?? "")"
-                    }else{
-                        cell.classLinkView.isHidden = false
-                        cell.contentIfNeeded.isHidden = true
-                    }
-                    
-                    cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-                    cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
-                    if self.list?.results?.class_signup_data ?? 0 > 20{
-                        cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로잉."
-                    }else{
-                        cell.classSalePrice.text = "\(self.list?.results?.coach_name ?? "")님의 클래스 오픈을 축하해주세요 ✨"
-                    }
-                    
-                let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-                    cell.replyPhotoImgHeightConst.constant = self.photoSize
-                
-                    cell.replyPhotoImg.sd_setImage(with: URL(string: "\(self.list?.results?.photo_arr[0].photo_url ?? "")"), placeholderImage: UIImage(named: "curriculumV2_default"))
-                cell.replyPhotoImg.addGestureRecognizer(pictureTap)
-                    cell.selectionStyle = .none
-                    return cell
+            } else if self.list?.results?.emoticon ?? 0 != 0 {
+                let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoQTableViewCell", for: indexPath) as! StoryDetailTableViewCell
+                print("** info Q table view")
+                cell.replyUserPhoto.image = UIImage(named: "emti\(list?.results?.emoticon ?? 0)")
+                cell.replyUserName.text = "\(list?.results?.content ??  "")"
+                cell.classLinkView.isHidden = true
+//                cell.replyUserPhoto.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+//                cell.replyUserName.text = self.list?.results?.user_info?.user_name ?? ""
+//                cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+//                cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
+//
+//                if self.list?.results?.mcClass_id ?? 0 == 0 {
+//                    cell.classLinkView.isHidden = true
+//                    cell.contentIfNeeded.isHidden = false
+//                    cell.contentIfNeeded.text = "\(self.list?.results?.content ?? "")"
 //                }else{
-//                    let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoQTableViewCell", for: indexPath) as! StoryDetailTableViewCell
-//                    cell.replyUserPhoto.sd_setImage(with: URL(string: "\(self.list?.results?.user_info?.user_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-//                    cell.replyUserName.text = self.list?.results?.user_info?.user_name ?? ""
-//                    cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
-//                    cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
-//
-//                    if self.list?.results?.mcClass_id ?? 0 == 0 {
-//                        cell.classLinkView.isHidden = true
-//                        cell.contentIfNeeded.isHidden = false
-//                        cell.contentIfNeeded.text = "\(self.list?.results?.content ?? "")"
-//                    }else{
-//                        cell.classLinkView.isHidden = false
-//                        cell.contentIfNeeded.isHidden = true
-//                    }
-//
-//                    if self.list?.results?.class_signup_data ?? 0 > 20{
-//                        cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로잉."
-//                    }else{
-//                        cell.classSalePrice.text = "\(self.list?.results?.coach_name ?? "")님의 클래스 오픈을 축하해주세요 ✨"
-//                    }
-//                    cell.selectionStyle = .none
-//                    return cell
+//                    cell.classLinkView.isHidden = false
+//                    cell.contentIfNeeded.isHidden = true
 //                }
+//
+//                if self.list?.results?.class_signup_data ?? 0 > 20{
+//                    cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로잉."
+//                }else{
+//                    cell.classSalePrice.text = "\(self.list?.results?.coach_name ?? "")님의 클래스 오픈을 축하해주세요 ✨"
+//                }
+            
+            
+            
+                
+                cell.selectionStyle = .none
+                return cell
+            }else{
+                let cell:StoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "StoryDetailClassInfoITableViewCell", for: indexPath) as! StoryDetailTableViewCell
+                print("** info i table view")
+                var cellFrame = cell.frame.size
+                cellFrame.height =  cellFrame.height - 15
+                cellFrame.width =  cellFrame.width - 15
+                if self.list?.results?.type ?? "" == "미션"{
+                    cell.missionCompleteImg.isHidden = false
+                }else{
+                    cell.missionCompleteImg.isHidden = true
+                }
+                if self.list?.results?.mcClass_id ?? 0 == 0 {
+                    cell.classLinkView.isHidden = true
+                    cell.contentIfNeeded.isHidden = false
+                    cell.contentIfNeeded.text = "\(self.list?.results?.content ?? "")"
+                }else{
+                    cell.classLinkView.isHidden = false
+                    cell.contentIfNeeded.isHidden = true
+                }
+                
+                cell.classPriceImg.sd_setImage(with: URL(string: "\(self.list?.results?.class_photo ?? "")"), placeholderImage: UIImage(named: "reply_user_default"))
+                cell.classPriceName.text = "\(self.list?.results?.class_name ?? "")"
+                if self.list?.results?.class_signup_data ?? 0 > 20{
+                    cell.classSalePrice.text = "\(convertCurrency(money: (NSNumber(value: self.list?.results?.class_signup_data ?? 0)), style : NumberFormatter.Style.decimal))명이 \(self.list?.results?.coach_name ?? "")팔로잉."
+                }else{
+                    cell.classSalePrice.text = "\(self.list?.results?.coach_name ?? "")님의 클래스 오픈을 축하해주세요 ✨"
+                }
+                
+                let pictureTap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+                cell.replyPhotoImgHeightConst.constant = self.photoSize
+            
+                cell.replyPhotoImg.sd_setImage(with: URL(string: "\(self.list?.results?.photo_arr[0].photo_url ?? "")"), placeholderImage: UIImage(named: "curriculumV2_default"))
+                cell.replyPhotoImg.addGestureRecognizer(pictureTap)
+                
+                cell.selectionStyle = .none
+                return cell
             }
             
         case 1:

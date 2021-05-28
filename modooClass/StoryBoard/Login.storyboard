@@ -46,17 +46,14 @@
                                         <color key="textColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAo-CD-b4V">
-                                        <rect key="frame" x="65" y="62" width="284" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="BzR-xC-A8l"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAo-CD-b4V" userLabel="Other Login Btn">
+                                        <rect key="frame" x="65" y="117" width="284" height="44"/>
                                         <state key="normal" image="other_logins" backgroundImage="phone_bg"/>
                                         <connections>
                                             <action selector="otherLoginsBtnClicked:" destination="QnO-H5-gbT" eventType="touchUpInside" id="xPh-fz-zQ7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hj2-9d-8j0">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hj2-9d-8j0" userLabel="Kakao Login  Btn">
                                         <rect key="frame" x="65" y="5" width="284" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="1zh-1d-RYf"/>
@@ -66,15 +63,31 @@
                                             <action selector="kakaoLoginBtnClicked:" destination="QnO-H5-gbT" eventType="touchUpInside" id="KSy-Vt-mnI"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbp-eu-mZz" userLabel="Login Provider Btn" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
+                                        <rect key="frame" x="65" y="61" width="284" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="apple_login"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="22"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="appleLoginBtnClicked:" destination="QnO-H5-gbT" eventType="touchUpInside" id="cAV-Iu-Foj"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="QAo-CD-b4V" firstAttribute="top" secondItem="hj2-9d-8j0" secondAttribute="bottom" constant="13" id="VnL-tW-WQ1"/>
-                                    <constraint firstItem="QAo-CD-b4V" firstAttribute="height" secondItem="hj2-9d-8j0" secondAttribute="height" id="cQx-0m-QX5"/>
+                                    <constraint firstItem="Fbp-eu-mZz" firstAttribute="height" secondItem="hj2-9d-8j0" secondAttribute="height" id="Dv4-0c-OfY"/>
+                                    <constraint firstItem="QAo-CD-b4V" firstAttribute="height" secondItem="hj2-9d-8j0" secondAttribute="height" id="RXy-ZA-6kl"/>
+                                    <constraint firstItem="Fbp-eu-mZz" firstAttribute="top" secondItem="hj2-9d-8j0" secondAttribute="bottom" constant="12" id="e2h-Yg-84R"/>
+                                    <constraint firstItem="QAo-CD-b4V" firstAttribute="top" secondItem="Fbp-eu-mZz" secondAttribute="bottom" constant="12" id="g6Q-Ci-FP1"/>
                                     <constraint firstAttribute="bottom" secondItem="19P-3U-zL6" secondAttribute="bottom" constant="20" id="lAm-st-p4K"/>
                                     <constraint firstItem="QAo-CD-b4V" firstAttribute="centerX" secondItem="Pkn-Md-dSf" secondAttribute="centerX" id="ldf-tZ-pwV"/>
                                     <constraint firstItem="19P-3U-zL6" firstAttribute="centerX" secondItem="Pkn-Md-dSf" secondAttribute="centerX" id="t4O-5T-keB"/>
-                                    <constraint firstItem="hj2-9d-8j0" firstAttribute="centerX" secondItem="Pkn-Md-dSf" secondAttribute="centerX" id="tYB-A8-BnB"/>
+                                    <constraint firstItem="Fbp-eu-mZz" firstAttribute="leading" secondItem="hj2-9d-8j0" secondAttribute="leading" id="tpn-CQ-5De"/>
+                                    <constraint firstItem="Fbp-eu-mZz" firstAttribute="trailing" secondItem="hj2-9d-8j0" secondAttribute="trailing" id="wKs-9U-ADh"/>
                                     <constraint firstItem="hj2-9d-8j0" firstAttribute="top" secondItem="Pkn-Md-dSf" secondAttribute="top" constant="5" id="wkM-Ct-Ohl"/>
                                     <constraint firstItem="hj2-9d-8j0" firstAttribute="centerX" secondItem="Pkn-Md-dSf" secondAttribute="centerX" id="z0k-kE-rB8"/>
                                 </constraints>
@@ -170,7 +183,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRp-zw-I82" userLabel="Login Provider Btn" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="65" y="173" width="284" height="44"/>
+                                        <rect key="frame" x="65" y="61" width="284" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="apple_login"/>
                                         <userDefinedRuntimeAttributes>
@@ -183,7 +196,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzs-iw-Ia1" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="65" y="117" width="284" height="44"/>
+                                        <rect key="frame" x="65" y="173" width="284" height="44"/>
                                         <state key="normal" image="fb_login" backgroundImage="facebook_bg"/>
                                         <connections>
                                             <action selector="facebookLoginBtnClicked:" destination="3b0-3D-BuU" eventType="touchUpInside" id="QXh-b5-Lsu"/>
@@ -197,7 +210,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yl8-lq-Wno" customClass="UIFixedButton" customModule="modooClass" customModuleProvider="target">
-                                        <rect key="frame" x="65" y="61" width="284" height="44"/>
+                                        <rect key="frame" x="65" y="117" width="284" height="44"/>
                                         <state key="normal" image="naver_login" backgroundImage="naver_bg"/>
                                         <connections>
                                             <action selector="naverLoginBtnClicked:" destination="3b0-3D-BuU" eventType="touchUpInside" id="Fqp-ge-IlO"/>
@@ -207,18 +220,18 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="nRp-zw-I82" firstAttribute="height" secondItem="3KJ-ZY-Dar" secondAttribute="height" id="7af-bm-7T2"/>
-                                    <constraint firstItem="GWT-k6-YpG" firstAttribute="top" secondItem="nRp-zw-I82" secondAttribute="bottom" constant="12" id="8hQ-Lx-pml"/>
                                     <constraint firstItem="WgL-23-7D6" firstAttribute="centerX" secondItem="M3s-7M-BFH" secondAttribute="centerX" id="8uQ-Lk-EMN"/>
                                     <constraint firstItem="3KJ-ZY-Dar" firstAttribute="centerX" secondItem="M3s-7M-BFH" secondAttribute="centerX" id="AAC-6q-AsW"/>
                                     <constraint firstItem="Yl8-lq-Wno" firstAttribute="height" secondItem="3KJ-ZY-Dar" secondAttribute="height" id="BFn-VK-BZ3"/>
                                     <constraint firstItem="GWT-k6-YpG" firstAttribute="height" secondItem="3KJ-ZY-Dar" secondAttribute="height" id="CNC-uV-qkX"/>
                                     <constraint firstItem="Vzs-iw-Ia1" firstAttribute="width" secondItem="3KJ-ZY-Dar" secondAttribute="width" id="E95-Dg-ia5"/>
-                                    <constraint firstItem="nRp-zw-I82" firstAttribute="top" secondItem="Vzs-iw-Ia1" secondAttribute="bottom" constant="12" id="Ja0-d7-0bc"/>
+                                    <constraint firstItem="GWT-k6-YpG" firstAttribute="top" secondItem="Vzs-iw-Ia1" secondAttribute="bottom" constant="12" id="KU3-r0-fBK"/>
                                     <constraint firstItem="nRp-zw-I82" firstAttribute="width" secondItem="3KJ-ZY-Dar" secondAttribute="width" id="N8Z-ja-HsS"/>
                                     <constraint firstItem="nRp-zw-I82" firstAttribute="centerX" secondItem="M3s-7M-BFH" secondAttribute="centerX" id="QEW-5w-yda"/>
                                     <constraint firstAttribute="bottom" secondItem="WgL-23-7D6" secondAttribute="bottom" constant="20" id="Qkw-Xg-5f8"/>
+                                    <constraint firstItem="Yl8-lq-Wno" firstAttribute="top" secondItem="nRp-zw-I82" secondAttribute="bottom" constant="12" id="RbO-8p-wr7"/>
                                     <constraint firstItem="3KJ-ZY-Dar" firstAttribute="top" secondItem="M3s-7M-BFH" secondAttribute="top" constant="5" id="edk-Cf-acT"/>
-                                    <constraint firstItem="Yl8-lq-Wno" firstAttribute="top" secondItem="3KJ-ZY-Dar" secondAttribute="bottom" constant="12" id="fHN-nW-oGM"/>
+                                    <constraint firstItem="nRp-zw-I82" firstAttribute="top" secondItem="3KJ-ZY-Dar" secondAttribute="bottom" constant="12" id="ffv-oQ-u9w"/>
                                     <constraint firstItem="Vzs-iw-Ia1" firstAttribute="centerX" secondItem="M3s-7M-BFH" secondAttribute="centerX" id="fwW-JW-u3a"/>
                                     <constraint firstItem="Yl8-lq-Wno" firstAttribute="width" secondItem="3KJ-ZY-Dar" secondAttribute="width" id="jUB-9d-ptu"/>
                                     <constraint firstItem="GWT-k6-YpG" firstAttribute="centerX" secondItem="M3s-7M-BFH" secondAttribute="centerX" id="lRx-j5-qCF"/>
@@ -2891,6 +2904,9 @@
         </designable>
         <designable name="FIZ-46-2cp">
             <size key="intrinsicContentSize" width="3.5" height="15"/>
+        </designable>
+        <designable name="Fbp-eu-mZz">
+            <size key="intrinsicContentSize" width="160" height="30"/>
         </designable>
         <designable name="Fqi-yJ-e92">
             <size key="intrinsicContentSize" width="183" height="26.5"/>

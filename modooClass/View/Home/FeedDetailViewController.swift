@@ -37,6 +37,8 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var textView4: UIView!
     /** *textView for descriptionVC */
     @IBOutlet weak var textView5: UIView!
+    /** *textView for DetailCommentPage */
+    @IBOutlet weak var textView6: UIView!
     
     /** **자식 컨트롤러 디테일클래스 뷰 추가 여부 */
      var textViewAddCheck = false
@@ -50,6 +52,8 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var textView4AddCheck = false
     /** **자식 컨트롤러 디테일응원하기 뷰 추가 여부 */
     var textView5AddCheck = false
+    /** **자식 컨트롤러 디테일응원하기 뷰 추가 여부 */
+    var textView6AddCheck = false
     /** **처음 로딩시 클래스 가입이 제대로 되어있는지 체크 인덱스 */
     var viewCheck = 1
     /** **자식 컨트롤러 몇번째 뷰 포커스 인덱스 */
@@ -62,7 +66,10 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
     var tab3DataChange = true
     /** **자식 컨트롤러 디테일응원하기 뷰 데이터 리로딩 여부 */
     var tab4DataChange = true
+    /** **자식 컨트롤러 디테일응원하기 뷰 데이터 리로딩 여부 */
     var tab5DataChange = true
+    /** **자식 컨트롤러 디테일응원하기 뷰 데이터 리로딩 여부 */
+    var tab6DataChange = true
     /** **영상 플레이어 데이터 리로딩 여부 */
     var videoDataChange = true
     /** **클래스 아이디 */
@@ -415,6 +422,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
         tab3DataChange = true
         tab4DataChange = true
         tab5DataChange = true
+        tab6DataChange = true
         FeedDetailManager.shared.feedDetailList = FeedAppClassModel()
         FeedDetailManager.shared.feedAppCurriculumModel = FeedAppCurriculumModel()
         FeedDetailManager.shared.reviewDashboardModel = ReviewDashboardModel()
@@ -457,6 +465,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
         self.textView3.isHidden = true
         self.textView4.isHidden = true
         self.textView5.isHidden = true
+        self.textView6.isHidden = true
         if self.tableViewCheck == 1{
             if self.tab1DataChange == true{
                 FeedApi.shared.appClassData(class_id:class_id,success: { [unowned self] result in
@@ -515,8 +524,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
             }else{
                 let controller: ChildDetailClassViewController = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailClassViewController") as! ChildDetailClassViewController
                 controller.didMove(toParent: self)
-                print("** appearing second time!")
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DetailClassIdSend"), object: class_id)
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DetailClassIdSend"), object: class_id)
             }
         }else if self.tableViewCheck == 2{
             let controller: ChildDetailCurriculumViewController = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailCurriculumViewController") as! ChildDetailCurriculumViewController
@@ -696,7 +704,7 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                 })
             }
             
-        } else {
+        } else if self.tableViewCheck == 6 {
             let controller = feedStoryboard.instantiateViewController(withIdentifier: "ChildDetailDescriptionViewController") as! ChildDetailDescriptionViewController
             controller.filePath = nil
             if tab5DataChange == true {
@@ -739,6 +747,61 @@ class FeedDetailViewController: UIViewController,UIGestureRecognizerDelegate{
                         self.textView5.frame.origin.y = textViewY
                     }, completion: { (isCompleted) in
                         
+                    })
+                }
+            }
+        } else {
+            if self.tab6DataChange == true {
+                self.textView6.isHidden = false
+                let controller: DetailReplyViewController = feedStoryboard.instantiateViewController(withIdentifier: "DetailReplyViewController") as! DetailReplyViewController
+                controller.view.frame = CGRect(x: 0, y: 0, width: self.textView6.frame.width, height: self.textView6.frame.height)
+            
+                if self.textView6AddCheck == false{
+                    self.addChild(controller)
+                    self.textView6.addSubview(controller.view)
+                    controller.view.snp.makeConstraints{ (make) in
+                        make.top.bottom.leading.trailing.equalTo(self.textView6)
+                    }
+                    self.textView6AddCheck = true
+                    print("** frame : \(controller.view.frame)")
+                }
+                DispatchQueue.main.async {
+                    self.textView6.frame.origin.y = (self.textView6.frame.origin.y * 4)
+                    controller.didMove(toParent: self)
+                    UIView.animate(withDuration: 0.3,delay: 0.0, animations: {
+                        self.textView6.frame.origin.y = textViewY+50
+                    }, completion: { (isCompleted) in
+                        
+                    })
+                }
+                
+//                FeedApi.shared.commentReplyData(commentId: comment_id) { (result) in
+//
+//                    FeedDetailManager.shared.feedDetailData = result
+//
+////                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CommentDataSend"), object: self.comment_id)
+//                    self.tab6DataChange = false
+//
+//                    print("** successfully get data from api")
+//                } fail: { (error) in
+//                    Alert.With(self, title: "네트워크 오류가 발생했습니다.\n인터넷을 확인해주세요.", btn1Title: "확인", btn1Handler: {
+//
+//                    })
+//                }
+
+
+                
+            }else{
+                print("** is else option")
+                let controller: DetailReplyViewController = feedStoryboard.instantiateViewController(withIdentifier: "DetailReplyViewController") as! DetailReplyViewController
+                DispatchQueue.main.async {
+                    self.textView6.frame.origin.y = (self.textView6.frame.origin.y * 4)
+                    self.textView6.isHidden = false
+                    controller.didMove(toParent: self)
+                    UIView.animate(withDuration: 0.3,delay: 0.0, animations: {
+                        self.textView6.frame.origin.y = textViewY
+                    }, completion: { (isCompleted) in
+
                     })
                 }
             }

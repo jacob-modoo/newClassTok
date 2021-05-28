@@ -186,9 +186,11 @@ class HomeClassViewController: UIViewController {
     @IBAction func classAttendBtnClicked(_ sender: UIButton) {
         let tag = sender.tag
         
-        tableView.beginUpdates()
-        HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].button_point1 = ""
-        tableView.endUpdates()
+        if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].button_point1 != "" {
+            HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].button_point1 = ""
+            tableView.reloadData()
+        }
+        
         if HomeMain2Manager.shared.pilotAppMain.results?.class_list_arr[tag].wait_page ?? "" != "" {
             let newViewController = childWebViewStoryboard.instantiateViewController(withIdentifier: "ChildHome2WebViewController") as! ChildHome2WebViewController
 //            if wait page contains "orientation" remove last VC from navigation stack
